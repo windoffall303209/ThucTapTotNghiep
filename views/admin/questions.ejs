@@ -1,0 +1,485 @@
+<%
+  const answerKeys = ['A', 'B', 'C', 'D'];
+  const difficultyOptions = [
+    { value: 'EASY', label: 'Dễ' },
+    { value: 'MEDIUM', label: 'Trung bình' },
+    { value: 'HARD', label: 'Khó' },
+    { value: 'EXPERT', label: 'Nâng cao' }
+  ];
+  const layoutOptions = [
+    { value: 'STACK_VERTICAL', label: 'Xếp dọc' },
+    { value: 'SPLIT_HORIZONTAL_LEFT_IMAGE', label: 'Ảnh trái, chữ phải' },
+    { value: 'SPLIT_HORIZONTAL_RIGHT_IMAGE', label: 'Chữ trái, ảnh phải' },
+    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' }
+  ];
+
+  function selected(current, value) {
+    return current === value ? 'selected' : '';
+  }
+
+  function choiceText(question, key) {
+    const choice = (question.choices || []).find((item) => item.key === key);
+    return choice ? choice.text : '';
+  }
+
+  function questionText(question) {
+    return question.content && question.content.text ? question.content.text : '';
+  }
+
+  function explanationText(question) {
+    return question.explanation && question.explanation.text ? question.explanation.text : '';
+  }
+
+  function difficultyLabel(value) {
+    const option = difficultyOptions.find((item) => item.value === value);
+    return option ? option.label : 'Chưa phân loại';
+  }
+
+  function layoutLabel(value) {
+    const option = layoutOptions.find((item) => item.value === value);
+    return option ? option.label : 'Xếp dọc';
+  }
+
+  function chapterStepId(book, chapter) {
+    return `${book.id}-chapter-${chapter.id}`;
+  }
+
+  function lessonStepId(lesson) {
+    return `lesson-${lesson.id}`;
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function imageHtml(image) {
+    const width = Math.min(Math.max(Number(image.width_percent || 100), 20), 100);
+    return `
+      <span class="question-image" style="max-width:${width}%">
+        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa')}">
+      </span>
+    `;
+  }
+
+  function imageGroupHtml(images) {
+    if (!Array.isArray(images) || images.length === 0) return '';
+    return `<div class="saved-question-images">${images.map(imageHtml).join('')}</div>`;
+  }
+
+  function contentHtml(question, options = {}) {
+    const content = question.content || {};
+    const images = Array.isArray(content.images) ? content.images : [];
+    let rawText = String(content.text || '');
+
+    if (options.removeImagePlaceholders) {
+      images.forEach((image) => {
+        rawText = rawText.replaceAll(`[${image.id}]`, '');
+      });
+    }
+
+    let html = escapeHtml(rawText).replace(/\r?\n/g, '<br>');
+    images.forEach((image) => {
+      html = html.replaceAll(`[${escapeHtml(image.id)}]`, imageHtml(image));
+    });
+
+    const missingImages = options.appendMissingImages === false
+      ? ''
+      : images
+          .filter((image) => !String(content.text || '').includes(`[${image.id}]`))
+          .map(imageHtml)
+          .join('');
+
+    return `${html}${missingImages}`;
+  }
+
+  function savedQuestionLayoutClass(question) {
+    const map = {
+      STACK_VERTICAL: 'layout-stack',
+      SPLIT_HORIZONTAL_LEFT_IMAGE: 'layout-image-left',
+      SPLIT_HORIZONTAL_RIGHT_IMAGE: 'layout-image-right',
+      IMAGE_IN_CHOICES: 'layout-image-choices'
+    };
+    return map[question.layout_template] || 'layout-stack';
+  }
+
+  function savedQuestionContentHtml(question) {
+    const images = Array.isArray(question.content && question.content.images) ? question.content.images : [];
+    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') {
+      return `${imageGroupHtml(images)}<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>`;
+    }
+    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') {
+      return `<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>${imageGroupHtml(images)}`;
+    }
+    return `<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>${imageGroupHtml(images)}`;
+  }
+%>
+
+<section class="question-flow-page" data-question-flow>
+  <header class="question-flow-topbar">
+    <button class="flow-back-button" type="button" data-flow-back hidden aria-label="Quay lại">
+      <i data-lucide="arrow-left" class="lucide-icon"></i>
+    </button>
+    <div>
+      <p class="eyebrow">Ngân hàng câu hỏi</p>
+      <h1 data-flow-title>Chọn sách giáo khoa</h1>
+      <p data-flow-subtitle>Chọn một sách để đi tiếp tới chương, bài học và câu hỏi.</p>
+    </div>
+    <div class="question-bank-stats">
+      <span><strong><%= bookTree.length %></strong> sách/tập</span>
+      <span><strong><%= lessons.length %></strong> bài học</span>
+      <span><strong><%= totalQuestionCount || 0 %></strong> câu hỏi</span>
+    </div>
+  </header>
+
+  <% if (!bookTree || bookTree.length === 0) { %>
+    <div class="empty-state compact">Chưa có dữ liệu chương trình để quản lý ngân hàng câu hỏi.</div>
+  <% } %>
+
+  <div class="question-flow-stage">
+    <section class="flow-step is-active" data-flow-step="books" data-flow-title="Chọn sách giáo khoa" data-flow-subtitle="Chọn một sách để đi tiếp tới chương, bài học và câu hỏi.">
+      <div class="book-card-grid">
+        <% bookTree.forEach((book) => { %>
+          <button class="book-card" type="button" data-flow-target="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
+            <span class="book-card-kicker">Sách giáo khoa</span>
+            <strong><%= book.title %></strong>
+            <small><%= book.chapterCount %> chương · <%= book.lessonCount %> bài · <%= book.questionCount %> câu hỏi</small>
+          </button>
+        <% }) %>
+      </div>
+    </section>
+
+    <% bookTree.forEach((book) => { %>
+      <section class="flow-step" data-flow-step="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
+        <div class="flow-list">
+          <% book.chapters.forEach((chapter, index) => { %>
+            <button class="flow-list-row" type="button" data-flow-target="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học trong chương này.">
+              <span class="row-index"><%= index + 1 %></span>
+              <span>
+                <strong><%= chapter.chapter_name %></strong>
+                <small><%= chapter.lessons.length %> bài · <%= chapter.questionCount %> câu hỏi</small>
+              </span>
+              <i data-lucide="chevron-right" class="lucide-icon"></i>
+            </button>
+          <% }) %>
+        </div>
+      </section>
+
+      <% book.chapters.forEach((chapter) => { %>
+        <section class="flow-step" data-flow-step="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học để xem và quản lý câu hỏi.">
+          <div class="flow-list">
+            <% chapter.lessons.forEach((lesson, index) => { %>
+              <button class="flow-list-row" type="button" data-flow-target="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.questionCount %> câu hỏi hiện có trong bài này.">
+                <span class="row-index"><%= index + 1 %></span>
+                <span>
+                  <strong><%= lesson.lesson_name %></strong>
+                  <small><%= lesson.questionCount %> câu hỏi</small>
+                </span>
+                <i data-lucide="chevron-right" class="lucide-icon"></i>
+              </button>
+            <% }) %>
+          </div>
+        </section>
+
+        <% chapter.lessons.forEach((lesson) => { %>
+          <section class="flow-step" data-flow-step="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.questionCount %> câu hỏi hiện có. Có thể thêm, sửa hoặc xóa tại đây.">
+            <div class="lesson-question-toolbar">
+              <div>
+                <span class="bank-kicker">Bài học</span>
+                <h2><%= lesson.lesson_name %></h2>
+                <p><%= lesson.questionCount %> câu hỏi hiện có trong ngân hàng.</p>
+              </div>
+            </div>
+
+            <div
+              class="lesson-question-shell"
+              data-lesson-questions
+              data-lesson-id="<%= lesson.id %>"
+              data-loaded="false"
+            >
+              <div class="empty-state compact">Đang chờ tải dữ liệu câu hỏi cho bài này.</div>
+            </div>
+
+            <% if (false) { %>
+            <details class="inline-create-panel">
+              <summary>
+                <i data-lucide="plus" class="lucide-icon"></i>
+                Thêm câu hỏi
+              </summary>
+              <form class="question-create-inline stack-form" action="/admin/questions" method="post" enctype="multipart/form-data" data-question-preview-form>
+                <input type="hidden" name="lesson_id" value="<%= lesson.id %>" required>
+
+                <div class="form-actions form-actions-top">
+                  <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+                  <button class="btn btn-primary" type="submit">
+                    <i data-lucide="save" class="lucide-icon"></i>
+                    Lưu câu hỏi
+                  </button>
+                </div>
+
+                <label>
+                  Đề bài
+                  <textarea name="content_text" rows="5" placeholder="Ví dụ: Tính $\\frac{1}{3}+\\frac{2}{5}$." required data-preview-content></textarea>
+                </label>
+
+                <fieldset class="choice-fieldset image-fieldset">
+                  <legend>Hình ảnh trong đề bài</legend>
+                  <label>
+                    Ảnh minh họa
+                    <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
+                  </label>
+                  <div class="two-fields">
+                    <label>
+                      Độ rộng ảnh (%)
+                      <input type="number" name="image_width_percent" min="20" max="100" value="70" data-preview-image-width>
+                    </label>
+                    <label>
+                      Mô tả ảnh
+                      <input name="image_alt_text" placeholder="Ví dụ: Hình tam giác ABC" data-preview-image-alt>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="two-fields">
+                  <label>
+                    Độ khó
+                    <select name="difficulty">
+                      <% difficultyOptions.forEach((option) => { %>
+                        <option value="<%= option.value %>"><%= option.label %></option>
+                      <% }) %>
+                    </select>
+                  </label>
+                  <label>
+                    Bố cục
+                    <select name="layout_template">
+                      <% layoutOptions.forEach((option) => { %>
+                        <option value="<%= option.value %>"><%= option.label %></option>
+                      <% }) %>
+                    </select>
+                  </label>
+                </div>
+
+                <fieldset class="choice-fieldset">
+                  <legend>Phương án trả lời</legend>
+                  <% answerKeys.forEach((key) => { %>
+                    <div class="choice-editor">
+                      <label class="choice-input">
+                        <span><%= key %></span>
+                        <input name="choice_<%= key %>" required data-preview-choice="<%= key %>">
+                      </label>
+                      <div class="two-fields">
+                        <label>
+                          Tên lỗi sai <%= key %>
+                          <input name="misconception_name_<%= key %>" placeholder="Ví dụ: Cộng cả tử và mẫu">
+                        </label>
+                        <label>
+                          Giải thích lỗi sai <%= key %>
+                          <input name="misconception_<%= key %>" placeholder="Chỉ dùng khi <%= key %> là đáp án sai">
+                        </label>
+                      </div>
+                    </div>
+                  <% }) %>
+                </fieldset>
+
+                <label>
+                  Đáp án đúng
+                  <select name="correct_answer" required>
+                    <option value="">Chọn đáp án</option>
+                    <% answerKeys.forEach((key) => { %>
+                      <option value="<%= key %>"><%= key %></option>
+                    <% }) %>
+                  </select>
+                </label>
+
+                <label>
+                  Lời giải chi tiết
+                  <textarea name="explanation_text" rows="4" placeholder="Giải thích từng bước cho học sinh."></textarea>
+                </label>
+
+                <aside class="question-form-preview">
+                  <div class="section-title">
+                    <i data-lucide="eye" class="lucide-icon"></i>
+                    Xem trước đề
+                  </div>
+                  <div class="question-preview-box math-content" data-question-preview></div>
+                  <div class="placeholder-list" data-preview-placeholder-list hidden></div>
+                </aside>
+
+                <div class="form-actions">
+                  <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+                  <button class="btn btn-primary" type="submit">
+                    <i data-lucide="save" class="lucide-icon"></i>
+                    Lưu câu hỏi
+                  </button>
+                </div>
+              </form>
+            </details>
+
+            <% if (lesson.questions.length === 0) { %>
+              <div class="empty-state compact">Bài này chưa có câu hỏi. Bấm “Thêm câu hỏi” để nhập câu hỏi đầu tiên cho bài này.</div>
+            <% } %>
+
+            <div class="bank-question-list">
+              <% lesson.questions.forEach((question) => { %>
+                <article class="bank-question">
+                  <div class="bank-question-head">
+                    <div>
+                      <div class="bank-question-meta">
+                        <span>ID #<%= question.id %></span>
+                      </div>
+                      <div class="saved-question-layout <%= savedQuestionLayoutClass(question) %> math-content">
+                        <%- savedQuestionContentHtml(question) %>
+                      </div>
+                    </div>
+                    <span class="answer-badge">Đáp án <%= question.correct_answer %></span>
+                  </div>
+
+                  <div class="question-choice-list math-content">
+                    <% answerKeys.forEach((key) => { %>
+                      <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
+                        <span><%= key %></span>
+                        <strong><%= choiceText(question, key) || 'Chưa nhập' %></strong>
+                      </div>
+                    <% }) %>
+                  </div>
+
+                  <div class="question-actions">
+                    <details class="inline-edit-panel">
+                      <summary>
+                        <i data-lucide="pencil" class="lucide-icon"></i>
+                        Sửa
+                      </summary>
+
+                      <form class="inline-edit-form stack-form" action="/admin/questions/<%= question.id %>" method="post" enctype="multipart/form-data" data-question-preview-form>
+                        <div class="form-actions form-actions-top">
+                          <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+                          <button class="btn btn-primary" type="submit">
+                            <i data-lucide="save" class="lucide-icon"></i>
+                            Lưu thay đổi
+                          </button>
+                        </div>
+
+                        <label>
+                          Bài học
+                          <select name="lesson_id" required>
+                            <% lessons.forEach((item) => { %>
+                              <option value="<%= item.id %>" <%= selected(Number(question.lesson_id), Number(item.id)) %>>
+                                Khối <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
+                              </option>
+                            <% }) %>
+                          </select>
+                        </label>
+
+                        <label>
+                          Đề bài
+                          <textarea name="content_text" rows="4" required data-preview-content><%= questionText(question) %></textarea>
+                        </label>
+
+                        <div class="two-fields">
+                          <label>
+                            Độ khó
+                            <select name="difficulty">
+                              <% difficultyOptions.forEach((option) => { %>
+                                <option value="<%= option.value %>" <%= selected(question.difficulty, option.value) %>><%= option.label %></option>
+                              <% }) %>
+                            </select>
+                          </label>
+                          <label>
+                            Bố cục
+                            <select name="layout_template">
+                              <% layoutOptions.forEach((option) => { %>
+                                <option value="<%= option.value %>" <%= selected(question.layout_template, option.value) %>><%= option.label %></option>
+                              <% }) %>
+                            </select>
+                          </label>
+                        </div>
+
+                        <fieldset class="choice-fieldset">
+                          <legend>Phương án trả lời</legend>
+                          <% answerKeys.forEach((key) => { %>
+                            <label class="choice-input">
+                              <span><%= key %></span>
+                              <input name="choice_<%= key %>" value="<%= choiceText(question, key) %>" required data-preview-choice="<%= key %>">
+                            </label>
+                          <% }) %>
+                        </fieldset>
+
+                        <label>
+                          Đáp án đúng
+                          <select name="correct_answer" required>
+                            <% answerKeys.forEach((key) => { %>
+                              <option value="<%= key %>" <%= selected(question.correct_answer, key) %>><%= key %></option>
+                            <% }) %>
+                          </select>
+                        </label>
+
+                        <label>
+                          Lời giải chi tiết
+                          <textarea name="explanation_text" rows="4"><%= explanationText(question) %></textarea>
+                        </label>
+
+                        <fieldset class="choice-fieldset image-fieldset">
+                          <legend>Thêm ảnh mới vào đề bài</legend>
+                          <label>
+                            Ảnh minh họa
+                            <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
+                          </label>
+                          <div class="two-fields">
+                            <label>
+                              Độ rộng ảnh (%)
+                              <input type="number" name="image_width_percent" min="20" max="100" value="70" data-preview-image-width>
+                            </label>
+                            <label>
+                              Mô tả ảnh
+                              <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
+                            </label>
+                          </div>
+                          <% if (question.content && question.content.images && question.content.images.length > 0) { %>
+                            <p class="muted">Câu hỏi hiện có <%= question.content.images.length %> ảnh. Ảnh mới sẽ được thêm vào cuối đề bài.</p>
+                          <% } %>
+                        </fieldset>
+
+                        <aside class="question-form-preview">
+                          <div class="section-title">
+                            <i data-lucide="eye" class="lucide-icon"></i>
+                            Xem trước đề
+                          </div>
+                          <div class="question-preview-box math-content" data-question-preview></div>
+                          <div class="placeholder-list" data-preview-placeholder-list hidden></div>
+                        </aside>
+
+                        <div class="form-actions">
+                          <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+                          <button class="btn btn-primary" type="submit">
+                            <i data-lucide="save" class="lucide-icon"></i>
+                            Lưu thay đổi
+                          </button>
+                        </div>
+                      </form>
+                    </details>
+
+                    <form class="delete-question-form" action="/admin/questions/<%= question.id %>/delete" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa câu hỏi này? Lịch sử làm bài liên quan tới câu hỏi này cũng có thể bị ảnh hưởng.');">
+                      <button class="btn btn-danger btn-compact" type="submit">
+                        <i data-lucide="trash-2" class="lucide-icon"></i>
+                        Xóa
+                      </button>
+                    </form>
+                  </div>
+                </article>
+              <% }) %>
+            </div>
+            <% } %>
+          </section>
+        <% }) %>
+      <% }) %>
+    <% }) %>
+  </div>
+</section>

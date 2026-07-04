@@ -1,0 +1,63 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Tài khoản</p>
+    <h1>Thông tin học sinh</h1>
+    <p>Kiểm tra thông tin tài khoản và đổi mật khẩu đăng nhập khi cần.</p>
+  </div>
+</section>
+
+<section class="account-grid">
+  <article class="info-panel">
+    <div class="section-title">
+      <i data-lucide="user-circle" class="lucide-icon"></i>
+      Hồ sơ
+    </div>
+    <dl class="account-details">
+      <div>
+        <dt>Họ tên</dt>
+        <dd><%= account.fullname %></dd>
+      </div>
+      <div>
+        <dt>Tên đăng nhập</dt>
+        <dd><%= account.username %></dd>
+      </div>
+      <div>
+        <dt>Khối đăng ký</dt>
+        <dd>Lớp <%= account.registered_grade || account.current_grade %></dd>
+      </div>
+      <div>
+        <dt>Khối hiện tại</dt>
+        <dd>Lớp <%= account.current_grade %></dd>
+      </div>
+      <div>
+        <dt>Ngày tạo</dt>
+        <dd><%= account.created_at ? new Date(account.created_at).toLocaleString('vi-VN') : '-' %></dd>
+      </div>
+    </dl>
+  </article>
+
+  <article class="info-panel">
+    <div class="section-title">
+      <i data-lucide="lock-keyhole" class="lucide-icon"></i>
+      Đổi mật khẩu
+    </div>
+    <form class="stack-form" action="/student/account/password" method="post">
+      <label>
+        Mật khẩu hiện tại
+        <input name="current_password" type="password" autocomplete="current-password" required>
+      </label>
+      <label>
+        Mật khẩu mới
+        <input name="new_password" type="password" autocomplete="new-password" minlength="8" required>
+      </label>
+      <label>
+        Xác nhận mật khẩu mới
+        <input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required>
+      </label>
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="save" class="lucide-icon"></i>
+        Lưu mật khẩu mới
+      </button>
+    </form>
+  </article>
+</section>

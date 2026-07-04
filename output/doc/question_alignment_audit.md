@@ -1,0 +1,295 @@
+# B?o c?o ki?m tra l?ch c?u h?i crawl/import
+
+T?o l?c: 2026-07-03T10:00:03.310Z
+
+## T?m t?t
+
+- T?ng b?i crawl: 406
+- T?ng c?u crawl: 4641
+- C?u ?? import ? l?n g?n nh?t: 2635
+- C?u tr?ng ?? b? qua: 137
+- C?u b? b? qua do thi?u d? li?u: 128
+- B?i kh?ng map ???c v?o DB: 164
+- B?i ??/c? th? map nh?ng nghi l?ch: 62
+- S? c?u importable n?m trong nh?m nghi l?ch: 564
+
+## B?i ??/c? th? import nh?ng nghi l?ch
+
+T?ng: 62
+
+- L?p 1 | Trắc nghiệm Bài 1: Các số 0, 1, 2, 3, 4, 5 -> Chủ đề 1: Các số đến 10 / 3. Các số 1, 2, 3 | ?i?m 80, c?: ambiguous_match | 12 c?u
+- L?p 1 | Trắc nghiệm Bài 2: Các số 6, 7, 8, 9, 10 -> Chủ đề 1: Các số đến 10 / 3. Các số 1, 2, 3 | ?i?m 53, c?: low_score, ambiguous_match | 14 c?u
+- L?p 1 | Trắc nghiệm Bài 11: Phép trừ trong phạm vi 10 -> Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10 / 16. Phép trừ trong phạm vi 10 | ?i?m 60, c?: low_score | 28 c?u
+- L?p 1 | Trắc nghiệm Bài 12: Bảng cộng, bảng trừ trong phạm vi 10 -> Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10 / 12. Phép trừ trong phạm vi 6 | ?i?m 51, c?: low_score, ambiguous_match | 16 c?u
+- L?p 1 | Trắc nghiệm Bài 14: Khối lập phương, khối hộp chữ nhật -> Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10 / 10. Khối hộp chữ nhật, khối lập phương | ?i?m 60, c?: low_score | 3 c?u
+- L?p 1 | Trắc nghiệm Bài 18: Ôn tập phép cộng, phép trừ trong phạm vi 10 -> Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10 / 6. Phép cộng trong phạm vi 10 | ?i?m 60, c?: low_score, ambiguous_match | 9 c?u
+- L?p 1 | Trắc nghiệm Bài 23: Bảng các số từ 1 đến 100 -> Chủ đề 3: Các số trong phạm vi 100 / 1. Các số đến 100 | ?i?m 46, c?: low_score | 10 c?u
+- L?p 1 | Trắc nghiệm Bài 25: Dài hơn, ngắn hơn -> Chủ đề 3: Các số trong phạm vi 100 / 9. Dài hơn, ngắn hơn | ?i?m 60, c?: low_score | 1 c?u
+- L?p 2 | Trắc nghiệm Ôn tập về phép cộng, phép trừ (không nhớ) trong phạm vi 100 -> CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100 / 1. Phép cộng (có nhớ) trong phạm vi 100 | ?i?m 53, c?: low_score, ambiguous_match | 5 c?u
+- L?p 2 | Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 20 -> CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20 / 9. Phép cộng (có nhớ) trong phạm vi 20 | ?i?m 92, c?: ambiguous_match | 4 c?u
+- L?p 2 | Trắc nghiệm Phép trừ (có nhớ) trong phạm vi 20 -> CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20 / 3. Tia số. Số liền trước, số liền sau | ?i?m 92, c?: ambiguous_match | 3 c?u
+- L?p 2 | Trắc nghiệm Bài toán liên quan đến phép cộng, phép trừ -> CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20 / 22. Bài toán liên quan đến phép cộng, phép trừ | ?i?m 92, c?: ambiguous_match | 2 c?u
+- L?p 2 | Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 100 -> CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100 / 1. Phép cộng (có nhớ) trong phạm vi 100 | ?i?m 92, c?: ambiguous_match | 5 c?u
+- L?p 2 | Trắc nghiệm Phép chia -> CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA / 1. Làm quen với phép nhân. Dấu nhân | ?i?m 92, c?: ambiguous_match | 2 c?u
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 -> CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000 / 1. Các số trong phạm vi 1000 | ?i?m 92, c?: ambiguous_match | 2 c?u
+- L?p 2 | Trắc nghiệm Các số có ba chữ số -> CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000 / 2. Các số có ba chữ số | ?i?m 92, c?: ambiguous_match | 2 c?u
+- L?p 2 | Trắc nghiệm Mét -> CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20 / 4. Đề-xi-mét | ?i?m 92, c?: ambiguous_match | 11 c?u
+- L?p 3 | Trắc nghiệm Bảng chia 4 -> Chủ đề 1: Bảng nhân, bảng chia / 4. Mi-li-mét | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Bảng chia 6 -> Chủ đề 1: Bảng nhân, bảng chia / 6. Bảng nhân 3 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Bảng chia 7 -> Chủ đề 1: Bảng nhân, bảng chia / 7. Bảng nhân 4 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Bảng chia 8 -> Chủ đề 1: Bảng nhân, bảng chia / 8. Bảng nhân 6 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Bảng chia 9 -> Chủ đề 1: Bảng nhân, bảng chia / 9. Gấp một số lên một số lần | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Nhân với số có một chữ số (không nhớ) -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 2. Nhân với số có một chữ số (không nhớ) | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Chia số tròn trục, tròn trăm cho số có một chữ số -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 5. Chia số tròn chục, tròn trăm cho số có một chữ số | ?i?m 64, c?: low_score | 8 c?u
+- L?p 3 | Trắc nghiệm Chia cho số có một chữ số -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 6. Chia cho số có một chữ số | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Tính giá trị biểu thức số -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 12. Tính giá trị của biểu thức số | ?i?m 60, c?: low_score | 8 c?u
+- L?p 3 | Trắc nghiệm Tính giá trị biểu thức số (tiếp theo) (trang 91) -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 13. Tính giá trị của biểu thức số (tiếp theo) | ?i?m 64, c?: low_score, ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Tính giá trị biểu thức số (tiếp theo) (trang 93) -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 13. Tính giá trị của biểu thức số (tiếp theo) | ?i?m 64, c?: low_score, ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Hình chữ nhật -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 21. Hình chữ nhật | ?i?m 92, c?: ambiguous_match | 7 c?u
+- L?p 3 | Trắc nghiệm Hình vuông -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 22. Hình vuông | ?i?m 92, c?: ambiguous_match | 7 c?u
+- L?p 3 | Trắc nghiệm Các số trong phạm vi 10 000 -> Chủ đề 3: Các số trong phạm vi 100 000 / 1. Các số trong phạm vi 10 000 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Các số trong phạm vi 100 000 -> Chủ đề 3: Các số trong phạm vi 100 000 / 1. Các số trong phạm vi 10 000 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Nhân với số có một chữ số (không nhớ) -> Chủ đề 2: Nhân, chia các số trong phạm vi 1 000 / 2. Nhân với số có một chữ số (không nhớ) | ?i?m 92, c?: ambiguous_match | 7 c?u
+- L?p 3 | Trắc nghiệm Chia cho số có một chữ số trong phạm vi 100 000 -> Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000 / 8. Chia cho số có một chữ số trong phạm vi 100 000 | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo) (trang 67) -> Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000 / 9. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo) | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo) (trang 71) -> Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000 / 9. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo) | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Tìm thành phần chưa biết của phép tính -> Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000 / 14. Tìm thành phần chưa biết của phép tính | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 3 | Trắc nghiệm Ôn tập về số và phép tính trong phạm vi 100 000 (tiếp theo) -> Chủ đề 3: Các số trong phạm vi 100 000 / 5. Các số trong phạm vi 100 000 (tiếp theo) | ?i?m 49, c?: low_score | 8 c?u
+- L?p 4 | Trắc nghiệm Các số có nhiều chữ số -> Chủ đề 1. Số tự nhiên / 6. Bài 6: Các số có nhiều chữ số | ?i?m 92, c?: ambiguous_match | 13 c?u
+- L?p 5 | Trắc nghiệm Viết số đo đại lượng dưới dạng số thập phân -> Chủ đề 2. Các phép tính với số thập phân / 14. Bài 38. Viết các số đo đại lượng dưới dạng số thập phân | ?i?m 60, c?: low_score | 4 c?u
+- L?p 5 | Trắc nghiệm Ki-lô-mét vuông. Héc-ta -> Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân / 22. Bài 22. Ki-lô-mét vuông | ?i?m 46, c?: low_score | 3 c?u
+- L?p 5 | Trắc nghiệm Phép cộng số thập phân -> Chủ đề 2. Các phép tính với số thập phân / 1. Bài 25. Cộng các số thập phân | ?i?m 46, c?: low_score, ambiguous_match | 5 c?u
+- L?p 5 | Trắc nghiệm Phép trừ số thập phân -> Chủ đề 2. Các phép tính với số thập phân / 2. Bài 26. Trừ các số thập phân | ?i?m 46, c?: low_score, ambiguous_match | 5 c?u
+- L?p 5 | Trắc nghiệm Ôn tập số thập phân -> Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân / 12. Bài 12. Phân số thập phân | ?i?m 60, c?: low_score, ambiguous_match | 7 c?u
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số thập phân -> Chủ đề 2. Các phép tính với số thập phân / 1. Bài 25. Cộng các số thập phân | ?i?m 51, c?: low_score, ambiguous_match | 6 c?u
+- L?p 5 | Trắc nghiệm Tỉ số -> Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân / 6. Bài 6. Giới thiệu về tỉ số | ?i?m 92, c?: ambiguous_match | 11 c?u
+- L?p 5 | Trắc nghiệm Tỉ số phần trăm -> Chủ đề 2. Các phép tính với số thập phân / 16. Bài 40. Tỉ số phần trăm | ?i?m 92, c?: ambiguous_match | 8 c?u
+- L?p 5 | Trắc nghiệm Mét khối -> Chủ đề 3. Hình học và đo lường / 14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối | ?i?m 92, c?: ambiguous_match | 13 c?u
+- L?p 5 | Trắc nghiệm Hình khai triển của hình lập phương, hình hộp chữ nhật và hình trụ -> Chủ đề 3. Hình học và đo lường / 10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ | ?i?m 62, c?: low_score | 7 c?u
+- L?p 5 | Trắc nghiệm Diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật -> Chủ đề 3. Hình học và đo lường / 11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương | ?i?m 60, c?: low_score | 11 c?u
+- L?p 5 | Trắc nghiệm Diện tích xung quanh và diện tích toàn phần của hình lập phương -> Chủ đề 3. Hình học và đo lường / 11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương | ?i?m 55, c?: low_score | 11 c?u
+- L?p 5 | Trắc nghiệm Chia số đo thời gian với một số -> Chủ đề 3. Hình học và đo lường / 21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số | ?i?m 51, c?: low_score | 11 c?u
+- L?p 5 | Trắc nghiệm Biểu đồ hình quạt tròn -> Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm / 1. Bài 79. Biểu đồ hình quạt | ?i?m 53, c?: low_score | 11 c?u
+- L?p 5 | Trắc nghiệm Ôn tập số thập phân -> Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân / 12. Bài 12. Phân số thập phân | ?i?m 60, c?: low_score, ambiguous_match | 13 c?u
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số thập phân -> Chủ đề 2. Các phép tính với số thập phân / 1. Bài 25. Cộng các số thập phân | ?i?m 51, c?: low_score, ambiguous_match | 13 c?u
+- L?p 5 | Trắc nghiệm Ôn tập tỉ số, tỉ số phần trăm -> Chủ đề 2. Các phép tính với số thập phân / 16. Bài 40. Tỉ số phần trăm | ?i?m 53, c?: low_score | 11 c?u
+- L?p 6 | Chương 1: Số tự nhiên -> CHƯƠNG 1.SỐ TỰ NHIÊN / Bài 1. Tập hợp | ?i?m 92, c?: ambiguous_match | 9 c?u
+- L?p 6 | Chương 2: Số nguyên -> CHƯƠNG 2.SỐ NGUYÊN / Bài 1. Số nguyên âm | ?i?m 92, c?: ambiguous_match | 10 c?u
+- L?p 6 | Chương 3: Hình học trực quan -> CHƯƠNG 3. HÌNH HỌC TRỰC QUAN / Bài 1. Tam giác đều. Hình vuông. Lục giác đều | ?i?m 92, c?: ambiguous_match | 25 c?u
+- L?p 6 | Chương 4: Một số yếu tố thống kê và xác suất -> CHƯƠNG 4. MỘT SỐ YẾU TỐ THỐNG KÊ VÀ XÁC SUẤT / Bài 1. Thu thập, tổ chức, biểu diễn, phân tích và xử lý số liệu | ?i?m 92, c?: ambiguous_match | 18 c?u
+- L?p 6 | Chương 5: Phân số và số thập phân -> CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN / Bài 1. Phân số với tử và mẫu là số nguyên | ?i?m 92, c?: ambiguous_match | 27 c?u
+- L?p 6 | Chương 6: Hình học phẳng -> CHƯƠNG 6. HÌNH HỌC PHẲNG / Bài 1. Điểm. Đường thẳng | ?i?m 92, c?: ambiguous_match | 18 c?u
+
+## B?i kh?ng map ???c n?n ch?a import
+
+T?ng: 164
+
+- L?p 1 | Trắc nghiệm Bài 4: So sánh số | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-4-so-sanh-so.jsp
+- L?p 1 | Trắc nghiệm Bài 5: Mấy và mấy | 10 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-5-may-va-may.jsp
+- L?p 1 | Trắc nghiệm Bài 6: Luyện tập chung | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-6-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 8: Thực hành lắp ghép, xếp hình | 5 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-8-thuc-hanh-lap-ghep-xep-hinh.jsp
+- L?p 1 | Trắc nghiệm Bài 9: Luyện tập chung | 6 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-9-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | 16 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-13-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 15: Vị trí, định hướng trong không gian | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-15-vi-tri-dinh-huong-trong-khong-gian.jsp
+- L?p 1 | Trắc nghiệm Bài 16: Luyện tập chung | 4 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-16-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 17: Ôn tập các số trong phạm vi 10 | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-17-on-tap-cac-so-trong-pham-vi-10.jsp
+- L?p 1 | Trắc nghiệm Bài 19: Ôn tập hình học | 7 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-19-on-tap-hinh-hoc.jsp
+- L?p 1 | Trắc nghiệm Bài 20: Ôn tập chung | 9 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-20-on-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 21: Số có hai chữ số | 32 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-21-so-co-hai-chu-so.jsp
+- L?p 1 | Trắc nghiệm Bài 22: So sánh số có hai chữ số | 12 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-22-so-sanh-so-co-hai-chu-so.jsp
+- L?p 1 | Trắc nghiệm Bài 24: Luyện tập chung | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-24-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 26: Đơn vị đo độ dài | 10 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-26-don-vi-do-do-dai.jsp
+- L?p 1 | Trắc nghiệm Bài 27: Thực hành ước lượng và đo độ dài | 4 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-27-thuc-hanh-uoc-luong-va-do-do-dai.jsp
+- L?p 1 | Trắc nghiệm Bài 28: Luyện tập chung | 2 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-28-luyen-tap-chung.jsp
+- L?p 1 | Trắc nghiệm Bài 29: Phép cộng số có hai chữ số với số có một chữ số | 6 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-29-phep-cong-so-co-hai-chu-so-voi-so-co-mot.jsp
+- L?p 1 | Trắc nghiệm Bài 30: Phép cộng số có hai chữ số với số có hai chữ số | 8 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-30-phep-cong-so-co-hai-chu-so-voi-so-co-hai.jsp
+- L?p 1 | Trắc nghiệm Bài 31: Phép trừ số có hai chữ số cho số có một chữ số | 6 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-31-phep-tru-so-co-hai-chu-so-cho-so-co-mot.jsp
+- L?p 1 | Trắc nghiệm Bài 32: Phép trừ số có hai chữ số cho số có hai chữ số | 10 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-32-phep-tru-so-co-hai-chu-so-cho-so-co-hai.jsp
+- L?p 1 | Trắc nghiệm Bài 33: Luyện tập chung | 10 c?u | https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-33-luyen-tap-chung.jsp
+- L?p 2 | Trắc nghiệm Ôn tập các số đến 100 | 4 c?u | https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-cac-so-den-100.jsp
+- L?p 2 | Trắc nghiệm Bài toán về nhiều hơn | 4 c?u | https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-ve-nhieu-hon.jsp
+- L?p 2 | Trắc nghiệm Bài toán về ít hơn | 4 c?u | https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-ve-it-hon.jsp
+- L?p 2 | Trắc nghiệm Em ôn lại những gì đã học | 7 c?u | https://vietjack.com/toan-2-canh-dieu/trac-nghiem-em-on-lai-nhung-gi-da-hoc.jsp
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | 8 c?u | https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về các số trong phạm vi 1000 | 9 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-cac-so-trong-pham-vi-1000.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về phép cộng, phép trừ trong phạm vi 1000 | 9 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-phep-cong-phep-tru-trong-pham-vi-1000.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về hình học và đo lường trang 10 | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-10.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về phép nhân, bảng nhân 2, bảng nhân 5 | 7 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-phep-nhan-bang-nhan-2-bang-nhan-5.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 30) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-30.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (tiếp theo) (trang 32) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-tiep-theo-trang-32.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về phép chia, bảng chia 2, bảng chia 5 | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-phep-chia-bang-chia-2-bang-chia-5.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 52) | 7 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-52.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (tiếp theo) (trang 54) | 9 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-tiep-theo-trang-54.jsp
+- L?p 3 | Trắc nghiệm Em ôn lại những gì đã học (trang 63) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-63.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 72) | 7 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-72.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 79) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-79.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 80) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-80.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 95) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-95.jsp
+- L?p 3 | Trắc nghiệm Em ôn lại những gì đã học (trang 113) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-113.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về phép nhân, phép chia trong phạm vi 1 000 | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-phep-nhan-phep-chia-trong-pham-vi-1000.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về hình học và đo lường (trang 119) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-119.jsp
+- L?p 3 | Trắc nghiệm Ôn tập chung (trang 121) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-chung-trang-121.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 20) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-20.jsp
+- L?p 3 | Trắc nghiệm Vẽ trang trí hình tròn | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-ve-trang-tri-hinh-tron.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 34) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-34.jsp
+- L?p 3 | Trắc nghiệm Thực hành xem đồng hồ | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-thuc-hanh-xem-dong-ho.jsp
+- L?p 3 | Trắc nghiệm Thực hành xem đồng hồ (tiếp theo) | 9 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-thuc-hanh-xem-dong-ho-tiep-theo.jsp
+- L?p 3 | Trắc nghiệm Em ôn lại những gì đã học (trang 47) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-47.jsp
+- L?p 3 | Trắc nghiệm Em vui học toán (trang 49) | 9 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-vui-hoc-toan-trang-49.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 63) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-63.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 69) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-69.jsp
+- L?p 3 | Trắc nghiệm Luyện tập (trang 73) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-73.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 75) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-75.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 81) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-81.jsp
+- L?p 3 | Trắc nghiệm Luyện tập chung (trang 90) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-90.jsp
+- L?p 3 | Trắc nghiệm Em ôn lại những gì đã học (trang 100) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-100.jsp
+- L?p 3 | Trắc nghiệm Em vui học toán (trang 102) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-em-vui-hoc-toan-trang-102.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về số và phép tính trong phạm vi 100 000 | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-so-va-phep-tinh-trong-pham-vi-100-000.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về hình học và đo lường (trang 109) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-109.jsp
+- L?p 3 | Trắc nghiệm Ôn tập về một số yếu tố thống kê và xác suất | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-mot-so-yeu-to-thong-ke-va-xac-suat.jsp
+- L?p 3 | Trắc nghiệm Ôn tập chung (trang 113) | 8 c?u | https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-chung-trang-113.jsp
+- L?p 4 | Trắc nghiệm Ôn tập về hình học và đo lường | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong.jsp
+- L?p 4 | Trắc nghiệm Ôn tập về một số yếu tố thống kê và xác suất | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-mot-so-yeu-to-thong-ke-va-xac-suat.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 22) | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-22.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 28, 29, 30) | 12 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-28-29-30.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 43) | 11 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-43.jsp
+- L?p 4 | Trắc nghiệm Luyện tập chung (trang 57, 58) | 11 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-57-58.jsp
+- L?p 4 | Trắc nghiệm Em ôn lại những gì đã học (trang 59, 60) | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-59.jsp
+- L?p 4 | Trắc nghiệm Em vui học toán (trang 61, 62) | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-em-vui-hoc-toan-trang-61.jsp
+- L?p 4 | Trắc nghiệm Luyện tập chung (trang 74, 75) | 10 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-74-75.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 80) | 11 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-80.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 83) | 12 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-83.jsp
+- L?p 4 | Trắc nghiệm Luyện tập chung (trang 86) | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-86.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 93, 94) | 12 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-93-94.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 97) | 12 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-97.jsp
+- L?p 4 | Trắc nghiệm Luyện tập (trang 100, 101) | 13 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-100-101.jsp
+- L?p 4 | Trắc nghiệm Luyện tập chung (trang 102, 103) | 14 c?u | https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-102-103.jsp
+- ... c?n 84 m?c, xem ??y ?? trong JSON.
+
+## C?u b? b? qua do thi?u d? li?u
+
+T?ng: 128
+
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 1 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Kết quả của phép tính 2 + 2 là:
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 2 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Kết quả của phép tính 0 + 5 là
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 3 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Phép tính nào có kết quả bằng 6?
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 4 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Phép tính nào có kết quả bằng 5?
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 1 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Kết quả của phép tính 3 + 2 là:
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 2 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Kết quả của phép tính 0 + 3 là:
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 3 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Kết quả của phép tính 8 – 4 là:
+- L?p 1 | Trắc nghiệm Bài 13: Luyện tập chung | C?u 4 | missing_choices_or_answer | : Em hãy chọn đáp án đúng nhất Kết quả của phép tính 5 – 0 là:
+- L?p 2 | Trắc nghiệm Ôn tập về phép cộng, phép trừ (không nhớ) trong phạm vi 100 | C?u 3 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Phép tính trên đúng hay sai?
+- L?p 2 | Trắc nghiệm Đề-xi-mét | C?u 2 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Đoạn thẳng AB dài hơn 1dm. Đúng hay sai ?
+- L?p 2 | Trắc nghiệm Số hạng, tổng | C?u 1 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Trong phép tính 24 + 5 = 29, 29 được gọi là tổng, đúng hay sai?
+- L?p 2 | Trắc nghiệm Số bị trừ, số trừ, hiệu | C?u 1 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Trong phép tính 38 – 4 = 34, ta có 38 được gọi là số trừ, đúng hay sai?
+- L?p 2 | Trắc nghiệm Bảng cộng (có nhớ) trong phạm vi 20 | C?u 4 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Bạn Hà viết 8 + 6 = 15. Bạn Hà viết đúng hay sai?
+- L?p 2 | Trắc nghiệm Bảng trừ (có nhớ) trong phạm vi 20 | C?u 5 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Bạn Hà viết “ 12 – 5 = 6”. Hỏi bạn Hà viết đúng hay sai?
+- L?p 2 | Trắc nghiệm Bài toán liên quan đến phép cộng, phép trừ | C?u 6 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Xe buýt đang chở 36 người. Tới bến đỗ, có 12 người xuống xe. Hỏi lúc này trên xe buýt còn lại bao nhiêu người?
+- L?p 2 | Trắc nghiệm Bài toán liên quan đến phép cộng, phép trừ | C?u 8 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Có 14 con vịt ở trên bờ, lúc sau có 5 con vịt xuống ao bơi. Hỏi trên bờ còn lại bao nhiêu con vịt?
+- L?p 2 | Trắc nghiệm Bài toán về nhiều hơn | C?u 1 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai An có 7 quyển vở, Bình có 9 quyển vở. Vậy Bình có nhiều quyển vở hơn An. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 100 | C?u 4 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 48 + 26 = 75. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo) | C?u 4 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 53 + 9 = 72. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Điểm, Đoạn thẳng | C?u 7 | missing_choices_or_answer | Con hãy tích vào ô đúng hoặc sai cho mỗi câu (khẳng định) dưới đây. Câu nào đúng, câu nào sai? Quan sát hình vẽ ta thấy đoạn thẳng DE được b
+- L?p 2 | Trắc nghiệm Thừa số; Tích | C?u 2 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Cho phép tính 7 x 4 = 28. Phép tính này có tích là 28, đúng hay sai?
+- L?p 2 | Trắc nghiệm Thừa số; Tích | C?u 4 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Tổng 5 + 5 + 5 + 5 + 5 được viết thành tích là:
+- L?p 2 | Trắc nghiệm Thừa số; Tích | C?u 5 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Đáp án nào dưới đây đúng?
+- L?p 2 | Trắc nghiệm Thừa số; Tích | C?u 6 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Trong phép tính nhân có các thừa số lần lượt là 7 và 3 thì tích có giá trị là:
+- L?p 2 | Trắc nghiệm Thừa số; Tích | C?u 9 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Tìm tích biết rằng hai thừa số lần lượt là số lớn nhất có 1 chữ số và số chẵn liền sau số 0.Tích cần tìm là:
+- L?p 2 | Trắc nghiệm Bảng nhân 2 | C?u 1 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Giá trị của phép tính 2 x 7 là:
+- L?p 2 | Trắc nghiệm Bảng nhân 2 | C?u 8 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Thừa số thứ nhất là số chẵn liền sau số 0, thừa số thứ hai là số chẵn lớn nhất có một chữ số. Tích của hai số 
+- L?p 2 | Trắc nghiệm Bảng nhân 2 | C?u 9 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Tích của 2 với một số là số chẵn hay số lẻ ? ( Số chẵn là các số có tận cùng là một trong các chữ số: 0; 2; 4;
+- L?p 2 | Trắc nghiệm Bảng nhân 2 | C?u 10 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Điền dấu thích hợp vào chỗ chấm: 2 x 9 – 8…………….2 x 8 – 6 Dấu cần điền vào ô trống là:
+- L?p 2 | Trắc nghiệm Bảng nhân 5 | C?u 1 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Giá trị của phép tính 5 x 7 là:
+- L?p 2 | Trắc nghiệm Bảng nhân 5 | C?u 9 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Thừa số thứ nhất là số liền sau số 4, thừa số thứ hai là số chẵn lớn nhất có một chữ số. Tích của hai số là:
+- L?p 2 | Trắc nghiệm Bảng nhân 5 | C?u 11 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Có 2 rổ đựng cam, mỗi rổ có 5 quả và 3 rổ đựng táo, mỗi rổ có 5 quả. Tổng số quả cam có trong 2 rổ ít hơn tổng
+- L?p 2 | Trắc nghiệm Làm quen với phép chia, dấu chia | C?u 2 | missing_choices_or_answer | Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án) Những phép tính nào là phép chia?
+- L?p 2 | Trắc nghiệm Làm quen với phép chia, dấu chia | C?u 4 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Chọn phép chia phù hợp cho tranh vẽ dưới đây:
+- L?p 2 | Trắc nghiệm Làm quen với phép chia, dấu chia | C?u 5 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Mười sáu chia hai được viết là:
+- L?p 2 | Trắc nghiệm Làm quen với phép chia, dấu chia | C?u 6 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 21 : 3 = 7 đọc là Hai mốt chia ba bằng bảy. Đúng hay sai ?
+- L?p 2 | Trắc nghiệm Làm quen với phép chia, dấu chia | C?u 8 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Cô giáo mang đến lớp hộp bánh gồm 24 chiếc và yêu cầu cả lớp chia bánh vào 4 cái đĩa. Phép tính chia chính xác
+- L?p 2 | Trắc nghiệm Phép chia | C?u 3 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Xem tranh rồi nói phép chia: Có 9 cây con, xếp vào mỗi giỏ 3 cây. Xếp được 3 giỏ. Ta có phép tính:
+- L?p 2 | Trắc nghiệm Phép chia | C?u 4 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Bánh cuốn nóng là một trong những món ăn ngon được dâng tiến lên vua Hùng thứ 18. Bánh được làm từ bột gạo, tr
+- L?p 2 | Trắc nghiệm Phép chia | C?u 6 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Chọn phép tính thích hợp trong trường hợp sau: Minh và Đăng chia đều 4 cái bút chì, 10 quyển sách và 12 viên p
+- L?p 2 | Trắc nghiệm Ngày, Giờ | C?u 1 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Một ngày có 12 giờ. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ngày, Giờ | C?u 5 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 3 giờ chiều hay còn gọi là 13 giờ. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ngày, Giờ | C?u 8 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Đồng hồ trên chỉ 6 giờ. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ngày, Giờ | C?u 12 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Thu xem phim lúc 18 giờ. Vậy Thu xem phim vào buổi tối. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ngày, Giờ | C?u 13 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Hai đồng hồ trên chỉ cùng thời gian vào buổi tối. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 | C?u 7 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số gồm 0 chục, 5 đơn vị, 2 trăm viết là:
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 | C?u 8 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số gồm 1 trăm, 3 chục và 4 đơn vị viết là:
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 | C?u 11 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số liền trước số gồm 3 trăm, 5 chục, 0 đơn vị là số:
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 | C?u 14 | missing_choices_or_answer | Con hãy điền từ / cụm từ/ số thích hợp vào các ô trống Điền số thích hợp vào chỗ trống: a ) Số liền trước của 1000 là : ……
+- L?p 2 | Trắc nghiệm Các số trong phạm vi 1000 | C?u 15 | missing_choices_or_answer | Con hãy bấm vào từ/cụm từ để chọn. Bấm lại vào từ/cụm từ để bỏ chọn So sánh số nhỏ nhất có ba chữ số và số lẻ nhỏ nhất có ba chữ số.
+- L?p 2 | Trắc nghiệm Các số có ba chữ số | C?u 4 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Số 241 là số có ba chữ số. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Các số có ba chữ số | C?u 5 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số gồm 8 trăm, 0 chục, 4 đơn vị được viết, đọc là:
+- L?p 2 | Trắc nghiệm Các số có ba chữ số | C?u 6 | missing_choices_or_answer | Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án) Số 990 là số:
+- L?p 2 | Trắc nghiệm Các số có ba chữ số | C?u 7 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số 311 được tạo thành bởi mấy số?
+- L?p 2 | Trắc nghiệm Các số có ba chữ số (tiếp theo) | C?u 4 | missing_choices_or_answer | Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án) Số 701 gồm:
+- L?p 2 | Trắc nghiệm Các số có ba chữ số (tiếp theo) | C?u 5 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Số 241 là số có ba chữ số. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Các số có ba chữ số (tiếp theo) | C?u 6 | missing_choices_or_answer | Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án) Số 990 là số:
+- L?p 2 | Trắc nghiệm So sánh các số có ba chữ số | C?u 7 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Số cần điền vào dấu ? trên trục số là:
+- L?p 2 | Trắc nghiệm So sánh các số có ba chữ số | C?u 10 | missing_choices_or_answer | Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án) Những nhận định nào dưới đây không đúng khi so sánh các số có ba chữ số?
+- L?p 2 | Trắc nghiệm Mét | C?u 2 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 1 m = 100 dm. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ki-lô-mét | C?u 2 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai 1 km = 100 m. Đúng hay sai?
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | C?u 1 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Thương của số chẵn liền sau số 30 với 4 có giá trị là:
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | C?u 3 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Có bao nhiêu số có hai chữ số khi chia cho 3 được thương lớn hơn 4 và nhỏ hơn 7 ?
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | C?u 7 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Liên hoan tết Trung thu, cô giáo mua về cho lớp 25 hộp bánh. Cô chia đều bánh cho 5 tổ. Hỏi mỗi tổ có bao nhiê
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | C?u 10 | missing_choices_or_answer | Con hãy lựa chọn đáp án Đúng hoặc Sai Một bạn học sinh đã xác định các thành phần của phép chia như sau:
+- L?p 2 | Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo) | C?u 11 | missing_choices_or_answer | Con hãy chọn đáp án đúng nhất Mai đếm chuồng có 16 tai thỏ. Hỏi trong chuồng có bao nhiêu con thỏ?
+- L?p 3 | Trắc nghiệm Ôn tập về phép cộng, phép trừ trong phạm vi 1000 | C?u 3 | missing_choices_or_answer | Một cuốn sách dày 150 trang. An đã đọc được 75 trang. Hỏi còn bao nhiêu trang sách An chưa đọc?
+- L?p 3 | Trắc nghiệm Bảng nhân 8 | C?u 5 | missing_choices_or_answer | Phép tính nào đưới đây có giá trị bằng 46
+- L?p 3 | Trắc nghiệm Hình chữ nhật | C?u 2 | missing_choices_or_answer | Có mấy phát biểu đúng về hình chữ nhật ABCD trong các phát biểu dưới đây: 1. Hình chữ nhật ABCD có 4 đỉnh đều là góc vuông 2. AB = CD; AD = 
+- L?p 3 | Trắc nghiệm Hình vuông | C?u 2 | missing_choices_or_answer | Có mấy phát biểu đúng về hình vuông ABCD trong các phát biểu dưới đây: 1. Hình vuông ABCD có 4 đỉnh đều là góc vuông 2. AB = CD = AD = BC 3.
+- L?p 4 | Trắc nghiệm Luyện tập (trang 100, 101) | C?u 13 | missing_choices_or_answer | . Tính giá trị của biểu thức a) 2 145 + 570 : 15 = ..... + ..... b) 51 230 – 31 746 : 39
+- L?p 4 | Trắc nghiệm Em vui học toán (trang 44, 45, 46) | C?u 7 | missing_choices_or_answer | . Em hãy chọn đáp án đúng nhất. Phân số nhỏ nhất là:
+- L?p 4 | Trắc nghiệm Luyện tập (trang 72, 73) | C?u 11 | missing_choices_or_answer | . Tính
+- L?p 4 | Trắc nghiệm Ôn tập chung (trang 99, 100, 101, 102) | C?u 6 | missing_choices_or_answer | . Em hãy chọn đáp án đúng nhất. Chiều dài của mảnh đất là bao nhiêu?
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số tự nhiên | C?u 5 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số tự nhiên | C?u 6 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Kết quả của biểu thức 2 100 : (49 + 35) là:
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số tự nhiên | C?u 7 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Kết quả của biểu thức 19 × 30 – 1593 : 27 là:
+- L?p 5 | Trắc nghiệm Ôn tập phân số | C?u 4 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Phân số thập phân | C?u 9 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Phân số thập phân nào bằng phân số 3 8 ?
+- L?p 5 | Trắc nghiệm Phân số thập phân | C?u 10 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Phân số thập phân nào bằng phân số 1 125 ?
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với phân số | C?u 3 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Cộng, trừ hai phân số khác mẫu số | C?u 1 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Cộng, trừ hai phân số khác mẫu số | C?u 2 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Cộng, trừ hai phân số khác mẫu số | C?u 6 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Số thích hợp điền vào ô trống là: 1 2 + 2 3 < ..... 2 < 11 4 − 1 6
+- L?p 5 | Trắc nghiệm Hỗn số | C?u 7 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Hỗn số | C?u 9 | missing_choices_or_answer | Điền số thích hợp vào ô trống Viết các phân số thập phân dưới dạng hỗn số:
+- L?p 5 | Trắc nghiệm Ki-lô-mét vuông. Héc-ta | C?u 3 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Trong các số đo sau, số đo lớn nhất là:
+- L?p 5 | Trắc nghiệm Ki-lô-mét vuông. Héc-ta | C?u 1 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Héc-ta viết tắt là:
+- L?p 5 | Trắc nghiệm Ki-lô-mét vuông. Héc-ta | C?u 2 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Héc-ta là diện tích của hình vuông có cạnh dài:
+- L?p 5 | Trắc nghiệm Ki-lô-mét vuông. Héc-ta | C?u 4 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Số đo 41,87 ha được viết là:
+- L?p 5 | Trắc nghiệm Máy tính cầm tay | C?u 8 | missing_choices_or_answer | Em hãy chọn đáp án đúng nhất Dùng máy tính cầm tay để tìm giá trị của biểu thức sau: 1 975 + 2 025 = .....
+- L?p 5 | Trắc nghiệm Thể tích của một hình | C?u 12 | missing_choices_or_answer | . Đúng ghi Đ; Sai ghi S? Cho các hình A, B, C, D được ghép bởi các khối lập phương nhỏ bằng nhau.
+- L?p 5 | Trắc nghiệm Các đơn vị đo thời gian | C?u 13 | missing_choices_or_answer | . Kéo thả thích hợp vào ô trống Hà, Nam, Linh cùng giải một câu toán đố. Hà đưa ra câu trả lời sau 2 3 phút. Nam đưa ra câu lời sau 7 2 phút
+- L?p 5 | Trắc nghiệm Thực hành tính toán và ước lượng về vận tốc, quãng đường, thời gian trong chuyển động đều | C?u 12 | missing_choices_or_answer | . Kéo thả thích hợp vào ô trống Bảng thống kê thời gian chạy 100 m ghi được tại một cuộc thi Tên Giang An Mai Thủy Linh Thời gian (giây) 19 
+- L?p 5 | Trắc nghiệm Biểu đồ hình quạt tròn | C?u 8 | missing_choices_or_answer | . Em hãy chọn đáp án đúng nhất. Loại cây được trồng ít nhất trong vườn là:
+- L?p 5 | Trắc nghiệm Ôn tập phân số | C?u 14 | missing_choices_or_answer | . Điền số thích hợp vào ô trống Cho hình vẽ
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với số tự nhiên | C?u 11 | missing_choices_or_answer | Điền số thích hợp vào ô trống a) b)
+- L?p 5 | Trắc nghiệm Ôn tập các phép tính với phân số | C?u 11 | missing_choices_or_answer | Điền số thích hợp vào ô trống
+- L?p 5 | Trắc nghiệm Ôn tập một số yếu tố xác suất | C?u 11 | missing_choices_or_answer | Điền số thích hợp vào ô trống: Nam gieo một con xúc xắc 6 mặt nhiều lần. Dưới đây là bảng kết quả ghi chép số lần xuất hiện các m
+- L?p 6 | Chương 1: Số tự nhiên | C?u 2 | missing_choices_or_answer | Cho B = {a; b; c; d}. Chọn đáp án sai trong các đáp án sau?
+- L?p 6 | Trắc nghiệm Bài 1: Tập hợp | C?u 2 | missing_choices_or_answer | Cho B = {a; b; c; d}. Chọn đáp án sai trong các đáp án sau?
+- L?p 6 | Trắc nghiệm Bài 2: Hình chữ nhật. Hình thoi | C?u 23 | missing_choices_or_answer | Trong các hình sau, hình nào là hình thoi? Trả lời: Quan sát các hình đã cho ta thấy hình thứ nhất và thứ hai từ trên xuống là hình thoi. Hì
+- L?p 6 | Trắc nghiệm Bài 3: Hình bình hành | C?u 14 | missing_choices_or_answer | Độ dài đáy của hình bình hành có chiều cao 24cm và diện tích là 432cm 2 là:
+- L?p 6 | Trắc nghiệm Bài 3: Hình bình hành | C?u 16 | missing_choices_or_answer | Điền số thích hợp vào ô trống: Một bình hành có diện tích là 8dm 2 và độ dài cạnh đáy là 32cm . Vậy chiều cao tương ứng với cạnh đáy đó là …
+- L?p 6 | Trắc nghiệm Bài tập cuối chương 3 | C?u 15 | missing_choices_or_answer | Cho hình vẽ như sau: Cạnh AB song song với cạnh nào dưới đây? A . BC
+- L?p 6 | Trắc nghiệm Bài tập cuối chương 3 | C?u 16 | missing_choices_or_answer | . Điền số thích hợp vào ô trống: Hình chữ nhật MNPQ có ….. cặp cạnh vuông góc với nhau. Trả lời: Trong hình chữ nhật MNPQ có: MN vuông góc v
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 10 | missing_choices_or_answer | Cho các câu sau: (1) Đọc dấu phẩy (2) Đọc phần nguyên (3) Đọc phần thập phân Thứ tự các bước để đọc một số thập phân là:
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 11 | missing_choices_or_answer | Mỗi đơn vị của một hàng bằng bao nhiêu đơn vị của hàng thấp hơn liền sau?
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 12 | missing_choices_or_answer | Số thập phân 0,06 đọc là:
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 13 | missing_choices_or_answer | Cho số thập phân 48,15. Chữ số 5 thuộc hàng nào?
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 15 | missing_choices_or_answer | .
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 18 | missing_choices_or_answer | Sắp xếp các số sau theo thứ tự từ bé đến lớn: 5,36; 13,107; 0,28; 28,105; 13,4
+- L?p 6 | Trắc nghiệm Bài 5: Số thập phân | C?u 19 | missing_choices_or_answer | Tìm chữ số a, biết 97,614 < 97,a12(a < 8)
+- L?p 6 | Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm | C?u 7 | missing_choices_or_answer | 27 100 được viết dưới dạng tỉ số phần trăm là:
+- L?p 6 | Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm | C?u 11 | missing_choices_or_answer | Tổng kết điểm bài kiểm tra môn Toán cô giáo thấy số bạn đạt điểm 10 chiếm 42%, số bạn đạt điểm 9 ít hơn số bạn đạt điểm 10 là 8,5%. Hỏi số b
+- L?p 6 | Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm | C?u 12 | missing_choices_or_answer | Một trang trại nuôi 500 con gà và vịt, trong đó có 275 con gà. Tìm tỉ số phần trăm của số vịt và tổng số con của trang trại đó.
+- L?p 6 | Chương 6: Hình học phẳng | C?u 9 | missing_choices_or_answer | . Cho hình vẽ như sau : Cạnh DE song song với mấy cạnh, đó là những cạnh nào?
+- L?p 6 | Chương 6: Hình học phẳng | C?u 11 | missing_choices_or_answer | . Cho hình vẽ như sau: Cạnh PQ vuông góc với những cạnh nào?
+- L?p 6 | Chương 6: Hình học phẳng | C?u 12 | missing_choices_or_answer | . Cho hình vẽ sau: Trong hình trên có bao nhiêu cặp cạnh song song với nhau?
+- L?p 6 | Trắc nghiệm Bài 2: Hai đường thẳng cắt nhau. Hai đường thẳng song song | C?u 9 | missing_choices_or_answer | . Cho hình vẽ như sau : Cạnh DE song song với mấy cạnh, đó là những cạnh nào?
+- ... c?n 8 m?c, xem ??y ?? trong JSON.
+
+Xem ??y ?? trong `question_alignment_audit.json`.

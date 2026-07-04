@@ -1,0 +1,118 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Xem lại</p>
+    <h1><%= session.title %></h1>
+    <p><%= session.status === 'COMPLETED' ? 'Lần làm bài đã kết thúc.' : 'Lần làm bài này đang làm dở.' %> Nội dung bên dưới chỉ dùng để xem lại.</p>
+  </div>
+  <div class="row-actions">
+    <% if (session.status === 'IN_PROGRESS') { %>
+      <a class="btn btn-secondary" href="/student/sessions/<%= session.id %>/practice">
+        <i data-lucide="play-circle" class="lucide-icon"></i>
+        Tiếp tục làm
+      </a>
+    <% } %>
+    <a class="btn btn-primary" href="/student/history">
+      <i data-lucide="history" class="lucide-icon"></i>
+      Lịch sử
+    </a>
+  </div>
+</section>
+
+<section class="learning-summary">
+  <div>
+    <div class="section-title">
+      <i data-lucide="activity" class="lucide-icon"></i>
+      Tiến trình
+    </div>
+    <p>Đã làm <strong><%= session.current_index %></strong>/<strong><%= session.question_count %></strong> câu.</p>
+    <p>Trạng thái: <strong><%= session.status === 'COMPLETED' ? 'Đã kết thúc' : 'Đang làm dở' %></strong>.</p>
+  </div>
+  <div>
+    <div class="section-title">
+      <i data-lucide="clock" class="lucide-icon"></i>
+      Thời gian
+    </div>
+    <p>Bắt đầu: <strong><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></strong></p>
+    <p>Kết thúc: <strong><%= session.completed_at ? new Date(session.completed_at).toLocaleString('vi-VN') : '-' %></strong></p>
+  </div>
+</section>
+
+<%
+  const answerByQuestion = new Map((answers || []).map((answer) => [Number(answer.question_id), answer]));
+  const chatsByQuestion = new Map();
+  (chats || []).forEach((chat) => {
+    const key = Number(chat.question_id || 0);
+    if (!chatsByQuestion.has(key)) chatsByQuestion.set(key, []);
+    chatsByQuestion.get(key).push(chat);
+  });
+
+  function escapeAttribute(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function imageHtml(image, fallbackAlt) {
+    const width = Math.min(Math.max(Number(image.width_percent || image.width || 100), 20), 100);
+    return `
+      <span class="question-image" style="max-width:${width}%">
+        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || image.alt || fallbackAlt)}">
+      </span>
+    `;
+  }
+
+  function imageRowHtml(images, fallbackAlt) {
+    if (!Array.isArray(images) || images.length === 0) return '';
+    return `<div class="explanation-image-row">${images.map((image) => imageHtml(image, fallbackAlt)).join('')}</div>`;
+  }
+%>
+
+<section class="review-list">
+  <% questions.forEach((question, index) => { %>
+    <% const answer = answerByQuestion.get(Number(question.id)); %>
+    <% const questionChats = chatsByQuestion.get(Number(question.id)) || []; %>
+    <article class="review-item">
+      <div class="section-title">
+        <i data-lucide="circle-help" class="lucide-icon"></i>
+        Câu <%= index + 1 %>
+      </div>
+      <div class="question-content math-content"><%= question.content?.text || '' %></div>
+      <div class="answer-grid review-answer-grid">
+        <% question.choices.forEach((choice) => { %>
+          <div class="answer-choice preview-choice <%= choice.key === question.correct_answer ? 'correct' : '' %> <%= answer && choice.key === answer.selected_answer && Number(answer.is_correct) !== 1 ? 'wrong' : '' %>">
+            <span><%= choice.key %></span>
+            <strong><%= choice.text %></strong>
+          </div>
+        <% }) %>
+      </div>
+      <div class="review-meta">
+        <span>Đã chọn: <strong><%= answer?.selected_answer || 'Chưa làm' %></strong></span>
+        <span>Đáp án đúng: <strong><%= question.correct_answer %></strong></span>
+        <% if (answer) { %>
+          <% if (Number(answer.is_correct) === 1) { %>
+            <span class="status-pill status-completed">Đúng</span>
+          <% } else { %>
+            <span class="status-pill status-review">Sai</span>
+          <% } %>
+        <% } %>
+      </div>
+      <% if (question.explanation?.text || (question.explanation?.images || []).length > 0) { %>
+        <div class="review-explanation">
+          <strong>Lời giải:</strong>
+          <%- imageRowHtml(question.explanation.images, 'Hình minh họa lời giải') %>
+          <span class="math-content"><%= question.explanation.text %></span>
+        </div>
+      <% } %>
+      <% if (questionChats.length > 0) { %>
+        <div class="review-chat">
+          <strong>Chat trong câu này</strong>
+          <% questionChats.forEach((chat) => { %>
+            <div class="chat-message <%= chat.role === 'student' ? 'student' : 'ai' %>"><%= chat.message %></div>
+          <% }) %>
+        </div>
+      <% } %>
+    </article>
+  <% }) %>
+</section>

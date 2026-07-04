@@ -1,0 +1,1357 @@
+{
+  "mode": "dry-run",
+  "replace": false,
+  "input": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\output\\doc\\crawled_questions_structured_with_explanation_images_rewritten.json",
+  "imageMode": "local",
+  "minScore": 25,
+  "totalCrawledLessons": 406,
+  "matchedLessons": 287,
+  "unmatchedLessons": [
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 5: Mấy và mấy",
+      "chapter": "Chủ đề 1: Các số từ 0 đến 10",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-5-may-va-may.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 6: Luyện tập chung",
+      "chapter": "Chủ đề 1: Các số từ 0 đến 10",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-6-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 8: Thực hành lắp ghép, xếp hình",
+      "chapter": "Chủ đề 2: Làm quen với một số hình phẳng",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-8-thuc-hanh-lap-ghep-xep-hinh.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 9: Luyện tập chung",
+      "chapter": "Chủ đề 2: Làm quen với một số hình phẳng",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-9-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 13: Luyện tập chung",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phép cộng, phép trừ trong phạm vi 10",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-13-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 15: Vị trí, định hướng trong không gian",
+      "chapter": "Chủ đề 4: Làm quen với một số hình khối",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-15-vi-tri-dinh-huong-trong-khong-gian.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 16: Luyện tập chung",
+      "chapter": "Chủ đề 4: Làm quen với một số hình khối",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-16-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 19: Ôn tập hình học",
+      "chapter": "Trắc nghiệm Chủ đề 5: Ôn tập Học kì 1",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-19-on-tap-hinh-hoc.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 20: Ôn tập chung",
+      "chapter": "Trắc nghiệm Chủ đề 5: Ôn tập Học kì 1",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-20-on-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 24: Luyện tập chung",
+      "chapter": "Trắc nghiệm Chủ đề 6: Các số đến 100",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-24-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 27: Thực hành ước lượng và đo độ dài",
+      "chapter": "Chủ đề 7: Độ dài và đo độ dài",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-27-thuc-hanh-uoc-luong-va-do-do-dai.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 28: Luyện tập chung",
+      "chapter": "Chủ đề 7: Độ dài và đo độ dài",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-28-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 29: Phép cộng số có hai chữ số với số có một chữ số",
+      "chapter": "Trắc nghiệm Chủ đề 8: Phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-29-phep-cong-so-co-hai-chu-so-voi-so-co-mot.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 31: Phép trừ số có hai chữ số cho số có một chữ số",
+      "chapter": "Trắc nghiệm Chủ đề 8: Phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-31-phep-tru-so-co-hai-chu-so-cho-so-co-mot.jsp"
+    },
+    {
+      "grade": 1,
+      "title": "Trắc nghiệm Bài 33: Luyện tập chung",
+      "chapter": "Trắc nghiệm Chủ đề 8: Phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-33-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 2,
+      "title": "Trắc nghiệm Ôn tập các số đến 100",
+      "chapter": "Trắc nghiệm Chương 1. Ôn tập lớp 1. Phép cộng, phép trừ (có nhớ) trong phạm vi 20.",
+      "url": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-cac-so-den-100.jsp"
+    },
+    {
+      "grade": 2,
+      "title": "Trắc nghiệm Bài toán về nhiều hơn",
+      "chapter": "Trắc nghiệm Chương 1. Ôn tập lớp 1. Phép cộng, phép trừ (có nhớ) trong phạm vi 20.",
+      "url": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-ve-nhieu-hon.jsp"
+    },
+    {
+      "grade": 2,
+      "title": "Trắc nghiệm Bài toán về ít hơn",
+      "chapter": "Trắc nghiệm Chương 1. Ôn tập lớp 1. Phép cộng, phép trừ (có nhớ) trong phạm vi 20.",
+      "url": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-ve-it-hon.jsp"
+    },
+    {
+      "grade": 2,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học",
+      "chapter": "Trắc nghiệm Chương 1. Ôn tập lớp 1. Phép cộng, phép trừ (có nhớ) trong phạm vi 20.",
+      "url": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-em-on-lai-nhung-gi-da-hoc.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập về hình học và đo lường trang 10",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-10.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 30)",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-30.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (tiếp theo) (trang 32)",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-tiep-theo-trang-32.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 52)",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-52.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (tiếp theo) (trang 54)",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-tiep-theo-trang-54.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 63)",
+      "chapter": "Trắc nghiệm Chương 1: Bảng nhân, bảng chia",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-63.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 72)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-72.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 79)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-79.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 80)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-80.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 95)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-95.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 113)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-113.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập về hình học và đo lường (trang 119)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-119.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập chung (trang 121)",
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-chung-trang-121.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 20)",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-20.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Vẽ trang trí hình tròn",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-ve-trang-tri-hinh-tron.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 34)",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-34.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Thực hành xem đồng hồ",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-thuc-hanh-xem-dong-ho.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Thực hành xem đồng hồ (tiếp theo)",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-thuc-hanh-xem-dong-ho-tiep-theo.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 47)",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-47.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em vui học toán (trang 49)",
+      "chapter": "Trắc nghiệm Chương 3: Các số trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-vui-hoc-toan-trang-49.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 63)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-63.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 69)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-69.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập (trang 73)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-trang-73.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 75)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-75.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 81)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-81.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Luyện tập chung (trang 90)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-luyen-tap-chung-trang-90.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 100)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-100.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Em vui học toán (trang 102)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-em-vui-hoc-toan-trang-102.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập về hình học và đo lường (trang 109)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-trang-109.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập về một số yếu tố thống kê và xác suất",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-mot-so-yeu-to-thong-ke-va-xac-suat.jsp"
+    },
+    {
+      "grade": 3,
+      "title": "Trắc nghiệm Ôn tập chung (trang 113)",
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "url": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-chung-trang-113.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập về một số yếu tố thống kê và xác suất",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-mot-so-yeu-to-thong-ke-va-xac-suat.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 22)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-22.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 28, 29, 30)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-28-29-30.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 43)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-43.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-57-58.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 59, 60)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-59.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em vui học toán (trang 61, 62)",
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-vui-hoc-toan-trang-61.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 74, 75)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-74-75.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 80)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-80.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 83)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-83.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 86)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-86.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 93, 94)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-93-94.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 97)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-97.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 100, 101)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-100-101.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 102, 103)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-102-103.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 106, 107)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-106-107.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 111, 112)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-111.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em vui học toán (trang 113)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-vui-hoc-toan-trang-113.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập chung (trang 116, 117, 118)",
+      "chapter": "Trắc nghiệm Chủ đề 2: Các phép tính với số tự nhiên",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-chung-trang-116.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 11, 12)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-11-12.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 26, 27)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-26-27.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 28, 29)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-28-29.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 40, 41)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-40-41.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 42, 43)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-42.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em vui học toán (trang 44, 45, 46)",
+      "chapter": "Trắc nghiệm Chủ đề 3: Phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-vui-hoc-toan-trang-44.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 52)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-52.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 57, 58)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-57-58.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập chung (trang 59, 60)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-chung-trang-59-60.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 63, 64)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-63-64.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 68, 69)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-68-69.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Luyện tập (trang 72, 73)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-luyen-tap-trang-72-73.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em ôn lại những gì đã học (trang 85, 86)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-on-lai-nhung-gi-da-hoc-trang-85.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Em vui học toán (trang 87, 88)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-em-vui-hoc-toan-trang-87.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-hinh-hoc-va-do-luong-1.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập về một số yếu tố thống kê và xác suất",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-ve-mot-so-yeu-to-thong-ke-va-xac-suat-1.jsp"
+    },
+    {
+      "grade": 4,
+      "title": "Trắc nghiệm Ôn tập chung (trang 99, 100, 101, 102)",
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "url": "https://vietjack.com/toan-4-cd/trac-nghiem-on-tap-chung-trang-99.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Cộng, trừ hai phân số khác mẫu số",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-6-cong-tru-hai-phan-so-khac-mau-so.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài tập tổng hợp Ôn tập và bổ sung",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-9-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Các đơn vị đo diện tích",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-16-cac-don-vi-do-dien-tich.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Thực hành và trải nghiệm với một số đơn vị đo đại lượng",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-17-thuc-hanh-va-trai-nghiem-voi-mot-so-don-vi.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài tập tổng hợp Một số đơn vị đo diện tích",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-18-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Thực hành và trải nghiệm đo, vẽ, lắp ghép, tạo hình",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 1 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-28-thuc-hanh-va-trai-nghiem-do-ve-lap-ghep.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập một số hình phẳng",
+      "chapter": "Trắc nghiệm Chủ đề 6: Ôn tập học kì 1",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-32-on-tap-mot-so-hinh-phang.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập diện tích, chu vi một số hình phẳng",
+      "chapter": "Trắc nghiệm Chủ đề 6: Ôn tập học kì 1",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-33-on-tap-dien-tich-chu-vi-mot-so-hinh-phang.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập đo lường",
+      "chapter": "Trắc nghiệm Chủ đề 6: Ôn tập học kì 1",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-34-on-tap-do-luong.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập chung học kì 1",
+      "chapter": "Trắc nghiệm Chủ đề 6: Ôn tập học kì 1",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-35-on-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài toán giải bằng bốn bước tính",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-toan-giai-bang-bon-buoc-tinh.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài tập tổng hợp Tỉ số và các bài toán liên quan",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-44-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài tập tổng hợp Thể tích. Đơn vị đo thể tích",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-48-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Các đơn vị đo thời gian",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-56-cac-don-vi-do-thoi-gian.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Vận tốc của một chuyển động đều",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-59-van-toc-cua-mot-chuyen-dong-deu.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Bài tập tổng hợp Số đo thời gian, vận tốc. Các bài toán liên quan đến chuyển động đều",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-62-luyen-tap-chung.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Tỉ số của số lần lặp lại một sự kiện so với tổng số lần thực hiện",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-65-ti-so-cua-so-lan-lap-lai-mot-su-kien-so-voi.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập đo lường",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-72-on-tap-do-luong.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập toán chuyển động đều",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-73-on-tap-toan-chuyen-dong-deu.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập một số yếu tố xác suất",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-74-on-tap-mot-so-yeu-to-thong-ke-va-xac-suat.jsp"
+    },
+    {
+      "grade": 5,
+      "title": "Trắc nghiệm Ôn tập chung cuối năm",
+      "chapter": "500 Bài tập trắc nghiệm Toán lớp 5 Cánh diều Học kì 2 (có lời giải)",
+      "url": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-75-on-tap-chung.jsp"
+    },
+    {
+      "grade": 6,
+      "title": "Trắc nghiệm Bài tập cuối chương 3",
+      "chapter": "Chương 3: Hình học trực quan",
+      "url": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-tap-cuoi-chuong-3.jsp"
+    },
+    {
+      "grade": 6,
+      "title": "Trắc nghiệm Bài ôn tập cuối chương 4",
+      "chapter": "Chương 4: Một số yếu tố thống kê và xác suất",
+      "url": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-on-tap-cuoi-chuong-4.jsp"
+    },
+    {
+      "grade": 6,
+      "title": "Trắc nghiệm Bài tập cuối chương 5",
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "url": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-tap-cuoi-chuong-5.jsp"
+    },
+    {
+      "grade": 6,
+      "title": "Trắc nghiệm Bài tập cuối chương 6",
+      "chapter": "Chương 6: Hình học phẳng",
+      "url": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-tap-cuoi-chuong-6.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 1",
+      "chapter": "Trắc nghiệm Chương 1: Số hữu tỉ",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-1.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 2",
+      "chapter": "Trắc nghiệm Chương 2: Số thực",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-2.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 3",
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-3.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 4",
+      "chapter": "Trắc nghiệm Chương 4: Góc. Đường thẳng song song",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-4.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 5",
+      "chapter": "Trắc nghiệm Chương 5: Một số yếu tố thống kê và xác suất",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-5.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 6",
+      "chapter": "Trắc nghiệm Chương 6: Biểu thức đại số",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-6.jsp"
+    },
+    {
+      "grade": 7,
+      "title": "Trắc nghiệm tổng hợp Toán 7 Chương 7",
+      "chapter": "Trắc nghiệm Chương 7: Tam giác",
+      "url": "https://vietjack.com/toan-7-cd/trac-nghiem-on-tap-chuong-7.jsp"
+    }
+  ],
+  "skippedQuestions": [
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-phep-cong-phep-tru-khong-nho-trong-pham-vi-100.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Đề-xi-mét",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-de-xi-met.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Số hạng, tổng",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-so-hang-tong.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Số bị trừ, số trừ, hiệu",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-so-bi-tru-so-tru-hieu.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng cộng (có nhớ) trong phạm vi 20",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-cong-co-nho-trong-pham-vi-20.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng trừ (có nhớ) trong phạm vi 20",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-tru-co-nho-trong-pham-vi-20.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài toán liên quan đến phép cộng, phép trừ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-lien-quan-den-phep-cong-phep-tru.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài toán liên quan đến phép cộng, phép trừ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bai-toan-lien-quan-den-phep-cong-phep-tru.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 100",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-phep-cong-co-nho-trong-pham-vi-100.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-phep-cong-co-nho-trong-pham-vi-100-tiep-theo.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Điểm, Đoạn thẳng",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-diem-doan-thang.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thừa số; Tích",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-thua-so-tich.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thừa số; Tích",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-thua-so-tich.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thừa số; Tích",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-thua-so-tich.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thừa số; Tích",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-thua-so-tich.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thừa số; Tích",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-thua-so-tich.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 2",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-2.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 2",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-2.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 2",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-2.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 2",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-2.jsp",
+      "number": 10
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 5",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-5.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 5",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-5.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 5",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-bang-nhan-5.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Làm quen với phép chia, dấu chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-lam-quen-voi-phep-chia-dau-chia.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Làm quen với phép chia, dấu chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-lam-quen-voi-phep-chia-dau-chia.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Làm quen với phép chia, dấu chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-lam-quen-voi-phep-chia-dau-chia.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Làm quen với phép chia, dấu chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-lam-quen-voi-phep-chia-dau-chia.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Làm quen với phép chia, dấu chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-lam-quen-voi-phep-chia-dau-chia.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phép chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-phep-chia.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phép chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-phep-chia.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phép chia",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-phep-chia.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ngày, Giờ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ngay-gio.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ngày, Giờ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ngay-gio.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ngày, Giờ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ngay-gio.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ngày, Giờ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ngay-gio.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ngày, Giờ",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ngay-gio.jsp",
+      "number": 13
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số trong phạm vi 1000",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-trong-pham-vi-1000.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số trong phạm vi 1000",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-trong-pham-vi-1000.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số trong phạm vi 1000",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-trong-pham-vi-1000.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số trong phạm vi 1000",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-trong-pham-vi-1000.jsp",
+      "number": 15
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so-tiep-theo.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so-tiep-theo.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Các số có ba chữ số (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-cac-so-co-ba-chu-so-tiep-theo.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm So sánh các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-so-sanh-cac-so-co-ba-chu-so.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm So sánh các số có ba chữ số",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-so-sanh-cac-so-co-ba-chu-so.jsp",
+      "number": 10
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Mét",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-met.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ki-lô-mét",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-ki-lo-met.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp",
+      "number": 10
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về số và các phép tính trong phạm vi 1000 (tiếp theo)",
+      "sourceUrl": "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-on-tap-so-va-phep-tinh-trong-pham-vi-1000-tiep-theo.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập về phép cộng, phép trừ trong phạm vi 1000",
+      "sourceUrl": "https://vietjack.com/toan-3-cd/trac-nghiem-on-tap-ve-phep-cong-phep-tru-trong-pham-vi-1000.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bảng nhân 8",
+      "sourceUrl": "https://vietjack.com/toan-3-cd/trac-nghiem-bang-nhan-8.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Hình chữ nhật",
+      "sourceUrl": "https://vietjack.com/toan-3-cd/trac-nghiem-hinh-chu-nhat.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Hình vuông",
+      "sourceUrl": "https://vietjack.com/toan-3-cd/trac-nghiem-hinh-vuong.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập các phép tính với số tự nhiên",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-2-on-tap-cac-phep-tinh-voi-so-tu-nhien.jsp",
+      "number": 5
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập các phép tính với số tự nhiên",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-2-on-tap-cac-phep-tinh-voi-so-tu-nhien.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập các phép tính với số tự nhiên",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-2-on-tap-cac-phep-tinh-voi-so-tu-nhien.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập phân số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-3-on-tap-phan-so.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phân số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-4-phan-so-thap-phan.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Phân số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-4-phan-so-thap-phan.jsp",
+      "number": 10
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập các phép tính với phân số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-5-on-tap-cac-phep-tinh-voi-phan-so.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Hỗn số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-7-hon-so.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Hỗn số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-7-hon-so.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ki-lô-mét vuông. Héc-ta",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-15-ki-lo-met-vuong-hec-ta.jsp",
+      "number": 3
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ki-lô-mét vuông. Héc-ta",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-15-ki-lo-met-vuong-hec-ta.jsp",
+      "number": 1
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ki-lô-mét vuông. Héc-ta",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-15-ki-lo-met-vuong-hec-ta.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ki-lô-mét vuông. Héc-ta",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-15-ki-lo-met-vuong-hec-ta.jsp",
+      "number": 4
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Máy tính cầm tay",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-42-may-tinh-cam-tay.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thể tích của một hình",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-45-the-tich-cua-mot-hinh.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Thực hành tính toán và ước lượng về vận tốc, quãng đường, thời gian trong chuyển động đều",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-61-thuc-hanh-tinh-toan-va-uoc-luong-ve-van-toc.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Biểu đồ hình quạt tròn",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-bai-64-bieu-do-hinh-quat-tron.jsp",
+      "number": 8
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập phân số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-on-tap-phan-so.jsp",
+      "number": 14
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Ôn tập các phép tính với phân số",
+      "sourceUrl": "https://vietjack.com/toan-5-kn/trac-nghiem-on-tap-cac-phep-tinh-voi-phan-so.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Chương 1: Số tự nhiên",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-chuong-1-so-tu-nhien.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 1: Tập hợp",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-1-tap-hop.jsp",
+      "number": 2
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 2: Hình chữ nhật. Hình thoi",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-2-hinh-chu-nhat-hinh-thoi.jsp",
+      "number": 23
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 3: Hình bình hành",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-3-hinh-binh-hanh.jsp",
+      "number": 14
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 3: Hình bình hành",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-3-hinh-binh-hanh.jsp",
+      "number": 16
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 10
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 13
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 15
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 18
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Số thập phân",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-5-so-thap-phan.jsp",
+      "number": 19
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-9-ti-so-ti-so-phan-tram.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-9-ti-so-ti-so-phan-tram.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 9: Tỉ số. Tỉ số phần trăm",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-9-ti-so-ti-so-phan-tram.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Chương 6: Hình học phẳng",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-chuong-6-hinh-hoc-phang.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Chương 6: Hình học phẳng",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-chuong-6-hinh-hoc-phang.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Chương 6: Hình học phẳng",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-chuong-6-hinh-hoc-phang.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 2: Hai đường thẳng cắt nhau. Hai đường thẳng song song",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-2-hai-duong-thang-cat-nhau-hai-duong-thang-song-song.jsp",
+      "number": 9
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 2: Hai đường thẳng cắt nhau. Hai đường thẳng song song",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-2-hai-duong-thang-cat-nhau-hai-duong-thang-song-song.jsp",
+      "number": 11
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 2: Hai đường thẳng cắt nhau. Hai đường thẳng song song",
+      "sourceUrl": "https://vietjack.com/toan-6-canh-dieu/trac-nghiem-bai-2-hai-duong-thang-cat-nhau-hai-duong-thang-song-song.jsp",
+      "number": 12
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 1: Tập hợp ℚ các số hữu tỉ",
+      "sourceUrl": "https://vietjack.com/toan-7-cd/trac-nghiem-bai-1-tap-hop-q-cac-so-huu-ti.jsp",
+      "number": 7
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 2: Tập hợp R các số thực",
+      "sourceUrl": "https://vietjack.com/toan-7-cd/trac-nghiem-bai-2-tap-hop-r-cac-so-thuc.jsp",
+      "number": 6
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 4: Định lí",
+      "sourceUrl": "https://vietjack.com/toan-7-cd/trac-nghiem-bai-4-dinh-ly.jsp",
+      "number": 14
+    },
+    {
+      "reason": "missing_text_choices_or_answer",
+      "lesson": "Trắc nghiệm Bài 5: Biến cố trong một số trò chơi đơn giản",
+      "sourceUrl": "https://vietjack.com/toan-7-cd/trac-nghiem-bai-5-bien-co-trong-mot-so-tro-choi-don-gian.jsp",
+      "number": 13
+    }
+  ],
+  "duplicateQuestions": 0,
+  "insertedQuestions": 0,
+  "wouldInsertQuestions": 3256,
+  "copiedImages": 0,
+  "startedAt": "2026-07-04T04:42:14.158Z",
+  "finishedAt": "2026-07-04T04:42:15.348Z"
+}

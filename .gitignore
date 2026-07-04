@@ -1,0 +1,77 @@
+# =========================================================================
+# GITIGNORE CONFIGURATION FOR MATH REVISION PROJECT
+# =========================================================================
+
+# (Bỏ các file dữ liệu thô cào về để tránh nặng Git và vi phạm bản quyền)
+sample-data/crawled_questions.json
+sample-data/crawled_lessons.json
+sample-data/*.json
+sample-data/*.xlsx
+sample-data/*.zip
+
+# Python pycache & virtual environments (Phục vụ cho Python Crawl)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+ENV/
+dist/
+build/
+*.egg-info/
+
+# Quản lý thư viện Node.js & Môi trường (Dependency & Environment)
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+
+# Cấu hình bảo mật hệ thống (Không bao giờ đẩy thông tin mật API Key lên Git)
+.env
+.env.production
+.env.local
+.env.*.local
+
+# Tài nguyên tải lên động của người dùng (User uploads)
+# (Không đẩy các ảnh câu hỏi nháp/tải lên local lên Git)
+public/uploads/images/*
+!public/uploads/images/.gitkeep
+
+# Nhật ký ứng dụng & File tạm hệ thống (Logs & OS temp files)
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Hệ điều hành
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Cấu hình IDE cá nhân
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 
+PhanTichNghiepVu.md
+KeHoachThucHien.md
+design.md
+ThietKeTongThe.txt
+Danh_sach_chuong_va_bai_hoc.txt
+database/TaiLieuDatabase.md

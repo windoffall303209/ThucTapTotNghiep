@@ -1,0 +1,160 @@
+<%
+  const answerKeys = ['A', 'B', 'C', 'D'];
+  const difficultyOptions = [
+    { value: 'EASY', label: 'Dễ' },
+    { value: 'MEDIUM', label: 'Trung bình' },
+    { value: 'HARD', label: 'Khó' },
+    { value: 'EXPERT', label: 'Nâng cao' }
+  ];
+  const layoutOptions = [
+    { value: 'STACK_VERTICAL', label: 'Xếp dọc' },
+    { value: 'SPLIT_HORIZONTAL_LEFT_IMAGE', label: 'Ảnh trái, chữ phải' },
+    { value: 'SPLIT_HORIZONTAL_RIGHT_IMAGE', label: 'Chữ trái, ảnh phải' },
+    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' }
+  ];
+
+  function selected(current, value) {
+    return current === value ? 'selected' : '';
+  }
+
+  function choiceText(question, key) {
+    const choice = (question.choices || []).find((item) => item.key === key);
+    return choice ? choice.text : '';
+  }
+
+  function questionText(question) {
+    return question.content && question.content.text ? question.content.text : '';
+  }
+
+  function explanationText(question) {
+    return question.explanation && question.explanation.text ? question.explanation.text : '';
+  }
+%>
+
+<form class="inline-edit-form stack-form" action="/admin/questions/<%= question.id %>" method="post" enctype="multipart/form-data" data-question-preview-form>
+  <div class="form-actions form-actions-top">
+    <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+    <button class="btn btn-primary" type="submit">
+      <i data-lucide="save" class="lucide-icon"></i>
+      Lưu thay đổi
+    </button>
+  </div>
+
+  <label>
+    Bài học
+    <select name="lesson_id" required>
+      <% lessons.forEach((item) => { %>
+        <option value="<%= item.id %>" <%= selected(Number(question.lesson_id), Number(item.id)) %>>
+          Khối <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>
+    Đề bài
+    <textarea name="content_text" rows="4" required data-preview-content><%= questionText(question) %></textarea>
+  </label>
+
+  <div class="two-fields">
+    <label>
+      Độ khó
+      <select name="difficulty">
+        <% difficultyOptions.forEach((option) => { %>
+          <option value="<%= option.value %>" <%= selected(question.difficulty, option.value) %>><%= option.label %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Bố cục
+      <select name="layout_template">
+        <% layoutOptions.forEach((option) => { %>
+          <option value="<%= option.value %>" <%= selected(question.layout_template, option.value) %>><%= option.label %></option>
+        <% }) %>
+      </select>
+    </label>
+  </div>
+
+  <fieldset class="choice-fieldset">
+    <legend>Phương án trả lời</legend>
+    <% answerKeys.forEach((key) => { %>
+      <label class="choice-input">
+        <span><%= key %></span>
+        <input name="choice_<%= key %>" value="<%= choiceText(question, key) %>" required data-preview-choice="<%= key %>">
+      </label>
+    <% }) %>
+  </fieldset>
+
+  <label>
+    Đáp án đúng
+    <select name="correct_answer" required>
+      <% answerKeys.forEach((key) => { %>
+        <option value="<%= key %>" <%= selected(question.correct_answer, key) %>><%= key %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>
+    Lời giải chi tiết
+    <textarea name="explanation_text" rows="4"><%= explanationText(question) %></textarea>
+  </label>
+
+  <fieldset class="choice-fieldset image-fieldset">
+    <legend>Thêm ảnh mới vào lời giải</legend>
+    <label>
+      Ảnh minh họa lời giải
+      <input type="file" name="explanation_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
+    </label>
+    <div class="two-fields">
+      <label>
+        Độ rộng ảnh (%)
+        <input type="number" name="explanation_image_width_percent" min="20" max="100" value="70">
+      </label>
+      <label>
+        Mô tả ảnh
+        <input name="explanation_image_alt_text" placeholder="Ví dụ: Hình minh họa lời giải">
+      </label>
+    </div>
+    <% if (question.explanation && question.explanation.images && question.explanation.images.length > 0) { %>
+      <p class="muted">Câu hỏi hiện có <%= question.explanation.images.length %> ảnh trong lời giải. Ảnh mới sẽ được thêm vào cuối phần lời giải.</p>
+    <% } %>
+  </fieldset>
+
+  <fieldset class="choice-fieldset image-fieldset">
+    <legend>Thêm ảnh mới vào đề bài</legend>
+    <label>
+      Ảnh minh họa
+      <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
+    </label>
+    <div class="two-fields">
+      <label>
+        Độ rộng ảnh (%)
+        <input type="number" name="image_width_percent" min="20" max="100" value="70" data-preview-image-width>
+      </label>
+      <label>
+        Mô tả ảnh
+        <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
+      </label>
+    </div>
+    <% if (question.content && question.content.images && question.content.images.length > 0) { %>
+      <p class="muted">Câu hỏi hiện có <%= question.content.images.length %> ảnh. Ảnh mới sẽ được thêm vào cuối đề bài.</p>
+    <% } %>
+  </fieldset>
+
+  <aside class="question-form-preview">
+    <div class="section-title">
+      <i data-lucide="eye" class="lucide-icon"></i>
+      Xem trước đề
+    </div>
+    <div class="question-preview-box math-content" data-question-preview></div>
+    <div class="placeholder-list" data-preview-placeholder-list hidden></div>
+  </aside>
+
+  <div class="form-actions">
+    <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+    <button class="btn btn-primary" type="submit">
+      <i data-lucide="save" class="lucide-icon"></i>
+      Lưu thay đổi
+    </button>
+  </div>
+</form>

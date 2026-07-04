@@ -1,0 +1,14 @@
+{
+  "input": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\output\\doc\\crawled_theory_cards.json",
+  "backup": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\output\\doc\\theory_cards_backup_20260704_005318.json",
+  "totalCrawledItems": 349,
+  "uniqueLessonIds": 349,
+  "duplicateLessonIds": [],
+  "totalLessonsInDb": 349,
+  "clearedLessons": 349,
+  "importedLessons": 349,
+  "importedCards": 349,
+  "unmatchedCrawledLessonIds": [],
+  "lessonsWithoutCrawledTheory": [],
+  "generatedAt": "2026-07-03T17:53:18.080Z"
+}

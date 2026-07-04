@@ -1,0 +1,4909 @@
+[
+  {
+    "id": 1,
+    "lesson_name": "1. Trên - dưới. Phải - trái, trước - sau. Ở giữa",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "id": "card-1",
+        "body": "Số đối của số thập phân $a$ kí hiệu là $-a$. Ta có:\r\n$$a + (-a) = 0.$$",
+        "title": "1. Trên - dưới. Phải - trái, trước - sau. Ở giữa",
+        "images": [],
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": "",
+        "formulas": []
+      },
+      {
+        "id": "card-2",
+        "body": "",
+        "title": "ddd",
+        "images": [],
+        "example": "",
+        "formula": "",
+        "formulas": []
+      },
+      {
+        "id": "card-3",
+        "body": "",
+        "title": "dád",
+        "images": [],
+        "example": "",
+        "formula": "",
+        "formulas": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "lesson_name": "2. Hình vuông - hình tròn, hình tam giác - hình chữ nhật",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Hình vuông - hình tròn, hình tam giác - hình chữ nhật",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "lesson_name": "3. Các số 1, 2, 3",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Các số 1, 2, 3",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "lesson_name": "4. Các số 4, 5, 6",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Các số 4, 5, 6",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "lesson_name": "5. Các số 7, 8, 9",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Các số 7, 8, 9",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "lesson_name": "6. Số 0",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Số 0",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "lesson_name": "7. Số 10",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Số 10",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "lesson_name": "9. Nhiều hơn - ít hơn - bằng nhau",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Nhiều hơn - ít hơn - bằng nhau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "lesson_name": "10. Bé hơn, dấu <, Bằng nhau, dấu =",
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bé hơn, dấu <, Bằng nhau, dấu =",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "lesson_name": "1. Làm quen với phép cộng, dấu cộng",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Làm quen với phép cộng, dấu cộng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "lesson_name": "2. Làm quen với phép cộng - dấu cộng (tiếp theo)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Làm quen với phép cộng - dấu cộng (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "lesson_name": "3. Phép cộng trong phạm vi 6",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Phép cộng trong phạm vi 6",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "lesson_name": "4. Phép cộng trong phạm vi 6 (tiếp theo)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Phép cộng trong phạm vi 6 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "lesson_name": "6. Phép cộng trong phạm vi 10",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Phép cộng trong phạm vi 10",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "lesson_name": "8. Phép cộng trong phạm vi 10 (tiếp theo)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Phép cộng trong phạm vi 10 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "lesson_name": "10. Khối hộp chữ nhật, khối lập phương",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Khối hộp chữ nhật, khối lập phương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "lesson_name": "11. Làm quen với phép trừ, dấu trừ",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Làm quen với phép trừ, dấu trừ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "lesson_name": "12. Phép trừ trong phạm vi 6",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Phép trừ trong phạm vi 6",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "lesson_name": "14. Phép trừ trong phạm vi 6 (tiếp theo)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Phép trừ trong phạm vi 6 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "lesson_name": "16. Phép trừ trong phạm vi 10",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Phép trừ trong phạm vi 10",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "lesson_name": "18. Phép trừ trong phạm vi 10 (tiếp theo)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 2: Phép cộng, phép trừ trong phạm vi 10",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Phép trừ trong phạm vi 10 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "lesson_name": "1. Các số đến 100",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Các số đến 100",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "lesson_name": "2. Các số có hai chữ số (Từ 21 đến 40)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Các số có hai chữ số (Từ 21 đến 40)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "lesson_name": "3. Các số có hai chữ số (Từ 41 đến 70)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Các số có hai chữ số (Từ 41 đến 70)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "lesson_name": "4. Các số có hai chữ số (Từ 71 đến 99)",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Các số có hai chữ số (Từ 71 đến 99)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "lesson_name": "5. Chục và đơn vị",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Chục và đơn vị",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "lesson_name": "7. So sánh các số trong phạm vi 100",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. So sánh các số trong phạm vi 100",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "lesson_name": "9. Dài hơn, ngắn hơn",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Dài hơn, ngắn hơn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "lesson_name": "10. Đo độ dài",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Đo độ dài",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "lesson_name": "11. Xăng-ti-mét",
+    "grade": 1,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Xăng-ti-mét",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "lesson_name": "1. Phép cộng dạng 14+3",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Phép cộng dạng 14+3",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "lesson_name": "2. Phép trừ dạng 17-2",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Phép trừ dạng 17-2",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "lesson_name": "4. Cộng trừ các số tròn chục",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Cộng trừ các số tròn chục",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "lesson_name": "5. Phép cộng dạng 25+14",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Phép cộng dạng 25+14",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "lesson_name": "6. Phép cộng dạng 25+4, 25+40",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Phép cộng dạng 25+4, 25+40",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "lesson_name": "8. Phép trừ dạng 39-15",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Phép trừ dạng 39-15",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "lesson_name": "9. Phép trừ dạng 27-4; 63-40",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Phép trừ dạng 27-4; 63-40",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "lesson_name": "12. Các ngày trong tuần lễ",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Các ngày trong tuần lễ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "lesson_name": "13. Đồng hồ - thời gian",
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Đồng hồ - thời gian",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "lesson_name": "3. Tia số. Số liền trước, số liền sau",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Tia số. Số liền trước, số liền sau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "lesson_name": "4. Đề-xi-mét",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Đề-xi-mét",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "lesson_name": "5. Số hạng - Tổng",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Số hạng - Tổng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "lesson_name": "6. Số bị trừ - Số trừ - Hiệu",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Số bị trừ - Số trừ - Hiệu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "lesson_name": "9. Phép cộng (có nhớ) trong phạm vi 20",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Phép cộng (có nhớ) trong phạm vi 20",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "lesson_name": "10. Phép cộng (có nhớ) trong phạm vi 20 (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Phép cộng (có nhớ) trong phạm vi 20 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "lesson_name": "12. Bảng cộng (có nhớ) trong phạm vi 20",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Bảng cộng (có nhớ) trong phạm vi 20",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "lesson_name": "16. Phép trừ (có nhớ) trong phạm vi 20",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Phép trừ (có nhớ) trong phạm vi 20",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "lesson_name": "17. Phép trừ (có nhớ) trong phạm vi 20 (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Phép trừ (có nhớ) trong phạm vi 20 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "lesson_name": "19. Bảng trừ (có nhớ) trong phạm vi 20",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Bảng trừ (có nhớ) trong phạm vi 20",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "lesson_name": "22. Bài toán liên quan đến phép cộng, phép trừ",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bài toán liên quan đến phép cộng, phép trừ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "lesson_name": "24. Bài toán liên quan đến phép cộng, phép trừ (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 1: ÔN TẬP LỚP 1 PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 20",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "24. Bài toán liên quan đến phép cộng, phép trừ (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "lesson_name": "1. Phép cộng (có nhớ) trong phạm vi 100",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Phép cộng (có nhớ) trong phạm vi 100",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "lesson_name": "2. Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "lesson_name": "5. Phép trừ (có nhớ) trong phạm vi 100",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Phép trừ (có nhớ) trong phạm vi 100",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "lesson_name": "6. Phép trừ (có nhớ) trong phạm vi 100 (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Phép trừ (có nhớ) trong phạm vi 100 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "lesson_name": "10. Ki-lô-gam",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Ki-lô-gam",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "lesson_name": "11. Lít",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Lít",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "lesson_name": "13. Hình tứ giác",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Hình tứ giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "lesson_name": "14. Điểm, đoạn thẳng",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Điểm, đoạn thẳng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "lesson_name": "15. Đường thẳng, đường cong, đường gấp khúc",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Đường thẳng, đường cong, đường gấp khúc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "lesson_name": "16. Độ dài đoạn thẳng. Độ dài đường gấp khúc",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Độ dài đoạn thẳng. Độ dài đường gấp khúc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "lesson_name": "17. Đo độ dài đoạn thẳng, độ dài đường gấp khúc 1",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Đo độ dài đoạn thẳng, độ dài đường gấp khúc 1",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "lesson_name": "1. Làm quen với phép nhân. Dấu nhân",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Làm quen với phép nhân. Dấu nhân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "lesson_name": "2. Phép nhân",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Phép nhân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "lesson_name": "3. Thừa số, tích",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Thừa số, tích",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "lesson_name": "4. Bảng nhân 2",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bảng nhân 2",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "lesson_name": "5. Bảng nhân 5",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bảng nhân 5",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "lesson_name": "6. Làm quen với phép chia. Dấu chia",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Làm quen với phép chia. Dấu chia",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "lesson_name": "7. Phép chia 1",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Phép chia 1",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "lesson_name": "8. Phép chia (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Phép chia (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "lesson_name": "9. Bảng chia 2",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bảng chia 2",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "lesson_name": "10. Bảng chia 5",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bảng chia 5",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "lesson_name": "11. Số bị chia, số chia, thương",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Số bị chia, số chia, thương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "lesson_name": "14. Khối trụ - Khối cầu",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Khối trụ - Khối cầu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "lesson_name": "16. Ngày - giờ",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Ngày - giờ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "lesson_name": "17. Giờ - Phút",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Giờ - Phút",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "lesson_name": "18. Ngày - Tháng",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 3: PHÉP NHÂN, PHÉP CHIA",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Ngày - Tháng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "lesson_name": "1. Các số trong phạm vi 1000",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Các số trong phạm vi 1000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "lesson_name": "2. Các số có ba chữ số",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Các số có ba chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "lesson_name": "3. Các số có ba chữ số (tiếp theo)",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Các số có ba chữ số (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "lesson_name": "4. So sánh các số có ba chữ số",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. So sánh các số có ba chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "lesson_name": "7. Phép cộng (không nhớ) trong phạm vi 1000",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Phép cộng (không nhớ) trong phạm vi 1000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "lesson_name": "8. Phép trừ (không nhớ) trong phạm vi 1000",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Phép trừ (không nhớ) trong phạm vi 1000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "lesson_name": "10. Mét",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Mét",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "lesson_name": "11. Ki-lô-mét",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Ki-lô-mét",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "lesson_name": "12. Phép cộng (có nhớ) trong phạm vi 1000",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Phép cộng (có nhớ) trong phạm vi 1000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "lesson_name": "14. Phép trừ (có nhớ) trong phạm vi 1000",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Phép trừ (có nhớ) trong phạm vi 1000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "lesson_name": "18. Thu thập - Kiểm đếm",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Thu thập - Kiểm đếm",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "lesson_name": "19. Biểu đồ tranh",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Biểu đồ tranh",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "lesson_name": "20. Chắc chắn - Có thể - Không thể",
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 4: CÁC SỐ TRONG PHẠM VI 1000. PHÉP CỘNG, PHÉP TRỪ TRONG PHẠM VI 1000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Chắc chắn - Có thể - Không thể",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "lesson_name": "4. Mi-li-mét",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Mi-li-mét",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "lesson_name": "6. Bảng nhân 3",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bảng nhân 3",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "lesson_name": "7. Bảng nhân 4",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bảng nhân 4",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "lesson_name": "8. Bảng nhân 6",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Bảng nhân 6",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "lesson_name": "9. Gấp một số lên một số lần",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Gấp một số lên một số lần",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "lesson_name": "10. Bảng nhân 7",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bảng nhân 7",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "lesson_name": "11. Bảng nhân 8",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Bảng nhân 8",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "lesson_name": "12. Bảng nhân 9",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Bảng nhân 9",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "lesson_name": "15. Gam",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Gam",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "lesson_name": "17. Bảng chia 3",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bảng chia 3",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "lesson_name": "18. Bảng chia 4",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Bảng chia 4",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "lesson_name": "19. Bảng chia 6",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Bảng chia 6",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "lesson_name": "20. Giảm một số đi một số lần",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Giảm một số đi một số lần",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "lesson_name": "21. Bảng chia 7",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Bảng chia 7",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "lesson_name": "22. Bảng chia 8",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bảng chia 8",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "lesson_name": "23. Bảng chia 9",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "23. Bảng chia 9",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "lesson_name": "26. Một phần hai, một phần tư",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "26. Một phần hai, một phần tư",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "lesson_name": "27. Một phần ba, một phần năm, một phần sáu",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "27. Một phần ba, một phần năm, một phần sáu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "lesson_name": "28. Một phần bảy. Một phần tám. Một phần chín",
+    "grade": 3,
+    "chapter_name": "Chủ đề 1: Bảng nhân, bảng chia",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "28. Một phần bảy. Một phần tám. Một phần chín",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "lesson_name": "1. Nhân số tròn chục với số có một chữ số",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Nhân số tròn chục với số có một chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "lesson_name": "2. Nhân với số có một chữ số (không nhớ)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Nhân với số có một chữ số (không nhớ)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "lesson_name": "4. Phép chia hết, phép chia có dư",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Phép chia hết, phép chia có dư",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "lesson_name": "5. Chia số tròn chục, tròn trăm cho số có một chữ số",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Chia số tròn chục, tròn trăm cho số có một chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "lesson_name": "6. Chia cho số có một chữ số",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Chia cho số có một chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "lesson_name": "9. So sánh số lớn gấp mấy lần số bé",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. So sánh số lớn gấp mấy lần số bé",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "lesson_name": "10. Giải bài toán có đến hai bước tính",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Giải bài toán có đến hai bước tính",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "lesson_name": "11. Làm quen với biểu thức số",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Làm quen với biểu thức số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "lesson_name": "12. Tính giá trị của biểu thức số",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Tính giá trị của biểu thức số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "lesson_name": "13. Tính giá trị của biểu thức số (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Tính giá trị của biểu thức số (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "lesson_name": "14. Tính giá trị của biểu thức số (tiếp theo) trang 93",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Tính giá trị của biểu thức số (tiếp theo) trang 93",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "lesson_name": "16. Mi-li-lít",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Mi-li-lít",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "lesson_name": "17. Nhiệt độ",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Nhiệt độ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "lesson_name": "18. Góc vuông, góc không vuông",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Góc vuông, góc không vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "lesson_name": "19. Hình tam giác, hình tứ giác",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Hình tam giác, hình tứ giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "lesson_name": "20. Chu vi hình tam giác, chu vi hình tứ giác",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Chu vi hình tam giác, chu vi hình tứ giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "lesson_name": "21. Hình chữ nhật",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Hình chữ nhật",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "lesson_name": "22. Hình vuông",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Hình vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "lesson_name": "23. Chu vi hình chữ nhật, chu vi hình vuông",
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "23. Chu vi hình chữ nhật, chu vi hình vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "lesson_name": "1. Các số trong phạm vi 10 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Các số trong phạm vi 10 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "lesson_name": "2. Các số trong phạm vi 10 000 (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Các số trong phạm vi 10 000 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "lesson_name": "3. Làm quen với chữ số La Mã",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Làm quen với chữ số La Mã",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "lesson_name": "4. Các số trong phạm vi 100 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Các số trong phạm vi 100 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "lesson_name": "5. Các số trong phạm vi 100 000 (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Các số trong phạm vi 100 000 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "lesson_name": "6. So sánh các số trong phạm vi 100 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. So sánh các số trong phạm vi 100 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "lesson_name": "8. Điểm ở giữa, trung điểm của đoạn thẳng",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Điểm ở giữa, trung điểm của đoạn thẳng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "lesson_name": "9. Hình tròn, tâm, đường kính, bán kính",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Hình tròn, tâm, đường kính, bán kính",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "lesson_name": "10. Làm tròn số đến hàng chục, hàng trăm",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Làm tròn số đến hàng chục, hàng trăm",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "lesson_name": "11. Làm tròn số đến hàng nghìn, hàng chục nghìn",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Làm tròn số đến hàng nghìn, hàng chục nghìn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "lesson_name": "13. Khối hộp chữ nhật, khối lập phương",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Khối hộp chữ nhật, khối lập phương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "lesson_name": "16. Tháng - năm trang 46",
+    "grade": 3,
+    "chapter_name": "Chủ đề 3: Các số trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Tháng - năm trang 46",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "lesson_name": "2. Phép cộng trong phạm vi 100 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Phép cộng trong phạm vi 100 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "lesson_name": "3. Phép trừ trong phạm vi 100 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Phép trừ trong phạm vi 100 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "lesson_name": "4. Tiền Việt Nam",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Tiền Việt Nam",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "lesson_name": "5. Nhân với số có một chữ số (không nhớ)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Nhân với số có một chữ số (không nhớ)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "lesson_name": "6. Nhân với số có một chữ số (có nhớ)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Nhân với số có một chữ số (có nhớ)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "lesson_name": "8. Chia cho số có một chữ số trong phạm vi 100 000",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Chia cho số có một chữ số trong phạm vi 100 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "lesson_name": "9. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "lesson_name": "11. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "lesson_name": "14. Tìm thành phần chưa biết của phép tính",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Tìm thành phần chưa biết của phép tính",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "lesson_name": "15. Tìm thành phần chưa biết của phép tính (tiếp theo)",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Tìm thành phần chưa biết của phép tính (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "lesson_name": "17. Diện tích một hình",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Diện tích một hình",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "lesson_name": "18. Đơn vị đo diện tích. Xăng-ti-mét vuông",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Đơn vị đo diện tích. Xăng-ti-mét vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "lesson_name": "19. Diện tích hình chữ nhật, diện tích hình vuông",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Diện tích hình chữ nhật, diện tích hình vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "lesson_name": "21. Thu thập, phân loại, ghi chép số liệu thống kê",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Thu thập, phân loại, ghi chép số liệu thống kê",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "lesson_name": "22. Bảng số liệu thống kê",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bảng số liệu thống kê",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "lesson_name": "23. Khả năng xảy ra của một sự kiện",
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "23. Khả năng xảy ra của một sự kiện",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "lesson_name": "4. Bài 4: Các số trong phạm vi 1 000 000",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bài 4: Các số trong phạm vi 1 000 000",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "lesson_name": "5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo)",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "lesson_name": "6. Bài 6: Các số có nhiều chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 6: Các số có nhiều chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "lesson_name": "7. Bài 7: Các số có nhiều chữ số (tiếp theo)",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bài 7: Các số có nhiều chữ số (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "lesson_name": "9. Bài 9: So sánh các số có nhiều chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 9: So sánh các số có nhiều chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "lesson_name": "10. Bài 10: Làm tròn số đến hàng trăm nghìn",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bài 10: Làm tròn số đến hàng trăm nghìn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "lesson_name": "12. Bài 12: Số tự nhiên. Dãy số tự nhiên",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Bài 12: Số tự nhiên. Dãy số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "lesson_name": "13. Bài 13: Viết số tự nhiên trong hệ thập phân",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Bài 13: Viết số tự nhiên trong hệ thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "lesson_name": "14. Bài 14: Yến, tạ, tấn",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 14: Yến, tạ, tấn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "lesson_name": "15. Bài 15: Giây",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 15: Giây",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "lesson_name": "16. Bài 16: Thế kỉ",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 16: Thế kỉ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "lesson_name": "17. Bài 17: Bài toán liên quan đến rút về đơn vị",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 17: Bài toán liên quan đến rút về đơn vị",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "lesson_name": "19. Bài 19: Góc nhọn, góc tù, góc bẹt",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Bài 19: Góc nhọn, góc tù, góc bẹt",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "lesson_name": "20. Bài 20. Đơn vị đo góc. Độ",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Bài 20. Đơn vị đo góc. Độ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "lesson_name": "21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "lesson_name": "22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "lesson_name": "1. Bài 26: Phép cộng, phép trừ",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 26: Phép cộng, phép trừ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "lesson_name": "2. Bài 27: Các tính chất của phép cộng",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 27: Các tính chất của phép cộng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "lesson_name": "3. Bài 28: Tìm số trung bình cộng",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Bài 28: Tìm số trung bình cộng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 176,
+    "lesson_name": "4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "lesson_name": "6. Bài 31: Nhân với số có một chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 31: Nhân với số có một chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "lesson_name": "7. Bài 32: Nhân với số có hai chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bài 32: Nhân với số có hai chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "lesson_name": "9. Bài 34: Các tính chất của phép nhân",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 34: Các tính chất của phép nhân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "lesson_name": "11. Bài 36: Nhân với 10, 100 , 1 000, ...",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Bài 36: Nhân với 10, 100 , 1 000, ...",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "lesson_name": "13. Bài 38: Chia cho số có một chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Bài 38: Chia cho số có một chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "lesson_name": "14. Bài 39: Chia cho 10, 100, 1 000, ...",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 39: Chia cho 10, 100, 1 000, ...",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "lesson_name": "15. Bài 40: Chia cho số có hai chữ số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 40: Chia cho số có hai chữ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "lesson_name": "17. Bài 42: Chia cho số có hai chữ số (tiếp theo)",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 42: Chia cho số có hai chữ số (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "lesson_name": "19. Bài 44: Thương có chữ số 0",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Bài 44: Thương có chữ số 0",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "lesson_name": "22. Bài 47: Ước lượng tính",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bài 47: Ước lượng tính",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 187,
+    "lesson_name": "24. Bài 49: Biểu thức có chứa chữ",
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "24. Bài 49: Biểu thức có chứa chữ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 188,
+    "lesson_name": "1. Bài 53: Khái niệm phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 53: Khái niệm phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 189,
+    "lesson_name": "2. Bài 54: Khái niệm phân số (tiếp theo)",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 54: Khái niệm phân số (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "lesson_name": "3. Bài 55: Phân số và phép chia số tự nhiên",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Bài 55: Phân số và phép chia số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "lesson_name": "5. Bài 57: Phân số bằng nhau",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bài 57: Phân số bằng nhau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 192,
+    "lesson_name": "6. Bài 58: Tính chất cơ bản của phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 58: Tính chất cơ bản của phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "lesson_name": "7. Bài 59: Rút gọn phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bài 59: Rút gọn phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 194,
+    "lesson_name": "8. Bài 60: Quy đồng mẫu số các phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Bài 60: Quy đồng mẫu số các phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "lesson_name": "9. Bài 61: So sánh hai phân số cùng mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 61: So sánh hai phân số cùng mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 196,
+    "lesson_name": "10. Bài 62: So sánh hai phân số khác mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bài 62: So sánh hai phân số khác mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "lesson_name": "13. Bài 65: Hình bình hành",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Bài 65: Hình bình hành",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "lesson_name": "14. Bài 66: Hình thoi",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 66: Hình thoi",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "lesson_name": "15. Bài 67: Mét vuông",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 67: Mét vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "lesson_name": "16. Bài 68: Đề-xi-mét vuông",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 68: Đề-xi-mét vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "lesson_name": "17. Bài 69: Mi-li-mét vuông",
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 69: Mi-li-mét vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 202,
+    "lesson_name": "1. Bài 73: Cộng các phân số cùng mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 73: Cộng các phân số cùng mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "lesson_name": "2. Bài 74: Trừ các phân số cùng mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 74: Trừ các phân số cùng mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "lesson_name": "4. Bài 76: Cộng các phân số khác mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bài 76: Cộng các phân số khác mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "lesson_name": "5. Bài 77: Trừ hai phân số khác mẫu số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bài 77: Trừ hai phân số khác mẫu số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "lesson_name": "8. Bài 80: Phép nhân phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Bài 80: Phép nhân phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 207,
+    "lesson_name": "10. Bài 82: Tìm phân số của một số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bài 82: Tìm phân số của một số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 208,
+    "lesson_name": "12. Bài 84: Phép chia phân số",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Bài 84: Phép chia phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 209,
+    "lesson_name": "15. Bài 87: Dãy số liệu thống kê",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 87: Dãy số liệu thống kê",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "lesson_name": "16. Bài 88: Biểu đồ cột",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 88: Biểu đồ cột",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 211,
+    "lesson_name": "17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện",
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 212,
+    "lesson_name": "6. Bài 6. Giới thiệu về tỉ số",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 6. Giới thiệu về tỉ số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 213,
+    "lesson_name": "7. Bài 7. Tìm hai số khi biết tổng và tỉ số của hai số đó",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bài 7. Tìm hai số khi biết tổng và tỉ số của hai số đó",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "lesson_name": "8. Bài 8. Tìm hai số khi biết hiệu và tỉ số của hai số đó",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Bài 8. Tìm hai số khi biết hiệu và tỉ số của hai số đó",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 215,
+    "lesson_name": "9. Bài 9. Bài toán liên quan đến quan hệ phụ thuộc",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 9. Bài toán liên quan đến quan hệ phụ thuộc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 216,
+    "lesson_name": "11. Bài 11. Hỗn số",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Bài 11. Hỗn số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "lesson_name": "12. Bài 12. Phân số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "12. Bài 12. Phân số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 218,
+    "lesson_name": "13. Bài 13. Số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Bài 13. Số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 219,
+    "lesson_name": "14. Bài 14. Số thập phân (tiếp theo)",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 14. Số thập phân (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 220,
+    "lesson_name": "15. Bài 15. Số thập phân (tiếp theo)",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 15. Số thập phân (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 221,
+    "lesson_name": "16. Bài 16. Số thập phân (tiếp theo)",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 16. Số thập phân (tiếp theo)",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 222,
+    "lesson_name": "17. Bài 17. Số thập phân bằng nhau",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 17. Số thập phân bằng nhau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 223,
+    "lesson_name": "18. Bài 18. So sánh các số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Bài 18. So sánh các số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 224,
+    "lesson_name": "19. Bài 19. Làm tròn số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "19. Bài 19. Làm tròn số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 225,
+    "lesson_name": "21. Bài 21. Héc-ta",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Bài 21. Héc-ta",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "lesson_name": "22. Bài 22. Ki-lô-mét vuông",
+    "grade": 5,
+    "chapter_name": "Chủ đề 1. Ôn tập và bổ sung về số tự nhiên, phân số. Số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "22. Bài 22. Ki-lô-mét vuông",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 227,
+    "lesson_name": "1. Bài 25. Cộng các số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 25. Cộng các số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "lesson_name": "2. Bài 26. Trừ các số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 26. Trừ các số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 229,
+    "lesson_name": "4. Bài 28. Nhân một số thập phân với 10, 100, 1 000, ...",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bài 28. Nhân một số thập phân với 10, 100, 1 000, ...",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 230,
+    "lesson_name": "5. Bài 29. Nhân một số thập phân với một số tự nhiên",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bài 29. Nhân một số thập phân với một số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 231,
+    "lesson_name": "6. Bài 30. Nhân một số thập phân với một số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 30. Nhân một số thập phân với một số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 232,
+    "lesson_name": "8. Bài 32. Chia một số thập phân cho 10, 100, 1 000, ...",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "8. Bài 32. Chia một số thập phân cho 10, 100, 1 000, ...",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 233,
+    "lesson_name": "9. Bài 33. Chia một số thập phân cho Một số tự nhiên",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 33. Chia một số thập phân cho Một số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "lesson_name": "11. Bài 35. Chia một số thập phân cho một số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Bài 35. Chia một số thập phân cho một số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 235,
+    "lesson_name": "14. Bài 38. Viết các số đo đại lượng dưới dạng số thập phân",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 38. Viết các số đo đại lượng dưới dạng số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 236,
+    "lesson_name": "16. Bài 40. Tỉ số phần trăm",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 40. Tỉ số phần trăm",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 237,
+    "lesson_name": "17. Bài 41. Tìm tỉ số phần trăm của hai số",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "17. Bài 41. Tìm tỉ số phần trăm của hai số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 238,
+    "lesson_name": "18. Bài 42. Tìm giá trị phần trăm của một số cho trước",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "18. Bài 42. Tìm giá trị phần trăm của một số cho trước",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 239,
+    "lesson_name": "20. Bài 44. Sử dụng máy tính cầm tay",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Bài 44. Sử dụng máy tính cầm tay",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 240,
+    "lesson_name": "21. Bài 45. Tỉ lệ bản đồ",
+    "grade": 5,
+    "chapter_name": "Chủ đề 2. Các phép tính với số thập phân",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Bài 45. Tỉ lệ bản đồ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 241,
+    "lesson_name": "1. Bài 50. Hình tam giác",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 50. Hình tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 242,
+    "lesson_name": "2. Bài 51. Diện tích hình tam giác",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 51. Diện tích hình tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 243,
+    "lesson_name": "3. Bài 52. Hình thang",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Bài 52. Hình thang",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 244,
+    "lesson_name": "4. Bài 53. Diện tích hình thang",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "4. Bài 53. Diện tích hình thang",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 245,
+    "lesson_name": "5. Bài 54 Hình tròn. Đường tròn",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "5. Bài 54 Hình tròn. Đường tròn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 246,
+    "lesson_name": "6. Bài 55. Chu vi hình tròn",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "6. Bài 55. Chu vi hình tròn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 247,
+    "lesson_name": "7. Bài 56. Diện tích hình tròn",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "7. Bài 56. Diện tích hình tròn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 248,
+    "lesson_name": "9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 249,
+    "lesson_name": "10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 250,
+    "lesson_name": "11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 251,
+    "lesson_name": "13. Bài 62. Thể tích của một hình",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "13. Bài 62. Thể tích của một hình",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 252,
+    "lesson_name": "14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 253,
+    "lesson_name": "15. Bài 64. Mét khối",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "15. Bài 64. Mét khối",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 254,
+    "lesson_name": "16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 255,
+    "lesson_name": "20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 256,
+    "lesson_name": "21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 257,
+    "lesson_name": "23. Bài 72. Vận tốc",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "23. Bài 72. Vận tốc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 258,
+    "lesson_name": "25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 259,
+    "lesson_name": "1. Bài 79. Biểu đồ hình quạt",
+    "grade": 5,
+    "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "1. Bài 79. Biểu đồ hình quạt",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 260,
+    "lesson_name": "2. Bài 80. Một số cách biểu diễn số liệu thống kê",
+    "grade": 5,
+    "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "2. Bài 80. Một số cách biểu diễn số liệu thống kê",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 261,
+    "lesson_name": "3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+    "grade": 5,
+    "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 262,
+    "lesson_name": "Bài 1. Tập hợp",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Tập hợp",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 263,
+    "lesson_name": "Bài 2. Tập hợp các số tự nhiên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Tập hợp các số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 264,
+    "lesson_name": "Bài 3. Phép cộng, phép trừ các số tự nhiên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Phép cộng, phép trừ các số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 265,
+    "lesson_name": "Bài 4. Phép nhân, phép chia với các số tự nhiên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Phép nhân, phép chia với các số tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 266,
+    "lesson_name": "Bài 5. Phép tính lũy thừa với số mũ tự nhiên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Phép tính lũy thừa với số mũ tự nhiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 267,
+    "lesson_name": "Bài 6. Thứ tự thực hiện các phép tính",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Thứ tự thực hiện các phép tính",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 268,
+    "lesson_name": "Bài 7. Quan hệ chia hết. Tính chất chia hết",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 7. Quan hệ chia hết. Tính chất chia hết",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 269,
+    "lesson_name": "Bài 8. Dấu hiệu chia hết cho 2, cho 5",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 8. Dấu hiệu chia hết cho 2, cho 5",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 270,
+    "lesson_name": "Bài 9. Dấu hiệu chia hết cho 3, cho 9",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 9. Dấu hiệu chia hết cho 3, cho 9",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 271,
+    "lesson_name": "Bài 10. Số nguyên tố. Hợp số",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 10. Số nguyên tố. Hợp số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 272,
+    "lesson_name": "Bài 11. Phân tích một số ra thừa số nguyên tố",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 11. Phân tích một số ra thừa số nguyên tố",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 273,
+    "lesson_name": "Bài 12. Ước chung và ước chung lớn nhất",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 12. Ước chung và ước chung lớn nhất",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 274,
+    "lesson_name": "Bài 13. Bội chung và bội chung nhỏ nhất",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 13. Bội chung và bội chung nhỏ nhất",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 275,
+    "lesson_name": "Bài 1. Số nguyên âm",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Số nguyên âm",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 276,
+    "lesson_name": "Bài 2. Tập hợp các số nguyên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Tập hợp các số nguyên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 277,
+    "lesson_name": "Bài 3. Phép cộng các số nguyên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Phép cộng các số nguyên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 278,
+    "lesson_name": "Bài 4. Phép trừ các số nguyên. Quy tắc dấu ngoặc",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Phép trừ các số nguyên. Quy tắc dấu ngoặc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "lesson_name": "Bài 5. Phép nhân các số nguyên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Phép nhân các số nguyên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 280,
+    "lesson_name": "Bài 6. Phép chia hết hai số nguyên. Quan hệ chia hết trong tập hợp số nguyên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Phép chia hết hai số nguyên. Quan hệ chia hết trong tập hợp số nguyên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 281,
+    "lesson_name": "Bài 1. Tam giác đều. Hình vuông. Lục giác đều",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Tam giác đều. Hình vuông. Lục giác đều",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 282,
+    "lesson_name": "Bài 2. Hình chữ nhật. Hình thoi",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Hình chữ nhật. Hình thoi",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 283,
+    "lesson_name": "Bài 3. Hình bình hành",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Hình bình hành",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 284,
+    "lesson_name": "Bài 4. Hình thang cân",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Hình thang cân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 285,
+    "lesson_name": "Bài 5. Hình có trục đối xứng",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Hình có trục đối xứng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 286,
+    "lesson_name": "Bài 6. Hình có tâm đối xứng",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Hình có tâm đối xứng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 287,
+    "lesson_name": "Bài 7. Đối xứng trong thực tiễn",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 3. HÌNH HỌC TRỰC QUAN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 7. Đối xứng trong thực tiễn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 288,
+    "lesson_name": "Bài 1. Thu thập, tổ chức, biểu diễn, phân tích và xử lý số liệu",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 4. MỘT SỐ YẾU TỐ THỐNG KÊ VÀ XÁC SUẤT",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Thu thập, tổ chức, biểu diễn, phân tích và xử lý số liệu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 289,
+    "lesson_name": "Bài 2. Biểu đồ cột kép",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 4. MỘT SỐ YẾU TỐ THỐNG KÊ VÀ XÁC SUẤT",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Biểu đồ cột kép",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 290,
+    "lesson_name": "Bài 3. Mô hình xác suất trong một số trò chơi và thí nghiệm đơn giản",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 4. MỘT SỐ YẾU TỐ THỐNG KÊ VÀ XÁC SUẤT",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Mô hình xác suất trong một số trò chơi và thí nghiệm đơn giản",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 291,
+    "lesson_name": "Bài 4. Xác suất thực nghiệm trong một số trò chơi và thí nghiệm đơn giản",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 4. MỘT SỐ YẾU TỐ THỐNG KÊ VÀ XÁC SUẤT",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Xác suất thực nghiệm trong một số trò chơi và thí nghiệm đơn giản",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 292,
+    "lesson_name": "Bài 1. Phân số với tử và mẫu là số nguyên",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Phân số với tử và mẫu là số nguyên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 293,
+    "lesson_name": "Bài 2. So sánh các phân số. Hỗn số dương",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. So sánh các phân số. Hỗn số dương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 294,
+    "lesson_name": "Bài 3. Phép cộng và phép trừ phân số",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Phép cộng và phép trừ phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 295,
+    "lesson_name": "Bài 4. Phép nhân và phép chia phân số",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Phép nhân và phép chia phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 296,
+    "lesson_name": "Bài 5. Số thập phân",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 297,
+    "lesson_name": "Bài 6. Phép cộng và phép trừ số thập phân",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Phép cộng và phép trừ số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 298,
+    "lesson_name": "Bài 7. Phép nhân, phép chia số thập phân",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 7. Phép nhân, phép chia số thập phân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 299,
+    "lesson_name": "Bài 8. Ước lượng và làm tròn số",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 8. Ước lượng và làm tròn số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 300,
+    "lesson_name": "Bài 9. Tỉ số. Tỉ số phần trăm",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 9. Tỉ số. Tỉ số phần trăm",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 301,
+    "lesson_name": "Bài 10. Hai bài toán về phân số",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 10. Hai bài toán về phân số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 302,
+    "lesson_name": "Bài 1. Điểm. Đường thẳng",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 6. HÌNH HỌC PHẲNG",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Điểm. Đường thẳng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 303,
+    "lesson_name": "Bài 2. Hai đường thẳng cắt nhau, hai đường thẳng song song",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 6. HÌNH HỌC PHẲNG",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Hai đường thẳng cắt nhau, hai đường thẳng song song",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 304,
+    "lesson_name": "Bài 3. Đoạn thẳng.",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 6. HÌNH HỌC PHẲNG",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Đoạn thẳng.",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 305,
+    "lesson_name": "Bài 4. Tia",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 6. HÌNH HỌC PHẲNG",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Tia",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 306,
+    "lesson_name": "Bài 5. Góc",
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 6. HÌNH HỌC PHẲNG",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Góc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 307,
+    "lesson_name": "Bài 1. Tập hợp Q các số hữu tỉ",
+    "grade": 7,
+    "chapter_name": "Chương I. Số hữu tỉ",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Tập hợp Q các số hữu tỉ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 308,
+    "lesson_name": "Bài 2. Cộng, trừ, nhân, chia số hữu tỉ",
+    "grade": 7,
+    "chapter_name": "Chương I. Số hữu tỉ",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Cộng, trừ, nhân, chia số hữu tỉ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 309,
+    "lesson_name": "Bài 3. Phép tính lũy thừa với số mũ tự nhiên của một số hữu tỉ",
+    "grade": 7,
+    "chapter_name": "Chương I. Số hữu tỉ",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Phép tính lũy thừa với số mũ tự nhiên của một số hữu tỉ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 310,
+    "lesson_name": "Bài 4. Thứ tự thực hiện các phép tính. Quy tắc dấu ngoặc",
+    "grade": 7,
+    "chapter_name": "Chương I. Số hữu tỉ",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Thứ tự thực hiện các phép tính. Quy tắc dấu ngoặc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 311,
+    "lesson_name": "Bài 5. Biểu diễn thập phân của một số hữu tỉ",
+    "grade": 7,
+    "chapter_name": "Chương I. Số hữu tỉ",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Biểu diễn thập phân của một số hữu tỉ",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 312,
+    "lesson_name": "Bài 1. Số vô tỉ. Căn bậc hai số học",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Số vô tỉ. Căn bậc hai số học",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 313,
+    "lesson_name": "Bài 2. Tập hợp R các số thực",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Tập hợp R các số thực",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 314,
+    "lesson_name": "Bài 3. Giá trị tuyệt đối của một số thực",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Giá trị tuyệt đối của một số thực",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 315,
+    "lesson_name": "Bài 4. Làm tròn và ước lượng",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Làm tròn và ước lượng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 316,
+    "lesson_name": "Bài 5. Tỉ lệ thức",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Tỉ lệ thức",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 317,
+    "lesson_name": "Bài 6. Dãy tỉ số bằng nhau",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Dãy tỉ số bằng nhau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 318,
+    "lesson_name": "Bài 7. Đại lượng tỉ lệ thuận",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 7. Đại lượng tỉ lệ thuận",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 319,
+    "lesson_name": "Bài 8. Đại lượng tỉ lệ nghịch",
+    "grade": 7,
+    "chapter_name": "Chương II. Số thực",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 8. Đại lượng tỉ lệ nghịch",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 320,
+    "lesson_name": "Bài 1. Hình hộp chữ nhật. Hình lập phương",
+    "grade": 7,
+    "chapter_name": "Chương III. Hình học trực quan",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Hình hộp chữ nhật. Hình lập phương",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 321,
+    "lesson_name": "Bài 2. Hình lăng trụ đứng tam giác. Hình lăng trụ đứng tứ giác",
+    "grade": 7,
+    "chapter_name": "Chương III. Hình học trực quan",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Hình lăng trụ đứng tam giác. Hình lăng trụ đứng tứ giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 322,
+    "lesson_name": "Bài 1. Góc ở vị trí đặc biệt",
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Góc ở vị trí đặc biệt",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 323,
+    "lesson_name": "Bài 2. Tia phân giác của một góc",
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Tia phân giác của một góc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 324,
+    "lesson_name": "Bài 3. Hai đường thẳng song song",
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Hai đường thẳng song song",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 325,
+    "lesson_name": "Bài 4. Định lí",
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Định lí",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 326,
+    "lesson_name": "Bài 1. Thu thập, phân loại và biểu diễn dữ liệu",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Thu thập, phân loại và biểu diễn dữ liệu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 327,
+    "lesson_name": "Bài 2. Phân tích và xử lí dữ liệu",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Phân tích và xử lí dữ liệu",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 328,
+    "lesson_name": "Bài 3. Biểu đồ đoạn thẳng",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Biểu đồ đoạn thẳng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 329,
+    "lesson_name": "Bài 4. Biểu đồ hình quạt tròn",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Biểu đồ hình quạt tròn",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 330,
+    "lesson_name": "Bài 5. Biến cố trong một số trò chơi đơn giản",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Biến cố trong một số trò chơi đơn giản",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 331,
+    "lesson_name": "Bài 6. Xác suất của biến cố ngẫu nhiên trong một số trò chơi đơn giản",
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Xác suất của biến cố ngẫu nhiên trong một số trò chơi đơn giản",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 332,
+    "lesson_name": "Bài 1. Biểu thức số. Biểu thức đại số",
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Biểu thức số. Biểu thức đại số",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 333,
+    "lesson_name": "Bài 2. Đa thức một biến. Nghiệm của đa thức một biến",
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Đa thức một biến. Nghiệm của đa thức một biến",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 334,
+    "lesson_name": "Bài 3. Phép cộng, phép trừ đa thức một biến",
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Phép cộng, phép trừ đa thức một biến",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 335,
+    "lesson_name": "Bài 4. Phép nhân đa thức một biến",
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Phép nhân đa thức một biến",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 336,
+    "lesson_name": "Bài 5. Phép chia đa thức một biến",
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Phép chia đa thức một biến",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 337,
+    "lesson_name": "Bài 1. Tổng các góc của một tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 1. Tổng các góc của một tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 338,
+    "lesson_name": "Bài 2. Quan hệ giữa góc và cạnh đối diện. Bất đẳng thức tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 2. Quan hệ giữa góc và cạnh đối diện. Bất đẳng thức tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 339,
+    "lesson_name": "Bài 3. Hai tam giác bằng nhau",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 3. Hai tam giác bằng nhau",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 340,
+    "lesson_name": "Bài 4. Trường hợp bằng nhau thứ nhất của tam giác: cạnh - cạnh - cạnh",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 4. Trường hợp bằng nhau thứ nhất của tam giác: cạnh - cạnh - cạnh",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 341,
+    "lesson_name": "Bài 5. Trường hợp bằng nhau thứ hai của tam giác: cạnh - góc - cạnh",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 5. Trường hợp bằng nhau thứ hai của tam giác: cạnh - góc - cạnh",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 342,
+    "lesson_name": "Bài 6. Trường hợp bằng nhau thứ ba của tam giác: góc- cạnh - góc",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 6. Trường hợp bằng nhau thứ ba của tam giác: góc- cạnh - góc",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 343,
+    "lesson_name": "Bài 7. Tam giác cân",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 7. Tam giác cân",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 344,
+    "lesson_name": "Bài 8. Đường vuông góc và đường xiên",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 8. Đường vuông góc và đường xiên",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 345,
+    "lesson_name": "Bài 9. Đường trung trực của một đoạn thẳng",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 9. Đường trung trực của một đoạn thẳng",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 346,
+    "lesson_name": "Bài 10. Tính chất ba đường trung tuyến của tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 10. Tính chất ba đường trung tuyến của tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 347,
+    "lesson_name": "Bài 11. Tính chất ba đường phân giác của tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 11. Tính chất ba đường phân giác của tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 348,
+    "lesson_name": "Bài 12. Tính chất ba đường trung trực của tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 12. Tính chất ba đường trung trực của tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  },
+  {
+    "id": 349,
+    "lesson_name": "Bài 13. Tính chất ba đường cao của tam giác",
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "theory_cards": [
+      {
+        "body": "Thẻ lý thuyết đang chờ biên soạn. Quản trị viên có thể cập nhật định nghĩa, công thức và ví dụ cho bài học này.",
+        "title": "Bài 13. Tính chất ba đường cao của tam giác",
+        "example": "Học sinh nên đọc sách giáo khoa và luyện câu hỏi sau khi nội dung được hoàn thiện.",
+        "formula": ""
+      }
+    ]
+  }
+]

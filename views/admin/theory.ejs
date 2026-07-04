@@ -1,0 +1,87 @@
+<%
+  function chapterStepId(book, chapter) {
+    return `${book.id}-chapter-${chapter.id}`;
+  }
+
+  function lessonStepId(lesson) {
+    return `theory-lesson-${lesson.id}`;
+  }
+%>
+
+<section class="question-flow-page theory-admin-page" data-question-flow>
+  <header class="question-flow-topbar">
+    <button class="flow-back-button" type="button" data-flow-back hidden aria-label="Quay lại">
+      <i data-lucide="arrow-left" class="lucide-icon"></i>
+    </button>
+    <div>
+      <p class="eyebrow">Kho lý thuyết</p>
+      <h1 data-flow-title>Chọn sách giáo khoa</h1>
+      <p data-flow-subtitle>Chọn sách, chương rồi bài học để cập nhật lý thuyết.</p>
+    </div>
+    <div class="question-bank-stats">
+      <span><strong><%= bookTree.length %></strong> sách/tập</span>
+      <span><strong><%= lessons.length %></strong> bài học</span>
+      <span><strong><%= totalTheoryCardCount || 0 %></strong> thẻ</span>
+    </div>
+  </header>
+
+  <% if (!bookTree || bookTree.length === 0) { %>
+    <div class="empty-state compact">Chưa có dữ liệu chương trình để quản lý lý thuyết.</div>
+  <% } %>
+
+  <div class="question-flow-stage">
+    <section class="flow-step is-active" data-flow-step="books" data-flow-title="Chọn sách giáo khoa" data-flow-subtitle="Chọn sách, chương rồi bài học để cập nhật lý thuyết.">
+      <div class="book-card-grid">
+        <% bookTree.forEach((book) => { %>
+          <button class="book-card" type="button" data-flow-target="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
+            <span class="book-card-kicker">Sách giáo khoa</span>
+            <strong><%= book.title %></strong>
+            <small><%= book.chapterCount %> chương · <%= book.lessonCount %> bài · <%= book.theoryCount %> thẻ lý thuyết</small>
+          </button>
+        <% }) %>
+      </div>
+    </section>
+
+    <% bookTree.forEach((book) => { %>
+      <section class="flow-step" data-flow-step="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
+        <div class="flow-list">
+          <% book.chapters.forEach((chapter, index) => { %>
+            <button class="flow-list-row" type="button" data-flow-target="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học trong chương này.">
+              <span class="row-index"><%= index + 1 %></span>
+              <span>
+                <strong><%= chapter.chapter_name %></strong>
+                <small><%= chapter.lessons.length %> bài · <%= chapter.theoryCount %> thẻ lý thuyết</small>
+              </span>
+              <i data-lucide="chevron-right" class="lucide-icon"></i>
+            </button>
+          <% }) %>
+        </div>
+      </section>
+
+      <% book.chapters.forEach((chapter) => { %>
+        <section class="flow-step" data-flow-step="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học để quản lý thẻ lý thuyết.">
+          <div class="flow-list">
+            <% chapter.lessons.forEach((lesson, index) => { %>
+              <button class="flow-list-row" type="button" data-flow-target="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.theoryCount %> thẻ lý thuyết hiện có.">
+                <span class="row-index"><%= index + 1 %></span>
+                <span>
+                  <strong><%= lesson.lesson_name %></strong>
+                  <small><%= lesson.theoryCount %> thẻ lý thuyết</small>
+                </span>
+                <i data-lucide="chevron-right" class="lucide-icon"></i>
+              </button>
+            <% }) %>
+          </div>
+        </section>
+
+        <% chapter.lessons.forEach((lesson) => { %>
+          <section class="flow-step" data-flow-step="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="Thêm, sửa hoặc xóa từng thẻ lý thuyết riêng biệt.">
+            <div class="lesson-question-shell" data-lesson-theory data-lesson-id="<%= lesson.id %>">
+              <div class="empty-state compact">Chọn bài để tải phần quản lý lý thuyết.</div>
+            </div>
+          </section>
+        <% }) %>
+      <% }) %>
+    <% }) %>
+  </div>
+</section>

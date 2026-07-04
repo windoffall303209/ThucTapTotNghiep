@@ -1,0 +1,42 @@
+<section class="auth-shell">
+  <div class="auth-panel">
+    <p class="eyebrow">Tài khoản học sinh</p>
+    <h1>Đăng ký học tập</h1>
+    <form class="stack-form" action="/auth/register" method="post">
+      <label>
+        Họ và tên học sinh
+        <input name="fullname" autocomplete="name" required>
+      </label>
+      <label>
+        Tên đăng nhập
+        <input name="username" autocomplete="username" required>
+      </label>
+      <div class="two-fields">
+        <label>
+          Mật khẩu
+          <input name="password" type="password" autocomplete="new-password" required>
+        </label>
+        <label>
+          Nhập lại mật khẩu
+          <input name="confirmPassword" type="password" autocomplete="new-password" required>
+        </label>
+      </div>
+      <label>
+        Khối học hiện tại
+        <select name="grade" required>
+          <% for (let grade = 1; grade <= 7; grade += 1) { %>
+            <option value="<%= grade %>">Lớp <%= grade %></option>
+          <% } %>
+        </select>
+      </label>
+      <p class="form-note">Khối học được chọn khi đăng ký và không cho học sinh tự thay đổi.</p>
+      <button class="btn btn-primary full-width" type="submit">
+        <i data-lucide="user-plus" class="lucide-icon"></i>
+        Tạo tài khoản
+      </button>
+    </form>
+    <div class="auth-links">
+      <a href="/auth/login">Đã có tài khoản?</a>
+    </div>
+  </div>
+</section>

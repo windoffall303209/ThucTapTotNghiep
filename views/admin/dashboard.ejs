@@ -1,0 +1,59 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Quản trị hệ thống</p>
+    <h1>Bảng quản trị</h1>
+    <p>Theo dõi dữ liệu nền tảng và các câu hỏi mới nhất trong ngân hàng ôn luyện.</p>
+  </div>
+  <a class="btn btn-primary" href="/admin/questions">
+    <i data-lucide="plus" class="lucide-icon"></i>
+    Thêm câu hỏi
+  </a>
+</section>
+
+<section class="admin-metrics">
+  <div>
+    <span><%= stats.questionCount %></span>
+    <small>Câu hỏi</small>
+  </div>
+  <div>
+    <span><%= stats.lessonCount %></span>
+    <small>Bài có câu hỏi</small>
+  </div>
+  <div>
+    <span><%= stats.studentCount %></span>
+    <small>Học sinh</small>
+  </div>
+  <div>
+    <span><%= stats.easyCount %></span>
+    <small>Câu mức dễ</small>
+  </div>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="list-checks" class="lucide-icon"></i>
+    Câu hỏi gần đây
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Bài học</th>
+          <th>Độ khó</th>
+          <th>Đáp án</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% questions.forEach((question) => { %>
+          <tr>
+            <td><%= question.id %></td>
+            <td><%= question.lesson_name %></td>
+            <td><%= question.difficulty %></td>
+            <td><%= question.correct_answer %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

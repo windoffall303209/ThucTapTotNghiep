@@ -1,0 +1,29 @@
+<section class="auth-shell">
+  <div class="auth-panel">
+    <p class="eyebrow"><%= role === 'admin' ? 'Khu vực quản trị' : 'Khu vực học sinh' %></p>
+    <h1>Đăng nhập</h1>
+    <form class="stack-form" action="/auth/login" method="post">
+      <input type="hidden" name="role" value="<%= role %>">
+      <label>
+        Tên đăng nhập
+        <input name="username" autocomplete="username" required>
+      </label>
+      <label>
+        Mật khẩu
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button class="btn btn-primary full-width" type="submit">
+        <i data-lucide="log-in" class="lucide-icon"></i>
+        Đăng nhập
+      </button>
+    </form>
+    <div class="auth-links">
+      <% if (role === 'admin') { %>
+        <a href="/auth/login">Đăng nhập học sinh</a>
+      <% } else { %>
+        <a href="/auth/register">Chưa có tài khoản?</a>
+        <a href="/auth/login?role=admin">Tài khoản quản trị</a>
+      <% } %>
+    </div>
+  </div>
+</section>

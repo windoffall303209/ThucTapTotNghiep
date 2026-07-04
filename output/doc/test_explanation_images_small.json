@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-07-03T18:49:04",
+  "source_urls": [
+    "https://vietjack.com/toan-1-canh-dieu/trac-nghiem-toan-lop-1-tap-1.jsp",
+    "https://vietjack.com/toan-1-canh-dieu/trac-nghiem-toan-lop-1-tap-2.jsp",
+    "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-toan-lop-2-tap-1.jsp",
+    "https://vietjack.com/toan-2-canh-dieu/trac-nghiem-toan-lop-2-tap-2.jsp",
+    "https://vietjack.com/toan-3-cd/trac-nghiem-toan-lop-3-tap-1.jsp",
+    "https://vietjack.com/toan-3-cd/trac-nghiem-toan-lop-3-tap-2.jsp",
+    "https://vietjack.com/toan-4-cd/trac-nghiem-toan-lop-4.jsp",
+    "https://vietjack.com/toan-5-cd/trac-nghiem-toan-lop-5-canh-dieu.jsp",
+    "https://vietjack.com/toan-5-cd/trac-nghiem-toan-lop-5-tap-1.jsp",
+    "https://vietjack.com/toan-5-cd/trac-nghiem-toan-lop-5-tap-2.jsp",
+    "https://vietjack.com/toan-6-canh-dieu/bai-tap-trac-nghiem-toan-lop-6-nam-2022.jsp",
+    "https://vietjack.com/toan-6-canh-dieu/bai-tap-trac-nghiem-toan-lop-6.jsp",
+    "https://vietjack.com/toan-7-cd/trac-nghiem-toan-lop-7-canh-dieu.jsp"
+  ],
+  "stats": {
+    "grades": [
+      1
+    ],
+    "lessons": 1,
+    "questions": 2,
+    "images": 6
+  },
+  "lessons": [
+    {
+      "grade": 1,
+      "chapter": "Chủ đề 1: Các số từ 0 đến 10",
+      "title": "Trắc nghiệm Bài 5: Mấy và mấy",
+      "url": "https://vietjack.com/toan-1-ket-noi/trac-nghiem-bai-5-may-va-may.jsp",
+      "index_url": "https://vietjack.com/toan-1-canh-dieu/trac-nghiem-toan-lop-1-tap-1.jsp",
+      "questions": [
+        {
+          "number": 3,
+          "text": "Em hãy chọn đáp án đúng nhất Khẳng định đúng với hình ảnh bên là:",
+          "images": [
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332388.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "183",
+              "height": "71"
+            },
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332389.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "34",
+              "height": "32"
+            }
+          ],
+          "choices": [
+            {
+              "key": "A",
+              "text": "5 và 3 được 8"
+            },
+            {
+              "key": "B",
+              "text": "2 và 2 được 4"
+            },
+            {
+              "key": "C",
+              "text": "4 và 1 được 5"
+            },
+            {
+              "key": "D",
+              "text": "2 và 3 được 5"
+            }
+          ],
+          "correct_answer": "D",
+          "explanation": "Khẳng định đúng với hình ảnh là: 2 và 3 được 5",
+          "explanation_images": [
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332389.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "34",
+              "height": "32"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "text": "Em hãy chọn đáp án đúng nhất Khẳng định đúng với hình ảnh bên là:",
+          "images": [
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332392.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "218",
+              "height": "103"
+            },
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332394.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "31",
+              "height": "35"
+            }
+          ],
+          "choices": [
+            {
+              "key": "A",
+              "text": "3 và 4 được 7"
+            },
+            {
+              "key": "B",
+              "text": "4 và 4 được 8"
+            },
+            {
+              "key": "C",
+              "text": "5 và 2 được 7"
+            },
+            {
+              "key": "D",
+              "text": "1 và 6 được 7"
+            }
+          ],
+          "correct_answer": "A",
+          "explanation": "Khẳng định đúng với hình ảnh là: 3 và 4 được 7",
+          "explanation_images": [
+            {
+              "url": "https://vietjack.com/toan-1-ket-noi/images/trac-nghiem-bai-5-may-va-may-332394.PNG",
+              "alt": "10 Bài tập trắc nghiệm Mấy và mấy lớp 1 (có lời giải)",
+              "width": "31",
+              "height": "35"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

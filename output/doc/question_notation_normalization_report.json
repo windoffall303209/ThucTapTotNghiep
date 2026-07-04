@@ -1,0 +1,2252 @@
+{
+  "changedFields": 893,
+  "changedQuestions": 262,
+  "changeTypes": {
+    "degree_letter": 116,
+    "degree_symbol": 1688,
+    "three_point_angle": 1994,
+    "single_angle": 854
+  },
+  "samples": [
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 2,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 2,
+          "samples": [
+            "28 o",
+            "28 o"
+          ]
+        }
+      ],
+      "before": "Vạch chia chỉ đúng vào 28 o C. Vậy nhiệt kế chỉ 28 o C.",
+      "after": "Vạch chia chỉ đúng vào $28^\\circ$ C. Vậy nhiệt kế chỉ $28^\\circ$ C."
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "30 o"
+          ]
+        }
+      ],
+      "before": "30 o C",
+      "after": "$30^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "82 o"
+          ]
+        }
+      ],
+      "before": "82 o C",
+      "after": "$82^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "28 o"
+          ]
+        }
+      ],
+      "before": "28 o C",
+      "after": "$28^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "37 o"
+          ]
+        }
+      ],
+      "before": "37 o C",
+      "after": "$37^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 3,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "30 o"
+          ]
+        }
+      ],
+      "before": "30 o C đọc là:",
+      "after": "$30^\\circ$ C đọc là:"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 3,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "30 o"
+          ]
+        }
+      ],
+      "before": "30 o C đọc là ba mươi độ xê",
+      "after": "$30^\\circ$ C đọc là ba mươi độ xê"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 4,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 8,
+          "samples": [
+            "20 o",
+            "100 o",
+            "5 o",
+            "37 o",
+            "5 o",
+            "20 o",
+            "37 o",
+            "100 o"
+          ]
+        }
+      ],
+      "before": "Quan sát hình vẽ ta thấy: Nhiệt kế A chỉ 20 o C. Nhiệt kế B chỉ 100 o C. Nhiệt kế C chỉ 5 o C. Nhiệt kế D chỉ 37 o C. Vì 5 o C < 20 o C < 37 o C < 100 o C nên ta sắp xếp được: Nhiệt kế C – Nhiệt kế A – Nhiệt kế D – Nhiệt kế B",
+      "after": "Quan sát hình vẽ ta thấy: Nhiệt kế A chỉ $20^\\circ$ C. Nhiệt kế B chỉ $100^\\circ$ C. Nhiệt kế C chỉ $5^\\circ$ C. Nhiệt kế D chỉ $37^\\circ$ C. Vì $5^\\circ$ C < $20^\\circ$ C < $37^\\circ$ C < $100^\\circ$ C nên ta sắp xếp được: Nhiệt kế C – Nhiệt kế A – Nhiệt kế D – Nhiệt kế B"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 5,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 2,
+          "samples": [
+            "100 o",
+            "100 o"
+          ]
+        }
+      ],
+      "before": "Vạch chỉ đúng đến 100 o C. Vậy nhiệt kế chỉ 100 o C.",
+      "after": "Vạch chỉ đúng đến $100^\\circ$ C. Vậy nhiệt kế chỉ $100^\\circ$ C."
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 5,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "80 o"
+          ]
+        }
+      ],
+      "before": "80 o C",
+      "after": "$80^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 5,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "35 o"
+          ]
+        }
+      ],
+      "before": "35 o C",
+      "after": "$35^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 5,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "40 o"
+          ]
+        }
+      ],
+      "before": "40 o C",
+      "after": "$40^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 5,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "100 o"
+          ]
+        }
+      ],
+      "before": "100 o C",
+      "after": "$100^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 7,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "42 o"
+          ]
+        }
+      ],
+      "before": "Trên hình biểu thị nhiệt độ cao nên đáp án là 42 o C",
+      "after": "Trên hình biểu thị nhiệt độ cao nên đáp án là $42^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 7,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "10 o"
+          ]
+        }
+      ],
+      "before": "10 o C",
+      "after": "$10^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 7,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "15 o"
+          ]
+        }
+      ],
+      "before": "15 o C",
+      "after": "$15^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 7,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "0 o"
+          ]
+        }
+      ],
+      "before": "0 o C",
+      "after": "$0^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 7,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "42 o"
+          ]
+        }
+      ],
+      "before": "42 o C",
+      "after": "$42^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 8,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "0 o"
+          ]
+        }
+      ],
+      "before": "Hình trên biểu thị cốc nước đá nên nhiệt độ là nhiệt độ thấp. Vậy nên chọn 0 o C",
+      "after": "Hình trên biểu thị cốc nước đá nên nhiệt độ là nhiệt độ thấp. Vậy nên chọn $0^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 8,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "40 o"
+          ]
+        }
+      ],
+      "before": "40 o C",
+      "after": "$40^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 8,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "45 o"
+          ]
+        }
+      ],
+      "before": "45 o C",
+      "after": "$45^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 8,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "0 o"
+          ]
+        }
+      ],
+      "before": "0 o C",
+      "after": "$0^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 2: Nhân, chia các số trong phạm vi 1000",
+      "lesson": "Trắc nghiệm Nhiệt độ",
+      "question_number": 8,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "42 o"
+          ]
+        }
+      ],
+      "before": "42 o C",
+      "after": "$42^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 3,
+          "samples": [
+            "38 o",
+            "20 o",
+            "30 o"
+          ]
+        }
+      ],
+      "before": "Cho bảng thống kê sau: Địa điểm Hà Nội Sapa Cà Mau Nhiệt độ 38 o C 20 o C 30 o C Quan sát bảng số liệu và cho biết nhiệt độ ở Hà Nội cao hơn nhiệt độ ở Sapa bao nhiêu o C?",
+      "after": "Cho bảng thống kê sau: Địa điểm Hà Nội Sapa Cà Mau Nhiệt độ $38^\\circ$ C $20^\\circ$ C $30^\\circ$ C Quan sát bảng số liệu và cho biết nhiệt độ ở Hà Nội cao hơn nhiệt độ ở Sapa bao nhiêu o C?"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 6,
+          "samples": [
+            "38 o",
+            "20 o",
+            "30 o",
+            "38 o",
+            "20 o",
+            "18 o"
+          ]
+        }
+      ],
+      "before": "Bảng số liệu trên có hai hàng ngang: Hàng 1 là các địa điểm, Hàng 2 là nhiệt độ tương ứng với từng địa điểm. Từ bảng thống kê trên, ta thấy: Nhiệt độ ở Hà Nội là 38 o C Nhiệt độ ở Sapa là 20 o C Nhiệt độ ở Cà Mau là 30 o C Do đó nhiệt độ ở Hà Nội cao hơn nhiệt độ ở Sapa: 38 o C – 20 o C = 18 o C",
+      "after": "Bảng số liệu trên có hai hàng ngang: Hàng 1 là các địa điểm, Hàng 2 là nhiệt độ tương ứng với từng địa điểm. Từ bảng thống kê trên, ta thấy: Nhiệt độ ở Hà Nội là $38^\\circ$ C Nhiệt độ ở Sapa là $20^\\circ$ C Nhiệt độ ở Cà Mau là $30^\\circ$ C Do đó nhiệt độ ở Hà Nội cao hơn nhiệt độ ở Sapa: $38^\\circ$ C – $20^\\circ$ C = $18^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "10 o"
+          ]
+        }
+      ],
+      "before": "10 o C",
+      "after": "$10^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "12 o"
+          ]
+        }
+      ],
+      "before": "12 o C",
+      "after": "$12^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "15 o"
+          ]
+        }
+      ],
+      "before": "15 o C",
+      "after": "$15^\\circ$ C"
+    },
+    {
+      "grade": 3,
+      "chapter": "Trắc nghiệm Chương 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+      "lesson": "Trắc nghiệm Bảng số liệu thống kê",
+      "question_number": 3,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "18 o"
+          ]
+        }
+      ],
+      "before": "18 o C",
+      "after": "$18^\\circ$ C"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 3,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Góc bẹt là góc có số đo bằng 180 o .",
+      "after": "Góc bẹt là góc có số đo bằng $180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 3,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "90 o .",
+      "after": "$90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 3,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Nhỏ hơn 90 o .",
+      "after": "Nhỏ hơn $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 3,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Lớn hơn 90 o .",
+      "after": "Lớn hơn $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 3,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "180 o .",
+      "after": "$180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 1,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Góc bẹt là góc có số đo bằng 180 o",
+      "after": "Góc bẹt là góc có số đo bằng $180^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 1,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "90 o .",
+      "after": "$90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 1,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "180 o .",
+      "after": "$180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 1,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Dưới 90 o .",
+      "after": "Dưới $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 1,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Trên 90 o .",
+      "after": "Trên $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 2,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 2,
+          "samples": [
+            "90 o",
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Góc tù là góc có số đo lớn hơn 90 o và nhỏ hơn 180 o .",
+      "after": "Góc tù là góc có số đo lớn hơn $90^\\circ$ và nhỏ hơn $180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Nhỏ hơn 90 o .",
+      "after": "Nhỏ hơn $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "Lớn hơn 90 o .",
+      "after": "Lớn hơn $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 2,
+          "samples": [
+            "90 o",
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Lớn hơn 90 o và nhỏ hơn 180 o .",
+      "after": "Lớn hơn $90^\\circ$ và nhỏ hơn $180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Bằng 180 o .",
+      "after": "Bằng $180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 7,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": ". Em hãy chọn đáp án đúng nhất. Kim giờ và kim phút của đồng hồ tạo với nhau 1 góc 180 o thì lúc đó là mấy giờ?",
+      "after": ". Em hãy chọn đáp án đúng nhất. Kim giờ và kim phút của đồng hồ tạo với nhau 1 góc $180^\\circ$ thì lúc đó là mấy giờ?"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 7,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Kim giờ và kim phút của đồng hồ tạo với nhau 1 góc 180 o thì lúc đó là 6 giờ .",
+      "after": "Kim giờ và kim phút của đồng hồ tạo với nhau 1 góc $180^\\circ$ thì lúc đó là 6 giờ."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 10,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 3,
+          "samples": [
+            "90 o",
+            "180 o",
+            "127 o"
+          ]
+        }
+      ],
+      "before": "- Góc tù có số đo lớn hơn 90 o và nhỏ hơn 180 o . Vậy góc tù là: 127 o .",
+      "after": "- Góc tù có số đo lớn hơn $90^\\circ$ và nhỏ hơn $180^\\circ$. Vậy góc tù là: $127^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 10,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "24 o"
+          ]
+        }
+      ],
+      "before": "24 o",
+      "after": "$24^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 10,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "75 o"
+          ]
+        }
+      ],
+      "before": "75 o",
+      "after": "$75^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 10,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "127 o"
+          ]
+        }
+      ],
+      "before": "127 o",
+      "after": "$127^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Luyện tập chung (trang 57, 58)",
+      "question_number": 10,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "180 o",
+      "after": "$180^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Em ôn lại những gì đã học (trang 59, 60)",
+      "question_number": 14,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 2,
+          "samples": [
+            "180 o",
+            "90 o"
+          ]
+        }
+      ],
+      "before": "a) Một quả cam vắt được 2 cốc nước cam. Vậy 4 quả cam vắt được 8 cốc nước cam. Đ b) Số 23 176 300 có chữ số thuộc lớp triệu là 3 và 1. S c) Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc 180 o S Giải thích a) 4 quả cam vắt được số cốc nước cam là: 2 × 4 = 8 (cốc) b) Số 23 176 300 có: + Chữ số thuộc lớp triệu: 2, 3. + Chữ số thuộc lớp nghìn: 1, 7, 6. + Chữ số thuộc lớp đơn vị: 3, 0 Vậy số 23 176 300 có chữ số thuộc lớp triệu là 2, 3. c) Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc 90 o .",
+      "after": "a) Một quả cam vắt được 2 cốc nước cam. Vậy 4 quả cam vắt được 8 cốc nước cam. Đ b) Số 23 176 300 có chữ số thuộc lớp triệu là 3 và 1. S c) Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc $180^\\circ$ S Giải thích a) 4 quả cam vắt được số cốc nước cam là: 2 × 4 = 8 (cốc) b) Số 23 176 300 có: + Chữ số thuộc lớp triệu: 2, 3. + Chữ số thuộc lớp nghìn: 1, 7, 6. + Chữ số thuộc lớp đơn vị: 3, 0 Vậy số 23 176 300 có chữ số thuộc lớp triệu là 2, 3. c) Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 1: Số tự nhiên",
+      "lesson": "Trắc nghiệm Em ôn lại những gì đã học (trang 59, 60)",
+      "question_number": 14,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc 180 o",
+      "after": "Đồng hồ chỉ 9 giờ 00 phút. Vậy kim giờ và kim phút tạo thành góc $180^\\circ$"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "90 o .",
+      "after": "$90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "< 90 o .",
+      "after": "< $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "90 o"
+          ]
+        }
+      ],
+      "before": "> 90 o .",
+      "after": "> $90^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập về hình học và đo lường",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "180 o .",
+      "after": "$180^\\circ$."
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập chung (trang 99, 100, 101, 102)",
+      "question_number": 5,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "120 o"
+          ]
+        }
+      ],
+      "before": ". Em hãy chọn đáp án đúng nhất. 120 o là góc nào dưới đây?",
+      "after": ". Em hãy chọn đáp án đúng nhất. $120^\\circ$ là góc nào dưới đây?"
+    },
+    {
+      "grade": 4,
+      "chapter": "Trắc nghiệm Chủ đề 4: Các phép tính với phân số",
+      "lesson": "Trắc nghiệm Ôn tập chung (trang 99, 100, 101, 102)",
+      "question_number": 5,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 3,
+          "samples": [
+            "90 o",
+            "180 o",
+            "120 o"
+          ]
+        }
+      ],
+      "before": "Góc tù là góc lớn hơn 90 o và nhỏ hơn 180 o . Vậy 120 o là góc tù.",
+      "after": "Góc tù là góc lớn hơn $90^\\circ$ và nhỏ hơn $180^\\circ$. Vậy $120^\\circ$ là góc tù."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "9°",
+            "8°",
+            "12°"
+          ]
+        }
+      ],
+      "before": "Bảng dưới đây cho biết nhiệt độ ở một số thành phố thuộc vùng xứ lạnh trong một ngày mùa đông: Thành phố Nhiệt độ Moscow – 9°C Saint Peterburg – 8°C Vladivostok – 12°C Hãy cho biết nhiệt độ của thành phố Saint Peterburg?",
+      "after": "Bảng dưới đây cho biết nhiệt độ ở một số thành phố thuộc vùng xứ lạnh trong một ngày mùa đông: Thành phố Nhiệt độ Moscow – $9^\\circ$C Saint Peterburg – $8^\\circ$C Vladivostok – $12^\\circ$C Hãy cho biết nhiệt độ của thành phố Saint Peterburg?"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "8°"
+          ]
+        }
+      ],
+      "before": "Lời giải Theo bảng đã cho, ta thấy nhiệt độ của thành phố Saint Peterburg trong một ngày mùa đông là – 8°C. Chọn",
+      "after": "Lời giải Theo bảng đã cho, ta thấy nhiệt độ của thành phố Saint Peterburg trong một ngày mùa đông là – $8^\\circ$C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "8°"
+          ]
+        }
+      ],
+      "before": "– 8°C",
+      "after": "– $8^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "– 9°C",
+      "after": "– $9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "10°"
+          ]
+        }
+      ],
+      "before": "– 10°C",
+      "after": "– $10^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 4,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "12°"
+          ]
+        }
+      ],
+      "before": "– 12°C",
+      "after": "– $12^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Chương 2: Số nguyên",
+      "question_number": 5,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "Lời giải Theo bảng đã cho ở Câu 4 , ta thấy nhiệt độ của thành phố Moscow trong một ngày mùa đông là – 9°C, đọc là âm chín độ C. Chọn",
+      "after": "Lời giải Theo bảng đã cho ở Câu 4, ta thấy nhiệt độ của thành phố Moscow trong một ngày mùa đông là – $9^\\circ$C, đọc là âm chín độ C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "9°",
+            "8°",
+            "12°"
+          ]
+        }
+      ],
+      "before": "Bảng dưới đây cho biết nhiệt độ ở một số thành phố thuộc vùng xứ lạnh trong một ngày mùa đông: Thành phố Nhiệt độ Moscow – 9°C Saint Peterburg – 8°C Vladivostok – 12°C Hãy cho biết nhiệt độ của thành phố Saint Peterburg?",
+      "after": "Bảng dưới đây cho biết nhiệt độ ở một số thành phố thuộc vùng xứ lạnh trong một ngày mùa đông: Thành phố Nhiệt độ Moscow – $9^\\circ$C Saint Peterburg – $8^\\circ$C Vladivostok – $12^\\circ$C Hãy cho biết nhiệt độ của thành phố Saint Peterburg?"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "8°"
+          ]
+        }
+      ],
+      "before": "Lời giải Theo bảng đã cho, ta thấy nhiệt độ của thành phố Saint Peterburg trong một ngày mùa đông là – 8°C. Chọn",
+      "after": "Lời giải Theo bảng đã cho, ta thấy nhiệt độ của thành phố Saint Peterburg trong một ngày mùa đông là – $8^\\circ$C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "8°"
+          ]
+        }
+      ],
+      "before": "– 8°C",
+      "after": "– $8^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "– 9°C",
+      "after": "– $9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "10°"
+          ]
+        }
+      ],
+      "before": "– 10°C",
+      "after": "– $10^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 4,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "12°"
+          ]
+        }
+      ],
+      "before": "– 12°C",
+      "after": "– $12^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 5,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "Lời giải Theo bảng đã cho ở Câu 4 , ta thấy nhiệt độ của thành phố Moscow trong một ngày mùa đông là – 9°C, đọc là âm chín độ C. Chọn",
+      "after": "Lời giải Theo bảng đã cho ở Câu 4, ta thấy nhiệt độ của thành phố Moscow trong một ngày mùa đông là – $9^\\circ$C, đọc là âm chín độ C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "20°",
+            "0°",
+            "5°"
+          ]
+        }
+      ],
+      "before": "Nếu 20°C biểu diễn 20 độ trên 0°C thì – 5°C biểu diễn:",
+      "after": "Nếu $20^\\circ$C biểu diễn 20 độ trên $0^\\circ$C thì – $5^\\circ$C biểu diễn:"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 5,
+          "samples": [
+            "20°",
+            "0°",
+            "5°",
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "Lời giải: Nếu 20°C biểu diễn 20 độ trên 0°C thì – 5°C biểu diễn 5°C dưới 0°C. Chọn",
+      "after": "Lời giải: Nếu $20^\\circ$C biểu diễn 20 độ trên $0^\\circ$C thì – $5^\\circ$C biểu diễn $5^\\circ$C dưới $0^\\circ$C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "– 5°C trên 0°C",
+      "after": "– $5^\\circ$C trên $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "– 5°C dưới 0°C",
+      "after": "– $5^\\circ$C dưới $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "5°C trên 0°C",
+      "after": "$5^\\circ$C trên $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 9,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "5°C dưới 0°C",
+      "after": "$5^\\circ$C dưới $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 1: Số nguyên âm",
+      "question_number": 10,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "10°",
+            "2°"
+          ]
+        }
+      ],
+      "before": "Lời giải a) Đúng. Quan sát bảng thống kê, nhận thấy lúc 6 giờ có nhiệt độ là −10°C. b) Sai. Quan sát bảng thống kê, nhận thấy lúc 14 giờ có nhiệt độ là 2°C. c) Đúng. Các thời điểm có nhiệt độ âm là 2 giờ, 6 giờ, 10 giờ và 22 giờ. d) Sai. Các thời điểm trong ngày có nhiệt độ không âm là 14 giờ và 18 giờ.",
+      "after": "Lời giải a) Đúng. Quan sát bảng thống kê, nhận thấy lúc 6 giờ có nhiệt độ là −$10^\\circ$C. b) Sai. Quan sát bảng thống kê, nhận thấy lúc 14 giờ có nhiệt độ là $2^\\circ$C. c) Đúng. Các thời điểm có nhiệt độ âm là 2 giờ, 6 giờ, 10 giờ và 22 giờ. d) Sai. Các thời điểm trong ngày có nhiệt độ không âm là 14 giờ và 18 giờ."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 2: Tập hợp các số nguyên",
+      "question_number": 6,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 4,
+          "samples": [
+            "15°",
+            "0°",
+            "15°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "Nếu -15°C biểu diễn 15 độ dưới 0°C thì +15°C biểu diễn 15 độ trên 0°C",
+      "after": "Nếu -$15^\\circ$C biểu diễn 15 độ dưới $0^\\circ$C thì +$15^\\circ$C biểu diễn 15 độ trên $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "2°",
+            "7°"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ hiện tại của phòng đông lạnh là – 2°C . Nếu nhiệt độ giảm 7°C , nhiệt độ tại phòng đông lạnh sẽ là bao nhiêu?",
+      "after": "Nhiệt độ hiện tại của phòng đông lạnh là – $2^\\circ$C. Nếu nhiệt độ giảm $7^\\circ$C, nhiệt độ tại phòng đông lạnh sẽ là bao nhiêu?"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "7°",
+            "7°",
+            "9°"
+          ]
+        }
+      ],
+      "before": "Lời giải Nhiệt độ giảm 7°C nghĩa là tăng – 7°C nên nhiệt độ tại phòng đông lạnh là: (– 2) + (– 7) = – (2 + 7) = – 9°C Chọn",
+      "after": "Lời giải Nhiệt độ giảm $7^\\circ$C nghĩa là tăng – $7^\\circ$C nên nhiệt độ tại phòng đông lạnh là: (– 2) + (– 7) = – (2 + 7) = – $9^\\circ$C Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5°"
+          ]
+        }
+      ],
+      "before": "5°C",
+      "after": "$5^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "– 9°C",
+      "after": "– $9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5°"
+          ]
+        }
+      ],
+      "before": "– 5°C",
+      "after": "– $5^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "9°C",
+      "after": "$9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "7°"
+          ]
+        }
+      ],
+      "before": "Một phòng đông lạnh có nhiệt độ là 5°C . Nhiệt độ của phòng đông lạnh là bao nhiêu nếu nhiệt độ giảm 7°C ?",
+      "after": "Một phòng đông lạnh có nhiệt độ là $5^\\circ$C. Nhiệt độ của phòng đông lạnh là bao nhiêu nếu nhiệt độ giảm $7^\\circ$C ?"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "7°",
+            "7°",
+            "2°"
+          ]
+        }
+      ],
+      "before": "Lời giải Nhiệt độ giảm 7°C nghĩa là tăng – 7°C . Vậy nhiệt độ của phòng đông lạnh lúc sau là: 5 + (– 7) = – (7 – 5) = – 2°C Chọn",
+      "after": "Lời giải Nhiệt độ giảm $7^\\circ$C nghĩa là tăng – $7^\\circ$C. Vậy nhiệt độ của phòng đông lạnh lúc sau là: 5 + (– 7) = – (7 – 5) = – $2^\\circ$C Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "12°"
+          ]
+        }
+      ],
+      "before": "12°C",
+      "after": "$12^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "2°"
+          ]
+        }
+      ],
+      "before": "2°C",
+      "after": "$2^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "2°"
+          ]
+        }
+      ],
+      "before": "– 2°C",
+      "after": "– $2^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Trắc nghiệm Bài 3: Phép cộng các số nguyên",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "12°"
+          ]
+        }
+      ],
+      "before": "– 12°C",
+      "after": "– $12^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "20°",
+            "0°",
+            "5°"
+          ]
+        }
+      ],
+      "before": "Nếu 20°C biểu diễn 20 độ trên 0°C thì – 5°C biểu diễn:",
+      "after": "Nếu $20^\\circ$C biểu diễn 20 độ trên $0^\\circ$C thì – $5^\\circ$C biểu diễn:"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 5,
+          "samples": [
+            "20°",
+            "0°",
+            "5°",
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "Lời giải: Nếu 20°C biểu diễn 20 độ trên 0°C thì – 5°C biểu diễn 5°C dưới 0°C. Chọn",
+      "after": "Lời giải: Nếu $20^\\circ$C biểu diễn 20 độ trên $0^\\circ$C thì – $5^\\circ$C biểu diễn $5^\\circ$C dưới $0^\\circ$C. Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "– 5°C trên 0°C",
+      "after": "– $5^\\circ$C trên $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "– 5°C dưới 0°C",
+      "after": "– $5^\\circ$C dưới $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "5°C trên 0°C",
+      "after": "$5^\\circ$C trên $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 4,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5°",
+            "0°"
+          ]
+        }
+      ],
+      "before": "5°C dưới 0°C",
+      "after": "$5^\\circ$C dưới $0^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "2°",
+            "7°"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ hiện tại của phòng đông lạnh là – 2°C . Nếu nhiệt độ giảm 7°C , nhiệt độ tại phòng đông lạnh sẽ là bao nhiêu?",
+      "after": "Nhiệt độ hiện tại của phòng đông lạnh là – $2^\\circ$C. Nếu nhiệt độ giảm $7^\\circ$C, nhiệt độ tại phòng đông lạnh sẽ là bao nhiêu?"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 3,
+          "samples": [
+            "7°",
+            "7°",
+            "9°"
+          ]
+        }
+      ],
+      "before": "Lời giải Nhiệt độ giảm 7°C nghĩa là tăng – 7°C nên nhiệt độ tại phòng đông lạnh là: (– 2) + (– 7) = – (2 + 7) = – 9°C Chọn",
+      "after": "Lời giải Nhiệt độ giảm $7^\\circ$C nghĩa là tăng – $7^\\circ$C nên nhiệt độ tại phòng đông lạnh là: (– 2) + (– 7) = – (2 + 7) = – $9^\\circ$C Chọn"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5°"
+          ]
+        }
+      ],
+      "before": "5°C",
+      "after": "$5^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "– 9°C",
+      "after": "– $9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5°"
+          ]
+        }
+      ],
+      "before": "– 5°C",
+      "after": "– $5^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 2: Số nguyên",
+      "lesson": "Bài tập trắc nghiệm tổng hợp Chương 2",
+      "question_number": 15,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "9°"
+          ]
+        }
+      ],
+      "before": "9°C",
+      "after": "$9^\\circ$C"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Tam giác đều. Hình vuông. Lục giác đều",
+      "question_number": 17,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "60 °"
+          ]
+        }
+      ],
+      "before": "Trả lời: a) Đúng. Các cạnh của tam giác A B C là A B , A C , B C . b) Đúng. Vì tam giác A B C là tam giác đều nên A B = B C = A C = 7 cm. c) Đúng. Tam giác A B C là tam giác đều nên góc A = góc B = góc C = 60 ° . d) Sai. Vì tam giác A B C đều nên A B = B C = A C = 7 cm. Do đó, tổng ba cạnh của tam giác A B C bằng 7 + 7 + 7 = 21 cm .",
+      "after": "Trả lời: a) Đúng. Các cạnh của tam giác A B C là A B, A C, B C. b) Đúng. Vì tam giác A B C là tam giác đều nên A B = B C = A C = 7 cm. c) Đúng. Tam giác A B C là tam giác đều nên góc A = góc B = góc C = $60^\\circ$. d) Sai. Vì tam giác A B C đều nên A B = B C = A C = 7 cm. Do đó, tổng ba cạnh của tam giác A B C bằng 7 + 7 + 7 = 21 cm."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "text",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 2,
+          "samples": [
+            "5 °",
+            "5 °"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ trung bình năm ở thành phố A là 2 , 5 ° C. và ở thành phố B là − 1 , 5 ° C. Khi đó:",
+      "after": "Nhiệt độ trung bình năm ở thành phố A là 2, $5^\\circ$ C. và ở thành phố B là − 1, $5^\\circ$ C. Khi đó:"
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "4 °"
+          ]
+        }
+      ],
+      "before": "Vì 2 , 5 − − 1 , 5 = 2 , 5 + 1 , 5 = 4 nên nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B 4 ° C.",
+      "after": "Vì 2, 5 − − 1, 5 = 2, 5 + 1, 5 = 4 nên nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B $4^\\circ$ C."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5 °"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B là 5 ° C.",
+      "after": "Nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B là $5^\\circ$ C."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "3 °"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ trung bình năm ở thành phố A thấp hơn thành phố B là 3 ° C.",
+      "after": "Nhiệt độ trung bình năm ở thành phố A thấp hơn thành phố B là $3^\\circ$ C."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "4 °"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B là 4 ° C.",
+      "after": "Nhiệt độ trung bình năm ở thành phố A cao hơn thành phố B là $4^\\circ$ C."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 5: Phân số và số thập phân",
+      "lesson": "Trắc nghiệm Bài 6: Phép cộng, phép trừ số thập phân",
+      "question_number": 7,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "5 °"
+          ]
+        }
+      ],
+      "before": "Nhiệt độ trung bình năm ở thành phố A thấp hơn thành phố B là 5 ° C.",
+      "after": "Nhiệt độ trung bình năm ở thành phố A thấp hơn thành phố B là $5^\\circ$ C."
+    },
+    {
+      "grade": 6,
+      "chapter": "Chương 6: Hình học phẳng",
+      "lesson": "Trắc nghiệm Bài 5: Góc",
+      "question_number": 10,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "three_point_angle",
+          "count": 8,
+          "samples": [
+            "O a b ^",
+            "a O b ^",
+            "a O c ^",
+            "a O b ^",
+            "a O c ^",
+            "b O c ^",
+            "a O c ^",
+            "b O c ^"
+          ]
+        }
+      ],
+      "before": "a) Sai. O a b ^ là góc tạo bởi hai tia Oa, Ob. Do đó, a) sai. b) Đúng. a O b ^ , a O c ^ là các góc đỉnh O. Do đó, b) đúng. c) Đúng. Có tất cả 3 góc đỉnh O được tạo bởi hai trong ba tia đã cho là: a O b ^ , a O c ^ , b O c ^ . Do đó, c) đúng. d) Đúng. Trong các góc đỉnh O được tạo bởi hai trong ba tia đã cho, có tất cả 2 góc có 1 cạnh là: a O c ^ , b O c ^ . Do đó, d) đúng.",
+      "after": "a) Sai. $\\widehat{aOb}$ là góc tạo bởi hai tia Oa, Ob. Do đó, a) sai. b) Đúng. $\\widehat{aOb}$, $\\widehat{aOc}$ là các góc đỉnh O. Do đó, b) đúng. c) Đúng. Có tất cả 3 góc đỉnh O được tạo bởi hai trong ba tia đã cho là: $\\widehat{aOb}$, $\\widehat{aOc}$, $\\widehat{bOc}$. Do đó, c) đúng. d) Đúng. Trong các góc đỉnh O được tạo bởi hai trong ba tia đã cho, có tất cả 2 góc có 1 cạnh là: $\\widehat{aOc}$, $\\widehat{bOc}$. Do đó, d) đúng."
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 2,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Hai góc bù nhau tổng số đo bằng 180 o .",
+      "after": "Hai góc bù nhau tổng số đo bằng $180^\\circ$."
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 2,
+      "field": "choice_A",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "120°"
+          ]
+        }
+      ],
+      "before": "120°;",
+      "after": "$120^\\circ$;"
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 2,
+      "field": "choice_B",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "90°"
+          ]
+        }
+      ],
+      "before": "90°;",
+      "after": "$90^\\circ$;"
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 2,
+      "field": "choice_C",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "60°"
+          ]
+        }
+      ],
+      "before": "60°;",
+      "after": "$60^\\circ$;"
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 2,
+      "field": "choice_D",
+      "changes": [
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "120°"
+          ]
+        }
+      ],
+      "before": "120°.",
+      "after": "$120^\\circ$."
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 3,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "degree_letter",
+          "count": 1,
+          "samples": [
+            "180 o"
+          ]
+        }
+      ],
+      "before": "Hình B và C là hai góc kề bù vì chúng là hai góc kề nhau và tổng số đo 2 góc bằng 180 o .",
+      "after": "Hình B và C là hai góc kề bù vì chúng là hai góc kề nhau và tổng số đo 2 góc bằng $180^\\circ$."
+    },
+    {
+      "grade": 7,
+      "chapter": "Trắc nghiệm Chương 3: Hình học trực quan",
+      "lesson": "Trắc nghiệm Bài 1: Hình hộp chữ nhật. Hình lập phương",
+      "question_number": 4,
+      "field": "explanation",
+      "changes": [
+        {
+          "type": "three_point_angle",
+          "count": 4,
+          "samples": [
+            "a O n ^",
+            "c O d ^",
+            "a O n ^",
+            "c O d ^"
+          ]
+        },
+        {
+          "type": "degree_symbol",
+          "count": 1,
+          "samples": [
+            "50 °"
+          ]
+        }
+      ],
+      "before": "Hai góc a O n ^ và c O d ^ là hai góc đối đỉnh nên x = a O n ^ = c O d ^ = 50 ° .",
+      "after": "Hai góc $\\widehat{aOn}$ và $\\widehat{cOd}$ là hai góc đối đỉnh nên x = $\\widehat{aOn}$ = $\\widehat{cOd}$ = $50^\\circ$."
+    }
+  ],
+  "totalLessons": 406,
+  "totalQuestions": 4639
+}

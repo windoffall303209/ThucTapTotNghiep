@@ -1,0 +1,71 @@
+<%
+  function bodyValue(card) {
+    const legacyFormulas = Array.isArray(card.formulas)
+      ? card.formulas
+      : card.formula
+        ? [card.formula]
+        : [];
+    return [card.body || '', ...legacyFormulas].filter(Boolean).join('\n');
+  }
+%>
+
+<section class="workspace-head">
+  <div>
+    <a class="back-link" href="/student/dashboard">
+      <i data-lucide="arrow-left" class="lucide-icon"></i>
+      Quay lại bảng học tập
+    </a>
+    <p class="eyebrow">Lớp <%= lesson.grade %> · <%= lesson.chapter_name %></p>
+    <h1><%= lesson.lesson_name %></h1>
+    <p>Đọc phần lý thuyết, xem hình minh họa rồi chuyển sang luyện tập.</p>
+  </div>
+  <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
+    <i data-lucide="play-circle" class="lucide-icon"></i>
+    Luyện tập
+  </a>
+</section>
+
+<section class="theory-grid">
+  <% if (!lesson.theory_cards || lesson.theory_cards.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Bài học này chưa có nội dung lý thuyết. Quản trị viên cần bổ sung nội dung.</p>
+    </div>
+  <% } %>
+
+  <% (lesson.theory_cards || []).forEach((card, index) => { %>
+    <% const images = Array.isArray(card.images) ? card.images : []; %>
+    <article class="theory-card math-content math-lazy">
+      <div>
+        <span class="card-index">Mục <%= index + 1 %></span>
+        <h2><%= card.title %></h2>
+
+        <% if (bodyValue(card)) { %>
+          <div class="theory-body"><%= bodyValue(card) %></div>
+        <% } %>
+
+        <% if (images.length > 0) { %>
+          <div class="theory-image-row">
+            <% images.forEach((image) => { %>
+              <span class="question-image">
+                <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
+              </span>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <% if (card.example) { %>
+          <p class="muted"><%= card.example %></p>
+        <% } %>
+      </div>
+      <button
+        class="btn btn-secondary theory-help-button"
+        type="button"
+        data-lesson-id="<%= lesson.id %>"
+        data-card-index="<%= index %>">
+        <i data-lucide="message-circle" class="lucide-icon"></i>
+        Nhờ AI giải thích
+      </button>
+      <div class="ai-inline-reply" hidden></div>
+    </article>
+  <% }) %>
+</section>

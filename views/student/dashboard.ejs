@@ -1,0 +1,139 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Bảng học tập</p>
+    <h1>Chào, <%= student.fullname %></h1>
+    <p>Khối hiện tại: Lớp <%= student.current_grade %>. Nội dung dưới đây chỉ hiển thị theo khối học của em.</p>
+  </div>
+  <div class="metric-block">
+    <span><%= progress.percent %>%</span>
+    <small>Hoàn thành</small>
+  </div>
+</section>
+
+<section class="learning-summary">
+  <div>
+    <div class="section-title">
+      <i data-lucide="activity" class="lucide-icon"></i>
+      Tiến trình học tập
+    </div>
+    <div class="progress-track large">
+      <span style="width: <%= progress.percent %>%"></span>
+    </div>
+    <p>Đã hoàn thành <strong><%= progress.completed %></strong> trên <strong><%= progress.total %></strong> bài học có dữ liệu luyện tập.</p>
+    <div class="row-actions">
+      <a class="btn btn-secondary" href="/student/history">
+        <i data-lucide="history" class="lucide-icon"></i>
+        Xem lịch sử
+      </a>
+      <a class="btn btn-primary" href="/student/exams">
+        <i data-lucide="clipboard-list" class="lucide-icon"></i>
+        Luyện đề
+      </a>
+    </div>
+  </div>
+  <div class="recommendation">
+    <div class="section-title">
+      <i data-lucide="lightbulb" class="lucide-icon"></i>
+      Gợi ý ôn tập
+    </div>
+    <% if (recommendation) { %>
+      <p>Hệ thống nhận thấy em cần ôn lại bài <strong><%= recommendation.lesson_name %></strong>.</p>
+      <a class="btn btn-secondary" href="/student/lessons/<%= recommendation.id %>">Ôn lại bài này</a>
+    <% } else { %>
+      <p>Chưa có lỗi sai nổi bật. Em có thể chọn một bài học bên dưới hoặc luyện đề ngẫu nhiên.</p>
+    <% } %>
+  </div>
+</section>
+
+<section class="curriculum-list">
+  <div class="section-title">
+    <i data-lucide="book-open" class="lucide-icon"></i>
+    Danh sách chương học
+  </div>
+
+  <% if (chapters.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Chưa có chương học cho khối này. Quản trị viên cần nhập dữ liệu chương và bài học.</p>
+    </div>
+  <% } %>
+
+  <% chapters.forEach((chapter, index) => { %>
+    <details class="chapter-panel" <%= index === 0 ? 'open' : '' %>>
+      <summary>
+        <span><%= chapter.chapter_name %></span>
+        <small><%= chapter.lessons.length %> bài học</small>
+      </summary>
+      <div class="lesson-list">
+        <% chapter.lessons.forEach((lesson) => { %>
+          <% const lessonStat = lessonProgress[lesson.id] || { status: 'not_started', attempt_count: 0, correct_count: 0, wrong_count: 0 }; %>
+          <article class="lesson-row">
+            <div>
+              <h2><%= lesson.lesson_name %></h2>
+              <% if (lessonStat.status === 'completed') { %>
+                <p><span class="status-pill status-completed">Đã luyện</span> Đúng <%= lessonStat.correct_count %>/<%= lessonStat.attempt_count %> lượt làm.</p>
+              <% } else if (lessonStat.status === 'needs_review') { %>
+                <p><span class="status-pill status-review">Cần ôn lại</span> Sai <%= lessonStat.wrong_count %> lượt, chưa có câu đúng.</p>
+              <% } else { %>
+                <p><span class="status-pill status-new">Chưa luyện</span> Ôn lý thuyết trước, sau đó luyện tập bằng câu hỏi trắc nghiệm.</p>
+              <% } %>
+            </div>
+            <div class="row-actions">
+              <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>">
+                <i data-lucide="book-text" class="lucide-icon"></i>
+                Lý thuyết
+              </a>
+              <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
+                <i data-lucide="play-circle" class="lucide-icon"></i>
+                Luyện tập
+              </a>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </details>
+  <% }) %>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="history" class="lucide-icon"></i>
+    Lịch sử làm bài gần đây
+  </div>
+
+  <% if (!recentAttempts || recentAttempts.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Em chưa có lịch sử làm bài. Hãy chọn một bài học và nộp đáp án để hệ thống ghi nhận tiến trình.</p>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Bài học</th>
+            <th>Kết quả</th>
+            <th>Đáp án đã chọn</th>
+            <th>Đáp án đúng</th>
+            <th>Thời gian</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% recentAttempts.forEach((attempt) => { %>
+            <tr>
+              <td><%= attempt.lesson_name %></td>
+              <td>
+                <% if (Number(attempt.is_correct) === 1 || attempt.is_correct === true) { %>
+                  <span class="status-pill status-completed">Đúng</span>
+                <% } else { %>
+                  <span class="status-pill status-review">Sai</span>
+                <% } %>
+              </td>
+              <td><%= attempt.selected_answer %></td>
+              <td><%= attempt.correct_answer %></td>
+              <td><%= attempt.created_at ? new Date(attempt.created_at).toLocaleString('vi-VN') : 'Vừa xong' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

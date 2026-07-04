@@ -1,0 +1,155 @@
+<%
+  const cards = Array.isArray(lesson.theory_cards) ? lesson.theory_cards : [];
+
+  function bodyValue(card) {
+    const legacyFormulas = Array.isArray(card.formulas)
+      ? card.formulas
+      : card.formula
+        ? [card.formula]
+        : [];
+    return [card.body || '', ...legacyFormulas].filter(Boolean).join('\n');
+  }
+
+  function cardImages(card) {
+    return Array.isArray(card.images) ? card.images : [];
+  }
+%>
+
+<div class="lesson-question-toolbar">
+  <div>
+    <span class="bank-kicker">Bài học</span>
+    <h2><%= lesson.lesson_name %></h2>
+    <p><%= cards.length %> thẻ lý thuyết hiện có.</p>
+  </div>
+  <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>" target="_blank" rel="noreferrer">
+    <i data-lucide="external-link" class="lucide-icon"></i>
+    Xem trang học sinh
+  </a>
+</div>
+
+<details class="inline-create-panel theory-create-panel">
+  <summary>
+    <i data-lucide="plus" class="lucide-icon"></i>
+    Thêm thẻ lý thuyết
+  </summary>
+  <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards" method="post" enctype="multipart/form-data" data-theory-preview-form>
+    <div class="theory-card-fields">
+      <label>
+        Tiêu đề
+        <input name="title" placeholder="Ví dụ: Số đối của số thập phân" data-theory-title>
+      </label>
+      <label>
+        Nội dung
+        <textarea name="body" rows="8" placeholder="Nhập nội dung. Có thể xuống dòng bằng Enter và chèn LaTeX trực tiếp như $a + (-a) = 0$." data-theory-body></textarea>
+      </label>
+      <label>
+        Ví dụ
+        <input name="example" placeholder="Ví dụ minh họa ngắn" data-theory-example>
+      </label>
+      <label>
+        Ảnh minh họa
+        <input type="file" name="theory_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-theory-images>
+      </label>
+    </div>
+    <aside class="question-form-preview">
+      <div class="section-title">
+        <i data-lucide="eye" class="lucide-icon"></i>
+        Xem trước thẻ
+      </div>
+      <div class="theory-preview-box math-content" data-theory-preview></div>
+    </aside>
+    <div class="form-actions theory-card-actions">
+      <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="save" class="lucide-icon"></i>
+        Lưu thẻ mới
+      </button>
+    </div>
+  </form>
+</details>
+
+<% if (cards.length === 0) { %>
+  <div class="empty-state compact">Bài học này chưa có thẻ lý thuyết.</div>
+<% } %>
+
+<div class="theory-card-list">
+  <% cards.forEach((card, index) => { %>
+    <% const images = cardImages(card); %>
+    <article class="admin-theory-card theory-card math-content math-lazy">
+      <div class="theory-card-head">
+        <div>
+          <span class="card-index">Thẻ <%= index + 1 %></span>
+          <h2><%= card.title || `Thẻ lý thuyết ${index + 1}` %></h2>
+        </div>
+        <form action="/admin/theory/<%= lesson.id %>/cards/<%= index %>/delete" method="post" onsubmit="return confirm('Xóa thẻ lý thuyết này?');">
+          <button class="btn btn-danger" type="submit">
+            <i data-lucide="trash-2" class="lucide-icon"></i>
+            Xóa
+          </button>
+        </form>
+      </div>
+
+      <% if (bodyValue(card)) { %>
+        <div class="theory-body"><%= bodyValue(card) %></div>
+      <% } %>
+
+      <% if (images.length > 0) { %>
+        <div class="theory-image-row">
+          <% images.forEach((image) => { %>
+            <span class="question-image">
+              <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
+            </span>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <% if (card.example) { %>
+        <p class="muted"><%= card.example %></p>
+      <% } %>
+
+      <details class="inline-edit-panel theory-edit-panel">
+        <summary>
+          <span>
+            <i data-lucide="pencil" class="lucide-icon"></i>
+            Sửa thẻ này
+          </span>
+        </summary>
+        <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards/<%= index %>" method="post" enctype="multipart/form-data" data-theory-preview-form>
+          <input type="hidden" name="existing_images" value="<%= JSON.stringify(images) %>" data-theory-existing-images>
+          <div class="theory-card-fields">
+            <label>
+              Tiêu đề
+              <input name="title" value="<%= card.title || '' %>" data-theory-title>
+            </label>
+            <label>
+              Nội dung
+              <textarea name="body" rows="8" data-theory-body><%= bodyValue(card) %></textarea>
+            </label>
+            <label>
+              Ví dụ
+              <input name="example" value="<%= card.example || '' %>" data-theory-example>
+            </label>
+            <label>
+              Ảnh minh họa mới
+              <input type="file" name="theory_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-theory-images>
+            </label>
+          </div>
+          <aside class="question-form-preview">
+            <div class="section-title">
+              <i data-lucide="eye" class="lucide-icon"></i>
+              Xem trước thẻ
+            </div>
+            <div class="theory-preview-box math-content" data-theory-preview></div>
+          </aside>
+          <div class="form-actions theory-card-actions">
+            <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
+            <button class="btn btn-primary" type="submit">
+              <i data-lucide="save" class="lucide-icon"></i>
+              Lưu thẻ này
+            </button>
+          </div>
+        </form>
+      </details>
+    </article>
+  <% }) %>
+</div>

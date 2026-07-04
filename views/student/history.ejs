@@ -1,0 +1,87 @@
+<%
+  const sessionRows = [
+    ...(sessions || []),
+    ...(legacySessions || [])
+  ].sort((a, b) => new Date(b.started_at || 0) - new Date(a.started_at || 0));
+%>
+
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Lịch sử</p>
+    <h1>Lịch sử luyện tập</h1>
+    <p>Mỗi dòng là một lần luyện tập riêng. Nếu em làm cùng một bài 5 lần, hệ thống sẽ liệt kê đủ 5 lần.</p>
+  </div>
+  <a class="btn btn-primary" href="/student/exams">
+    <i data-lucide="clipboard-list" class="lucide-icon"></i>
+    Luyện đề
+  </a>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="history" class="lucide-icon"></i>
+    Các lần luyện tập
+  </div>
+
+  <% if (!sessionRows || sessionRows.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Em chưa có lịch sử luyện tập. Hãy chọn một bài học hoặc bắt đầu luyện đề để hệ thống ghi nhận tiến trình.</p>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Lần luyện tập</th>
+            <th>Loại</th>
+            <th>Trạng thái</th>
+            <th>Kết quả</th>
+            <th>Chat</th>
+            <th>Thời điểm</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% sessionRows.forEach((session) => { %>
+            <tr>
+              <td><%= session.title %></td>
+              <td>
+                <% if (session.session_mode === 'EXAM') { %>
+                  Luyện đề
+                <% } else if (session.session_mode === 'LEGACY') { %>
+                  Luyện tập cũ
+                <% } else { %>
+                  Luyện tập
+                <% } %>
+              </td>
+              <td>
+                <% if (session.status === 'COMPLETED') { %>
+                  <span class="status-pill status-completed">Đã kết thúc</span>
+                <% } else { %>
+                  <span class="status-pill status-review">Đang làm dở</span>
+                <% } %>
+              </td>
+              <td><%= session.correct_count %>/<%= session.answered_count %> đúng, đã làm <%= session.current_index %>/<%= session.question_count %> câu</td>
+              <td><%= session.chat_count %> tin nhắn</td>
+              <td><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></td>
+              <td class="row-actions">
+                <% if (session.status === 'IN_PROGRESS') { %>
+                  <a class="btn btn-secondary" href="/student/sessions/<%= session.id %>/practice">
+                    <i data-lucide="play-circle" class="lucide-icon"></i>
+                    Tiếp tục
+                  </a>
+                <% } %>
+                <% if (session.session_mode !== 'LEGACY') { %>
+                  <a class="btn btn-primary" href="/student/sessions/<%= session.id %>">
+                    <i data-lucide="eye" class="lucide-icon"></i>
+                    Xem lại
+                  </a>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

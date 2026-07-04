@@ -1,0 +1,62 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Luyện đề</p>
+    <h1>Đề ngẫu nhiên</h1>
+    <p>Chọn số câu để tạo một lần làm bài mới. Mỗi đề giữ nguyên danh sách câu, tiến trình và chat cho đến khi em bấm kết thúc.</p>
+  </div>
+</section>
+
+<section class="exam-picker info-panel">
+  <div class="section-title">
+    <i data-lucide="sliders-horizontal" class="lucide-icon"></i>
+    Tạo đề mới
+  </div>
+  <form class="exam-limit-form" action="/student/exams/start" method="post">
+    <% limits.forEach((limit) => { %>
+      <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
+        <%= limit %> câu
+      </button>
+    <% }) %>
+  </form>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="play-circle" class="lucide-icon"></i>
+    Đề đang làm dở
+  </div>
+
+  <% if (!sessions || sessions.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Không có đề nào đang làm dở. Hãy tạo đề mới bằng một trong các nút phía trên.</p>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Đề</th>
+            <th>Tiến trình</th>
+            <th>Bắt đầu</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% sessions.forEach((session) => { %>
+            <tr>
+              <td><%= session.title %></td>
+              <td><%= session.current_index %>/<%= session.question_count %> câu</td>
+              <td><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></td>
+              <td>
+                <a class="btn btn-primary" href="/student/sessions/<%= session.id %>/practice">
+                  <i data-lucide="play-circle" class="lucide-icon"></i>
+                  Tiếp tục
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

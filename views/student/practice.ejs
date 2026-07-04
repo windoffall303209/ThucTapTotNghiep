@@ -1,0 +1,67 @@
+<section class="practice-shell" data-session-id="<%= session?.id || '' %>">
+  <div class="practice-main">
+    <div class="practice-topline">
+      <% if (session?.session_mode === 'EXAM') { %>
+        <a class="back-link" href="/student/exams">
+          <i data-lucide="arrow-left" class="lucide-icon"></i>
+          Luyện đề
+        </a>
+      <% } else { %>
+        <a class="back-link" href="/student/lessons/<%= lesson.id %>">
+          <i data-lucide="arrow-left" class="lucide-icon"></i>
+          Lý thuyết
+        </a>
+      <% } %>
+      <span id="questionCounter">Câu 1/<%= Math.max(questions.length, 1) %></span>
+    </div>
+
+    <h1><%= session?.title || lesson.lesson_name %></h1>
+    <% if (questions.length === 0) { %>
+      <div class="empty-state compact">
+        <p>Bài học này chưa có câu hỏi luyện tập. Quản trị viên cần bổ sung ngân hàng câu hỏi.</p>
+      </div>
+    <% } else { %>
+      <div id="practiceApp" class="question-zone"></div>
+      <div id="answerFeedback" class="answer-feedback" hidden></div>
+      <div class="practice-actions">
+        <button id="submitAnswerButton" class="btn btn-primary" type="button">
+          <i data-lucide="check-circle" class="lucide-icon"></i>
+          Nộp đáp án
+        </button>
+        <button id="nextQuestionButton" class="btn btn-secondary" type="button" hidden>
+          <i data-lucide="arrow-right" class="lucide-icon"></i>
+          Câu tiếp theo
+        </button>
+        <button id="finishPracticeButton" class="btn btn-secondary" type="button" hidden>
+          <i data-lucide="flag" class="lucide-icon"></i>
+          Kết thúc bài làm
+        </button>
+      </div>
+    <% } %>
+  </div>
+
+  <aside class="ai-chat">
+    <div class="chat-head">
+      <div>
+        <strong>Gia sư AI Socratic</strong>
+        <small>Chat được lưu theo lần làm bài này</small>
+      </div>
+      <i data-lucide="sparkles" class="lucide-icon"></i>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="chat-message ai">Khi em gặp khó, hãy nộp đáp án trước để hệ thống biết em đang sai ở bước nào.</div>
+    </div>
+    <form id="aiHelpForm" class="chat-form">
+      <input name="message" placeholder="Nhập điều em chưa hiểu...">
+      <button type="submit" aria-label="Gửi câu hỏi">
+        <i data-lucide="send" class="lucide-icon"></i>
+      </button>
+    </form>
+  </aside>
+</section>
+
+<script id="practice-data" type="application/json"><%- JSON.stringify(questions) %></script>
+<script id="practice-context" type="application/json"><%- JSON.stringify({
+  practiceSessionId: session?.id || null,
+  currentIndex: session?.current_index || 0
+}) %></script>

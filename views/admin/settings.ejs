@@ -1,0 +1,239 @@
+<%
+  const openaiChatModels = [
+    'gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano',
+    'gpt-4o', 'gpt-4o-mini',
+    'o4-mini', 'o3-mini', 'o3'
+  ];
+  const geminiModels = [
+    'gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.5-flash-lite',
+    'gemini-2.0-flash', 'gemini-2.0-flash-lite',
+    'gemini-1.5-pro', 'gemini-1.5-flash'
+  ];
+  const geminiCliModels = [
+    'gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.5-flash-lite',
+    'gemini-2.0-flash', 'gemini-1.5-flash'
+  ];
+  const nvidiaChatModels = [
+    'meta/llama-3.3-70b-instruct',
+    'meta/llama-3.1-405b-instruct',
+    'meta/llama-3.1-70b-instruct',
+    'meta/llama-3.1-8b-instruct',
+    'mistralai/mixtral-8x7b-instruct-v0.1',
+    'mistralai/mistral-7b-instruct-v0.3',
+    'nvidia/llama-3.1-nemotron-70b-instruct'
+  ];
+  const openrouterModels = [
+    'openai/gpt-4.1', 'openai/gpt-4.1-mini', 'openai/gpt-4o', 'openai/gpt-4o-mini',
+    'anthropic/claude-3.7-sonnet', 'anthropic/claude-3.5-sonnet',
+    'google/gemini-2.5-pro', 'google/gemini-2.0-flash-001',
+    'meta-llama/llama-3.3-70b-instruct',
+    'deepseek/deepseek-chat'
+  ];
+%>
+
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Cấu hình hệ thống</p>
+    <h1>API và lưu trữ ảnh</h1>
+    <p>Cấu hình được đồng bộ với `.env` và lưu trong cơ sở dữ liệu để admin quản lý tập trung.</p>
+  </div>
+</section>
+
+<section class="settings-page">
+  <form class="settings-panel settings-global-panel" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="<%= settings.ai_provider %>">
+    <div class="section-title">
+      <i data-lucide="sliders-horizontal" class="lucide-icon"></i>
+      Điều khiển chung
+    </div>
+    <div class="two-fields">
+      <label>
+        Bật AI automation
+        <select name="ai_automation_enabled">
+          <option value="true" <%= settings.ai_automation_enabled !== 'false' ? 'selected' : '' %>>Bật</option>
+          <option value="false" <%= settings.ai_automation_enabled === 'false' ? 'selected' : '' %>>Tắt, dùng fallback nội bộ</option>
+        </select>
+      </label>
+      <label>
+        Timeout JSON/API (ms)
+        <input name="ai_json_timeout_ms" value="<%= settings.ai_json_timeout_ms %>" placeholder="12000">
+      </label>
+    </div>
+    <div class="settings-actions">
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="save" class="lucide-icon"></i>
+        Lưu điều khiển chung
+      </button>
+    </div>
+  </form>
+
+  <section class="settings-provider-grid" aria-label="Danh sách nguồn API">
+    <button class="provider-card <%= !settings.ai_provider || settings.ai_provider === 'mock' || settings.ai_provider === 'openai' ? 'active' : '' %>" type="button" data-settings-target="openai">
+      <span class="provider-icon"><i data-lucide="bot" class="lucide-icon"></i></span>
+      <span><strong>OpenAI</strong><small><%= settings.openai_api_key ? 'Đã kết nối' : 'Chưa kết nối' %></small></span>
+    </button>
+    <button class="provider-card <%= settings.ai_provider === 'gemini' ? 'active' : '' %>" type="button" data-settings-target="gemini">
+      <span class="provider-icon"><i data-lucide="sparkles" class="lucide-icon"></i></span>
+      <span><strong>Gemini</strong><small><%= settings.gemini_api_key ? 'Đã kết nối' : 'Chưa kết nối' %></small></span>
+    </button>
+    <button class="provider-card <%= settings.ai_provider === 'gemini_cli' ? 'active' : '' %>" type="button" data-settings-target="gemini-cli">
+      <span class="provider-icon"><i data-lucide="terminal" class="lucide-icon"></i></span>
+      <span><strong>Gemini CLI</strong><small>OAuth local</small></span>
+    </button>
+    <button class="provider-card <%= settings.ai_provider === 'nvidia' ? 'active' : '' %>" type="button" data-settings-target="nvidia">
+      <span class="provider-icon"><i data-lucide="cpu" class="lucide-icon"></i></span>
+      <span><strong>NVIDIA NIM</strong><small><%= settings.nvidia_nim_api_key ? 'Đã kết nối' : 'Chưa kết nối' %></small></span>
+    </button>
+    <button class="provider-card <%= settings.ai_provider === 'openrouter' ? 'active' : '' %>" type="button" data-settings-target="openrouter">
+      <span class="provider-icon"><i data-lucide="route" class="lucide-icon"></i></span>
+      <span><strong>OpenRouter</strong><small><%= settings.openrouter_api_key ? 'Đã kết nối' : 'Chưa kết nối' %></small></span>
+    </button>
+    <button class="provider-card" type="button" data-settings-target="cloudinary">
+      <span class="provider-icon"><i data-lucide="image-up" class="lucide-icon"></i></span>
+      <span><strong>Cloudinary</strong><small><%= settings.cloudinary_cloud_name && settings.cloudinary_api_key && settings.cloudinary_api_secret ? 'Đã kết nối' : 'Chưa kết nối' %></small></span>
+    </button>
+  </section>
+</section>
+
+<% function modelField(label, name, currentValue, models) { %>
+  <div class="model-field">
+    <label><%= label %></label>
+    <select data-model-select="<%= name %>">
+      <% models.forEach((model) => { %>
+        <option value="<%= model %>" <%= currentValue === model ? 'selected' : '' %>><%= model %></option>
+      <% }) %>
+      <option value="__custom__" <%= models.includes(currentValue) ? '' : 'selected' %>>Model khác</option>
+    </select>
+    <input name="<%= name %>" data-model-input="<%= name %>" value="<%= currentValue %>" placeholder="Nhập model mới">
+  </div>
+<% } %>
+
+<dialog class="settings-modal" data-settings-modal="openai">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="openai">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Nguồn AI</p><h2>OpenAI</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <label>OpenAI API key <input name="openai_api_key" type="password" placeholder="<%= settings.openai_api_key || 'Nhập OpenAI API key' %>"></label>
+      <label>Base URL <input name="openai_base_url" value="<%= settings.openai_base_url %>" placeholder="https://api.openai.com/v1"></label>
+      <% modelField('Chat model', 'openai_model', settings.openai_model, openaiChatModels); %>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="openai"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="settings-modal" data-settings-modal="gemini">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="gemini">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Nguồn AI</p><h2>Gemini API</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <label>Gemini API key <input name="gemini_api_key" type="password" placeholder="<%= settings.gemini_api_key || 'Nhập Gemini API key' %>"></label>
+      <% modelField('Gemini model', 'gemini_model', settings.gemini_model, geminiModels); %>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="gemini"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="settings-modal" data-settings-modal="gemini-cli">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="gemini_cli">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Nguồn AI local</p><h2>Gemini CLI OAuth</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <% modelField('Gemini CLI model', 'gemini_cli_model', settings.gemini_cli_model, geminiCliModels); %>
+      <label>Gemini CLI timeout (ms) <input name="gemini_cli_timeout_ms" value="<%= settings.gemini_cli_timeout_ms %>" placeholder="120000"></label>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="gemini_cli"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="settings-modal" data-settings-modal="nvidia">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="nvidia">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Nguồn AI</p><h2>NVIDIA NIM</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <label>NVIDIA NIM API key <input name="nvidia_nim_api_key" type="password" placeholder="<%= settings.nvidia_nim_api_key || 'Nhập NVIDIA NIM API key' %>"></label>
+      <label>Base URL <input name="nvidia_nim_base_url" value="<%= settings.nvidia_nim_base_url %>" placeholder="https://integrate.api.nvidia.com/v1"></label>
+      <% modelField('Chat model', 'nvidia_nim_model', settings.nvidia_nim_model, nvidiaChatModels); %>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="nvidia"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="settings-modal" data-settings-modal="openrouter">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="ai_provider" value="openrouter">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Nguồn AI</p><h2>OpenRouter</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <label>OpenRouter API key <input name="openrouter_api_key" type="password" placeholder="<%= settings.openrouter_api_key || 'Nhập OpenRouter API key' %>"></label>
+      <label>Base URL <input name="openrouter_base_url" value="<%= settings.openrouter_base_url %>" placeholder="https://openrouter.ai/api/v1"></label>
+      <% modelField('Chat model', 'openrouter_model', settings.openrouter_model, openrouterModels); %>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="openrouter"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="settings-modal" data-settings-modal="cloudinary">
+  <form class="settings-modal-card" action="/admin/settings" method="post">
+    <header class="settings-modal-head">
+      <div><p class="eyebrow">Lưu trữ ảnh</p><h2>Cloudinary</h2></div>
+      <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
+    </header>
+    <div class="settings-modal-body">
+      <p class="muted">Khi đủ ba thông tin Cloudinary, ảnh câu hỏi sẽ được tải lên Cloudinary. Nếu thiếu, hệ thống tự lưu vào thư mục local `public/uploads/images`.</p>
+      <label>Cloud name <input name="cloudinary_cloud_name" value="<%= settings.cloudinary_cloud_name %>" placeholder="Ví dụ: my-cloud"></label>
+      <label>API key <input name="cloudinary_api_key" type="password" placeholder="<%= settings.cloudinary_api_key || 'Nhập Cloudinary API key' %>"></label>
+      <label>API secret <input name="cloudinary_api_secret" type="password" placeholder="<%= settings.cloudinary_api_secret || 'Nhập Cloudinary API secret' %>"></label>
+    </div>
+    <div class="api-check-status" data-check-status hidden></div>
+    <footer class="settings-modal-actions">
+      <button class="btn btn-secondary" type="button" data-check-provider="cloudinary"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
+      <span class="modal-spacer"></span>
+      <button class="btn btn-secondary" type="button" data-modal-close>Hủy</button>
+      <button class="btn btn-primary" type="submit">Lưu</button>
+    </footer>
+  </form>
+</dialog>

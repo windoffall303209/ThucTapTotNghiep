@@ -1,0 +1,49 @@
+{
+  "name": "math-revision-ai-tutor",
+  "version": "0.1.0",
+  "description": "Website ôn luyện Toán lớp 1-7 tích hợp Socratic AI Tutor.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:init": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/database_schema.sql",
+    "db:seed-curriculum": "node scripts/seed_curriculum.js",
+    "db:seed-questions": "node scripts/generate_and_seed_questions.js",
+    "db:crawl-questions": "node scripts/crawl_vietjack_questions.js",
+    "questions:export-crawl": "python scripts/crawl_public_questions_docx.py",
+    "questions:import-crawl": "node scripts/import_crawled_questions.js",
+    "db:indexes": "node scripts/apply_performance_indexes.js",
+    "db:seed-demo": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/seed.sql"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "mysql",
+    "math",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.18.1",
+    "bcryptjs": "^3.0.2",
+    "cheerio": "^1.2.0",
+    "cloudinary": "^2.10.0",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^8.5.2",
+    "express-session": "^1.18.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "method-override": "^3.0.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
