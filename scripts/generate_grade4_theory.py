@@ -37,8 +37,7 @@ def load_env(env_path):
 env = load_env(ENV_PATH)
 API_KEY = env.get("NVIDIA_NIM_API_KEY", "")
 BASE_URL = env.get("NVIDIA_NIM_BASE_URL", "https://integrate.api.nvidia.com/v1").rstrip("/")
-# Use meta/llama-3.1-8b-instruct as default for speed and stability
-MODEL = env.get("NVIDIA_NIM_MODEL", "meta/llama-3.1-8b-instruct")
+MODEL = env.get("NVIDIA_NIM_MODEL", "meta/llama-3.3-70b-instruct")
 
 def call_nvidia_nim(prompt, retries=3):
     url = f"{BASE_URL}/chat/completions"

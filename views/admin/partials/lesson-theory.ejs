@@ -17,9 +17,9 @@
 
 <div class="lesson-question-toolbar">
   <div>
-    <span class="bank-kicker">Bài học</span>
+    <span class="bank-kicker">Workspace lý thuyết</span>
     <h2><%= lesson.lesson_name %></h2>
-    <p><%= cards.length %> thẻ lý thuyết hiện có.</p>
+    <p><%= cards.length %> thẻ lý thuyết hiện có. Nội dung này là phần học sinh đọc trước khi luyện câu hỏi.</p>
   </div>
   <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>" target="_blank" rel="noreferrer">
     <i data-lucide="external-link" class="lucide-icon"></i>
@@ -36,11 +36,11 @@
     <div class="theory-card-fields">
       <label>
         Tiêu đề
-        <input name="title" placeholder="Ví dụ: Số đối của số thập phân" data-theory-title>
+        <input name="title" placeholder="Ví dụ: Quy đồng mẫu số" data-theory-title>
       </label>
       <label>
         Nội dung
-        <textarea name="body" rows="8" placeholder="Nhập nội dung. Có thể xuống dòng bằng Enter và chèn LaTeX trực tiếp như $a + (-a) = 0$." data-theory-body></textarea>
+        <textarea name="body" rows="8" placeholder="Nhập nội dung ngắn gọn, có thể dùng LaTeX như $a + b$." data-theory-body></textarea>
       </label>
       <label>
         Ví dụ
@@ -54,7 +54,7 @@
     <aside class="question-form-preview">
       <div class="section-title">
         <i data-lucide="eye" class="lucide-icon"></i>
-        Xem trước thẻ
+        Preview thẻ lý thuyết
       </div>
       <div class="theory-preview-box math-content" data-theory-preview></div>
     </aside>
@@ -69,7 +69,7 @@
 </details>
 
 <% if (cards.length === 0) { %>
-  <div class="empty-state compact">Bài học này chưa có thẻ lý thuyết.</div>
+  <div class="empty-state compact">Bài học này chưa có thẻ lý thuyết. Hãy thêm ít nhất một thẻ trước khi học sinh luyện bài.</div>
 <% } %>
 
 <div class="theory-card-list">
@@ -82,7 +82,7 @@
           <h2><%= card.title || `Thẻ lý thuyết ${index + 1}` %></h2>
         </div>
         <form action="/admin/theory/<%= lesson.id %>/cards/<%= index %>/delete" method="post" onsubmit="return confirm('Xóa thẻ lý thuyết này?');">
-          <button class="btn btn-danger" type="submit">
+          <button class="btn btn-danger btn-compact" type="submit">
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa
           </button>
@@ -104,15 +104,13 @@
       <% } %>
 
       <% if (card.example) { %>
-        <p class="muted"><%= card.example %></p>
+        <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
       <% } %>
 
       <details class="inline-edit-panel theory-edit-panel">
         <summary>
-          <span>
-            <i data-lucide="pencil" class="lucide-icon"></i>
-            Sửa thẻ này
-          </span>
+          <i data-lucide="pencil" class="lucide-icon"></i>
+          Sửa thẻ này
         </summary>
         <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards/<%= index %>" method="post" enctype="multipart/form-data" data-theory-preview-form>
           <input type="hidden" name="existing_images" value="<%= JSON.stringify(images) %>" data-theory-existing-images>
@@ -137,7 +135,7 @@
           <aside class="question-form-preview">
             <div class="section-title">
               <i data-lucide="eye" class="lucide-icon"></i>
-              Xem trước thẻ
+              Preview sau khi sửa
             </div>
             <div class="theory-preview-box math-content" data-theory-preview></div>
           </aside>

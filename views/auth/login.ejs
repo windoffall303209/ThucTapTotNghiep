@@ -1,29 +1,46 @@
 <section class="auth-shell">
-  <div class="auth-panel">
-    <p class="eyebrow"><%= role === 'admin' ? 'Khu vực quản trị' : 'Khu vực học sinh' %></p>
-    <h1>Đăng nhập</h1>
-    <form class="stack-form" action="/auth/login" method="post">
-      <input type="hidden" name="role" value="<%= role %>">
-      <label>
-        Tên đăng nhập
-        <input name="username" autocomplete="username" required>
-      </label>
-      <label>
-        Mật khẩu
-        <input name="password" type="password" autocomplete="current-password" required>
-      </label>
-      <button class="btn btn-primary full-width" type="submit">
-        <i data-lucide="log-in" class="lucide-icon"></i>
-        Đăng nhập
-      </button>
-    </form>
-    <div class="auth-links">
-      <% if (role === 'admin') { %>
-        <a href="/auth/login">Đăng nhập học sinh</a>
-      <% } else { %>
-        <a href="/auth/register">Chưa có tài khoản?</a>
-        <a href="/auth/login?role=admin">Tài khoản quản trị</a>
-      <% } %>
+  <div class="auth-layout">
+    <aside class="auth-copy">
+      <p class="eyebrow"><%= role === 'admin' ? 'Khu vực quản trị' : 'Khu vực học sinh' %></p>
+      <h2><%= role === 'admin' ? 'Quản lý nội dung học tập rõ ràng hơn.' : 'Tiếp tục học đúng phần em cần ôn.' %></h2>
+      <p>
+        <%= role === 'admin'
+          ? 'Đăng nhập để quản lý câu hỏi, thẻ lý thuyết, học sinh và cấu hình AI/lưu trữ.'
+          : 'Sau khi đăng nhập, hệ thống sẽ mở đúng lớp học, lịch sử luyện tập và bài cần ôn của em.' %>
+      </p>
+      <ul>
+        <li>Lộ trình theo chương bài</li>
+        <li>Câu hỏi có phản hồi và lời giải</li>
+        <li>AI chỉ gợi mở khi em cần trợ giúp</li>
+      </ul>
+    </aside>
+
+    <div class="auth-panel">
+      <p class="eyebrow"><%= role === 'admin' ? 'Đăng nhập admin' : 'Đăng nhập học sinh' %></p>
+      <h1>Chào mừng trở lại</h1>
+      <form class="stack-form" action="/auth/login" method="post">
+        <input type="hidden" name="role" value="<%= role %>">
+        <label>
+          Tên đăng nhập
+          <input name="username" autocomplete="username" required>
+        </label>
+        <label>
+          Mật khẩu
+          <input name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button class="btn btn-primary full-width" type="submit">
+          <i data-lucide="log-in" class="lucide-icon"></i>
+          Đăng nhập
+        </button>
+      </form>
+      <div class="auth-links">
+        <% if (role === 'admin') { %>
+          <a href="/auth/login">Đăng nhập học sinh</a>
+        <% } else { %>
+          <a href="/auth/register">Chưa có tài khoản?</a>
+          <a href="/auth/login?role=admin">Đăng nhập quản trị</a>
+        <% } %>
+      </div>
     </div>
   </div>
 </section>

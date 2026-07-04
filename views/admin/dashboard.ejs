@@ -1,32 +1,58 @@
 <section class="workspace-head">
   <div>
-    <p class="eyebrow">Quản trị hệ thống</p>
-    <h1>Bảng quản trị</h1>
-    <p>Theo dõi dữ liệu nền tảng và các câu hỏi mới nhất trong ngân hàng ôn luyện.</p>
+    <p class="eyebrow">Quản trị nội dung</p>
+    <h1>Tổng quan hệ thống</h1>
+    <p>Theo dõi dữ liệu nền tảng, kiểm tra ngân hàng câu hỏi và đi nhanh tới các khu vực cần quản lý.</p>
   </div>
-  <a class="btn btn-primary" href="/admin/questions">
-    <i data-lucide="plus" class="lucide-icon"></i>
-    Thêm câu hỏi
-  </a>
+  <div class="row-actions">
+    <a class="btn btn-secondary" href="/admin/theory">
+      <i data-lucide="book-open" class="lucide-icon"></i>
+      Kho lý thuyết
+    </a>
+    <a class="btn btn-primary" href="/admin/questions">
+      <i data-lucide="plus" class="lucide-icon"></i>
+      Thêm câu hỏi
+    </a>
+  </div>
 </section>
 
 <section class="admin-metrics">
   <div>
     <span><%= stats.questionCount %></span>
-    <small>Câu hỏi</small>
+    <small>Câu hỏi trong ngân hàng</small>
   </div>
   <div>
     <span><%= stats.lessonCount %></span>
-    <small>Bài có câu hỏi</small>
+    <small>Bài học có câu hỏi</small>
   </div>
   <div>
     <span><%= stats.studentCount %></span>
-    <small>Học sinh</small>
+    <small>Học sinh đã đăng ký</small>
   </div>
   <div>
     <span><%= stats.easyCount %></span>
     <small>Câu mức dễ</small>
   </div>
+</section>
+
+<section class="quick-grid">
+  <a class="action-card" href="/admin/questions">
+    <i data-lucide="list-checks" class="feature-icon"></i>
+    <strong>Quản lý câu hỏi</strong>
+    <p class="muted">Chọn sách, chương, bài để thêm/sửa câu hỏi và lời giải.</p>
+  </a>
+  <a class="action-card" href="/admin/theory">
+    <i data-lucide="book-open" class="feature-icon"></i>
+    <strong>Quản lý lý thuyết</strong>
+    <p class="muted">Cập nhật thẻ kiến thức, ví dụ và ảnh minh họa cho từng bài.</p>
+  </a>
+  <% if (admin.role === 'SYSADMIN') { %>
+    <a class="action-card" href="/admin/settings">
+      <i data-lucide="settings" class="feature-icon"></i>
+      <strong>Cấu hình AI/API</strong>
+      <p class="muted">Kiểm tra provider AI, timeout và lưu trữ ảnh.</p>
+    </a>
+  <% } %>
 </section>
 
 <section class="table-section">
@@ -47,10 +73,10 @@
       <tbody>
         <% questions.forEach((question) => { %>
           <tr>
-            <td><%= question.id %></td>
+            <td>#<%= question.id %></td>
             <td><%= question.lesson_name %></td>
-            <td><%= question.difficulty %></td>
-            <td><%= question.correct_answer %></td>
+            <td><span class="status-pill status-new"><%= question.difficulty %></span></td>
+            <td><span class="answer-badge"><%= question.correct_answer %></span></td>
           </tr>
         <% }) %>
       </tbody>

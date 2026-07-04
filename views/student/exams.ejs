@@ -1,19 +1,20 @@
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Luyện đề</p>
-    <h1>Đề ngẫu nhiên</h1>
-    <p>Chọn số câu để tạo một lần làm bài mới. Mỗi đề giữ nguyên danh sách câu, tiến trình và chat cho đến khi em bấm kết thúc.</p>
+    <h1>Tạo đề luyện ngẫu nhiên</h1>
+    <p>Chọn số câu phù hợp với thời gian của em. Mỗi đề sẽ được lưu để có thể tiếp tục sau.</p>
   </div>
 </section>
 
 <section class="exam-picker info-panel">
   <div class="section-title">
     <i data-lucide="sliders-horizontal" class="lucide-icon"></i>
-    Tạo đề mới
+    Chọn độ dài đề
   </div>
   <form class="exam-limit-form" action="/student/exams/start" method="post">
     <% limits.forEach((limit) => { %>
       <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
+        <i data-lucide="file-question" class="lucide-icon"></i>
         <%= limit %> câu
       </button>
     <% }) %>
@@ -31,32 +32,22 @@
       <p>Không có đề nào đang làm dở. Hãy tạo đề mới bằng một trong các nút phía trên.</p>
     </div>
   <% } else { %>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Đề</th>
-            <th>Tiến trình</th>
-            <th>Bắt đầu</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% sessions.forEach((session) => { %>
-            <tr>
-              <td><%= session.title %></td>
-              <td><%= session.current_index %>/<%= session.question_count %> câu</td>
-              <td><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></td>
-              <td>
-                <a class="btn btn-primary" href="/student/sessions/<%= session.id %>/practice">
-                  <i data-lucide="play-circle" class="lucide-icon"></i>
-                  Tiếp tục
-                </a>
-              </td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
+    <div class="card-list">
+      <% sessions.forEach((session) => { %>
+        <% const sessionPercent = session.question_count ? Math.round((Number(session.current_index || 0) / Number(session.question_count || 1)) * 100) : 0; %>
+        <article class="activity-card">
+          <span class="status-pill status-in-progress">Đang làm</span>
+          <h2><%= session.title %></h2>
+          <p class="muted">Đã làm <strong><%= session.current_index %></strong>/<strong><%= session.question_count %></strong> câu · Bắt đầu <%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></p>
+          <div class="progress-track"><span style="width: <%= sessionPercent %>%"></span></div>
+          <div class="row-actions">
+            <a class="btn btn-primary" href="/student/sessions/<%= session.id %>/practice">
+              <i data-lucide="play-circle" class="lucide-icon"></i>
+              Tiếp tục
+            </a>
+          </div>
+        </article>
+      <% }) %>
     </div>
   <% } %>
 </section>

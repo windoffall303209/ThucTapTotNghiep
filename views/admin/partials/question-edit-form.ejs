@@ -45,7 +45,7 @@
     <select name="lesson_id" required>
       <% lessons.forEach((item) => { %>
         <option value="<%= item.id %>" <%= selected(Number(question.lesson_id), Number(item.id)) %>>
-          Khối <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
+          Lớp <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
         </option>
       <% }) %>
     </select>
@@ -53,8 +53,29 @@
 
   <label>
     Đề bài
-    <textarea name="content_text" rows="4" required data-preview-content><%= questionText(question) %></textarea>
+    <textarea name="content_text" rows="5" required data-preview-content><%= questionText(question) %></textarea>
   </label>
+
+  <fieldset class="choice-fieldset image-fieldset">
+    <legend>Ảnh trong đề bài</legend>
+    <label>
+      Thêm ảnh minh họa mới
+      <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
+    </label>
+    <div class="two-fields">
+      <label>
+        Độ rộng ảnh mới (%)
+        <input type="number" name="image_width_percent" min="20" max="100" value="70" data-preview-image-width>
+      </label>
+      <label>
+        Mô tả ảnh mới
+        <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
+      </label>
+    </div>
+    <% if (question.content && question.content.images && question.content.images.length > 0) { %>
+      <p class="muted">Câu hỏi hiện có <%= question.content.images.length %> ảnh. Ảnh mới sẽ được thêm vào cuối đề bài.</p>
+    <% } %>
+  </fieldset>
 
   <div class="two-fields">
     <label>
@@ -66,7 +87,7 @@
       </select>
     </label>
     <label>
-      Bố cục
+      Bố cục hiển thị
       <select name="layout_template">
         <% layoutOptions.forEach((option) => { %>
           <option value="<%= option.value %>" <%= selected(question.layout_template, option.value) %>><%= option.label %></option>
@@ -78,10 +99,22 @@
   <fieldset class="choice-fieldset">
     <legend>Phương án trả lời</legend>
     <% answerKeys.forEach((key) => { %>
-      <label class="choice-input">
-        <span><%= key %></span>
-        <input name="choice_<%= key %>" value="<%= choiceText(question, key) %>" required data-preview-choice="<%= key %>">
-      </label>
+      <div class="choice-editor">
+        <label class="choice-input">
+          <span><%= key %></span>
+          <input name="choice_<%= key %>" value="<%= choiceText(question, key) %>" required data-preview-choice="<%= key %>">
+        </label>
+        <div class="two-fields">
+          <label>
+            Tên lỗi sai <%= key %>
+            <input name="misconception_name_<%= key %>" placeholder="Ví dụ: Nhầm quy tắc">
+          </label>
+          <label>
+            Giải thích lỗi sai <%= key %>
+            <input name="misconception_<%= key %>" placeholder="Chỉ nhập nếu <%= key %> là đáp án sai">
+          </label>
+        </div>
+      </div>
     <% }) %>
   </fieldset>
 
@@ -96,22 +129,22 @@
 
   <label>
     Lời giải chi tiết
-    <textarea name="explanation_text" rows="4"><%= explanationText(question) %></textarea>
+    <textarea name="explanation_text" rows="5"><%= explanationText(question) %></textarea>
   </label>
 
   <fieldset class="choice-fieldset image-fieldset">
-    <legend>Thêm ảnh mới vào lời giải</legend>
+    <legend>Ảnh trong lời giải</legend>
     <label>
-      Ảnh minh họa lời giải
+      Thêm ảnh minh họa lời giải
       <input type="file" name="explanation_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
     </label>
     <div class="two-fields">
       <label>
-        Độ rộng ảnh (%)
+        Độ rộng ảnh mới (%)
         <input type="number" name="explanation_image_width_percent" min="20" max="100" value="70">
       </label>
       <label>
-        Mô tả ảnh
+        Mô tả ảnh mới
         <input name="explanation_image_alt_text" placeholder="Ví dụ: Hình minh họa lời giải">
       </label>
     </div>
@@ -120,31 +153,10 @@
     <% } %>
   </fieldset>
 
-  <fieldset class="choice-fieldset image-fieldset">
-    <legend>Thêm ảnh mới vào đề bài</legend>
-    <label>
-      Ảnh minh họa
-      <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
-    </label>
-    <div class="two-fields">
-      <label>
-        Độ rộng ảnh (%)
-        <input type="number" name="image_width_percent" min="20" max="100" value="70" data-preview-image-width>
-      </label>
-      <label>
-        Mô tả ảnh
-        <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
-      </label>
-    </div>
-    <% if (question.content && question.content.images && question.content.images.length > 0) { %>
-      <p class="muted">Câu hỏi hiện có <%= question.content.images.length %> ảnh. Ảnh mới sẽ được thêm vào cuối đề bài.</p>
-    <% } %>
-  </fieldset>
-
   <aside class="question-form-preview">
     <div class="section-title">
       <i data-lucide="eye" class="lucide-icon"></i>
-      Xem trước đề
+      Preview sau khi sửa
     </div>
     <div class="question-preview-box math-content" data-question-preview></div>
     <div class="placeholder-list" data-preview-placeholder-list hidden></div>

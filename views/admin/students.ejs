@@ -1,8 +1,8 @@
 <section class="workspace-head">
   <div>
-    <p class="eyebrow">Quản lý học sinh</p>
+    <p class="eyebrow">Người học</p>
     <h1>Danh sách học sinh</h1>
-    <p>Tìm kiếm tài khoản học sinh và kiểm tra khối học hiện tại.</p>
+    <p>Tìm kiếm tài khoản học sinh, kiểm tra lớp đăng ký và lớp hiện tại.</p>
   </div>
 </section>
 
@@ -15,6 +15,10 @@
 </form>
 
 <section class="table-section">
+  <div class="section-title">
+    <i data-lucide="users" class="lucide-icon"></i>
+    Tài khoản học sinh
+  </div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -22,23 +26,23 @@
           <th>ID</th>
           <th>Tài khoản</th>
           <th>Họ tên</th>
-          <th>Khối đăng ký</th>
-          <th>Khối hiện tại</th>
+          <th>Lớp đăng ký</th>
+          <th>Lớp hiện tại</th>
         </tr>
       </thead>
       <tbody>
         <% if (students.length === 0) { %>
           <tr>
-            <td colspan="5">Chưa có học sinh phù hợp.</td>
+            <td colspan="5">Không tìm thấy học sinh phù hợp.</td>
           </tr>
         <% } %>
         <% students.forEach((item) => { %>
           <tr>
-            <td><%= item.id %></td>
-            <td><%= item.username %></td>
+            <td>#<%= item.id %></td>
+            <td><strong><%= item.username %></strong></td>
             <td><%= item.fullname %></td>
-            <td>Lớp <%= item.registered_grade %></td>
-            <td>Lớp <%= item.current_grade %></td>
+            <td><span class="status-pill status-new">Lớp <%= item.registered_grade %></span></td>
+            <td><span class="status-pill status-in-progress">Lớp <%= item.current_grade %></span></td>
           </tr>
         <% }) %>
       </tbody>

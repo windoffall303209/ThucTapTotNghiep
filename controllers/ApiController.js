@@ -18,6 +18,10 @@ async function exerciseHelp(req, res, next) {
 
     const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
     const studentMessage = String(req.body.message || '').trim();
+    const chatHistory = practiceSessionId
+      ? (await PracticeSession.listChats(practiceSessionId))
+        .filter((chat) => Number(chat.question_id || 0) === Number(question.id))
+      : [];
 
     if (practiceSessionId && studentMessage) {
       await PracticeSession.saveChat({
@@ -33,7 +37,8 @@ async function exerciseHelp(req, res, next) {
       question,
       selectedAnswer: req.body.selectedAnswer,
       misconception,
-      studentMessage
+      studentMessage,
+      chatHistory
     });
 
     if (practiceSessionId) {

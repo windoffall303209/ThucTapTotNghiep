@@ -1,31 +1,36 @@
 <% if (admin) { %>
 <aside class="admin-sidebar">
-  <a class="brand admin-brand" href="/admin/dashboard">
+  <a class="brand admin-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
     <span class="brand-mark">π</span>
-    <span>Quản trị Toán</span>
+    <span>MathLab Admin</span>
   </a>
 
   <nav class="admin-nav" aria-label="Điều hướng quản trị">
+    <span class="admin-nav-label">Tổng quan</span>
     <a href="/admin/dashboard" class="<%= currentPath === '/admin/dashboard' ? 'active' : '' %>">
       <i data-lucide="layout-dashboard" class="lucide-icon"></i>
-      Tổng quan
+      Dashboard
     </a>
+
+    <span class="admin-nav-label">Nội dung</span>
     <a href="/admin/questions" class="<%= currentPath.startsWith('/admin/questions') ? 'active' : '' %>">
       <i data-lucide="list-checks" class="lucide-icon"></i>
-      Câu hỏi
+      Ngân hàng câu hỏi
     </a>
     <a href="/admin/theory" class="<%= currentPath.startsWith('/admin/theory') ? 'active' : '' %>">
       <i data-lucide="book-open" class="lucide-icon"></i>
-      Lý thuyết
+      Kho lý thuyết
     </a>
+
     <% if (admin.role === 'SYSADMIN') { %>
+      <span class="admin-nav-label">Hệ thống</span>
       <a href="/admin/students" class="<%= currentPath.startsWith('/admin/students') ? 'active' : '' %>">
         <i data-lucide="users" class="lucide-icon"></i>
         Học sinh
       </a>
       <a href="/admin/settings" class="<%= currentPath.startsWith('/admin/settings') ? 'active' : '' %>">
         <i data-lucide="settings" class="lucide-icon"></i>
-        Cài đặt
+        API & cài đặt
       </a>
     <% } %>
   </nav>
@@ -33,7 +38,7 @@
   <div class="admin-sidebar-footer">
     <div>
       <strong><%= admin.fullname %></strong>
-      <small><%= admin.role %></small>
+      <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
     </div>
     <form action="/auth/logout" method="post">
       <button class="nav-button" type="submit">
@@ -45,7 +50,7 @@
 </aside>
 <% } else { %>
 <header class="topbar">
-  <a class="brand" href="/">
+  <a class="brand" href="/" aria-label="Về trang chủ Toán Bổ Trợ">
     <span class="brand-mark">π</span>
     <span>Toán Bổ Trợ 1-7</span>
   </a>
@@ -53,8 +58,8 @@
   <nav class="nav-links" aria-label="Điều hướng chính">
     <% if (student) { %>
       <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
-        <i data-lucide="book-open" class="lucide-icon"></i>
-        Học tập
+        <i data-lucide="sparkles" class="lucide-icon"></i>
+        Hôm nay
       </a>
       <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') ? 'active' : '' %>">
         <i data-lucide="clipboard-list" class="lucide-icon"></i>
@@ -75,13 +80,15 @@
         </button>
       </form>
     <% } else { %>
+      <a href="/#cach-hoc">Cách học</a>
+      <a href="/#chuong-trinh">Lớp 1-7</a>
       <a href="/auth/login">
         <i data-lucide="log-in" class="lucide-icon"></i>
         Đăng nhập
       </a>
       <a class="nav-primary" href="/auth/register">
         <i data-lucide="user-plus" class="lucide-icon"></i>
-        Đăng ký
+        Bắt đầu học
       </a>
     <% } %>
   </nav>

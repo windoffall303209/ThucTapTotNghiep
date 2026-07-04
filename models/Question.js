@@ -1,15 +1,23 @@
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
+const { normalizeExplanationText, normalizeQuestionText } = require('../utils/textCleanup');
 
 function normalizeQuestion(row) {
   if (!row) return null;
-  return {
+  const question = {
     ...row,
     content: parseJsonField(row.content, { text: '', images: [] }),
     choices: parseJsonField(row.choices, []),
     explanation: parseJsonField(row.explanation, { text: '', images: [] })
   };
+  if (question.explanation?.text) {
+    question.explanation.text = normalizeExplanationText(question.explanation.text);
+  }
+  if (question.content?.text) {
+    question.content.text = normalizeQuestionText(question.content.text);
+  }
+  return question;
 }
 
 async function getQuestionsByLesson(lessonId, options = {}) {

@@ -1,42 +1,3 @@
-<section class="workspace-head">
-  <div>
-    <p class="eyebrow">Xem lại</p>
-    <h1><%= session.title %></h1>
-    <p><%= session.status === 'COMPLETED' ? 'Lần làm bài đã kết thúc.' : 'Lần làm bài này đang làm dở.' %> Nội dung bên dưới chỉ dùng để xem lại.</p>
-  </div>
-  <div class="row-actions">
-    <% if (session.status === 'IN_PROGRESS') { %>
-      <a class="btn btn-secondary" href="/student/sessions/<%= session.id %>/practice">
-        <i data-lucide="play-circle" class="lucide-icon"></i>
-        Tiếp tục làm
-      </a>
-    <% } %>
-    <a class="btn btn-primary" href="/student/history">
-      <i data-lucide="history" class="lucide-icon"></i>
-      Lịch sử
-    </a>
-  </div>
-</section>
-
-<section class="learning-summary">
-  <div>
-    <div class="section-title">
-      <i data-lucide="activity" class="lucide-icon"></i>
-      Tiến trình
-    </div>
-    <p>Đã làm <strong><%= session.current_index %></strong>/<strong><%= session.question_count %></strong> câu.</p>
-    <p>Trạng thái: <strong><%= session.status === 'COMPLETED' ? 'Đã kết thúc' : 'Đang làm dở' %></strong>.</p>
-  </div>
-  <div>
-    <div class="section-title">
-      <i data-lucide="clock" class="lucide-icon"></i>
-      Thời gian
-    </div>
-    <p>Bắt đầu: <strong><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></strong></p>
-    <p>Kết thúc: <strong><%= session.completed_at ? new Date(session.completed_at).toLocaleString('vi-VN') : '-' %></strong></p>
-  </div>
-</section>
-
 <%
   const answerByQuestion = new Map((answers || []).map((answer) => [Number(answer.question_id), answer]));
   const chatsByQuestion = new Map();
@@ -67,7 +28,67 @@
     if (!Array.isArray(images) || images.length === 0) return '';
     return `<div class="explanation-image-row">${images.map((image) => imageHtml(image, fallbackAlt)).join('')}</div>`;
   }
+
+  const answeredCount = (answers || []).length;
+  const correctCount = (answers || []).filter((answer) => Number(answer.is_correct) === 1 || answer.is_correct === true).length;
+  const wrongCount = answeredCount - correctCount;
 %>
+
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Xem lại bài làm</p>
+    <h1><%= session.title %></h1>
+    <p><%= session.status === 'COMPLETED' ? 'Lần làm bài đã kết thúc.' : 'Lần làm bài này đang làm dở.' %> Dùng trang này để xem câu đúng, câu sai và lời giải.</p>
+  </div>
+  <div class="row-actions">
+    <% if (session.status === 'IN_PROGRESS') { %>
+      <a class="btn btn-secondary" href="/student/sessions/<%= session.id %>/practice">
+        <i data-lucide="play-circle" class="lucide-icon"></i>
+        Tiếp tục làm
+      </a>
+    <% } %>
+    <a class="btn btn-primary" href="/student/history">
+      <i data-lucide="history" class="lucide-icon"></i>
+      Về lịch sử
+    </a>
+  </div>
+</section>
+
+<section class="stat-grid">
+  <article class="stat-card">
+    <span class="status-pill status-completed">Đúng</span>
+    <strong class="stat-value"><%= correctCount %></strong>
+    <p class="muted">Câu đã trả lời đúng.</p>
+  </article>
+  <article class="stat-card">
+    <span class="status-pill status-review">Cần xem lại</span>
+    <strong class="stat-value"><%= wrongCount %></strong>
+    <p class="muted">Câu đã làm sai hoặc cần luyện lại.</p>
+  </article>
+  <article class="stat-card">
+    <span class="status-pill status-in-progress">Tiến trình</span>
+    <strong class="stat-value"><%= session.current_index %>/<%= session.question_count %></strong>
+    <p class="muted">Trạng thái: <%= session.status === 'COMPLETED' ? 'Đã kết thúc' : 'Đang làm dở' %>.</p>
+  </article>
+</section>
+
+<section class="learning-summary">
+  <div>
+    <div class="section-title">
+      <i data-lucide="clock" class="lucide-icon"></i>
+      Thời gian
+    </div>
+    <p>Bắt đầu: <strong><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></strong></p>
+    <p>Kết thúc: <strong><%= session.completed_at ? new Date(session.completed_at).toLocaleString('vi-VN') : '-' %></strong></p>
+  </div>
+  <div>
+    <div class="section-title">
+      <i data-lucide="message-circle" class="lucide-icon"></i>
+      Chat AI
+    </div>
+    <p>Các trao đổi với AI được lưu theo từng câu để em xem lại cách được gợi ý.</p>
+  </div>
+</section>
 
 <section class="review-list">
   <% questions.forEach((question, index) => { %>
@@ -88,13 +109,13 @@
         <% }) %>
       </div>
       <div class="review-meta">
-        <span>Đã chọn: <strong><%= answer?.selected_answer || 'Chưa làm' %></strong></span>
+        <span>Em chọn: <strong><%= answer?.selected_answer || 'Chưa làm' %></strong></span>
         <span>Đáp án đúng: <strong><%= question.correct_answer %></strong></span>
         <% if (answer) { %>
           <% if (Number(answer.is_correct) === 1) { %>
             <span class="status-pill status-completed">Đúng</span>
           <% } else { %>
-            <span class="status-pill status-review">Sai</span>
+            <span class="status-pill status-review">Cần xem lại</span>
           <% } %>
         <% } %>
       </div>
@@ -107,7 +128,7 @@
       <% } %>
       <% if (questionChats.length > 0) { %>
         <div class="review-chat">
-          <strong>Chat trong câu này</strong>
+          <strong>Trao đổi với AI trong câu này</strong>
           <% questionChats.forEach((chat) => { %>
             <div class="chat-message <%= chat.role === 'student' ? 'student' : 'ai' %>"><%= chat.message %></div>
           <% }) %>

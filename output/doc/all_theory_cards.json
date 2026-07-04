@@ -15740,5 +15740,1465 @@
         "images": []
       }
     ]
+  },
+  {
+    "lesson_id": 323,
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "lesson_name": "Bài 2. Tia phân giác của một góc",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tia phân giác của một góc, chúng ta cần phân tích từng bước. Tia phân giác là một tia nằm trong góc và tạo với hai cạnh của góc đó hai góc bằng nhau. Điều này có nghĩa là tia phân giác sẽ chia góc thành hai phần bằng nhau.",
+        "title": "Khái niệm tia phân giác",
+        "body": "Tia phân giác của một góc là một tia nằm trong góc và tạo với hai cạnh của góc đó hai góc bằng nhau. Điều này có thể được minh họa bằng cách vẽ một góc và một tia nằm trong góc, sau đó kiểm tra xem hai góc tạo bởi tia và hai cạnh của góc có bằng nhau hay không.",
+        "formula": "$\\widehat{xAt} = \\widehat{yAt}$",
+        "example": "Ví dụ: Tia $At$ là tia phân giác của góc $xAy$ vì $\\widehat{xAt} = \\widehat{yAt} = 55^\\circ$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_50.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_51.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_53.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để vẽ tia phân giác của một góc, chúng ta có thể sử dụng compa hoặc thước thẳng. Compas sẽ giúp chúng ta vẽ một tia nằm trong góc và tạo với hai cạnh của góc đó hai góc bằng nhau. Thước thẳng cũng có thể được sử dụng để vẽ tia phân giác.",
+        "title": "Vẽ tia phân giác",
+        "body": "Có hai cách để vẽ tia phân giác của một góc: sử dụng compa hoặc thước thẳng. Compas sẽ giúp chúng ta vẽ một tia nằm trong góc và tạo với hai cạnh của góc đó hai góc bằng nhau. Thước thẳng cũng có thể được sử dụng để vẽ tia phân giác.",
+        "formula": "",
+        "example": "Ví dụ: Để vẽ tia phân giác của góc $xOy$, chúng ta có thể sử dụng compa để vẽ một tia nằm trong góc và tạo với hai cạnh của góc đó hai góc bằng nhau.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 324,
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "lesson_name": "Bài 3. Hai đường thẳng song song",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về hai đường thẳng song song, chúng ta cần phân tích khái niệm và đặc điểm của chúng. Hai đường thẳng song song là hai đường thẳng không bao giờ cắt nhau, dù kéo dài vô tận. Điều này có nghĩa là chúng không có điểm chung nào.",
+        "title": "Khái niệm hai đường thẳng song song",
+        "body": "Hai đường thẳng song song được định nghĩa là hai đường thẳng không bao giờ cắt nhau. Điều này có nghĩa là chúng không có điểm chung nào. Ví dụ, hai đường thẳng AB và CD là hai đường thẳng song song nếu chúng không cắt nhau.",
+        "formula": "$\\boxed{\\text{Hai đường thẳng song song là hai đường thẳng không bao giờ cắt nhau}}$",
+        "example": "Ví dụ: Hai đường thẳng AB và CD là hai đường thẳng song song nếu chúng không cắt nhau. Để kiểm tra, chúng ta có thể vẽ hai đường thẳng này và quan sát xem chúng có cắt nhau hay không. Nếu chúng không cắt nhau, thì chúng là hai đường thẳng song song.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_44.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_45.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_46.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_48.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-5",
+            "url": "https://img.loigiaihay.com/picture/2022/0929/capture_49.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-6",
+            "url": "https://img.loigiaihay.com/picture/2022/0514/dinh-li-pytagoras-16-cv.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để xác định hai đường thẳng song song, chúng ta có thể sử dụng dấu hiệu nhận biết. Dấu hiệu nhận biết này dựa trên việc so sánh các góc tạo thành bởi hai đường thẳng.",
+        "title": "Dấu hiệu nhận biết hai đường thẳng song song",
+        "body": "Dấu hiệu nhận biết hai đường thẳng song song dựa trên việc so sánh các góc tạo thành bởi hai đường thẳng. Nếu trong các góc tạo thành có một cặp góc so le trong bằng nhau hoặc một cặp góc đồng vị bằng nhau, thì hai đường thẳng đó là song song.",
+        "formula": "$\\boxed{\\text{Nếu trong các góc tạo thành có một cặp góc so le trong bằng nhau hoặc một cặp góc đồng vị bằng nhau, thì hai đường thẳng đó là song song}}$",
+        "example": "Ví dụ: Để kiểm tra xem hai đường thẳng AB và CD là song song hay không, chúng ta có thể so sánh các góc tạo thành bởi chúng. Nếu trong các góc tạo thành có một cặp góc so le trong bằng nhau, thì hai đường thẳng đó là song song.",
+        "images": []
+      },
+      {
+        "thinking": "Hai đường thẳng song song có nhiều đặc điểm quan trọng. Một trong những đặc điểm quan trọng nhất là hai góc so le trong bằng nhau.",
+        "title": "Đặc điểm của hai đường thẳng song song",
+        "body": "Hai đường thẳng song song có nhiều đặc điểm quan trọng. Một trong những đặc điểm quan trọng nhất là hai góc so le trong bằng nhau. Điều này có nghĩa là nếu hai đường thẳng AB và CD là song song, thì hai góc so le trong tạo thành bởi chúng sẽ bằng nhau.",
+        "formula": "$\\boxed{\\text{Hai góc so le trong bằng nhau}}$",
+        "example": "Ví dụ: Để kiểm tra xem hai đường thẳng AB và CD là song song hay không, chúng ta có thể so sánh hai góc so le trong tạo thành bởi chúng. Nếu hai góc so le trong bằng nhau, thì hai đường thẳng đó là song song.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 325,
+    "grade": 7,
+    "chapter_name": "Chương IV. Góc. Đường thẳng song song",
+    "lesson_name": "Bài 4. Định lí",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu định lí, chúng ta cần phân tích từng bước. Định lí là một khẳng định được suy ra từ những khẳng định đúng đã biết. Nói cách khác, định lí là một kết luận được rút ra từ giả thiết và các khẳng định đúng đã biết.",
+        "title": "Khái niệm định lí",
+        "body": "Một định lí thường được phát biểu dưới dạng: 'Nếu ... thì...'. Phần giữa từ 'nếu' và từ 'thì' là giả thiết của định lí, còn phần sau từ 'thì' là kết luận của định lí. Ví dụ: 'Nếu một đường thẳng cắt 2 đường thẳng song song thì 2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau' là một định lí có giả thiết là 'một đường thẳng cắt 2 đường thẳng song song' và kết luận là '2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau'.",
+        "formula": "$\\text{Định lí} = \\text{Giả thiết} \\Rightarrow \\text{Kết luận}$",
+        "example": "Ví dụ: 'Nếu một đường thẳng cắt 2 đường thẳng song song thì 2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau'. Trong ví dụ này, giả thiết là 'một đường thẳng cắt 2 đường thẳng song song' và kết luận là '2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau'.",
+        "images": []
+      },
+      {
+        "thinking": "Để chứng minh định lí, chúng ta cần sử dụng lập luận để từ giả thiết và các khẳng định đúng đã biết suy ra kết luận của định lí.",
+        "title": "Chứng minh định lí",
+        "body": "Chứng minh định lí là một quá trình suy luận logic để từ giả thiết và các khẳng định đúng đã biết suy ra kết luận của định lí. Quá trình này bao gồm các bước sau: - Xác định giả thiết và kết luận của định lí. - Sử dụng lập luận để từ giả thiết suy ra kết luận.",
+        "formula": "$\\text{Chứng minh định lí} = \\text{Giả thiết} \\Rightarrow \\text{Kết luận}$",
+        "example": "Ví dụ: Chứng minh định lí 'Nếu một đường thẳng cắt 2 đường thẳng song song thì 2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau'. Để chứng minh định lí này, chúng ta cần sử dụng lập luận để từ giả thiết 'một đường thẳng cắt 2 đường thẳng song song' suy ra kết luận '2 góc so le trong bằng nhau, hai góc đồng vị bằng nhau'.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 326,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 1. Thu thập, phân loại và biểu diễn dữ liệu",
+    "theory_cards": [
+      {
+        "thinking": "Để thu thập, phân loại và biểu diễn dữ liệu, chúng ta cần hiểu rõ khái niệm dữ liệu và các loại dữ liệu khác nhau. Dữ liệu là thông tin được thu thập và lưu trữ trong các dạng khác nhau, chẳng hạn như số, chữ, hình ảnh, âm thanh, v.v. Để phân loại dữ liệu, chúng ta cần xác định loại dữ liệu và cách biểu diễn nó.",
+        "title": "Khái niệm dữ liệu",
+        "body": [
+          "Dữ liệu là thông tin được thu thập và lưu trữ trong các dạng khác nhau.",
+          "Dữ liệu có thể được biểu diễn dưới dạng số, chữ, hình ảnh, âm thanh, v.v.",
+          "Dữ liệu có thể được phân loại thành dữ liệu số và dữ liệu không số."
+        ],
+        "formula": "$D = \\{d_1, d_2, ..., d_n\\}$",
+        "example": "Ví dụ: Một lớp học có 30 học sinh, mỗi học sinh có một điểm số trung bình. Dữ liệu này có thể được biểu diễn dưới dạng một mảng số, trong đó mỗi phần tử đại diện cho điểm số trung bình của một học sinh. Ví dụ: $D = \\{8, 9, 7, 6, 5, ...\\}$",
+        "images": []
+      },
+      {
+        "thinking": "Để biểu diễn dữ liệu, chúng ta cần chọn một phương pháp biểu diễn phù hợp. Phương pháp biểu diễn có thể là biểu đồ, bảng, hoặc các phương pháp khác. Mỗi phương pháp biểu diễn có ưu và nhược điểm riêng, và chúng ta cần chọn phương pháp phù hợp với loại dữ liệu và mục đích biểu diễn.",
+        "title": "Phương pháp biểu diễn dữ liệu",
+        "body": [
+          "Phương pháp biểu diễn dữ liệu là cách biểu diễn dữ liệu dưới dạng dễ hiểu và dễ phân tích.",
+          "Có nhiều phương pháp biểu diễn dữ liệu khác nhau, chẳng hạn như biểu đồ, bảng, v.v.",
+          "Mỗi phương pháp biểu diễn có ưu và nhược điểm riêng."
+        ],
+        "formula": "$P = \\{p_1, p_2, ..., p_n\\}$",
+        "example": "Ví dụ: Một công ty muốn biểu diễn số lượng sản phẩm bán được trong một tháng. Họ có thể sử dụng biểu đồ cột để biểu diễn dữ liệu này. Ví dụ: $P = \\{100, 120, 110, 130, ...\\}$",
+        "images": []
+      },
+      {
+        "thinking": "Để phân loại dữ liệu, chúng ta cần xác định loại dữ liệu và cách biểu diễn nó. Dữ liệu có thể được phân loại thành dữ liệu số và dữ liệu không số. Dữ liệu số có thể được biểu diễn dưới dạng số, trong khi dữ liệu không số có thể được biểu diễn dưới dạng chữ hoặc hình ảnh.",
+        "title": "Phân loại dữ liệu",
+        "body": [
+          "Dữ liệu có thể được phân loại thành dữ liệu số và dữ liệu không số.",
+          "Dữ liệu số có thể được biểu diễn dưới dạng số.",
+          "Dữ liệu không số có thể được biểu diễn dưới dạng chữ hoặc hình ảnh."
+        ],
+        "formula": "$D = \\{d_1, d_2, ..., d_n\\}$",
+        "example": "Ví dụ: Một lớp học có 30 học sinh, mỗi học sinh có một điểm số trung bình. Dữ liệu này có thể được phân loại thành dữ liệu số, trong đó mỗi phần tử đại diện cho điểm số trung bình của một học sinh. Ví dụ: $D = \\{8, 9, 7, 6, 5, ...\\}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 327,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 2. Phân tích và xử lí dữ liệu",
+    "theory_cards": [
+      {
+        "thinking": "Để phân tích và xử lí dữ liệu, chúng ta cần hiểu rõ về các khái niệm cơ bản như dữ liệu, phân số và đơn vị đo lường. Dữ liệu là thông tin được thu thập và xử lí để đưa ra quyết định hoặc hiểu rõ về một vấn đề nào đó. Phân số là một dạng số được biểu diễn dưới dạng một phần của một tổng. Đơn vị đo lường là hệ thống đo lường được sử dụng để đo lường các giá trị.",
+        "title": "Khái niệm dữ liệu",
+        "body": [
+          "Dữ liệu là thông tin được thu thập và xử lí để đưa ra quyết định hoặc hiểu rõ về một vấn đề nào đó.",
+          "Dữ liệu có thể được thu thập từ nhiều nguồn khác nhau, bao gồm các bảng thống kê, các cuộc điều tra, các thiết bị đo lường, v.v.",
+          "Dữ liệu cần được xử lí và phân tích để đưa ra quyết định hoặc hiểu rõ về một vấn đề nào đó."
+        ],
+        "formula": "$\\frac{a}{b}$",
+        "example": [
+          "Ví dụ: Một người muốn biết số lượng học sinh lớp 7 trong một trường học. Để làm được điều này, người đó cần thu thập dữ liệu về số lượng học sinh lớp 7 trong trường học đó. Sau đó, người đó cần xử lí và phân tích dữ liệu để đưa ra quyết định về số lượng học sinh lớp 7 trong trường học đó.",
+          "Lời giải: $n = \\frac{1000}{1} = 1000$ học sinh."
+        ],
+        "images": []
+      },
+      {
+        "thinking": "Phân số là một dạng số được biểu diễn dưới dạng một phần của một tổng. Để biểu diễn phân số, chúng ta cần có một số chia và một số bị chia. Số chia là số được chia, còn số bị chia là số được chia cho số chia.",
+        "title": "Khái niệm phân số",
+        "body": [
+          "Phân số là một dạng số được biểu diễn dưới dạng một phần của một tổng.",
+          "Phân số có thể được biểu diễn dưới dạng $\\frac{a}{b}$, nơi $a$ là số chia và $b$ là số bị chia.",
+          "Phân số cần được quy đồng mẫu số để dễ dàng so sánh và tính toán."
+        ],
+        "formula": "$\\frac{a}{b} = \\frac{c}{d}$",
+        "example": [
+          "Ví dụ: Một người muốn biết giá trị của phân số $\\frac{1}{2}$. Để làm được điều này, người đó cần quy đồng mẫu số của phân số đó.",
+          "Lời giải: $\\frac{1}{2} = \\frac{1}{2} \\times \\frac{2}{2} = \\frac{2}{4} = \\frac{1}{2}$."
+        ],
+        "images": []
+      },
+      {
+        "thinking": "Đơn vị đo lường là hệ thống đo lường được sử dụng để đo lường các giá trị. Đơn vị đo lường có thể được biểu diễn dưới dạng số hoặc phân số.",
+        "title": "Khái niệm đơn vị đo lường",
+        "body": [
+          "Đơn vị đo lường là hệ thống đo lường được sử dụng để đo lường các giá trị.",
+          "Đơn vị đo lường có thể được biểu diễn dưới dạng số hoặc phân số.",
+          "Đơn vị đo lường cần được sử dụng một cách chính xác để tránh sai sót."
+        ],
+        "formula": "$1 \\text{ Yến} = 1000 \\text{ Gram}",
+        "example": [
+          "Ví dụ: Một người muốn biết trọng lượng của một vật thể bằng đơn vị Yến. Để làm được điều này, người đó cần sử dụng đơn vị Yến để đo lường trọng lượng của vật thể đó.",
+          "Lời giải: $m = 500 \\text{ Gram} = 0.5 \\text{ Yến}$."
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 328,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 3. Biểu đồ đoạn thẳng",
+    "theory_cards": [
+      {
+        "thinking": "Biểu đồ đoạn thẳng là một công cụ hữu ích để thể hiện mối quan hệ giữa hai biến số. Để tạo một biểu đồ đoạn thẳng, chúng ta cần có hai dữ liệu số và một trục tọa độ. Dữ liệu số sẽ được biểu diễn trên trục tọa độ, và biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ giữa hai dữ liệu số này.",
+        "title": "Khái niệm biểu đồ đoạn thẳng",
+        "body": "Biểu đồ đoạn thẳng là một loại biểu đồ thống kê được sử dụng để thể hiện mối quan hệ giữa hai biến số. Nó được tạo bằng cách kết nối hai điểm dữ liệu số trên một trục tọa độ. Biểu đồ đoạn thẳng có thể được sử dụng để thể hiện mối quan hệ tuyến tính giữa hai biến số.",
+        "formula": "$y = mx + b$",
+        "example": "Ví dụ: Xét hai dữ liệu số 2 và 4. Biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ tuyến tính giữa hai dữ liệu số này. Lời giải: Để tạo biểu đồ đoạn thẳng, chúng ta cần có hai dữ liệu số và một trục tọa độ. Dữ liệu số sẽ được biểu diễn trên trục tọa độ, và biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ giữa hai dữ liệu số này. Trong ví dụ này, dữ liệu số 2 và 4 sẽ được biểu diễn trên trục tọa độ, và biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ tuyến tính giữa hai dữ liệu số này.",
+        "images": []
+      },
+      {
+        "thinking": "Để tạo một biểu đồ đoạn thẳng, chúng ta cần có hai dữ liệu số và một trục tọa độ. Dữ liệu số sẽ được biểu diễn trên trục tọa độ, và biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ giữa hai dữ liệu số này.",
+        "title": "Cách tạo biểu đồ đoạn thẳng",
+        "body": "Để tạo một biểu đồ đoạn thẳng, chúng ta cần thực hiện các bước sau:\n- Bước 1: Xác định hai dữ liệu số cần biểu diễn.\n- Bước 2: Xác định trục tọa độ.\n- Bước 3: Biểu diễn dữ liệu số trên trục tọa độ.\n- Bước 4: Kết nối hai điểm dữ liệu số để tạo biểu đồ đoạn thẳng.",
+        "formula": "",
+        "example": "Ví dụ: Xét hai dữ liệu số 2 và 4. Để tạo biểu đồ đoạn thẳng, chúng ta cần thực hiện các bước sau:\n- Bước 1: Xác định hai dữ liệu số cần biểu diễn: 2 và 4.\n- Bước 2: Xác định trục tọa độ.\n- Bước 3: Biểu diễn dữ liệu số trên trục tọa độ.\n- Bước 4: Kết nối hai điểm dữ liệu số để tạo biểu đồ đoạn thẳng.",
+        "images": []
+      },
+      {
+        "thinking": "Biểu đồ đoạn thẳng có thể được sử dụng để thể hiện mối quan hệ tuyến tính giữa hai biến số. Nó được tạo bằng cách kết nối hai điểm dữ liệu số trên một trục tọa độ.",
+        "title": "Ứng dụng của biểu đồ đoạn thẳng",
+        "body": "Biểu đồ đoạn thẳng có thể được sử dụng để thể hiện mối quan hệ tuyến tính giữa hai biến số. Nó được tạo bằng cách kết nối hai điểm dữ liệu số trên một trục tọa độ. Biểu đồ đoạn thẳng có thể được sử dụng trong nhiều lĩnh vực, bao gồm thống kê, kinh tế, và khoa học.",
+        "formula": "",
+        "example": "Ví dụ: Xét hai dữ liệu số 2 và 4. Biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ tuyến tính giữa hai dữ liệu số này. Lời giải: Để tạo biểu đồ đoạn thẳng, chúng ta cần có hai dữ liệu số và một trục tọa độ. Dữ liệu số sẽ được biểu diễn trên trục tọa độ, và biểu đồ đoạn thẳng sẽ thể hiện mối quan hệ tuyến tính giữa hai dữ liệu số này.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 329,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 4. Biểu đồ hình quạt tròn",
+    "theory_cards": [
+      {
+        "thinking": "Biểu đồ hình quạt tròn là một công cụ thống kê giúp thể hiện mối quan hệ giữa các phần của một tổng. Để hiểu rõ hơn về biểu đồ hình quạt tròn, chúng ta cần phân tích từng bước về cách tạo và đọc biểu đồ này.",
+        "title": "Khái niệm biểu đồ hình quạt tròn",
+        "body": "Biểu đồ hình quạt tròn là một hình thức biểu diễn thống kê thể hiện mối quan hệ giữa các phần của một tổng. Nó được tạo bằng cách chia một vòng tròn thành các phần bằng nhau, mỗi phần đại diện cho một phần của tổng. Biểu đồ hình quạt tròn giúp chúng ta dễ dàng so sánh và hiểu rõ hơn về mối quan hệ giữa các phần của một tổng.",
+        "formula": "$\\frac{S}{100} \\times 360^\\circ = 360^\\circ \\times \\frac{S}{100}$",
+        "example": "Tổng số tiền mà một cửa hàng bán được trong một ngày là 1.200.000 đồng. Biểu đồ hình quạt tròn thể hiện mối quan hệ giữa số tiền bán được của các loại hàng hóa khác nhau. Nếu số tiền bán được của hàng hóa A chiếm 40% tổng số tiền bán được, số tiền bán được của hàng hóa B chiếm 30% và số tiền bán được của hàng hóa C chiếm 30%, thì biểu đồ hình quạt tròn sẽ như sau:\\n$\\begin{array}{|c|c|}\\hline\\text{Loại hàng hóa} &amp; \\text{Số tiền bán được} \\\\hline\\text{A} &amp; 480.000 \\\\hline\\text{B} &amp; 360.000 \\\\hline\\text{C} &amp; 360.000 \\\\hline\\end{array}$",
+        "images": []
+      },
+      {
+        "thinking": "Để đọc biểu đồ hình quạt tròn, chúng ta cần hiểu rõ mối quan hệ giữa các phần của một tổng. Chúng ta có thể đọc biểu đồ này bằng cách xác định số tiền bán được của từng loại hàng hóa và so sánh với tổng số tiền bán được.",
+        "title": "Cách đọc biểu đồ hình quạt tròn",
+        "body": "Để đọc biểu đồ hình quạt tròn, chúng ta cần thực hiện các bước sau:\\n1. Xác định số tiền bán được của từng loại hàng hóa.\\n2. So sánh số tiền bán được của từng loại hàng hóa với tổng số tiền bán được.\\n3. Sử dụng biểu đồ hình quạt tròn để thể hiện mối quan hệ giữa các phần của một tổng.",
+        "formula": "",
+        "example": "Dựa trên biểu đồ hình quạt tròn trên, chúng ta có thể thấy rằng số tiền bán được của hàng hóa A chiếm 40% tổng số tiền bán được, số tiền bán được của hàng hóa B chiếm 30% và số tiền bán được của hàng hóa C chiếm 30%.",
+        "images": []
+      },
+      {
+        "thinking": "Biểu đồ hình quạt tròn là một công cụ thống kê hữu ích giúp chúng ta thể hiện mối quan hệ giữa các phần của một tổng. Để sử dụng biểu đồ hình quạt tròn một cách hiệu quả, chúng ta cần hiểu rõ về cách tạo và đọc biểu đồ này.",
+        "title": "Ứng dụng của biểu đồ hình quạt tròn",
+        "body": "Biểu đồ hình quạt tròn có nhiều ứng dụng trong thực tế, bao gồm:\\n1. Thống kê số tiền bán được của các loại hàng hóa.\\n2. Thể hiện mối quan hệ giữa các phần của một tổng.\\n3. Dễ dàng so sánh và hiểu rõ hơn về mối quan hệ giữa các phần của một tổng.",
+        "formula": "",
+        "example": "Một cửa hàng bán hàng hóa A, B và C. Biểu đồ hình quạt tròn thể hiện mối quan hệ giữa số tiền bán được của các loại hàng hóa khác nhau. Nếu số tiền bán được của hàng hóa A chiếm 40% tổng số tiền bán được, số tiền bán được của hàng hóa B chiếm 30% và số tiền bán được của hàng hóa C chiếm 30%, thì biểu đồ hình quạt tròn sẽ như sau:\\n$\\begin{array}{|c|c|}\\hline\\text{Loại hàng hóa} &amp; \\text{Số tiền bán được} \\\\hline\\text{A} &amp; 480.000 \\\\hline\\text{B} &amp; 360.000 \\\\hline\\text{C} &amp; 360.000 \\\\hline\\end{array}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 332,
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "lesson_name": "Bài 1. Biểu thức số. Biểu thức đại số",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về biểu thức số và biểu thức đại số, chúng ta cần bắt đầu bằng việc phân tích khái niệm về biểu thức số. Biểu thức số là một biểu thức toán học chứa một hoặc nhiều số, được kết hợp bằng các phép toán cộng, trừ, nhân, chia và phân số. Ví dụ, biểu thức số 2 + 3 là một biểu thức số vì nó chứa một số và được kết hợp bằng phép toán cộng.",
+        "title": "Khái niệm biểu thức số",
+        "body": [
+          "Biểu thức số là một biểu thức toán học chứa một hoặc nhiều số, được kết hợp bằng các phép toán cộng, trừ, nhân, chia và phân số.",
+          "Ví dụ: 2 + 3, 5 - 2, 4 × 6, 12 ÷ 3",
+          "Biểu thức số có thể chứa các số nguyên, số thập phân và phân số."
+        ],
+        "formula": "$a + b = (a + b)$",
+        "example": "$2 + 3 = (2 + 3) = 5$",
+        "images": []
+      },
+      {
+        "thinking": "Sau khi hiểu về biểu thức số, chúng ta cần tìm hiểu về biểu thức đại số. Biểu thức đại số là một biểu thức toán học chứa các biến và các số, được kết hợp bằng các phép toán cộng, trừ, nhân, chia và phân số. Ví dụ, biểu thức đại số 2x + 3 là một biểu thức đại số vì nó chứa một biến và được kết hợp bằng phép toán cộng.",
+        "title": "Khái niệm biểu thức đại số",
+        "body": [
+          "Biểu thức đại số là một biểu thức toán học chứa các biến và các số, được kết hợp bằng các phép toán cộng, trừ, nhân, chia và phân số.",
+          "Ví dụ: 2x + 3, 4y - 2, 3z × 6",
+          "Biểu thức đại số có thể chứa các số nguyên, số thập phân và phân số."
+        ],
+        "formula": "$a + bx = (a + bx)$",
+        "example": "$2x + 3 = (2x + 3)$",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu về biểu thức đại số, chúng ta cần tìm hiểu về quy tắc quy đồng mẫu số. Quy tắc quy đồng mẫu số là một quy tắc giúp chúng ta quy đồng mẫu số của một phân số. Ví dụ, quy đồng mẫu số của phân số 1/2 là 2/4.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": [
+          "Quy tắc quy đồng mẫu số giúp chúng ta quy đồng mẫu số của một phân số.",
+          "Ví dụ: Quy đồng mẫu số của phân số 1/2 là 2/4.",
+          "Quy tắc quy đồng mẫu số có thể được sử dụng để quy đồng mẫu số của các phân số khác nhau."
+        ],
+        "formula": "$\\frac{a}{b} = \\frac{ac}{bc}$",
+        "example": "$\\frac{1}{2} = \\frac{2}{4}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 333,
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "lesson_name": "Bài 2. Đa thức một biến. Nghiệm của đa thức một biến",
+    "theory_cards": [
+      {
+        "thinking": "Đa thức một biến là một biểu thức toán học có chứa một biến và các số hạng khác. Biến trong đa thức có thể là số thực hoặc số phức. Để tìm nghiệm của đa thức, chúng ta cần tìm giá trị của biến khiến đa thức trở thành 0.",
+        "title": "Khái niệm đa thức một biến",
+        "body": [
+          "Đa thức một biến có dạng: $ax^2 + bx + c = 0$,",
+          "trong đó $a$, $b$, $c$ là các số thực và $x$ là biến.",
+          "Để tìm nghiệm của đa thức, chúng ta có thể sử dụng phương pháp phân tích hoặc phương pháp giải bằng phương trình."
+        ],
+        "formula": "$ax^2 + bx + c = 0$",
+        "example": "$\\begin{align*} x^2 + 4x + 4 &= 0 \\ \\Rightarrow\\qquad (x+2)^2 &= 0 \\ \\Rightarrow\\qquad x+2 &= 0 \\ \\Rightarrow\\qquad x &= -2 \\end{align*}$",
+        "images": []
+      },
+      {
+        "thinking": "Để tìm nghiệm của đa thức, chúng ta cần sử dụng phương pháp phân tích hoặc phương pháp giải bằng phương trình.",
+        "title": "Phương pháp phân tích",
+        "body": [
+          "Phương pháp phân tích là phương pháp sử dụng để tìm nghiệm của đa thức bằng cách phân tích các số hạng của đa thức.",
+          "Để sử dụng phương pháp phân tích, chúng ta cần tìm các số hạng của đa thức và phân tích chúng để tìm nghiệm."
+        ],
+        "formula": "$\\begin{align*} ax^2 + bx + c &= 0 \\ \\Rightarrow\\qquad (ax+b)(x+c) &= 0 \\ \\Rightarrow\\qquad ax+b &= 0 \\text{ hoặc } x+c &= 0 \\ \\Rightarrow\\qquad x &= -\\frac{b}{a} \\text{ hoặc } x &= -c \\end{align*}$",
+        "example": "$\\begin{align*} x^2 + 4x + 4 &= 0 \\ \\Rightarrow\\qquad (x+2)^2 &= 0 \\ \\Rightarrow\\qquad x+2 &= 0 \\ \\Rightarrow\\qquad x &= -2 \\end{align*}$",
+        "images": []
+      },
+      {
+        "thinking": "Phương pháp giải bằng phương trình là phương pháp sử dụng để tìm nghiệm của đa thức bằng cách giải phương trình.",
+        "title": "Phương pháp giải bằng phương trình",
+        "body": [
+          "Phương pháp giải bằng phương trình là phương pháp sử dụng để tìm nghiệm của đa thức bằng cách giải phương trình.",
+          "Để sử dụng phương pháp giải bằng phương trình, chúng ta cần giải phương trình để tìm nghiệm."
+        ],
+        "formula": "$\\begin{align*} ax^2 + bx + c &= 0 \\ \\Rightarrow\\qquad x &= -\\frac{b}{a} \\ \\Rightarrow\\qquad x &= -c \\end{align*}$",
+        "example": "$\\begin{align*} x^2 + 4x + 4 &= 0 \\ \\Rightarrow\\qquad (x+2)^2 &= 0 \\ \\Rightarrow\\qquad x+2 &= 0 \\ \\Rightarrow\\qquad x &= -2 \\end{align*}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 334,
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "lesson_name": "Bài 3. Phép cộng, phép trừ đa thức một biến",
+    "theory_cards": [
+      {
+        "thinking": "Phép cộng và phép trừ đa thức một biến là các phép toán cơ bản trong đại số. Để thực hiện phép cộng và phép trừ đa thức một biến, chúng ta cần hiểu rõ về khái niệm đa thức và cách biểu diễn đa thức.",
+        "title": "Khái niệm đa thức",
+        "body": [
+          "Một đa thức là một biểu thức đại số có chứa các hạng tử là các đa thức khác nhau.",
+          "Đa thức có thể được biểu diễn dưới dạng một tổng của các hạng tử.",
+          "Ví dụ: 2x^2 + 3x - 4 là một đa thức."
+        ],
+        "formula": "$a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0$",
+        "example": "$$\n      (2x^2 + 3x - 4) + (x^2 + 2x + 1) = (2x^2 + x^2) + (3x + 2x) + (-4 + 1) = 3x^2 + 5x - 3\n    $$",
+        "images": []
+      },
+      {
+        "thinking": "Để thực hiện phép cộng và phép trừ đa thức một biến, chúng ta cần hiểu rõ về quy tắc cộng và trừ các hạng tử.",
+        "title": "Quy tắc cộng và trừ đa thức",
+        "body": [
+          "Khi cộng hai đa thức, chúng ta cộng các hạng tử tương ứng.",
+          "Khi trừ hai đa thức, chúng ta trừ các hạng tử tương ứng.",
+          "Ví dụ: (2x^2 + 3x - 4) + (x^2 + 2x + 1) = 3x^2 + 5x - 3"
+        ],
+        "formula": "$$\n      (a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0) + (b_nx^n + b_{n-1}x^{n-1} + \\ldots + b_1x + b_0) = (a_n + b_n)x^n + (a_{n-1} + b_{n-1})x^{n-1} + \\ldots + (a_1 + b_1)x + (a_0 + b_0)\n    $$",
+        "example": "$$\n      (2x^2 + 3x - 4) - (x^2 + 2x + 1) = (2x^2 - x^2) + (3x - 2x) + (-4 - 1) = x^2 + x - 5\n    $$",
+        "images": []
+      },
+      {
+        "thinking": "Phép trừ đa thức một biến cũng có thể được thực hiện bằng cách sử dụng quy tắc trừ các hạng tử.",
+        "title": "Phép trừ đa thức một biến",
+        "body": [
+          "Phép trừ đa thức một biến là một phép toán cơ bản trong đại số.",
+          "Để thực hiện phép trừ đa thức một biến, chúng ta cần hiểu rõ về quy tắc trừ các hạng tử.",
+          "Ví dụ: (2x^2 + 3x - 4) - (x^2 + 2x + 1) = x^2 + x - 5"
+        ],
+        "formula": "$$\n      (a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0) - (b_nx^n + b_{n-1}x^{n-1} + \\ldots + b_1x + b_0) = (a_n - b_n)x^n + (a_{n-1} - b_{n-1})x^{n-1} + \\ldots + (a_1 - b_1)x + (a_0 - b_0)\n    $$",
+        "example": "$$\n      (2x^2 + 3x - 4) - (x^2 + 2x + 1) = (2x^2 - x^2) + (3x - 2x) + (-4 - 1) = x^2 + x - 5\n    $$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 335,
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "lesson_name": "Bài 4. Phép nhân đa thức một biến",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về phép nhân đa thức một biến, chúng ta cần bắt đầu bằng việc hiểu về đa thức và biến. Một đa thức là một biểu thức toán học bao gồm các hạng tử được kết hợp bằng các phép cộng và nhân. Biến là một đại lượng không xác định, thường được biểu diễn bằng một chữ cái hoặc một ký hiệu đặc biệt. Khi nhân hai đa thức, chúng ta cần nhân mỗi hạng tử của đa thức thứ nhất với mỗi hạng tử của đa thức thứ hai và sau đó kết hợp các hạng tử lại với nhau.",
+        "title": "Khái niệm đa thức và biến",
+        "body": [
+          "Một đa thức là một biểu thức toán học bao gồm các hạng tử được kết hợp bằng các phép cộng và nhân.",
+          "Biến là một đại lượng không xác định, thường được biểu diễn bằng một chữ cái hoặc một ký hiệu đặc biệt.",
+          "Ví dụ: 2x + 3 và x^2 - 4 là hai đa thức khác nhau."
+        ],
+        "formula": "$a(x) = ax + b$ và $b(x) = cx + d$ là hai đa thức khác nhau, nơi a, b, c và d là các số thực.",
+        "example": "Ví dụ 1: Nhân đa thức 2x + 3 với đa thức x^2 - 4.\\n\\n$$(2x + 3)(x^2 - 4) = 2x(x^2 - 4) + 3(x^2 - 4)$$\\n\\n$$= 2x^3 - 8x + 3x^2 - 12$$\\n\\n$$= 2x^3 + 3x^2 - 8x - 12$$",
+        "images": []
+      },
+      {
+        "thinking": "Để thực hiện phép nhân đa thức, chúng ta cần sử dụng quy tắc nhân đa thức. Quy tắc này cho phép chúng ta nhân mỗi hạng tử của đa thức thứ nhất với mỗi hạng tử của đa thức thứ hai và sau đó kết hợp các hạng tử lại với nhau.",
+        "title": "Quy tắc nhân đa thức",
+        "body": [
+          "Quy tắc nhân đa thức cho phép chúng ta nhân mỗi hạng tử của đa thức thứ nhất với mỗi hạng tử của đa thức thứ hai.",
+          "Sau đó, chúng ta kết hợp các hạng tử lại với nhau để tạo thành một đa thức mới.",
+          "Ví dụ: (2x + 3)(x^2 - 4) = 2x(x^2 - 4) + 3(x^2 - 4)"
+        ],
+        "formula": "$$(a + b)(c + d) = ac + ad + bc + bd$$",
+        "example": "Ví dụ 2: Nhân đa thức (x + 2)(x^2 - 3).\\n\\n$$(x + 2)(x^2 - 3) = x(x^2 - 3) + 2(x^2 - 3)$$\\n\\n$$= x^3 - 3x + 2x^2 - 6$$\\n\\n$$= x^3 + 2x^2 - 3x - 6$$",
+        "images": []
+      },
+      {
+        "thinking": "Phép nhân đa thức có nhiều ứng dụng trong toán học và thực tế. Nó giúp chúng ta giải quyết các bài toán phức tạp và tạo ra các biểu thức toán học mới.",
+        "title": "Ứng dụng của phép nhân đa thức",
+        "body": [
+          "Phép nhân đa thức có nhiều ứng dụng trong toán học và thực tế.",
+          "Nó giúp chúng ta giải quyết các bài toán phức tạp và tạo ra các biểu thức toán học mới.",
+          "Ví dụ: Phép nhân đa thức được sử dụng trong việc giải quyết các bài toán về đường cong và mặt phẳng."
+        ],
+        "formula": "",
+        "example": "Ví dụ 3: Sử dụng phép nhân đa thức để giải quyết bài toán về đường cong.\\n\\nTìm phương trình của đường cong có hai đỉnh tại (-2, 3) và (4, -1).\\n\\nPhương trình của đường cong có thể được viết dưới dạng $y = ax^2 + bx + c$.\\n\\nSử dụng phép nhân đa thức, chúng ta có thể tìm được phương trình của đường cong như sau:\\n\\n$$(x + 2)(x - 4) = x^2 - 2x - 8$$\\n\\n$$y = x^2 - 2x - 8$$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 336,
+    "grade": 7,
+    "chapter_name": "Chương VI. Biểu thức đại số",
+    "lesson_name": "Bài 5. Phép chia đa thức một biến",
+    "theory_cards": [
+      {
+        "thinking": "Để chia đa thức một biến, chúng ta cần hiểu rõ khái niệm đa thức và phép chia đa thức. Một đa thức là một biểu thức toán học được tạo bởi các hạng tử có hệ số và biến, được kết hợp bằng các phép cộng và trừ. Phép chia đa thức một biến là quá trình chia một đa thức cho một đa thức khác, trong đó cả hai đa thức đều có cùng biến.",
+        "title": "Khái niệm đa thức và phép chia đa thức",
+        "body": "Một đa thức có thể được viết dưới dạng:\n  $a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0$\n  trong đó $a_n, a_{n-1}, \\ldots, a_1, a_0$ là các hệ số và $x$ là biến.\n  Phép chia đa thức một biến được thực hiện bằng cách chia mỗi hạng tử của đa thức chia cho đa thức khác.",
+        "formula": "$\\frac{a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0}{b_mx^m + b_{m-1}x^{m-1} + \\ldots + b_1x + b_0} = \\frac{a_n}{b_m}x^{n-m} + \\frac{a_n b_{m-1} - a_{n-1} b_m}{b_m^2}x^{n-m-1} + \\ldots + \\frac{a_1 b_0 - a_0 b_1}{b_0^2}x + \\frac{a_0 b_1 - a_1 b_0}{b_0^2}$",
+        "example": "Ví dụ: Chia đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$. Sử dụng phép chia đa thức, ta có:\n  $\\frac{2x^2 + 3x + 1}{x + 1} = 2x + 1$\n  Lời giải: Chia mỗi hạng tử của đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$, ta được:\n  $\\frac{2x^2}{x + 1} + \\frac{3x}{x + 1} + \\frac{1}{x + 1} = 2x + 1$",
+        "images": []
+      },
+      {
+        "thinking": "Để thực hiện phép chia đa thức, chúng ta cần sử dụng quy tắc chia đa thức. Quy tắc này giúp chúng ta chia đa thức một biến một cách chính xác và dễ dàng.",
+        "title": "Quy tắc chia đa thức",
+        "body": "Quy tắc chia đa thức được thực hiện theo các bước sau:\n  1. Chia mỗi hạng tử của đa thức chia cho đa thức khác.\n  2. Tính toán hệ số của mỗi hạng tử chia.\n  3. Kết hợp các hạng tử chia lại để được đa thức chia.\n  4. Kiểm tra lại đa thức chia để đảm bảo rằng nó chính xác.",
+        "formula": "$\\frac{a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0}{b_mx^m + b_{m-1}x^{m-1} + \\ldots + b_1x + b_0} = \\frac{a_n}{b_m}x^{n-m} + \\frac{a_n b_{m-1} - a_{n-1} b_m}{b_m^2}x^{n-m-1} + \\ldots + \\frac{a_1 b_0 - a_0 b_1}{b_0^2}x + \\frac{a_0 b_1 - a_1 b_0}{b_0^2}$",
+        "example": "Ví dụ: Chia đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$. Sử dụng quy tắc chia đa thức, ta có:\n  $\\frac{2x^2 + 3x + 1}{x + 1} = 2x + 1$\n  Lời giải: Chia mỗi hạng tử của đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$, ta được:\n  $\\frac{2x^2}{x + 1} + \\frac{3x}{x + 1} + \\frac{1}{x + 1} = 2x + 1$",
+        "images": []
+      },
+      {
+        "thinking": "Sau khi thực hiện phép chia đa thức, chúng ta cần kiểm tra lại đa thức chia để đảm bảo rằng nó chính xác. Điều này giúp chúng ta tránh được các lỗi khi thực hiện phép chia đa thức.",
+        "title": "Kiểm tra lại đa thức chia",
+        "body": "Để kiểm tra lại đa thức chia, chúng ta cần thực hiện các bước sau:\n  1. Kiểm tra lại hệ số của mỗi hạng tử chia.\n  2. Kiểm tra lại đa thức chia để đảm bảo rằng nó chính xác.\n  3. Kiểm tra lại đa thức chia để đảm bảo rằng nó không có lỗi.",
+        "formula": "$\\frac{a_nx^n + a_{n-1}x^{n-1} + \\ldots + a_1x + a_0}{b_mx^m + b_{m-1}x^{m-1} + \\ldots + b_1x + b_0} = \\frac{a_n}{b_m}x^{n-m} + \\frac{a_n b_{m-1} - a_{n-1} b_m}{b_m^2}x^{n-m-1} + \\ldots + \\frac{a_1 b_0 - a_0 b_1}{b_0^2}x + \\frac{a_0 b_1 - a_1 b_0}{b_0^2}$",
+        "example": "Ví dụ: Chia đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$. Sử dụng quy tắc chia đa thức, ta có:\n  $\\frac{2x^2 + 3x + 1}{x + 1} = 2x + 1$\n  Lời giải: Chia mỗi hạng tử của đa thức $2x^2 + 3x + 1$ cho đa thức $x + 1$, ta được:\n  $\\frac{2x^2}{x + 1} + \\frac{3x}{x + 1} + \\frac{1}{x + 1} = 2x + 1$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 337,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 1. Tổng các góc của một tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Một tam giác là một hình tam giác có ba cạnh và ba góc. Để tìm tổng các góc của một tam giác, chúng ta cần sử dụng định lý tổng các góc của một tam giác. Định lý này cho biết tổng các góc của một tam giác luôn bằng 180 độ.",
+        "title": "Tổng các góc của một tam giác",
+        "body": "Định lý tổng các góc của một tam giác: Tổng các góc của một tam giác luôn bằng 180 độ.\n\nVí dụ:\n\n* Một tam giác có hai góc 60 độ và một góc 60 độ. Tổng các góc của tam giác này là 180 độ.\n* Một tam giác có hai góc 90 độ và một góc 90 độ. Tổng các góc của tam giác này là 270 độ.\n* Một tam giác có hai góc 120 độ và một góc 40 độ. Tổng các góc của tam giác này là 260 độ.\n\nLời giải:\n\n* Sử dụng định lý tổng các góc của một tam giác, ta có: 60 + 60 + 60 = 180\n* Sử dụng định lý tổng các góc của một tam giác, ta có: 90 + 90 + 90 = 270\n* Sử dụng định lý tổng các góc của một tam giác, ta có: 120 + 40 + 100 = 260\n",
+        "formula": "$180 = a + b + c$",
+        "example": "$a = 60, b = 60, c = 60 \\Rightarrow 180 = 60 + 60 + 60 = 180$\n\n$ a = 90, b = 90, c = 90 \\Rightarrow 180 = 90 + 90 + 90 = 270$\n\n$a = 120, b = 40, c = 20 \\Rightarrow 180 = 120 + 40 + 20 = 180$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 338,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 2. Quan hệ giữa góc và cạnh đối diện. Bất đẳng thức tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về quan hệ giữa góc và cạnh đối diện trong tam giác, chúng ta cần phân tích từng bước. Đầu tiên, chúng ta cần biết rằng trong một tam giác, góc và cạnh đối diện là hai khái niệm quan trọng. Góc đối diện là góc đối diện với một cạnh trong tam giác, trong khi cạnh đối diện là cạnh nằm đối diện với một góc trong tam giác. Quan hệ giữa góc và cạnh đối diện là một trong những khái niệm cơ bản trong tam giác.",
+        "title": "Khái niệm góc và cạnh đối diện",
+        "body": [
+          "Góc đối diện là góc nằm đối diện với một cạnh trong tam giác.",
+          "Cạnh đối diện là cạnh nằm đối diện với một góc trong tam giác.",
+          "Quan hệ giữa góc và cạnh đối diện là một trong những khái niệm cơ bản trong tam giác."
+        ],
+        "formula": "$\\triangle ABC$ là một tam giác, thì $\\angle A$ là góc đối diện với cạnh $BC$, và cạnh $AC$ là cạnh đối diện với góc $\\angle A$.",
+        "example": "Xét tam giác $\\triangle ABC$ dưới đây, trong đó $AB = 5$ cm, $BC = 7$ cm, và $AC = 8$ cm. Góc $\\angle A$ là góc đối diện với cạnh $BC$, và cạnh $AC$ là cạnh đối diện với góc $\\angle A$.",
+        "images": []
+      },
+      {
+        "thinking": "Bất đẳng thức tam giác là một trong những khái niệm quan trọng trong tam giác. Bất đẳng thức tam giác cho biết rằng trong một tam giác, tổng độ dài của hai cạnh bất kỳ luôn lớn hơn độ dài của cạnh còn lại. Điều này có thể được chứng minh bằng cách sử dụng định lý Pythagoras.",
+        "title": "Bất đẳng thức tam giác",
+        "body": [
+          "Tổng độ dài của hai cạnh bất kỳ trong một tam giác luôn lớn hơn độ dài của cạnh còn lại.",
+          "Bất đẳng thức tam giác có thể được chứng minh bằng cách sử dụng định lý Pythagoras.",
+          "Định lý Pythagoras cho biết rằng trong một tam giác vuông, bình phương của cạnh huyền bằng tổng bình phương của hai cạnh kề."
+        ],
+        "formula": "$a + b > c$",
+        "example": "Xét tam giác $\\triangle ABC$ dưới đây, trong đó $AB = 5$ cm, $BC = 7$ cm, và $AC = 8$ cm. Theo bất đẳng thức tam giác, $AB + BC > AC$, và $AB + AC > BC$.",
+        "images": []
+      },
+      {
+        "thinking": "Quan hệ giữa góc và cạnh đối diện trong tam giác có thể được sử dụng để giải quyết các bài toán liên quan đến tam giác. Ví dụ, chúng ta có thể sử dụng bất đẳng thức tam giác để chứng minh rằng một tam giác có ba cạnh đều nhau là một tam giác cân.",
+        "title": "Ứng dụng của quan hệ giữa góc và cạnh đối diện",
+        "body": [
+          "Quan hệ giữa góc và cạnh đối diện có thể được sử dụng để giải quyết các bài toán liên quan đến tam giác.",
+          "Bất đẳng thức tam giác có thể được sử dụng để chứng minh rằng một tam giác có ba cạnh đều nhau là một tam giác cân.",
+          "Tam giác cân là một tam giác có hai cạnh bằng nhau."
+        ],
+        "formula": "$a = b = c$",
+        "example": "Xét tam giác $\\triangle ABC$ dưới đây, trong đó $AB = BC = AC = 5$ cm. Theo bất đẳng thức tam giác, $AB + BC > AC$, $AB + AC > BC$, và $BC + AC > AB$. Vì $AB = BC = AC$, nên $AB + BC = AB + AC = BC + AC$. Do đó, tam giác $\\triangle ABC$ là một tam giác cân.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 339,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 3. Hai tam giác bằng nhau",
+    "theory_cards": [
+      {
+        "thinking": "Để hai tam giác bằng nhau, chúng phải có các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau. Điều này có nghĩa là nếu ta có hai tam giác ABC và A'B'C', chúng sẽ bằng nhau nếu AB = A'B', AC = A'C', BC = B'C' và \\(\\widehat A = \\widehat {A'};\\widehat B = \\widehat {B'};\\widehat C = \\widehat {C'}\\).",
+        "title": "Khái niệm hai tam giác bằng nhau",
+        "body": "Hai tam giác bằng nhau là hai tam giác có các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau. Điều này có thể được biểu diễn bằng các phương trình sau:\n- AB = A'B'\n- AC = A'C'\n- BC = B'C'\n- \\(\\widehat A = \\widehat {A'};\\widehat B = \\widehat {B'};\\widehat C = \\widehat {C'}\\)\nNếu hai tam giác thỏa mãn các phương trình trên, chúng sẽ được gọi là hai tam giác bằng nhau.",
+        "formula": "$\\Delta ABC = \\Delta A'B'C'$",
+        "example": "Ví dụ: Có hai tam giác ABC và A'B'C' như sau:\n- AB = 5 cm\n- AC = 6 cm\n- BC = 7 cm\n- \\(\\widehat A = 60^\\circ;\\widehat B = 80^\\circ;\\widehat C = 40^\\circ\\)\n- A'B' = 5 cm\n- A'C' = 6 cm\n- B'C' = 7 cm\n- \\(\\widehat {A'} = 60^\\circ;\\widehat {B'} = 80^\\circ;\\widehat {C'} = 40^\\circ\\)\nTheo định nghĩa, hai tam giác ABC và A'B'C' bằng nhau vì chúng thỏa mãn các phương trình trên.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0930/capture_35.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0517/dinh-li-pytagoras-21-cv.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 340,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 4. Trường hợp bằng nhau thứ nhất của tam giác: cạnh - cạnh - cạnh",
+    "theory_cards": [
+      {
+        "thinking": "Để chứng minh hai tam giác bằng nhau khi có 3 cạnh bằng nhau, chúng ta cần phân tích từng bước. Trước tiên, chúng ta cần xác định rằng nếu 3 cạnh của tam giác này bằng 3 cạnh của tam giác kia, thì hai tam giác đó có thể được coi là bằng nhau. Điều này có nghĩa là chúng ta cần tìm một cách để chứng minh rằng hai tam giác có 3 cạnh bằng nhau là bằng nhau.",
+        "title": "Trường hợp bằng nhau thứ nhất của tam giác: cạnh - cạnh - cạnh",
+        "body": "Trường hợp bằng nhau thứ nhất của tam giác được xác định bởi ba cạnh bằng nhau. Nếu 3 cạnh của tam giác này bằng 3 cạnh của tam giác kia, thì hai tam giác đó bằng nhau. Điều này có nghĩa là chúng ta có thể sử dụng ba cạnh bằng nhau để chứng minh hai tam giác bằng nhau.",
+        "formula": "$\\Delta ABC \\cong \\Delta MNP \\iff AB = MN, BC = NP, AC = MP$",
+        "example": "Xét tam giác ABC và tam giác MNP. Nếu AB = MN, BC = NP, AC = MP, thì hai tam giác ABC và MNP bằng nhau. Ví dụ, nếu AB = 5 cm, BC = 6 cm, AC = 7 cm, và MN = 5 cm, NP = 6 cm, MP = 7 cm, thì hai tam giác ABC và MNP bằng nhau.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0930/capture_37.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0517/dinh-li-pytagoras-21-cv.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 341,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 5. Trường hợp bằng nhau thứ hai của tam giác: cạnh - góc - cạnh",
+    "theory_cards": [
+      {
+        "thinking": "Để chứng minh hai tam giác bằng nhau theo trường hợp cạnh - góc - cạnh, chúng ta cần đảm bảo rằng hai tam giác có hai cạnh bằng nhau và góc xen giữa cũng bằng nhau.",
+        "title": "Trường hợp cạnh - góc - cạnh",
+        "body": "Nếu hai tam giác có hai cạnh bằng nhau và góc xen giữa cũng bằng nhau, thì hai tam giác đó bằng nhau. Điều này được thể hiện bởi các bước sau:\n- Xác định hai cạnh bằng nhau của hai tam giác.\n- Xác định góc xen giữa của hai tam giác.\n- So sánh góc xen giữa của hai tam giác.\n- Nếu góc xen giữa của hai tam giác bằng nhau, thì hai tam giác đó bằng nhau.",
+        "formula": "$\\Delta ABC \\cong \\Delta MNP$ nếu $AB = MN$, $\\widehat{BAC} = \\widehat{NMP}$ và $AC = MP$",
+        "example": "Xét hai tam giác ABC và MNP có $AB = MN = 5$ cm, $\\widehat{BAC} = \\widehat{NMP} = 60^\\circ$ và $AC = MP = 6$ cm. Theo định nghĩa, hai tam giác ABC và MNP bằng nhau.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0930/capture_33.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0517/dinh-li-pytagoras-21-cv_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 342,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 6. Trường hợp bằng nhau thứ ba của tam giác: góc- cạnh - góc",
+    "theory_cards": [
+      {
+        "thinking": "Để chứng minh hai tam giác bằng nhau theo trường hợp góc-cạnh-góc (g.c.g), chúng ta cần đảm bảo rằng một cạnh và hai góc kề của tam giác này bằng một cạnh và hai góc kề của tam giác kia. Điều này có nghĩa là chúng ta cần so sánh các cạnh và góc của hai tam giác.",
+        "title": "Trường hợp bằng nhau thứ ba của tam giác: góc-cạnh-góc",
+        "body": "Trường hợp bằng nhau thứ ba của tam giác được xác định bởi điều kiện: nếu một cạnh và hai góc kề của tam giác này bằng một cạnh và hai góc kề của tam giác kia, thì hai tam giác đó bằng nhau. Điều này có nghĩa là chúng ta cần đảm bảo rằng một cạnh và hai góc kề của tam giác này bằng một cạnh và hai góc kề của tam giác kia.",
+        "formula": "$\\widehat{B} = \\widehat{N}$, $BC = NP$, $\\widehat{C} = \\widehat{P}$",
+        "example": "Xét hai tam giác ABC và MNP. Nếu $\\widehat{B} = \\widehat{N}$, $BC = NP$, $\\widehat{C} = \\widehat{P}$, thì hai tam giác ABC và MNP bằng nhau.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0930/capture_34.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0517/dinh-li-pytagoras-21-cv_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 343,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 7. Tam giác cân",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán về tam giác cân, chúng ta cần hiểu rõ khái niệm tam giác cân và các trường hợp bằng nhau của tam giác.",
+        "title": "Khái niệm Tam Giác Cân",
+        "body": [
+          "Tam giác cân là tam giác có hai cạnh bằng nhau.",
+          "Tam giác cân có thể là tam giác cân hoàn toàn (các hai cạnh bằng nhau và hai góc đối diện bằng nhau) hoặc tam giác cân một phần (các hai cạnh bằng nhau và một góc đối diện bằng nhau).",
+          "Tam giác cân có thể được chia thành ba trường hợp bằng nhau: Cạnh - cạnh - cạnh (c-c-c), Cạnh - góc - cạnh (c-g-c), Góc - cạnh - góc (g-c-g)."
+        ],
+        "formula": "$\\triangle ABC$ là tam giác cân nếu $AB = AC$ hoặc $\\angle B = \\angle C$.",
+        "example": "Xét tam giác $\\triangle ABC$ có $AB = 5$ cm và $AC = 5$ cm. Ta có thể thấy rằng $\\triangle ABC$ là tam giác cân vì hai cạnh $AB$ và $AC$ bằng nhau. ",
+        "images": []
+      },
+      {
+        "thinking": "Để chứng minh rằng tam giác cân có ba trường hợp bằng nhau, chúng ta cần sử dụng lý thuyết về tam giác và các định lý liên quan.",
+        "title": "Ba Trường Hợp Bằng Nhau",
+        "body": [
+          "Trường hợp 1: Cạnh - cạnh - cạnh (c-c-c)",
+          "Trường hợp 2: Cạnh - góc - cạnh (c-g-c)",
+          "Trường hợp 3: Góc - cạnh - góc (g-c-g)"
+        ],
+        "formula": "$\\triangle ABC$ là tam giác cân nếu $AB = AC$ hoặc $\\angle B = \\angle C$.",
+        "example": "Xét tam giác $\\triangle ABC$ có $AB = 5$ cm và $AC = 5$ cm. Ta có thể thấy rằng $\\triangle ABC$ là tam giác cân vì hai cạnh $AB$ và $AC$ bằng nhau. ",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 344,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 8. Đường vuông góc và đường xiên",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về đường vuông góc và đường xiên, chúng ta cần phân tích các khái niệm cơ bản về góc trong tam giác. Góc vuông là góc có độ lớn bằng 90 độ, được ký hiệu bằng chữ 'ê-ke'. Góc nhọn là góc nhỏ hơn góc vuông, còn góc tù là góc lớn hơn góc vuông nhưng nhỏ hơn góc bẹt. Góc bẹt là góc có độ lớn bằng hai góc vuông, bằng 180 độ.",
+        "title": "Khái niệm về góc trong tam giác",
+        "body": "Một số góc cơ bản trong tam giác bao gồm:\n- Góc vuông: 90 độ\n- Góc nhọn: nhỏ hơn góc vuông\n- Góc tù: lớn hơn góc vuông nhưng nhỏ hơn góc bẹt\n- Góc bẹt: bằng hai góc vuông, bằng 180 độ",
+        "formula": "$\\angle = 90^\\circ$",
+        "example": "Ví dụ: Trong tam giác ABC, nếu $\\angle B = 90^\\circ$, thì $\\angle A$ và $\\angle C$ là góc nhọn.",
+        "images": []
+      },
+      {
+        "thinking": "Đường vuông góc là đường kẻ từ một điểm trên một đường thẳng đến một điểm trên một đường thẳng khác sao cho tạo thành góc vuông. Để xác định đường vuông góc, chúng ta cần kiểm tra xem góc tạo thành bởi đường thẳng và đường thẳng khác có bằng 90 độ hay không.",
+        "title": "Đường vuông góc",
+        "body": "Đường vuông góc là đường kẻ từ một điểm trên một đường thẳng đến một điểm trên một đường thẳng khác sao cho tạo thành góc vuông. Để xác định đường vuông góc, chúng ta cần kiểm tra xem góc tạo thành bởi đường thẳng và đường thẳng khác có bằng 90 độ hay không. Một số dấu hiệu để xác định đường vuông góc bao gồm:\n- Góc tạo thành bởi đường thẳng và đường thẳng khác bằng 90 độ\n- Đường thẳng và đường thẳng khác cắt nhau tại một điểm duy nhất\n- Đường thẳng và đường thẳng khác tạo thành một góc vuông",
+        "formula": "$\\overleftrightarrow{AB} \\perp \\overleftrightarrow{CD}$",
+        "example": "Ví dụ: Trong hình vẽ dưới đây, đường thẳng AB vuông góc với đường thẳng CD vì chúng tạo thành góc vuông tại điểm O.",
+        "images": []
+      },
+      {
+        "thinking": "Đường xiên là đường kẻ từ một điểm trên một đường thẳng đến một điểm trên một đường thẳng khác sao cho không tạo thành góc vuông. Để xác định đường xiên, chúng ta cần kiểm tra xem góc tạo thành bởi đường thẳng và đường thẳng khác có bằng 90 độ hay không.",
+        "title": "Đường xiên",
+        "body": "Đường xiên là đường kẻ từ một điểm trên một đường thẳng đến một điểm trên một đường thẳng khác sao cho không tạo thành góc vuông. Để xác định đường xiên, chúng ta cần kiểm tra xem góc tạo thành bởi đường thẳng và đường thẳng khác có bằng 90 độ hay không. Một số dấu hiệu để xác định đường xiên bao gồm:\n- Góc tạo thành bởi đường thẳng và đường thẳng khác không bằng 90 độ\n- Đường thẳng và đường thẳng khác không cắt nhau tại một điểm duy nhất\n- Đường thẳng và đường thẳng khác không tạo thành một góc vuông",
+        "formula": "$\\overleftrightarrow{AB} \\not\\perp \\overleftrightarrow{CD}$",
+        "example": "Ví dụ: Trong hình vẽ dưới đây, đường thẳng AB không vuông góc với đường thẳng CD vì chúng không tạo thành góc vuông tại điểm O.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 345,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 9. Đường trung trực của một đoạn thẳng",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm hiểu về đường trung trực của một đoạn thẳng, chúng ta cần bắt đầu bằng việc hiểu về khái niệm trung điểm của một đoạn thẳng. Trung điểm của một đoạn thẳng là điểm nằm giữa hai đầu điểm của đoạn thẳng, chia đoạn thẳng thành hai phần bằng nhau. Để tìm trung điểm của một đoạn thẳng, chúng ta có thể sử dụng công thức: $M = \\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$, trong đó $(x_1, y_1)$ và $(x_2, y_2)$ là hai đầu điểm của đoạn thẳng.",
+        "title": "Khái niệm trung điểm và trung trực",
+        "body": "Trung điểm của một đoạn thẳng là điểm nằm giữa hai đầu điểm của đoạn thẳng, chia đoạn thẳng thành hai phần bằng nhau. Đường trung trực của một đoạn thẳng là đường thẳng đi qua trung điểm của đoạn thẳng và song song với đoạn thẳng.",
+        "formula": "$M = \\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$",
+        "example": "Tìm trung điểm của đoạn thẳng có hai đầu điểm là A(2, 3) và B(6, 5). Sử dụng công thức trên, chúng ta có: $M = \\left(\\frac{2 + 6}{2}, \\frac{3 + 5}{2}\\right) = \\left(4, 4\\right)$. Như vậy, trung điểm của đoạn thẳng AB là điểm M(4, 4).",
+        "images": []
+      },
+      {
+        "thinking": "Để chứng minh rằng đường trung trực của một đoạn thẳng song song với đoạn thẳng, chúng ta có thể sử dụng tính chất của trung điểm. Trung điểm của một đoạn thẳng chia đoạn thẳng thành hai phần bằng nhau, vì vậy đường trung trực của đoạn thẳng cũng chia đoạn thẳng thành hai phần bằng nhau. Điều này chứng minh rằng đường trung trực của đoạn thẳng song song với đoạn thẳng.",
+        "title": "Đường trung trực song song với đoạn thẳng",
+        "body": "Đường trung trực của một đoạn thẳng chia đoạn thẳng thành hai phần bằng nhau, vì vậy nó cũng chia đoạn thẳng thành hai phần bằng nhau. Điều này chứng minh rằng đường trung trực của đoạn thẳng song song với đoạn thẳng.",
+        "formula": "",
+        "example": "Tìm đường trung trực của đoạn thẳng có hai đầu điểm là A(2, 3) và B(6, 5). Sử dụng công thức trên, chúng ta có: $M = \\left(4, 4\\right)$. Như vậy, đường trung trực của đoạn thẳng AB là đường thẳng đi qua điểm M(4, 4) và song song với đoạn thẳng AB.",
+        "images": []
+      },
+      {
+        "thinking": "Để tìm đường trung trực của một đoạn thẳng, chúng ta có thể sử dụng công thức: $y = \\frac{y_1 + y_2}{2}$. Công thức này cho phép chúng ta tìm được đường trung trực của đoạn thẳng dựa trên hai đầu điểm của đoạn thẳng.",
+        "title": "Công thức tìm đường trung trực",
+        "body": "Công thức tìm đường trung trực của một đoạn thẳng dựa trên hai đầu điểm của đoạn thẳng là: $y = \\frac{y_1 + y_2}{2}$. Sử dụng công thức này, chúng ta có thể tìm được đường trung trực của đoạn thẳng.",
+        "formula": "$y = \\frac{y_1 + y_2}{2}$",
+        "example": "Tìm đường trung trực của đoạn thẳng có hai đầu điểm là A(2, 3) và B(6, 5). Sử dụng công thức trên, chúng ta có: $y = \\frac{3 + 5}{2} = 4$. Như vậy, đường trung trực của đoạn thẳng AB là đường thẳng y = 4.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 346,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 10. Tính chất ba đường trung tuyến của tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm hiểu về tính chất ba đường trung tuyến của tam giác, chúng ta cần bắt đầu bằng việc hiểu về khái niệm đường trung tuyến của tam giác. Đường trung tuyến của tam giác là một đoạn thẳng nối giữa hai đỉnh của tam giác và trung điểm của cạnh đối diện. Với mỗi đỉnh của tam giác, chúng ta có một đường trung tuyến.",
+        "title": "Khái niệm đường trung tuyến của tam giác",
+        "body": "Một đường trung tuyến của tam giác là một đoạn thẳng nối giữa hai đỉnh của tam giác và trung điểm của cạnh đối diện. Đường trung tuyến có thể được chia thành ba loại: đường trung tuyến của cạnh, đường trung tuyến của góc và đường trung tuyến của đỉnh.",
+        "formula": "$d = \\frac{1}{2}a$",
+        "example": "Tìm đường trung tuyến của cạnh AB trong tam giác ABC khi biết AB = 6 cm. Lời giải: Đường trung tuyến của cạnh AB là đoạn thẳng nối giữa A và trung điểm của cạnh BC. Vì AB = 6 cm nên đường trung tuyến của cạnh AB có độ dài $d = \\frac{1}{2} \\cdot 6 = 3$ cm.",
+        "images": []
+      },
+      {
+        "thinking": "Tiếp theo, chúng ta cần tìm hiểu về tính chất ba đường trung tuyến của tam giác. Theo định lý tam giác, ba đường trung tuyến của tam giác cắt nhau tại một điểm duy nhất, gọi là tâm của tam giác. Điều này có nghĩa là ba đường trung tuyến của tam giác luôn cắt nhau tại một điểm duy nhất.",
+        "title": "Tính chất ba đường trung tuyến của tam giác",
+        "body": "Theo định lý tam giác, ba đường trung tuyến của tam giác cắt nhau tại một điểm duy nhất, gọi là tâm của tam giác. Điều này có nghĩa là ba đường trung tuyến của tam giác luôn cắt nhau tại một điểm duy nhất.",
+        "formula": "",
+        "example": "Xác định tâm của tam giác ABC khi biết ba đường trung tuyến của tam giác cắt nhau tại điểm M. Lời giải: Vì ba đường trung tuyến của tam giác ABC cắt nhau tại điểm M nên M là tâm của tam giác ABC.",
+        "images": []
+      },
+      {
+        "thinking": "Cuối cùng, chúng ta cần tìm hiểu về ứng dụng của tính chất ba đường trung tuyến của tam giác. Tính chất ba đường trung tuyến của tam giác có ứng dụng trong nhiều lĩnh vực như kiến trúc, kỹ thuật và toán học.",
+        "title": "Ứng dụng của tính chất ba đường trung tuyến của tam giác",
+        "body": "Tính chất ba đường trung tuyến của tam giác có ứng dụng trong nhiều lĩnh vực như kiến trúc, kỹ thuật và toán học. Ví dụ, trong kiến trúc, tính chất ba đường trung tuyến của tam giác được sử dụng để thiết kế các tòa nhà và công trình kiến trúc.",
+        "formula": "",
+        "example": "Xác định tâm của tam giác ABC khi biết ba đường trung tuyến của tam giác cắt nhau tại điểm M và ứng dụng của tính chất ba đường trung tuyến của tam giác trong kiến trúc. Lời giải: Vì ba đường trung tuyến của tam giác ABC cắt nhau tại điểm M nên M là tâm của tam giác ABC. Tính chất ba đường trung tuyến của tam giác được ứng dụng trong kiến trúc để thiết kế các tòa nhà và công trình kiến trúc.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 347,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 11. Tính chất ba đường phân giác của tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất ba đường phân giác của tam giác, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần biết rằng đường phân giác của một góc trong một tam giác là một đoạn thẳng đi qua điểm giữa của cạnh đối diện và phân chia góc đó thành hai phần bằng nhau. Điều này có nghĩa là đường phân giác chia góc thành hai phần bằng nhau, không phải chia cạnh.",
+        "title": "Khái niệm đường phân giác",
+        "body": "Một đường phân giác của một góc trong một tam giác là một đoạn thẳng đi qua điểm giữa của cạnh đối diện và phân chia góc đó thành hai phần bằng nhau. Đường phân giác chia góc thành hai phần bằng nhau, không phải chia cạnh.",
+        "formula": "$\\overline{AD}$ là đường phân giác của góc $\\angle BAC$",
+        "example": "Xét tam giác ABC, đường phân giác của góc $\\angle BAC$ là $\\overline{AD}$. Để minh họa tính chất của đường phân giác, chúng ta có thể sử dụng ví dụ sau: Nếu chúng ta vẽ đường phân giác $\\overline{AD}$ của góc $\\angle BAC$, thì $\\overline{AD}$ sẽ chia góc $\\angle BAC$ thành hai phần bằng nhau, nghĩa là $\\angle BAD = \\angle DAC$.",
+        "images": []
+      },
+      {
+        "thinking": "Tiếp theo, chúng ta cần phân tích tính chất của ba đường phân giác trong một tam giác. Theo định nghĩa, ba đường phân giác của một tam giác là ba đường phân giác của ba góc trong tam giác đó. Điều này có nghĩa là ba đường phân giác chia ba góc trong tam giác thành sáu phần bằng nhau.",
+        "title": "Tính chất ba đường phân giác",
+        "body": "Ba đường phân giác của một tam giác là ba đường phân giác của ba góc trong tam giác đó. Ba đường phân giác chia ba góc trong tam giác thành sáu phần bằng nhau.",
+        "formula": "$\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$ là ba đường phân giác của tam giác ABC",
+        "example": "Xét tam giác ABC, ba đường phân giác của tam giác ABC là $\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$. Để minh họa tính chất của ba đường phân giác, chúng ta có thể sử dụng ví dụ sau: Nếu chúng ta vẽ ba đường phân giác $\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$ của tam giác ABC, thì ba đường phân giác sẽ chia ba góc trong tam giác ABC thành sáu phần bằng nhau, nghĩa là $\\angle BAD = \\angle DAC = \\angle ABE = \\angle EBC = \\angle ECF = \\angle CFA$.",
+        "images": []
+      },
+      {
+        "thinking": "Cuối cùng, chúng ta cần phân tích mối quan hệ giữa ba đường phân giác và ba góc trong một tam giác. Theo tính chất ba đường phân giác, ba đường phân giác chia ba góc trong tam giác thành sáu phần bằng nhau. Điều này có nghĩa là ba góc trong tam giác được chia thành sáu phần bằng nhau.",
+        "title": "Mối quan hệ giữa ba đường phân giác và ba góc",
+        "body": "Ba đường phân giác chia ba góc trong tam giác thành sáu phần bằng nhau. Ba góc trong tam giác được chia thành sáu phần bằng nhau.",
+        "formula": "$\\angle A = \\angle B = \\angle C$",
+        "example": "Xét tam giác ABC, ba đường phân giác của tam giác ABC là $\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$. Để minh họa mối quan hệ giữa ba đường phân giác và ba góc, chúng ta có thể sử dụng ví dụ sau: Nếu chúng ta vẽ ba đường phân giác $\\overline{AD}$, $\\overline{BE}$, $\\overline{CF}$ của tam giác ABC, thì ba góc trong tam giác ABC sẽ được chia thành sáu phần bằng nhau, nghĩa là $\\angle A = \\angle B = \\angle C$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 348,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 12. Tính chất ba đường trung trực của tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất ba đường trung trực của tam giác, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần biết rằng đường trung trực của một đoạn thẳng là đoạn thẳng nối giữa hai điểm giữa của đoạn thẳng. Đối với tam giác, đường trung trực của một cạnh là đoạn thẳng nối giữa hai điểm giữa của cạnh đó. Bây giờ, chúng ta cần xem xét ba trường hợp bằng nhau của tam giác: cạnh - cạnh - cạnh (c-c-c), cạnh - góc - cạnh (c-g-c), góc - cạnh - góc (g-c-g).",
+        "title": "Khái niệm đường trung trực của tam giác",
+        "body": "Đường trung trực của một cạnh của tam giác là đoạn thẳng nối giữa hai điểm giữa của cạnh đó. Đường trung trực của một góc của tam giác là đoạn thẳng nối giữa hai điểm giữa của góc đó. Đường trung trực của một tam giác là đoạn thẳng nối giữa hai điểm giữa của tam giác.",
+        "formula": "$d = \\frac{a + b}{2}$",
+        "example": "Xét tam giác ABC có cạnh AB = 6 cm, cạnh BC = 8 cm. Đường trung trực của cạnh AB là đoạn thẳng nối giữa hai điểm giữa của cạnh AB, được ký hiệu là AD. Để tìm điểm D, chúng ta sử dụng công thức $d = \\frac{a + b}{2}$. Trong trường hợp này, a = 6 cm và b = 8 cm, nên $d = \\frac{6 + 8}{2} = 7$ cm. Vì vậy, điểm D nằm cách điểm A 7 cm.",
+        "images": []
+      },
+      {
+        "thinking": "Tiếp theo, chúng ta cần xem xét tính chất của ba đường trung trực của tam giác. Chúng ta cần phân tích từng bước để hiểu rõ hơn về tính chất này.",
+        "title": "Tính chất ba đường trung trực của tam giác",
+        "body": "Ba đường trung trực của tam giác cắt nhau tại một điểm duy nhất. Đường trung trực của một cạnh của tam giác cắt đường trung trực của góc đối với cạnh đó tại trung điểm của cạnh đó. Đường trung trực của một góc của tam giác cắt đường trung trực của cạnh đối với góc đó tại trung điểm của góc đó.",
+        "formula": "$$",
+        "example": "Xét tam giác ABC. Đường trung trực của cạnh AB cắt đường trung trực của góc BAC tại điểm D. Để tìm điểm D, chúng ta sử dụng công thức $d = \\frac{a + b}{2}$. Trong trường hợp này, a = 6 cm và b = 8 cm, nên $d = \\frac{6 + 8}{2} = 7$ cm. Vì vậy, điểm D nằm cách điểm A 7 cm.",
+        "images": []
+      },
+      {
+        "thinking": "Cuối cùng, chúng ta cần xem xét ứng dụng của tính chất ba đường trung trực của tam giác trong thực tế.",
+        "title": "Ứng dụng của tính chất ba đường trung trực của tam giác",
+        "body": "Tính chất ba đường trung trực của tam giác được ứng dụng trong nhiều lĩnh vực như kiến trúc, kỹ thuật, khoa học. Ví dụ, trong kiến trúc, tính chất này được sử dụng để thiết kế các tòa nhà và công trình công cộng.",
+        "formula": "$$",
+        "example": "Xét một tòa nhà có hình dạng tam giác. Để thiết kế tòa nhà này, chúng ta cần sử dụng tính chất ba đường trung trực của tam giác. Chúng ta cần tìm điểm trung điểm của các cạnh của tam giác và sử dụng công thức $d = \\frac{a + b}{2}$ để tìm điểm trung điểm của các cạnh đó.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 349,
+    "grade": 7,
+    "chapter_name": "Chương VII. Tam giác",
+    "lesson_name": "Bài 13. Tính chất ba đường cao của tam giác",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất ba đường cao của tam giác, chúng ta cần phân tích từng bước. Đầu tiên, chúng ta cần biết rằng đường cao của một tam giác là đoạn thẳng từ một đỉnh của tam giác đến đường cơ sở (đường nối giữa hai đỉnh còn lại). Đường cao chia tam giác thành hai phần nhỏ hơn. Chúng ta cần tìm hiểu về ba trường hợp bằng nhau của tam giác để hiểu tại sao ba đường cao lại bằng nhau.",
+        "title": "Khái niệm đường cao và ba trường hợp bằng nhau của tam giác",
+        "body": [
+          "Đường cao của một tam giác là đoạn thẳng từ một đỉnh của tam giác đến đường cơ sở.",
+          "Ba trường hợp bằng nhau của tam giác là: Cạnh - cạnh - cạnh (c-c-c), Cạnh - góc - cạnh (c-g-c), Góc - cạnh - góc (g-c-g).",
+          "Mỗi trường hợp bằng nhau của tam giác có một đường cao riêng biệt."
+        ],
+        "formula": "$\\triangle ABC \\sim \\triangle DEF \\Rightarrow \\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD}$",
+        "example": "Xét tam giác ABC và tam giác DEF, chúng ta có: $\\triangle ABC \\sim \\triangle DEF \\Rightarrow \\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD}$. Nếu chúng ta vẽ đường cao từ đỉnh A đến đường cơ sở của tam giác ABC, và đường cao từ đỉnh D đến đường cơ sở của tam giác DEF, chúng ta sẽ thấy rằng ba đường cao này bằng nhau.",
+        "images": []
+      },
+      {
+        "thinking": "Bây giờ chúng ta cần tìm hiểu tại sao ba đường cao lại bằng nhau. Chúng ta có thể sử dụng lý thuyết về các trường hợp bằng nhau của tam giác để giải thích điều này.",
+        "title": "Tính chất ba đường cao của tam giác",
+        "body": [
+          "Ba đường cao của một tam giác bằng nhau khi và chỉ khi tam giác đó có ba trường hợp bằng nhau.",
+          "Nếu tam giác có ba trường hợp bằng nhau, thì ba đường cao của nó cũng bằng nhau.",
+          "Ngược lại, nếu ba đường cao của một tam giác bằng nhau, thì tam giác đó cũng có ba trường hợp bằng nhau."
+        ],
+        "formula": "$\\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD}$",
+        "example": "Xét tam giác ABC và tam giác DEF, chúng ta có: $\\triangle ABC \\sim \\triangle DEF \\Rightarrow \\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD}$. Nếu chúng ta vẽ đường cao từ đỉnh A đến đường cơ sở của tam giác ABC, và đường cao từ đỉnh D đến đường cơ sở của tam giác DEF, chúng ta sẽ thấy rằng ba đường cao này bằng nhau.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 5,
+    "grade": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10",
+    "lesson_name": "5. Các số 7, 8, 9",
+    "theory_cards": [
+      {
+        "thinking": "Để học về số 7, 8, 9, chúng ta cần hiểu rằng mỗi số có một hình đặc trưng. Số 7 có hình một cây thông, số 8 có hình một vòng tròn, và số 9 có hình một chữ số 9. Khi nhìn vào hình, chúng ta có thể nhận biết được số đó là số nào.",
+        "title": "Khái niệm số 7, 8, 9",
+        "body": "Số 7 được biểu diễn bằng hình một cây thông. Số 8 được biểu diễn bằng hình một vòng tròn. Số 9 được biểu diễn bằng hình một chữ số 9. Mỗi số có một hình đặc trưng giúp chúng ta nhận biết số đó.",
+        "formula": "$\\boxed{7 \\rightarrow \\text{cây thông}}$, $\\boxed{8 \\rightarrow \\text{vòng tròn}}$, $\\boxed{9 \\rightarrow \\text{chữ số 9}}$",
+        "example": "Ví dụ: Hãy chọn hình phù hợp cho số 7. $\\Rightarrow$ Hình cây thông là hình phù hợp cho số 7.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0916/bai-1-tr15.JPG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0916/tr-loi-bai-1-tr15.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2022/0916/bai-2-tr15.JPG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2022/0916/tr-loi-bai-2-tr15.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để học về cách lấy số hình phù hợp, chúng ta cần hiểu rằng mỗi số có một hình đặc trưng. Khi nhìn vào hình, chúng ta có thể nhận biết được số đó là số nào.",
+        "title": "Lấy số hình phù hợp",
+        "body": "Để lấy số hình phù hợp, chúng ta cần nhìn vào hình và nhận biết số đó là số nào. Ví dụ, nếu nhìn vào hình cây thông, chúng ta có thể nhận biết số đó là số 7.",
+        "formula": "$\\boxed{\\text{Lấy số hình phù hợp} \\Rightarrow \\text{nhận biết số đó là số nào}}$",
+        "example": "Ví dụ: Hãy lấy số hình phù hợp cho hình vòng tròn. $\\Rightarrow$ Số hình phù hợp cho hình vòng tròn là số 8.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 37,
+    "grade": 1,
+    "chapter_name": "Chủ đề 4: Phép cộng, phép trừ trong phạm vi 100",
+    "lesson_name": "9. Phép trừ dạng 27-4; 63-40",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết phép trừ dạng 27-4 và 63-40, chúng ta cần hiểu rằng phép trừ là việc bớt đi một số từ một nhóm ban đầu. Trong trường hợp này, chúng ta sẽ bớt đi 4 từ 27 và 40 từ 63.",
+        "title": "Khái niệm phép trừ",
+        "body": [
+          "Phép trừ là việc bớt đi một số từ một nhóm ban đầu.",
+          "Chúng ta sử dụng dấu trừ (-) để biểu diễn phép trừ.",
+          "Ví dụ: 27 - 4 = ?"
+        ],
+        "formula": "$a - b = a + (-b)$",
+        "example": "Ví dụ: 27 - 4 = 27 + (-4) = 23",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/1231/bai-1-tr142.JPG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/1231/tr-loi-bai-1-tr142.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2022/1231/bai-2-tr142.JPG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2022/1231/6.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để giải quyết phép trừ dạng 27-4 và 63-40, chúng ta cần thực hiện phép trừ từng bước. Chúng ta sẽ bắt đầu từ số lớn hơn và bớt đi số nhỏ hơn.",
+        "title": "Cách giải quyết phép trừ",
+        "body": [
+          "Chúng ta bắt đầu từ số lớn hơn.",
+          "Sau đó, chúng ta bớt đi số nhỏ hơn.",
+          "Ví dụ: 27 - 4 = ?"
+        ],
+        "formula": "$27 - 4 = 27 + (-4)$",
+        "example": "Ví dụ: 27 - 4 = 27 + (-4) = 23",
+        "images": []
+      },
+      {
+        "thinking": "Để giải quyết phép trừ dạng 27-4 và 63-40, chúng ta cần sử dụng phép trừ để tìm ra kết quả.",
+        "title": "Phép trừ trong phạm vi 100",
+        "body": [
+          "Chúng ta sử dụng phép trừ để tìm ra kết quả.",
+          "Ví dụ: 27 - 4 = ?"
+        ],
+        "formula": "$27 - 4 = 23$",
+        "example": "Ví dụ: 63 - 40 = 63 + (-40) = 23",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 52,
+    "grade": 2,
+    "chapter_name": "CHƯƠNG 2: PHÉP CỘNG, PHÉP TRỪ (CÓ NHỚ) TRONG PHẠM VI 100",
+    "lesson_name": "1. Phép cộng (có nhớ) trong phạm vi 100",
+    "theory_cards": [
+      {
+        "thinking": "Phép cộng (có nhớ) là một phép toán cơ bản trong toán học, giúp chúng ta gộp hai hay nhiều nhóm lại với nhau. Để thực hiện phép cộng có nhớ, chúng ta cần nhớ số trước đó và cộng thêm số mới.",
+        "title": "Khái niệm phép cộng có nhớ",
+        "body": [
+          "Phép cộng có nhớ là phép toán cộng hai hay nhiều số với nhau mà không cần sử dụng tay.",
+          "Chúng ta cần nhớ số trước đó và cộng thêm số mới.",
+          "Ví dụ: 5 + 2 = ?",
+          "Chúng ta nhớ số 5 và cộng thêm số 2, kết quả là 7."
+        ],
+        "formula": "$a + b = a + b$",
+        "example": [
+          "Ví dụ 1: 3 + 5 = ?",
+          "Lời giải: 3 + 5 = 8.",
+          "Ví dụ 2: 2 + 8 = ?",
+          "Lời giải: 2 + 8 = 10."
+        ],
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/question_lgh/2021_51/1622694948-6mzv.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/question_lgh/2021_51/1622694948-inzv.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/question_lgh/2021_51/1622694948-jvk4.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/question_lgh/2021_51/1622694948-r5j9.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để thực hiện phép cộng có nhớ, chúng ta cần nhớ số trước đó và cộng thêm số mới. Chúng ta cũng cần đảm bảo rằng số trước đó và số mới đều nằm trong phạm vi 100.",
+        "title": "Quy tắc thực hiện phép cộng có nhớ",
+        "body": [
+          "Chúng ta cần nhớ số trước đó và cộng thêm số mới.",
+          "Số trước đó và số mới đều nằm trong phạm vi 100.",
+          "Ví dụ: 50 + 20 = ?",
+          "Chúng ta nhớ số 50 và cộng thêm số 20, kết quả là 70."
+        ],
+        "formula": "$a + b = a + b$",
+        "example": [
+          "Ví dụ 1: 40 + 30 = ?",
+          "Lời giải: 40 + 30 = 70.",
+          "Ví dụ 2: 60 + 40 = ?",
+          "Lời giải: 60 + 40 = 100."
+        ],
+        "images": []
+      },
+      {
+        "thinking": "Phép cộng có nhớ giúp chúng ta thực hiện phép toán cộng một cách nhanh chóng và chính xác. Chúng ta cần nhớ số trước đó và cộng thêm số mới để đạt được kết quả chính xác.",
+        "title": "Ứng dụng của phép cộng có nhớ",
+        "body": [
+          "Phép cộng có nhớ giúp chúng ta thực hiện phép toán cộng một cách nhanh chóng và chính xác.",
+          "Chúng ta cần nhớ số trước đó và cộng thêm số mới để đạt được kết quả chính xác.",
+          "Ví dụ: 20 + 50 = ?",
+          "Chúng ta nhớ số 20 và cộng thêm số 50, kết quả là 70."
+        ],
+        "formula": "$a + b = a + b$",
+        "example": [
+          "Ví dụ 1: 10 + 60 = ?",
+          "Lời giải: 10 + 60 = 70.",
+          "Ví dụ 2: 30 + 70 = ?",
+          "Lời giải: 30 + 70 = 100."
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 116,
+    "grade": 3,
+    "chapter_name": "Chủ đề 2: Nhân, chia các số trong phạm vi 1 000",
+    "lesson_name": "10. Giải bài toán có đến hai bước tính",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán có hai bước tính, chúng ta cần phân tích từng bước một. Đầu tiên, chúng ta cần hiểu rõ yêu cầu của bài toán và xác định số lượng người trong hai hàng. Sau đó, chúng ta có thể sử dụng phép tính cộng và trừ để tính toán số lượng người trong cả hai hàng.",
+        "title": "Phân tích bài toán",
+        "body": "Một bài toán có hai bước tính thường bao gồm hai yêu cầu khác nhau. Chúng ta cần xác định số lượng người trong hai hàng và sau đó sử dụng phép tính cộng và trừ để tính toán số lượng người trong cả hai hàng. Để giải quyết bài toán này, chúng ta cần sử dụng suy nghĩ logic và phân tích từng bước một.",
+        "formula": "$n = a + b$ và $m = a + 2b$",
+        "example": "Ví dụ: Cả hai hàng có bao nhiêu bạn? (Hàng sau có 5 bạn, hàng trước có nhiều hơn hàng sau 2 bạn).",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0715/1_5.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để giải quyết bài toán này, chúng ta cần sử dụng phép tính cộng và trừ. Chúng ta có thể sử dụng công thức $n = a + b$ để tính toán số lượng người trong hàng sau và công thức $m = a + 2b$ để tính toán số lượng người trong hàng trước.",
+        "title": "Sử dụng phép tính cộng và trừ",
+        "body": "Để giải quyết bài toán này, chúng ta cần sử dụng phép tính cộng và trừ. Chúng ta có thể sử dụng công thức $n = a + b$ để tính toán số lượng người trong hàng sau và công thức $m = a + 2b$ để tính toán số lượng người trong hàng trước. Sau đó, chúng ta có thể sử dụng phép tính cộng và trừ để tính toán số lượng người trong cả hai hàng.",
+        "formula": "$n = a + b$ và $m = a + 2b$",
+        "example": "$a = 5$, $b = 2$, $n = a + b = 5 + 2 = 7$ và $m = a + 2b = 5 + 2 \\cdot 2 = 9$",
+        "images": []
+      },
+      {
+        "thinking": "Sau khi sử dụng phép tính cộng và trừ, chúng ta có thể tính toán số lượng người trong cả hai hàng. Chúng ta cần sử dụng suy nghĩ logic và phân tích từng bước một để đảm bảo rằng chúng ta đã tính toán chính xác.",
+        "title": "Tính toán số lượng người",
+        "body": "Sau khi sử dụng phép tính cộng và trừ, chúng ta có thể tính toán số lượng người trong cả hai hàng. Chúng ta cần sử dụng suy nghĩ logic và phân tích từng bước một để đảm bảo rằng chúng ta đã tính toán chính xác. Sau đó, chúng ta có thể sử dụng kết quả để trả lời câu hỏi của bài toán.",
+        "formula": "$n = a + b$ và $m = a + 2b$",
+        "example": "$n = 7$ và $m = 9$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 152,
+    "grade": 3,
+    "chapter_name": "Chủ đề 4: Cộng, trừ, nhân, chia trong phạm vi 100 000",
+    "lesson_name": "18. Đơn vị đo diện tích. Xăng-ti-mét vuông",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán chia số lớn, chúng ta cần chia số thành các phần nhỏ hơn và thực hiện phép chia từng phần.",
+        "title": "Đơn vị đo diện tích",
+        "body": "Đơn vị đo diện tích là mét vuông (m²), được sử dụng để đo diện tích của các hình dạng khác nhau. Để thuận tiện trong việc đo diện tích, chúng ta có thể sử dụng các đơn vị đo diện tích khác như:\n- 1 m² = 100 dm² = 10 000 cm² = 1 000 000 mm²\n- 1 dm² = 100 cm² = 10 000 mm²\n- 1 cm² = 100 mm²\nChúng ta có thể sử dụng các đơn vị đo diện tích này để đo diện tích của các hình dạng khác nhau.",
+        "formula": "$1\\text{ m}^2 = 100\\text{ dm}^2 = 10\\ 000\\text{ cm}^2 = 1\\ 000\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Tính diện tích của hình vuông có cạnh dài 5 m. Để tính diện tích, chúng ta cần sử dụng đơn vị đo diện tích phù hợp. Trong trường hợp này, chúng ta có thể sử dụng đơn vị đo diện tích mét vuông (m²). Diện tích của hình vuông có cạnh dài 5 m được tính bằng cách sử dụng công thức:\n$A = s^2$\ntrong đó A là diện tích và s là chiều dài của cạnh.\n$A = 5^2 = 25\\text{ m}^2$\nVậy diện tích của hình vuông có cạnh dài 5 m là 25 m².",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2022/0809/cau-1_8.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2022/0809/cau-2_4.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để tính diện tích của các hình dạng khác nhau, chúng ta cần sử dụng các công thức và quy tắc phù hợp.",
+        "title": "Tính diện tích của hình chữ nhật",
+        "body": "Để tính diện tích của hình chữ nhật, chúng ta cần sử dụng công thức:\n$A = l \\times w$\ntrong đó A là diện tích, l là chiều dài và w là chiều rộng của hình chữ nhật.\nVí dụ: Tính diện tích của hình chữ nhật có chiều dài 6 m và chiều rộng 4 m.\n$A = 6 \\times 4 = 24\\text{ m}^2$\nVậy diện tích của hình chữ nhật có chiều dài 6 m và chiều rộng 4 m là 24 m².",
+        "formula": "$A = l \\times w$",
+        "example": "Ví dụ trên đã minh họa cách tính diện tích của hình chữ nhật.",
+        "images": []
+      },
+      {
+        "thinking": "Để thuận tiện trong việc đo diện tích, chúng ta có thể sử dụng các đơn vị đo diện tích khác nhau.",
+        "title": "Quy đổi đơn vị đo diện tích",
+        "body": "Chúng ta có thể sử dụng các đơn vị đo diện tích khác nhau để đo diện tích của các hình dạng khác nhau. Ví dụ:\n- 1 m² = 100 dm² = 10 000 cm² = 1 000 000 mm²\n- 1 dm² = 100 cm² = 10 000 mm²\n- 1 cm² = 100 mm²\nChúng ta có thể sử dụng các đơn vị đo diện tích này để đo diện tích của các hình dạng khác nhau.",
+        "formula": "$1\\text{ m}^2 = 100\\text{ dm}^2 = 10\\ 000\\text{ cm}^2 = 1\\ 000\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Tính diện tích của hình vuông có cạnh dài 5 dm. Để tính diện tích, chúng ta cần sử dụng đơn vị đo diện tích phù hợp. Trong trường hợp này, chúng ta có thể sử dụng đơn vị đo diện tích decimet vuông (dm²). Diện tích của hình vuông có cạnh dài 5 dm được tính bằng cách sử dụng công thức:\n$A = s^2$\ntrong đó A là diện tích và s là chiều dài của cạnh.\n$A = 5^2 = 25\\text{ dm}^2$\nVậy diện tích của hình vuông có cạnh dài 5 dm là 25 dm².",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 253,
+    "grade": 5,
+    "chapter_name": "Chủ đề 3. Hình học và đo lường",
+    "lesson_name": "15. Bài 64. Mét khối",
+    "theory_cards": [
+      {
+        "thinking": "Để đọc số đo thể tích 33 m3, chúng ta sẽ đọc số 33 và sau đó đọc đơn vị đo là mét khối (m3). Cũng tương tự, để đọc số đo thể tích 18,5 m3, chúng ta sẽ đọc số 18 và phần thập phân 0,5 và sau đó đọc đơn vị đo là mét khối (m3). Đối với số đo thể tích 0,05 m3, chúng ta sẽ đọc số 0 và phần thập phân 05 và sau đó đọc đơn vị đo là mét khối (m3). Cuối cùng, để đọc số đo thể tích 1/2 m3, chúng ta sẽ đọc phân số 1/2 và sau đó đọc đơn vị đo là mét khối (m3).",
+        "title": "Đọc số đo thể tích",
+        "body": "Để đọc số đo thể tích, chúng ta cần đọc số và sau đó đọc đơn vị đo. Ví dụ: 33 m3, 18,5 m3, 0,05 m3, 1/2 m3.",
+        "formula": "$V = S \\times h$",
+        "example": "Ví dụ: Đọc số đo thể tích 33 m3. Lời giải: Số đo thể tích 33 m3 được đọc là ba mươi ba mét khối.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2024/0502/2024-05-02-110220.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2024/0502/2024-05-02-110252.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2024/0502/2024-05-02-110302.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2024/0502/2024-05-02-110315.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để viết số đo thể tích 33 m3, chúng ta sẽ viết số 33 và sau đó viết đơn vị đo là mét khối (m3). Cũng tương tự, để viết số đo thể tích 18,5 m3, chúng ta sẽ viết số 18 và phần thập phân 0,5 và sau đó viết đơn vị đo là mét khối (m3). Đối với số đo thể tích 0,05 m3, chúng ta sẽ viết số 0 và phần thập phân 05 và sau đó viết đơn vị đo là mét khối (m3). Cuối cùng, để viết số đo thể tích 1/2 m3, chúng ta sẽ viết phân số 1/2 và sau đó viết đơn vị đo là mét khối (m3).",
+        "title": "Viết số đo thể tích",
+        "body": "Để viết số đo thể tích, chúng ta cần viết số và sau đó viết đơn vị đo. Ví dụ: 33 m3, 18,5 m3, 0,05 m3, 1/2 m3.",
+        "formula": "$V = S \\times h$",
+        "example": "Ví dụ: Viết số đo thể tích 33 m3. Lời giải: Số đo thể tích 33 m3 được viết là ba mươi ba mét khối.",
+        "images": []
+      },
+      {
+        "thinking": "Để ước lượng thể tích của một vật, chúng ta cần biết kích thước của vật đó. Ví dụ, nếu vật có kích thước 10 cm x 5 cm x 2 cm, thì thể tích của vật đó sẽ là 100 cm3. Nếu vật có kích thước 1 m x 0,5 m x 0,2 m, thì thể tích của vật đó sẽ là 0,1 m3.",
+        "title": "Ước lượng thể tích",
+        "body": "Để ước lượng thể tích của một vật, chúng ta cần biết kích thước của vật đó. Ví dụ: 10 cm x 5 cm x 2 cm, 1 m x 0,5 m x 0,2 m.",
+        "formula": "$V = S \\times h$",
+        "example": "Ví dụ: Ước lượng thể tích của một hộp có kích thước 10 cm x 5 cm x 2 cm. Lời giải: Thể tích của hộp được ước lượng là 100 cm3.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 274,
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 1.SỐ TỰ NHIÊN",
+    "lesson_name": "Bài 13. Bội chung và bội chung nhỏ nhất",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm bội chung của hai số, chúng ta cần tìm các bội chung của mỗi số và sau đó tìm giao của hai tập hợp bội đó. Bội chung của hai số là số chia hết cho cả hai số đó.",
+        "title": "Khái niệm bội chung",
+        "body": [
+          "Bội chung của hai số là số chia hết cho cả hai số đó.",
+          "Kí hiệu BC(a, b) là tập hợp các bội chung của a và b.",
+          "Cách tìm bội chung của hai số a và b:",
+          "- Bước 1: Viết tập hợp các bội B(a) của a và các bội B(b) của b.",
+          "- Bước 2: Tìm những phần tử chung của B(a) và B(b)."
+        ],
+        "formula": "$BC(a, b) = \\{x \\in \\mathbb{Z} | x \\text{ chia hết cho cả } a \\text{ và } b\\}$",
+        "example": "$B(3) = \\{0, 3, 6, 9, 12, ...\\}$ và $B(2) = \\{0, 2, 4, 6, 8, 10, 12, ...\\}$. Nên $BC(2, 3) = \\{0, 6, 12, ...\\}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2021/1020/so-do-tu-duy-bai-12_2.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để tìm bội chung nhỏ nhất của hai số, chúng ta cần tìm số nhỏ nhất khác 0 trong tập hợp các bội chung của hai số đó.",
+        "title": "Bội chung nhỏ nhất",
+        "body": [
+          "Bội chung nhỏ nhất của hai số là số nhỏ nhất khác 0 trong tập hợp các bội chung của hai số đó.",
+          "Kí hiệu BCNN(a, b) là bội chung nhỏ nhất của a và b.",
+          "Cách tìm bội chung nhỏ nhất của hai số a và b:",
+          "- Bước 1: Tìm tập hợp các bội chung của hai số a và b: BC(a, b).",
+          "- Bước 2: Tìm số nhỏ nhất khác 0 trong các bội chung vừa tìm được: BCNN(a, b)."
+        ],
+        "formula": "$BCNN(a, b) = \\min\\{x \\in \\mathbb{Z} | x > 0 \\text{ và } x \\text{ chia hết cho cả } a \\text{ và } b\\}$",
+        "example": "Tìm BCNN(15, 20). $B(15) = \\{0, 15, 30, 45, 60, ...\\}$ và $B(20) = \\{0, 20, 40, 60, 80, 100, 120, ...\\}$. Nên $BC(15, 20) = \\{0, 60, 120, ...\\}$. Số nhỏ nhất khác 0 trong các bội chung trên là 60 nên $BCNN(15, 20) = 60$.",
+        "images": []
+      },
+      {
+        "thinking": "Để tìm bội chung nhỏ nhất của hai số, chúng ta có thể phân tích mỗi số ra thừa số nguyên tố và sau đó tìm tích của các thừa số nguyên tố chung và riêng.",
+        "title": "Tìm bội chung nhỏ nhất bằng cách phân tích các số ra thừa số nguyên tố",
+        "body": [
+          "Cách tìm bội chung nhỏ nhất bằng cách phân tích các số ra thừa số nguyên tố:",
+          "- Bước 1: Phân tích mỗi số ra thừa số nguyên tố.",
+          "- Bước 2: Chọn ra các thừa số nguyên tố chung và riêng.",
+          "- Bước 3: Lập tích của các thừa số đã chọn, mỗi thừa số lấy với số mũ lớn nhất của nó."
+        ],
+        "formula": "$BCNN(a, b) = \\prod_{i=1}^n p_i^{max(k_i, l_i)}$",
+        "example": "Tìm BCNN(15, 20). $15 = 3.5$ và $20 = 2^2.5$. Nên $BCNN(15, 20) = 2^2.3.5 = 60$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 275,
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 2.SỐ NGUYÊN",
+    "lesson_name": "Bài 1. Số nguyên âm",
+    "theory_cards": [
+      {
+        "thinking": "Số nguyên âm là gì? Tại sao chúng ta cần biết về số nguyên âm?",
+        "title": "Khái niệm số nguyên âm",
+        "body": "Số nguyên âm là một loại số nguyên có dấu âm (-). Chúng ta cần biết về số nguyên âm vì chúng ta thường xuyên sử dụng chúng trong cuộc sống hàng ngày, chẳng hạn như khi nói về nhiệt độ dưới 0 độ C hoặc độ cao dưới mực nước biển.",
+        "formula": "$-n$ là số nguyên âm của số nguyên $n$",
+        "example": "Ví dụ: Số -5 là số nguyên âm của số 5. Khi nói về nhiệt độ, -5 độ C là nhiệt độ dưới 0 độ C.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2021/1021/so-do-bai-13_3.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Làm thế nào để tạo ra số nguyên âm?",
+        "title": "Tạo số nguyên âm",
+        "body": "Chúng ta có thể tạo ra số nguyên âm bằng cách thêm dấu âm (-) vào trước số nguyên dương. Ví dụ: -5 là số nguyên âm của số 5.",
+        "formula": "$-n = -1 \\cdot n$",
+        "example": "Ví dụ: -3 là số nguyên âm của số 3. Khi nói về độ cao, -3 mét là độ cao dưới mực nước biển.",
+        "images": []
+      },
+      {
+        "thinking": "Số nguyên âm có tác dụng gì trong cuộc sống hàng ngày?",
+        "title": "Tác dụng của số nguyên âm",
+        "body": "Số nguyên âm có tác dụng giúp chúng ta mô tả các đại lượng có thể xét theo hai chiều khác nhau. Ví dụ: nhiệt độ dưới 0 độ C, độ cao dưới mực nước biển, số tiền còn nợ, số tiền lỗ.",
+        "formula": "Không có công thức cụ thể",
+        "example": "Ví dụ: Khi nói về nhiệt độ, -5 độ C là nhiệt độ dưới 0 độ C. Khi nói về độ cao, -3 mét là độ cao dưới mực nước biển.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 297,
+    "grade": 6,
+    "chapter_name": "CHƯƠNG 5. PHÂN SỐ VÀ SỐ THẬP PHÂN",
+    "lesson_name": "Bài 6. Phép cộng và phép trừ số thập phân",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về phép cộng và phép trừ số thập phân, chúng ta cần phân tích từng bước. Đầu tiên, chúng ta cần biết số đối của số thập phân là gì. Số đối của số thập phân a được ký hiệu là -a. Khi cộng hai số thập phân, chúng ta cần áp dụng các quy tắc dấu như khi thực hiện các phép tính cộng và trừ các số nguyên.",
+        "title": "Số đối của số thập phân",
+        "body": [
+          "Số đối của số thập phân a được ký hiệu là -a.",
+          "Ta có: a + (-a) = 0."
+        ],
+        "formula": "$a + (-a) = 0$",
+        "example": "Ví dụ: Tìm số đối của số thập phân 5. Lời giải: Số đối của số thập phân 5 là -5.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2021/1123/so-do-canh-dieu-trang-48.jpg",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để thực hiện cộng trừ các phép tính cộng và trừ các số thập phân, chúng ta cần áp dụng các quy tắc dấu như khi thực hiện các phép tính cộng và trừ các số nguyên.",
+        "title": "Cộng, trừ hai số thập phân",
+        "body": [
+          "Muốn cộng hai số thập phân âm, ta cộng hai số đối của chúng rồi thêm dấu trừ đằng trước kết quả.",
+          "Muốn cộng hai số thập phân trái dấu, ta làm như sau:",
+          "  • Nếu số dương lớn hơn hay bằng số đối của số âm thì ta lấy số dương trừ đi số đối của số âm.",
+          "  • Nếu số dương nhỏ hơn số đối của số âm thì ta lấy số đối của số âm trừ đi số dương rồi thêm dấu trừ (-) trước kết quả.",
+          "Muốn trừ số thập phân a cho số thập phân b, ta cộng a với số đối của b."
+        ],
+        "formula": "$a + (-b) = a - b$",
+        "example": "Ví dụ: Tìm giá trị của 5 + (-3). Lời giải: 5 + (-3) = 5 - 3 = 2.",
+        "images": []
+      },
+      {
+        "thinking": "Khi thực hiện phép trừ số thập phân, chúng ta cần áp dụng các quy tắc dấu như khi thực hiện các phép tính cộng và trừ các số nguyên.",
+        "title": "Quy tắc dấu ngoặc",
+        "body": [
+          "Các phân số âm (hay dương) trong một dãy tính thường được viết trong dấu ngoặc.",
+          "Phép trừ được chuyển thành phép cộng nên nếu biểu thức có phép trừ ta cũng gọi là một tổng.",
+          "Khi bỏ dấu ngoặc có dấu “+” đằng trước, ta giữ nguyên dấu của các số hạng trong ngoặc.",
+          "Khi bỏ dấu ngoặc có dấu “-” đằng trước, ta phải đổi dấu tất cả các số hạng trong dấu ngoặc: Dấu “+” thành dấu “-”, dấu “-” thành dấu “+”."
+        ],
+        "formula": "$a + (-b) = a - b$",
+        "example": "Ví dụ: Tìm giá trị của 5 - 3. Lời giải: 5 - 3 = 5 + (-3) = 2.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 330,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 5. Biến cố trong một số trò chơi đơn giản",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về biến cố trong một số trò chơi đơn giản, chúng ta cần phân tích từng bước. Ví dụ, trong trò chơi xóc đĩa, chúng ta có thể phân tích các kết quả có thể xảy ra khi xóc đĩa. Chúng ta có thể sử dụng phân số để thể hiện các kết quả có thể xảy ra.",
+        "title": "Khái niệm biến cố",
+        "body": "Biến cố là một sự kiện có thể xảy ra trong một trò chơi hoặc một tình huống cụ thể. Biến cố có thể được thể hiện bằng các kết quả có thể xảy ra, chẳng hạn như việc xóc đĩa có thể ra 1, 2, 3 hoặc 4.",
+        "formula": "$P(A) = \\frac{n(A)}{n(S)}$",
+        "example": "Ví dụ, trong trò chơi xóc đĩa, chúng ta có thể có 4 kết quả có thể xảy ra: 1, 2, 3 hoặc 4. Nếu chúng ta muốn tìm xác suất của kết quả 2, chúng ta có thể sử dụng công thức: $P(2) = \\frac{n(2)}{n(S)} = \\frac{1}{4}$.",
+        "images": []
+      },
+      {
+        "thinking": "Khi phân tích biến cố, chúng ta cần xem xét các kết quả có thể xảy ra và xác suất của từng kết quả. Ví dụ, trong trò chơi xóc đĩa, chúng ta có thể có nhiều kết quả có thể xảy ra, nhưng chúng ta cần xem xét xác suất của từng kết quả.",
+        "title": "Xác suất biến cố",
+        "body": "Xác suất biến cố là một số đo của khả năng xảy ra của biến cố. Xác suất biến cố có thể được thể hiện bằng các phân số hoặc số thập phân.",
+        "formula": "$P(A) = \\frac{n(A)}{n(S)}$",
+        "example": "Ví dụ, trong trò chơi xóc đĩa, chúng ta có thể có 4 kết quả có thể xảy ra: 1, 2, 3 hoặc 4. Nếu chúng ta muốn tìm xác suất của kết quả 2, chúng ta có thể sử dụng công thức: $P(2) = \\frac{n(2)}{n(S)} = \\frac{1}{4}$.",
+        "images": []
+      },
+      {
+        "thinking": "Khi chơi trò chơi hoặc tham gia vào một tình huống cụ thể, chúng ta cần xem xét các biến cố có thể xảy ra và xác suất của từng biến cố. Ví dụ, trong trò chơi xóc đĩa, chúng ta cần xem xét các kết quả có thể xảy ra và xác suất của từng kết quả.",
+        "title": "Ứng dụng biến cố trong thực tế",
+        "body": "Biến cố có thể được ứng dụng trong nhiều lĩnh vực, chẳng hạn như trò chơi, kinh doanh, hoặc khoa học. Khi chơi trò chơi hoặc tham gia vào một tình huống cụ thể, chúng ta cần xem xét các biến cố có thể xảy ra và xác suất của từng biến cố.",
+        "formula": "",
+        "example": "Ví dụ, trong trò chơi xóc đĩa, chúng ta có thể có 4 kết quả có thể xảy ra: 1, 2, 3 hoặc 4. Nếu chúng ta muốn tìm xác suất của kết quả 2, chúng ta có thể sử dụng công thức: $P(2) = \\frac{n(2)}{n(S)} = \\frac{1}{4}$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 331,
+    "grade": 7,
+    "chapter_name": "Chương V. Một số yếu tố thống kê và xác suất",
+    "lesson_name": "Bài 6. Xác suất của biến cố ngẫu nhiên trong một số trò chơi đơn giản",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về xác suất của biến cố ngẫu nhiên trong một số trò chơi đơn giản, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần hiểu về khái niệm biến cố ngẫu nhiên và xác suất. Biến cố ngẫu nhiên là một sự kiện có thể xảy ra hoặc không xảy ra, trong khi xác suất là khả năng xảy ra của biến cố đó. Trong một số trò chơi đơn giản, chúng ta có thể gặp phải các biến cố ngẫu nhiên như việc toss một đồng tiền, chọn một quả bóng ngẫu nhiên từ một nhóm quả bóng, v.v. Để tính xác suất của biến cố ngẫu nhiên, chúng ta cần biết số lượng kết quả có thể xảy ra và số lượng kết quả có lợi.",
+        "title": "Khái niệm biến cố ngẫu nhiên và xác suất",
+        "body": "Biến cố ngẫu nhiên là một sự kiện có thể xảy ra hoặc không xảy ra. Xác suất là khả năng xảy ra của biến cố đó. Để tính xác suất của biến cố ngẫu nhiên, chúng ta cần biết số lượng kết quả có thể xảy ra và số lượng kết quả có lợi.",
+        "formula": "$P(A) = \\frac{n(A)}{n(S)}$",
+        "example": "Toss một đồng tiền. Số lượng kết quả có thể xảy ra là 2 (đầu hoặc đuôi). Số lượng kết quả có lợi là 1 (đầu hoặc đuôi). Xác suất của biến cố ngẫu nhiên là $P(A) = \\frac{1}{2} = 0,5$.",
+        "images": []
+      },
+      {
+        "thinking": "Để tính xác suất của biến cố ngẫu nhiên, chúng ta cần biết số lượng kết quả có thể xảy ra và số lượng kết quả có lợi. Trong một số trò chơi đơn giản, chúng ta có thể gặp phải các biến cố ngẫu nhiên như việc chọn một quả bóng ngẫu nhiên từ một nhóm quả bóng. Để tính xác suất của biến cố ngẫu nhiên, chúng ta cần biết số lượng quả bóng có màu đỏ và số lượng quả bóng trong tổng số.",
+        "title": "Tính xác suất của biến cố ngẫu nhiên",
+        "body": "Để tính xác suất của biến cố ngẫu nhiên, chúng ta cần biết số lượng kết quả có thể xảy ra và số lượng kết quả có lợi. Số lượng kết quả có thể xảy ra là tổng số kết quả có thể xảy ra. Số lượng kết quả có lợi là số lượng kết quả có lợi.",
+        "formula": "$P(A) = \\frac{n(A)}{n(S)}$",
+        "example": "Chọn một quả bóng ngẫu nhiên từ một nhóm quả bóng. Số lượng quả bóng có màu đỏ là 5. Số lượng quả bóng trong tổng số là 10. Xác suất của biến cố ngẫu nhiên là $P(A) = \\frac{5}{10} = 0,5$.",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu về đơn vị đo lường trong một số trò chơi đơn giản, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần hiểu về các đơn vị đo lường cơ bản như mét, gram, v.v. Trong một số trò chơi đơn giản, chúng ta có thể gặp phải các đơn vị đo lường như Yến, Tạ, Tấn. Để chuyển đổi giữa các đơn vị đo lường, chúng ta cần biết công thức chuyển đổi.",
+        "title": "Đơn vị đo lường trong một số trò chơi đơn giản",
+        "body": "Các đơn vị đo lường cơ bản là mét, gram, v.v. Trong một số trò chơi đơn giản, chúng ta có thể gặp phải các đơn vị đo lường như Yến, Tạ, Tấn. Để chuyển đổi giữa các đơn vị đo lường, chúng ta cần biết công thức chuyển đổi.",
+        "formula": "$1\\text{ Yến} = 1000\\text{ gram}$",
+        "example": "Một quả táo có trọng lượng 200 gram. Chuyển đổi trọng lượng của quả táo sang Yến. $1\\text{ Yến} = 1000\\text{ gram}$. Trọng lượng của quả táo là $200\\text{ gram} = \\frac{200}{1000} = 0,2\\text{ Yến}$.",
+        "images": []
+      }
+    ]
   }
 ]

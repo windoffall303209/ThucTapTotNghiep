@@ -8,7 +8,7 @@ const Question = require('../models/Question');
 // Configure API call parameters
 const API_KEY = process.env.NVIDIA_NIM_API_KEY || '';
 const BASE_URL = (process.env.NVIDIA_NIM_BASE_URL || 'https://integrate.api.nvidia.com/v1').replace(/\/$/, '');
-const DEFAULT_MODEL = 'meta/llama-3.1-8b-instruct'; // Use fast 8B model by default
+const DEFAULT_MODEL = 'meta/llama-3.3-70b-instruct';
 
 const LATEX_PATH = path.join(__dirname, '..', 'question_bank.tex');
 

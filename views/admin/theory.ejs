@@ -16,7 +16,7 @@
     <div>
       <p class="eyebrow">Kho lý thuyết</p>
       <h1 data-flow-title>Chọn sách giáo khoa</h1>
-      <p data-flow-subtitle>Chọn sách, chương rồi bài học để cập nhật lý thuyết.</p>
+      <p data-flow-subtitle>Quản lý thẻ kiến thức theo đúng sách, chương và bài học.</p>
     </div>
     <div class="question-bank-stats">
       <span><strong><%= bookTree.length %></strong> sách/tập</span>
@@ -30,7 +30,7 @@
   <% } %>
 
   <div class="question-flow-stage">
-    <section class="flow-step is-active" data-flow-step="books" data-flow-title="Chọn sách giáo khoa" data-flow-subtitle="Chọn sách, chương rồi bài học để cập nhật lý thuyết.">
+    <section class="flow-step is-active" data-flow-step="books" data-flow-title="Chọn sách giáo khoa" data-flow-subtitle="Chọn sách/tập trước, sau đó đi vào chương và bài học.">
       <div class="book-card-grid">
         <% bookTree.forEach((book) => { %>
           <button class="book-card" type="button" data-flow-target="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
@@ -59,7 +59,7 @@
       </section>
 
       <% book.chapters.forEach((chapter) => { %>
-        <section class="flow-step" data-flow-step="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học để quản lý thẻ lý thuyết.">
+        <section class="flow-step" data-flow-step="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học để cập nhật thẻ lý thuyết.">
           <div class="flow-list">
             <% chapter.lessons.forEach((lesson, index) => { %>
               <button class="flow-list-row" type="button" data-flow-target="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.theoryCount %> thẻ lý thuyết hiện có.">

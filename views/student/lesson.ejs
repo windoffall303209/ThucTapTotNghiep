@@ -13,16 +13,33 @@
   <div>
     <a class="back-link" href="/student/dashboard">
       <i data-lucide="arrow-left" class="lucide-icon"></i>
-      Quay lại bảng học tập
+      Về bảng học tập
     </a>
     <p class="eyebrow">Lớp <%= lesson.grade %> · <%= lesson.chapter_name %></p>
     <h1><%= lesson.lesson_name %></h1>
-    <p>Đọc phần lý thuyết, xem hình minh họa rồi chuyển sang luyện tập.</p>
+    <p>Đọc các ý chính, xem ví dụ minh họa rồi luyện tập để hệ thống ghi nhận phần em đã hiểu.</p>
   </div>
   <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
     <i data-lucide="play-circle" class="lucide-icon"></i>
-    Luyện tập
+    Bắt đầu luyện tập
   </a>
+</section>
+
+<section class="learning-summary">
+  <div>
+    <div class="section-title">
+      <i data-lucide="target" class="lucide-icon"></i>
+      Mục tiêu bài học
+    </div>
+    <p>Hiểu kiến thức trọng tâm của bài, nhận biết dạng câu hỏi thường gặp và tự giải thích được các bước làm.</p>
+  </div>
+  <div>
+    <div class="section-title">
+      <i data-lucide="lightbulb" class="lucide-icon"></i>
+      Cách học đề xuất
+    </div>
+    <p>Đọc từng mục theo thứ tự. Nếu chưa hiểu, bấm “Nhờ AI giải thích” để nhận gợi ý dễ hơn.</p>
+  </div>
 </section>
 
 <section class="theory-grid">
@@ -54,7 +71,7 @@
         <% } %>
 
         <% if (card.example) { %>
-          <p class="muted"><%= card.example %></p>
+          <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
         <% } %>
       </div>
       <button
@@ -63,7 +80,7 @@
         data-lesson-id="<%= lesson.id %>"
         data-card-index="<%= index %>">
         <i data-lucide="message-circle" class="lucide-icon"></i>
-        Nhờ AI giải thích
+        Nhờ AI giải thích dễ hơn
       </button>
       <div class="ai-inline-reply" hidden></div>
     </article>

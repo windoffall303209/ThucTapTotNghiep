@@ -298,41 +298,69 @@
     event.preventDefault();
     const form = event.currentTarget;
     const input = form.elements.message;
+    const button = form.querySelector('button[type="submit"]');
     const question = state.questions[state.currentIndex];
     if (!question) return;
 
     const message = input.value.trim();
     appendChat('student', message || 'Em muốn được gợi ý thêm.');
     input.value = '';
+    input.disabled = true;
+    if (button) button.disabled = true;
+    const thinkingNode = appendChat('ai', 'Mình đang xem câu này với em...', { loading: true });
 
-    const response = await fetch('/api/ai/exercise-help', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        questionId: question.id,
-        practiceSessionId: state.practiceSessionId,
-        selectedAnswer: state.selectedAnswer,
-        message
-      })
-    });
+    try {
+      const response = await fetch('/api/ai/exercise-help', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId: question.id,
+          practiceSessionId: state.practiceSessionId,
+          selectedAnswer: state.selectedAnswer,
+          message
+        })
+      });
 
-    const result = await response.json();
-    appendChat('ai', result.reply || 'AI chưa thể tạo phản hồi cho câu hỏi này.');
+      const result = await response.json();
+      const reply = result.ok
+        ? result.reply || 'Mình chưa tạo được gợi ý cho câu này. Em thử hỏi lại ngắn hơn nhé.'
+        : result.message || 'Mình chưa hỗ trợ được lúc này. Em thử lại sau nhé.';
+      updateChat(thinkingNode, reply);
+    } catch (error) {
+      updateChat(thinkingNode, 'Mình chưa kết nối được gia sư AI lúc này. Em thử gửi lại sau nhé.');
+    } finally {
+      input.disabled = false;
+      if (button) button.disabled = false;
+      input.focus();
+    }
   }
 
-  function appendChat(role, text) {
+  function appendChat(role, text, options = {}) {
     const box = document.getElementById('chatMessages');
-    if (!box) return;
+    if (!box) return null;
     const node = document.createElement('div');
-    node.className = `chat-message ${role === 'student' ? 'student' : 'ai'}`;
+    node.className = `chat-message ${role === 'student' ? 'student' : 'ai'}${options.loading ? ' loading' : ''}`;
+    renderChatNode(node, role, text);
+    box.appendChild(node);
+    box.scrollTop = box.scrollHeight;
+    return node;
+  }
+
+  function updateChat(node, text) {
+    if (!node) return;
+    node.classList.remove('loading');
+    renderChatNode(node, 'ai', text);
+    const box = document.getElementById('chatMessages');
+    if (box) box.scrollTop = box.scrollHeight;
+  }
+
+  function renderChatNode(node, role, text) {
     if (role === 'ai') {
       node.innerHTML = renderMarkdownText(text);
     } else {
       node.textContent = text;
     }
     renderMath(node);
-    box.appendChild(node);
-    box.scrollTop = box.scrollHeight;
   }
 
   function renderMarkdownText(value) {

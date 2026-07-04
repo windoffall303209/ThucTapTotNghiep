@@ -1,58 +1,94 @@
-<section class="home-hero">
+<section class="home-hero landing-hero">
   <div class="hero-copy">
-    <p class="eyebrow">Ôn luyện Toán theo khối lớp</p>
-    <h1>Học Toán rõ tiến trình, luyện tập đúng điểm yếu.</h1>
+    <p class="eyebrow">Ôn luyện Toán lớp 1-7</p>
+    <h1>Học đúng bài, luyện đúng phần còn yếu.</h1>
     <p class="hero-text">
-      Nền tảng ôn luyện Toán lớp 1-7 giúp học sinh học theo chương bài, làm câu hỏi có lời giải và nhận gợi ý Socratic AI dựa trên lỗi sai thật.
+      Toán Bổ Trợ giúp học sinh đi theo chương trình đang học: đọc lý thuyết ngắn, làm câu hỏi có lời giải, xem lại lỗi sai và nhờ AI gợi mở khi thật sự cần.
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/auth/register">
         <i data-lucide="user-plus" class="lucide-icon"></i>
         Tạo tài khoản học sinh
       </a>
-      <a class="btn btn-secondary" href="/auth/login">
-        <i data-lucide="log-in" class="lucide-icon"></i>
-        Đăng nhập
+      <a class="btn btn-secondary" href="#cach-hoc">
+        <i data-lucide="route" class="lucide-icon"></i>
+        Xem cách học
       </a>
     </div>
   </div>
-  <div class="hero-board" aria-label="Mô phỏng bảng học tập">
-    <div class="board-row strong">
-      <span>Lớp 4</span>
-      <span>45%</span>
+
+  <aside class="hero-board landing-preview" aria-label="Minh họa lộ trình học">
+    <span class="demo-label">Minh họa lộ trình, không phải dữ liệu cá nhân</span>
+    <div class="path-list">
+      <div class="step-card">
+        <strong>1. Chọn lớp</strong>
+        <p class="muted">Nội dung chỉ hiển thị theo lớp học của từng học sinh.</p>
+      </div>
+      <div class="step-card">
+        <strong>2. Học theo bài</strong>
+        <p class="muted">Mỗi bài có lý thuyết, ví dụ và câu hỏi luyện tập.</p>
+      </div>
+      <div class="step-card">
+        <strong>3. Xem lại lỗi sai</strong>
+        <p class="muted">Hệ thống lưu lịch sử để gợi ý bài cần ôn lại.</p>
+      </div>
     </div>
-    <div class="progress-track">
-      <span style="width: 45%"></span>
-    </div>
-    <div class="board-row">
-      <span>Rút gọn phân số</span>
-      <small>Cần ôn lại</small>
-    </div>
-    <div class="board-row">
-      <span>Quy đồng mẫu số</span>
-      <small>Sẵn sàng luyện tập</small>
-    </div>
-    <div class="board-row">
-      <span>Gia sư AI</span>
-      <small>Gợi mở từng bước</small>
-    </div>
+  </aside>
+</section>
+
+<section id="cach-hoc" class="landing-section">
+  <div class="section-title">
+    <i data-lucide="map" class="lucide-icon"></i>
+    Cách học trong 3 bước
+  </div>
+  <div class="step-list">
+    <article class="step-card">
+      <i data-lucide="book-open" class="feature-icon"></i>
+      <strong>Đọc lý thuyết ngắn</strong>
+      <p class="muted">Nắm ý chính của bài trước khi làm câu hỏi, có hỗ trợ công thức Toán.</p>
+    </article>
+    <article class="step-card">
+      <i data-lucide="mouse-pointer-click" class="feature-icon"></i>
+      <strong>Luyện từng câu</strong>
+      <p class="muted">Chọn đáp án, nhận phản hồi đúng/sai và xem lời giải sau khi thử.</p>
+    </article>
+    <article class="step-card">
+      <i data-lucide="refresh-cw" class="feature-icon"></i>
+      <strong>Ôn lại điểm yếu</strong>
+      <p class="muted">Bài làm sai được ghi nhận để học sinh quay lại đúng phần cần luyện.</p>
+    </article>
   </div>
 </section>
 
-<section class="feature-strip">
+<section id="chuong-trinh" class="landing-section">
+  <div class="section-title">
+    <i data-lucide="graduation-cap" class="lucide-icon"></i>
+    Chương trình lớp 1-7
+  </div>
+  <div class="grade-grid" aria-label="Các khối lớp hỗ trợ">
+    <% for (let grade = 1; grade <= 7; grade += 1) { %>
+      <article class="grade-card">
+        <strong>Lớp <%= grade %></strong>
+        <small class="muted">Học theo chương, bài và câu hỏi tương ứng.</small>
+      </article>
+    <% } %>
+  </div>
+</section>
+
+<section class="landing-section feature-strip">
   <div>
-    <i data-lucide="route" class="feature-icon"></i>
-    <h2>Lộ trình theo chương bài</h2>
-    <p>Học sinh chỉ thấy nội dung đúng khối, đi từ lý thuyết đến luyện tập và xem lại kết quả.</p>
+    <i data-lucide="database" class="feature-icon"></i>
+    <h2>Dữ liệu học tập thật</h2>
+    <p>Tiến trình chỉ xuất hiện sau khi học sinh đăng nhập và làm bài, không dùng số demo gây hiểu nhầm.</p>
   </div>
   <div>
     <i data-lucide="brain" class="feature-icon"></i>
-    <h2>AI gợi mở, không làm thay</h2>
-    <p>Đáp án chuẩn lấy từ ngân hàng câu hỏi, AI chỉ diễn giải theo kiểu Socratic để học sinh tự sửa lỗi.</p>
+    <h2>AI Socratic gợi mở</h2>
+    <p>AI hỗ trợ giải thích, đặt gợi ý từng bước và không thay thế đáp án chuẩn trong ngân hàng câu hỏi.</p>
   </div>
   <div>
-    <i data-lucide="activity" class="feature-icon"></i>
-    <h2>Theo dõi lỗ hổng kiến thức</h2>
-    <p>Lịch sử làm bài, trạng thái từng bài và đề đang làm dở giúp chọn đúng nội dung cần ôn.</p>
+    <i data-lucide="shield-check" class="feature-icon"></i>
+    <h2>Phù hợp phụ huynh theo dõi</h2>
+    <p>Lịch sử làm bài và bài cần ôn giúp biết học sinh đang vướng ở đâu.</p>
   </div>
 </section>

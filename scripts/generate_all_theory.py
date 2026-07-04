@@ -39,7 +39,7 @@ def load_env(env_path):
 env = load_env(ENV_PATH)
 API_KEY = env.get("NVIDIA_NIM_API_KEY", "")
 BASE_URL = env.get("NVIDIA_NIM_BASE_URL", "https://integrate.api.nvidia.com/v1").rstrip("/")
-MODEL = env.get("NVIDIA_NIM_MODEL", "meta/llama-3.1-8b-instruct")
+MODEL = env.get("NVIDIA_NIM_MODEL", "meta/llama-3.3-70b-instruct")
 
 def call_nvidia_nim(prompt, retries=3):
     url = f"{BASE_URL}/chat/completions"
@@ -467,23 +467,34 @@ def build_docx_for_grade(grade, grade_lessons, output_path):
                 body_run.font.name = 'Arial'
                 
                 # Card Formula
-                formula = card.get("formula", "").strip()
-                if formula:
+                formula = card.get("formula", "")
+                if isinstance(formula, list):
+                    formula_text = "\n".join([str(item) for item in formula])
+                else:
+                    formula_text = str(formula).strip()
+                    
+                if formula_text:
                     form_p = doc.add_paragraph()
                     form_p.paragraph_format.left_indent = Inches(0.4)
-                    form_run = form_p.add_run(f"Công thức/Quy tắc: {formula}")
+                    form_run = form_p.add_run(f"Công thức/Quy tắc: {formula_text}")
                     form_run.font.name = 'Arial'
                     form_run.italic = True
                     form_run.bold = True
                     
                 # Card Example
-                example = card.get("example", "").strip()
-                if example:
+                example = card.get("example", "")
+                if isinstance(example, list):
+                    example_text = "\n".join([str(item) for item in example])
+                else:
+                    example_text = str(example).strip()
+                    
+                if example_text:
                     ex_p = doc.add_paragraph()
                     ex_p.paragraph_format.left_indent = Inches(0.4)
-                    ex_run = ex_p.add_run(f"Ví dụ: {example}")
+                    ex_run = ex_p.add_run(f"Ví dụ: {example_text}")
                     ex_run.font.name = 'Arial'
                     ex_run.italic = True
+
                 
                 # Card Images
                 card_images = card.get("images", [])
@@ -509,8 +520,20 @@ def build_docx_for_grade(grade, grade_lessons, output_path):
                     
             doc.add_paragraph()  # Blank line between lessons
             
-    doc.save(output_path)
-    print(f"Đã lưu file Word thành công tại: {output_path}")
+    try:
+        doc.save(output_path)
+        print(f"Đã lưu file Word thành công tại: {output_path}")
+    except PermissionError:
+        fallback_path = output_path.with_name(output_path.stem + "_temp.docx")
+        print(f"      [CẢNH BÁO] File {output_path.name} đang bị mở và khóa bởi ứng dụng khác. Thử lưu vào file tạm: {fallback_path.name}")
+        try:
+            doc.save(fallback_path)
+            print(f"Đã lưu file Word tạm thành công tại: {fallback_path}")
+        except Exception as fe:
+            print(f"      [LỖI] Không thể lưu file Word: {fe}")
+    except Exception as e:
+        print(f"      [LỖI] Không thể lưu file Word: {e}")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Sinh lý thuyết Toán 1-7 Cánh Diều bằng NVIDIA NIM API")

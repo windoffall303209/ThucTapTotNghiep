@@ -201,7 +201,7 @@ let systemSettings = {
   gemini_cli_timeout_ms: process.env.GEMINI_CLI_TIMEOUT_MS || '120000',
   nvidia_nim_api_key: process.env.NVIDIA_NIM_API_KEY || '',
   nvidia_nim_base_url: process.env.NVIDIA_NIM_BASE_URL || 'https://integrate.api.nvidia.com/v1',
-  nvidia_nim_model: process.env.NVIDIA_NIM_MODEL || 'meta/llama-3.1-8b-instruct',
+  nvidia_nim_model: process.env.NVIDIA_NIM_MODEL || 'meta/llama-3.3-70b-instruct',
   nvidia_nim_vision_model: process.env.NVIDIA_NIM_VISION_MODEL || 'meta/llama-3.2-90b-vision-instruct',
   nvidia_nim_embedding_model: process.env.NVIDIA_NIM_EMBEDDING_MODEL || 'nvidia/nv-embedqa-e5-v5',
   openrouter_api_key: process.env.OPENROUTER_API_KEY || '',

@@ -8,7 +8,7 @@ const Question = require('../models/Question');
 
 const API_KEY = process.env.NVIDIA_NIM_API_KEY || '';
 const BASE_URL = (process.env.NVIDIA_NIM_BASE_URL || 'https://integrate.api.nvidia.com/v1').replace(/\/$/, '');
-const MODEL = 'meta/llama-3.1-8b-instruct';
+const MODEL = 'meta/llama-3.3-70b-instruct';
 const LATEX_PATH = path.join(__dirname, '..', 'question_bank.tex');
 
 const args = process.argv.slice(2);

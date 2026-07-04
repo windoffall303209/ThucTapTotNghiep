@@ -366,7 +366,7 @@ function getBaseUrl(settings, provider) {
 
 function getChatModel(settings, provider) {
   if (provider === 'openai') return settings.openai_model || 'gpt-4o-mini';
-  if (provider === 'nvidia') return settings.nvidia_nim_model || 'meta/llama-3.1-8b-instruct';
+  if (provider === 'nvidia') return settings.nvidia_nim_model || 'meta/llama-3.3-70b-instruct';
   if (provider === 'openrouter') return settings.openrouter_model || 'openai/gpt-4o-mini';
   return '';
 }

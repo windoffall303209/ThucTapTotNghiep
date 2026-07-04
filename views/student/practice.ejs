@@ -4,12 +4,12 @@
       <% if (session?.session_mode === 'EXAM') { %>
         <a class="back-link" href="/student/exams">
           <i data-lucide="arrow-left" class="lucide-icon"></i>
-          Luyện đề
+          Về luyện đề
         </a>
       <% } else { %>
         <a class="back-link" href="/student/lessons/<%= lesson.id %>">
           <i data-lucide="arrow-left" class="lucide-icon"></i>
-          Lý thuyết
+          Về lý thuyết
         </a>
       <% } %>
       <span id="questionCounter">Câu 1/<%= Math.max(questions.length, 1) %></span>
@@ -21,21 +21,27 @@
         <p>Bài học này chưa có câu hỏi luyện tập. Quản trị viên cần bổ sung ngân hàng câu hỏi.</p>
       </div>
     <% } else { %>
-      <div id="practiceApp" class="question-zone"></div>
-      <div id="answerFeedback" class="answer-feedback" hidden></div>
-      <div class="practice-actions">
-        <button id="submitAnswerButton" class="btn btn-primary" type="button">
-          <i data-lucide="check-circle" class="lucide-icon"></i>
-          Nộp đáp án
-        </button>
-        <button id="nextQuestionButton" class="btn btn-secondary" type="button" hidden>
-          <i data-lucide="arrow-right" class="lucide-icon"></i>
-          Câu tiếp theo
-        </button>
-        <button id="finishPracticeButton" class="btn btn-secondary" type="button" hidden>
-          <i data-lucide="flag" class="lucide-icon"></i>
-          Kết thúc bài làm
-        </button>
+      <div class="practice-panel">
+        <div class="section-title">
+          <i data-lucide="focus" class="lucide-icon"></i>
+          Làm từng câu, xem phản hồi sau khi nộp
+        </div>
+        <div id="practiceApp" class="question-zone"></div>
+        <div id="answerFeedback" class="answer-feedback" hidden></div>
+        <div class="practice-actions">
+          <button id="submitAnswerButton" class="btn btn-primary" type="button">
+            <i data-lucide="check-circle" class="lucide-icon"></i>
+            Nộp đáp án
+          </button>
+          <button id="nextQuestionButton" class="btn btn-secondary" type="button" hidden>
+            <i data-lucide="arrow-right" class="lucide-icon"></i>
+            Câu tiếp theo
+          </button>
+          <button id="finishPracticeButton" class="btn btn-secondary" type="button" hidden>
+            <i data-lucide="flag" class="lucide-icon"></i>
+            Kết thúc bài làm
+          </button>
+        </div>
       </div>
     <% } %>
   </div>
@@ -44,15 +50,15 @@
     <div class="chat-head">
       <div>
         <strong>Gia sư AI Socratic</strong>
-        <small>Chat được lưu theo lần làm bài này</small>
+        <small>Gợi ý từng bước, không làm thay đáp án</small>
       </div>
       <i data-lucide="sparkles" class="lucide-icon"></i>
     </div>
     <div id="chatMessages" class="chat-messages">
-      <div class="chat-message ai">Khi em gặp khó, hãy nộp đáp án trước để hệ thống biết em đang sai ở bước nào.</div>
+      <div class="chat-message ai">Khi em gặp khó, hãy thử chọn đáp án trước. Sau đó AI sẽ giúp em hiểu vì sao đúng hoặc sai.</div>
     </div>
     <form id="aiHelpForm" class="chat-form">
-      <input name="message" placeholder="Nhập điều em chưa hiểu...">
+      <input name="message" placeholder="Ví dụ: Em chưa hiểu bước rút gọn...">
       <button type="submit" aria-label="Gửi câu hỏi">
         <i data-lucide="send" class="lucide-icon"></i>
       </button>
