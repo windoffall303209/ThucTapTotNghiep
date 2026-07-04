@@ -1,0 +1,23 @@
+[
+  {
+    "thinking": "Để xác định số có nhiều chữ số, chúng ta cần kiểm tra xem số đó có hơn một chữ số hay không. Ví dụ, số 456 có 3 chữ số, trong khi số 45 chỉ có 2 chữ số. Vì vậy, số có nhiều chữ số là số có hơn 1 chữ số.",
+    "title": "Số có nhiều chữ số",
+    "body": "Số có nhiều chữ số là số có hơn 1 chữ số. Ví dụ: 456, 789, 1234,...",
+    "formula": "",
+    "example": "Xác định số có nhiều chữ số trong số 4567. Lời giải: Số 4567 có 4 chữ số, vì vậy nó là số có nhiều chữ số."
+  },
+  {
+    "thinking": "Khi thực hiện các phép tính với số có nhiều chữ số, chúng ta cần đảm bảo rằng các phép tính được thực hiện chính xác. Ví dụ, khi cộng 456 và 789, ta cần đảm bảo rằng kết quả là 1245.",
+    "title": "Phép tính với số có nhiều chữ số",
+    "body": "Khi thực hiện các phép tính với số có nhiều chữ số, chúng ta cần đảm bảo rằng các phép tính được thực hiện chính xác. Ví dụ: 456 + 789 = 1245.",
+    "formula": "",
+    "example": "Tính 1000 + 4567. Lời giải: 1000 + 4567 = 5567."
+  },
+  {
+    "thinking": "Số có nhiều chữ số cũng có thể được biểu diễn dưới dạng số thập phân. Ví dụ, số 456 có thể được biểu diễn dưới dạng 4*100 + 5*10 + 6*1.",
+    "title": "Biểu diễn số có nhiều chữ số dưới dạng số thập phân",
+    "body": "Số có nhiều chữ số cũng có thể được biểu diễn dưới dạng số thập phân. Ví dụ: 456 = 4*100 + 5*10 + 6*1.",
+    "formula": "",
+    "example": "Biểu diễn số 1234 dưới dạng số thập phân. Lời giải: 1234 = 1*1000 + 2*100 + 3*10 + 4*1."
+  }
+]

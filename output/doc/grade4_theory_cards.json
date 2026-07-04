@@ -1,0 +1,2178 @@
+[
+  {
+    "lesson_id": 157,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "4. Bài 4: Các số trong phạm vi 1 000 000",
+    "theory_cards": [
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta cần tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số. Sau đó, đọc từng lớp từ trái qua phải kèm tên lớp (tên lớp triệu, nghìn; lớp đơn vị không đọc tên lớp). Ví dụ số 4 567 890 gồm: 4 triệu (hàng triệu), 5 trăm nghìn (hàng trăm nghìn), 6 chục nghìn (hàng chục nghìn), 7 nghìn (hàng nghìn), 8 trăm (hàng trăm), 9 chục (hàng chục), 0 đơn vị (hàng đơn vị).",
+        "title": "Cách đọc số có nhiều chữ số",
+        "body": "Để đọc số có nhiều chữ số, ta thực hiện các bước sau:\n- Tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số.\n- Đọc từng lớp từ trái qua phải kèm tên lớp (tên lớp triệu, nghìn; lớp đơn vị không đọc tên lớp).\n- Ví dụ: số 4 567 890 được đọc là: 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "formula": "$\\text{Số có nhiều chữ số được đọc bằng cách tách số thành các lớp và đọc từng lớp kèm tên lớp.}$",
+        "example": "Ví dụ: số 4 567 890 được đọc là: 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để xác định số có mấy chữ số, ta cần đếm số chữ số trong số đó. Ví dụ số 4 567 890 có 7 chữ số.",
+        "title": "Cách xác định số có mấy chữ số",
+        "body": "Để xác định số có mấy chữ số, ta thực hiện các bước sau:\n- Đếm số chữ số trong số đó.\n- Ví dụ: số 4 567 890 có 7 chữ số.",
+        "formula": "$\\text{Số chữ số trong số được xác định bằng cách đếm số chữ số.}$",
+        "example": "Ví dụ: số 4 567 890 có 7 chữ số.",
+        "images": []
+      },
+      {
+        "thinking": "Số có 7 chữ số thì chữ số ngoài cùng bên trái thuộc hàng triệu (Lớp Triệu). Ví dụ số 1 000 000 có 7 chữ số (hàng triệu là 1, các hàng khác là 0).",
+        "title": "Số có 7 chữ số",
+        "body": "Số có 7 chữ số thì chữ số ngoài cùng bên trái thuộc hàng triệu (Lớp Triệu). Ví dụ số 1 000 000 có 7 chữ số (hàng triệu là 1, các hàng khác là 0).",
+        "formula": "$\\text{Số có 7 chữ số thì chữ số ngoài cùng bên trái thuộc hàng triệu.}$",
+        "example": "Ví dụ: số 1 000 000 có 7 chữ số (hàng triệu là 1, các hàng khác là 0).",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 158,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo)",
+    "theory_cards": [
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta cần tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số. Sau đó, đọc từng lớp từ trái qua phải kèm tên lớp.",
+        "title": "Cách đọc số có nhiều chữ số",
+        "body": "Khi đọc số có nhiều chữ số, ta cần tách số thành các lớp như sau:\n- Lớp triệu (hàng triệu): 1 triệu, 2 triệu, ...\n- Lớp nghìn (hàng nghìn): 1 nghìn, 2 nghìn, ...\n- Lớp trăm (hàng trăm): 1 trăm, 2 trăm, ...\n- Lớp chục (hàng chục): 1 chục, 2 chục, ...\n- Lớp đơn vị (hàng đơn vị): 1, 2, ...\nTa đọc từng lớp từ trái qua phải kèm tên lớp.",
+        "formula": "$\\text{Số có nhiều chữ số} = \\text{Lớp triệu} \\times 1{,}000{,}000 + \\text{Lớp nghìn} \\times 1{,}000 + \\text{Lớp trăm} \\times 100 + \\text{Lớp chục} \\times 10 + \\text{Lớp đơn vị}$",
+        "example": "Ví dụ: Số $4\\ 567\\ 890$ có thể được đọc là: $4$ triệu, $5$ trăm nghìn, $6$ chục nghìn, $7$ nghìn, $8$ trăm, $9$ chục, $0$ đơn vị.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để xác định số có mấy chữ số, ta cần đếm số chữ số trong số đó.",
+        "title": "Cách xác định số có mấy chữ số",
+        "body": "Để xác định số có mấy chữ số, ta cần đếm số chữ số trong số đó. Ví dụ:\n- Số $1{,}234$ có 4 chữ số.\n- Số $12{,}345$ có 6 chữ số.\n- Số $123{,}456$ có 6 chữ số.",
+        "formula": "$\\text{Số chữ số} = \\text{Số} - \\text{Đổi sang chữ số}$",
+        "example": "Ví dụ: Số $1{,}234$ có 4 chữ số. Để xác định số chữ số, ta có thể đổi số sang chữ số: $1{,}234 = 1$ trăm, $2$ chục, $3$ đơn vị. Do đó, số $1{,}234$ có 4 chữ số.",
+        "images": []
+      },
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta cần tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số. Sau đó, đọc từng lớp từ trái qua phải kèm tên lớp.",
+        "title": "Cách đọc số có nhiều chữ số (tiếp theo)",
+        "body": "Khi đọc số có nhiều chữ số, ta cần tách số thành các lớp như sau:\n- Lớp triệu (hàng triệu): 1 triệu, 2 triệu, ...\n- Lớp nghìn (hàng nghìn): 1 nghìn, 2 nghìn, ...\n- Lớp trăm (hàng trăm): 1 trăm, 2 trăm, ...\n- Lớp chục (hàng chục): 1 chục, 2 chục, ...\n- Lớp đơn vị (hàng đơn vị): 1, 2, ...\nTa đọc từng lớp từ trái qua phải kèm tên lớp.",
+        "formula": "$\\text{Số có nhiều chữ số} = \\text{Lớp triệu} \\times 1{,}000{,}000 + \\text{Lớp nghìn} \\times 1{,}000 + \\text{Lớp trăm} \\times 100 + \\text{Lớp chục} \\times 10 + \\text{Lớp đơn vị}$",
+        "example": "Ví dụ: Số $12{,}345{,}678$ có thể được đọc là: $12$ triệu, $3$ trăm nghìn, $4$ chục nghìn, $5$ nghìn, $6$ trăm, $7$ chục, $8$ đơn vị.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 159,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "6. Bài 6: Các số có nhiều chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để đọc số có nhiều chữ số, chúng ta cần tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số. Sau đó, đọc từng lớp từ trái qua phải kèm tên lớp. Ví dụ số 4 567 890 gồm: 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "title": "Cách đọc số có nhiều chữ số",
+        "body": "Để đọc số có nhiều chữ số, chúng ta thực hiện các bước sau:\n- Tách số thành các lớp từ phải qua trái, mỗi lớp 3 chữ số.\n- Đọc từng lớp từ trái qua phải kèm tên lớp.\n- Ví dụ:\n + Số 4 567 890 gồm: 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.\n + Số 1 000 000 có 7 chữ số, chữ số ngoài cùng bên trái thuộc hàng triệu.",
+        "formula": "$\\text{Số có nhiều chữ số} = \\text{Lớp triệu} + \\text{Lớp nghìn} + \\text{Lớp trăm} + \\text{Lớp chục} + \\text{Lớp đơn vị}$",
+        "example": "Ví dụ 1: Đọc số 4 567 890.\n$\\text{Số 4 567 890} = 4 \\text{ triệu} + 5 \\text{ trăm nghìn} + 6 \\text{ chục nghìn} + 7 \\text{ nghìn} + 8 \\text{ trăm} + 9 \\text{ chục} + 0 \\text{ đơn vị}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_2.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để đọc số có 7 chữ số, chúng ta cần xác định chữ số ngoài cùng bên trái thuộc hàng triệu.",
+        "title": "Số có 7 chữ số",
+        "body": "Số có 7 chữ số được chia thành các lớp như sau:\n- Lớp triệu: Chữ số ngoài cùng bên trái.\n- Lớp nghìn: Chữ số thứ hai từ phải qua trái.\n- Lớp trăm: Chữ số thứ ba từ phải qua trái.\n- Lớp chục: Chữ số thứ tư từ phải qua trái.\n- Lớp đơn vị: Chữ số thứ năm từ phải qua trái.\nVí dụ:\n + Số 1 000 000 có 7 chữ số, chữ số ngoài cùng bên trái thuộc hàng triệu.",
+        "formula": "$\\text{Số có 7 chữ số} = \\text{Lớp triệu} + \\text{Lớp nghìn} + \\text{Lớp trăm} + \\text{Lớp chục} + \\text{Lớp đơn vị}$",
+        "example": "Ví dụ 2: Đọc số 1 000 000.\n$\\text{Số 1 000 000} = 1 \\text{ triệu} + 0 \\text{ trăm nghìn} + 0 \\text{ chục nghìn} + 0 \\text{ nghìn} + 0 \\text{ trăm} + 0 \\text{ chục} + 0 \\text{ đơn vị}$",
+        "images": []
+      },
+      {
+        "thinking": "Để đọc số có 10 chữ số, chúng ta cần xác định chữ số ngoài cùng bên trái thuộc hàng tỷ.",
+        "title": "Số có 10 chữ số",
+        "body": "Số có 10 chữ số được chia thành các lớp như sau:\n- Lớp tỷ: Chữ số ngoài cùng bên trái.\n- Lớp trăm tỷ: Chữ số thứ hai từ phải qua trái.\n- Lớp chục tỷ: Chữ số thứ ba từ phải qua trái.\n- Lớp triệu: Chữ số thứ tư từ phải qua trái.\n- Lớp nghìn: Chữ số thứ năm từ phải qua trái.\n- Lớp trăm: Chữ số thứ sáu từ phải qua trái.\n- Lớp chục: Chữ số thứ bảy từ phải qua trái.\n- Lớp đơn vị: Chữ số thứ tám từ phải qua trái.\nVí dụ:\n + Số 1 000 000 000 có 10 chữ số, chữ số ngoài cùng bên trái thuộc hàng tỷ.",
+        "formula": "$\\text{Số có 10 chữ số} = \\text{Lớp tỷ} + \\text{Lớp trăm tỷ} + \\text{Lớp chục tỷ} + \\text{Lớp triệu} + \\text{Lớp nghìn} + \\text{Lớp trăm} + \\text{Lớp chục} + \\text{Lớp đơn vị}$",
+        "example": "Ví dụ 3: Đọc số 1 000 000 000.\n$\\text{Số 1 000 000 000} = 1 \\text{ tỷ} + 0 \\text{ trăm tỷ} + 0 \\text{ chục tỷ} + 0 \\text{ triệu} + 0 \\text{ nghìn} + 0 \\text{ trăm} + 0 \\text{ chục} + 0 \\text{ đơn vị}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 160,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "7. Bài 7: Các số có nhiều chữ số (tiếp theo)",
+    "theory_cards": [
+      {
+        "thinking": "Khi đọc số có nhiều chữ số, ta cần tách số thành từng lớp từ trái sang phải, mỗi lớp có ba hàng. Sau đó, dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc và đọc từ trái sang phải.",
+        "title": "Cách đọc số có nhiều chữ số",
+        "body": "Để đọc số có nhiều chữ số, ta thực hiện các bước sau:\n- Tách số thành từng lớp từ trái sang phải, mỗi lớp có ba hàng.\n- Dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc.\n- Đọc từ trái sang phải.\nVí dụ: Số 4 567 890 có thể được đọc như sau: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi.",
+        "formula": "$$ \\text{Đọc số có nhiều chữ số: } \\begin{cases} \\text{Lớp triệu: } \\text{Hàng triệu, hàng chục triệu, hàng trăm triệu} \\ \\text{Lớp nghìn: } \\text{Hàng nghìn, hàng chục nghìn, hàng trăm nghìn} \\ \\text{Lớp đơn vị: } \\text{Hàng đơn vị, hàng chục, hàng trăm} \\end{cases} $$",
+        "example": "Ví dụ: Số 4 567 890 có thể được đọc như sau: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi. Lời giải: Ta tách số thành từng lớp như sau:\n- Lớp triệu: 4\n- Lớp nghìn: 567\n- Lớp đơn vị: 890\nTa dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc:\n- Lớp triệu: Bốn triệu\n- Lớp nghìn: Năm trăm sáu mươi bảy nghìn\n- Lớp đơn vị: Tám trăm chín mươi\nCuối cùng, ta đọc từ trái sang phải: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_3.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_4.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta cần biết cách đọc số có tới ba chữ số thuộc từng lớp.",
+        "title": "Cách đọc số có tới ba chữ số thuộc từng lớp",
+        "body": "Để đọc số có tới ba chữ số thuộc từng lớp, ta thực hiện các bước sau:\n- Đọc số có ba chữ số thuộc từng lớp.\n- Dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc.\nVí dụ: Số 123 có thể được đọc như sau: Một trăm hai mươi ba.",
+        "formula": "$$ \\text{Đọc số có tới ba chữ số thuộc từng lớp: } \\begin{cases} \\text{Lớp triệu: } \\text{Hàng triệu, hàng chục triệu, hàng trăm triệu} \\ \\text{Lớp nghìn: } \\text{Hàng nghìn, hàng chục nghìn, hàng trăm nghìn} \\ \\text{Lớp đơn vị: } \\text{Hàng đơn vị, hàng chục, hàng trăm} \\end{cases} $$",
+        "example": "Ví dụ: Số 123 có thể được đọc như sau: Một trăm hai mươi ba. Lời giải: Ta tách số thành từng lớp như sau:\n- Lớp đơn vị: 3\n- Lớp chục: 2\n- Lớp trăm: 1\nTa dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc:\n- Lớp đơn vị: Ba\n- Lớp chục: Hai mươi\n- Lớp trăm: Một trăm\nCuối cùng, ta đọc từ trái sang phải: Một trăm hai mươi ba.",
+        "images": []
+      },
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta cần biết cách đọc số có nhiều chữ số thuộc từng lớp.",
+        "title": "Cách đọc số có nhiều chữ số thuộc từng lớp",
+        "body": "Để đọc số có nhiều chữ số thuộc từng lớp, ta thực hiện các bước sau:\n- Tách số thành từng lớp từ trái sang phải, mỗi lớp có ba hàng.\n- Dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc.\n- Đọc từ trái sang phải.\nVí dụ: Số 4 567 890 có thể được đọc như sau: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi.",
+        "formula": "$$ \\text{Đọc số có nhiều chữ số thuộc từng lớp: } \\begin{cases} \\text{Lớp triệu: } \\text{Hàng triệu, hàng chục triệu, hàng trăm triệu} \\ \\text{Lớp nghìn: } \\text{Hàng nghìn, hàng chục nghìn, hàng trăm nghìn} \\ \\text{Lớp đơn vị: } \\text{Hàng đơn vị, hàng chục, hàng trăm} \\end{cases} $$",
+        "example": "Ví dụ: Số 4 567 890 có thể được đọc như sau: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi. Lời giải: Ta tách số thành từng lớp như sau:\n- Lớp triệu: 4\n- Lớp nghìn: 567\n- Lớp đơn vị: 890\nTa dựa vào cách đọc số có tới ba chữ số thuộc từng lớp để đọc:\n- Lớp triệu: Bốn triệu\n- Lớp nghìn: Năm trăm sáu mươi bảy nghìn\n- Lớp đơn vị: Tám trăm chín mươi\nCuối cùng, ta đọc từ trái sang phải: Bốn triệu năm trăm sáu mươi bảy nghìn tám trăm chín mươi.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 161,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "9. Bài 9: So sánh các số có nhiều chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để so sánh các số có nhiều chữ số, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần xác định số chữ số của mỗi số. Nếu hai số có số chữ số khác nhau, thì số nào có ít chữ số hơn sẽ nhỏ hơn. Nếu hai số có số chữ số bằng nhau, chúng ta sẽ so sánh từng cặp chữ số trên cùng một hàng, từ trái sang phải, cho đến khi xuất hiện cặp chữ số đầu tiên khác nhau. Ở cặp chữ số khác nhau đó, chữ số nào lớn hơn thì số chứa chữ số đó lớn hơn.",
+        "title": "So sánh các số có nhiều chữ số",
+        "body": "Để so sánh các số có nhiều chữ số, chúng ta cần thực hiện các bước sau:\n- Xác định số chữ số của mỗi số.\n- Nếu hai số có số chữ số khác nhau, thì số nào có ít chữ số hơn sẽ nhỏ hơn.\n- Nếu hai số có số chữ số bằng nhau, chúng ta sẽ so sánh từng cặp chữ số trên cùng một hàng, từ trái sang phải, cho đến khi xuất hiện cặp chữ số đầu tiên khác nhau.\n- Ở cặp chữ số khác nhau đó, chữ số nào lớn hơn thì số chứa chữ số đó lớn hơn.",
+        "formula": "$\\text{Nếu } a < b \\text{ thì } a \\text{ nhỏ hơn } b.$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/19.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_7.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Ví dụ, chúng ta có hai số 264 115 và 3 366 967. Số 264 115 có sáu chữ số, trong khi số 3 366 967 có bảy chữ số. Vì vậy, số 264 115 nhỏ hơn số 3 366 967.",
+        "title": "Ví dụ",
+        "body": "Ví dụ 1: So sánh hai số 264 115 và 3 366 967.\n- Xác định số chữ số của mỗi số: 264 115 có sáu chữ số, 3 366 967 có bảy chữ số.\n- Vì số 264 115 có ít chữ số hơn, nên số 264 115 nhỏ hơn số 3 366 967.",
+        "formula": "$264 115 < 3 366 967.$",
+        "images": []
+      },
+      {
+        "thinking": "Ví dụ tiếp theo, chúng ta có hai số 217 466 và 213 972. Chúng ta sẽ so sánh từng cặp chữ số trên cùng một hàng, từ trái sang phải, cho đến khi xuất hiện cặp chữ số đầu tiên khác nhau.",
+        "title": "Ví dụ tiếp theo",
+        "body": "Ví dụ 2: So sánh hai số 217 466 và 213 972.\n- Xác định số chữ số của mỗi số: 217 466 có sáu chữ số, 213 972 có sáu chữ số.\n- Vì hai số có số chữ số bằng nhau, chúng ta sẽ so sánh từng cặp chữ số trên cùng một hàng, từ trái sang phải.\n- Ở hàng triệu, chúng ta có 2 < 2.\n- Ở hàng trăm nghìn, chúng ta có 1 < 3.\n- Vì 1 < 3, nên số 217 466 lớn hơn số 213 972.",
+        "formula": "$217 466 > 213 972.$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 162,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "10. Bài 10: Làm tròn số đến hàng trăm nghìn",
+    "theory_cards": [
+      {
+        "thinking": "Để làm tròn số đến hàng trăm nghìn, chúng ta cần xem xét số chữ số của số nguyên. Nếu số nguyên có ít hơn 6 chữ số, chúng ta sẽ thêm chữ số 0 vào trước để tạo thành một số có 6 chữ số. Sau đó, chúng ta sẽ xem xét chữ số hàng trăm nghìn. Nếu chữ số hàng trăm nghìn nhỏ hơn 5, chúng ta sẽ giữ nguyên số nguyên. Nếu chữ số hàng trăm nghìn lớn hơn hoặc bằng 5, chúng ta sẽ tăng số nguyên lên một hàng trăm nghìn.",
+        "title": "Làm tròn số đến hàng trăm nghìn",
+        "body": "Làm tròn số đến hàng trăm nghìn là một kỹ năng quan trọng trong toán học. Để làm tròn số, chúng ta cần xem xét số chữ số của số nguyên và chữ số hàng trăm nghìn. Dưới đây là các bước để làm tròn số đến hàng trăm nghìn:\n- Nếu số nguyên có ít hơn 6 chữ số, chúng ta sẽ thêm chữ số 0 vào trước để tạo thành một số có 6 chữ số.\n- Sau đó, chúng ta sẽ xem xét chữ số hàng trăm nghìn.\n- Nếu chữ số hàng trăm nghìn nhỏ hơn 5, chúng ta sẽ giữ nguyên số nguyên.\n- Nếu chữ số hàng trăm nghìn lớn hơn hoặc bằng 5, chúng ta sẽ tăng số nguyên lên một hàng trăm nghìn.\n- Nếu số nguyên cách đều hai số 300 000 và 400 000, chúng ta sẽ lấy số 400 000 làm tròn số.",
+        "formula": "$\\text{Làm tròn số } x \\text{ đến hàng trăm nghìn:}\\$\n\\text{Nếu } x \\text{ có ít hơn 6 chữ số, thêm chữ số 0 vào trước.}\\$\n\\text{Nếu chữ số hàng trăm nghìn nhỏ hơn 5, giữ nguyên số nguyên.}\\$\n\\text{Nếu chữ số hàng trăm nghìn lớn hơn hoặc bằng 5, tăng số nguyên lên một hàng trăm nghìn.}\\$\n\\text{Nếu số nguyên cách đều hai số 300 000 và 400 000, lấy số 400 000 làm tròn số.}\\$",
+        "example": "Ví dụ: Làm tròn số 320 000 đến hàng trăm nghìn.\n- Bước 1: Thêm chữ số 0 vào trước để tạo thành một số có 6 chữ số: 032 000.\n- Bước 2: Xem xét chữ số hàng trăm nghìn. Chữ số hàng trăm nghìn là 2, nhỏ hơn 5.\n- Kết quả: Số 300 000.\nVí dụ khác: Làm tròn số 370 000 đến hàng trăm nghìn.\n- Bước 1: Thêm chữ số 0 vào trước để tạo thành một số có 6 chữ số: 037 000.\n- Bước 2: Xem xét chữ số hàng trăm nghìn. Chữ số hàng trăm nghìn là 7, lớn hơn hoặc bằng 5.\n- Kết quả: Số 400 000.\nVí dụ khác: Làm tròn số 350 000 đến hàng trăm nghìn.\n- Bước 1: Thêm chữ số 0 vào trước để tạo thành một số có 6 chữ số: 035 000.\n- Bước 2: Xem xét chữ số hàng trăm nghìn. Chữ số hàng trăm nghìn là 5, cách đều hai số 300 000 và 400 000.\n- Kết quả: Số 400 000.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_8.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 163,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "12. Bài 12: Số tự nhiên. Dãy số tự nhiên",
+    "theory_cards": [
+      {
+        "thinking": "Số tự nhiên là gì? Số tự nhiên có từ bao giờ?",
+        "title": "Khái niệm số tự nhiên",
+        "body": "Số tự nhiên là các số dùng để đếm và đo lường. Những khái niệm đầu tiên về số tự nhiên đã có từ thời cổ xưa. Những khái niệm đó phát sinh từ việc đếm các đồ vật, con người, vật nuôi, hoa quả...",
+        "formula": "$0, 1, 2, 3, ...$",
+        "example": "Ví dụ: Số 5 là một số tự nhiên vì nó dùng để đếm 5 đồ vật.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_9.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_10.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Các số tự nhiên sắp xếp theo thứ tự từ bé đến lớn tạo thành dãy số tự nhiên. Dãy số tự nhiên có đặc điểm gì?",
+        "title": "Dãy số tự nhiên",
+        "body": "Dãy số tự nhiên là các số tự nhiên sắp xếp theo thứ tự từ bé đến lớn. Dãy số tự nhiên có đặc điểm sau:\n- Thêm 1 vào bất kì số nào cũng được số tự nhiên liền sau số đó.\n- Không có số tự nhiên lớn nhất và dãy số tự nhiên có thể kéo dài mãi.\n- Bớt 1 ở bất kì số nào (khác số 0) cũng được số tự nhiên liền trước số đó.",
+        "formula": "",
+        "example": "Ví dụ: Số 1 000 000 thêm 1 được số tự nhiên liền sau là 1 000 001.",
+        "images": []
+      },
+      {
+        "thinking": "Để đọc số có nhiều chữ số, ta tách số thành lớp (từ phải qua trái, mỗi lớp 3 chữ số), sau đó đọc từng lớp từ trái qua phải kèm tên lớp.",
+        "title": "Đọc số có nhiều chữ số",
+        "body": "Để đọc số có nhiều chữ số, ta tách số thành lớp (từ phải qua trái, mỗi lớp 3 chữ số), sau đó đọc từng lớp từ trái qua phải kèm tên lớp. Ví dụ:\n- Số 4 567 890 gồm: 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "formula": "",
+        "example": "Ví dụ: Số 1 000 000 gồm: 1 triệu, 0 trăm nghìn, 0 chục nghìn, 0 nghìn, 0 trăm, 0 chục, 0 đơn vị.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 164,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "13. Bài 13: Viết số tự nhiên trong hệ thập phân",
+    "theory_cards": [
+      {
+        "thinking": "Để viết số tự nhiên trong hệ thập phân, chúng ta cần hiểu về cách phân chia số tự nhiên thành các hàng và lớp. Mỗi hàng chỉ có thể chứa một chữ số và giá trị của mỗi chữ số phụ thuộc vào vị trí của nó trong số.",
+        "title": "Hệ thập phân và phân chia số tự nhiên",
+        "body": "Hệ thập phân là hệ thống đếm dựa trên 10 chữ số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Để viết số tự nhiên trong hệ thập phân, chúng ta cần phân chia số thành các hàng và lớp. Mỗi hàng chỉ có thể chứa một chữ số và giá trị của mỗi chữ số phụ thuộc vào vị trí của nó trong số. Ví dụ: số 888 có ba chữ số 8, kể từ phải sang trái mỗi chữ số 8 lần lượt nhận giá trị là 8, 80, 800.",
+        "formula": "$10^0 = 1, 10^1 = 10, 10^2 = 100, ...$",
+        "example": "Ví dụ: số 123 có 3 chữ số. Chữ số 1 ở hàng trăm có giá trị là 100, chữ số 2 ở hàng chục có giá trị là 20, chữ số 3 ở hàng đơn vị có giá trị là 3. Do đó, số 123 có thể được viết là 100 + 20 + 3 = 123.",
+        "images": []
+      },
+      {
+        "thinking": "Để viết số tự nhiên trong hệ thập phân, chúng ta cần hiểu về cách quy đổi đơn vị đo lường. Ví dụ: 10 đơn vị = 1 chục, 10 chục = 1 trăm, 10 trăm = 1 nghìn, ...",
+        "title": "Quy đổi đơn vị đo lường",
+        "body": "Quy đổi đơn vị đo lường là quá trình chuyển đổi từ một đơn vị đo lường sang một đơn vị đo lường khác. Ví dụ: 10 đơn vị = 1 chục, 10 chục = 1 trăm, 10 trăm = 1 nghìn, ...",
+        "formula": "$10^0 = 1, 10^1 = 10, 10^2 = 100, ...$",
+        "example": "Ví dụ: số 123 có 3 chữ số. Chữ số 1 ở hàng trăm có giá trị là 100, chữ số 2 ở hàng chục có giá trị là 20, chữ số 3 ở hàng đơn vị có giá trị là 3. Do đó, số 123 có thể được viết là 100 + 20 + 3 = 123.",
+        "images": []
+      },
+      {
+        "thinking": "Để viết số tự nhiên trong hệ thập phân, chúng ta cần hiểu về cách đọc số có nhiều chữ số. Ví dụ: số 4 567 890 có 7 chữ số, gồm 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "title": "Đọc số có nhiều chữ số",
+        "body": "Đọc số có nhiều chữ số là quá trình đọc số tự nhiên có nhiều chữ số. Ví dụ: số 4 567 890 có 7 chữ số, gồm 4 triệu, 5 trăm nghìn, 6 chục nghìn, 7 nghìn, 8 trăm, 9 chục, 0 đơn vị.",
+        "formula": "$10^0 = 1, 10^1 = 10, 10^2 = 100, ...$",
+        "example": "Ví dụ: số 4 567 890 có 7 chữ số. Chữ số 4 ở hàng triệu có giá trị là 4 triệu, chữ số 5 ở hàng trăm nghìn có giá trị là 5 trăm nghìn, chữ số 6 ở hàng chục nghìn có giá trị là 6 chục nghìn, chữ số 7 ở hàng nghìn có giá trị là 7 nghìn, chữ số 8 ở hàng trăm có giá trị là 8 trăm, chữ số 9 ở hàng chục có giá trị là 9 chục, chữ số 0 ở hàng đơn vị có giá trị là 0 đơn vị. Do đó, số 4 567 890 có thể được viết là 4 triệu + 5 trăm nghìn + 6 chục nghìn + 7 nghìn + 8 trăm + 9 chục + 0 đơn vị = 4 567 890.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 165,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "14. Bài 14: Yến, tạ, tấn",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về đơn vị đo lường khối lượng Yến, Tạ, Tấn, chúng ta cần phân tích mối quan hệ giữa chúng. Yến là đơn vị đo lường nhỏ nhất, tương đương với 10 kg. Tạ là đơn vị đo lường lớn hơn, tương đương với 10 Yến hoặc 100 kg. Tấn là đơn vị đo lường lớn nhất, tương đương với 10 Tạ hoặc 1000 kg.",
+        "title": "Đơn vị Yến, Tạ, Tấn",
+        "body": "Yến, Tạ, Tấn là các đơn vị đo lường khối lượng được sử dụng để đo các vật nặng hàng chục, hàng trăm, hàng nghìn kg. Mỗi đơn vị có mối quan hệ với nhau như sau:\n- 1 Yến = 10 kg\n- 1 Tạ = 10 Yến = 100 kg\n- 1 Tấn = 10 Tạ = 1000 kg\n- 1 Tạ = 10 Yến\n- 1 Tấn = 10 Tạ\n- 1 Tấn = 1000 kg\n- 1 Tạ = 100 kg\n- 1 Yến = 10 kg\n    ",
+        "formula": "$1\\text{ yến} = 10\\text{ kg}$, $1\\text{ tạ} = 10\\text{ yến} = 100\\text{ kg}$, $1\\text{ tấn} = 10\\text{ tạ} = 1000\\text{ kg}$",
+        "example": "Ví dụ: Một người có khối lượng 150 kg. Để chuyển đổi sang đơn vị Tạ, chúng ta có thể thực hiện như sau:\n- 150 kg ÷ 10 kg/Yến = 15 Yến\n- 15 Yến ÷ 10 Yến/Tạ = 1,5 Tạ\n- 1,5 Tạ x 100 kg/Tạ = 150 kg\nVậy khối lượng của người đó là 1,5 Tạ hoặc 150 kg.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_11.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 166,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "15. Bài 15: Giây",
+    "theory_cards": [
+      {
+        "thinking": "Giây là một đơn vị đo thời gian. Để hiểu rõ hơn về đơn vị giây, chúng ta cần biết mối quan hệ giữa giây và các đơn vị thời gian khác như phút và giờ.",
+        "title": "Khái niệm Giây",
+        "body": "Giây là một đơn vị đo thời gian. Để hiểu rõ hơn về đơn vị giây, chúng ta cần biết mối quan hệ giữa giây và các đơn vị thời gian khác như phút và giờ. Dưới đây là một số quan hệ cơ bản giữa các đơn vị thời gian:\n- 1 phút = 60 giây\n- 1 giờ = 60 phút = 3600 giây\n- Khi kim giây chạy được một vòng trên mặt đồng hồ qua 60 vạch thì kim phút chạy được 1 phút",
+        "formula": "$1\\text{ phút} = 60\\text{ giây}$",
+        "example": "Ví dụ: Nếu kim phút trên đồng hồ chạy được 2 phút, thì kim giây sẽ chạy được $2 \\times 60 = 120$ giây.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_12.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_13.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về đơn vị giây, chúng ta cần biết cách chuyển đổi giữa các đơn vị thời gian khác nhau.",
+        "title": "Chuyển đổi Giây",
+        "body": "Để hiểu rõ hơn về đơn vị giây, chúng ta cần biết cách chuyển đổi giữa các đơn vị thời gian khác nhau. Dưới đây là một số ví dụ về chuyển đổi giữa giây và các đơn vị thời gian khác:\n- 1 phút = 60 giây\n- 1 giờ = 3600 giây\n- 1 giờ = 60 phút = 3600 giây",
+        "formula": "$1\\text{ giờ} = 3600\\text{ giây}$",
+        "example": "Ví dụ: Nếu một sự kiện diễn ra trong 2 giờ, thì số giây tương ứng là $2 \\times 3600 = 7200$ giây.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 167,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "16. Bài 16: Thế kỉ",
+    "theory_cards": [
+      {
+        "thinking": "Để xác định thế kỉ của một năm, chúng ta cần phân tích số năm và chia thành các khoảng thời gian khác nhau. Từ năm 1 đến năm 100 là thế kỉ 1 (I), từ năm 101 đến năm 200 là thế kỉ 2 (II), và cứ tiếp tục như vậy.",
+        "title": "Khái niệm thế kỉ",
+        "body": "Thế kỉ là một khoảng thời gian kéo dài 100 năm, bắt đầu từ năm 1 và kết thúc vào năm 100, sau đó tiếp tục với thế kỉ tiếp theo. Để xác định thế kỉ của một năm, chúng ta cần xem xét số năm và chia thành các khoảng thời gian khác nhau.",
+        "formula": "$\\text{Thế kỉ} = \\frac{\\text{Năm}}{100} + 1$",
+        "example": "Ví dụ, năm 2026 thuộc thế kỉ 21 vì $2026 \\div 100 = 20$ và $20 + 1 = 21$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_14.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Nếu năm có dạng ab...xy và xy > 00, thế kỉ sẽ là ab... + 1. Nếu xy = 00, thế kỉ sẽ là ab...",
+        "title": "Quy tắc xác định thế kỉ",
+        "body": "Để xác định thế kỉ của một năm, chúng ta cần xem xét số năm và chia thành các khoảng thời gian khác nhau. Nếu năm có dạng ab...xy và xy > 00, thế kỉ sẽ là ab... + 1. Nếu xy = 00, thế kỉ sẽ là ab...",
+        "formula": "$\\text{Thế kỉ} = \\begin{cases} ab... + 1 & \\text{Nếu } xy > 00 \\ ab... & \\text{Nếu } xy = 00 \\end{cases}$",
+        "example": "Ví dụ, năm 1900 thuộc thế kỉ 19 vì $1900 \\div 100 = 19$ và $19 + 1 = 20$, nhưng vì $00 = 00$, thế kỉ sẽ là 19.",
+        "images": []
+      },
+      {
+        "thinking": "Bằng cách áp dụng quy tắc xác định thế kỉ, chúng ta có thể xác định thế kỉ của bất kỳ năm nào.",
+        "title": "Ứng dụng quy tắc xác định thế kỉ",
+        "body": "Bằng cách áp dụng quy tắc xác định thế kỉ, chúng ta có thể xác định thế kỉ của bất kỳ năm nào. Chúng ta chỉ cần xem xét số năm và chia thành các khoảng thời gian khác nhau.",
+        "formula": "$\\text{Thế kỉ} = \\begin{cases} ab... + 1 & \\text{Nếu } xy > 00 \\ ab... & \\text{Nếu } xy = 00 \\end{cases}$",
+        "example": "Ví dụ, năm 2027 thuộc thế kỉ 21 vì $2027 \\div 100 = 20$ và $20 + 1 = 21$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 168,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "17. Bài 17: Bài toán liên quan đến rút về đơn vị",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán liên quan đến rút về đơn vị, chúng ta cần tìm giá tiền của một chiếc bút chì và sau đó nhân số chiếc bút chì mà người mua muốn mua.",
+        "title": "Tìm giá tiền của một chiếc bút chì",
+        "body": "Giá tiền của một chiếc bút chì được tính bằng cách chia tổng giá tiền của 5 chiếc bút chì cho số lượng chiếc bút chì đó.",
+        "formula": "$\\frac{30 000}{5} = 6 000$",
+        "example": "Ví dụ: Cửa hàng bán 5 chiếc bút chì giá 30 000 đồng. Giá tiền của một chiếc bút chì là $\\frac{30 000}{5} = 6 000$. Nếu bạn Bình muốn mua 8 chiếc bút chì, thì số tiền phải trả là $6 000 \\times 8 = 48 000$ đồng.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_15.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Sau khi tìm được giá tiền của một chiếc bút chì, chúng ta có thể tính số tiền phải trả cho số chiếc bút chì mà người mua muốn mua.",
+        "title": "Tính số tiền phải trả",
+        "body": "Số tiền phải trả được tính bằng cách nhân giá tiền của một chiếc bút chì với số lượng chiếc bút chì mà người mua muốn mua.",
+        "formula": "$6 000 \\times 8 = 48 000$",
+        "example": "Ví dụ: Nếu bạn Bình muốn mua 8 chiếc bút chì, giá tiền của một chiếc bút chì là 6 000 đồng. Số tiền phải trả là $6 000 \\times 8 = 48 000$ đồng.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 169,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "19. Bài 19: Góc nhọn, góc tù, góc bẹt",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu rõ hơn về góc nhọn, góc tù và góc bẹt, chúng ta cần phân tích từng loại góc một. Góc nhọn là góc nhỏ hơn góc vuông, nghĩa là nhỏ hơn 90 độ. Ví dụ, góc giữa hai bức tường trong một căn phòng thường là góc nhọn. Góc tù là góc lớn hơn góc vuông nhưng nhỏ hơn góc bẹt, nằm giữa 90 độ và 180 độ. Ví dụ, góc giữa hai cánh tay khi chúng ta gấp tay lên trên thường là góc tù. Góc bẹt là góc bằng hai góc vuông, nghĩa là bằng 180 độ. Ví dụ, góc giữa hai bức tường đối diện trong một căn phòng thường là góc bẹt.",
+        "title": "Khái niệm góc nhọn, góc tù, góc bẹt",
+        "body": "Dưới đây là các loại góc và đặc điểm của chúng:\n- Góc nhọn: nhỏ hơn góc vuông (nghĩa là nhỏ hơn 90 độ)\n- Góc tù: lớn hơn góc vuông nhưng nhỏ hơn góc bẹt (nằm giữa 90 độ và 180 độ)\n- Góc bẹt: bằng hai góc vuông (nghĩa là bằng 180 độ)",
+        "formula": "$90^\\circ$ là góc vuông",
+        "example": "Ví dụ: Một bức tường và một bức tường đối diện trong một căn phòng tạo thành một góc bẹt. Để kiểm tra, chúng ta có thể đo góc bằng một chiếc thước kẻ. Nếu góc bằng 180 độ, thì đó là góc bẹt.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_16.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_17.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để phân biệt giữa góc nhọn, góc tù và góc bẹt, chúng ta cần biết cách đo góc. Chúng ta có thể sử dụng một chiếc thước kẻ để đo góc. Nếu góc nhỏ hơn 90 độ, thì đó là góc nhọn. Nếu góc nằm giữa 90 độ và 180 độ, thì đó là góc tù. Nếu góc bằng 180 độ, thì đó là góc bẹt.",
+        "title": "Cách đo góc",
+        "body": "Dưới đây là các bước để đo góc:\n1. Sử dụng một chiếc thước kẻ để đo góc.\n2. Nếu góc nhỏ hơn 90 độ, thì đó là góc nhọn.\n3. Nếu góc nằm giữa 90 độ và 180 độ, thì đó là góc tù.\n4. Nếu góc bằng 180 độ, thì đó là góc bẹt",
+        "formula": "$m\\angle = 180^\\circ - m\\angle_1 - m\\angle_2$",
+        "example": "Ví dụ: Một bức tường và một bức tường đối diện trong một căn phòng tạo thành một góc bẹt. Để kiểm tra, chúng ta có thể đo góc bằng một chiếc thước kẻ. Nếu góc bằng 180 độ, thì đó là góc bẹt.",
+        "images": []
+      },
+      {
+        "thinking": "Để áp dụng kiến thức về góc nhọn, góc tù và góc bẹt vào thực tế, chúng ta cần biết cách sử dụng chúng trong các tình huống khác nhau. Ví dụ, khi thiết kế một căn phòng, chúng ta cần biết cách đo góc để đảm bảo rằng các bức tường và trần nhà tạo thành một góc hợp lý.",
+        "title": "Áp dụng kiến thức về góc nhọn, góc tù và góc bẹt",
+        "body": "Dưới đây là các bước để áp dụng kiến thức về góc nhọn, góc tù và góc bẹt:\n1. Sử dụng kiến thức về góc nhọn, góc tù và góc bẹt để đo góc trong các tình huống khác nhau.\n2. Áp dụng kiến thức về góc nhọn, góc tù và góc bẹt để thiết kế các căn phòng hợp lý.",
+        "formula": "",
+        "example": "Ví dụ: Một kiến trúc sư cần thiết kế một căn phòng với các bức tường và trần nhà tạo thành một góc hợp lý. Để thực hiện, kiến trúc sư cần sử dụng kiến thức về góc nhọn, góc tù và góc bẹt để đo góc và đảm bảo rằng các bức tường và trần nhà tạo thành một góc hợp lý.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 170,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "20. Bài 20. Đơn vị đo góc. Độ",
+    "theory_cards": [
+      {
+        "thinking": "Để đo góc, chúng ta cần biết các đơn vị đo góc cơ bản. Góc vuông được đo bằng 90 độ, góc nhọn nhỏ hơn góc vuông, góc tù lớn hơn góc vuông nhưng nhỏ hơn góc bẹt. Góc bẹt bằng hai góc vuông, tức là 180 độ.",
+        "title": "Đơn vị đo góc",
+        "body": "Các đơn vị đo góc cơ bản bao gồm:\n- Góc vuông: 90 độ\n- Góc nhọn: nhỏ hơn góc vuông\n- Góc tù: lớn hơn góc vuông nhưng nhỏ hơn góc bẹt\n- Góc bẹt: bằng hai góc vuông, tức là 180 độ",
+        "formula": "$90^\\circ = 1$ góc vuông",
+        "example": "Ví dụ: Một hình vuông có bốn góc đều bằng 90 độ. Nếu chúng ta đo một góc của hình vuông, chúng ta sẽ thấy rằng nó bằng 90 độ.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_18.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_19.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_21.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về các đơn vị đo góc, chúng ta cần biết cách đo góc bằng các công cụ đo góc khác nhau.",
+        "title": "Cách đo góc",
+        "body": "Có nhiều cách đo góc khác nhau, bao gồm:\n- Sử dụng thước đo góc\n- Sử dụng đồng hồ đo góc\n- Sử dụng máy đo góc điện tử",
+        "formula": "Không có công thức cụ thể cho cách đo góc, nhưng chúng ta cần biết cách sử dụng các công cụ đo góc khác nhau.",
+        "example": "Ví dụ: Chúng ta có một hình vuông và muốn đo một góc của nó. Chúng ta có thể sử dụng thước đo góc để đo góc đó.",
+        "images": []
+      },
+      {
+        "thinking": "Để áp dụng kiến thức về đơn vị đo góc vào thực tế, chúng ta cần biết cách sử dụng kiến thức này trong các tình huống khác nhau.",
+        "title": "Ứng dụng kiến thức về đơn vị đo góc",
+        "body": "Kiến thức về đơn vị đo góc có thể được áp dụng vào nhiều tình huống khác nhau, bao gồm:\n- Thiết kế kiến trúc\n- Thiết kế đồ họa\n- Tính toán góc trong các lĩnh vực khác nhau",
+        "formula": "Không có công thức cụ thể cho ứng dụng kiến thức về đơn vị đo góc, nhưng chúng ta cần biết cách sử dụng kiến thức này trong các tình huống khác nhau.",
+        "example": "Ví dụ: Chúng ta đang thiết kế một tòa nhà và muốn đảm bảo rằng các góc của tòa nhà đều bằng 90 độ. Chúng ta có thể sử dụng kiến thức về đơn vị đo góc để đo và kiểm tra các góc của tòa nhà.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 171,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về hai đường thẳng vuông góc, chúng ta cần phân tích từng bước. Đầu tiên, chúng ta cần biết rằng hai đường thẳng vuông góc là hai đường thẳng cắt nhau tạo thành một góc vuông. Để vẽ hai đường thẳng vuông góc, chúng ta cần chọn một điểm E không nằm trên đường thẳng AB và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB.",
+        "title": "Khái niệm hai đường thẳng vuông góc",
+        "body": "Hai đường thẳng vuông góc là hai đường thẳng cắt nhau tạo thành một góc vuông. Để vẽ hai đường thẳng vuông góc, chúng ta cần chọn một điểm E không nằm trên đường thẳng AB và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB. Điều này có thể được thực hiện bằng cách sử dụng một thước kẻ và một bút chì.",
+        "formula": "$90^\\circ$ là góc vuông.",
+        "example": "Ví dụ: Chúng ta có đường thẳng AB và điểm E không nằm trên đường thẳng AB. Để vẽ đường thẳng CD vuông góc với đường thẳng AB, chúng ta chọn điểm E và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB. Kết quả là chúng ta có hai đường thẳng vuông góc AB và CD.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0609/20_22.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để vẽ hai đường thẳng vuông góc, chúng ta cần chọn một điểm E không nằm trên đường thẳng AB và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB. Điều này có thể được thực hiện bằng cách sử dụng một thước kẻ và một bút chì.",
+        "title": "Vẽ hai đường thẳng vuông góc",
+        "body": "Để vẽ hai đường thẳng vuông góc, chúng ta cần chọn một điểm E không nằm trên đường thẳng AB và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB. Điều này có thể được thực hiện bằng cách sử dụng một thước kẻ và một bút chì. Chúng ta cần đảm bảo rằng đường thẳng CD vuông góc với đường thẳng AB.",
+        "formula": "",
+        "example": "Ví dụ: Chúng ta có đường thẳng AB và điểm E không nằm trên đường thẳng AB. Để vẽ đường thẳng CD vuông góc với đường thẳng AB, chúng ta chọn điểm E và vẽ một đường thẳng CD đi qua điểm E và vuông góc với đường thẳng AB. Kết quả là chúng ta có hai đường thẳng vuông góc AB và CD.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 172,
+    "grade": 4,
+    "chapter_name": "Chủ đề 1. Số tự nhiên",
+    "lesson_name": "22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+    "theory_cards": [
+      {
+        "thinking": "Hai đường thẳng song song là hai đường thẳng không bao giờ cắt nhau, dù kéo dài vô tận. Để hiểu rõ hơn về khái niệm này, chúng ta hãy xem xét ví dụ sau: có hai đường thẳng AB và CD. Nếu chúng ta kéo dài đường thẳng AB và CD vô tận, chúng ta sẽ thấy rằng chúng không bao giờ cắt nhau.",
+        "title": "Khái niệm hai đường thẳng song song",
+        "body": "Hai đường thẳng song song là hai đường thẳng không bao giờ cắt nhau, dù kéo dài vô tận. Điều này có nghĩa là hai đường thẳng này không có điểm chung nào và không cắt nhau ở bất kỳ đâu.",
+        "formula": "$\\boxed{\\text{Hai đường thẳng song song không cắt nhau}}$",
+        "example": "Ví dụ: có hai đường thẳng AB và CD. Nếu chúng ta kéo dài đường thẳng AB và CD vô tận, chúng ta sẽ thấy rằng chúng không bao giờ cắt nhau. Điều này có thể được minh họa bằng hình vẽ sau:\\n\\nHình vẽ: Đường thẳng AB và CD song song\\n\\nLời giải: Đường thẳng AB và CD không cắt nhau, vì chúng không có điểm chung nào và không kéo dài vô tận.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_2.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để vẽ hai đường thẳng song song, chúng ta cần đảm bảo rằng hai đường thẳng này không cắt nhau. Điều này có thể được thực hiện bằng cách sử dụng các công cụ vẽ như thước kẻ và bút chì.",
+        "title": "Vẽ hai đường thẳng song song",
+        "body": "Để vẽ hai đường thẳng song song, chúng ta cần đảm bảo rằng hai đường thẳng này không cắt nhau. Điều này có thể được thực hiện bằng cách sử dụng các công cụ vẽ như thước kẻ và bút chì. Chúng ta có thể vẽ hai đường thẳng song song bằng cách sau:\\n\\n1. Vẽ một đường thẳng AB.\\n2. Vẽ một đường thẳng CD song song với đường thẳng AB.\\n3. Đảm bảo rằng hai đường thẳng này không cắt nhau.",
+        "formula": "$\\boxed{\\text{Vẽ hai đường thẳng song song}}$",
+        "example": "Ví dụ: vẽ hai đường thẳng AB và CD song song. Lời giải: Vẽ đường thẳng AB và CD song song, đảm bảo rằng chúng không cắt nhau.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 173,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "1. Bài 26: Phép cộng, phép trừ",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về phép cộng và phép trừ, chúng ta cần phân tích từng bước. Phép cộng là phép tính cộng hai hoặc nhiều số lại với nhau, trong khi phép trừ là phép tính trừ một số khỏi một số khác. Ví dụ, nếu chúng ta có hai số là 5 và 3, thì phép cộng sẽ là 5 + 3 = 8, và phép trừ sẽ là 5 - 3 = 2. Để đảm bảo tính chính xác, chúng ta cần kiểm tra xem các số có mấy chữ số và các phép tính có đúng hay không.",
+        "title": "Khái niệm về phép cộng và phép trừ",
+        "body": "Phép cộng và phép trừ là hai phép tính cơ bản trong toán học. Phép cộng là phép tính cộng hai hoặc nhiều số lại với nhau, trong khi phép trừ là phép tính trừ một số khỏi một số khác. Để thực hiện các phép tính này, chúng ta cần đảm bảo rằng các số có đúng số chữ số và các phép tính có đúng.",
+        "formula": "$a + b = c$ và $a - b = c$",
+        "example": "Ví dụ: Tìm giá trị của 7 + 2 và 9 - 1. \\n\\nLời giải: \\n\\n7 + 2 = $7 + 2 = 9$ \\n\\n9 - 1 = $9 - 1 = 8$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_3.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_4.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để thực hiện phép cộng và phép trừ, chúng ta cần đảm bảo rằng các số có đúng số chữ số và các phép tính có đúng. Ví dụ, nếu chúng ta có hai số là 45 và 27, thì phép cộng sẽ là 45 + 27 = 72, và phép trừ sẽ là 45 - 27 = 18. Để đảm bảo tính chính xác, chúng ta cần kiểm tra xem các số có mấy chữ số và các phép tính có đúng hay không.",
+        "title": "Quy tắc thực hiện phép cộng và phép trừ",
+        "body": "Để thực hiện phép cộng và phép trừ, chúng ta cần thực hiện theo các bước sau: \\n\\n- Đảm bảo rằng các số có đúng số chữ số. \\n\\n- Thực hiện phép tính cộng hoặc trừ. \\n\\n- Kiểm tra xem các số có mấy chữ số và các phép tính có đúng hay không.",
+        "formula": "$a + b = c$ và $a - b = c$",
+        "example": "Ví dụ: Tìm giá trị của 54 + 37 và 93 - 42. \\n\\nLời giải: \\n\\n54 + 37 = $54 + 37 = 91$ \\n\\n93 - 42 = $93 - 42 = 51$",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu về đơn vị đo lường, chúng ta cần phân tích từng bước. Đơn vị đo lường là đơn vị để đo lường các vật thể hoặc chất lượng. Ví dụ, nếu chúng ta có một vật thể có trọng lượng 5 kg, thì chúng ta có thể đo lường trọng lượng của nó bằng đơn vị kg. Để đảm bảo tính chính xác, chúng ta cần kiểm tra xem các số có mấy chữ số và các phép tính có đúng hay không.",
+        "title": "Đơn vị đo lường",
+        "body": "Đơn vị đo lường là đơn vị để đo lường các vật thể hoặc chất lượng. Để đo lường các vật thể hoặc chất lượng, chúng ta cần sử dụng các đơn vị đo lường phù hợp. Ví dụ, để đo lường trọng lượng của một vật thể, chúng ta có thể sử dụng đơn vị kg.",
+        "formula": "$1 kg = 1000 g$",
+        "example": "Ví dụ: Tìm giá trị của 5 kg + 2 kg và 10 kg - 3 kg. \\n\\nLời giải: \\n\\n5 kg + 2 kg = $5 + 2 = 7$ kg \\n\\n10 kg - 3 kg = $10 - 3 = 7$ kg",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 174,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "2. Bài 27: Các tính chất của phép cộng",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất giao hoán của phép cộng, chúng ta cần xem xét ví dụ sau: 5 + 7 = 12 và 7 + 5 = 12. Điều này cho thấy rằng khi thực hiện phép cộng hai số, ta có thể đổi chỗ các số hạng mà tổng không thay đổi.",
+        "title": "Tính chất giao hoán của phép cộng",
+        "body": "Tính chất giao hoán của phép cộng cho biết rằng khi thực hiện phép cộng hai số, ta có thể đổi chỗ các số hạng mà tổng không thay đổi. Ví dụ: 5 + 7 = 7 + 5 = 12.",
+        "formula": "$a + b = b + a$",
+        "example": "Ví dụ: 5 + 7 = 12 và 7 + 5 = 12. Như vậy, 5 + 7 = 7 + 5.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_5.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu về tính chất kết hợp của phép cộng, chúng ta cần xem xét ví dụ sau: (3 + 5) + 6 = 8 + 6 = 14 và 3 + (5 + 6) = 3 + 11 = 14. Điều này cho thấy rằng khi cộng một tổng hai số với số thứ ba, ta có thể cộng số thứ nhất với tổng của số thứ hai và số thứ ba.",
+        "title": "Tính chất kết hợp của phép cộng",
+        "body": "Tính chất kết hợp của phép cộng cho biết rằng khi cộng một tổng hai số với số thứ ba, ta có thể cộng số thứ nhất với tổng của số thứ hai và số thứ ba. Ví dụ: (3 + 5) + 6 = 3 + (5 + 6) = 14.",
+        "formula": "$a + (b + c) = (a + b) + c$",
+        "example": "Ví dụ: (3 + 5) + 6 = 8 + 6 = 14 và 3 + (5 + 6) = 3 + 11 = 14. Như vậy, (3 + 5) + 6 = 3 + (5 + 6).",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu về tính chất cộng với số 0, chúng ta cần xem xét ví dụ sau: 7 + 0 = 7 và 0 + 7 = 7. Điều này cho thấy rằng số nào cộng với 0 cũng cho kết quả bằng chính số đó.",
+        "title": "Cộng với số 0",
+        "body": "Tính chất cộng với số 0 cho biết rằng số nào cộng với 0 cũng cho kết quả bằng chính số đó. Ví dụ: 7 + 0 = 7 và 0 + 7 = 7.",
+        "formula": "$a + 0 = a$",
+        "example": "Ví dụ: 7 + 0 = 7 và 0 + 7 = 7. Như vậy, số nào cộng với 0 cũng cho kết quả bằng chính số đó.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 175,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "3. Bài 28: Tìm số trung bình cộng",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm số trung bình cộng của một nhóm số, chúng ta cần tính tổng của các số đó và sau đó chia tổng đó cho số lượng các số hạng. Ví dụ, nếu chúng ta có các số 11, 15 và 10, chúng ta sẽ tính tổng là 11 + 15 + 10 = 36, sau đó chia tổng đó cho số lượng các số hạng là 3, ta sẽ có số trung bình cộng là 36 : 3 = 12.",
+        "title": "Khái niệm số trung bình cộng",
+        "body": "Số trung bình cộng là một phép tính toán học giúp chúng ta tìm ra giá trị trung bình của một nhóm số. Để tính số trung bình cộng, chúng ta cần thực hiện các bước sau:\n  - Tính tổng của các số đó\n  - Chia tổng đó cho số lượng các số hạng\n  - Kết quả cuối cùng sẽ là số trung bình cộng của nhóm số đó\n  Ví dụ: Số trung bình cộng của các số 11, 15 và 10 là 12, vì tổng của các số đó là 36 và số lượng các số hạng là 3.",
+        "formula": "$\\text{TBC} = (a_1 + a_2 + \\dots + a_n) : n$",
+        "example": "Ví dụ 1: Tìm số trung bình cộng của các số 46 và 24.\n  - Tính tổng của các số đó: 46 + 24 = 70\n  - Chia tổng đó cho số lượng các số hạng: 70 : 2 = 35\n  - Kết quả cuối cùng là số trung bình cộng là 35.\n  Ví dụ 2: Tìm số trung bình cộng của các số 10, 20, 7 và 11.\n  - Tính tổng của các số đó: 10 + 20 + 7 + 11 = 48\n  - Chia tổng đó cho số lượng các số hạng: 48 : 4 = 12\n  - Kết quả cuối cùng là số trung bình cộng là 12.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_6.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_7.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để tìm số trung bình cộng của một nhóm số, chúng ta cần tính tổng của các số đó và sau đó chia tổng đó cho số lượng các số hạng. Ví dụ, nếu chúng ta có các số 14, 16 và 12, chúng ta sẽ tính tổng là 14 + 16 + 12 = 42, sau đó chia tổng đó cho số lượng các số hạng là 3, ta sẽ có số trung bình cộng là 42 : 3 = 14.",
+        "title": "Tìm số trung bình cộng trong thực tế",
+        "body": "Số trung bình cộng có nhiều ứng dụng trong thực tế, chẳng hạn như khi chúng ta cần tìm ra giá trị trung bình của một nhóm số. Ví dụ, nếu chúng ta có ba bạn hái nấm và mỗi bạn hái được một số lượng nấm khác nhau, chúng ta có thể sử dụng số trung bình cộng để tìm ra giá trị trung bình của số lượng nấm mỗi bạn hái được.\n  - Tính tổng của số lượng nấm mỗi bạn hái được\n  - Chia tổng đó cho số lượng các bạn hái nấm\n  - Kết quả cuối cùng sẽ là số trung bình cộng của số lượng nấm mỗi bạn hái được\n  Ví dụ: Ba bạn hái nấm và mỗi bạn hái được 14, 16 và 12 cây nấm. Để tìm số trung bình cộng của số lượng nấm mỗi bạn hái được, chúng ta sẽ tính tổng là 14 + 16 + 12 = 42, sau đó chia tổng đó cho số lượng các bạn hái nấm là 3, ta sẽ có số trung bình cộng là 42 : 3 = 14.",
+        "formula": "$\\text{TBC} = (a_1 + a_2 + \\dots + a_n) : n$",
+        "example": "Ví dụ: Ba bạn hái nấm và mỗi bạn hái được 14, 16 và 12 cây nấm. Để tìm số trung bình cộng của số lượng nấm mỗi bạn hái được, chúng ta sẽ tính tổng là 14 + 16 + 12 = 42, sau đó chia tổng đó cho số lượng các bạn hái nấm là 3, ta sẽ có số trung bình cộng là 42 : 3 = 14.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 176,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm hai số khi biết tổng và hiệu của hai số đó, chúng ta cần sử dụng công thức tính số lớn và số bé. Số lớn được tính bằng cách lấy tổng cộng hiệu và chia cho 2, còn số bé được tính bằng cách lấy tổng trừ hiệu và chia cho 2. Chúng ta có thể thực hiện theo hai cách khác nhau: cách 1 là tính số bé trước rồi tính số lớn, hoặc cách 2 là tính số lớn trước rồi tính số bé.",
+        "title": "Tìm hai số khi biết tổng và hiệu của hai số đó",
+        "body": "Để tìm hai số khi biết tổng và hiệu của hai số đó, chúng ta cần sử dụng công thức tính số lớn và số bé. Số lớn được tính bằng cách lấy tổng cộng hiệu và chia cho 2, còn số bé được tính bằng cách lấy tổng trừ hiệu và chia cho 2. Chúng ta có thể thực hiện theo hai cách khác nhau: cách 1 là tính số bé trước rồi tính số lớn, hoặc cách 2 là tính số lớn trước rồi tính số bé.\\n\\nDưới đây là công thức tính số lớn và số bé:\\n\\nSố lớn = (Tổng + Hiệu) : 2\\nSố bé = (Tổng - Hiệu) : 2",
+        "formula": "$Số lớn = (Tổng + Hiệu) : 2$\\n$Số bé = (Tổng - Hiệu) : 2$",
+        "example": "Ví dụ: Có 18 bạn học sinh tình nguyện tham gia hoạt động bảo vệ môi trường. Biết rằng số bạn nam nhiều hơn số bạn nữ là 4 bạn. Hỏi có bao nhiêu bạn nam, bao nhiêu bạn nữ?\\n\\nCách 1:\\nSố bạn nữ là: (18 - 4) : 2 = 7 (bạn)\\nSố bạn nam là: 7 + 4 = 11 (bạn)\\n\\nCách 2:\\nSố bạn nam là: (18 + 4) : 2 = 11 (bạn)\\nSố bạn nữ là: 11 - 4 = 7 (bạn)",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_8.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_9.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 177,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "6. Bài 31: Nhân với số có một chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để nhân với số có một chữ số, chúng ta cần hiểu rằng số có một chữ số chỉ có một vị trí trong hệ thống số thập phân. Ví dụ, số 5 chỉ có một chữ số và có thể được nhân với các số khác để tạo ra các sản phẩm mới. Khi nhân với số có một chữ số, chúng ta cần đảm bảo rằng cả hai số đều có đúng số chữ số. Nếu một trong hai số có nhiều chữ số hơn, chúng ta cần phải chuyển đổi số đó sang dạng có đúng số chữ số trước khi thực hiện phép nhân.",
+        "title": "Khái niệm nhân với số có một chữ số",
+        "body": "Nhân với số có một chữ số là một phép tính toán học cơ bản trong chương trình Toán lớp 4. Để thực hiện phép nhân này, chúng ta cần đảm bảo rằng cả hai số đều có đúng số chữ số. Nếu một trong hai số có nhiều chữ số hơn, chúng ta cần phải chuyển đổi số đó sang dạng có đúng số chữ số trước khi thực hiện phép nhân. Ví dụ, khi nhân 5 với 4, chúng ta cần đảm bảo rằng cả hai số đều có đúng số chữ số.",
+        "formula": "$a \\times b = (a \\times 10^0) \\times (b \\times 10^0)$",
+        "example": "Ví dụ: 5 \\times 4 = 20. Lời giải: 5 \\times 4 = 5 \\times (4 \\times 10^0) = 5 \\times 4 = 20.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_10.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_11.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Khi thực hiện phép nhân với số có một chữ số, chúng ta cần đảm bảo rằng cả hai số đều có đúng số chữ số. Nếu một trong hai số có nhiều chữ số hơn, chúng ta cần phải chuyển đổi số đó sang dạng có đúng số chữ số trước khi thực hiện phép nhân.",
+        "title": "Quy tắc chuyển đổi số có nhiều chữ số sang dạng có đúng số chữ số",
+        "body": "Quy tắc chuyển đổi số có nhiều chữ số sang dạng có đúng số chữ số là một bước quan trọng trong phép nhân với số có một chữ số. Để thực hiện quy tắc này, chúng ta cần chuyển đổi số có nhiều chữ số sang dạng có đúng số chữ số bằng cách loại bỏ các chữ số không cần thiết.",
+        "formula": "$a = a \\times 10^0$",
+        "example": "Ví dụ: 45 \\times 4 = 180. Lời giải: 45 \\times 4 = (45 \\times 10^0) \\times (4 \\times 10^0) = 180.",
+        "images": []
+      },
+      {
+        "thinking": "Nhân với số có một chữ số là một phép tính toán học cơ bản trong chương trình Toán lớp 4. Để thực hiện phép nhân này, chúng ta cần đảm bảo rằng cả hai số đều có đúng số chữ số.",
+        "title": "Ví dụ minh họa",
+        "body": "Ví dụ: 3 \\times 5 = 15. Lời giải: 3 \\times 5 = 3 \\times (5 \\times 10^0) = 15.",
+        "formula": "$3 \\times 5 = 3 \\times (5 \\times 10^0) = 15$",
+        "example": "Ví dụ: 3 \\times 5 = 15. Lời giải: 3 \\times 5 = 3 \\times (5 \\times 10^0) = 15.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 178,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "7. Bài 32: Nhân với số có hai chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán này, chúng ta cần hiểu rằng nhân với số có hai chữ số là một phép tính cơ bản trong toán học. Khi nhân một số có hai chữ số với một số khác, chúng ta cần tính tổng số các đơn vị của cả hai số. Ví dụ, khi nhân 25 với 53, chúng ta cần tính tổng số các đơn vị của 25 và 53, sau đó nhân tổng số đó với 25.",
+        "title": "Khái niệm nhân với số có hai chữ số",
+        "body": "Nhân với số có hai chữ số là một phép tính cơ bản trong toán học. Khi nhân một số có hai chữ số với một số khác, chúng ta cần tính tổng số các đơn vị của cả hai số. Ví dụ, khi nhân 25 với 53, chúng ta cần tính tổng số các đơn vị của 25 và 53, sau đó nhân tổng số đó với 25.",
+        "formula": "$a \\times b = (a \\times 10 + a) \\times b = a \\times 10b + ab$",
+        "example": "Ví dụ: Một vận động viên đã bơi được 53 vòng dọc theo chiều dài của bể bơi có chiều dài 25 m. Để tính quãng đường đã bơi được, chúng ta cần nhân 25 với 53. Sử dụng công thức trên, chúng ta có: $25 \\times 53 = (25 \\times 10 + 5) \\times 3 = 2500 + 15 = 2515$ m.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_12.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_13.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để giải quyết bài toán này, chúng ta cần hiểu rằng khi nhân một số có hai chữ số với một số khác, chúng ta cần tính tổng số các đơn vị của cả hai số. Ví dụ, khi nhân 125 với 50, chúng ta cần tính tổng số các đơn vị của 125 và 50, sau đó nhân tổng số đó với 125.",
+        "title": "Tính chất của nhân với số có hai chữ số",
+        "body": "Khi nhân một số có hai chữ số với một số khác, chúng ta cần tính tổng số các đơn vị của cả hai số. Ví dụ, khi nhân 125 với 50, chúng ta cần tính tổng số các đơn vị của 125 và 50, sau đó nhân tổng số đó với 125.",
+        "formula": "$a \\times b = (a \\times 10 + a) \\times b = a \\times 10b + ab$",
+        "example": "Ví dụ: Một vận động viên đã bơi được 50 vòng dọc theo chiều dài của bể bơi có chiều dài 125 m. Để tính quãng đường đã bơi được, chúng ta cần nhân 125 với 50. Sử dụng công thức trên, chúng ta có: $125 \\times 50 = (125 \\times 10 + 5) \\times 5 = 12500 + 25 = 12525$ m.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 179,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "9. Bài 34: Các tính chất của phép nhân",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất giao hoán của phép nhân, chúng ta cần phân tích một ví dụ cụ thể. Hãy lấy hai số 8 và 3, thực hiện phép nhân 8 x 3 và 3 x 8. Chúng ta sẽ thấy rằng kết quả của cả hai phép nhân là giống nhau, đó là 24. Điều này cho thấy rằng khi thực hiện phép nhân hai số, ta có thể đổi chỗ các thừa số mà tích không thay đổi.",
+        "title": "Tính chất giao hoán của phép nhân",
+        "body": "Tính chất giao hoán của phép nhân là một trong những tính chất quan trọng của phép nhân. Nó cho thấy rằng khi thực hiện phép nhân hai số, ta có thể đổi chỗ các thừa số mà tích không thay đổi. Điều này có thể được minh họa bằng ví dụ sau:",
+        "formula": "$a \\times b = b \\times a$",
+        "example": "Ví dụ: 8 x 3 = 24 và 3 x 8 = 24. Như vậy, 8 x 3 = 3 x 8.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_14.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu về tính chất kết hợp của phép nhân, chúng ta cần phân tích một ví dụ cụ thể. Hãy lấy hai số 3 và 5, thực hiện phép nhân 3 x 5 và sau đó nhân kết quả với 6. Chúng ta sẽ thấy rằng kết quả của cả hai phép nhân là giống nhau, đó là 90. Điều này cho thấy rằng khi nhân một tích hai số với số thứ ba, ta có thể nhân số thứ nhất với tích của số thứ hai và số thứ ba.",
+        "title": "Tính chất kết hợp của phép nhân",
+        "body": "Tính chất kết hợp của phép nhân là một trong những tính chất quan trọng của phép nhân. Nó cho thấy rằng khi nhân một tích hai số với số thứ ba, ta có thể nhân số thứ nhất với tích của số thứ hai và số thứ ba. Điều này có thể được minh họa bằng ví dụ sau:",
+        "formula": "$a \\times (b \\times c) = (a \\times b) \\times c$",
+        "example": "Ví dụ: (3 x 5) x 6 = 15 x 6 = 90 và 3 x (5 x 6) = 3 x 30 = 90. Như vậy, (3 x 5) x 6 = 3 x (5 x 6).",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu về phép nhân với số 1 và số 0, chúng ta cần phân tích một ví dụ cụ thể. Hãy lấy hai số 6 và 1, thực hiện phép nhân 6 x 1. Chúng ta sẽ thấy rằng kết quả của phép nhân là 6. Điều này cho thấy rằng số nào nhân với 1 cũng cho kết quả bằng chính số đó. Cùng với đó, hãy lấy hai số 4 và 0, thực hiện phép nhân 4 x 0. Chúng ta sẽ thấy rằng kết quả của phép nhân là 0. Điều này cho thấy rằng số nào nhân với 0 cũng cho kết quả bằng 0.",
+        "title": "Phép nhân với số 1 và số 0",
+        "body": "Phép nhân với số 1 và số 0 là một trong những tính chất quan trọng của phép nhân. Nó cho thấy rằng số nào nhân với 1 cũng cho kết quả bằng chính số đó và số nào nhân với 0 cũng cho kết quả bằng 0. Điều này có thể được minh họa bằng ví dụ sau:",
+        "formula": "$a \\times 1 = a$ và $a \\times 0 = 0$",
+        "example": "Ví dụ: 6 x 1 = 6 và 1 x 6 = 6. Như vậy, số nào nhân với 1 cũng cho kết quả bằng chính số đó. Cùng với đó, 4 x 0 = 0 và 0 x 4 = 0. Như vậy, số nào nhân với 0 cũng cho kết quả bằng 0.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 180,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "11. Bài 36: Nhân với 10, 100 , 1 000, ...",
+    "theory_cards": [
+      {
+        "thinking": "Khi nhân một số với 10, 100, 1 000, ..., ta cần viết thêm một, hai, ba, ... chữ số 0 vào bên phải số đó. Để thực hiện phép nhân này, ta có thể sử dụng quy tắc nhân với 10, 100, 1 000, ...",
+        "title": "Quy tắc nhân với 10, 100, 1 000, ...",
+        "body": "Quy tắc nhân với 10, 100, 1 000, ... là một trong những quy tắc cơ bản trong phép nhân. Để áp dụng quy tắc này, ta cần viết thêm một, hai, ba, ... chữ số 0 vào bên phải số đó.",
+        "formula": "$47 \\times 10 = 470$",
+        "example": "Ví dụ: $47 \\times 10 = 470$ vì ta viết thêm một chữ số 0 vào bên phải số 47. Lời giải: $47 \\times 10 = 470$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_15.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Ta có thể sử dụng quy tắc nhân với 10, 100, 1 000, ... để nhân một số với 10, 100, 1 000, ...",
+        "title": "Nhân một số với 10, 100, 1 000, ...",
+        "body": "Để nhân một số với 10, 100, 1 000, ..., ta cần viết thêm một, hai, ba, ... chữ số 0 vào bên phải số đó.",
+        "formula": "$47 \\times 100 = 4700$",
+        "example": "Ví dụ: $47 \\times 100 = 4700$ vì ta viết thêm hai chữ số 0 vào bên phải số 47. Lời giải: $47 \\times 100 = 4700$",
+        "images": []
+      },
+      {
+        "thinking": "Ta có thể sử dụng quy tắc nhân với 10, 100, 1 000, ... để nhân một số với 10, 100, 1 000, ...",
+        "title": "Ví dụ minh họa",
+        "body": "Dưới đây là một số ví dụ minh họa về việc sử dụng quy tắc nhân với 10, 100, 1 000, ...",
+        "formula": "",
+        "example": "Ví dụ 1: $53 \\times 10 = 530$ vì ta viết thêm một chữ số 0 vào bên phải số 53. Lời giải: $53 \\times 10 = 530$. Ví dụ 2: $27 \\times 100 = 2700$ vì ta viết thêm hai chữ số 0 vào bên phải số 27. Lời giải: $27 \\times 100 = 2700$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 181,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "13. Bài 38: Chia cho số có một chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để chia cho số có một chữ số, chúng ta cần hiểu rằng số có một chữ số chỉ có thể là số tự nhiên từ 1 đến 9. Khi chia một số tự nhiên cho một số có một chữ số, ta chỉ cần thực hiện phép chia cơ bản mà không cần phải tìm kiếm ước số chung lớn nhất (USCLN) hoặc quy đồng mẫu số.",
+        "title": "Khái niệm chia cho số có một chữ số",
+        "body": "Chia cho số có một chữ số là một phép tính toán học cơ bản trong chương trình Toán lớp 4. Để thực hiện phép chia này, chúng ta cần đảm bảo rằng số bị chia có ít nhất một chữ số và số chia có một chữ số.",
+        "formula": "$\\frac{a}{b} = c, \\text{với } a \\text{ là số bị chia, } b \\text{ là số chia, } c \\text{ là kết quả chia.}$",
+        "example": "Ví dụ: Chia 48 cho 3. Để thực hiện phép chia này, chúng ta chỉ cần thực hiện phép chia cơ bản: $48 \\div 3 = 16.$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_19.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Khi thực hiện phép chia cho số có một chữ số, chúng ta cần đảm bảo rằng số bị chia có ít nhất một chữ số và số chia có một chữ số. Nếu số bị chia có nhiều chữ số, chúng ta cần thực hiện phép chia từng bước, bắt đầu từ chữ số hàng trăm, hàng chục, hàng đơn vị.",
+        "title": "Quy tắc chia cho số có một chữ số",
+        "body": "Quy tắc chia cho số có một chữ số là một trong những quy tắc cơ bản trong chương trình Toán lớp 4. Để thực hiện phép chia này, chúng ta cần đảm bảo rằng số bị chia có ít nhất một chữ số và số chia có một chữ số.",
+        "formula": "$\\frac{a}{b} = c, \\text{với } a \\text{ là số bị chia, } b \\text{ là số chia, } c \\text{ là kết quả chia.}$",
+        "example": "Ví dụ: Chia 432 cho 6. Để thực hiện phép chia này, chúng ta cần thực hiện phép chia từng bước: $432 \\div 6 = 72.$",
+        "images": []
+      },
+      {
+        "thinking": "Khi thực hiện phép chia cho số có một chữ số, chúng ta cần đảm bảo rằng số bị chia có ít nhất một chữ số và số chia có một chữ số. Nếu số bị chia có nhiều chữ số, chúng ta cần thực hiện phép chia từng bước, bắt đầu từ chữ số hàng trăm, hàng chục, hàng đơn vị.",
+        "title": "Ví dụ minh họa",
+        "body": "Ví dụ minh họa về phép chia cho số có một chữ số là một trong những cách tốt nhất để giúp học sinh lớp 4 hiểu rõ về phép chia này.",
+        "formula": "$\\frac{a}{b} = c, \\text{với } a \\text{ là số bị chia, } b \\text{ là số chia, } c \\text{ là kết quả chia.}$",
+        "example": "Ví dụ: Chia 936 cho 4. Để thực hiện phép chia này, chúng ta cần thực hiện phép chia từng bước: $936 \\div 4 = 234.$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 182,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "14. Bài 39: Chia cho 10, 100, 1 000, ...",
+    "theory_cards": [
+      {
+        "thinking": "Khi chia số tròn chục, tròn trăm, tròn nghìn, ... cho 10, 100, 1 000, ... ta cần bỏ bớt đi một, hai, ba chữ số 0 ở bên phải số đó. Ví dụ, khi chia 230 cho 10, ta chỉ cần bỏ đi 0 ở bên phải số 230, vì 23 x 10 = 230.",
+        "title": "Chia số tròn chục, tròn trăm, tròn nghìn, ... cho 10, 100, 1 000, ...",
+        "body": "Để chia số tròn chục, tròn trăm, tròn nghìn, ... cho 10, 100, 1 000, ..., ta thực hiện theo các bước sau:\n- Bỏ bớt đi một, hai, ba chữ số 0 ở bên phải số đó.\n- Thực hiện phép chia số còn lại cho 10, 100, 1 000, ...\n- Kiểm tra lại kết quả để đảm bảo rằng nó chính xác.",
+        "formula": "$\\frac{\\text{Số tròn chục, tròn trăm, tròn nghìn, ...}}{10, 100, 1 000, ...} = \\frac{\\text{Số còn lại}}{10, 100, 1 000, ...}$",
+        "example": "Ví dụ, để chia 230 cho 10, ta thực hiện như sau:\n- Bỏ bớt đi 0 ở bên phải số 230, ta được số 23.\n- Thực hiện phép chia 23 cho 10, ta được kết quả 2,3.\n- Kiểm tra lại kết quả để đảm bảo rằng nó chính xác.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_21.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để minh họa cho quy tắc chia số tròn chục, tròn trăm, tròn nghìn, ... cho 10, 100, 1 000, ..., ta có thể sử dụng các ví dụ thực tế khác nhau.",
+        "title": "Ví dụ minh họa",
+        "body": "Dưới đây là một số ví dụ minh họa cho quy tắc chia số tròn chục, tròn trăm, tròn nghìn, ... cho 10, 100, 1 000, ...",
+        "formula": "",
+        "example": "Ví dụ 1: Chia 2 300 cho 100.\n- Bỏ bớt đi 0 ở bên phải số 2 300, ta được số 23.\n- Thực hiện phép chia 23 cho 100, ta được kết quả 23.\n- Kiểm tra lại kết quả để đảm bảo rằng nó chính xác.\nVí dụ 2: Chia 1 000 cho 10.\n- Bỏ bớt đi 0 ở bên phải số 1 000, ta được số 1.\n- Thực hiện phép chia 1 cho 10, ta được kết quả 0,1.\n- Kiểm tra lại kết quả để đảm bảo rằng nó chính xác.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 183,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "15. Bài 40: Chia cho số có hai chữ số",
+    "theory_cards": [
+      {
+        "thinking": "Để chia cho số có hai chữ số, chúng ta cần thực hiện các bước sau: \n    - Đọc số chia và số bị chia để xác định số chữ số của mỗi số.\n    - Thực hiện phép chia số chia cho số bị chia.\n    - Nếu phép chia không hết, chúng ta sẽ lấy số bị chia làm tròn xuống đến chữ số gần nhất và viết số dư dưới dấu gạch chéo.\n    - Nếu phép chia hết, chúng ta sẽ viết kết quả là số nguyên.\n    Ví dụ, khi chia 48 cho 6, chúng ta sẽ thực hiện các bước như sau: \n    - Đọc số chia và số bị chia: 48 và 6.\n    - Thực hiện phép chia: 48 ÷ 6 = 8.\n    - Vì phép chia hết, chúng ta sẽ viết kết quả là số nguyên: 8.",
+        "title": "Chia cho số có hai chữ số",
+        "body": "Chia cho số có hai chữ số là một trong những phép tính cơ bản trong toán học. Để thực hiện phép chia này, chúng ta cần thực hiện các bước sau:\n    - Đọc số chia và số bị chia để xác định số chữ số của mỗi số.\n    - Thực hiện phép chia số chia cho số bị chia.\n    - Nếu phép chia không hết, chúng ta sẽ lấy số bị chia làm tròn xuống đến chữ số gần nhất và viết số dư dưới dấu gạch chéo.\n    - Nếu phép chia hết, chúng ta sẽ viết kết quả là số nguyên.\n    Ví dụ, khi chia 48 cho 6, chúng ta sẽ thực hiện các bước như sau:\n    - Đọc số chia và số bị chia: 48 và 6.\n    - Thực hiện phép chia: 48 ÷ 6 = 8.\n    - Vì phép chia hết, chúng ta sẽ viết kết quả là số nguyên: 8.",
+        "formula": "$\\frac{a}{b} = c \\Rightarrow a = bc$",
+        "example": "Ví dụ: Chia 48 cho 6.\n    $48 ÷ 6 = 8$\n    Kết quả: 8",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_22.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_23.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Khi chia cho số có hai chữ số, chúng ta cần lưu ý rằng số bị chia có thể có nhiều chữ số hơn số chia. Trong trường hợp này, chúng ta sẽ lấy số bị chia làm tròn xuống đến chữ số gần nhất và viết số dư dưới dấu gạch chéo.\n    Ví dụ, khi chia 48 cho 7, chúng ta sẽ thực hiện các bước như sau:\n    - Đọc số chia và số bị chia: 48 và 7.\n    - Thực hiện phép chia: 48 ÷ 7 = 6 với số dư 6.\n    - Vì phép chia không hết, chúng ta sẽ viết kết quả là số nguyên và số dư dưới dấu gạch chéo: 6\\frac{6}{7}.",
+        "title": "Chia cho số có hai chữ số (tiếp)",
+        "body": "Khi chia cho số có hai chữ số, chúng ta cần lưu ý rằng số bị chia có thể có nhiều chữ số hơn số chia. Trong trường hợp này, chúng ta sẽ lấy số bị chia làm tròn xuống đến chữ số gần nhất và viết số dư dưới dấu gạch chéo.\n    Ví dụ, khi chia 48 cho 7, chúng ta sẽ thực hiện các bước như sau:\n    - Đọc số chia và số bị chia: 48 và 7.\n    - Thực hiện phép chia: 48 ÷ 7 = 6 với số dư 6.\n    - Vì phép chia không hết, chúng ta sẽ viết kết quả là số nguyên và số dư dưới dấu gạch chéo: 6\\frac{6}{7}.",
+        "formula": "$\\frac{a}{b} = c \\Rightarrow a = bc$",
+        "example": "Ví dụ: Chia 48 cho 7.\n    $48 ÷ 7 = 6\\frac{6}{7}$\n    Kết quả: 6 với số dư 6",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 184,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "17. Bài 42: Chia cho số có hai chữ số (tiếp theo)",
+    "theory_cards": [
+      {
+        "thinking": "Để chia cho số có hai chữ số, chúng ta cần hiểu rằng số chia và số bị chia đều có hai chữ số. Ví dụ, nếu chúng ta muốn chia 48 cho 6, chúng ta cần đảm bảo rằng cả 48 và 6 đều có hai chữ số.",
+        "title": "Khái niệm chia cho số có hai chữ số",
+        "body": "Chia cho số có hai chữ số là một phép chia trong đó cả số chia và số bị chia đều có hai chữ số. Ví dụ: 48 ÷ 6, 75 ÷ 25.",
+        "formula": "$\\frac{\\text{Số chia}}{\\text{Số bị chia}} = \\text{Kết quả chia}$",
+        "example": "Ví dụ: 48 ÷ 6 = ?\\n$\\frac{48}{6} = 8$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_24.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0610/20_25.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Khi chia cho số có hai chữ số, chúng ta cần đảm bảo rằng cả số chia và số bị chia đều có hai chữ số. Nếu số chia có nhiều chữ số hơn số bị chia, chúng ta cần chuyển số chia sang số có hai chữ số.",
+        "title": "Quy tắc chuyển số chia sang số có hai chữ số",
+        "body": "Nếu số chia có nhiều chữ số hơn số bị chia, chúng ta cần chuyển số chia sang số có hai chữ số. Ví dụ: 480 ÷ 6 = ?",
+        "formula": "$\\text{Số chia} = \\text{Số có hai chữ số}$",
+        "example": "Ví dụ: 480 ÷ 6 = ?\\n$\\frac{48}{6} = 8$\\n$48 = 480 \\div 10 = 48$",
+        "images": []
+      },
+      {
+        "thinking": "Khi chia cho số có hai chữ số, chúng ta cần đảm bảo rằng kết quả chia là một số nguyên. Nếu kết quả chia không phải là một số nguyên, chúng ta cần chuyển kết quả chia sang số nguyên.",
+        "title": "Quy tắc chuyển kết quả chia sang số nguyên",
+        "body": "Nếu kết quả chia không phải là một số nguyên, chúng ta cần chuyển kết quả chia sang số nguyên. Ví dụ: 48 ÷ 7 = ?",
+        "formula": "$\\text{Kết quả chia} = \\text{Số nguyên}$",
+        "example": "Ví dụ: 48 ÷ 7 = ?\\n$\\frac{48}{7} = 6.86$\\n$6 = 48 \\div 8 = 6$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 185,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "19. Bài 44: Thương có chữ số 0",
+    "theory_cards": [
+      {
+        "thinking": "Khi chia một số tự nhiên có chữ số 0, ta cần lưu ý rằng chữ số 0 không phải là số không. Ví dụ, khi chia 10 cho 2, ta có 5 với phần dư là 0. Điều này cho thấy rằng chữ số 0 không phải là số không, mà là một phần của số nguyên.",
+        "title": "Khái niệm phân số",
+        "body": "Một phân số là một số có thể được viết dưới dạng một số nguyên chia cho một số khác. Ví dụ, 1/2 là một phân số. Khi chia một số tự nhiên có chữ số 0, ta cần tìm số nguyên lớn nhất có thể chia cho số đó.",
+        "formula": "$\\frac{a}{b} = c + \\frac{r}{b}$",
+        "example": "Ví dụ: Chia 10 cho 2. Ta có 10 = 2 \\times 5 + 0. Như vậy, 10 chia cho 2 có kết quả là 5 với phần dư là 0.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Khi chia một số tự nhiên có chữ số 0, ta cần lưu ý rằng chữ số 0 không phải là số không. Ví dụ, khi chia 10 cho 2, ta có 5 với phần dư là 0. Điều này cho thấy rằng chữ số 0 không phải là số không, mà là một phần của số nguyên.",
+        "title": "Quy tắc chia số tự nhiên có chữ số 0",
+        "body": "Khi chia một số tự nhiên có chữ số 0, ta cần tìm số nguyên lớn nhất có thể chia cho số đó. Sau đó, ta chia số đó cho số đó và tìm phần dư.",
+        "formula": "$\\frac{a}{b} = c + \\frac{r}{b}$",
+        "example": "Ví dụ: Chia 100 cho 10. Ta có 100 = 10 \\times 10 + 0. Như vậy, 100 chia cho 10 có kết quả là 10 với phần dư là 0.",
+        "images": []
+      },
+      {
+        "thinking": "Khi chia một số tự nhiên có chữ số 0, ta cần lưu ý rằng chữ số 0 không phải là số không. Ví dụ, khi chia 10 cho 2, ta có 5 với phần dư là 0. Điều này cho thấy rằng chữ số 0 không phải là số không, mà là một phần của số nguyên.",
+        "title": "Đơn vị đo lường",
+        "body": "Khi chia một số tự nhiên có chữ số 0, ta cần lưu ý rằng đơn vị đo lường cũng cần được xem xét. Ví dụ, khi chia 100 cho 10, ta có 10 với phần dư là 0. Như vậy, đơn vị đo lường là 10.",
+        "formula": "$\\frac{a}{b} = c + \\frac{r}{b}$",
+        "example": "Ví dụ: Chia 1000 cho 100. Ta có 1000 = 100 \\times 10 + 0. Như vậy, 1000 chia cho 100 có kết quả là 10 với phần dư là 0.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 186,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "22. Bài 47: Ước lượng tính",
+    "theory_cards": [
+      {
+        "thinking": "Để ước lượng tính, chúng ta cần sử dụng phép tính chia để tìm số lần xuất hiện của một sự kiện. Ví dụ, nếu chúng ta muốn tìm số lần xuất hiện của số 5 trong một dãy số, chúng ta có thể chia tổng số số trong dãy số cho 5. Điều này giúp chúng ta ước lượng được số lần xuất hiện của số 5.",
+        "title": "Khái niệm ước lượng tính",
+        "body": "Ước lượng tính là một kỹ thuật được sử dụng để tìm số lần xuất hiện của một số trong một dãy số. Để thực hiện ước lượng tính, chúng ta cần sử dụng phép tính chia.",
+        "formula": "$\\frac{\\text{Tổng số số}}{\\text{Số muốn tìm}}$",
+        "example": "Tìm số lần xuất hiện của số 5 trong dãy số 2, 5, 8, 11, 14, 17, 20. Để thực hiện ước lượng tính, chúng ta có thể chia tổng số số trong dãy số (2 + 5 + 8 + 11 + 14 + 17 + 20) cho 5. Tổng số số trong dãy số là 77, vì vậy chúng ta có: $\\frac{77}{5} = 15.4$. Điều này cho thấy số 5 xuất hiện khoảng 15 lần trong dãy số.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/1113/20_6.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để ước lượng tính, chúng ta cần sử dụng phép tính chia để tìm số lần xuất hiện của một sự kiện. Tuy nhiên, chúng ta cần lưu ý rằng ước lượng tính chỉ mang tính chất tương đối và không phải lúc nào cũng chính xác.",
+        "title": "Quy tắc ước lượng tính",
+        "body": "Quy tắc ước lượng tính là một kỹ thuật được sử dụng để tìm số lần xuất hiện của một số trong một dãy số. Để thực hiện ước lượng tính, chúng ta cần sử dụng phép tính chia và lưu ý rằng ước lượng tính chỉ mang tính chất tương đối.",
+        "formula": "$\\frac{\\text{Tổng số số}}{\\text{Số muốn tìm}}$",
+        "example": "Tìm số lần xuất hiện của số 3 trong dãy số 3, 6, 9, 12, 15, 18, 21. Để thực hiện ước lượng tính, chúng ta có thể chia tổng số số trong dãy số (3 + 6 + 9 + 12 + 15 + 18 + 21) cho 3. Tổng số số trong dãy số là 84, vì vậy chúng ta có: $\\frac{84}{3} = 28$. Điều này cho thấy số 3 xuất hiện khoảng 28 lần trong dãy số.",
+        "images": []
+      },
+      {
+        "thinking": "Để ước lượng tính, chúng ta cần sử dụng phép tính chia để tìm số lần xuất hiện của một sự kiện. Tuy nhiên, chúng ta cần lưu ý rằng ước lượng tính chỉ mang tính chất tương đối và không phải lúc nào cũng chính xác.",
+        "title": "Đơn vị đo lường",
+        "body": "Đơn vị đo lường là một kỹ thuật được sử dụng để đo lường số lần xuất hiện của một số trong một dãy số. Để thực hiện đo lường, chúng ta cần sử dụng phép tính chia và lưu ý rằng ước lượng tính chỉ mang tính chất tương đối.",
+        "formula": "$\\frac{\\text{Tổng số số}}{\\text{Số muốn tìm}}$",
+        "example": "Tìm số lần xuất hiện của số 2 trong dãy số 2, 4, 6, 8, 10, 12, 14. Để thực hiện đo lường, chúng ta có thể chia tổng số số trong dãy số (2 + 4 + 6 + 8 + 10 + 12 + 14) cho 2. Tổng số số trong dãy số là 56, vì vậy chúng ta có: $\\frac{56}{2} = 28$. Điều này cho thấy số 2 xuất hiện khoảng 28 lần trong dãy số.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 187,
+    "grade": 4,
+    "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+    "lesson_name": "24. Bài 49: Biểu thức có chứa chữ",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về biểu thức có chứa chữ, chúng ta cần phân tích từng bước. Hãy tưởng tượng An và Hoa mua một số chiếc bánh. Chúng ta dùng chữ a để chỉ số chiếc bánh An mua và chữ b để chỉ số chiếc bánh Hoa mua. Biểu thức a + b biểu thị số chiếc bánh cả hai bạn mua. Nếu a = 5 và b = 3, thì a + b = 5 + 3 = 8. Điều này cho thấy giá trị của biểu thức a + b với a = 5 và b = 3 là 8. Tương tự, nếu a = 4 và b = 0, thì a + b = 4 + 0 = 4. Điều này cho thấy giá trị của biểu thức a + b với a = 4 và b = 0 là 4. Từ đó, chúng ta có thể thấy rằng biểu thức a + b có thể biểu thị số chiếc bánh cả hai bạn mua.",
+        "title": "Biểu thức có chứa chữ",
+        "body": "Biểu thức có chứa chữ là biểu thức sử dụng chữ để biểu thị một giá trị. Ví dụ, biểu thức a + b biểu thị số chiếc bánh cả hai bạn mua. Biểu thức có chứa chữ có thể có một chữ, hai chữ hoặc nhiều chữ.",
+        "formula": "$a + b = \\text{Số chiếc bánh cả hai bạn mua}$",
+        "example": "Ví dụ: An mua 5 chiếc bánh và Hoa mua 3 chiếc bánh. Số chiếc bánh cả hai bạn mua là 5 + 3 = 8. Trong trường hợp này, biểu thức a + b biểu thị số chiếc bánh cả hai bạn mua, và giá trị của biểu thức a + b với a = 5 và b = 3 là 8.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_4.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu về biểu thức có chứa nhiều chữ, chúng ta cần phân tích từng bước. Hãy tưởng tượng An, Hoa và Quỳnh mua một số chiếc bánh. Chúng ta dùng chữ a để chỉ số chiếc bánh An mua, chữ b để chỉ số chiếc bánh Hoa mua và chữ c để chỉ số chiếc bánh Quỳnh mua. Biểu thức a + b + c biểu thị số chiếc bánh cả ba bạn mua. Nếu a = 3, b = 2 và c = 4, thì a + b + c = 3 + 2 + 4 = 9. Điều này cho thấy giá trị của biểu thức a + b + c với a = 3, b = 2 và c = 4 là 9.",
+        "title": "Biểu thức có chứa nhiều chữ",
+        "body": "Biểu thức có chứa nhiều chữ là biểu thức sử dụng nhiều chữ để biểu thị một giá trị. Ví dụ, biểu thức a + b + c biểu thị số chiếc bánh cả ba bạn mua. Biểu thức có chứa nhiều chữ có thể có nhiều chữ hơn một chữ.",
+        "formula": "$a + b + c = \\text{Số chiếc bánh cả ba bạn mua}$",
+        "example": "Ví dụ: An mua 3 chiếc bánh, Hoa mua 2 chiếc bánh và Quỳnh mua 4 chiếc bánh. Số chiếc bánh cả ba bạn mua là 3 + 2 + 4 = 9. Trong trường hợp này, biểu thức a + b + c biểu thị số chiếc bánh cả ba bạn mua, và giá trị của biểu thức a + b + c với a = 3, b = 2 và c = 4 là 9.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 188,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "1. Bài 53: Khái niệm phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu khái niệm phân số, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần biết rằng phân số là một cách viết số học khác với số tự nhiên thông thường. Nó được biểu diễn dưới dạng tử số trên mẫu số. Ví dụ, nếu chúng ta chia một hình tròn thành 4 phần bằng nhau và tô màu 3 phần, chúng ta có thể viết như sau: 3/4. Trong trường hợp này, 3 là tử số và 4 là mẫu số. Tử số cho biết số phần đã được tô màu, trong khi mẫu số cho biết tổng số phần.",
+        "title": "Khái niệm phân số",
+        "body": "Phân số là một cách viết số học khác với số tự nhiên thông thường. Nó được biểu diễn dưới dạng tử số trên mẫu số. Tử số cho biết số phần đã được tô màu, trong khi mẫu số cho biết tổng số phần. Ví dụ: 3/4.",
+        "formula": "$\\frac{a}{b}$ là một phân số, trong đó $a$ là tử số và $b$ là mẫu số.",
+        "example": "Ví dụ: Nếu chúng ta chia một hình tròn thành 4 phần bằng nhau và tô màu 3 phần, chúng ta có thể viết như sau: $\\frac{3}{4}$. Trong trường hợp này, 3 là tử số và 4 là mẫu số. Tử số cho biết số phần đã được tô màu, trong khi mẫu số cho biết tổng số phần.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_5.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_6.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu quy tắc quy đồng mẫu số, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần biết rằng quy đồng mẫu số là một quy tắc giúp chúng ta biểu diễn phân số dưới dạng có mẫu số chung. Ví dụ, nếu chúng ta có phân số 1/2 và 3/4, chúng ta có thể quy đồng mẫu số để biểu diễn chúng dưới dạng có mẫu số chung.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": "Quy tắc quy đồng mẫu số giúp chúng ta biểu diễn phân số dưới dạng có mẫu số chung. Để quy đồng mẫu số, chúng ta cần tìm mẫu số chung của hai phân số và biểu diễn chúng dưới dạng có mẫu số chung.",
+        "formula": "$\\frac{a}{b} = \\frac{ac}{bc}$, trong đó $c$ là mẫu số chung.",
+        "example": "Ví dụ: Nếu chúng ta có phân số 1/2 và 3/4, chúng ta có thể quy đồng mẫu số như sau: $\\frac{1}{2} = \\frac{1 \\times 4}{2 \\times 4} = \\frac{4}{8}$ và $\\frac{3}{4} = \\frac{3 \\times 2}{4 \\times 2} = \\frac{6}{8}$. Trong trường hợp này, mẫu số chung là 8.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 189,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "2. Bài 54: Khái niệm phân số (tiếp theo)",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu rõ hơn về phân số, chúng ta cần phân tích từng phần của nó. Phân số được viết dưới dạng $\\frac{a}{b}$, với $a$ và $b$ là các số tự nhiên và $b$ không bằng 0. Tử số $a$ chỉ số phần được lấy ra, còn mẫu số $b$ chỉ tổng số phần bằng nhau được chia ra.",
+        "title": "Khái niệm phân số",
+        "body": [
+          "Phân số được viết dưới dạng $\\frac{a}{b}$",
+          "Tử số $a$ chỉ số phần được lấy ra",
+          "Mẫu số $b$ chỉ tổng số phần bằng nhau được chia ra",
+          "Phép chia số tự nhiên $a : b$ ($b \\neq 0$) có thể viết dưới dạng phân số là $\\frac{a}{b}$"
+        ],
+        "formula": "$\\frac{a}{b}$",
+        "example": "Ví dụ: Số 6 được chia thành 6 phần bằng nhau, mỗi phần có giá trị là 1. Như vậy, số 6 có thể viết dưới dạng phân số là $\\frac{6}{6}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/1113/20_3.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_8.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_9.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về phân số, chúng ta cần phân tích từng phần của nó. Khi viết phân số, tử số và mẫu số phải được viết rõ ràng và chính xác.",
+        "title": "Viết phân số",
+        "body": [
+          "Tử số và mẫu số phải được viết rõ ràng và chính xác",
+          "Phân số được viết dưới dạng $\\frac{a}{b}$",
+          "Ví dụ: Số 7 được chia thành 6 phần bằng nhau, mỗi phần có giá trị là $\\frac{7}{6}$"
+        ],
+        "formula": "$\\frac{a}{b}$",
+        "example": "Ví dụ: Số 7 được chia thành 6 phần bằng nhau, mỗi phần có giá trị là $\\frac{7}{6}$.",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về phân số, chúng ta cần phân tích từng phần của nó. Khi viết phân số, tử số và mẫu số phải được viết rõ ràng và chính xác.",
+        "title": "Đọc phân số",
+        "body": [
+          "Tử số và mẫu số phải được viết rõ ràng và chính xác",
+          "Phân số được đọc dưới dạng 'tử số phần mẫu số'",
+          "Ví dụ: Số 7 được chia thành 6 phần bằng nhau, mỗi phần có giá trị là 7 phần 6"
+        ],
+        "formula": "$\\frac{a}{b}$",
+        "example": "Ví dụ: Số 7 được chia thành 6 phần bằng nhau, mỗi phần có giá trị là 7 phần 6.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 190,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "3. Bài 55: Phân số và phép chia số tự nhiên",
+    "theory_cards": [
+      {
+        "thinking": "Để viết phân số, chúng ta cần hiểu rằng phân số là một cách viết số tự nhiên dưới dạng một tỷ lệ. Ví dụ, nếu chúng ta có 3 chiếc bánh và chia đều cho 4 người, mỗi người sẽ nhận được 3/4 chiếc bánh. Để viết phân số, chúng ta cần có một số tự nhiên (tử số) và một số tự nhiên khác (mẫu số) khác 0.",
+        "title": "Khái niệm phân số",
+        "body": "Phân số được viết dưới dạng a/b, với a là tử số và b là mẫu số. Tử số là số tự nhiên nằm trên gạch ngang, chỉ số phần được lấy ra. Mẫu số là số tự nhiên nằm dưới gạch ngang, chỉ tổng số phần bằng nhau được chia ra.",
+        "formula": "$\\frac{a}{b}$",
+        "example": "Ví dụ: Nếu chúng ta có 3 chiếc bánh và chia đều cho 4 người, mỗi người sẽ nhận được $\\frac{3}{4}$ chiếc bánh.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_10.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_11.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Phép chia số tự nhiên a:b có thể viết dưới dạng phân số là a/b. Ví dụ, 3:4 có thể viết dưới dạng phân số là 3/4.",
+        "title": "Phép chia số tự nhiên",
+        "body": "Phép chia số tự nhiên a:b có thể viết dưới dạng phân số là a/b. Tử số là số bị chia, mẫu số là số chia.",
+        "formula": "$a:b = \\frac{a}{b}$",
+        "example": "Ví dụ: 3:4 = $\\frac{3}{4}$",
+        "images": []
+      },
+      {
+        "thinking": "Mọi số tự nhiên đều có thể viết thành một phân số có tử số là số tự nhiên đó và mẫu số bằng 1.",
+        "title": "Mọi số tự nhiên đều có thể viết thành một phân số",
+        "body": "Ví dụ: 3 = $\\frac{3}{1}$; 5 = $\\frac{5}{1}$",
+        "formula": "$a = \\frac{a}{1}$",
+        "example": "Ví dụ: 3 = $\\frac{3}{1}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 191,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "5. Bài 57: Phân số bằng nhau",
+    "theory_cards": [
+      {
+        "thinking": "Để giải quyết bài toán phân số bằng nhau, chúng ta cần hiểu rằng phân số bằng nhau là những phân số có cùng giá trị, dù có tử số và mẫu số khác nhau. Ví dụ, phân số 1/2 và 2/4 có cùng giá trị, vì khi chia cả tử số và mẫu số của 2/4 cho 2, ta được 1/2. Điều này cho thấy rằng phân số bằng nhau có thể được biểu diễn dưới dạng phân số khác nhau.",
+        "title": "Khái niệm phân số bằng nhau",
+        "body": "Phân số bằng nhau là những phân số có cùng giá trị, dù có tử số và mẫu số khác nhau. Ví dụ: 1/2 = 2/4 = 4/8.",
+        "formula": "$\\frac{a}{b} = \\frac{c}{d}$ nếu $ad = bc$",
+        "example": "Ví dụ: Chia sẻ 3 băng giấy kích thước khác nhau thành các phần bằng nhau và tô màu vào các phần tương ứng. Ta có thể thấy rằng phần tô màu của các băng giấy đều bằng nhau, vì vậy chúng ta có thể viết: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_12.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_13.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-3",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_14.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-4",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_15.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để kiểm tra xem hai phân số có bằng nhau hay không, chúng ta có thể sử dụng quy tắc quy đồng mẫu số. Quy tắc này cho phép chúng ta chuyển đổi phân số có mẫu số khác nhau thành phân số có mẫu số giống nhau.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": "Quy tắc quy đồng mẫu số cho phép chúng ta chuyển đổi phân số có mẫu số khác nhau thành phân số có mẫu số giống nhau. Ví dụ: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$",
+        "formula": "$\\frac{a}{b} = \\frac{c}{d}$ nếu $ad = bc$",
+        "example": "Ví dụ: Chia sẻ 3 băng giấy kích thước khác nhau thành các phần bằng nhau và tô màu vào các phần tương ứng. Ta có thể thấy rằng phần tô màu của các băng giấy đều bằng nhau, vì vậy chúng ta có thể viết: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$.",
+        "images": []
+      },
+      {
+        "thinking": "Để minh họa cho khái niệm phân số bằng nhau, chúng ta có thể sử dụng ví dụ về chia sẻ băng giấy. Ví dụ, nếu chúng ta chia sẻ 3 băng giấy kích thước khác nhau thành các phần bằng nhau và tô màu vào các phần tương ứng, ta có thể thấy rằng phần tô màu của các băng giấy đều bằng nhau.",
+        "title": "Ví dụ chia sẻ băng giấy",
+        "body": "Ví dụ: Chia sẻ 3 băng giấy kích thước khác nhau thành các phần bằng nhau và tô màu vào các phần tương ứng. Ta có thể thấy rằng phần tô màu của các băng giấy đều bằng nhau, vì vậy chúng ta có thể viết: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$.",
+        "formula": "",
+        "example": "Ví dụ: Chia sẻ 3 băng giấy kích thước khác nhau thành các phần bằng nhau và tô màu vào các phần tương ứng. Ta có thể thấy rằng phần tô màu của các băng giấy đều bằng nhau, vì vậy chúng ta có thể viết: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 192,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "6. Bài 58: Tính chất cơ bản của phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về tính chất cơ bản của phân số, chúng ta cần xem xét hai trường hợp khác nhau. Trước hết, hãy xem xét trường hợp khi nhân cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0. Ví dụ, nếu chúng ta nhân cả tử số và mẫu số của phân số 2/3 với 2, chúng ta sẽ có 4/6. Để kiểm tra xem 4/6 có bằng 2/3 hay không, chúng ta có thể chia cả tử số và mẫu số của 4/6 cho 2, và chúng ta sẽ có 2/3. Điều này cho thấy rằng 4/6 thực sự bằng 2/3.",
+        "title": "Tính chất cơ bản của phân số",
+        "body": "Tính chất cơ bản của phân số được thể hiện qua hai trường hợp sau:",
+        "formula": "$\\frac{a}{b} = \\frac{a \\times c}{b \\times c}$ và $\\frac{a}{b} = \\frac{a : c}{b : c}$",
+        "example": "Ví dụ: $\\frac{2}{3} = \\frac{2 \\times 2}{3 \\times 2} = \\frac{4}{6}$ và $\\frac{4}{6} = \\frac{4 : 2}{6 : 2} = \\frac{2}{3}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_16.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Tiếp theo, hãy xem xét trường hợp khi cả tử số và mẫu số của một phân số cùng chia hết cho một số tự nhiên khác 0. Ví dụ, nếu cả tử số và mẫu số của phân số 3/4 cùng chia hết cho 5, chúng ta sẽ có 15/20. Để kiểm tra xem 15/20 có bằng 3/4 hay không, chúng ta có thể chia cả tử số và mẫu số của 15/20 cho 5, và chúng ta sẽ có 3/4. Điều này cho thấy rằng 15/20 thực sự bằng 3/4.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": "Quy tắc quy đồng mẫu số cho phép chúng ta quy đồng mẫu số của một phân số bằng cách chia cả tử số và mẫu số cho một số tự nhiên khác 0.",
+        "formula": "$\\frac{a}{b} = \\frac{a \\times c}{b \\times c}$",
+        "example": "Ví dụ: $\\frac{3}{4} = \\frac{3 \\times 5}{4 \\times 5} = \\frac{15}{20}$ và $\\frac{15}{20} = \\frac{15 : 5}{20 : 5} = \\frac{3}{4}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 193,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "7. Bài 59: Rút gọn phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để rút gọn một phân số, chúng ta cần tìm số tự nhiên lớn hơn 1 mà cả tử số và mẫu số đều chia hết. Sau đó, chúng ta chia cả tử số và mẫu số cho số đó cho đến khi không rút gọn được nữa.",
+        "title": "Khái niệm rút gọn phân số",
+        "body": "Rút gọn phân số là quá trình tìm kiếm số tự nhiên lớn hơn 1 mà cả tử số và mẫu số đều chia hết. Sau đó, chúng ta chia cả tử số và mẫu số cho số đó cho đến khi không rút gọn được nữa.",
+        "formula": "$\\frac{a}{b} = \\frac{ac}{bc}$",
+        "example": "Ví dụ: Rút gọn phân số $\\frac{9}{12}$.\\n\\nLời giải: \\n\\nTa thấy 9 và 12 đều chia hết cho 3. Do đó, chúng ta chia cả tử số và mẫu số cho 3:\\n\\n$\\frac{9}{12} = \\frac{9:3}{12:3} = \\frac{3}{4}$\\n\\nVậy, $\\frac{9}{12}$ đã được rút gọn thành $\\frac{3}{4}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_17.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Quy tắc rút gọn phân số là tìm số tự nhiên lớn hơn 1 mà cả tử số và mẫu số đều chia hết. Sau đó, chúng ta chia cả tử số và mẫu số cho số đó cho đến khi không rút gọn được nữa.",
+        "title": "Quy tắc rút gọn phân số",
+        "body": "Quy tắc rút gọn phân số là tìm số tự nhiên lớn hơn 1 mà cả tử số và mẫu số đều chia hết. Sau đó, chúng ta chia cả tử số và mẫu số cho số đó cho đến khi không rút gọn được nữa.",
+        "formula": "$\\frac{a}{b} = \\frac{ac}{bc}$",
+        "example": "Ví dụ: Rút gọn phân số $\\frac{15}{25}$.\\n\\nLời giải: \\n\\nTa thấy 15 và 25 đều chia hết cho 5. Do đó, chúng ta chia cả tử số và mẫu số cho 5:\\n\\n$\\frac{15}{25} = \\frac{15:5}{25:5} = \\frac{3}{5}$\\n\\nVậy, $\\frac{15}{25}$ đã được rút gọn thành $\\frac{3}{5}$.",
+        "images": []
+      },
+      {
+        "thinking": "Một phân số tối giản là một phân số mà tử số và mẫu số không cùng chia hết cho số tự nhiên nào lớn hơn 1.",
+        "title": "Khái niệm phân số tối giản",
+        "body": "Một phân số tối giản là một phân số mà tử số và mẫu số không cùng chia hết cho số tự nhiên nào lớn hơn 1.",
+        "formula": "$\\frac{a}{b}$ là phân số tối giản nếu $a$ và $b$ không cùng chia hết cho số tự nhiên nào lớn hơn 1.",
+        "example": "Ví dụ: $\\frac{3}{4}$ là phân số tối giản vì 3 và 4 không cùng chia hết cho số tự nhiên nào lớn hơn 1.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 194,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "8. Bài 60: Quy đồng mẫu số các phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để quy đồng mẫu số hai phân số, chúng ta cần chọn một mẫu số chung cho cả hai phân số. Sau đó, chúng ta sẽ nhân cả tử và mẫu của mỗi phân số với mẫu số chung để tạo ra hai phân số mới có cùng mẫu số.",
+        "title": "Quy đồng mẫu số",
+        "body": "Quy đồng mẫu số là một quy tắc toán học giúp chúng ta tạo ra hai phân số mới có cùng mẫu số. Để thực hiện quy đồng mẫu số, chúng ta cần chọn một mẫu số chung cho cả hai phân số. Sau đó, chúng ta sẽ nhân cả tử và mẫu của mỗi phân số với mẫu số chung để tạo ra hai phân số mới có cùng mẫu số.",
+        "formula": "$\\frac{a}{b} = \\frac{a \\times c}{b \\times c}$",
+        "example": "Ví dụ: Cho hai phân số $\\frac{1}{4}$ và $\\frac{3}{8}$. Để quy đồng mẫu số, chúng ta chọn mẫu số chung là 8. Sau đó, chúng ta nhân cả tử và mẫu của mỗi phân số với mẫu số chung:\n\n$\\frac{1}{4} = \\frac{1 \\times 2}{4 \\times 2} = \\frac{2}{8}$\n\n$\\frac{3}{8}$ giữ nguyên.\n\nVậy hai phân số $\\frac{1}{4}$ và $\\frac{3}{8}$ đã được quy đồng mẫu số thành hai phân số $\\frac{2}{8}$ và $\\frac{3}{8}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_18.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_19.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để chọn mẫu số chung, chúng ta cần tìm một số chia hết cho cả mẫu số của hai phân số.",
+        "title": "Chọn mẫu số chung",
+        "body": "Để chọn mẫu số chung, chúng ta cần tìm một số chia hết cho cả mẫu số của hai phân số. Ví dụ, nếu mẫu số của hai phân số là 4 và 8, chúng ta có thể chọn mẫu số chung là 8 vì 8 chia hết cho cả 4 và 8.",
+        "formula": "$\\frac{a}{b} = \\frac{a \\times c}{b \\times c}$",
+        "example": "Ví dụ: Cho hai phân số $\\frac{2}{3}$ và $\\frac{5}{6}$. Để chọn mẫu số chung, chúng ta tìm một số chia hết cho cả mẫu số của hai phân số. Trong trường hợp này, chúng ta có thể chọn mẫu số chung là 6 vì 6 chia hết cho cả 3 và 6. Sau đó, chúng ta nhân cả tử và mẫu của mỗi phân số với mẫu số chung:\n\n$\\frac{2}{3} = \\frac{2 \\times 2}{3 \\times 2} = \\frac{4}{6}$\n\n$\\frac{5}{6}$ giữ nguyên.\n\nVậy hai phân số $\\frac{2}{3}$ và $\\frac{5}{6}$ đã được quy đồng mẫu số thành hai phân số $\\frac{4}{6}$ và $\\frac{5}{6}$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 195,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "9. Bài 61: So sánh hai phân số cùng mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để so sánh hai phân số cùng mẫu số, chúng ta cần hiểu rằng phân số nào có tử số lớn hơn thì phân số đó lớn hơn. Nếu hai phân số có tử số bằng nhau thì chúng bằng nhau. Để minh họa, hãy lấy hai băng giấy như nhau và tô màu vào một phần của mỗi băng giấy để so sánh phần đã tô màu.",
+        "title": "So sánh hai phân số cùng mẫu số",
+        "body": "Khi so sánh hai phân số cùng mẫu số, chúng ta có thể sử dụng các bước sau:\n- So sánh tử số của hai phân số.\n- Nếu tử số của hai phân số bằng nhau, thì hai phân số bằng nhau.\n- Nếu tử số của một phân số lớn hơn tử số của phân số kia, thì phân số đó lớn hơn.\n- Nếu tử số của một phân số nhỏ hơn tử số của phân số kia, thì phân số đó nhỏ hơn.",
+        "formula": "$\\frac{a}{b} > \\frac{c}{b} \\Leftrightarrow a > c$",
+        "example": "Ví dụ: So sánh hai phân số $\\frac{2}{4}$ và $\\frac{3}{4}$. Lấy hai băng giấy như nhau và tô màu vào $\\frac{2}{4}$ băng giấy thứ nhất và tô màu vào $\\frac{3}{4}$ băng giấy thứ hai. So sánh phần đã tô màu của hai băng giấy:\n\\begin{align*}\n\\frac{2}{4} &amp;= \\frac{1}{2} \\text{ (tô màu 1 phần 2 của băng giấy)} \\\\\n\\frac{3}{4} &amp;= \\frac{3}{4} \\text{ (tô màu 3 phần 4 của băng giấy)}\n\\end{align*}\nNhư vậy: $\\frac{2}{4} < \\frac{3}{4}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0612/20_21.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lesson_id": 196,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "10. Bài 62: So sánh hai phân số khác mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để so sánh hai phân số khác mẫu số, chúng ta cần quy đồng mẫu số của hai phân số đó về cùng một mẫu số. Điều này giúp chúng ta dễ dàng so sánh hai phân số.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": "Quy tắc quy đồng mẫu số giúp chúng ta so sánh hai phân số khác mẫu số. Để thực hiện quy tắc này, chúng ta cần tìm mẫu số chung nhất của hai phân số và sau đó quy đổi hai phân số về mẫu số chung đó.",
+        "formula": "$\\frac{a}{b} = \\frac{c}{d} \\Rightarrow \\frac{a \\times d}{b \\times d} = \\frac{c \\times b}{d \\times b}$",
+        "example": "Ví dụ: So sánh hai phân số $\\frac{1}{2}$ và $\\frac{3}{4}$. Để quy đồng mẫu số, chúng ta tìm mẫu số chung nhất là 4. Sau đó, chúng ta quy đổi hai phân số về mẫu số chung đó: $\\frac{1}{2} = \\frac{1 \\times 2}{2 \\times 2} = \\frac{2}{4}$ và $\\frac{3}{4} = \\frac{3 \\times 1}{4 \\times 1} = \\frac{3}{4}$. Bây giờ, chúng ta có thể so sánh hai phân số: $\\frac{2}{4} < \\frac{3}{4}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/1113/20_4.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/1113/20_5.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Sau khi quy đồng mẫu số, chúng ta có thể so sánh hai phân số bằng cách so sánh tử số của chúng.",
+        "title": "So sánh hai phân số sau khi quy đồng mẫu số",
+        "body": "Sau khi quy đồng mẫu số, chúng ta có thể so sánh hai phân số bằng cách so sánh tử số của chúng. Nếu tử số của phân số lớn hơn, thì phân số đó lớn hơn. Nếu tử số của phân số nhỏ hơn, thì phân số đó nhỏ hơn.",
+        "formula": "$\\frac{a}{b} > \\frac{c}{d} \\Rightarrow a > c$",
+        "example": "Ví dụ: So sánh hai phân số $\\frac{2}{4}$ và $\\frac{3}{4}$. Sau khi quy đồng mẫu số, chúng ta có: $\\frac{2}{4} < \\frac{3}{4}$. Bây giờ, chúng ta có thể so sánh tử số của hai phân số: 2 < 3, nên $\\frac{2}{4} < \\frac{3}{4}$",
+        "images": []
+      },
+      {
+        "thinking": "Nếu phân số có tử số lớn hơn mẫu số, thì phân số đó lớn hơn 1. Nếu phân số có tử số nhỏ hơn mẫu số, thì phân số đó nhỏ hơn 1.",
+        "title": "So sánh phân số với 1",
+        "body": "Nếu phân số có tử số lớn hơn mẫu số, thì phân số đó lớn hơn 1. Nếu phân số có tử số nhỏ hơn mẫu số, thì phân số đó nhỏ hơn 1.",
+        "formula": "$\\frac{a}{b} > 1 \\Rightarrow a > b$",
+        "example": "Ví dụ: So sánh phân số $\\frac{2}{1}$ với 1. Vì tử số 2 lớn hơn mẫu số 1, nên $\\frac{2}{1} > 1$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 197,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "13. Bài 65: Hình bình hành",
+    "theory_cards": [
+      {
+        "thinking": "Hình bình hành là một hình dạng đặc biệt trong hình học, có hai cặp cạnh đối diện song song và bằng nhau. Để hiểu rõ hơn về hình bình hành, chúng ta cần phân tích từng bước.",
+        "title": "Khái niệm hình bình hành",
+        "body": "Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau. Điều này có nghĩa là nếu chúng ta chọn hai cạnh đối diện bất kỳ, chúng sẽ luôn song song và bằng nhau. Ví dụ, nếu chúng ta chọn cạnh AB và cạnh DC, chúng sẽ luôn bằng nhau.",
+        "formula": "$AB = DC$ và $AD = BC$",
+        "example": "Xét hình bình hành ABCD dưới đây. Ta có thể thấy rằng cạnh AB và cạnh DC song song và bằng nhau, còn cạnh AD và cạnh BC cũng song song và bằng nhau. Điều này chứng minh rằng hình ABCD là một hình bình hành.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_2.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_3.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để tính diện tích của hình bình hành, chúng ta cần sử dụng công thức diện tích hình bình hành. Công thức này sẽ giúp chúng ta tính diện tích của hình bình hành một cách dễ dàng.",
+        "title": "Công thức diện tích hình bình hành",
+        "body": "Công thức diện tích hình bình hành là $S = a \\times h$, trong đó $a$ là độ dài đáy và $h$ là chiều cao tương ứng.",
+        "formula": "$S = a \\times h$",
+        "example": "Xét hình bình hành ABCD dưới đây. Độ dài đáy của hình là 5 cm và chiều cao tương ứng là 3 cm. Sử dụng công thức diện tích hình bình hành, chúng ta có thể tính diện tích của hình như sau: $S = 5 \\times 3 = 15$ cm².",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 198,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "14. Bài 66: Hình thoi",
+    "theory_cards": [
+      {
+        "thinking": "Hình thoi là một loại hình học đặc biệt có 4 cạnh bằng nhau và hai đường chéo vuông góc với nhau tại trung điểm của mỗi đường. Để hiểu rõ hơn về hình thoi, chúng ta cần phân tích từng bước về đặc điểm của nó.",
+        "title": "Khái niệm hình thoi",
+        "body": "Hình thoi có 4 cạnh bằng nhau và hai đường chéo vuông góc với nhau tại trung điểm của mỗi đường. Điều này có nghĩa là hình thoi có hai cặp cạnh đối diện song song và bốn cạnh bằng nhau.",
+        "formula": "$S = \\frac{m \\times n}{2}$",
+        "example": "Nếu chúng ta có một hình thoi với hai đường chéo có độ dài lần lượt là 6 cm và 8 cm, thì diện tích của hình thoi này là: $S = \\frac{6 \\times 8}{2} = 24$ cm$^2$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_4.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_5.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để tính diện tích của hình thoi, chúng ta cần sử dụng công thức $S = \\frac{m \\times n}{2}$, nơi $m$ và $n$ là độ dài hai đường chéo.",
+        "title": "Công thức tính diện tích hình thoi",
+        "body": "Công thức tính diện tích hình thoi là $S = \\frac{m \\times n}{2}$, nơi $m$ và $n$ là độ dài hai đường chéo.",
+        "formula": "$S = \\frac{m \\times n}{2}$",
+        "example": "Nếu chúng ta có một hình thoi với hai đường chéo có độ dài lần lượt là 4 cm và 6 cm, thì diện tích của hình thoi này là: $S = \\frac{4 \\times 6}{2} = 12$ cm$^2$.",
+        "images": []
+      },
+      {
+        "thinking": "Hình thoi có nhiều ứng dụng trong cuộc sống hàng ngày, chẳng hạn như trong thiết kế kiến trúc, trang trí nội thất và thậm chí là trong nghệ thuật.",
+        "title": "Ứng dụng của hình thoi",
+        "body": "Hình thoi có nhiều ứng dụng trong cuộc sống hàng ngày, chẳng hạn như trong thiết kế kiến trúc, trang trí nội thất và thậm chí là trong nghệ thuật.",
+        "formula": "",
+        "example": "Một ví dụ về ứng dụng của hình thoi là trong thiết kế kiến trúc của một tòa nhà. Các kiến trúc sư có thể sử dụng hình thoi để tạo ra một không gian mở và rộng rãi.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 199,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "15. Bài 67: Mét vuông",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về mét vuông, chúng ta cần biết rằng mét vuông là đơn vị đo diện tích. Để đo diện tích, chúng ta sử dụng mét vuông. Mét vuông được định nghĩa là diện tích của hình vuông có cạnh dài 1 m. Điều này có nghĩa là nếu chúng ta có một hình vuông có cạnh dài 1 m, thì diện tích của hình vuông đó là 1 m^2.",
+        "title": "Khái niệm mét vuông",
+        "body": "Mét vuông là đơn vị đo diện tích. Để đo diện tích, chúng ta sử dụng mét vuông. Mét vuông được định nghĩa là diện tích của hình vuông có cạnh dài 1 m. Một số ví dụ về mét vuông bao gồm:\n- Diện tích của hình vuông có cạnh dài 1 m là 1 m^2.\n- Diện tích của hình vuông có cạnh dài 2 m là 4 m^2.\n- Diện tích của hình vuông có cạnh dài 3 m là 9 m^2.\n    ",
+        "formula": "$1\\text{ m}^2 = 100\\text{ dm}^2 = 10\\ 000\\text{ cm}^2 = 1\\ 000\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Tính diện tích của hình vuông có cạnh dài 5 m. Lời giải: Để tính diện tích của hình vuông có cạnh dài 5 m, chúng ta sử dụng công thức: diện tích = cạnh^2. Vì cạnh dài 5 m, nên diện tích = 5^2 = 25 m^2.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_6.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_7.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu về quy đổi đơn vị đo diện tích, chúng ta cần biết rằng có nhiều đơn vị đo diện tích khác nhau, bao gồm mét vuông, decimet vuông, centimet vuông và milimet vuông. Để quy đổi giữa các đơn vị đo diện tích, chúng ta sử dụng các công thức quy đổi.",
+        "title": "Quy đổi đơn vị đo diện tích",
+        "body": "Có nhiều đơn vị đo diện tích khác nhau, bao gồm mét vuông, decimet vuông, centimet vuông và milimet vuông. Để quy đổi giữa các đơn vị đo diện tích, chúng ta sử dụng các công thức quy đổi. Ví dụ:\n- 1 m^2 = 100 dm^2\n- 1 dm^2 = 100 cm^2\n- 1 cm^2 = 100 mm^2\n    ",
+        "formula": "$1\\text{ m}^2 = 100\\text{ dm}^2 = 10\\ 000\\text{ cm}^2 = 1\\ 000\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Tính diện tích của hình vuông có cạnh dài 2 dm. Lời giải: Để tính diện tích của hình vuông có cạnh dài 2 dm, chúng ta sử dụng công thức: diện tích = cạnh^2. Vì cạnh dài 2 dm, nên diện tích = 2^2 = 4 dm^2. Để quy đổi từ decimet vuông sang mét vuông, chúng ta sử dụng công thức: 1 m^2 = 100 dm^2. Vì diện tích = 4 dm^2, nên diện tích = 4/100 = 0,04 m^2.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 200,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "16. Bài 68: Đề-xi-mét vuông",
+    "theory_cards": [
+      {
+        "thinking": "Để đo diện tích, chúng ta cần hiểu về đơn vị đo diện tích là đề-xi-mét vuông (dm^2). Để hiểu rõ hơn về đề-xi-mét vuông, chúng ta cần biết rằng 1 đề-xi-mét vuông là diện tích của hình vuông có cạnh dài 1 đề-xi-mét (dm).",
+        "title": "Khái niệm đề-xi-mét vuông",
+        "body": "Đề-xi-mét vuông (dm^2) là đơn vị đo diện tích. 1 đề-xi-mét vuông là diện tích của hình vuông có cạnh dài 1 đề-xi-mét (dm). Để hiểu rõ hơn về đề-xi-mét vuông, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 100 cm^2.",
+        "formula": "$1\\text{ dm}^2 = 100\\text{ cm}^2$",
+        "example": "Ví dụ: Một hình vuông có cạnh dài 10 cm có diện tích là 100 cm^2. Để chuyển đổi diện tích này sang đề-xi-mét vuông, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 100 cm^2. Vì vậy, diện tích của hình vuông này bằng 1 đề-xi-mét vuông.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_8.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_9.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về mối quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 10.000 mm^2.",
+        "title": "Quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác",
+        "body": "Để hiểu rõ hơn về mối quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 10.000 mm^2. Điều này giúp chúng ta chuyển đổi dễ dàng giữa các đơn vị đo diện tích.",
+        "formula": "$1\\text{ dm}^2 = 10\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Một hình vuông có diện tích là 10.000 mm^2. Để chuyển đổi diện tích này sang đề-xi-mét vuông, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 10.000 mm^2. Vì vậy, diện tích của hình vuông này bằng 1 đề-xi-mét vuông.",
+        "images": []
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về mối quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 100 dm^2.",
+        "title": "Quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác",
+        "body": "Để hiểu rõ hơn về mối quan hệ giữa đề-xi-mét vuông và các đơn vị đo diện tích khác, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 100 dm^2. Điều này giúp chúng ta chuyển đổi dễ dàng giữa các đơn vị đo diện tích.",
+        "formula": "$1\\text{ dm}^2 = 100\\text{ dm}^2$",
+        "example": "Ví dụ: Một hình vuông có diện tích là 100 dm^2. Để chuyển đổi diện tích này sang đề-xi-mét vuông, chúng ta cần biết rằng 1 đề-xi-mét vuông bằng 100 dm^2. Vì vậy, diện tích của hình vuông này bằng 1 đề-xi-mét vuông.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 201,
+    "grade": 4,
+    "chapter_name": "Chủ đề 3. Phân số",
+    "lesson_name": "17. Bài 69: Mi-li-mét vuông",
+    "theory_cards": [
+      {
+        "thinking": "Để đo diện tích nhỏ, chúng ta cần sử dụng đơn vị đo diện tích nhỏ hơn như mm². Mi-li-mét vuông (mm²) là diện tích hình vuông có cạnh dài 1 mm. Vì vậy, 1 mm² là diện tích của hình vuông có cạnh 1 mm.",
+        "title": "Khái niệm mi-li-mét vuông",
+        "body": "Mi-li-mét vuông (mm²) là đơn vị đo diện tích nhỏ được sử dụng để đo diện tích nhỏ. Nó được định nghĩa là diện tích hình vuông có cạnh dài 1 mm. Để đo diện tích nhỏ, chúng ta cần sử dụng mm².",
+        "formula": "$1\\text{ m}^2 = 100\\text{ dm}^2 = 10\\ 000\\text{ cm}^2 = 1\\ 000\\ 000\\text{ mm}^2$",
+        "example": "Ví dụ: Một hình vuông có cạnh dài 10 cm có diện tích là $10^2 = 100\\text{ cm}^2$. Để chuyển đổi diện tích này sang mm², chúng ta cần biết rằng $1\\text{ cm}^2 = 100\\text{ mm}^2$. Vì vậy, diện tích hình vuông có cạnh dài 10 cm trong mm² là $100 \\times 100 = 10\\ 000\\text{ mm}^2$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_10.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_11.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để chuyển đổi giữa các đơn vị đo diện tích khác nhau, chúng ta cần biết mối quan hệ giữa chúng. Ví dụ, chúng ta biết rằng $1\\text{ cm}^2 = 100\\text{ mm}^2$. Điều này cho phép chúng ta chuyển đổi diện tích từ cm² sang mm².",
+        "title": "Chuyển đổi giữa các đơn vị đo diện tích",
+        "body": "Để chuyển đổi giữa các đơn vị đo diện tích khác nhau, chúng ta cần biết mối quan hệ giữa chúng. Ví dụ, chúng ta biết rằng $1\\text{ cm}^2 = 100\\text{ mm}^2$. Điều này cho phép chúng ta chuyển đổi diện tích từ cm² sang mm².",
+        "formula": "$1\\text{ cm}^2 = 100\\text{ mm}^2$",
+        "example": "Ví dụ: Một hình vuông có cạnh dài 1 cm có diện tích là $1^2 = 1\\text{ cm}^2$. Để chuyển đổi diện tích này sang mm², chúng ta sử dụng mối quan hệ $1\\text{ cm}^2 = 100\\text{ mm}^2$. Vì vậy, diện tích hình vuông có cạnh dài 1 cm trong mm² là $1 \\times 100 = 100\\text{ mm}^2$.",
+        "images": []
+      },
+      {
+        "thinking": "Mi-li-mét vuông (mm²) là đơn vị đo diện tích nhỏ được sử dụng để đo diện tích nhỏ. Nó được định nghĩa là diện tích hình vuông có cạnh dài 1 mm. Để đo diện tích nhỏ, chúng ta cần sử dụng mm².",
+        "title": "Tóm tắt",
+        "body": "Mi-li-mét vuông (mm²) là đơn vị đo diện tích nhỏ được sử dụng để đo diện tích nhỏ. Nó được định nghĩa là diện tích hình vuông có cạnh dài 1 mm. Để đo diện tích nhỏ, chúng ta cần sử dụng mm².",
+        "formula": "$1\\text{ mm}^2 = 1\\text{ mm} \\times 1\\text{ mm}$",
+        "example": "Ví dụ: Một hình vuông có cạnh dài 1 mm có diện tích là $1 \\times 1 = 1\\text{ mm}^2$. Điều này cho thấy rằng mi-li-mét vuông (mm²) là đơn vị đo diện tích nhỏ được sử dụng để đo diện tích nhỏ.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 202,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "1. Bài 73: Cộng các phân số cùng mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để cộng hai phân số cùng mẫu số, chúng ta cần thực hiện theo các bước sau: \n    - Lấy hai tử số của hai phân số và cộng chúng lại với nhau.\n    - Giữ nguyên mẫu số của hai phân số.\n    - Kết quả của phép cộng sẽ là một phân số mới, trong đó tử số là kết quả của phép cộng hai tử số và mẫu số vẫn giữ nguyên.",
+        "title": "Cộng các phân số cùng mẫu số",
+        "body": "Cộng các phân số cùng mẫu số là một trong những phép tính cơ bản với phân số. Để thực hiện phép tính này, chúng ta cần thực hiện theo các bước sau:\n    - Lấy hai tử số của hai phân số và cộng chúng lại với nhau.\n    - Giữ nguyên mẫu số của hai phân số.\n    - Kết quả của phép cộng sẽ là một phân số mới, trong đó tử số là kết quả của phép cộng hai tử số và mẫu số vẫn giữ nguyên.\n    - Ví dụ: $\\frac{3}{4} + \\frac{2}{4} = ?$\n    - Để giải quyết bài toán này, chúng ta cần lấy hai tử số là 3 và 2, cộng chúng lại với nhau để được 5.\n    - Giữ nguyên mẫu số là 4.\n    - Kết quả của phép cộng sẽ là một phân số mới, trong đó tử số là 5 và mẫu số là 4.\n    - Do đó, kết quả của phép cộng là $\\frac{5}{4}$.",
+        "formula": "$\\frac{a}{c} + \\frac{b}{c} = \\frac{a+b}{c}$",
+        "example": "Ví dụ: $\\frac{3}{4} + \\frac{2}{4} = \\frac{3+2}{4} = \\frac{5}{4}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_12.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_13.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để cộng hai phân số khác mẫu số, chúng ta cần thực hiện theo các bước sau: \n    - Lấy hai phân số và tìm mẫu số chung của chúng.\n    - Quy đồng hai phân số về cùng mẫu số chung.\n    - Thực hiện phép cộng hai phân số cùng mẫu số.",
+        "title": "Cộng các phân số khác mẫu số",
+        "body": "Cộng các phân số khác mẫu số là một trong những phép tính cơ bản với phân số. Để thực hiện phép tính này, chúng ta cần thực hiện theo các bước sau:\n    - Lấy hai phân số và tìm mẫu số chung của chúng.\n    - Quy đồng hai phân số về cùng mẫu số chung.\n    - Thực hiện phép cộng hai phân số cùng mẫu số.\n    - Ví dụ: $\\frac{1}{2} + \\frac{1}{3} = ?$\n    - Để giải quyết bài toán này, chúng ta cần tìm mẫu số chung của hai phân số là 6.\n    - Quy đồng hai phân số về cùng mẫu số chung là $\\frac{3}{6} + \\frac{2}{6}$.\n    - Thực hiện phép cộng hai phân số cùng mẫu số để được $\\frac{3+2}{6} = \\frac{5}{6}$.\n    - Do đó, kết quả của phép cộng là $\\frac{5}{6}$.",
+        "formula": "$\\frac{a}{c} + \\frac{b}{d} = \\frac{a \\cdot d + b \\cdot c}{c \\cdot d}$",
+        "example": "Ví dụ: $\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{3+2}{6} = \\frac{5}{6}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 203,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "2. Bài 74: Trừ các phân số cùng mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để trừ hai phân số cùng mẫu số, chúng ta cần thực hiện các bước sau: \n    - Lấy tử số của phân số thứ nhất và tử số của phân số thứ hai.\n    - Trừ tử số của phân số thứ nhất khỏi tử số của phân số thứ hai.\n    - Giữ nguyên mẫu số của cả hai phân số.\n    - Kết quả là một phân số mới có tử số là kết quả của phép trừ và mẫu số là mẫu số ban đầu.",
+        "title": "Trừ hai phân số cùng mẫu số",
+        "body": "Để trừ hai phân số cùng mẫu số, chúng ta thực hiện các bước sau:\n    - Lấy tử số của phân số thứ nhất và tử số của phân số thứ hai.\n    - Trừ tử số của phân số thứ nhất khỏi tử số của phân số thứ hai.\n    - Giữ nguyên mẫu số của cả hai phân số.\n    - Kết quả là một phân số mới có tử số là kết quả của phép trừ và mẫu số là mẫu số ban đầu.\n    Ví dụ: $\\frac{7}{8} - \\frac{2}{8} = ?$\n    Ta lấy tử số của phân số thứ nhất là 7 và tử số của phân số thứ hai là 2.\n    Sau đó, ta trừ 2 khỏi 7 và giữ nguyên mẫu số là 8.\n    Kết quả là $\\frac{7-2}{8} = \\frac{5}{8}$",
+        "formula": "$\\frac{a}{c} - \\frac{b}{c} = \\frac{a-b}{c}$",
+        "example": "$\\frac{7}{8} - \\frac{2}{8} = \\frac{7-2}{8} = \\frac{5}{8}$\n    Lời giải: \n    - Lấy tử số của phân số thứ nhất là 7 và tử số của phân số thứ hai là 2.\n    - Trừ 2 khỏi 7 và giữ nguyên mẫu số là 8.\n    - Kết quả là $\\frac{5}{8}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_14.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_15.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để trừ hai phân số khác mẫu số, chúng ta cần thực hiện các bước sau: \n    - Quy đồng mẫu số của cả hai phân số.\n    - Sau đó, thực hiện phép trừ hai phân số có cùng mẫu số.",
+        "title": "Trừ hai phân số khác mẫu số",
+        "body": "Để trừ hai phân số khác mẫu số, chúng ta cần thực hiện các bước sau:\n    - Quy đồng mẫu số của cả hai phân số.\n    - Sau đó, thực hiện phép trừ hai phân số có cùng mẫu số.\n    Ví dụ: $\\frac{3}{4} - \\frac{2}{5} = ?$\n    Ta quy đồng mẫu số của cả hai phân số là 20.\n    Sau đó, ta thực hiện phép trừ hai phân số có cùng mẫu số là 20.\n    Kết quả là $\\frac{15}{20} - \\frac{8}{20} = \\frac{7}{20}$",
+        "formula": "$\\frac{a}{c} - \\frac{b}{d} = \\frac{a \\times d - b \\times c}{c \\times d}$",
+        "example": "$\\frac{3}{4} - \\frac{2}{5} = \\frac{3 \\times 5}{4 \\times 5} - \\frac{2 \\times 4}{5 \\times 4} = \\frac{15}{20} - \\frac{8}{20} = \\frac{7}{20}$\n    Lời giải: \n    - Quy đồng mẫu số của cả hai phân số là 20.\n    - Sau đó, ta thực hiện phép trừ hai phân số có cùng mẫu số là 20.\n    - Kết quả là $\\frac{7}{20}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 204,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "4. Bài 76: Cộng các phân số khác mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để cộng hai phân số khác mẫu số, chúng ta cần quy đồng mẫu số hai phân số đó. Điều này có nghĩa là chúng ta cần tìm một số nguyên khác 0 để nhân với cả tử số và mẫu số của mỗi phân số, sao cho mẫu số của cả hai phân số đều bằng nhau.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": [
+          "Bước 1: Tìm một số nguyên khác 0 để nhân với cả tử số và mẫu số của mỗi phân số.",
+          "Bước 2: Nhân tử số và mẫu số của mỗi phân số với số nguyên đó.",
+          "Bước 3: Kiểm tra lại mẫu số của cả hai phân số đã được nhân lên.",
+          "Bước 4: Cộng hai phân số đã được nhân lên."
+        ],
+        "formula": "$\\frac{a}{b} = \\frac{ac}{bc}$",
+        "example": "Ví dụ: \\frac{1}{2} + \\frac{1}{4} = ?\\n\\n\\frac{1}{2} = \\frac{1 \\times 2}{2 \\times 2} = \\frac{2}{4}\\n\\n\\frac{1}{2} + \\frac{1}{4} = \\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_16.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_17.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Sau khi quy đồng mẫu số, chúng ta có thể cộng hai phân số như bình thường. Điều này có nghĩa là chúng ta cần cộng tử số của hai phân số đã được nhân lên.",
+        "title": "Cộng hai phân số đã được quy đồng mẫu số",
+        "body": [
+          "Bước 1: Cộng tử số của hai phân số đã được nhân lên.",
+          "Bước 2: Kết quả của phép cộng là tử số của phân số mới."
+        ],
+        "formula": "$\\frac{a}{b} + \\frac{c}{b} = \\frac{a+c}{b}$",
+        "example": "Ví dụ: \\frac{2}{3} + \\frac{5}{9} = ?\\n\\n\\frac{2}{3} = \\frac{2 \\times 3}{3 \\times 3} = \\frac{6}{9}\\n\\n\\frac{2}{3} + \\frac{5}{9} = \\frac{6}{9} + \\frac{5}{9} = \\frac{11}{9}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 205,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "5. Bài 77: Trừ hai phân số khác mẫu số",
+    "theory_cards": [
+      {
+        "thinking": "Để trừ hai phân số khác mẫu số, chúng ta cần quy đồng mẫu số của hai phân số trước. Điều này có nghĩa là chúng ta sẽ tìm một số để nhân với mẫu số của mỗi phân số sao cho cả hai mẫu số đều bằng nhau.",
+        "title": "Quy đồng mẫu số",
+        "body": "Quy đồng mẫu số là một bước quan trọng trong việc trừ hai phân số khác mẫu số. Chúng ta sẽ tìm một số để nhân với mẫu số của mỗi phân số sao cho cả hai mẫu số đều bằng nhau. Điều này giúp chúng ta thực hiện trừ hai phân số một cách dễ dàng.",
+        "formula": "$\\frac{a}{b} = \\frac{a \\times c}{b \\times c}$",
+        "example": "Ví dụ: Để trừ $\\frac{3}{4}$ và $\\frac{5}{8}$, chúng ta sẽ quy đồng mẫu số của hai phân số. Chúng ta sẽ nhân mẫu số của $\\frac{3}{4}$ với 2 để trở thành $\\frac{6}{8}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_18.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0613/20_19.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Sau khi quy đồng mẫu số, chúng ta sẽ thực hiện trừ hai phân số một cách dễ dàng. Chúng ta sẽ lấy tử số của phân số đầu trừ đi tử số của phân số thứ hai.",
+        "title": "Trừ hai phân số cùng mẫu số",
+        "body": "Sau khi quy đồng mẫu số, chúng ta sẽ thực hiện trừ hai phân số một cách dễ dàng. Chúng ta sẽ lấy tử số của phân số đầu trừ đi tử số của phân số thứ hai.",
+        "formula": "$\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}$",
+        "example": "Ví dụ: Để trừ $\\frac{6}{8}$ và $\\frac{5}{8}$, chúng ta sẽ lấy tử số của $\\frac{6}{8}$ trừ đi tử số của $\\frac{5}{8}$, kết quả là $\\frac{1}{8}$.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 206,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "8. Bài 80: Phép nhân phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để nhân hai phân số, chúng ta cần lấy tử số của phân số thứ nhất nhân với tử số của phân số thứ hai, sau đó lấy mẫu số của phân số thứ nhất nhân với mẫu số của phân số thứ hai. Ví dụ, để nhân $\\frac{3}{4}$ và $\\frac{1}{2}$, chúng ta sẽ lấy tử số của $\\frac{3}{4}$ là 3 nhân với tử số của $\\frac{1}{2}$ là 1, sau đó lấy mẫu số của $\\frac{3}{4}$ là 4 nhân với mẫu số của $\\frac{1}{2}$ là 2.",
+        "title": "Quy tắc nhân phân số",
+        "body": "Quy tắc nhân phân số được thể hiện như sau:\n- Lấy tử số của phân số thứ nhất nhân với tử số của phân số thứ hai.\n- Lấy mẫu số của phân số thứ nhất nhân với mẫu số của phân số thứ hai.\n- Kết quả là tử số mới nhân với mẫu số mới.\nVí dụ: $\\frac{3}{4} \\times \\frac{1}{2} = \\frac{3 \\times 1}{4 \\times 2} = \\frac{3}{8}$",
+        "formula": "$\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d}$",
+        "example": "Ví dụ 1: $\\frac{3}{4} \\times \\frac{1}{2} = \\frac{3 \\times 1}{4 \\times 2} = \\frac{3}{8}$.\nVí dụ 2: $\\frac{4}{5} \\times \\frac{2}{3} = \\frac{4 \\times 2}{5 \\times 3} = \\frac{8}{15}$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_1.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để minh họa quy tắc nhân phân số, chúng ta có thể sử dụng các ví dụ thực tế. Ví dụ, để nhân $\\frac{3}{4}$ và $\\frac{1}{2}$, chúng ta sẽ lấy tử số của $\\frac{3}{4}$ là 3 nhân với tử số của $\\frac{1}{2}$ là 1, sau đó lấy mẫu số của $\\frac{3}{4}$ là 4 nhân với mẫu số của $\\frac{1}{2}$ là 2.",
+        "title": "Ví dụ minh họa",
+        "body": "Dưới đây là một số ví dụ minh họa quy tắc nhân phân số:\n- $\\frac{3}{4} \\times \\frac{1}{2} = \\frac{3 \\times 1}{4 \\times 2} = \\frac{3}{8}$\n- $\\frac{4}{5} \\times \\frac{2}{3} = \\frac{4 \\times 2}{5 \\times 3} = \\frac{8}{15}$",
+        "formula": "",
+        "example": "Ví dụ 1: $\\frac{3}{4} \\times \\frac{1}{2} = \\frac{3 \\times 1}{4 \\times 2} = \\frac{3}{8}$.\nVí dụ 2: $\\frac{4}{5} \\times \\frac{2}{3} = \\frac{4 \\times 2}{5 \\times 3} = \\frac{8}{15}$",
+        "images": []
+      },
+      {
+        "thinking": "Để kiểm tra tính chính xác của quy tắc nhân phân số, chúng ta có thể sử dụng các ví dụ khác nhau. Ví dụ, để nhân $\\frac{3}{4}$ và $\\frac{2}{3}$, chúng ta sẽ lấy tử số của $\\frac{3}{4}$ là 3 nhân với tử số của $\\frac{2}{3}$ là 2, sau đó lấy mẫu số của $\\frac{3}{4}$ là 4 nhân với mẫu số của $\\frac{2}{3}$ là 3.",
+        "title": "Kiểm tra tính chính xác",
+        "body": "Dưới đây là một số ví dụ khác để kiểm tra tính chính xác của quy tắc nhân phân số:\n- $\\frac{3}{4} \\times \\frac{2}{3} = \\frac{3 \\times 2}{4 \\times 3} = \\frac{6}{12} = \\frac{1}{2}$\n- $\\frac{4}{5} \\times \\frac{3}{2} = \\frac{4 \\times 3}{5 \\times 2} = \\frac{12}{10} = \\frac{6}{5}$",
+        "formula": "",
+        "example": "Ví dụ 1: $\\frac{3}{4} \\times \\frac{2}{3} = \\frac{3 \\times 2}{4 \\times 3} = \\frac{6}{12} = \\frac{1}{2}$.\nVí dụ 2: $\\frac{4}{5} \\times \\frac{3}{2} = \\frac{4 \\times 3}{5 \\times 2} = \\frac{12}{10} = \\frac{6}{5}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 207,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "10. Bài 82: Tìm phân số của một số",
+    "theory_cards": [
+      {
+        "thinking": "Để tìm phân số của một số, chúng ta cần hiểu rằng phân số là một phần của một tổng. Ví dụ, nếu chúng ta có 12 hình tròn và muốn tìm $\\frac{2}{3}$ của chúng, chúng ta cần tìm số hình tròn mà khi chia cho 3 sẽ cho kết quả 2. Điều này có nghĩa là chúng ta cần tìm số hình tròn mà khi nhân với $\\frac{2}{3}$ sẽ cho kết quả 12.",
+        "title": "Tìm phân số của một số",
+        "body": "Để tìm phân số của một số, chúng ta có thể sử dụng công thức sau: \\n\\n * Lấy số cần tìm nhân với tử số của phân số. \\n * Chia kết quả bằng mẫu số của phân số.",
+        "formula": "$A \\times \\frac{m}{n} = \\frac{A \\times m}{n}$ hoặc $A \\div n \\times \\frac{m}{1} = \\frac{A \\times m}{n}$",
+        "example": "Ví dụ: Tìm $\\frac{2}{3}$ của 12 hình tròn.\\n\\n * Lấy 12 nhân với 2: $12 \\times 2 = 24$\\n * Chia 24 cho 3: $24 \\div 3 = 8$\\n\\n Kết quả là $\\frac{2}{3}$ của 12 hình tròn là 8 hình tròn.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_2.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_3.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để minh họa cho quy tắc tìm phân số của một số, chúng ta có thể sử dụng ví dụ sau: Tìm $\\frac{3}{4}$ của 24 số.",
+        "title": "Ví dụ minh họa",
+        "body": "Để tìm $\\frac{3}{4}$ của 24 số, chúng ta có thể sử dụng công thức sau: \\n\\n * Lấy 24 nhân với 3: $24 \\times 3 = 72$\\n * Chia 72 cho 4: $72 \\div 4 = 18$\\n\\n Kết quả là $\\frac{3}{4}$ của 24 số là 18 số.",
+        "formula": "$24 \\times \\frac{3}{4} = \\frac{24 \\times 3}{4} = 18$",
+        "example": "Ví dụ: Tìm $\\frac{3}{4}$ của 24 số.\\n\\n * Lấy 24 nhân với 3: $24 \\times 3 = 72$\\n * Chia 72 cho 4: $72 \\div 4 = 18$\\n\\n Kết quả là $\\frac{3}{4}$ của 24 số là 18 số.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 208,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "12. Bài 84: Phép chia phân số",
+    "theory_cards": [
+      {
+        "thinking": "Để chia một phân số cho một phân số khác, chúng ta cần lấy phân số thứ nhất nhân với phân số đảo ngược của phân số thứ hai. Ví dụ, để chia $\\frac{3}{4}$ cho $\\frac{1}{8}$, chúng ta sẽ lấy $\\frac{3}{4}$ nhân với $\\frac{8}{1}$.",
+        "title": "Phép chia phân số",
+        "body": "Phép chia phân số là một phép tính toán học giúp chúng ta chia một phân số cho một phân số khác. Để thực hiện phép chia này, chúng ta cần lấy phân số thứ nhất nhân với phân số đảo ngược của phân số thứ hai. Ví dụ, để chia $\\frac{3}{4}$ cho $\\frac{1}{8}$, chúng ta sẽ lấy $\\frac{3}{4}$ nhân với $\\frac{8}{1}$.",
+        "formula": "$\\frac{a}{b}:\\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c} = \\frac{a \\times d}{b \\times c}$",
+        "example": "Ví dụ: Để chia $\\frac{3}{4}$ cho $\\frac{1}{8}$, chúng ta sẽ lấy $\\frac{3}{4}$ nhân với $\\frac{8}{1}$.\\n\\n$\\frac{3}{4}:\\frac{1}{8} = \\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_4.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_5.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Muốn chia một phân số cho một phân số khác 0, ta lấy phân số thứ nhất nhân với phân số đảo ngược của phân số thứ hai.",
+        "title": "Quy tắc quy đồng mẫu số",
+        "body": "Quy tắc quy đồng mẫu số là một quy tắc toán học giúp chúng ta quy đồng mẫu số khi chia một phân số cho một phân số khác. Để thực hiện quy tắc này, chúng ta cần lấy phân số thứ nhất nhân với phân số đảo ngược của phân số thứ hai.",
+        "formula": "$\\frac{a}{b}:\\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}$",
+        "example": "Ví dụ: Để chia $\\frac{7}{12}$ cho $\\frac{3}{5}$, chúng ta sẽ lấy $\\frac{7}{12}$ nhân với $\\frac{5}{3}$.\\n\\n$\\frac{7}{12}:\\frac{3}{5} = \\frac{7}{12} \\times \\frac{5}{3} = \\frac{35}{36}$",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 209,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "15. Bài 87: Dãy số liệu thống kê",
+    "theory_cards": [
+      {
+        "thinking": "Để hiểu về dãy số liệu thống kê, chúng ta cần phân tích ví dụ sau. Ví dụ 1 cho chúng ta một dãy số liệu thống kê về số điểm trong mỗi trận đấu của mùa giải bóng rổ. Dãy số liệu thống kê này bao gồm các số liệu: 12, 16, 19, 7, 20. Chúng ta cần tìm hiểu tại sao đây là một dãy số liệu thống kê.",
+        "title": "Khái niệm dãy số liệu thống kê",
+        "body": "Dãy số liệu thống kê là một danh sách các số liệu được sắp xếp theo thứ tự thời gian hoặc theo một tiêu chí nào đó. Ví dụ, số điểm trong mỗi trận đấu của mùa giải bóng rổ, số đo chiều cao của học sinh, v.v.",
+        "formula": "$\\text{Dãy số liệu thống kê} = \\{x_1, x_2, x_3, ..., x_n\\}$",
+        "example": "Ví dụ 1: Đội bóng rổ của Khôi tham gia giải bóng rổ thành phố với số điểm trong mỗi trận đấu của mùa giải được liệt kê như sau: 12, 16, 19, 7, 20. Dãy số liệu thống kê này bao gồm các số liệu: 12, 16, 19, 7, 20. Lời giải: Dãy số liệu thống kê này được tạo bởi các số liệu về số điểm trong mỗi trận đấu của mùa giải bóng rổ.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_6.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu về các số liệu thống kê, chúng ta cần phân tích ví dụ sau. Ví dụ 2 cho chúng ta một dãy số liệu thống kê về số đo chiều cao của học sinh. Dãy số liệu thống kê này bao gồm các số liệu: 132 cm, 129 cm, 130 cm, 125 cm, 130 cm, 122 cm, 138 cm, 137 cm, 135 cm, 145 cm. Chúng ta cần tìm hiểu tại sao đây là một dãy số liệu thống kê.",
+        "title": "Ví dụ về dãy số liệu thống kê",
+        "body": "Ví dụ về dãy số liệu thống kê là một danh sách các số liệu được sắp xếp theo thứ tự thời gian hoặc theo một tiêu chí nào đó. Ví dụ, số đo chiều cao của học sinh, số điểm trong mỗi trận đấu của mùa giải bóng rổ, v.v.",
+        "formula": "$\\text{Ví dụ về dãy số liệu thống kê} = \\{132, 129, 130, 125, 130, 122, 138, 137, 135, 145\\}$",
+        "example": "Ví dụ 2: Số đo chiều cao của 10 bạn học sinh được liệt kê như sau: 132 cm, 129 cm, 130 cm, 125 cm, 130 cm, 122 cm, 138 cm, 137 cm, 135 cm, 145 cm. Dãy số liệu thống kê này bao gồm các số liệu: 132 cm, 129 cm, 130 cm, 125 cm, 130 cm, 122 cm, 138 cm, 137 cm, 135 cm, 145 cm. Lời giải: Dãy số liệu thống kê này được tạo bởi các số liệu về số đo chiều cao của học sinh.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 210,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "16. Bài 88: Biểu đồ cột",
+    "theory_cards": [
+      {
+        "thinking": "Biểu đồ cột là một cách biểu diễn số liệu thống kê dưới dạng các hình vẽ. Để hiểu rõ hơn về biểu đồ cột, chúng ta cần phân tích từng bước. Trước hết, chúng ta cần biết rằng biểu đồ cột bao gồm tên biểu đồ, tên các đối tượng thống kê và chiều cao của cột biểu thị số liệu thống kê. Ví dụ, biểu đồ cột giới thiệu dưới đây thống kê ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.",
+        "title": "Khái niệm biểu đồ cột",
+        "body": "Biểu đồ cột là một loại biểu đồ thống kê dùng để thể hiện số liệu dưới dạng các cột. Mỗi cột biểu thị một đối tượng thống kê và chiều cao của cột biểu thị số liệu thống kê. Biểu đồ cột thường được sử dụng để so sánh số liệu giữa các đối tượng.",
+        "formula": "$\\text{Biểu đồ cột} = \\{\\text{Tên biểu đồ}, \\text{Tên các đối tượng thống kê}, \\text{Chiều cao của cột biểu thị số liệu thống kê}\\}$",
+        "example": "Ví dụ, biểu đồ cột sau đây thể hiện ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.\\n\\nSố học sinh lựa chọn vật nuôi trong gia đình\\n\\nChó: 8\\nMèo: 6\\nThỏ: 4\\nCá: 6\\n\\nTrong biểu đồ cột này, tên biểu đồ là 'Số học sinh lựa chọn vật nuôi trong gia đình', tên các đối tượng thống kê là 'Chó', 'Mèo', 'Thỏ', 'Cá' và chiều cao của cột biểu thị số liệu thống kê là 8, 6, 4, 6 lần lượt.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_7.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          },
+          {
+            "id": "image-2",
+            "url": "https://img.loigiaihay.com/picture/2023/0614/20_8.png",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để hiểu rõ hơn về biểu đồ cột, chúng ta cần biết cách đọc và phân tích biểu đồ cột. Khi đọc biểu đồ cột, chúng ta cần biết cách đọc tên biểu đồ, tên các đối tượng thống kê và chiều cao của cột biểu thị số liệu thống kê.",
+        "title": "Cách đọc và phân tích biểu đồ cột",
+        "body": "Cách đọc và phân tích biểu đồ cột như sau:\\n\\n- Đọc tên biểu đồ\\n- Đọc tên các đối tượng thống kê\\n- Đọc chiều cao của cột biểu thị số liệu thống kê\\n\\nVí dụ, biểu đồ cột sau đây thể hiện ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.\\n\\nSố học sinh lựa chọn vật nuôi trong gia đình\\n\\nChó: 8\\nMèo: 6\\nThỏ: 4\\nCá: 6\\n\\nTrong biểu đồ cột này, tên biểu đồ là 'Số học sinh lựa chọn vật nuôi trong gia đình', tên các đối tượng thống kê là 'Chó', 'Mèo', 'Thỏ', 'Cá' và chiều cao của cột biểu thị số liệu thống kê là 8, 6, 4, 6 lần lượt.",
+        "formula": "$\\text{Cách đọc và phân tích biểu đồ cột} = \\{\\text{Đọc tên biểu đồ}, \\text{Đọc tên các đối tượng thống kê}, \\text{Đọc chiều cao của cột biểu thị số liệu thống kê}\\}$",
+        "example": "Ví dụ, biểu đồ cột sau đây thể hiện ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.\\n\\nSố học sinh lựa chọn vật nuôi trong gia đình\\n\\nChó: 8\\nMèo: 6\\nThỏ: 4\\nCá: 6\\n\\nTrong biểu đồ cột này, tên biểu đồ là 'Số học sinh lựa chọn vật nuôi trong gia đình', tên các đối tượng thống kê là 'Chó', 'Mèo', 'Thỏ', 'Cá' và chiều cao của cột biểu thị số liệu thống kê là 8, 6, 4, 6 lần lượt.",
+        "images": []
+      },
+      {
+        "thinking": "Biểu đồ cột là một công cụ hữu ích để thể hiện số liệu thống kê. Để sử dụng biểu đồ cột hiệu quả, chúng ta cần biết cách tạo biểu đồ cột và cách đọc và phân tích biểu đồ cột.",
+        "title": "Sử dụng biểu đồ cột",
+        "body": "Sử dụng biểu đồ cột như sau:\\n\\n- Tạo biểu đồ cột\\n- Đọc và phân tích biểu đồ cột\\n\\nVí dụ, biểu đồ cột sau đây thể hiện ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.\\n\\nSố học sinh lựa chọn vật nuôi trong gia đình\\n\\nChó: 8\\nMèo: 6\\nThỏ: 4\\nCá: 6\\n\\nTrong biểu đồ cột này, tên biểu đồ là 'Số học sinh lựa chọn vật nuôi trong gia đình', tên các đối tượng thống kê là 'Chó', 'Mèo', 'Thỏ', 'Cá' và chiều cao của cột biểu thị số liệu thống kê là 8, 6, 4, 6 lần lượt.",
+        "formula": "$\\text{Sử dụng biểu đồ cột} = \\{\\text{Tạo biểu đồ cột}, \\text{Đọc và phân tích biểu đồ cột}\\}$",
+        "example": "Ví dụ, biểu đồ cột sau đây thể hiện ý kiến về con vật được lựa chọn để nuôi ở gia đình của một nhóm học sinh.\\n\\nSố học sinh lựa chọn vật nuôi trong gia đình\\n\\nChó: 8\\nMèo: 6\\nThỏ: 4\\nCá: 6\\n\\nTrong biểu đồ cột này, tên biểu đồ là 'Số học sinh lựa chọn vật nuôi trong gia đình', tên các đối tượng thống kê là 'Chó', 'Mèo', 'Thỏ', 'Cá' và chiều cao của cột biểu thị số liệu thống kê là 8, 6, 4, 6 lần lượt.",
+        "images": []
+      }
+    ]
+  },
+  {
+    "lesson_id": 211,
+    "grade": 4,
+    "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+    "lesson_name": "17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện",
+    "theory_cards": [
+      {
+        "thinking": "Để kiểm đếm số lần xuất hiện của một sự kiện, chúng ta cần xác định sự kiện đó là gì và có bao nhiêu lần nó xuất hiện trong một khoảng thời gian hoặc một khu vực cụ thể. Ví dụ, nếu chúng ta muốn kiểm đếm số lần xuất hiện của một màu sắc cụ thể trong một bức tranh, chúng ta cần xác định màu sắc đó là gì và có bao nhiêu lần nó xuất hiện trong bức tranh.",
+        "title": "Khái niệm kiểm đếm số lần xuất hiện",
+        "body": "Kiểm đếm số lần xuất hiện của một sự kiện là quá trình xác định số lần xuất hiện của sự kiện đó trong một khoảng thời gian hoặc một khu vực cụ thể. Quá trình này thường được sử dụng trong thống kê và phân tích dữ liệu.",
+        "formula": "$S = \\frac{N}{T}$",
+        "example": "Ví dụ, nếu chúng ta muốn kiểm đếm số lần xuất hiện của màu đỏ trong một bức tranh có kích thước 20cm x 30cm, chúng ta cần xác định số lần xuất hiện của màu đỏ trong bức tranh. Nếu màu đỏ xuất hiện 10 lần trong bức tranh, thì số lần xuất hiện của màu đỏ là $S = \\frac{10}{60} = \\frac{1}{6}$.",
+        "images": [
+          {
+            "id": "image-1",
+            "url": "https://img.loigiaihay.com/picture/2023/1113/20_6.PNG",
+            "alt_text": "Hình minh họa lý thuyết",
+            "width_percent": 100
+          }
+        ]
+      },
+      {
+        "thinking": "Để kiểm đếm số lần xuất hiện của một sự kiện, chúng ta cần có một danh sách các sự kiện và một danh sách các lần xuất hiện của sự kiện đó. Sau đó, chúng ta có thể sử dụng công thức kiểm đếm số lần xuất hiện để tính toán số lần xuất hiện của sự kiện.",
+        "title": "Quy tắc kiểm đếm số lần xuất hiện",
+        "body": "Quy tắc kiểm đếm số lần xuất hiện là:\n- Xác định sự kiện cần kiểm đếm.\n- Xác định số lần xuất hiện của sự kiện trong một khoảng thời gian hoặc một khu vực cụ thể.\n- Sử dụng công thức kiểm đếm số lần xuất hiện để tính toán số lần xuất hiện của sự kiện.",
+        "formula": "$S = \\frac{N}{T}$",
+        "example": "Ví dụ, nếu chúng ta muốn kiểm đếm số lần xuất hiện của màu đỏ trong một bức tranh có kích thước 20cm x 30cm, chúng ta cần xác định số lần xuất hiện của màu đỏ trong bức tranh. Nếu màu đỏ xuất hiện 10 lần trong bức tranh, thì số lần xuất hiện của màu đỏ là $S = \\frac{10}{60} = \\frac{1}{6}$.",
+        "images": []
+      },
+      {
+        "thinking": "Kiểm đếm số lần xuất hiện của một sự kiện có thể được sử dụng trong nhiều lĩnh vực khác nhau, bao gồm thống kê, phân tích dữ liệu và khoa học xã hội.",
+        "title": "Ứng dụng của kiểm đếm số lần xuất hiện",
+        "body": "Kiểm đếm số lần xuất hiện của một sự kiện có thể được sử dụng trong nhiều lĩnh vực khác nhau, bao gồm:\n- Thống kê: để tính toán số lần xuất hiện của một sự kiện trong một khoảng thời gian hoặc một khu vực cụ thể.\n- Phân tích dữ liệu: để phân tích số lần xuất hiện của một sự kiện trong một dữ liệu cụ thể.\n- Khoa học xã hội: để nghiên cứu số lần xuất hiện của một sự kiện trong một cộng đồng hoặc một xã hội cụ thể.",
+        "formula": "",
+        "example": "Ví dụ, nếu chúng ta muốn kiểm đếm số lần xuất hiện của màu đỏ trong một bức tranh có kích thước 20cm x 30cm, chúng ta cần xác định số lần xuất hiện của màu đỏ trong bức tranh. Nếu màu đỏ xuất hiện 10 lần trong bức tranh, thì số lần xuất hiện của màu đỏ là $S = \\frac{10}{60} = \\frac{1}{6}$.",
+        "images": []
+      }
+    ]
+  }
+]
