@@ -67,7 +67,7 @@ Desktop.ini
 *.njsproj
 *.sln
 *.sw?
-
+output/
 # 
 PhanTichNghiepVu.md
 KeHoachThucHien.md
