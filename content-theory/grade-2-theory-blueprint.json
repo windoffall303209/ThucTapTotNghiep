@@ -1,0 +1,1919 @@
+{
+  "grade": 2,
+  "source_textbook": "SGK Toán 2 Cánh Diều",
+  "scope_note": "Bản học liệu lý thuyết lớp 2 được tạo mới theo cấu trúc thẻ học, có đáp án và gợi ý sai.",
+  "cognitive_profile": {
+    "reading_level": "Có thể đọc câu ngắn và ví dụ mẫu, nhưng vẫn cần hình ảnh/que tính/bảng minh họa.",
+    "learning_style": "Quan sát mô hình, đọc ví dụ mẫu, thao tác theo bước và làm thử một câu ngắn.",
+    "ai_policy": "Không dùng Chat AI tự do; nếu dùng AI thì chỉ nên gợi ý từng bước khi học sinh làm sai."
+  },
+  "chapters": [
+    {
+      "title": "Ôn tập lớp 1. Phép cộng, phép trừ (có nhớ) trong phạm vi 20",
+      "lessons": [
+        {
+          "lesson": "Tia số. Số liền trước, số liền sau",
+          "kind": "number_line",
+          "objective": "Nhận biết tia số, số liền trước và số liền sau.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Tia số. Số liền trước, số liền sau.",
+              "visual_prompt": "Một tia số từ 24 đến 30, số 28 được tô màu để học sinh tìm số liền trước và số liền sau.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết tia số, số liền trước và số liền sau.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Trên tia số, số đứng ngay trước 28 là 27; số đứng ngay sau 28 là 29.",
+              "visual_prompt": "Một tia số từ 24 đến 30, số 28 được tô màu để học sinh tìm số liền trước và số liền sau.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Trên tia số, số đứng ngay trước 28 là 27; số đứng ngay sau 28 là 29.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Số liền sau của 35 là 36.",
+              "visual_prompt": "Một tia số từ 24 đến 30, số 28 được tô màu để học sinh tìm số liền trước và số liền sau.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Số liền sau của 35 là 36.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Đề-xi-mét",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Đề-xi-mét.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "1 dm = 10 cm.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "1 dm = 10 cm.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "3 dm = 30 cm.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "3 dm = 30 cm.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Số hạng - Tổng",
+          "kind": "operation_parts",
+          "objective": "Gọi tên đúng các thành phần trong phép tính.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Số hạng - Tổng.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Gọi tên đúng các thành phần trong phép tính.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Trong 8 + 5 = 13, 8 và 5 là số hạng, 13 là tổng.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Trong 8 + 5 = 13, 8 và 5 là số hạng, 13 là tổng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Trong 6 + 7 = 13, tổng là 13.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Trong 6 + 7 = 13, tổng là 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Số bị trừ - Số trừ - Hiệu",
+          "kind": "operation_parts",
+          "objective": "Gọi tên đúng các thành phần trong phép tính.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Số bị trừ - Số trừ - Hiệu.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Gọi tên đúng các thành phần trong phép tính.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Trong 15 - 7 = 8, 15 là số bị trừ, 7 là số trừ, 8 là hiệu.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Trong 15 - 7 = 8, 15 là số bị trừ, 7 là số trừ, 8 là hiệu.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Trong 18 - 9 = 9, hiệu là 9.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Trong 18 - 9 = 9, hiệu là 9.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng (có nhớ) trong phạm vi 20",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (có nhớ) trong phạm vi 20.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "9 + 4 = 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "9 + 4 = 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng (có nhớ) trong phạm vi 20 (tiếp theo)",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (có nhớ) trong phạm vi 20 (tiếp theo).",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "9 + 4 = 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "9 + 4 = 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng cộng (có nhớ) trong phạm vi 20",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng cộng (có nhớ) trong phạm vi 20.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 + 5 = 13 bằng cách tách 5 thành 2 và 3: 8 + 2 = 10, 10 + 3 = 13.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 + 5 = 13 bằng cách tách 5 thành 2 và 3: 8 + 2 = 10, 10 + 3 = 13.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "9 + 4 = 13.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "9 + 4 = 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (có nhớ) trong phạm vi 20",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (có nhớ) trong phạm vi 20.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "13 - 5 = 8: lấy 13 - 3 = 10, rồi 10 - 2 = 8.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "13 - 5 = 8: lấy 13 - 3 = 10, rồi 10 - 2 = 8.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "14 - 6 = 8.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "14 - 6 = 8.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (có nhớ) trong phạm vi 20 (tiếp theo)",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (có nhớ) trong phạm vi 20 (tiếp theo).",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "13 - 5 = 8: lấy 13 - 3 = 10, rồi 10 - 2 = 8.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "13 - 5 = 8: lấy 13 - 3 = 10, rồi 10 - 2 = 8.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "14 - 6 = 8.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "14 - 6 = 8.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng trừ (có nhớ) trong phạm vi 20",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng trừ (có nhớ) trong phạm vi 20.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "13 - 5 = 8 bằng cách tách 5 thành 3 và 2: 13 - 3 = 10, 10 - 2 = 8.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "13 - 5 = 8 bằng cách tách 5 thành 3 và 2: 13 - 3 = 10, 10 - 2 = 8.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "14 - 6 = 8.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "14 - 6 = 8.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bài toán liên quan đến phép cộng, phép trừ",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bài toán liên quan đến phép cộng, phép trừ.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "9 + 4 = 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "9 + 4 = 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bài toán liên quan đến phép cộng, phép trừ (tiếp theo)",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bài toán liên quan đến phép cộng, phép trừ (tiếp theo).",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 + 5 = 13: lấy 8 + 2 = 10, còn 3, được 13.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "9 + 4 = 13.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "9 + 4 = 13.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Phép cộng, phép trừ (có nhớ) trong phạm vi 100",
+      "lessons": [
+        {
+          "lesson": "Phép cộng (có nhớ) trong phạm vi 100",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (có nhớ) trong phạm vi 100.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "38 + 27 = 65: 8 + 7 = 15, viết 5 nhớ 1 chục; 3 chục + 2 chục + 1 chục = 6 chục.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "38 + 27 = 65: 8 + 7 = 15, viết 5 nhớ 1 chục; 3 chục + 2 chục + 1 chục = 6 chục.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "46 + 28 = 74.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "46 + 28 = 74.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo)",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo).",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "38 + 27 = 65: 8 + 7 = 15, viết 5 nhớ 1 chục; 3 chục + 2 chục + 1 chục = 6 chục.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "38 + 27 = 65: 8 + 7 = 15, viết 5 nhớ 1 chục; 3 chục + 2 chục + 1 chục = 6 chục.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "46 + 28 = 74.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "46 + 28 = 74.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (có nhớ) trong phạm vi 100",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (có nhớ) trong phạm vi 100.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "52 - 28 = 24: mượn 1 chục để trừ ở hàng đơn vị, rồi trừ hàng chục.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "52 - 28 = 24: mượn 1 chục để trừ ở hàng đơn vị, rồi trừ hàng chục.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "63 - 27 = 36.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "63 - 27 = 36.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (có nhớ) trong phạm vi 100 (tiếp theo)",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (có nhớ) trong phạm vi 100 (tiếp theo).",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "52 - 28 = 24: mượn 1 chục để trừ ở hàng đơn vị, rồi trừ hàng chục.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "52 - 28 = 24: mượn 1 chục để trừ ở hàng đơn vị, rồi trừ hàng chục.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "63 - 27 = 36.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "63 - 27 = 36.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Ki-lô-gam",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Ki-lô-gam.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Ki-lô-gam dùng để đo khối lượng; viết tắt là kg.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Ki-lô-gam dùng để đo khối lượng; viết tắt là kg.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Túi gạo 5 kg nặng hơn túi gạo 2 kg.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Túi gạo 5 kg nặng hơn túi gạo 2 kg.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Lít",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Lít.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Lít dùng để đo lượng nước/dung tích; viết tắt là l.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Lít dùng để đo lượng nước/dung tích; viết tắt là l.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Bình 3 l có nhiều nước hơn bình 1 l.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Bình 3 l có nhiều nước hơn bình 1 l.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Hình tứ giác",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Hình tứ giác.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Hình tứ giác là hình có 4 cạnh.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Hình tứ giác là hình có 4 cạnh.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Hình có 4 cạnh là hình tứ giác.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Hình có 4 cạnh là hình tứ giác.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Điểm, đoạn thẳng",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Điểm, đoạn thẳng.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Đoạn thẳng AB nối hai điểm A và B.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Đoạn thẳng AB nối hai điểm A và B.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Hai đầu của đoạn thẳng là hai điểm.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Hai đầu của đoạn thẳng là hai điểm.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Đường thẳng, đường cong, đường gấp khúc",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Đường thẳng, đường cong, đường gấp khúc.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Đường thẳng kéo dài mãi về hai phía; đường cong không thẳng; đường gấp khúc gồm nhiều đoạn thẳng nối nhau.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Đường thẳng kéo dài mãi về hai phía; đường cong không thẳng; đường gấp khúc gồm nhiều đoạn thẳng nối nhau.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Đường gấp khúc có thể gồm 3 đoạn thẳng.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Đường gấp khúc có thể gồm 3 đoạn thẳng.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Độ dài đoạn thẳng. Độ dài đường gấp khúc",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Độ dài đoạn thẳng. Độ dài đường gấp khúc.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng của nó.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng của nó.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Đường gấp khúc gồm đoạn 3 cm và 4 cm dài 7 cm.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Đường gấp khúc gồm đoạn 3 cm và 4 cm dài 7 cm.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Đo độ dài đoạn thẳng, độ dài đường gấp khúc",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Đo độ dài đoạn thẳng, độ dài đường gấp khúc.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng của nó.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng của nó.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Đường gấp khúc gồm đoạn 3 cm và 4 cm dài 7 cm.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Đường gấp khúc gồm đoạn 3 cm và 4 cm dài 7 cm.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Phép nhân, phép chia",
+      "lessons": [
+        {
+          "lesson": "Làm quen với phép nhân. Dấu nhân",
+          "kind": "multiplication",
+          "objective": "Hiểu phép nhân là phép cộng các số hạng bằng nhau.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Làm quen với phép nhân. Dấu nhân.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Hiểu phép nhân là phép cộng các số hạng bằng nhau.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "2 + 2 + 2 = 6 có thể viết thành 2 x 3 = 6.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "2 + 2 + 2 = 6 có thể viết thành 2 x 3 = 6.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Có 4 nhóm, mỗi nhóm 2 quả: 2 x 4 = 8.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Có 4 nhóm, mỗi nhóm 2 quả: 2 x 4 = 8.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép nhân",
+          "kind": "multiplication",
+          "objective": "Hiểu phép nhân là phép cộng các số hạng bằng nhau.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép nhân.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Hiểu phép nhân là phép cộng các số hạng bằng nhau.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "2 + 2 + 2 = 6 có thể viết thành 2 x 3 = 6.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "2 + 2 + 2 = 6 có thể viết thành 2 x 3 = 6.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Có 4 nhóm, mỗi nhóm 2 quả: 2 x 4 = 8.",
+              "visual_prompt": "Nhiều nhóm đồ vật bằng nhau, ví dụ 3 nhóm, mỗi nhóm 2 quả.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Có 4 nhóm, mỗi nhóm 2 quả: 2 x 4 = 8.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Thừa số, tích",
+          "kind": "operation_parts",
+          "objective": "Gọi tên đúng các thành phần trong phép tính.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Thừa số, tích.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Gọi tên đúng các thành phần trong phép tính.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Trong 2 x 5 = 10, 2 và 5 là thừa số, 10 là tích.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Trong 2 x 5 = 10, 2 và 5 là thừa số, 10 là tích.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Trong 5 x 3 = 15, tích là 15.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Trong 5 x 3 = 15, tích là 15.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng nhân 2",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng nhân 2.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "2 x 4 = 8 vì có 4 nhóm, mỗi nhóm 2.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "2 x 4 = 8 vì có 4 nhóm, mỗi nhóm 2.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "2 x 6 = 12.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2 x 6 = 12.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng nhân 5",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng nhân 5.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "5 x 3 = 15 vì có 3 nhóm, mỗi nhóm 5.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "5 x 3 = 15 vì có 3 nhóm, mỗi nhóm 5.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "5 x 6 = 30.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "5 x 6 = 30.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Làm quen với phép chia. Dấu chia",
+          "kind": "division",
+          "objective": "Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Làm quen với phép chia. Dấu chia.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "10 : 2 = 5.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "10 : 2 = 5.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép chia",
+          "kind": "division",
+          "objective": "Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép chia.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "10 : 2 = 5.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "10 : 2 = 5.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép chia (tiếp theo)",
+          "kind": "division",
+          "objective": "Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép chia (tiếp theo).",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Hiểu phép chia là chia đều hoặc chia theo nhóm.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "6 đồ vật chia đều thành 2 phần, mỗi phần có 3 đồ vật: 6 : 2 = 3.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "10 : 2 = 5.",
+              "visual_prompt": "Một nhóm đồ vật được chia đều vào các đĩa/hộp.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "10 : 2 = 5.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng chia 2",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng chia 2.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "8 : 2 = 4 vì 8 đồ vật chia đều thành 2 phần, mỗi phần 4.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "8 : 2 = 4 vì 8 đồ vật chia đều thành 2 phần, mỗi phần 4.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "12 : 2 = 6.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "12 : 2 = 6.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Bảng chia 5",
+          "kind": "fact_table",
+          "objective": "Ghi nhớ và vận dụng bảng tính cơ bản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Bảng chia 5.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Ghi nhớ và vận dụng bảng tính cơ bản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "20 : 5 = 4 vì 20 đồ vật chia đều thành 5 phần, mỗi phần 4.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "20 : 5 = 4 vì 20 đồ vật chia đều thành 5 phần, mỗi phần 4.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "25 : 5 = 5.",
+              "visual_prompt": "Các nhóm đồ vật bằng nhau hoặc bảng tính nhỏ để minh họa một bảng cộng/trừ/nhân/chia.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "25 : 5 = 5.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Số bị chia, số chia, thương",
+          "kind": "operation_parts",
+          "objective": "Gọi tên đúng các thành phần trong phép tính.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Số bị chia, số chia, thương.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Gọi tên đúng các thành phần trong phép tính.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Trong 10 : 2 = 5, 10 là số bị chia, 2 là số chia, 5 là thương.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Trong 10 : 2 = 5, 10 là số bị chia, 2 là số chia, 5 là thương.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Trong 20 : 5 = 4, thương là 4.",
+              "visual_prompt": "Một phép tính lớn ở giữa tranh, các thành phần được đặt trong các ô màu khác nhau để nhận biết tên gọi.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Trong 20 : 5 = 4, thương là 4.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Khối trụ - Khối cầu",
+          "kind": "geometry",
+          "objective": "Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Khối trụ - Khối cầu.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết yếu tố hình học qua hình vẽ và đồ vật quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Khối trụ có hai mặt đáy tròn; khối cầu có dạng tròn đều như quả bóng.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Khối trụ có hai mặt đáy tròn; khối cầu có dạng tròn đều như quả bóng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Lon sữa giống khối trụ, quả bóng giống khối cầu.",
+              "visual_prompt": "Hình học hoặc đồ vật thật tương ứng với bài học.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Lon sữa giống khối trụ, quả bóng giống khối cầu.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Ngày - giờ",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Ngày - giờ.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Một ngày có 24 giờ.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Một ngày có 24 giờ.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Buổi sáng 7 giờ là thời điểm đi học thường gặp.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Buổi sáng 7 giờ là thời điểm đi học thường gặp.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Giờ - Phút",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Giờ - Phút.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "1 giờ = 60 phút.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "1 giờ = 60 phút.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "2 giờ = 120 phút.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2 giờ = 120 phút.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Ngày - Tháng",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Ngày - Tháng.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Một tháng có thể có 28, 29, 30 hoặc 31 ngày.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Một tháng có thể có 28, 29, 30 hoặc 31 ngày.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Tháng 1 có 31 ngày.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Tháng 1 có 31 ngày.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Các số trong phạm vi 1000. Phép cộng, phép trừ trong phạm vi 1000",
+      "lessons": [
+        {
+          "lesson": "Các số trong phạm vi 1000",
+          "kind": "place_value_1000",
+          "objective": "Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Các số trong phạm vi 1000.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có ba chữ số",
+          "kind": "place_value_1000",
+          "objective": "Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Các số có ba chữ số.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có ba chữ số (tiếp theo)",
+          "kind": "place_value_1000",
+          "objective": "Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Các số có ba chữ số (tiếp theo).",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "326 gồm 3 trăm, 2 chục và 6 đơn vị.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "405 gồm 4 trăm, 0 chục và 5 đơn vị.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "So sánh các số có ba chữ số",
+          "kind": "place_value_1000",
+          "objective": "Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: So sánh các số có ba chữ số.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Đọc, viết, phân tích và so sánh các số trong phạm vi 1000.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "345 < 412 vì 3 trăm bé hơn 4 trăm.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "345 < 412 vì 3 trăm bé hơn 4 trăm.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "608 > 580.",
+              "visual_prompt": "Các khối trăm, thanh chục và ô đơn vị biểu diễn một số có ba chữ số.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "608 > 580.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng (không nhớ) trong phạm vi 1000",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (không nhớ) trong phạm vi 1000.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "326 + 152 = 478: cộng đơn vị, chục, trăm theo từng hàng.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "326 + 152 = 478: cộng đơn vị, chục, trăm theo từng hàng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "245 + 132 = 377.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "245 + 132 = 377.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (không nhớ) trong phạm vi 1000",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (không nhớ) trong phạm vi 1000.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "478 - 152 = 326: trừ đơn vị, chục, trăm theo từng hàng.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "478 - 152 = 326: trừ đơn vị, chục, trăm theo từng hàng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "377 - 132 = 245.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "377 - 132 = 245.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Mét",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Mét.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "1 m = 100 cm.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "1 m = 100 cm.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "2 m = 200 cm.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2 m = 200 cm.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Ki-lô-mét",
+          "kind": "measurement",
+          "objective": "Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Ki-lô-mét.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Nhận biết đơn vị đo và dùng đơn vị đó trong tình huống quen thuộc.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Ki-lô-mét dùng để đo quãng đường dài; viết tắt là km.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Ki-lô-mét dùng để đo quãng đường dài; viết tắt là km.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "5 km dài hơn 2 km.",
+              "visual_prompt": "Một tình huống đo lường quen thuộc: thước, cân, bình nước, lịch hoặc đồng hồ tùy nội dung bài.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "5 km dài hơn 2 km.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng (có nhớ) trong phạm vi 1000",
+          "kind": "addition",
+          "objective": "Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép cộng (có nhớ) trong phạm vi 1000.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép cộng theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "326 + 152 = 478: cộng đơn vị, chục, trăm theo từng hàng.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "326 + 152 = 478: cộng đơn vị, chục, trăm theo từng hàng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "245 + 132 = 377.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten được gộp lại để minh họa phép cộng.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "245 + 132 = 377.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ (có nhớ) trong phạm vi 1000",
+          "kind": "subtraction",
+          "objective": "Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Phép trừ (có nhớ) trong phạm vi 1000.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thực hiện phép trừ theo hàng hoặc bằng cách tách số phù hợp.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "478 - 152 = 326: trừ đơn vị, chục, trăm theo từng hàng.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "478 - 152 = 326: trừ đơn vị, chục, trăm theo từng hàng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "377 - 132 = 245.",
+              "visual_prompt": "Các bó que tính hoặc khối base-ten bị bớt đi để minh họa phép trừ.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "377 - 132 = 245.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Thu thập - Kiểm đếm",
+          "kind": "data",
+          "objective": "Thu thập, kiểm đếm và đọc dữ liệu đơn giản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Thu thập - Kiểm đếm.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thu thập, kiểm đếm và đọc dữ liệu đơn giản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Kiểm đếm bằng cách gạch một vạch cho mỗi đối tượng, rồi cộng các vạch.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Kiểm đếm bằng cách gạch một vạch cho mỗi đối tượng, rồi cộng các vạch.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Có 4 bạn chọn bóng đá nếu kiểm đếm được 4 vạch.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Có 4 bạn chọn bóng đá nếu kiểm đếm được 4 vạch.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Biểu đồ tranh",
+          "kind": "data",
+          "objective": "Thu thập, kiểm đếm và đọc dữ liệu đơn giản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Biểu đồ tranh.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Thu thập, kiểm đếm và đọc dữ liệu đơn giản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Mỗi hình trong biểu đồ tranh biểu thị một số lượng đối tượng.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Mỗi hình trong biểu đồ tranh biểu thị một số lượng đối tượng.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Nếu có 5 hình quả táo thì có 5 quả táo.",
+              "visual_prompt": "Một bảng kiểm đếm hoặc biểu đồ tranh đơn giản với các biểu tượng dễ nhìn.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Nếu có 5 hình quả táo thì có 5 quả táo.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        },
+        {
+          "lesson": "Chắc chắn - Có thể - Không thể",
+          "kind": "probability",
+          "objective": "Phân biệt chắc chắn, có thể và không thể trong tình huống đơn giản.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Nhận biết kiến thức",
+              "display_text": "Quan sát ví dụ của bài: Chắc chắn - Có thể - Không thể.",
+              "visual_prompt": "Ba tranh nhỏ: việc chắc chắn xảy ra, việc có thể xảy ra, việc không thể xảy ra.",
+              "student_task": "Gọi tên kiến thức hoặc thao tác chính trong tranh.",
+              "interaction": "choose",
+              "expected_answer": "Học sinh nhận biết đúng nội dung trọng tâm: Phân biệt chắc chắn, có thể và không thể trong tình huống đơn giản.",
+              "wrong_hint": "Cho học sinh quan sát lại hình minh họa, đọc chậm câu hỏi và xác định dữ kiện quan trọng."
+            },
+            {
+              "type": "model",
+              "title": "Làm mẫu",
+              "display_text": "Mặt trời mọc vào buổi sáng là chắc chắn; tung đồng xu ra mặt sấp là có thể; con cá sống trên cây là không thể.",
+              "visual_prompt": "Ba tranh nhỏ: việc chắc chắn xảy ra, việc có thể xảy ra, việc không thể xảy ra.",
+              "student_task": "Theo dõi cách làm mẫu và nhắc lại bước chính.",
+              "interaction": "none",
+              "expected_answer": "Mặt trời mọc vào buổi sáng là chắc chắn; tung đồng xu ra mặt sấp là có thể; con cá sống trên cây là không thể.",
+              "wrong_hint": "Nhắc lại từng bước từ trái sang phải hoặc từ hàng đơn vị đến hàng lớn hơn."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "display_text": "Ngày mai có mưa là có thể.",
+              "visual_prompt": "Ba tranh nhỏ: việc chắc chắn xảy ra, việc có thể xảy ra, việc không thể xảy ra.",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Ngày mai có mưa là có thể.",
+              "wrong_hint": "Gợi ý học sinh quay lại ví dụ mẫu rồi làm lại với số mới."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

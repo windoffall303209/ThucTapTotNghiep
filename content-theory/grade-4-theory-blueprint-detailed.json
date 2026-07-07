@@ -1,0 +1,2232 @@
+{
+  "grade": 4,
+  "source_textbook": "SGK Toán 4 Cánh Diều",
+  "version_note": "Bản chi tiết: mỗi bài có 3 tranh minh họa riêng cho quan sát, làm mẫu và thử nhanh.",
+  "cognitive_profile": {
+    "reading_level": "Học sinh lớp 4 đọc hiểu tốt hơn, có thể tiếp nhận quy tắc và ví dụ nhiều bước nhưng vẫn cần mô hình trực quan.",
+    "learning_style": "Quan sát mô hình, đọc quy tắc ngắn, theo ví dụ mẫu, sau đó làm thử một câu cùng dạng.",
+    "ai_policy": "Có thể dùng AI ở mức gợi ý từng bước và hỏi dẫn dắt; không đưa đáp án ngay."
+  },
+  "chapters": [
+    {
+      "title": "Số tự nhiên",
+      "lessons": [
+        {
+          "lesson": "Các số trong phạm vi 1 000 000",
+          "kind": "large_number",
+          "objective": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "large_number",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các số trong phạm vi 1 000 000.",
+              "caption": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "large_number",
+              "display_text": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "caption": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "large_number",
+              "display_text": "708 305 gồm 7 trăm nghìn, 0 chục nghìn, 8 nghìn, 3 trăm, 0 chục, 5 đơn vị.",
+              "caption": "Đáp án cần đạt: 708 305",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "708 305",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Các số trong phạm vi 1 000 000 (tiếp theo)",
+          "kind": "large_number",
+          "objective": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "large_number",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các số trong phạm vi 1 000 000 (tiếp theo).",
+              "caption": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "large_number",
+              "display_text": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "caption": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "large_number",
+              "display_text": "708 305 gồm 7 trăm nghìn, 0 chục nghìn, 8 nghìn, 3 trăm, 0 chục, 5 đơn vị.",
+              "caption": "Đáp án cần đạt: 708 305",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "708 305",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có nhiều chữ số",
+          "kind": "large_number",
+          "objective": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "large_number",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các số có nhiều chữ số.",
+              "caption": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "large_number",
+              "display_text": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "caption": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "large_number",
+              "display_text": "708 305 gồm 7 trăm nghìn, 0 chục nghìn, 8 nghìn, 3 trăm, 0 chục, 5 đơn vị.",
+              "caption": "Đáp án cần đạt: 708 305",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "708 305",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có nhiều chữ số (tiếp theo)",
+          "kind": "large_number",
+          "objective": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "large_number",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các số có nhiều chữ số (tiếp theo).",
+              "caption": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc, viết và phân tích số tự nhiên có nhiều chữ số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "large_number",
+              "display_text": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "caption": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 gồm 5 trăm nghìn, 2 chục nghìn, 3 nghìn, 4 trăm, 1 chục, 6 đơn vị.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "large_number",
+              "display_text": "708 305 gồm 7 trăm nghìn, 0 chục nghìn, 8 nghìn, 3 trăm, 0 chục, 5 đơn vị.",
+              "caption": "Đáp án cần đạt: 708 305",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "708 305",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "So sánh các số có nhiều chữ số",
+          "kind": "compare_large",
+          "objective": "So sánh các số có nhiều chữ số theo từng hàng từ trái sang phải.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "compare_large",
+              "display_text": "Quan sát tình huống minh họa cho bài: So sánh các số có nhiều chữ số.",
+              "caption": "So sánh các số có nhiều chữ số theo từng hàng từ trái sang phải.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "So sánh các số có nhiều chữ số theo từng hàng từ trái sang phải.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "compare_large",
+              "display_text": "523 416 > 498 905 vì 5 trăm nghìn lớn hơn 4 trăm nghìn.",
+              "caption": "523 416 > 498 905 vì 5 trăm nghìn lớn hơn 4 trăm nghìn.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 > 498 905 vì 5 trăm nghìn lớn hơn 4 trăm nghìn.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "compare_large",
+              "display_text": "708 305 > 699 999.",
+              "caption": "Đáp án cần đạt: >",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": ">",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Làm tròn số đến hàng trăm nghìn",
+          "kind": "rounding",
+          "objective": "Làm tròn số đến hàng trăm nghìn.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "rounding",
+              "display_text": "Quan sát tình huống minh họa cho bài: Làm tròn số đến hàng trăm nghìn.",
+              "caption": "Làm tròn số đến hàng trăm nghìn.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Làm tròn số đến hàng trăm nghìn.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "rounding",
+              "display_text": "523 416 làm tròn đến hàng trăm nghìn là 500 000.",
+              "caption": "523 416 làm tròn đến hàng trăm nghìn là 500 000.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 làm tròn đến hàng trăm nghìn là 500 000.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "rounding",
+              "display_text": "756 120 làm tròn đến hàng trăm nghìn là 800 000.",
+              "caption": "Đáp án cần đạt: 800 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "800 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Số tự nhiên. Dãy số tự nhiên",
+          "kind": "natural_sequence",
+          "objective": "Nhận biết dãy số tự nhiên bắt đầu từ 0 và mỗi số hơn số trước 1 đơn vị.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "natural_sequence",
+              "display_text": "Quan sát tình huống minh họa cho bài: Số tự nhiên. Dãy số tự nhiên.",
+              "caption": "Nhận biết dãy số tự nhiên bắt đầu từ 0 và mỗi số hơn số trước 1 đơn vị.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết dãy số tự nhiên bắt đầu từ 0 và mỗi số hơn số trước 1 đơn vị.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "natural_sequence",
+              "display_text": "0, 1, 2, 3, 4, ... là dãy số tự nhiên.",
+              "caption": "0, 1, 2, 3, 4, ... là dãy số tự nhiên.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "0, 1, 2, 3, 4, ... là dãy số tự nhiên.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "natural_sequence",
+              "display_text": "Số liền sau của 999 999 là 1 000 000.",
+              "caption": "Đáp án cần đạt: 1 000 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "1 000 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Viết số tự nhiên trong hệ thập phân",
+          "kind": "decimal_system",
+          "objective": "Hiểu mỗi chữ số trong hệ thập phân có giá trị theo hàng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "decimal_system",
+              "display_text": "Quan sát tình huống minh họa cho bài: Viết số tự nhiên trong hệ thập phân.",
+              "caption": "Hiểu mỗi chữ số trong hệ thập phân có giá trị theo hàng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Hiểu mỗi chữ số trong hệ thập phân có giá trị theo hàng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "decimal_system",
+              "display_text": "Trong 523 416, chữ số 2 có giá trị 20 000.",
+              "caption": "Trong 523 416, chữ số 2 có giá trị 20 000.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Trong 523 416, chữ số 2 có giá trị 20 000.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "decimal_system",
+              "display_text": "Trong 708 305, chữ số 8 có giá trị 8 000.",
+              "caption": "Đáp án cần đạt: 8 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "8 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Yến, tạ, tấn",
+          "kind": "mass",
+          "objective": "Nhận biết yến, tạ, tấn và đổi đơn vị khối lượng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mass",
+              "display_text": "Quan sát tình huống minh họa cho bài: Yến, tạ, tấn.",
+              "caption": "Nhận biết yến, tạ, tấn và đổi đơn vị khối lượng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết yến, tạ, tấn và đổi đơn vị khối lượng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mass",
+              "display_text": "1 yến = 10 kg, 1 tạ = 100 kg, 1 tấn = 1000 kg.",
+              "caption": "1 yến = 10 kg, 1 tạ = 100 kg, 1 tấn = 1000 kg.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1 yến = 10 kg, 1 tạ = 100 kg, 1 tấn = 1000 kg.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mass",
+              "display_text": "3 tạ = 300 kg.",
+              "caption": "Đáp án cần đạt: 300 kg",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "300 kg",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Giây",
+          "kind": "second",
+          "objective": "Nhận biết giây là đơn vị đo thời gian nhỏ hơn phút.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "second",
+              "display_text": "Quan sát tình huống minh họa cho bài: Giây.",
+              "caption": "Nhận biết giây là đơn vị đo thời gian nhỏ hơn phút.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết giây là đơn vị đo thời gian nhỏ hơn phút.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "second",
+              "display_text": "1 phút = 60 giây.",
+              "caption": "1 phút = 60 giây.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1 phút = 60 giây.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "second",
+              "display_text": "3 phút = 180 giây.",
+              "caption": "Đáp án cần đạt: 180 giây",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "180 giây",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Thế kỉ",
+          "kind": "century",
+          "objective": "Nhận biết thế kỉ là khoảng thời gian 100 năm.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "century",
+              "display_text": "Quan sát tình huống minh họa cho bài: Thế kỉ.",
+              "caption": "Nhận biết thế kỉ là khoảng thời gian 100 năm.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết thế kỉ là khoảng thời gian 100 năm.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "century",
+              "display_text": "Thế kỉ XXI là từ năm 2001 đến năm 2100.",
+              "caption": "Thế kỉ XXI là từ năm 2001 đến năm 2100.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Thế kỉ XXI là từ năm 2001 đến năm 2100.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "century",
+              "display_text": "Năm 2026 thuộc thế kỉ XXI.",
+              "caption": "Đáp án cần đạt: Thế kỉ XXI",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Thế kỉ XXI",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Bài toán liên quan đến rút về đơn vị",
+          "kind": "unit_rate",
+          "objective": "Giải bài toán rút về đơn vị bằng cách tìm giá trị của 1 phần trước.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "unit_rate",
+              "display_text": "Quan sát tình huống minh họa cho bài: Bài toán liên quan đến rút về đơn vị.",
+              "caption": "Giải bài toán rút về đơn vị bằng cách tìm giá trị của 1 phần trước.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Giải bài toán rút về đơn vị bằng cách tìm giá trị của 1 phần trước.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "unit_rate",
+              "display_text": "Mua 4 quyển vở hết 24 000 đồng, 1 quyển hết 6 000 đồng.",
+              "caption": "Mua 4 quyển vở hết 24 000 đồng, 1 quyển hết 6 000 đồng.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Mua 4 quyển vở hết 24 000 đồng, 1 quyển hết 6 000 đồng.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "unit_rate",
+              "display_text": "6 quyển hết 48 000 đồng thì 1 quyển hết 8 000 đồng.",
+              "caption": "Đáp án cần đạt: 8 000 đồng",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "8 000 đồng",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Góc nhọn, góc tù, góc bẹt",
+          "kind": "angle_types",
+          "objective": "Phân biệt góc nhọn, góc tù và góc bẹt.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "angle_types",
+              "display_text": "Quan sát tình huống minh họa cho bài: Góc nhọn, góc tù, góc bẹt.",
+              "caption": "Phân biệt góc nhọn, góc tù và góc bẹt.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Phân biệt góc nhọn, góc tù và góc bẹt.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "angle_types",
+              "display_text": "Góc nhọn bé hơn góc vuông, góc tù lớn hơn góc vuông, góc bẹt bằng hai góc vuông.",
+              "caption": "Góc nhọn bé hơn góc vuông, góc tù lớn hơn góc vuông, góc bẹt bằng hai góc vuông.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Góc nhọn bé hơn góc vuông, góc tù lớn hơn góc vuông, góc bẹt bằng hai góc vuông.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "angle_types",
+              "display_text": "Góc 120 độ là góc tù.",
+              "caption": "Đáp án cần đạt: Góc tù",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Góc tù",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Đơn vị đo góc. Độ",
+          "kind": "degree",
+          "objective": "Nhận biết độ là đơn vị đo góc và đọc số đo góc.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "degree",
+              "display_text": "Quan sát tình huống minh họa cho bài: Đơn vị đo góc. Độ.",
+              "caption": "Nhận biết độ là đơn vị đo góc và đọc số đo góc.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết độ là đơn vị đo góc và đọc số đo góc.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "degree",
+              "display_text": "Góc vuông có số đo 90 độ.",
+              "caption": "Góc vuông có số đo 90 độ.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Góc vuông có số đo 90 độ.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "degree",
+              "display_text": "Góc bẹt có số đo 180 độ.",
+              "caption": "Đáp án cần đạt: 180 độ",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "180 độ",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+          "kind": "perpendicular",
+          "objective": "Nhận biết hai đường thẳng vuông góc khi chúng cắt nhau tạo góc vuông.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "perpendicular",
+              "display_text": "Quan sát tình huống minh họa cho bài: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc.",
+              "caption": "Nhận biết hai đường thẳng vuông góc khi chúng cắt nhau tạo góc vuông.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết hai đường thẳng vuông góc khi chúng cắt nhau tạo góc vuông.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "perpendicular",
+              "display_text": "Hai đường thẳng cắt nhau tạo góc 90 độ là vuông góc.",
+              "caption": "Hai đường thẳng cắt nhau tạo góc 90 độ là vuông góc.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Hai đường thẳng cắt nhau tạo góc 90 độ là vuông góc.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "perpendicular",
+              "display_text": "Hai cạnh kề của hình chữ nhật vuông góc.",
+              "caption": "Đáp án cần đạt: Vuông góc",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Vuông góc",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+          "kind": "parallel",
+          "objective": "Nhận biết hai đường thẳng song song không cắt nhau.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "parallel",
+              "display_text": "Quan sát tình huống minh họa cho bài: Hai đường thẳng song song. Vẽ hai đường thẳng song song.",
+              "caption": "Nhận biết hai đường thẳng song song không cắt nhau.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết hai đường thẳng song song không cắt nhau.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "parallel",
+              "display_text": "Hai đường thẳng song song luôn cách đều nhau và không cắt nhau.",
+              "caption": "Hai đường thẳng song song luôn cách đều nhau và không cắt nhau.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Hai đường thẳng song song luôn cách đều nhau và không cắt nhau.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "parallel",
+              "display_text": "Hai cạnh đối của hình chữ nhật song song.",
+              "caption": "Đáp án cần đạt: Song song",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Song song",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Các phép tính với số tự nhiên",
+      "lessons": [
+        {
+          "lesson": "Phép cộng, phép trừ",
+          "kind": "add_sub",
+          "objective": "Cộng, trừ số tự nhiên theo từng hàng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "add_sub",
+              "display_text": "Quan sát tình huống minh họa cho bài: Phép cộng, phép trừ.",
+              "caption": "Cộng, trừ số tự nhiên theo từng hàng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Cộng, trừ số tự nhiên theo từng hàng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "add_sub",
+              "display_text": "523 416 + 142 305 = 665 721; 665 721 - 142 305 = 523 416.",
+              "caption": "523 416 + 142 305 = 665 721; 665 721 - 142 305 = 523 416.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "523 416 + 142 305 = 665 721; 665 721 - 142 305 = 523 416.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "add_sub",
+              "display_text": "708 305 - 120 104 = 588 201.",
+              "caption": "Đáp án cần đạt: 588 201",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "588 201",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Các tính chất của phép cộng",
+          "kind": "add_properties",
+          "objective": "Vận dụng tính chất giao hoán và kết hợp của phép cộng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "add_properties",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các tính chất của phép cộng.",
+              "caption": "Vận dụng tính chất giao hoán và kết hợp của phép cộng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Vận dụng tính chất giao hoán và kết hợp của phép cộng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "add_properties",
+              "display_text": "35 + 28 + 65 = (35 + 65) + 28 = 128.",
+              "caption": "35 + 28 + 65 = (35 + 65) + 28 = 128.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "35 + 28 + 65 = (35 + 65) + 28 = 128.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "add_properties",
+              "display_text": "125 + 37 + 75 = 237.",
+              "caption": "Đáp án cần đạt: 237",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "237",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Tìm số trung bình cộng",
+          "kind": "average",
+          "objective": "Tìm số trung bình cộng bằng cách lấy tổng chia cho số các số hạng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "average",
+              "display_text": "Quan sát tình huống minh họa cho bài: Tìm số trung bình cộng.",
+              "caption": "Tìm số trung bình cộng bằng cách lấy tổng chia cho số các số hạng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Tìm số trung bình cộng bằng cách lấy tổng chia cho số các số hạng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "average",
+              "display_text": "Trung bình cộng của 8, 10, 12 là (8 + 10 + 12) : 3 = 10.",
+              "caption": "Trung bình cộng của 8, 10, 12 là (8 + 10 + 12) : 3 = 10.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Trung bình cộng của 8, 10, 12 là (8 + 10 + 12) : 3 = 10.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "average",
+              "display_text": "Trung bình cộng của 15, 20, 25 là 20.",
+              "caption": "Đáp án cần đạt: 20",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "20",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Tìm hai số khi biết tổng và hiệu của hai số đó",
+          "kind": "sum_diff",
+          "objective": "Tìm hai số khi biết tổng và hiệu.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "sum_diff",
+              "display_text": "Quan sát tình huống minh họa cho bài: Tìm hai số khi biết tổng và hiệu của hai số đó.",
+              "caption": "Tìm hai số khi biết tổng và hiệu.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Tìm hai số khi biết tổng và hiệu.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "sum_diff",
+              "display_text": "Tổng 30, hiệu 6: số lớn = (30 + 6) : 2 = 18, số bé = 12.",
+              "caption": "Tổng 30, hiệu 6: số lớn = (30 + 6) : 2 = 18, số bé = 12.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Tổng 30, hiệu 6: số lớn = (30 + 6) : 2 = 18, số bé = 12.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "sum_diff",
+              "display_text": "Tổng 50, hiệu 10 thì số lớn là 30, số bé là 20.",
+              "caption": "Đáp án cần đạt: 30 và 20",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "30 và 20",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Nhân với số có một chữ số",
+          "kind": "mul_one_digit",
+          "objective": "Nhân số tự nhiên với số có một chữ số theo từng hàng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mul_one_digit",
+              "display_text": "Quan sát tình huống minh họa cho bài: Nhân với số có một chữ số.",
+              "caption": "Nhân số tự nhiên với số có một chữ số theo từng hàng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhân số tự nhiên với số có một chữ số theo từng hàng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mul_one_digit",
+              "display_text": "12 324 x 3 = 36 972.",
+              "caption": "12 324 x 3 = 36 972.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "12 324 x 3 = 36 972.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mul_one_digit",
+              "display_text": "21 203 x 4 = 84 812.",
+              "caption": "Đáp án cần đạt: 84 812",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "84 812",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Nhân với số có hai chữ số",
+          "kind": "mul_two_digit",
+          "objective": "Nhân với số có hai chữ số bằng cách nhân từng lượt rồi cộng các tích riêng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mul_two_digit",
+              "display_text": "Quan sát tình huống minh họa cho bài: Nhân với số có hai chữ số.",
+              "caption": "Nhân với số có hai chữ số bằng cách nhân từng lượt rồi cộng các tích riêng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhân với số có hai chữ số bằng cách nhân từng lượt rồi cộng các tích riêng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mul_two_digit",
+              "display_text": "234 x 12 = 234 x 10 + 234 x 2 = 2 808.",
+              "caption": "234 x 12 = 234 x 10 + 234 x 2 = 2 808.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "234 x 12 = 234 x 10 + 234 x 2 = 2 808.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mul_two_digit",
+              "display_text": "125 x 24 = 3 000.",
+              "caption": "Đáp án cần đạt: 3 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "3 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Các tính chất của phép nhân",
+          "kind": "mul_properties",
+          "objective": "Vận dụng tính chất giao hoán, kết hợp và phân phối của phép nhân.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mul_properties",
+              "display_text": "Quan sát tình huống minh họa cho bài: Các tính chất của phép nhân.",
+              "caption": "Vận dụng tính chất giao hoán, kết hợp và phân phối của phép nhân.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Vận dụng tính chất giao hoán, kết hợp và phân phối của phép nhân.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mul_properties",
+              "display_text": "25 x 12 x 4 = (25 x 4) x 12 = 1 200.",
+              "caption": "25 x 12 x 4 = (25 x 4) x 12 = 1 200.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "25 x 12 x 4 = (25 x 4) x 12 = 1 200.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mul_properties",
+              "display_text": "5 x 37 x 2 = 370.",
+              "caption": "Đáp án cần đạt: 370",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "370",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Nhân với 10, 100, 1 000",
+          "kind": "mul_10",
+          "objective": "Nhân với 10, 100, 1000 bằng cách thêm chữ số 0 thích hợp vào bên phải.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mul_10",
+              "display_text": "Quan sát tình huống minh họa cho bài: Nhân với 10, 100, 1 000.",
+              "caption": "Nhân với 10, 100, 1000 bằng cách thêm chữ số 0 thích hợp vào bên phải.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhân với 10, 100, 1000 bằng cách thêm chữ số 0 thích hợp vào bên phải.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mul_10",
+              "display_text": "234 x 100 = 23 400.",
+              "caption": "234 x 100 = 23 400.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "234 x 100 = 23 400.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mul_10",
+              "display_text": "58 x 1000 = 58 000.",
+              "caption": "Đáp án cần đạt: 58 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "58 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Chia cho số có một chữ số",
+          "kind": "div_one_digit",
+          "objective": "Chia số tự nhiên cho số có một chữ số theo từng bước.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "div_one_digit",
+              "display_text": "Quan sát tình huống minh họa cho bài: Chia cho số có một chữ số.",
+              "caption": "Chia số tự nhiên cho số có một chữ số theo từng bước.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Chia số tự nhiên cho số có một chữ số theo từng bước.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "div_one_digit",
+              "display_text": "36 972 : 3 = 12 324.",
+              "caption": "36 972 : 3 = 12 324.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "36 972 : 3 = 12 324.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "div_one_digit",
+              "display_text": "84 812 : 4 = 21 203.",
+              "caption": "Đáp án cần đạt: 21 203",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "21 203",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Chia cho 10, 100, 1 000",
+          "kind": "div_10",
+          "objective": "Chia số tròn chục, tròn trăm, tròn nghìn cho 10, 100, 1000.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "div_10",
+              "display_text": "Quan sát tình huống minh họa cho bài: Chia cho 10, 100, 1 000.",
+              "caption": "Chia số tròn chục, tròn trăm, tròn nghìn cho 10, 100, 1000.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Chia số tròn chục, tròn trăm, tròn nghìn cho 10, 100, 1000.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "div_10",
+              "display_text": "23 400 : 100 = 234.",
+              "caption": "23 400 : 100 = 234.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "23 400 : 100 = 234.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "div_10",
+              "display_text": "58 000 : 1000 = 58.",
+              "caption": "Đáp án cần đạt: 58",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "58",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Chia cho số có hai chữ số",
+          "kind": "div_two_digit",
+          "objective": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "div_two_digit",
+              "display_text": "Quan sát tình huống minh họa cho bài: Chia cho số có hai chữ số.",
+              "caption": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "div_two_digit",
+              "display_text": "2 808 : 12 = 234.",
+              "caption": "2 808 : 12 = 234.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2 808 : 12 = 234.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "div_two_digit",
+              "display_text": "3 000 : 24 = 125.",
+              "caption": "Đáp án cần đạt: 125",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "125",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Chia cho số có hai chữ số (tiếp theo)",
+          "kind": "div_two_digit",
+          "objective": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "div_two_digit",
+              "display_text": "Quan sát tình huống minh họa cho bài: Chia cho số có hai chữ số (tiếp theo).",
+              "caption": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Chia cho số có hai chữ số bằng cách ước lượng thương từng lượt.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "div_two_digit",
+              "display_text": "2 808 : 12 = 234.",
+              "caption": "2 808 : 12 = 234.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2 808 : 12 = 234.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "div_two_digit",
+              "display_text": "3 000 : 24 = 125.",
+              "caption": "Đáp án cần đạt: 125",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "125",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Thương có chữ số 0",
+          "kind": "zero_quotient",
+          "objective": "Nhận biết và xử lí chữ số 0 ở thương khi chia.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "zero_quotient",
+              "display_text": "Quan sát tình huống minh họa cho bài: Thương có chữ số 0.",
+              "caption": "Nhận biết và xử lí chữ số 0 ở thương khi chia.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết và xử lí chữ số 0 ở thương khi chia.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "zero_quotient",
+              "display_text": "6 042 : 3 = 2 014, thương có chữ số 0 ở hàng chục.",
+              "caption": "6 042 : 3 = 2 014, thương có chữ số 0 ở hàng chục.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "6 042 : 3 = 2 014, thương có chữ số 0 ở hàng chục.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "zero_quotient",
+              "display_text": "8 040 : 4 = 2 010.",
+              "caption": "Đáp án cần đạt: 2 010",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2 010",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Ước lượng tính",
+          "kind": "estimate",
+          "objective": "Ước lượng kết quả trước khi tính để kiểm tra độ hợp lí.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "estimate",
+              "display_text": "Quan sát tình huống minh họa cho bài: Ước lượng tính.",
+              "caption": "Ước lượng kết quả trước khi tính để kiểm tra độ hợp lí.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Ước lượng kết quả trước khi tính để kiểm tra độ hợp lí.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "estimate",
+              "display_text": "498 + 203 xấp xỉ 500 + 200 = 700.",
+              "caption": "498 + 203 xấp xỉ 500 + 200 = 700.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "498 + 203 xấp xỉ 500 + 200 = 700.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "estimate",
+              "display_text": "3 980 : 4 xấp xỉ 4 000 : 4 = 1 000.",
+              "caption": "Đáp án cần đạt: 1 000",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "1 000",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Biểu thức có chứa chữ",
+          "kind": "variable_expression",
+          "objective": "Nhận biết biểu thức có chứa chữ và tính giá trị khi biết chữ.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "variable_expression",
+              "display_text": "Quan sát tình huống minh họa cho bài: Biểu thức có chứa chữ.",
+              "caption": "Nhận biết biểu thức có chứa chữ và tính giá trị khi biết chữ.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết biểu thức có chứa chữ và tính giá trị khi biết chữ.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "variable_expression",
+              "display_text": "Với a = 5, biểu thức a + 12 có giá trị 17.",
+              "caption": "Với a = 5, biểu thức a + 12 có giá trị 17.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Với a = 5, biểu thức a + 12 có giá trị 17.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "variable_expression",
+              "display_text": "Với b = 8, 3 x b = 24.",
+              "caption": "Đáp án cần đạt: 24",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "24",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Phân số",
+      "lessons": [
+        {
+          "lesson": "Khái niệm phân số",
+          "kind": "fraction_concept",
+          "objective": "Nhận biết phân số gồm tử số và mẫu số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "fraction_concept",
+              "display_text": "Quan sát tình huống minh họa cho bài: Khái niệm phân số.",
+              "caption": "Nhận biết phân số gồm tử số và mẫu số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết phân số gồm tử số và mẫu số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "fraction_concept",
+              "display_text": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "caption": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "fraction_concept",
+              "display_text": "Tô 2 trong 5 phần bằng nhau là 2/5.",
+              "caption": "Đáp án cần đạt: 2/5",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/5",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Khái niệm phân số (tiếp theo)",
+          "kind": "fraction_concept",
+          "objective": "Nhận biết phân số gồm tử số và mẫu số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "fraction_concept",
+              "display_text": "Quan sát tình huống minh họa cho bài: Khái niệm phân số (tiếp theo).",
+              "caption": "Nhận biết phân số gồm tử số và mẫu số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết phân số gồm tử số và mẫu số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "fraction_concept",
+              "display_text": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "caption": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Tô 3 trong 4 phần bằng nhau là phân số 3/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "fraction_concept",
+              "display_text": "Tô 2 trong 5 phần bằng nhau là 2/5.",
+              "caption": "Đáp án cần đạt: 2/5",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/5",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Phân số và phép chia số tự nhiên",
+          "kind": "fraction_division",
+          "objective": "Hiểu phân số có thể biểu thị phép chia số tự nhiên.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "fraction_division",
+              "display_text": "Quan sát tình huống minh họa cho bài: Phân số và phép chia số tự nhiên.",
+              "caption": "Hiểu phân số có thể biểu thị phép chia số tự nhiên.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Hiểu phân số có thể biểu thị phép chia số tự nhiên.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "fraction_division",
+              "display_text": "3 : 4 = 3/4.",
+              "caption": "3 : 4 = 3/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "3 : 4 = 3/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "fraction_division",
+              "display_text": "5 : 8 = 5/8.",
+              "caption": "Đáp án cần đạt: 5/8",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "5/8",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Phân số bằng nhau",
+          "kind": "equivalent_fraction",
+          "objective": "Nhận biết các phân số bằng nhau qua hình hoặc phép nhân/chia cả tử và mẫu.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "equivalent_fraction",
+              "display_text": "Quan sát tình huống minh họa cho bài: Phân số bằng nhau.",
+              "caption": "Nhận biết các phân số bằng nhau qua hình hoặc phép nhân/chia cả tử và mẫu.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết các phân số bằng nhau qua hình hoặc phép nhân/chia cả tử và mẫu.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "equivalent_fraction",
+              "display_text": "1/2 = 2/4.",
+              "caption": "1/2 = 2/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1/2 = 2/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "equivalent_fraction",
+              "display_text": "2/3 = 4/6.",
+              "caption": "Đáp án cần đạt: 4/6",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "4/6",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Tính chất cơ bản của phân số",
+          "kind": "fraction_property",
+          "objective": "Vận dụng tính chất cơ bản của phân số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "fraction_property",
+              "display_text": "Quan sát tình huống minh họa cho bài: Tính chất cơ bản của phân số.",
+              "caption": "Vận dụng tính chất cơ bản của phân số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Vận dụng tính chất cơ bản của phân số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "fraction_property",
+              "display_text": "Nhân cả tử và mẫu của 2/3 với 2 được 4/6.",
+              "caption": "Nhân cả tử và mẫu của 2/3 với 2 được 4/6.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Nhân cả tử và mẫu của 2/3 với 2 được 4/6.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "fraction_property",
+              "display_text": "3/5 = 6/10.",
+              "caption": "Đáp án cần đạt: 6/10",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "6/10",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Rút gọn phân số",
+          "kind": "simplify_fraction",
+          "objective": "Rút gọn phân số bằng cách chia cả tử và mẫu cho cùng một số khác 0.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "simplify_fraction",
+              "display_text": "Quan sát tình huống minh họa cho bài: Rút gọn phân số.",
+              "caption": "Rút gọn phân số bằng cách chia cả tử và mẫu cho cùng một số khác 0.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Rút gọn phân số bằng cách chia cả tử và mẫu cho cùng một số khác 0.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "simplify_fraction",
+              "display_text": "6/8 = 3/4.",
+              "caption": "6/8 = 3/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "6/8 = 3/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "simplify_fraction",
+              "display_text": "10/15 = 2/3.",
+              "caption": "Đáp án cần đạt: 2/3",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/3",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Quy đồng mẫu số các phân số",
+          "kind": "common_denominator",
+          "objective": "Quy đồng mẫu số để đưa các phân số về cùng mẫu.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "common_denominator",
+              "display_text": "Quan sát tình huống minh họa cho bài: Quy đồng mẫu số các phân số.",
+              "caption": "Quy đồng mẫu số để đưa các phân số về cùng mẫu.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Quy đồng mẫu số để đưa các phân số về cùng mẫu.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "common_denominator",
+              "display_text": "1/2 = 3/6 và 1/3 = 2/6.",
+              "caption": "1/2 = 3/6 và 1/3 = 2/6.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1/2 = 3/6 và 1/3 = 2/6.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "common_denominator",
+              "display_text": "1/4 = 2/8 và 3/8 giữ nguyên.",
+              "caption": "Đáp án cần đạt: 2/8 và 3/8",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/8 và 3/8",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "So sánh hai phân số cùng mẫu số",
+          "kind": "compare_frac_same",
+          "objective": "So sánh hai phân số cùng mẫu bằng cách so sánh tử số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "compare_frac_same",
+              "display_text": "Quan sát tình huống minh họa cho bài: So sánh hai phân số cùng mẫu số.",
+              "caption": "So sánh hai phân số cùng mẫu bằng cách so sánh tử số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "So sánh hai phân số cùng mẫu bằng cách so sánh tử số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "compare_frac_same",
+              "display_text": "3/7 < 5/7 vì 3 < 5.",
+              "caption": "3/7 < 5/7 vì 3 < 5.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "3/7 < 5/7 vì 3 < 5.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "compare_frac_same",
+              "display_text": "6/9 > 4/9.",
+              "caption": "Đáp án cần đạt: >",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": ">",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "So sánh hai phân số khác mẫu số",
+          "kind": "compare_frac_diff",
+          "objective": "So sánh hai phân số khác mẫu bằng cách quy đồng mẫu số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "compare_frac_diff",
+              "display_text": "Quan sát tình huống minh họa cho bài: So sánh hai phân số khác mẫu số.",
+              "caption": "So sánh hai phân số khác mẫu bằng cách quy đồng mẫu số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "So sánh hai phân số khác mẫu bằng cách quy đồng mẫu số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "compare_frac_diff",
+              "display_text": "1/2 = 3/6, 2/3 = 4/6 nên 1/2 < 2/3.",
+              "caption": "1/2 = 3/6, 2/3 = 4/6 nên 1/2 < 2/3.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1/2 = 3/6, 2/3 = 4/6 nên 1/2 < 2/3.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "compare_frac_diff",
+              "display_text": "3/4 > 2/3.",
+              "caption": "Đáp án cần đạt: >",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": ">",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Hình bình hành",
+          "kind": "parallelogram",
+          "objective": "Nhận biết hình bình hành có hai cặp cạnh đối song song.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "parallelogram",
+              "display_text": "Quan sát tình huống minh họa cho bài: Hình bình hành.",
+              "caption": "Nhận biết hình bình hành có hai cặp cạnh đối song song.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết hình bình hành có hai cặp cạnh đối song song.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "parallelogram",
+              "display_text": "Hình bình hành có các cạnh đối song song và bằng nhau.",
+              "caption": "Hình bình hành có các cạnh đối song song và bằng nhau.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Hình bình hành có các cạnh đối song song và bằng nhau.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "parallelogram",
+              "display_text": "Cặp cạnh đối của hình bình hành song song.",
+              "caption": "Đáp án cần đạt: Song song",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "Song song",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Hình thoi",
+          "kind": "rhombus",
+          "objective": "Nhận biết hình thoi có bốn cạnh bằng nhau.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "rhombus",
+              "display_text": "Quan sát tình huống minh họa cho bài: Hình thoi.",
+              "caption": "Nhận biết hình thoi có bốn cạnh bằng nhau.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết hình thoi có bốn cạnh bằng nhau.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "rhombus",
+              "display_text": "Hình thoi có 4 cạnh bằng nhau.",
+              "caption": "Hình thoi có 4 cạnh bằng nhau.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Hình thoi có 4 cạnh bằng nhau.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "rhombus",
+              "display_text": "Hình thoi là tứ giác có 4 cạnh bằng nhau.",
+              "caption": "Đáp án cần đạt: 4 cạnh bằng nhau",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "4 cạnh bằng nhau",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Mét vuông",
+          "kind": "m2",
+          "objective": "Nhận biết mét vuông là đơn vị đo diện tích.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "m2",
+              "display_text": "Quan sát tình huống minh họa cho bài: Mét vuông.",
+              "caption": "Nhận biết mét vuông là đơn vị đo diện tích.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết mét vuông là đơn vị đo diện tích.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "m2",
+              "display_text": "1 m2 là diện tích hình vuông cạnh 1 m.",
+              "caption": "1 m2 là diện tích hình vuông cạnh 1 m.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1 m2 là diện tích hình vuông cạnh 1 m.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "m2",
+              "display_text": "Hình chữ nhật 3 m x 2 m có diện tích 6 m2.",
+              "caption": "Đáp án cần đạt: 6 m2",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "6 m2",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Đề-xi-mét vuông",
+          "kind": "dm2",
+          "objective": "Nhận biết đề-xi-mét vuông là đơn vị đo diện tích nhỏ hơn mét vuông.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "dm2",
+              "display_text": "Quan sát tình huống minh họa cho bài: Đề-xi-mét vuông.",
+              "caption": "Nhận biết đề-xi-mét vuông là đơn vị đo diện tích nhỏ hơn mét vuông.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết đề-xi-mét vuông là đơn vị đo diện tích nhỏ hơn mét vuông.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "dm2",
+              "display_text": "1 dm2 là diện tích hình vuông cạnh 1 dm.",
+              "caption": "1 dm2 là diện tích hình vuông cạnh 1 dm.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1 dm2 là diện tích hình vuông cạnh 1 dm.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "dm2",
+              "display_text": "5 dm2 + 3 dm2 = 8 dm2.",
+              "caption": "Đáp án cần đạt: 8 dm2",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "8 dm2",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Mi-li-mét vuông",
+          "kind": "mm2",
+          "objective": "Nhận biết mi-li-mét vuông là đơn vị đo diện tích rất nhỏ.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "mm2",
+              "display_text": "Quan sát tình huống minh họa cho bài: Mi-li-mét vuông.",
+              "caption": "Nhận biết mi-li-mét vuông là đơn vị đo diện tích rất nhỏ.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhận biết mi-li-mét vuông là đơn vị đo diện tích rất nhỏ.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "mm2",
+              "display_text": "1 mm2 là diện tích hình vuông cạnh 1 mm.",
+              "caption": "1 mm2 là diện tích hình vuông cạnh 1 mm.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1 mm2 là diện tích hình vuông cạnh 1 mm.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "mm2",
+              "display_text": "10 mm2 + 15 mm2 = 25 mm2.",
+              "caption": "Đáp án cần đạt: 25 mm2",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "25 mm2",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Các phép tính với phân số",
+      "lessons": [
+        {
+          "lesson": "Cộng các phân số cùng mẫu số",
+          "kind": "frac_add_same",
+          "objective": "Cộng phân số cùng mẫu bằng cách cộng tử số và giữ nguyên mẫu số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_add_same",
+              "display_text": "Quan sát tình huống minh họa cho bài: Cộng các phân số cùng mẫu số.",
+              "caption": "Cộng phân số cùng mẫu bằng cách cộng tử số và giữ nguyên mẫu số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Cộng phân số cùng mẫu bằng cách cộng tử số và giữ nguyên mẫu số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_add_same",
+              "display_text": "2/7 + 3/7 = 5/7.",
+              "caption": "2/7 + 3/7 = 5/7.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2/7 + 3/7 = 5/7.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_add_same",
+              "display_text": "1/9 + 5/9 = 6/9.",
+              "caption": "Đáp án cần đạt: 6/9",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "6/9",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Trừ các phân số cùng mẫu số",
+          "kind": "frac_sub_same",
+          "objective": "Trừ phân số cùng mẫu bằng cách trừ tử số và giữ nguyên mẫu số.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_sub_same",
+              "display_text": "Quan sát tình huống minh họa cho bài: Trừ các phân số cùng mẫu số.",
+              "caption": "Trừ phân số cùng mẫu bằng cách trừ tử số và giữ nguyên mẫu số.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Trừ phân số cùng mẫu bằng cách trừ tử số và giữ nguyên mẫu số.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_sub_same",
+              "display_text": "5/7 - 2/7 = 3/7.",
+              "caption": "5/7 - 2/7 = 3/7.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "5/7 - 2/7 = 3/7.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_sub_same",
+              "display_text": "8/9 - 3/9 = 5/9.",
+              "caption": "Đáp án cần đạt: 5/9",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "5/9",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Cộng các phân số khác mẫu số",
+          "kind": "frac_add_diff",
+          "objective": "Cộng phân số khác mẫu bằng cách quy đồng mẫu số rồi cộng.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_add_diff",
+              "display_text": "Quan sát tình huống minh họa cho bài: Cộng các phân số khác mẫu số.",
+              "caption": "Cộng phân số khác mẫu bằng cách quy đồng mẫu số rồi cộng.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Cộng phân số khác mẫu bằng cách quy đồng mẫu số rồi cộng.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_add_diff",
+              "display_text": "1/2 + 1/3 = 3/6 + 2/6 = 5/6.",
+              "caption": "1/2 + 1/3 = 3/6 + 2/6 = 5/6.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "1/2 + 1/3 = 3/6 + 2/6 = 5/6.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_add_diff",
+              "display_text": "1/4 + 1/2 = 3/4.",
+              "caption": "Đáp án cần đạt: 3/4",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "3/4",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Trừ hai phân số khác mẫu số",
+          "kind": "frac_sub_diff",
+          "objective": "Trừ phân số khác mẫu bằng cách quy đồng mẫu số rồi trừ.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_sub_diff",
+              "display_text": "Quan sát tình huống minh họa cho bài: Trừ hai phân số khác mẫu số.",
+              "caption": "Trừ phân số khác mẫu bằng cách quy đồng mẫu số rồi trừ.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Trừ phân số khác mẫu bằng cách quy đồng mẫu số rồi trừ.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_sub_diff",
+              "display_text": "3/4 - 1/2 = 3/4 - 2/4 = 1/4.",
+              "caption": "3/4 - 1/2 = 3/4 - 2/4 = 1/4.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "3/4 - 1/2 = 3/4 - 2/4 = 1/4.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_sub_diff",
+              "display_text": "5/6 - 1/3 = 3/6.",
+              "caption": "Đáp án cần đạt: 3/6",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "3/6",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép nhân phân số",
+          "kind": "frac_mul",
+          "objective": "Nhân hai phân số bằng cách nhân tử với tử, mẫu với mẫu.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_mul",
+              "display_text": "Quan sát tình huống minh họa cho bài: Phép nhân phân số.",
+              "caption": "Nhân hai phân số bằng cách nhân tử với tử, mẫu với mẫu.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Nhân hai phân số bằng cách nhân tử với tử, mẫu với mẫu.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_mul",
+              "display_text": "2/3 x 3/5 = 6/15.",
+              "caption": "2/3 x 3/5 = 6/15.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2/3 x 3/5 = 6/15.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_mul",
+              "display_text": "1/4 x 2/3 = 2/12.",
+              "caption": "Đáp án cần đạt: 2/12",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/12",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Tìm phân số của một số",
+          "kind": "fraction_of_number",
+          "objective": "Tìm phân số của một số bằng cách chia số đó cho mẫu rồi nhân với tử.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "fraction_of_number",
+              "display_text": "Quan sát tình huống minh họa cho bài: Tìm phân số của một số.",
+              "caption": "Tìm phân số của một số bằng cách chia số đó cho mẫu rồi nhân với tử.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Tìm phân số của một số bằng cách chia số đó cho mẫu rồi nhân với tử.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "fraction_of_number",
+              "display_text": "2/3 của 12 là 12 : 3 x 2 = 8.",
+              "caption": "2/3 của 12 là 12 : 3 x 2 = 8.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2/3 của 12 là 12 : 3 x 2 = 8.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "fraction_of_number",
+              "display_text": "3/5 của 20 là 12.",
+              "caption": "Đáp án cần đạt: 12",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "12",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Phép chia phân số",
+          "kind": "frac_div",
+          "objective": "Chia phân số bằng cách nhân với phân số đảo ngược.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "frac_div",
+              "display_text": "Quan sát tình huống minh họa cho bài: Phép chia phân số.",
+              "caption": "Chia phân số bằng cách nhân với phân số đảo ngược.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Chia phân số bằng cách nhân với phân số đảo ngược.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "frac_div",
+              "display_text": "2/3 : 4/5 = 2/3 x 5/4 = 10/12.",
+              "caption": "2/3 : 4/5 = 2/3 x 5/4 = 10/12.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "2/3 : 4/5 = 2/3 x 5/4 = 10/12.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "frac_div",
+              "display_text": "1/2 : 3/4 = 2/3.",
+              "caption": "Đáp án cần đạt: 2/3",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "2/3",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Dãy số liệu thống kê",
+          "kind": "data_sequence",
+          "objective": "Đọc và mô tả dãy số liệu thống kê.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "data_sequence",
+              "display_text": "Quan sát tình huống minh họa cho bài: Dãy số liệu thống kê.",
+              "caption": "Đọc và mô tả dãy số liệu thống kê.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc và mô tả dãy số liệu thống kê.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "data_sequence",
+              "display_text": "Dãy 5, 7, 7, 9 cho biết các giá trị đã thu thập.",
+              "caption": "Dãy 5, 7, 7, 9 cho biết các giá trị đã thu thập.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Dãy 5, 7, 7, 9 cho biết các giá trị đã thu thập.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "data_sequence",
+              "display_text": "Dãy 3, 4, 4, 6 có 4 số liệu.",
+              "caption": "Đáp án cần đạt: 4 số liệu",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "4 số liệu",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Biểu đồ cột",
+          "kind": "bar_chart",
+          "objective": "Đọc biểu đồ cột để so sánh số liệu.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "bar_chart",
+              "display_text": "Quan sát tình huống minh họa cho bài: Biểu đồ cột.",
+              "caption": "Đọc biểu đồ cột để so sánh số liệu.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Đọc biểu đồ cột để so sánh số liệu.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "bar_chart",
+              "display_text": "Cột Táo cao 6 nghĩa là có 6 quả táo.",
+              "caption": "Cột Táo cao 6 nghĩa là có 6 quả táo.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Cột Táo cao 6 nghĩa là có 6 quả táo.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "bar_chart",
+              "display_text": "Cột Cam cao 4 nghĩa là có 4 quả cam.",
+              "caption": "Đáp án cần đạt: 4 quả cam",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "4 quả cam",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        },
+        {
+          "lesson": "Kiểm đếm số lần xuất hiện của một sự kiện",
+          "kind": "event_tally",
+          "objective": "Kiểm đếm số lần xuất hiện của một sự kiện.",
+          "cards": [
+            {
+              "type": "concept_scene",
+              "title": "Quan sát",
+              "kind": "event_tally",
+              "display_text": "Quan sát tình huống minh họa cho bài: Kiểm đếm số lần xuất hiện của một sự kiện.",
+              "caption": "Kiểm đếm số lần xuất hiện của một sự kiện.",
+              "student_task": "Nêu dữ kiện nhìn thấy trong tranh và gọi tên kiến thức chính.",
+              "interaction": "choose_or_say",
+              "expected_answer": "Kiểm đếm số lần xuất hiện của một sự kiện.",
+              "wrong_hint": "Cho học sinh chỉ vào số, mô hình, hình vẽ hoặc nhãn trong tranh rồi đọc lại yêu cầu."
+            },
+            {
+              "type": "worked_model",
+              "title": "Làm mẫu",
+              "kind": "event_tally",
+              "display_text": "Mặt ngửa xuất hiện 6 lần thì ghi 6 vạch kiểm đếm.",
+              "caption": "Mặt ngửa xuất hiện 6 lần thì ghi 6 vạch kiểm đếm.",
+              "student_task": "Đọc ví dụ mẫu và nhắc lại bước làm chính.",
+              "interaction": "none",
+              "expected_answer": "Mặt ngửa xuất hiện 6 lần thì ghi 6 vạch kiểm đếm.",
+              "wrong_hint": "Tách bài thành từng bước nhỏ, đối chiếu với tranh minh họa rồi làm lại."
+            },
+            {
+              "type": "quick_try",
+              "title": "Thử nhanh",
+              "kind": "event_tally",
+              "display_text": "Sự kiện A xuất hiện 5 lần.",
+              "caption": "Đáp án cần đạt: 5 lần",
+              "student_task": "Tự làm một câu ngắn cùng dạng với ví dụ mẫu.",
+              "interaction": "fill_blank",
+              "expected_answer": "5 lần",
+              "wrong_hint": "Quay lại thẻ làm mẫu, thay dữ kiện mới vào đúng vị trí rồi tính lại."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

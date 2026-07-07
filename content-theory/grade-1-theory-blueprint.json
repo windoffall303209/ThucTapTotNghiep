@@ -1,0 +1,929 @@
+{
+  "grade": 1,
+  "source_textbook": "SGK Toán 1 Cánh Diều",
+  "scope_note": "Bản thiết kế nội dung làm mới, không phụ thuộc vào các file lý thuyết đã sinh trước đó.",
+  "cognitive_profile": {
+    "reading_level": "Rất ít chữ, câu ngắn, ưu tiên biểu tượng và hình ảnh.",
+    "learning_style": "Quan sát hình, đếm đồ vật, so sánh trực quan, làm theo mẫu.",
+    "ai_policy": "Không dùng Chat AI trực tiếp cho lớp 1. Chỉ dùng gợi ý cố định, hình ảnh, âm thanh hoặc phản hồi ngắn."
+  },
+  "card_types": {
+    "observe": "Thẻ quan sát hình/tình huống.",
+    "concept": "Thẻ gọi tên kiến thức mới.",
+    "model": "Thẻ làm mẫu một ví dụ.",
+    "quick_try": "Thẻ thử nhanh bằng chọn, đếm, nối, kéo thả hoặc điền số.",
+    "remember": "Thẻ ghi nhớ một câu rất ngắn."
+  },
+  "chapters": [
+    {
+      "title": "Các số đến 10",
+      "lessons": [
+        {
+          "lesson": "Trên - dưới. Phải - trái, trước - sau. Ở giữa",
+          "objective": "Nhận biết vị trí tương đối của đồ vật/người trong không gian.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Quan sát vị trí",
+              "display_text": "Quan sát bức tranh.",
+              "visual_prompt": "Một bàn học có sách ở trên bàn, cặp ở dưới bàn; bạn nhỏ đứng giữa chiếc ghế và bàn học; quả bóng ở bên phải bạn nhỏ; chậu cây ở phía sau bạn nhỏ; xe đồ chơi ở phía trước bạn nhỏ.",
+              "student_task": "Chỉ ra vật ở trên, ở dưới, bên trái, bên phải, phía trước, phía sau và ở giữa.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Gọi tên vị trí",
+              "display_text": "Trên, dưới, phải, trái, trước, sau, ở giữa.",
+              "visual_prompt": "Bạn nhỏ ở giữa tranh; ghế ở bên trái bạn nhỏ, bàn học và bóng ở bên phải bạn nhỏ, cây ở phía sau bạn nhỏ, xe đồ chơi ở phía trước bạn nhỏ.",
+              "student_task": "Nghe/đọc từ chỉ vị trí và chọn đúng đồ vật trong tranh.",
+              "interaction": "match"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn đúng vị trí",
+              "display_text": "Quả bóng ở đâu so với bạn nhỏ?",
+              "visual_prompt": "Quả bóng nằm bên phải bạn nhỏ trong tranh.",
+              "student_task": "Chọn đáp án: bên phải bạn nhỏ.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Hình vuông - hình tròn, hình tam giác - hình chữ nhật",
+          "objective": "Nhận biết và gọi tên bốn hình phẳng cơ bản.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Tìm hình trong tranh",
+              "display_text": "Em thấy những hình nào?",
+              "visual_prompt": "Tranh lớp học có đồng hồ hình tròn, bảng hình chữ nhật, biển báo hình tam giác, ô gạch hình vuông.",
+              "student_task": "Chạm vào đồ vật có hình được yêu cầu.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Gọi tên hình",
+              "display_text": "Hình vuông, hình tròn, hình tam giác, hình chữ nhật.",
+              "visual_prompt": "Bốn hình lớn, màu khác nhau, có nhãn tên.",
+              "student_task": "Ghép tên với hình.",
+              "interaction": "match"
+            },
+            {
+              "type": "quick_try",
+              "title": "Phân loại hình",
+              "display_text": "Kéo hình vào đúng nhóm.",
+              "visual_prompt": "Nhiều hình vuông, tròn, tam giác, chữ nhật với kích thước khác nhau.",
+              "student_task": "Kéo thả từng hình vào nhóm đúng.",
+              "interaction": "drag_drop"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số 1, 2, 3",
+          "objective": "Đếm, đọc, viết và biểu diễn các số 1, 2, 3.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Đếm đồ vật",
+              "display_text": "Đếm xem có mấy đồ vật.",
+              "visual_prompt": "Nhóm 1 quả bóng, nhóm 2 bút chì, nhóm 3 ngôi sao.",
+              "student_task": "Chọn số ứng với từng nhóm.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Số 1, 2, 3",
+              "display_text": "Một viết là 1. Hai viết là 2. Ba viết là 3.",
+              "visual_prompt": "Mỗi số đi kèm số lượng chấm tròn tương ứng.",
+              "student_task": "Ghép số với số lượng.",
+              "interaction": "match"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn số đúng",
+              "display_text": "Có mấy quả táo?",
+              "visual_prompt": "Ba nhóm quả táo với số lượng 1, 2, 3.",
+              "student_task": "Chọn số đúng cho hình.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số 4, 5, 6",
+          "objective": "Đếm, đọc, viết và biểu diễn các số 4, 5, 6.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Đếm đến 6",
+              "display_text": "Đếm từng đồ vật.",
+              "visual_prompt": "Nhóm 4 bông hoa, 5 chiếc lá, 6 viên bi.",
+              "student_task": "Đếm và chọn số.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Số 4, 5, 6",
+              "display_text": "4, 5, 6 là các số dùng để chỉ số lượng.",
+              "visual_prompt": "Các số 4, 5, 6 kèm khung chấm tròn.",
+              "student_task": "Nối số với nhóm đồ vật.",
+              "interaction": "match"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Đếm đủ đồ vật rồi chọn số.",
+              "visual_prompt": "Một tay chỉ từng đồ vật từ trái sang phải.",
+              "student_task": "Nhắc lại cách đếm.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số 7, 8, 9",
+          "objective": "Đếm, đọc, viết và biểu diễn các số 7, 8, 9.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Đếm nhiều hơn",
+              "display_text": "Đếm từ 1 đến 9.",
+              "visual_prompt": "Các nhóm đồ vật quen thuộc có 7, 8, 9 phần tử.",
+              "student_task": "Đếm và chọn số đúng.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Số 7, 8, 9",
+              "display_text": "Số nào chỉ đúng số lượng?",
+              "visual_prompt": "Ba khung chấm: 7 chấm, 8 chấm, 9 chấm.",
+              "student_task": "Ghép số vào khung.",
+              "interaction": "drag_drop"
+            }
+          ]
+        },
+        {
+          "lesson": "Số 0",
+          "objective": "Hiểu số 0 biểu thị không có đồ vật nào.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Không còn gì",
+              "display_text": "Trong đĩa còn mấy cái bánh?",
+              "visual_prompt": "Một đĩa ban đầu có bánh, sau đó đĩa trống.",
+              "student_task": "Chọn số 0 khi không còn cái bánh nào.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Số 0",
+              "display_text": "Không có đồ vật nào, ta dùng số 0.",
+              "visual_prompt": "Số 0 cạnh một hộp rỗng.",
+              "student_task": "Nhận biết nhóm có 0 đồ vật.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Số 10",
+          "objective": "Đếm, đọc, viết và biểu diễn số 10.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Đếm đến 10",
+              "display_text": "Đếm đủ 10 đồ vật.",
+              "visual_prompt": "10 que tính được xếp thành một hàng.",
+              "student_task": "Đếm từ 1 đến 10.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Số 10",
+              "display_text": "Số 10 gồm chữ số 1 và chữ số 0.",
+              "visual_prompt": "Số 10 lớn, cạnh 10 chấm tròn.",
+              "student_task": "Chọn nhóm có 10 đồ vật.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Nhiều hơn - ít hơn - bằng nhau",
+          "objective": "So sánh số lượng hai nhóm bằng quan sát hoặc ghép đôi.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Ghép từng đôi",
+              "display_text": "Nhóm nào nhiều hơn?",
+              "visual_prompt": "5 con thỏ và 4 củ cà rốt, có đường nối ghép từng đôi.",
+              "student_task": "Xem nhóm nào còn thừa.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Nhiều hơn, ít hơn, bằng nhau",
+              "display_text": "Nhóm còn thừa là nhiều hơn. Hai nhóm ghép vừa đủ là bằng nhau.",
+              "visual_prompt": "Ba tình huống so sánh bằng ghép đôi.",
+              "student_task": "Chọn từ đúng cho từng tranh.",
+              "interaction": "match"
+            }
+          ]
+        },
+        {
+          "lesson": "Bé hơn, dấu <, Bằng nhau, dấu =",
+          "objective": "Làm quen với dấu bé hơn và dấu bằng khi so sánh số.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "So sánh hai số",
+              "display_text": "Số nào bé hơn?",
+              "visual_prompt": "3 quả cam ở bên trái, 5 quả cam ở bên phải.",
+              "student_task": "Chọn nhóm ít hơn.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Dấu < và dấu =",
+              "display_text": "3 < 5. 4 = 4.",
+              "visual_prompt": "Minh họa dấu < giữa nhóm 3 và nhóm 5, dấu = giữa hai nhóm 4.",
+              "student_task": "Kéo dấu đúng vào giữa hai số.",
+              "interaction": "drag_drop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Phép cộng, phép trừ trong phạm vi 10",
+      "lessons": [
+        {
+          "lesson": "Làm quen với phép cộng, dấu cộng",
+          "objective": "Hiểu phép cộng là gộp hai nhóm lại.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Gộp hai nhóm",
+              "display_text": "Gộp lại có mấy?",
+              "visual_prompt": "2 quả táo đỏ và 1 quả táo xanh được đưa vào cùng một rổ.",
+              "student_task": "Đếm tất cả sau khi gộp.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Dấu cộng",
+              "display_text": "2 + 1 = 3",
+              "visual_prompt": "Hai nhóm đồ vật, dấu + ở giữa, kết quả sau dấu =.",
+              "student_task": "Nhận biết dấu + nghĩa là gộp thêm.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Làm quen với phép cộng - dấu cộng (tiếp theo)",
+          "objective": "Biểu diễn tình huống gộp bằng phép cộng.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Viết phép cộng",
+              "display_text": "Có 3 bông hoa, thêm 2 bông hoa.",
+              "visual_prompt": "3 bông hoa bên trái, 2 bông hoa bên phải, tất cả 5 bông.",
+              "student_task": "Chọn phép tính 3 + 2 = 5.",
+              "interaction": "choose"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn phép tính",
+              "display_text": "Hình nào đúng với phép cộng?",
+              "visual_prompt": "Nhiều tranh gộp nhóm trong phạm vi 5.",
+              "student_task": "Chọn phép cộng phù hợp với tranh.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng trong phạm vi 6",
+          "objective": "Thực hiện các phép cộng có kết quả không quá 6 bằng đếm/gộp.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng bằng cách đếm",
+              "display_text": "4 + 2 = ?",
+              "visual_prompt": "4 chấm màu xanh và 2 chấm màu vàng.",
+              "student_task": "Đếm tất cả chấm.",
+              "interaction": "count"
+            },
+            {
+              "type": "quick_try",
+              "title": "Tìm kết quả",
+              "display_text": "Chọn kết quả đúng.",
+              "visual_prompt": "Các phép cộng trong phạm vi 6 kèm hình chấm.",
+              "student_task": "Chọn số là tổng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng trong phạm vi 6 (tiếp theo)",
+          "objective": "Củng cố bảng cộng trong phạm vi 6 qua hình và số.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Tách - gộp số",
+              "display_text": "6 gồm 4 và 2.",
+              "visual_prompt": "6 hình tròn được tách thành nhóm 4 và nhóm 2.",
+              "student_task": "Nhận ra 4 + 2 = 6.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Điền số còn thiếu",
+              "display_text": "4 + ? = 6",
+              "visual_prompt": "4 chấm đã có, ô trống cần thêm để đủ 6.",
+              "student_task": "Chọn số còn thiếu.",
+              "interaction": "fill_blank"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng trong phạm vi 10",
+          "objective": "Thực hiện phép cộng có kết quả không quá 10.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng đến 10",
+              "display_text": "7 + 2 = ?",
+              "visual_prompt": "Khung 10 ô có 7 ô đã tô, thêm 2 ô.",
+              "student_task": "Đếm số ô đã tô tất cả.",
+              "interaction": "count"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Khi cộng, ta gộp các nhóm lại rồi đếm tất cả.",
+              "visual_prompt": "Hai nhóm đồ vật được gộp vào một nhóm.",
+              "student_task": "Nhắc lại ý nghĩa phép cộng.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng trong phạm vi 10 (tiếp theo)",
+          "objective": "Củng cố phép cộng trong phạm vi 10 và tìm số còn thiếu.",
+          "cards": [
+            {
+              "type": "quick_try",
+              "title": "Làm cho đủ 10",
+              "display_text": "Cần thêm mấy để đủ 10?",
+              "visual_prompt": "Khung 10 ô có một số ô đã tô.",
+              "student_task": "Chọn số cần thêm.",
+              "interaction": "choose"
+            },
+            {
+              "type": "model",
+              "title": "Từ hình sang phép tính",
+              "display_text": "Nhìn hình và viết phép cộng.",
+              "visual_prompt": "Các nhóm đồ vật trong phạm vi 10.",
+              "student_task": "Chọn phép cộng đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Khối hộp chữ nhật, khối lập phương",
+          "objective": "Nhận biết khối hộp chữ nhật và khối lập phương qua đồ vật thật.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Tìm khối trong đời sống",
+              "display_text": "Đồ vật nào giống khối hộp?",
+              "visual_prompt": "Hộp sữa, hộp quà, xúc xắc, viên rubik.",
+              "student_task": "Chọn đồ vật giống khối hộp chữ nhật hoặc khối lập phương.",
+              "interaction": "choose"
+            },
+            {
+              "type": "concept",
+              "title": "Gọi tên khối",
+              "display_text": "Khối hộp chữ nhật. Khối lập phương.",
+              "visual_prompt": "Hai khối lớn có nhãn tên và ví dụ đồ vật.",
+              "student_task": "Ghép đồ vật với loại khối.",
+              "interaction": "match"
+            }
+          ]
+        },
+        {
+          "lesson": "Làm quen với phép trừ, dấu trừ",
+          "objective": "Hiểu phép trừ là bớt đi khỏi một nhóm.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Bớt đi",
+              "display_text": "Còn lại mấy?",
+              "visual_prompt": "Có 5 quả bóng, bay đi 2 quả, còn lại 3 quả.",
+              "student_task": "Đếm số còn lại.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Dấu trừ",
+              "display_text": "5 - 2 = 3",
+              "visual_prompt": "Nhóm ban đầu, dấu -, nhóm bị bớt, kết quả còn lại.",
+              "student_task": "Nhận biết dấu - nghĩa là bớt đi.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ trong phạm vi 6",
+          "objective": "Thực hiện phép trừ trong phạm vi 6 bằng thao tác bớt.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Trừ bằng hình",
+              "display_text": "6 - 2 = ?",
+              "visual_prompt": "6 chấm, gạch bỏ 2 chấm.",
+              "student_task": "Đếm số chấm còn lại.",
+              "interaction": "count"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn kết quả",
+              "display_text": "Còn lại bao nhiêu?",
+              "visual_prompt": "Các hình bớt đồ vật trong phạm vi 6.",
+              "student_task": "Chọn kết quả đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ trong phạm vi 6 (tiếp theo)",
+          "objective": "Củng cố phép trừ và quan hệ giữa tách số với trừ.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Tách từ một nhóm",
+              "display_text": "6 tách thành 4 và 2.",
+              "visual_prompt": "6 đồ vật tách thành nhóm 4 còn lại và nhóm 2 bị bớt.",
+              "student_task": "Nhận ra 6 - 2 = 4.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Điền số còn thiếu",
+              "display_text": "6 - ? = 4",
+              "visual_prompt": "6 chấm, còn lại 4 chấm, số bị bớt để trống.",
+              "student_task": "Chọn số đã bớt.",
+              "interaction": "fill_blank"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ trong phạm vi 10",
+          "objective": "Thực hiện phép trừ trong phạm vi 10.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Bớt trong khung 10",
+              "display_text": "9 - 3 = ?",
+              "visual_prompt": "Khung 10 ô có 9 ô tô màu, gạch bỏ 3 ô.",
+              "student_task": "Đếm số ô còn lại.",
+              "interaction": "count"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Khi trừ, ta bớt đi rồi đếm phần còn lại.",
+              "visual_prompt": "Một nhóm đồ vật bị lấy bớt một phần.",
+              "student_task": "Nhắc lại ý nghĩa phép trừ.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ trong phạm vi 10 (tiếp theo)",
+          "objective": "Củng cố phép trừ trong phạm vi 10 và tìm số còn thiếu.",
+          "cards": [
+            {
+              "type": "quick_try",
+              "title": "Tìm phần bị bớt",
+              "display_text": "10 - ? = 7",
+              "visual_prompt": "10 chấm, 7 chấm còn lại, phần bị bớt bị che.",
+              "student_task": "Chọn số bị bớt.",
+              "interaction": "fill_blank"
+            },
+            {
+              "type": "model",
+              "title": "Từ tranh sang phép trừ",
+              "display_text": "Nhìn tranh và chọn phép trừ.",
+              "visual_prompt": "Tình huống đồ vật bị lấy đi trong phạm vi 10.",
+              "student_task": "Chọn phép trừ đúng với tranh.",
+              "interaction": "choose"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Các số trong phạm vi 100",
+      "lessons": [
+        {
+          "lesson": "Các số đến 100",
+          "objective": "Nhận biết dãy số từ 1 đến 100 và cách đếm tiếp.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Bảng số 100",
+              "display_text": "Quan sát các số từ 1 đến 100.",
+              "visual_prompt": "Bảng 10 x 10 gồm các số từ 1 đến 100.",
+              "student_task": "Tìm số được yêu cầu trên bảng.",
+              "interaction": "choose"
+            },
+            {
+              "type": "quick_try",
+              "title": "Đếm tiếp",
+              "display_text": "Sau 28 là số nào?",
+              "visual_prompt": "Một đoạn bảng số có vài ô bị che.",
+              "student_task": "Điền số còn thiếu.",
+              "interaction": "fill_blank"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có hai chữ số (Từ 21 đến 40)",
+          "objective": "Đọc, viết và biểu diễn các số từ 21 đến 40.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Số có hai chữ số",
+              "display_text": "23 gồm 2 chục và 3 đơn vị.",
+              "visual_prompt": "2 bó que tính chục và 3 que tính rời.",
+              "student_task": "Ghép bó chục và que rời với số.",
+              "interaction": "match"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn số",
+              "display_text": "Có 3 chục và 5 đơn vị là số nào?",
+              "visual_prompt": "Bó que tính và que rời trong phạm vi 21 đến 40.",
+              "student_task": "Chọn số đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có hai chữ số (Từ 41 đến 70)",
+          "objective": "Đọc, viết và biểu diễn các số từ 41 đến 70.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Chục và đơn vị",
+              "display_text": "58 gồm 5 chục và 8 đơn vị.",
+              "visual_prompt": "5 bó que chục và 8 que rời.",
+              "student_task": "Nhận biết cấu tạo số.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Ghép thành số",
+              "display_text": "Kéo chữ số vào đúng vị trí.",
+              "visual_prompt": "Ô hàng chục và ô hàng đơn vị.",
+              "student_task": "Tạo số theo số chục và đơn vị cho trước.",
+              "interaction": "drag_drop"
+            }
+          ]
+        },
+        {
+          "lesson": "Các số có hai chữ số (Từ 71 đến 99)",
+          "objective": "Đọc, viết và biểu diễn các số từ 71 đến 99.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Đọc số lớn hơn",
+              "display_text": "76 đọc là bảy mươi sáu.",
+              "visual_prompt": "Số 76 kèm 7 bó chục và 6 que rời.",
+              "student_task": "Chọn cách đọc đúng.",
+              "interaction": "choose"
+            },
+            {
+              "type": "quick_try",
+              "title": "Tìm số",
+              "display_text": "Số gồm 8 chục và 4 đơn vị.",
+              "visual_prompt": "Thẻ chục, đơn vị và các đáp án số.",
+              "student_task": "Chọn 84.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Chục và đơn vị",
+          "objective": "Hiểu một số có hai chữ số gồm hàng chục và hàng đơn vị.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Hàng chục, hàng đơn vị",
+              "display_text": "Số 35 có 3 chục và 5 đơn vị.",
+              "visual_prompt": "Bảng hai cột: chục, đơn vị; số 35 đặt phía trên.",
+              "student_task": "Kéo chữ số 3 vào hàng chục, chữ số 5 vào hàng đơn vị.",
+              "interaction": "drag_drop"
+            },
+            {
+              "type": "quick_try",
+              "title": "Phân tích số",
+              "display_text": "Số 62 có mấy chục, mấy đơn vị?",
+              "visual_prompt": "Số 62 và các lựa chọn.",
+              "student_task": "Chọn 6 chục, 2 đơn vị.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "So sánh các số trong phạm vi 100",
+          "objective": "So sánh hai số trong phạm vi 100 bằng hàng chục rồi hàng đơn vị.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "So sánh hàng chục",
+              "display_text": "45 bé hơn 62 vì 4 chục bé hơn 6 chục.",
+              "visual_prompt": "Hai số 45 và 62 đặt trên bảng chục/đơn vị.",
+              "student_task": "Quan sát hàng chục trước.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Kéo dấu đúng",
+              "display_text": "Điền dấu <, > hoặc =.",
+              "visual_prompt": "Các cặp số trong phạm vi 100.",
+              "student_task": "Kéo dấu so sánh vào giữa hai số.",
+              "interaction": "drag_drop"
+            }
+          ]
+        },
+        {
+          "lesson": "Dài hơn, ngắn hơn",
+          "objective": "So sánh độ dài hai vật bằng quan sát hoặc đặt cạnh nhau.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "So sánh độ dài",
+              "display_text": "Cây bút nào dài hơn?",
+              "visual_prompt": "Hai cây bút đặt cùng điểm đầu.",
+              "student_task": "Chọn vật dài hơn/ngắn hơn.",
+              "interaction": "choose"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Muốn so sánh độ dài, đặt hai vật cùng một đầu.",
+              "visual_prompt": "Hai vật được căn cùng điểm bắt đầu.",
+              "student_task": "Nhận biết cách so sánh đúng.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Đo độ dài",
+          "objective": "Làm quen với việc đo độ dài bằng đơn vị đo không chuẩn hoặc thước.",
+          "cards": [
+            {
+              "type": "observe",
+              "title": "Đo bằng vật giống nhau",
+              "display_text": "Chiếc bàn dài bằng mấy que tính?",
+              "visual_prompt": "Một cạnh bàn được xếp các que tính bằng nhau nối tiếp.",
+              "student_task": "Đếm số que tính.",
+              "interaction": "count"
+            },
+            {
+              "type": "concept",
+              "title": "Cách đo",
+              "display_text": "Đặt các đơn vị đo sát nhau, không chồng lên nhau.",
+              "visual_prompt": "Một ví dụ đo đúng và một ví dụ đo sai.",
+              "student_task": "Chọn cách đo đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Xăng-ti-mét",
+          "objective": "Làm quen với đơn vị xăng-ti-mét và cách đọc số đo trên thước.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Xăng-ti-mét",
+              "display_text": "Xăng-ti-mét viết tắt là cm.",
+              "visual_prompt": "Thước kẻ có vạch cm được phóng to.",
+              "student_task": "Nhận biết kí hiệu cm.",
+              "interaction": "none"
+            },
+            {
+              "type": "model",
+              "title": "Đọc số đo",
+              "display_text": "Bút chì dài 6 cm.",
+              "visual_prompt": "Bút chì đặt từ vạch 0 đến vạch 6 trên thước.",
+              "student_task": "Đọc độ dài theo vạch cuối.",
+              "interaction": "choose"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Phép cộng, phép trừ trong phạm vi 100",
+      "lessons": [
+        {
+          "lesson": "Phép cộng dạng 14 + 3",
+          "objective": "Cộng số có hai chữ số với số có một chữ số, không nhớ.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng đơn vị",
+              "display_text": "14 + 3 = 17",
+              "visual_prompt": "1 bó chục, 4 que rời, thêm 3 que rời.",
+              "student_task": "Gộp các que rời rồi đọc số mới.",
+              "interaction": "count"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Giữ nguyên chục, cộng các đơn vị.",
+              "visual_prompt": "Bảng chục/đơn vị minh họa 14 + 3.",
+              "student_task": "Nhắc lại cách làm.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ dạng 17 - 2",
+          "objective": "Trừ số có hai chữ số cho số có một chữ số, không nhớ.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Trừ đơn vị",
+              "display_text": "17 - 2 = 15",
+              "visual_prompt": "1 bó chục, 7 que rời, bớt 2 que rời.",
+              "student_task": "Bớt que rời rồi đọc số còn lại.",
+              "interaction": "count"
+            },
+            {
+              "type": "remember",
+              "title": "Ghi nhớ",
+              "display_text": "Giữ nguyên chục, trừ các đơn vị.",
+              "visual_prompt": "Bảng chục/đơn vị minh họa 17 - 2.",
+              "student_task": "Nhắc lại cách làm.",
+              "interaction": "none"
+            }
+          ]
+        },
+        {
+          "lesson": "Cộng trừ các số tròn chục",
+          "objective": "Cộng, trừ các số tròn chục trong phạm vi 100.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng các chục",
+              "display_text": "20 + 30 = 50",
+              "visual_prompt": "2 bó chục gộp với 3 bó chục thành 5 bó chục.",
+              "student_task": "Đếm số bó chục.",
+              "interaction": "count"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn kết quả",
+              "display_text": "60 - 20 = ?",
+              "visual_prompt": "6 bó chục, bớt 2 bó chục.",
+              "student_task": "Chọn số tròn chục còn lại.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng dạng 25 + 14",
+          "objective": "Cộng hai số có hai chữ số, không nhớ.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng chục với chục, đơn vị với đơn vị",
+              "display_text": "25 + 14 = 39",
+              "visual_prompt": "Bảng chục/đơn vị: 2 chục + 1 chục, 5 đơn vị + 4 đơn vị.",
+              "student_task": "Tính từng hàng.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Điền kết quả",
+              "display_text": "32 + 16 = ?",
+              "visual_prompt": "Bảng chục/đơn vị có ô kết quả trống.",
+              "student_task": "Chọn kết quả đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép cộng dạng 25 + 4, 25 + 40",
+          "objective": "Phân biệt cộng thêm đơn vị và cộng thêm chục.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Cộng thêm đơn vị",
+              "display_text": "25 + 4 = 29",
+              "visual_prompt": "2 bó chục, 5 que rời, thêm 4 que rời.",
+              "student_task": "Cộng vào hàng đơn vị.",
+              "interaction": "count"
+            },
+            {
+              "type": "model",
+              "title": "Cộng thêm chục",
+              "display_text": "25 + 40 = 65",
+              "visual_prompt": "2 bó chục, thêm 4 bó chục, 5 que rời giữ nguyên.",
+              "student_task": "Cộng vào hàng chục.",
+              "interaction": "count"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ dạng 39 - 15",
+          "objective": "Trừ hai số có hai chữ số, không nhớ.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Trừ chục với chục, đơn vị với đơn vị",
+              "display_text": "39 - 15 = 24",
+              "visual_prompt": "Bảng chục/đơn vị: 3 chục trừ 1 chục, 9 đơn vị trừ 5 đơn vị.",
+              "student_task": "Tính từng hàng.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Chọn kết quả",
+              "display_text": "48 - 26 = ?",
+              "visual_prompt": "Bảng chục/đơn vị có ô kết quả trống.",
+              "student_task": "Chọn kết quả đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Phép trừ dạng 27 - 4; 63 - 40",
+          "objective": "Phân biệt trừ đơn vị và trừ chục.",
+          "cards": [
+            {
+              "type": "model",
+              "title": "Trừ đơn vị",
+              "display_text": "27 - 4 = 23",
+              "visual_prompt": "2 bó chục, 7 que rời, bớt 4 que rời.",
+              "student_task": "Trừ ở hàng đơn vị.",
+              "interaction": "count"
+            },
+            {
+              "type": "model",
+              "title": "Trừ chục",
+              "display_text": "63 - 40 = 23",
+              "visual_prompt": "6 bó chục, bớt 4 bó chục, 3 que rời giữ nguyên.",
+              "student_task": "Trừ ở hàng chục.",
+              "interaction": "count"
+            }
+          ]
+        },
+        {
+          "lesson": "Các ngày trong tuần lễ",
+          "objective": "Nhận biết tên các ngày trong tuần và thứ tự ngày.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Một tuần lễ",
+              "display_text": "Một tuần có 7 ngày.",
+              "visual_prompt": "Lịch tuần từ thứ hai đến chủ nhật.",
+              "student_task": "Đọc tên các ngày theo thứ tự.",
+              "interaction": "none"
+            },
+            {
+              "type": "quick_try",
+              "title": "Ngày tiếp theo",
+              "display_text": "Sau thứ ba là thứ mấy?",
+              "visual_prompt": "Dải thẻ các ngày trong tuần, một thẻ bị che.",
+              "student_task": "Chọn ngày đúng.",
+              "interaction": "choose"
+            }
+          ]
+        },
+        {
+          "lesson": "Đồng hồ - thời gian",
+          "objective": "Làm quen với đồng hồ và đọc giờ đúng.",
+          "cards": [
+            {
+              "type": "concept",
+              "title": "Mặt đồng hồ",
+              "display_text": "Kim ngắn chỉ giờ. Kim dài chỉ phút.",
+              "visual_prompt": "Mặt đồng hồ có kim ngắn, kim dài được tô màu khác nhau.",
+              "student_task": "Chỉ ra kim ngắn và kim dài.",
+              "interaction": "choose"
+            },
+            {
+              "type": "model",
+              "title": "Đọc giờ đúng",
+              "display_text": "Kim dài chỉ 12, kim ngắn chỉ 7 là 7 giờ.",
+              "visual_prompt": "Đồng hồ chỉ 7 giờ đúng.",
+              "student_task": "Chọn giờ đồng hồ đang chỉ.",
+              "interaction": "choose"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
