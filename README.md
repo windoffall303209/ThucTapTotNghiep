@@ -1,6 +1,6 @@
-# Toán Bổ Trợ 1-7
+# Toán Bổ Trợ Tiểu học
 
-Website ôn luyện Toán cho học sinh lớp 1 đến lớp 7, xây dựng bằng Node.js, Express.js, EJS và MySQL theo kiến trúc MVC.
+Website ôn luyện Toán cho học sinh Tiểu học lớp 1 đến lớp 5, xây dựng bằng Node.js, Express.js, EJS và MySQL theo kiến trúc MVC.
 
 ## Chức năng đã triển khai
 
@@ -9,7 +9,7 @@ Website ôn luyện Toán cho học sinh lớp 1 đến lớp 7, xây dựng b�
 - Dashboard học sinh theo khối học hiện tại.
 - Xem lý thuyết bài học.
 - Luyện tập trắc nghiệm, kiểm tra đáp án, hiển thị lời giải và lỗi sai thường gặp.
-- Gia sư AI Socratic dạng mô phỏng để gợi mở cách làm.
+- Tính năng gợi ý thêm dạng mô phỏng để hỗ trợ học sinh sau khi thử làm bài.
 - Admin xem tổng quan, thêm câu hỏi và xem danh sách học sinh.
 - Fallback dữ liệu mẫu khi chưa kết nối MySQL.
 
@@ -37,7 +37,7 @@ http://localhost:3000
 mysql -u root -p math_revision_ai_tutor < database/database_schema.sql
 ```
 
-4. Nạp khung chương trình lớp 1-7 từ file danh sách:
+4. Nạp khung chương trình lớp 1-5 từ file danh sách:
 
 ```powershell
 npm run db:seed-curriculum

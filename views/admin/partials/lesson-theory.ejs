@@ -13,6 +13,19 @@
   function cardImages(card) {
     return Array.isArray(card.images) ? card.images : [];
   }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
 %>
 
 <div class="lesson-question-toolbar">
@@ -113,7 +126,7 @@
           Sửa thẻ này
         </summary>
         <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards/<%= index %>" method="post" enctype="multipart/form-data" data-theory-preview-form>
-          <input type="hidden" name="existing_images" value="<%= JSON.stringify(images) %>" data-theory-existing-images>
+          <input type="hidden" name="existing_images" value="<%- escapeAttribute(JSON.stringify(images)) %>" data-theory-existing-images>
           <div class="theory-card-fields">
             <label>
               Tiêu đề
@@ -127,6 +140,20 @@
               Ví dụ
               <input name="example" value="<%= card.example || '' %>" data-theory-example>
             </label>
+            <% if (images.length > 0) { %>
+              <div class="choice-existing-images">
+                <span class="form-note">Ảnh hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+                <% images.forEach((image) => { %>
+                  <label class="image-keep-option">
+                    <input type="checkbox" name="remove_theory_images" value="<%= image.id || image.url %>" data-preview-remove-image>
+                    <span>Xóa</span>
+                    <span class="question-image choice-existing-image">
+                      <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
+                    </span>
+                  </label>
+                <% }) %>
+              </div>
+            <% } %>
             <label>
               Ảnh minh họa mới
               <input type="file" name="theory_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-theory-images>

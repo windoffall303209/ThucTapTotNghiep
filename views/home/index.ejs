@@ -1,9 +1,9 @@
 <section class="home-hero landing-hero">
   <div class="hero-copy">
-    <p class="eyebrow">Ôn luyện Toán lớp 1-7</p>
+    <p class="eyebrow">Ôn luyện Toán Tiểu học <%= shortGradeRangeLabel %></p>
     <h1>Học đúng bài, luyện đúng phần còn yếu.</h1>
     <p class="hero-text">
-      Toán Bổ Trợ giúp học sinh đi theo chương trình đang học: đọc lý thuyết ngắn, làm câu hỏi có lời giải, xem lại lỗi sai và nhờ AI gợi mở khi thật sự cần.
+      Toán Bổ Trợ Tiểu học giúp học sinh đi theo chương trình đang học: đọc lý thuyết ngắn, làm câu hỏi có lời giải, xem lại lỗi sai và nhận gợi ý thêm khi thật sự cần.
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/auth/register">
@@ -63,15 +63,15 @@
 <section id="chuong-trinh" class="landing-section">
   <div class="section-title">
     <i data-lucide="graduation-cap" class="lucide-icon"></i>
-    Chương trình lớp 1-7
+    Chương trình <%= gradeRangeLabel %>
   </div>
   <div class="grade-grid" aria-label="Các khối lớp hỗ trợ">
-    <% for (let grade = 1; grade <= 7; grade += 1) { %>
+    <% gradeOptions.forEach((grade) => { %>
       <article class="grade-card">
-        <strong>Lớp <%= grade %></strong>
+        <strong><%= grade.label %></strong>
         <small class="muted">Học theo chương, bài và câu hỏi tương ứng.</small>
       </article>
-    <% } %>
+    <% }) %>
   </div>
 </section>
 
@@ -83,8 +83,8 @@
   </div>
   <div>
     <i data-lucide="brain" class="feature-icon"></i>
-    <h2>AI Socratic gợi mở</h2>
-    <p>AI hỗ trợ giải thích, đặt gợi ý từng bước và không thay thế đáp án chuẩn trong ngân hàng câu hỏi.</p>
+    <h2>Gợi ý thêm có kiểm soát</h2>
+    <p>Tính năng hỗ trợ giải thích từng bước chỉ đóng vai trò phụ và không thay thế đáp án chuẩn trong ngân hàng câu hỏi.</p>
   </div>
   <div>
     <i data-lucide="shield-check" class="feature-icon"></i>

@@ -1,39 +1,105 @@
+function svgDataUri(label, background = '#eff6ff', foreground = '#1d4ed8') {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="${label}">
+      <rect width="480" height="300" rx="28" fill="${background}"/>
+      <circle cx="132" cy="150" r="58" fill="#ffffff" stroke="${foreground}" stroke-width="10"/>
+      <circle cx="242" cy="150" r="58" fill="#ffffff" stroke="${foreground}" stroke-width="10"/>
+      <circle cx="352" cy="150" r="58" fill="#ffffff" stroke="${foreground}" stroke-width="10"/>
+      <text x="240" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="${foreground}">${label}</text>
+    </svg>
+  `;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg.trim())}`;
+}
+
 const chapters = [
   {
     id: 1,
-    grade: 4,
-    chapter_name: 'Chủ đề 3. Phân số',
+    grade: 1,
+    chapter_name: 'Chủ đề 1. Các số đến 10',
     sort_order: 1,
     lessons: [
       {
         id: 101,
         chapter_id: 1,
+        lesson_name: 'Bài 1: Đếm số lượng trong phạm vi 5',
+        sort_order: 1,
+        theory_cards: [
+          {
+            title: 'Đếm từng đồ vật',
+            body: 'Khi đếm, em chỉ vào từng đồ vật một lần và đọc các số theo thứ tự: 1, 2, 3, 4, 5.',
+            formulas: [],
+            example: 'Có 3 quả bóng thì em đọc: một, hai, ba.'
+          },
+          {
+            title: 'So sánh ít hơn, nhiều hơn',
+            body: 'Nhóm nào có số đồ vật lớn hơn thì là nhóm nhiều hơn. Nhóm nào có số đồ vật nhỏ hơn thì là nhóm ít hơn.',
+            formulas: [],
+            example: '4 bông hoa nhiều hơn 2 bông hoa.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    grade: 2,
+    chapter_name: 'Chủ đề 2. Phép cộng và phép trừ trong phạm vi 100',
+    sort_order: 1,
+    lessons: [
+      {
+        id: 201,
+        chapter_id: 2,
+        lesson_name: 'Bài 12: Cộng số có hai chữ số',
+        sort_order: 1,
+        theory_cards: [
+          {
+            title: 'Cộng theo hàng chục và hàng đơn vị',
+            body: 'Khi cộng số có hai chữ số, em cộng hàng đơn vị với hàng đơn vị, hàng chục với hàng chục.',
+            formulas: ['23 + 14 = 37'],
+            example: '23 gồm 2 chục 3 đơn vị; 14 gồm 1 chục 4 đơn vị.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    grade: 4,
+    chapter_name: 'Chủ đề 3. Phân số',
+    sort_order: 1,
+    lessons: [
+      {
+        id: 301,
+        chapter_id: 3,
         lesson_name: 'Bài 59: Rút gọn phân số',
         sort_order: 1,
         theory_cards: [
           {
             title: 'Rút gọn phân số',
             body: 'Rút gọn phân số là chia cả tử số và mẫu số cho cùng một ước chung khác 1.',
+            formulas: ['$\\frac{12}{18}=\\frac{12:6}{18:6}=\\frac{2}{3}$'],
             formula: '$\\frac{12}{18}=\\frac{12:6}{18:6}=\\frac{2}{3}$',
             example: 'Phân số được rút gọn đúng khi giá trị không thay đổi.'
           },
           {
             title: 'Phân số tối giản',
             body: 'Phân số tối giản là phân số có tử số và mẫu số không còn ước chung nào lớn hơn 1.',
+            formulas: ['$\\gcd(2,3)=1$'],
             formula: '$\\gcd(2,3)=1$',
             example: '$\\frac{2}{3}$ là phân số tối giản.'
           }
         ]
       },
       {
-        id: 102,
-        chapter_id: 1,
+        id: 302,
+        chapter_id: 3,
         lesson_name: 'Bài 60: Quy đồng mẫu số các phân số',
         sort_order: 2,
         theory_cards: [
           {
             title: 'Quy đồng mẫu số',
             body: 'Quy đồng mẫu số là biến đổi các phân số về cùng một mẫu số chung để so sánh hoặc tính toán.',
+            formulas: ['$\\frac{1}{3}=\\frac{5}{15}, \\frac{2}{5}=\\frac{6}{15}$'],
             formula: '$\\frac{1}{3}=\\frac{5}{15}, \\frac{2}{5}=\\frac{6}{15}$',
             example: 'Mẫu số chung thường là bội chung nhỏ nhất của các mẫu.'
           }
@@ -42,44 +108,23 @@ const chapters = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     grade: 5,
     chapter_name: 'Chủ đề 2. Các phép tính với số thập phân',
     sort_order: 1,
     lessons: [
       {
-        id: 201,
-        chapter_id: 2,
-        lesson_name: 'Bài 25. Cộng các số thập phân',
+        id: 401,
+        chapter_id: 4,
+        lesson_name: 'Bài 25: Cộng các số thập phân',
         sort_order: 1,
         theory_cards: [
           {
             title: 'Cộng số thập phân',
             body: 'Đặt tính sao cho các dấu phẩy thẳng cột, cộng như số tự nhiên rồi viết dấu phẩy vào tổng.',
+            formulas: ['$12,35 + 4,8 = 17,15$'],
             formula: '$12,35 + 4,8 = 17,15$',
             example: 'Có thể thêm chữ số 0 vào phần thập phân để dễ tính.'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 3,
-    grade: 6,
-    chapter_name: 'Chương 5. Phân số và số thập phân',
-    sort_order: 1,
-    lessons: [
-      {
-        id: 301,
-        chapter_id: 3,
-        lesson_name: 'Bài 3. Phép cộng và phép trừ phân số',
-        sort_order: 1,
-        theory_cards: [
-          {
-            title: 'Cộng phân số khác mẫu',
-            body: 'Quy đồng mẫu số trước, sau đó cộng các tử số và giữ nguyên mẫu số chung.',
-            formula: '$\\frac{1}{3}+\\frac{2}{5}=\\frac{5}{15}+\\frac{6}{15}=\\frac{11}{15}$',
-            example: 'Không cộng trực tiếp hai mẫu số.'
           }
         ]
       }
@@ -94,20 +139,29 @@ const questions = [
     concept_id: null,
     question_type: 'MULTIPLE_CHOICE',
     difficulty: 'EASY',
-    layout_template: 'STACK_VERTICAL',
+    layout_template: 'SPLIT_HORIZONTAL_LEFT_IMAGE',
     content: {
-      text: 'Rút gọn phân số $\\frac{12}{18}$ ta được phân số nào?',
-      images: []
+      text: 'Trong hình có bao nhiêu chấm tròn?\n\n[image-1]',
+      images: [
+        {
+          id: 'image-1',
+          url: svgDataUri('3 chấm tròn'),
+          width_percent: 100,
+          alt_text: 'Ba chấm tròn để học sinh đếm',
+          storage_provider: 'sample',
+          public_id: null
+        }
+      ]
     },
     choices: [
-      { key: 'A', text: '$\\frac{2}{3}$' },
-      { key: 'B', text: '$\\frac{3}{2}$' },
-      { key: 'C', text: '$\\frac{6}{9}$' },
-      { key: 'D', text: '$\\frac{12}{9}$' }
+      { key: 'A', text: '2', images: [] },
+      { key: 'B', text: '3', images: [] },
+      { key: 'C', text: '4', images: [] },
+      { key: 'D', text: '5', images: [] }
     ],
-    correct_answer: 'A',
+    correct_answer: 'B',
     explanation: {
-      text: 'Ta chia cả tử số và mẫu số cho 6: $12:6=2$, $18:6=3$. Vậy $\\frac{12}{18}=\\frac{2}{3}$.',
+      text: 'Em đếm từng chấm tròn: 1, 2, 3. Vậy trong hình có 3 chấm tròn.',
       images: []
     }
   },
@@ -116,21 +170,37 @@ const questions = [
     lesson_id: 101,
     concept_id: null,
     question_type: 'MULTIPLE_CHOICE',
-    difficulty: 'MEDIUM',
-    layout_template: 'STACK_VERTICAL',
+    difficulty: 'EASY',
+    layout_template: 'IMAGE_IN_CHOICES',
     content: {
-      text: 'Phân số nào bằng $\\frac{3}{5}$?',
+      text: 'Chọn hình có đúng 2 chấm tròn.',
       images: []
     },
     choices: [
-      { key: 'A', text: '$\\frac{6}{15}$' },
-      { key: 'B', text: '$\\frac{9}{15}$' },
-      { key: 'C', text: '$\\frac{12}{15}$' },
-      { key: 'D', text: '$\\frac{15}{9}$' }
+      {
+        key: 'A',
+        text: 'Một chấm',
+        images: [{ id: 'choice-A-image-1', url: svgDataUri('1 chấm', '#fef2f2', '#dc2626'), width_percent: 100, alt_text: 'Hình có một chấm tròn' }]
+      },
+      {
+        key: 'B',
+        text: 'Hai chấm',
+        images: [{ id: 'choice-B-image-1', url: svgDataUri('2 chấm', '#f0fdf4', '#16a34a'), width_percent: 100, alt_text: 'Hình có hai chấm tròn' }]
+      },
+      {
+        key: 'C',
+        text: 'Ba chấm',
+        images: [{ id: 'choice-C-image-1', url: svgDataUri('3 chấm', '#eff6ff', '#2563eb'), width_percent: 100, alt_text: 'Hình có ba chấm tròn' }]
+      },
+      {
+        key: 'D',
+        text: 'Bốn chấm',
+        images: [{ id: 'choice-D-image-1', url: svgDataUri('4 chấm', '#fffbeb', '#d97706'), width_percent: 100, alt_text: 'Hình có bốn chấm tròn' }]
+      }
     ],
     correct_answer: 'B',
     explanation: {
-      text: 'Nhân cả tử số và mẫu số của $\\frac{3}{5}$ với 3, ta được $\\frac{9}{15}$.',
+      text: 'Đáp án B có hai chấm tròn. Em có thể chỉ tay và đếm: 1, 2.',
       images: []
     }
   },
@@ -142,18 +212,50 @@ const questions = [
     difficulty: 'EASY',
     layout_template: 'STACK_VERTICAL',
     content: {
-      text: 'Tính $\\frac{1}{3}+\\frac{2}{5}$.',
+      text: 'Rút gọn phân số $\\frac{12}{18}$ ta được phân số nào?',
       images: []
     },
     choices: [
-      { key: 'A', text: '$\\frac{3}{8}$' },
-      { key: 'B', text: '$\\frac{11}{15}$' },
-      { key: 'C', text: '$\\frac{3}{15}$' },
-      { key: 'D', text: '$\\frac{2}{15}$' }
+      { key: 'A', text: '$\\frac{2}{3}$', images: [] },
+      { key: 'B', text: '$\\frac{3}{2}$', images: [] },
+      { key: 'C', text: '$\\frac{6}{9}$', images: [] },
+      { key: 'D', text: '$\\frac{12}{9}$', images: [] }
+    ],
+    correct_answer: 'A',
+    explanation: {
+      text: 'Ta chia cả tử số và mẫu số cho 6: $12:6=2$, $18:6=3$. Vậy $\\frac{12}{18}=\\frac{2}{3}$.',
+      images: [
+        {
+          id: 'explanation-image-1',
+          url: svgDataUri('12:6 và 18:6', '#f8fafc', '#0f766e'),
+          width_percent: 70,
+          alt_text: 'Minh họa chia cả tử số và mẫu số cho 6',
+          storage_provider: 'sample',
+          public_id: null
+        }
+      ]
+    }
+  },
+  {
+    id: 1004,
+    lesson_id: 401,
+    concept_id: null,
+    question_type: 'MULTIPLE_CHOICE',
+    difficulty: 'MEDIUM',
+    layout_template: 'STACK_VERTICAL',
+    content: {
+      text: 'Tính $12,35 + 4,8$.',
+      images: []
+    },
+    choices: [
+      { key: 'A', text: '$16,43$', images: [] },
+      { key: 'B', text: '$17,15$', images: [] },
+      { key: 'C', text: '$60,35$', images: [] },
+      { key: 'D', text: '$12,83$', images: [] }
     ],
     correct_answer: 'B',
     explanation: {
-      text: 'Mẫu chung là 15. Ta có $\\frac{1}{3}=\\frac{5}{15}$ và $\\frac{2}{5}=\\frac{6}{15}$, nên tổng là $\\frac{11}{15}$.',
+      text: 'Viết $4,8$ thành $4,80$, rồi cộng thẳng cột: $12,35 + 4,80 = 17,15$.',
       images: []
     }
   }
@@ -163,23 +265,30 @@ const misconceptions = [
   {
     id: 1,
     question_id: 1001,
-    distractor_key: 'C',
-    misconception_name: 'Chưa rút gọn đến tối giản',
-    explanation: 'Em mới chia cả tử và mẫu cho 2. Hãy tiếp tục tìm ước chung lớn hơn để rút gọn đến phân số tối giản.'
+    distractor_key: 'A',
+    misconception_name: 'Đếm thiếu một hình',
+    explanation: 'Em có thể đã bỏ sót một chấm tròn. Hãy chỉ vào từng chấm và đếm lại từ 1.'
   },
   {
     id: 2,
-    question_id: 1003,
-    distractor_key: 'A',
-    misconception_name: 'Cộng cả tử số và mẫu số',
-    explanation: 'Em đang cộng tử với tử và mẫu với mẫu. Với phân số khác mẫu, cần quy đồng mẫu số trước.'
+    question_id: 1002,
+    distractor_key: 'C',
+    misconception_name: 'Đếm thừa hình',
+    explanation: 'Em đang chọn hình có 3 chấm. Đề yêu cầu đúng 2 chấm, nên cần đếm lại chậm hơn.'
   },
   {
     id: 3,
     question_id: 1003,
     distractor_key: 'C',
-    misconception_name: 'Chưa cộng tử số sau khi quy đồng',
-    explanation: 'Em đã tìm mẫu chung 15 nhưng cần đổi tử số thành 5 và 6 rồi cộng lại.'
+    misconception_name: 'Chưa rút gọn đến tối giản',
+    explanation: 'Em mới chia cả tử và mẫu cho 2. Hãy tiếp tục tìm ước chung lớn hơn để rút gọn đến phân số tối giản.'
+  },
+  {
+    id: 4,
+    question_id: 1004,
+    distractor_key: 'A',
+    misconception_name: 'Đặt lệch dấu phẩy',
+    explanation: 'Khi cộng số thập phân, cần đặt các dấu phẩy thẳng cột rồi mới cộng từng hàng.'
   }
 ];
 
@@ -190,6 +299,10 @@ let systemSettings = {
   ai_provider: process.env.AI_PROVIDER || 'nvidia',
   ai_automation_enabled: process.env.AI_AUTOMATION_ENABLED || 'true',
   ai_json_timeout_ms: process.env.AI_JSON_TIMEOUT_MS || '45000',
+  ai_enabled_grades: process.env.AI_ENABLED_GRADES || '3,4,5',
+  ai_max_hints_per_question: process.env.AI_MAX_HINTS_PER_QUESTION || '2',
+  ai_max_hints_per_session: process.env.AI_MAX_HINTS_PER_SESSION || '8',
+  ai_require_answer_before_help: process.env.AI_REQUIRE_ANSWER_BEFORE_HELP || 'true',
   openai_api_key: process.env.OPENAI_API_KEY || '',
   openai_base_url: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
   openai_model: process.env.OPENAI_MODEL || 'gpt-4o-mini',

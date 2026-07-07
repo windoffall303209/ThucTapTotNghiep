@@ -45,7 +45,7 @@
             </span>
           </div>
           <h2><%= session.title %></h2>
-          <p class="muted"><strong><%= session.correct_count %></strong>/<strong><%= answered %></strong> câu đã làm đúng · Tiến trình <%= session.current_index %>/<%= session.question_count %> câu · <%= session.chat_count %> tin nhắn AI.</p>
+          <p class="muted"><strong><%= session.correct_count %></strong>/<strong><%= answered %></strong> câu đã làm đúng · Tiến trình <%= session.current_index %>/<%= session.question_count %> câu · <%= session.chat_count %> tin nhắn gợi ý.</p>
           <div class="progress-track"><span style="width: <%= Math.min(Math.max(percent, 0), 100) %>%"></span></div>
           <p class="muted">Bắt đầu: <%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></p>
           <div class="row-actions">

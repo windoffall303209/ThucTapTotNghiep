@@ -168,24 +168,6 @@ def get_mathematical_context(lesson_name, grade):
 - Công thức tính thời gian: $t = s : v$
 - Chú ý đồng bộ đơn vị đo: nếu quãng đường đơn vị km, thời gian giờ thì vận tốc km/h; nếu quãng đường m, thời gian giây thì vận tốc m/s."""
 
-    # Grade 6 & 7 Algebra / Geometry contexts
-    if grade in [6, 7]:
-        if "tập hợp" in ln:
-            return """SỰ THẬT TOÁN HỌC (TẬP HỢP LỚP 6):
-- Kí hiệu phần tử thuộc tập hợp: $a \\in A$. Kí hiệu không thuộc: $b \\notin A$.
-- Cách viết tập hợp: Liệt kê các phần tử kẹp giữa hai dấu ngoặc nhọn $\\{ \\}$ cách nhau bởi dấu chấm phẩy (;)."""
-        if "số nguyên" in ln:
-            return """SỰ THẬT TOÁN HỌC (SỐ NGUYÊN LỚP 6):
-- Tập hợp số nguyên $\\mathbb{Z} = \\{\\dots, -3, -2, -1, 0, 1, 2, 3, \\dots\\}$ gồm số nguyên âm, số 0 và số nguyên dương.
-- Quy tắc cộng trừ hai số nguyên cùng dấu và khác dấu. Quy tắc dấu ngoặc: Đằng trước có dấu trừ (-) thì đổi dấu tất cả phần tử bên trong, đằng trước có dấu cộng (+) thì giữ nguyên dấu."""
-        if "hữu tỉ" in ln or "hữu tỷ" in ln:
-            return """SỰ THẬT TOÁN HỌC (SỐ HỮU TỈ LỚP 7):
-- Số hữu tỉ là số viết được dưới dạng phân số $\\frac{a}{b}$ với $a, b \\in \\mathbb{Z}, b \\neq 0$.
-- Tập hợp các số hữu tỉ được kí hiệu là $\\mathbb{Q}$."""
-        if "tam giác bằng nhau" in ln or "tam giác" in ln:
-            return """SỰ THẬT TOÁN HỌC (TAM GIÁC BẰNG NHAU LỚP 7):
-- Ba trường hợp bằng nhau của tam giác thường: Cạnh - cạnh - cạnh (c-c-c), Cạnh - góc - cạnh (c-g-c), Góc - cạnh - góc (g-c-g)."""
-
     # General Grade 4 Measurement Units
     if any(k in ln for k in ["yến", "tạ", "tấn"]):
         return """SỰ THẬT TOÁN HỌC (QUY ĐỔI ĐƠN VỊ KHỐI LƯỢNG):
@@ -410,7 +392,7 @@ def build_docx_for_grade(grade, grade_lessons, output_path):
     title_run.font.size = Pt(20)
     title_run.bold = True
     
-    subtitle_run = title_p.add_run("Bộ Sách Giáo Khoa Cánh Diều — Hỗ Trợ AI Tutor & Hình Minh Họa")
+    subtitle_run = title_p.add_run("Bộ Sách Giáo Khoa Cánh Diều — Gợi Ý Học Tập & Hình Minh Họa")
     subtitle_run.font.name = 'Arial'
     subtitle_run.font.size = Pt(12)
     subtitle_run.italic = True
@@ -536,8 +518,8 @@ def build_docx_for_grade(grade, grade_lessons, output_path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sinh lý thuyết Toán 1-7 Cánh Diều bằng NVIDIA NIM API")
-    parser.add_argument("--grade", type=int, default=0, help="Khối lớp muốn sinh (1-7), mặc định 0 nghĩa là tất cả")
+    parser = argparse.ArgumentParser(description="Sinh lý thuyết Toán 1-5 Cánh Diều bằng NVIDIA NIM API")
+    parser.add_argument("--grade", type=int, default=0, help="Khối lớp muốn sinh (1-5), mặc định 0 nghĩa là tất cả")
     parser.add_argument("--limit", type=int, default=0, help="Giới hạn số lượng bài để chạy thử nghiệm")
     parser.add_argument("--force", action="store_true", help="Chạy lại từ đầu, không dùng cache")
     args = parser.parse_args()

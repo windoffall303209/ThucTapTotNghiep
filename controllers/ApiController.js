@@ -1,6 +1,8 @@
 const Question = require('../models/Question');
 const PracticeSession = require('../models/PracticeSession');
 const SocraticAIService = require('../services/SocraticAIService');
+const SystemSetting = require('../models/SystemSetting');
+const AIConversationLog = require('../models/AIConversationLog');
 
 async function exerciseHelp(req, res, next) {
   try {
@@ -12,16 +14,44 @@ async function exerciseHelp(req, res, next) {
       });
     }
 
-    const misconception = req.body.selectedAnswer
-      ? await Question.getMisconception(question.id, req.body.selectedAnswer)
-      : null;
-
     const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
+    const selectedAnswer = String(req.body.selectedAnswer || '').trim();
     const studentMessage = String(req.body.message || '').trim();
-    const chatHistory = practiceSessionId
-      ? (await PracticeSession.listChats(practiceSessionId))
-        .filter((chat) => Number(chat.question_id || 0) === Number(question.id))
-      : [];
+    const settings = await SystemSetting.getSettings();
+    const [sessionChats, sessionAnswers] = practiceSessionId
+      ? await Promise.all([
+        PracticeSession.listChats(practiceSessionId),
+        PracticeSession.listAnswers(practiceSessionId)
+      ])
+      : [[], []];
+    const chatHistory = sessionChats.filter((chat) => Number(chat.question_id || 0) === Number(question.id));
+    const hasAnsweredQuestion = practiceSessionId
+      ? sessionAnswers.some((answer) => Number(answer.question_id) === Number(question.id))
+      : Boolean(selectedAnswer);
+    const policyBlock = evaluateAIPolicy({
+      grade: req.auth?.current_grade,
+      settings,
+      hasAnsweredQuestion,
+      chatHistory,
+      sessionChats
+    });
+
+    if (policyBlock) {
+      await AIConversationLog.logAIInteraction({
+        studentId: req.auth.id,
+        sessionType: 'EXERCISE_HELP',
+        referenceId: question.id,
+        practiceSessionId,
+        questionId: question.id,
+        blockedReason: policyBlock.reason,
+        chatHistory: [{ role: 'student', text: studentMessage || 'Yêu cầu gợi ý thêm' }]
+      });
+      return res.status(403).json({ ok: false, message: policyBlock.message });
+    }
+
+    const misconception = selectedAnswer
+      ? await Question.getMisconception(question.id, selectedAnswer)
+      : null;
 
     if (practiceSessionId && studentMessage) {
       await PracticeSession.saveChat({
@@ -35,7 +65,7 @@ async function exerciseHelp(req, res, next) {
     const reply = await SocraticAIService.explainExercise({
       grade: req.auth?.current_grade || 4,
       question,
-      selectedAnswer: req.body.selectedAnswer,
+      selectedAnswer,
       misconception,
       studentMessage,
       chatHistory
@@ -50,10 +80,81 @@ async function exerciseHelp(req, res, next) {
       });
     }
 
+    await AIConversationLog.logAIInteraction({
+      studentId: req.auth.id,
+      sessionType: 'EXERCISE_HELP',
+      referenceId: question.id,
+      practiceSessionId,
+      questionId: question.id,
+      provider: settings.ai_provider,
+      model: modelForProvider(settings),
+      isFallback: String(settings.ai_automation_enabled || 'true') === 'false',
+      chatHistory: [
+        ...chatHistory.map((chat) => ({ role: chat.role, text: chat.message })),
+        ...(studentMessage ? [{ role: 'student', text: studentMessage }] : []),
+        { role: 'ai', text: reply }
+      ]
+    });
+
     return res.json({ ok: true, reply });
   } catch (error) {
     next(error);
   }
+}
+
+function evaluateAIPolicy({ grade, settings, hasAnsweredQuestion, chatHistory, sessionChats }) {
+  const enabledGrades = parseEnabledGrades(settings.ai_enabled_grades);
+  if (!enabledGrades.includes(Number(grade))) {
+    return {
+      reason: 'grade_not_enabled',
+      message: 'Tính năng gợi ý thêm hiện chỉ bật cho một số khối lớp. Em hãy xem lời giải có sẵn trước nhé.'
+    };
+  }
+
+  if (String(settings.ai_require_answer_before_help || 'true') !== 'false' && !hasAnsweredQuestion) {
+    return {
+      reason: 'answer_required',
+      message: 'Em hãy thử chọn và nộp đáp án trước, sau đó hệ thống mới mở phần gợi ý thêm.'
+    };
+  }
+
+  const maxPerQuestion = Math.max(Number(settings.ai_max_hints_per_question || 2), 0);
+  const maxPerSession = Math.max(Number(settings.ai_max_hints_per_session || 8), 0);
+  const aiReplyCountForQuestion = chatHistory.filter((chat) => chat.role === 'ai').length;
+  const aiReplyCountForSession = (sessionChats || []).filter((chat) => chat.role === 'ai').length;
+
+  if (maxPerQuestion > 0 && aiReplyCountForQuestion >= maxPerQuestion) {
+    return {
+      reason: 'question_quota_exceeded',
+      message: 'Câu này đã đủ số lần gợi ý thêm. Em hãy đọc lại lời giải và thử câu tiếp theo nhé.'
+    };
+  }
+
+  if (maxPerSession > 0 && aiReplyCountForSession >= maxPerSession) {
+    return {
+      reason: 'session_quota_exceeded',
+      message: 'Lần luyện tập này đã dùng đủ số lượt gợi ý thêm. Em hãy tiếp tục bằng lời giải có sẵn nhé.'
+    };
+  }
+
+  return null;
+}
+
+function parseEnabledGrades(value) {
+  const grades = String(value || '3,4,5')
+    .split(/[,.\s]+/)
+    .map(Number)
+    .filter((grade) => Number.isInteger(grade));
+  return grades.length > 0 ? grades : [3, 4, 5];
+}
+
+function modelForProvider(settings) {
+  if (settings.ai_provider === 'gemini') return settings.gemini_model;
+  if (settings.ai_provider === 'gemini_cli') return settings.gemini_cli_model;
+  if (settings.ai_provider === 'nvidia') return settings.nvidia_nim_model;
+  if (settings.ai_provider === 'openrouter') return settings.openrouter_model;
+  if (settings.ai_provider === 'openai') return settings.openai_model;
+  return 'mock';
 }
 
 module.exports = { exerciseHelp };

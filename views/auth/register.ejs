@@ -5,7 +5,7 @@
       <h2>Bắt đầu bằng đúng lớp đang học.</h2>
       <p>Hệ thống dùng khối lớp để mở chương trình phù hợp và theo dõi tiến trình luyện tập của từng học sinh.</p>
       <ul>
-        <li>Chọn lớp 1-7 khi tạo tài khoản</li>
+        <li>Chọn <%= gradeRangeLabel %> khi tạo tài khoản</li>
         <li>Học lý thuyết trước khi luyện câu hỏi</li>
         <li>Xem lại lỗi sai để ôn đúng trọng tâm</li>
       </ul>
@@ -36,9 +36,9 @@
         <label>
           Khối học hiện tại
           <select name="grade" required>
-            <% for (let grade = 1; grade <= 7; grade += 1) { %>
-              <option value="<%= grade %>">Lớp <%= grade %></option>
-            <% } %>
+            <% gradeOptions.forEach((grade) => { %>
+              <option value="<%= grade.value %>"><%= grade.label %></option>
+            <% }) %>
           </select>
         </label>
         <p class="form-note">Mật khẩu tối thiểu 8 ký tự. Nếu chọn nhầm lớp, hãy nhờ quản trị viên hỗ trợ chỉnh lại.</p>

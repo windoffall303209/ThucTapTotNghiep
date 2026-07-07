@@ -311,7 +311,7 @@ def build_docx(lessons_theory, output_path):
     title_run.font.size = Pt(20)
     title_run.bold = True
     
-    subtitle_run = title_p.add_run("Bộ Sách Giáo Khoa Cánh Diều — Hỗ Trợ AI Tutor")
+    subtitle_run = title_p.add_run("Bộ Sách Giáo Khoa Cánh Diều — Gợi Ý Học Tập")
     subtitle_run.font.name = 'Arial'
     subtitle_run.font.size = Pt(12)
     subtitle_run.italic = True

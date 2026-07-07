@@ -3,6 +3,7 @@ const Admin = require('../models/Admin');
 const Student = require('../models/Student');
 const { setFlash } = require('../utils/flash');
 const { clearAuthCookie, setAuthCookie } = require('../utils/authToken');
+const { GRADE_RANGE_LABEL, isSupportedGrade, normalizeGrade } = require('../config/grades');
 
 function showLogin(req, res) {
   res.render('auth/login', {
@@ -36,9 +37,9 @@ async function register(req, res, next) {
       return res.redirect('/auth/register');
     }
 
-    const normalizedGrade = Number(grade);
-    if (!Number.isInteger(normalizedGrade) || normalizedGrade < 1 || normalizedGrade > 7) {
-      setFlash(req, 'danger', 'Khối học phải nằm trong phạm vi từ lớp 1 đến lớp 7.');
+    const normalizedGrade = normalizeGrade(grade);
+    if (!isSupportedGrade(normalizedGrade)) {
+      setFlash(req, 'danger', `Khối học phải nằm trong phạm vi từ ${GRADE_RANGE_LABEL}.`);
       return res.redirect('/auth/register');
     }
 

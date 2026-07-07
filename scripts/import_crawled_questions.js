@@ -6,6 +6,7 @@ const path = require('path');
 
 const db = require('../config/db');
 const Question = require('../models/Question');
+const { MIN_GRADE, MAX_GRADE, isSupportedGrade } = require('../config/grades');
 
 const ROOT = path.join(__dirname, '..');
 const DEFAULT_INPUT = path.join(ROOT, 'output', 'doc', 'crawled_questions.json');
@@ -213,11 +214,55 @@ async function mapImages(images, options) {
 
 function normalizeChoices(choices) {
   return (choices || [])
-    .filter((choice) => choice && choice.key && String(choice.text || '').trim())
+    .filter((choice) => choice && choice.key && (String(choice.text || '').trim() || hasImages(choice.images)))
     .map((choice) => ({
       key: String(choice.key).trim().toUpperCase(),
-      text: String(choice.text || '').trim()
+      text: String(choice.text || '').trim(),
+      images: normalizeImageMetadata(choice.images, `choice-${String(choice.key).trim().toUpperCase()}-image`, `Hình minh họa đáp án ${String(choice.key).trim().toUpperCase()}`)
     }));
+}
+
+function hasImages(images) {
+  return Array.isArray(images) && images.some((image) => image?.url);
+}
+
+function normalizeImageMetadata(images, idPrefix, defaultAlt) {
+  return (Array.isArray(images) ? images : [])
+    .map((image, index) => ({
+      id: String(image.id || `${idPrefix}-${index + 1}`),
+      url: String(image.url || image.src || '').trim(),
+      width_percent: normalizeWidthPercent(image.width_percent || image.width || 100),
+      alt_text: String(image.alt_text || image.alt || defaultAlt || 'Hình minh họa').trim(),
+      source_url: image.source_url || image.url || ''
+    }))
+    .filter((image) => image.url);
+}
+
+function normalizeWidthPercent(value) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? Math.min(Math.max(Math.round(numeric), 20), 100) : 100;
+}
+
+function inferLayoutTemplate(question, contentImages, choices) {
+  if (choices.some((choice) => hasImages(choice.images))) return 'IMAGE_IN_CHOICES';
+  if ((contentImages || []).length > 0 && String(question.text || '').length > 140) return 'SPLIT_HORIZONTAL_LEFT_IMAGE';
+  return 'STACK_VERTICAL';
+}
+
+function normalizeMisconceptions(question, choices) {
+  const allowedWrongKeys = new Set(
+    choices
+      .map((choice) => choice.key)
+      .filter((key) => key !== String(question.correct_answer || '').trim().toUpperCase())
+  );
+
+  return (Array.isArray(question.misconceptions) ? question.misconceptions : [])
+    .map((item) => ({
+      distractor_key: String(item.distractor_key || item.key || '').trim().toUpperCase(),
+      misconception_name: String(item.misconception_name || item.name || 'Lỗi sai thường gặp').trim(),
+      explanation: String(item.explanation || item.reason || '').trim()
+    }))
+    .filter((item) => allowedWrongKeys.has(item.distractor_key) && item.explanation);
 }
 
 function isImportableQuestion(question) {
@@ -285,9 +330,25 @@ async function main() {
     throw new Error(`Không kết nối được MySQL: ${connection.reason || 'missing_config'}`);
   }
 
+  if (options.grade && !isSupportedGrade(options.grade)) {
+    throw new Error(`--grade chỉ hỗ trợ khối lớp từ ${MIN_GRADE} đến ${MAX_GRADE}.`);
+  }
+
   const lessons = await loadDbLessons();
+  const skippedOutOfScopeLessons = [];
   const crawledLessons = (payload.lessons || [])
-    .filter((lesson) => !options.grade || Number(lesson.grade) === Number(options.grade));
+    .filter((lesson) => {
+      if (!isSupportedGrade(lesson.grade)) {
+        skippedOutOfScopeLessons.push({
+          grade: lesson.grade,
+          title: lesson.title,
+          chapter: lesson.chapter,
+          url: lesson.url
+        });
+        return false;
+      }
+      return !options.grade || Number(lesson.grade) === Number(options.grade);
+    });
 
   if (options.replace) {
     await resetQuestionData();
@@ -302,6 +363,7 @@ async function main() {
     totalCrawledLessons: crawledLessons.length,
     matchedLessons: 0,
     unmatchedLessons: [],
+    skippedOutOfScopeLessons,
     skippedQuestions: [],
     duplicateQuestions: 0,
     insertedQuestions: 0,
@@ -379,22 +441,23 @@ async function main() {
         report.copiedImages += explanationImages.filter((image) => image.url.startsWith('/uploads/images/crawled/')).length;
       }
 
+      const choices = normalizeChoices(question.choices);
       const importPayload = {
         lesson_id: matchedLesson.lesson_id,
         question_type: 'MULTIPLE_CHOICE',
         difficulty: difficultyForIndex(index + 1),
-        layout_template: 'STACK_VERTICAL',
+        layout_template: question.layout_template || inferLayoutTemplate(question, images, choices),
         content: {
           text: contentText,
-          images
+          images: normalizeImageMetadata(images, 'image', 'Hình minh họa đề bài')
         },
-        choices: normalizeChoices(question.choices),
+        choices,
         correct_answer: String(question.correct_answer || '').trim().toUpperCase(),
         explanation: {
           text: String(question.explanation || 'Chưa có lời giải chi tiết.').trim() || 'Chưa có lời giải chi tiết.',
-          images: explanationImages
+          images: normalizeImageMetadata(explanationImages, 'explanation-image', 'Hình minh họa lời giải')
         },
-        misconceptions: []
+        misconceptions: normalizeMisconceptions(question, choices)
       };
 
       if (options.commit) {
@@ -416,6 +479,7 @@ async function main() {
   console.log('Hoàn tất kiểm tra/import câu hỏi crawl.');
   console.log(`Chế độ: ${options.commit ? 'GHI DATABASE' : 'DRY-RUN, chưa ghi database'}`);
   console.log(`Bài match được: ${report.matchedLessons}/${report.totalCrawledLessons}`);
+  console.log(`Bài ngoài phạm vi lớp ${MIN_GRADE}-${MAX_GRADE} đã bỏ qua: ${report.skippedOutOfScopeLessons.length}`);
   console.log(`Bài chưa match: ${report.unmatchedLessons.length}`);
   console.log(`Câu sẽ import: ${report.wouldInsertQuestions}`);
   console.log(`Câu đã import: ${report.insertedQuestions}`);

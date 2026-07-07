@@ -8,7 +8,7 @@ function index(req, res) {
   }
 
   return res.render('home/index', {
-    title: 'Toán Bổ Trợ 1-7'
+    title: 'Toán Bổ Trợ Tiểu học'
   });
 }
 

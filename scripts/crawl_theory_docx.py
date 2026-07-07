@@ -564,7 +564,7 @@ def crawl(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Crawl lý thuyết tóm tắt Toán Cánh Diều 1-7 và xuất DOCX.")
+    parser = argparse.ArgumentParser(description="Crawl lý thuyết tóm tắt Toán Cánh Diều 1-5 và xuất DOCX.")
     parser.add_argument("--limit", type=int, default=0, help="Giới hạn số bài để test.")
     parser.add_argument("--delay", type=float, default=0.12, help="Delay giữa các request bài học.")
     parser.add_argument("--json-output", type=Path, default=DEFAULT_JSON_OUTPUT)

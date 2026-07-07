@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const db = require('../config/db');
 const Question = require('../models/Question');
+const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 
 // Configure API call parameters
 const API_KEY = process.env.NVIDIA_NIM_API_KEY || '';
@@ -33,9 +34,14 @@ async function main() {
   console.log('--- KHỞI ĐỘNG TIẾN TRÌNH TẠO NGÂN HÀNG CÂU HỎI ---');
   console.log(`AI Provider: NVIDIA NIM`);
   console.log(`Model: ${selectedModel}`);
+  if (selectedGrade && !isSupportedGrade(selectedGrade)) {
+    console.error(`Lỗi: chỉ hỗ trợ khối lớp từ ${MIN_GRADE} đến ${MAX_GRADE}.`);
+    process.exit(1);
+  }
+
   if (selectedGrade) console.log(`Khối lớp lựa chọn: Lớp ${selectedGrade}`);
   if (limit) console.log(`Giới hạn số lượng bài học: ${limit}`);
-  if (isDemo) console.log(`Chế độ: Demo (Chọn tối đa 2 bài học đại diện cho mỗi khối lớp từ Lớp 1-7)`);
+  if (isDemo) console.log(`Chế độ: Demo (Chọn tối đa 2 bài học đại diện cho mỗi khối lớp từ Lớp ${MIN_GRADE}-${MAX_GRADE})`);
 
   // Test DB connection
   const connStatus = await db.testConnection();
@@ -53,8 +59,11 @@ async function main() {
   `;
   const queryParams = [];
 
+  querySql += ' WHERE c.grade BETWEEN ? AND ?';
+  queryParams.push(MIN_GRADE, MAX_GRADE);
+
   if (selectedGrade) {
-    querySql += ' WHERE c.grade = ?';
+    querySql += ' AND c.grade = ?';
     queryParams.push(selectedGrade);
   }
 
@@ -147,7 +156,7 @@ async function main() {
 }
 
 async function generateQuestionsWithAI(lesson, model) {
-  const prompt = `Bạn là chuyên gia giáo dục Toán tiểu học và trung học cơ sở Việt Nam (Lớp 1-7).
+  const prompt = `Bạn là chuyên gia giáo dục Toán tiểu học Việt Nam (Lớp ${MIN_GRADE}-${MAX_GRADE}).
 Hãy biên soạn 3 câu hỏi trắc nghiệm Toán học (độ khó: 1 EASY, 1 MEDIUM, 1 HARD) cho bài học sau:
 Lớp: ${lesson.grade}
 Chương: ${lesson.chapter_name}
@@ -161,9 +170,7 @@ Yêu cầu về nội dung và chất lượng câu hỏi:
    - Lớp 3: Nhân/chia trong phạm vi 1000, làm quen số la mã, tính giá trị biểu thức, chu vi hình chữ nhật, hình vuông, làm quen với thống kê.
    - Lớp 4: Các số đến lớp triệu (đọc, viết, cấu tạo số, so sánh), phép nhân/chia số có nhiều chữ số, phân số (rút gọn, quy đồng, cộng, trừ, nhân, chia phân số), tính chất giao hoán/kết hợp.
    - Lớp 5: Số thập phân (đọc, viết, cộng, trừ, nhân, chia), tỉ số phần trăm, diện tích hình tam giác, hình thang, hình tròn, thể tích hình hộp chữ nhật, chuyển động đều.
-   - Lớp 6: Tập hợp, số nguyên, phân số, số thập phân, hình học trực quan, góc, điểm, đường thẳng.
-   - Lớp 7: Số hữu tỉ, số thực, tỉ lệ thức, đại lượng tỉ lệ, biểu thức đại số, tam giác bằng nhau, quan hệ giữa các yếu tố trong tam giác.
-   BẮT BUỘC KHÔNG ĐƯỢC sinh các kiến thức vượt cấp. Ví dụ: Lớp 4 không được dùng phương trình bậc hai, căn bậc hai, lũy thừa lớn, số thực âm. Các phép tính toán phải sử dụng số nguyên đơn giản hoặc phân số/số thập phân đơn giản phù hợp lứa tuổi.
+   BẮT BUỘC KHÔNG ĐƯỢC sinh các kiến thức vượt cấp hoặc kiến thức THCS. Ví dụ: Lớp 4 không được dùng phương trình bậc hai, căn bậc hai, lũy thừa lớn, số thực âm. Các phép tính toán phải sử dụng số nguyên đơn giản hoặc phân số/số thập phân đơn giản phù hợp lứa tuổi.
 2. CHÍNH XÁC TOÁN HỌC: Bạn bắt buộc phải giải nháp và kiểm tra lại từng câu hỏi, từng phương án lựa chọn:
    - Đáp án đúng phải là duy nhất và hoàn toàn chính xác về mặt toán học.
    - Các đáp án nhiễu phải sai rõ ràng nhưng hợp lý (thể hiện được các lỗi tư duy thường gặp).
@@ -185,10 +192,10 @@ JSON Schema mẫu:
       "images": []
     },
     "choices": [
-      { "key": "A", "text": "Phương án A" },
-      { "key": "B", "text": "Phương án B" },
-      { "key": "C", "text": "Phương án C" },
-      { "key": "D", "text": "Phương án D" }
+      { "key": "A", "text": "Phương án A", "images": [] },
+      { "key": "B", "text": "Phương án B", "images": [] },
+      { "key": "C", "text": "Phương án C", "images": [] },
+      { "key": "D", "text": "Phương án D", "images": [] }
     ],
     "correct_answer": "A",
     "explanation": {
@@ -279,7 +286,7 @@ function initializeLatexFile() {
 \\usepackage{geometry}
 \\geometry{a4paper, margin=1in}
 
-\\title{Ngân hàng câu hỏi Toán Lớp 1 - 7}
+\\title{Ngân hàng câu hỏi Toán Tiểu học Lớp 1 - 5}
 \\author{Hệ thống Ôn luyện Toán Bổ Trợ}
 \\date{\\today}
 

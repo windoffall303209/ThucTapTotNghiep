@@ -1,7 +1,7 @@
 {
   "name": "math-revision-ai-tutor",
   "version": "0.1.0",
-  "description": "Website ôn luyện Toán lớp 1-7 tích hợp Socratic AI Tutor.",
+  "description": "Website ôn luyện Toán Tiểu học lớp 1-5 với gợi ý học tập có kiểm soát.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

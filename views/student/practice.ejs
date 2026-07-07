@@ -1,4 +1,4 @@
-<section class="practice-shell" data-session-id="<%= session?.id || '' %>">
+<section class="practice-shell <%= Number(student.current_grade) >= 3 ? '' : 'practice-shell-no-chat' %>" data-session-id="<%= session?.id || '' %>">
   <div class="practice-main">
     <div class="practice-topline">
       <% if (session?.session_mode === 'EXAM') { %>
@@ -46,24 +46,26 @@
     <% } %>
   </div>
 
-  <aside class="ai-chat">
-    <div class="chat-head">
-      <div>
-        <strong>Gia sư AI Socratic</strong>
-        <small>Gợi ý từng bước, không làm thay đáp án</small>
+  <% if (Number(student.current_grade) >= 3) { %>
+    <aside class="ai-chat">
+      <div class="chat-head">
+        <div>
+          <strong>Gợi ý thêm</strong>
+          <small>Chỉ hỗ trợ sau khi em thử làm bài</small>
+        </div>
+        <i data-lucide="sparkles" class="lucide-icon"></i>
       </div>
-      <i data-lucide="sparkles" class="lucide-icon"></i>
-    </div>
-    <div id="chatMessages" class="chat-messages">
-      <div class="chat-message ai">Khi em gặp khó, hãy thử chọn đáp án trước. Sau đó AI sẽ giúp em hiểu vì sao đúng hoặc sai.</div>
-    </div>
-    <form id="aiHelpForm" class="chat-form">
-      <input name="message" placeholder="Ví dụ: Em chưa hiểu bước rút gọn...">
-      <button type="submit" aria-label="Gửi câu hỏi">
-        <i data-lucide="send" class="lucide-icon"></i>
-      </button>
-    </form>
-  </aside>
+      <div id="chatMessages" class="chat-messages">
+        <div class="chat-message ai">Khi em gặp khó, hãy thử chọn đáp án trước. Sau đó hệ thống sẽ giúp em hiểu vì sao đúng hoặc sai.</div>
+      </div>
+      <form id="aiHelpForm" class="chat-form">
+        <input name="message" placeholder="Ví dụ: Em chưa hiểu bước rút gọn...">
+        <button type="submit" aria-label="Gửi câu hỏi">
+          <i data-lucide="send" class="lucide-icon"></i>
+        </button>
+      </form>
+    </aside>
+  <% } %>
 </section>
 
 <script id="practice-data" type="application/json"><%- JSON.stringify(questions) %></script>

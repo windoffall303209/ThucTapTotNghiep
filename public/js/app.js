@@ -161,17 +161,10 @@
       counter.textContent = `Câu ${state.currentIndex + 1}/${state.questions.length}`;
     }
 
-    const choices = question.choices.map((choice) => `
-      <button class="answer-choice" type="button" data-answer="${escapeHtml(choice.key)}">
-        <span>${escapeHtml(choice.key)}</span>
-        <strong>${escapeHtml(choice.text)}</strong>
-      </button>
-    `).join('');
-
     app.innerHTML = `
       <article class="question-card" data-question-id="${question.id}">
-        <div class="question-content math-content">${renderQuestionContent(question.content)}</div>
-        <div class="answer-grid">${choices}</div>
+        <div class="question-content math-content">${renderQuestionContent(question)}</div>
+        <div class="answer-grid ${answerGridClass(question)}">${renderChoices(question)}</div>
       </article>
     `;
 
@@ -327,7 +320,7 @@
         : result.message || 'Mình chưa hỗ trợ được lúc này. Em thử lại sau nhé.';
       updateChat(thinkingNode, reply);
     } catch (error) {
-      updateChat(thinkingNode, 'Mình chưa kết nối được gia sư AI lúc này. Em thử gửi lại sau nhé.');
+      updateChat(thinkingNode, 'Mình chưa kết nối được phần gợi ý lúc này. Em thử gửi lại sau nhé.');
     } finally {
       input.disabled = false;
       if (button) button.disabled = false;
@@ -413,8 +406,8 @@
         const result = await response.json();
 
         replyBox.hidden = false;
-        replyBox.textContent = result.reply || 'Chưa có phản hồi.';
-        button.innerHTML = '<i data-lucide="message-circle" class="lucide-icon"></i> Nhờ AI giải thích';
+        replyBox.textContent = result.reply || result.message || 'Chưa có phản hồi.';
+        button.innerHTML = '<i data-lucide="message-circle" class="lucide-icon"></i> Gợi ý thêm';
         button.disabled = false;
         refreshIcons();
       });
@@ -437,72 +430,51 @@
         }
 
         form.dataset.questionPreviewReady = 'true';
-        const preview = form.querySelector('[data-question-preview]');
-        const contentInput = form.querySelector('[data-preview-content]');
-        if (!preview || !contentInput) return;
-
-        const imageInput = form.querySelector('[data-preview-images]');
-        const imageWidthInput = form.querySelector('[data-preview-image-width]');
-        const imageAltInput = form.querySelector('[data-preview-image-alt]');
-        const placeholderList = form.querySelector('[data-preview-placeholder-list]');
-
-        const updatePreview = () => {
-          const choices = Array.from(form.querySelectorAll('[data-preview-choice]')).map((input) => ({
-            key: input.dataset.previewChoice,
-            text: input.value || 'Chưa nhập đáp án'
-          }));
-          const images = getPreviewImages(imageInput, imageWidthInput, imageAltInput);
-          const previewText = ensurePreviewPlaceholders(contentInput.value || 'Đề bài sẽ hiển thị tại đây.', images);
-
-          if (placeholderList) {
-            placeholderList.hidden = images.length === 0;
-            placeholderList.innerHTML = images.map((image) => `
-              <span>${escapeHtml(`[${image.id}]`)}</span>
-            `).join('');
-          }
-
-          preview.innerHTML = `
-            <div class="question-content">${renderQuestionContent({ text: previewText, images })}</div>
-            <div class="answer-grid">
-              ${choices.map((choice) => `
-                <div class="answer-choice preview-choice">
-                  <span>${escapeHtml(choice.key)}</span>
-                  <strong>${escapeHtml(choice.text)}</strong>
-                </div>
-              `).join('')}
-            </div>
-          `;
-          renderMath(preview);
-        };
-
-        form.querySelectorAll('[data-preview-content], [data-preview-choice]').forEach((input) => {
-          input.addEventListener('input', updatePreview);
-        });
-        [imageInput, imageWidthInput, imageAltInput].forEach((input) => {
-          input?.addEventListener('input', updatePreview);
-          input?.addEventListener('change', updatePreview);
-        });
-        form.addEventListener('reset', () => window.setTimeout(updatePreview, 0));
-        updatePreview();
+        initQuestionPreviewForm(form);
       });
       return;
     }
 
-    const preview = root.querySelector('#adminQuestionPreview');
-    const contentInput = root.querySelector('[data-preview-source="content"]');
+    const legacyPreview = root.querySelector('#adminQuestionPreview');
+    const legacyContentInput = root.querySelector('[data-preview-source="content"]');
+    if (legacyPreview && legacyContentInput) {
+      initQuestionPreviewForm(root, {
+        preview: legacyPreview,
+        contentInput: legacyContentInput,
+        placeholderList: root.querySelector('#imagePlaceholderList')
+      });
+    }
+  }
+
+  function initQuestionPreviewForm(form, overrides = {}) {
+    const preview = overrides.preview || form.querySelector('[data-question-preview]');
+    const contentInput = overrides.contentInput || form.querySelector('[data-preview-content]') || form.querySelector('[data-preview-source="content"]');
     if (!preview || !contentInput) return;
-    const imageInput = root.querySelector('[data-preview-images]');
-    const imageWidthInput = root.querySelector('[data-preview-image-width]');
-    const imageAltInput = root.querySelector('[data-preview-image-alt]');
-    const placeholderList = root.querySelector('#imagePlaceholderList');
+
+    const imageInput = form.querySelector('[data-preview-images]');
+    const imageWidthInput = form.querySelector('[data-preview-image-width]');
+    const imageAltInput = form.querySelector('[data-preview-image-alt]');
+    const existingImagesInput = form.querySelector('[data-preview-existing-images]');
+    const placeholderList = overrides.placeholderList || form.querySelector('[data-preview-placeholder-list]');
+    const layoutInput = form.querySelector('[name="layout_template"]');
 
     const updatePreview = () => {
-      const choices = Array.from(root.querySelectorAll('[data-preview-choice]')).map((input) => ({
-        key: input.dataset.previewChoice,
-        text: input.value || 'Chưa nhập đáp án'
-      }));
-      const images = getPreviewImages(imageInput, imageWidthInput, imageAltInput);
-      const previewText = ensurePreviewPlaceholders(contentInput.value || 'Đề bài sẽ hiển thị tại đây.', images);
+      const allExistingImages = parsePreviewImages(existingImagesInput?.value);
+      const existingImages = allExistingImages
+        .filter((image) => !isImageMarkedForRemoval(form, 'remove_question_images', image));
+      const uploadImages = getPreviewImages(imageInput, imageWidthInput, imageAltInput, {
+        startIndex: maxPreviewImageIndex(existingImages, 'image')
+      });
+      const images = [...existingImages, ...uploadImages];
+      const previewText = ensurePreviewPlaceholders(
+        stripRemovedPreviewPlaceholders(contentInput.value || 'Đề bài sẽ hiển thị tại đây.', allExistingImages, form, 'remove_question_images'),
+        uploadImages
+      );
+      const question = {
+        layout_template: layoutInput?.value || 'STACK_VERTICAL',
+        content: { text: previewText, images },
+        choices: collectPreviewChoices(form)
+      };
 
       if (placeholderList) {
         placeholderList.hidden = images.length === 0;
@@ -512,26 +484,32 @@
       }
 
       preview.innerHTML = `
-        <div class="question-content">${renderQuestionContent({ text: previewText, images })}</div>
-        <div class="answer-grid">
-          ${choices.map((choice) => `
-            <div class="answer-choice preview-choice">
-              <span>${escapeHtml(choice.key)}</span>
-              <strong>${escapeHtml(choice.text)}</strong>
-            </div>
-          `).join('')}
+        <div class="question-content">${renderQuestionContent(question)}</div>
+        <div class="answer-grid ${answerGridClass(question)}">
+          ${renderChoices(question, { preview: true })}
         </div>
       `;
       renderMath(preview);
     };
 
-    root.querySelectorAll('[data-preview-source], [data-preview-choice]').forEach((input) => {
+    form.querySelectorAll([
+      '[data-preview-content]',
+      '[data-preview-source]',
+      '[data-preview-choice]',
+      '[data-preview-images]',
+      '[data-preview-image-width]',
+      '[data-preview-image-alt]',
+      '[data-preview-choice-images]',
+      '[data-preview-choice-image-width]',
+      '[data-preview-choice-image-alt]',
+      '[name="layout_template"]',
+      '[name="remove_question_images"]',
+      '[name^="remove_choice_images_"]'
+    ].join(',')).forEach((input) => {
       input.addEventListener('input', updatePreview);
+      input.addEventListener('change', updatePreview);
     });
-    [imageInput, imageWidthInput, imageAltInput].forEach((input) => {
-      input?.addEventListener('input', updatePreview);
-      input?.addEventListener('change', updatePreview);
-    });
+    form.addEventListener?.('reset', () => window.setTimeout(updatePreview, 0));
     updatePreview();
   }
 
@@ -655,8 +633,10 @@
     const existingImagesInput = form.querySelector('[data-theory-existing-images]');
 
     const updatePreview = () => {
-      const existingImages = parsePreviewImages(existingImagesInput?.value);
+      const existingImages = parsePreviewImages(existingImagesInput?.value)
+        .filter((image) => !isImageMarkedForRemoval(form, 'remove_theory_images', image));
       const uploadImages = Array.from(imageInput?.files || []).map((file, index) => ({
+        id: `theory-preview-image-${existingImages.length + index + 1}`,
         url: URL.createObjectURL(file),
         alt_text: file.name || `Ảnh minh họa ${index + 1}`
       }));
@@ -671,7 +651,7 @@
       refreshIcons();
     };
 
-    form.querySelectorAll('[data-theory-title], [data-theory-body], [data-theory-example], [data-theory-images]').forEach((input) => {
+    form.querySelectorAll('[data-theory-title], [data-theory-body], [data-theory-example], [data-theory-images], [name="remove_theory_images"]').forEach((input) => {
       input.addEventListener('input', updatePreview);
       input.addEventListener('change', updatePreview);
     });
@@ -921,78 +901,195 @@
     });
   }
 
-  function getPreviewImages(imageInput, imageWidthInput, imageAltInput) {
+  function getPreviewImages(imageInput, imageWidthInput, imageAltInput, options = {}) {
     const files = Array.from(imageInput?.files || []);
-    const width = Number(imageWidthInput?.value || 70);
-    const altText = imageAltInput?.value || 'Hình minh họa';
+    const width = Number(imageWidthInput?.value || options.defaultWidth || 70);
+    const altText = imageAltInput?.value || options.defaultAlt || 'Hình minh họa';
+    const idPrefix = options.idPrefix || 'image';
+    const startIndex = Number(options.startIndex || 0);
 
     return files.map((file, index) => ({
-      id: `image-${index + 1}`,
+      id: `${idPrefix}-${startIndex + index + 1}`,
       url: URL.createObjectURL(file),
-      width_percent: Number.isFinite(width) ? width : 70,
+      width_percent: Number.isFinite(width) ? Math.min(Math.max(width, 20), 100) : 70,
       alt_text: files.length === 1 ? altText : `${altText} ${index + 1}`
     }));
   }
 
-  function ensurePreviewPlaceholders(text, images) {
-    return text || '';
+  function collectPreviewChoices(form) {
+    return Array.from(form.querySelectorAll('[data-preview-choice]')).map((input) => {
+      const key = input.dataset.previewChoice;
+      const existingInput = form.querySelector(`[data-preview-choice-existing-images="${key}"]`);
+      const existingImages = parsePreviewImages(existingInput?.value)
+        .filter((image) => !isImageMarkedForRemoval(form, `remove_choice_images_${key}`, image));
+      const uploadImages = getPreviewImages(
+        form.querySelector(`[data-preview-choice-images="${key}"]`),
+        form.querySelector(`[data-preview-choice-image-width="${key}"]`),
+        form.querySelector(`[data-preview-choice-image-alt="${key}"]`),
+        {
+          idPrefix: `choice-${key}-image`,
+          startIndex: maxPreviewImageIndex(existingImages, `choice-${key}-image`),
+          defaultWidth: 100,
+          defaultAlt: `Hình minh họa đáp án ${key}`
+        }
+      );
+
+      return {
+        key,
+        text: input.value || 'Chưa nhập đáp án',
+        images: [...existingImages, ...uploadImages]
+      };
+    });
   }
 
-  function renderQuestionContent(content) {
-    const previewImages = Array.isArray(content?.images) ? content.images : [];
-    let textValue = String(content?.text || '');
+  function ensurePreviewPlaceholders(text, images) {
+    let value = text || '';
+    images.forEach((image) => {
+      if (image.id && !value.includes(`[${image.id}]`)) {
+        value = `${value}\n\n[${image.id}]`;
+      }
+    });
+    return value;
+  }
 
-    previewImages.forEach((image) => {
-      textValue = textValue.replaceAll(`[${image.id}]`, '');
+  function isImageMarkedForRemoval(form, fieldName, image) {
+    const id = String(image?.id || image?.url || '');
+    if (!id) return false;
+    return Array.from(form.querySelectorAll(`[name="${fieldName}"]:checked`))
+      .some((input) => input.value === id);
+  }
+
+  function stripRemovedPreviewPlaceholders(text, images, form, fieldName) {
+    let value = text || '';
+    images.forEach((image) => {
+      if (isImageMarkedForRemoval(form, fieldName, image) && image.id) {
+        value = value.replaceAll(`[${image.id}]`, '');
+      }
+    });
+    return value;
+  }
+
+  function maxPreviewImageIndex(images, idPrefix) {
+    const pattern = new RegExp(`^${escapeRegExp(idPrefix)}-(\\d+)$`);
+    return (images || []).reduce((max, image) => {
+      const match = String(image?.id || '').match(pattern);
+      return match ? Math.max(max, Number(match[1]) || 0) : max;
+    }, 0);
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function normalizeImagesForRender(images) {
+    return (Array.isArray(images) ? images : [])
+      .map((image, index) => ({
+        id: String(image?.id || `image-${index + 1}`),
+        url: String(image?.url || image?.src || image?.image_url || ''),
+        width_percent: Number(image?.width_percent || image?.width || 100),
+        alt_text: String(image?.alt_text || image?.alt || 'Hình minh họa')
+      }))
+      .filter((image) => image.url);
+  }
+
+  function renderImageNode(image, fallbackAlt = 'Hình minh họa') {
+    const width = Number(image.width_percent || 100);
+    return `
+      <span class="question-image" style="max-width:${Math.min(Math.max(width, 20), 100)}%">
+        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || fallbackAlt)}" loading="lazy" decoding="async">
+      </span>
+    `;
+  }
+
+  function renderImageRow(images, className = 'question-image-row', fallbackAlt = 'Hình minh họa') {
+    const html = normalizeImagesForRender(images).map((image) => renderImageNode(image, fallbackAlt)).join('');
+    return html ? `<div class="${className}">${html}</div>` : '';
+  }
+
+  function renderTextWithImagePlaceholders(text, images, fallbackAlt = 'Hình minh họa') {
+    const normalizedImages = normalizeImagesForRender(images);
+    let html = escapeHtml(text || '');
+    const usedImageIds = new Set();
+
+    normalizedImages.forEach((image) => {
+      const placeholder = escapeHtml(`[${image.id}]`);
+      if (!html.includes(placeholder)) return;
+      html = html.replaceAll(placeholder, renderImageNode(image, fallbackAlt));
+      usedImageIds.add(image.id);
     });
 
-    const textHtml = escapeHtml(textValue).replace(/\r?\n/g, '<br>');
-    const imagesHtml = previewImages.map((image) => {
-      const width = Number(image.width_percent || 100);
-      return `
-        <span class="question-image" style="max-width:${Math.min(Math.max(width, 20), 100)}%">
-          <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa')}" loading="lazy" decoding="async">
-        </span>
-      `;
-    }).join('');
+    const textHtml = html.replace(/\r?\n/g, '<br>');
+    const missingImages = normalizedImages.filter((image) => !usedImageIds.has(image.id));
 
     return `
       <div class="question-text-row">${textHtml}</div>
-      ${imagesHtml ? `<div class="question-image-row">${imagesHtml}</div>` : ''}
+      ${renderImageRow(missingImages, 'question-image-row', fallbackAlt)}
     `;
+  }
 
-    let rawText = escapeHtml(content?.text || '');
-    const images = Array.isArray(content?.images) ? content.images : [];
-
-    images.forEach((image) => {
-      const width = Number(image.width_percent || 100);
-      const imageHtml = `
-        <span class="question-image" style="max-width:${Math.min(Math.max(width, 20), 100)}%">
-          <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa')}" loading="lazy" decoding="async">
-        </span>
-      `;
-      rawText = rawText.replace(`[${escapeHtml(image.id)}]`, imageHtml);
+  function stripImagePlaceholders(text, images) {
+    let value = String(text || '');
+    normalizeImagesForRender(images).forEach((image) => {
+      value = value.replaceAll(`[${image.id}]`, '');
     });
+    return value;
+  }
 
-    return rawText;
+  function renderQuestionContent(questionOrContent) {
+    const question = questionOrContent && questionOrContent.content
+      ? questionOrContent
+      : { content: questionOrContent || {}, layout_template: 'STACK_VERTICAL' };
+    const content = question.content || {};
+    const images = normalizeImagesForRender(content.images);
+    const layout = question.layout_template || 'STACK_VERTICAL';
+
+    if (layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' || layout === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') {
+      const imagePanel = renderImageRow(images, 'question-image-row split-image-row', 'Hình minh họa đề bài');
+      const textPanel = `<div class="question-text-row">${escapeHtml(stripImagePlaceholders(content.text, images)).replace(/\r?\n/g, '<br>')}</div>`;
+      return `
+        <div class="question-split-layout ${layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' ? 'image-left' : 'image-right'}">
+          ${layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' ? `${imagePanel}${textPanel}` : `${textPanel}${imagePanel}`}
+        </div>
+      `;
+    }
+
+    return renderTextWithImagePlaceholders(content.text, images, 'Hình minh họa đề bài');
+  }
+
+  function answerGridClass(question) {
+    return question?.layout_template === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '';
+  }
+
+  function renderChoices(question, options = {}) {
+    return (question.choices || []).map((choice) => {
+      const tag = options.preview ? 'div' : 'button';
+      const typeAttr = options.preview ? '' : ' type="button"';
+      const previewClass = options.preview ? ' preview-choice' : '';
+      const images = renderImageRow(choice.images, 'choice-image-row', `Hình minh họa đáp án ${choice.key}`);
+      const text = choice.text ? `<strong>${escapeHtml(choice.text)}</strong>` : '<strong class="muted">Đáp án bằng hình ảnh</strong>';
+      return `
+        <${tag} class="answer-choice${previewClass}"${typeAttr} data-answer="${escapeAttribute(choice.key)}">
+          <span>${escapeHtml(choice.key)}</span>
+          <div class="choice-body">
+            ${text}
+            ${images}
+          </div>
+        </${tag}>
+      `;
+    }).join('');
   }
 
   function renderExplanationContent(explanation) {
-    const images = Array.isArray(explanation?.images) ? explanation.images : [];
-    const imagesHtml = images.map((image) => {
-      const width = Number(image.width_percent || 100);
-      return `
-        <span class="question-image" style="max-width:${Math.min(Math.max(width, 20), 100)}%">
-          <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || image.alt || 'Hình minh họa lời giải')}" loading="lazy" decoding="async">
-        </span>
-      `;
-    }).join('');
+    const images = normalizeImagesForRender(explanation?.images);
     const text = String(explanation?.text || '').trim();
-    const textHtml = text ? `<div class="explanation-text math-content">${escapeHtml(text).replace(/\r?\n/g, '<br>')}</div>` : '';
+    const steps = Array.isArray(explanation?.steps) && explanation.steps.length
+      ? `<ol>${explanation.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>`
+      : '';
+    const textHtml = text ? `<div class="explanation-text math-content">${renderTextWithImagePlaceholders(text, images, 'Hình minh họa lời giải')}</div>` : '';
 
     return `
-      ${imagesHtml ? `<div class="explanation-image-row">${imagesHtml}</div>` : ''}
-      ${textHtml}
+      ${textHtml || renderImageRow(images, 'explanation-image-row', 'Hình minh họa lời giải')}
+      ${steps}
     `;
   }
 

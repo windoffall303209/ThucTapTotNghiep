@@ -17,9 +17,38 @@
     return current === value ? 'selected' : '';
   }
 
+  const misconceptionByKey = new Map((misconceptions || []).map((item) => [item.distractor_key, item]));
+  const questionImages = Array.isArray(question.content && question.content.images) ? question.content.images : [];
+  const explanationImages = Array.isArray(question.explanation && question.explanation.images) ? question.explanation.images : [];
+
+  function choiceFor(question, key) {
+    return (question.choices || []).find((item) => item.key === key) || { key, text: '', images: [] };
+  }
+
   function choiceText(question, key) {
-    const choice = (question.choices || []).find((item) => item.key === key);
-    return choice ? choice.text : '';
+    return choiceFor(question, key).text || '';
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function imageThumbs(images) {
+    if (!Array.isArray(images) || images.length === 0) return '';
+    return images.map((image) => `
+      <span class="question-image choice-existing-image">
+        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa đáp án')}" loading="lazy" decoding="async">
+      </span>
+    `).join('');
   }
 
   function questionText(question) {
@@ -55,6 +84,7 @@
     Đề bài
     <textarea name="content_text" rows="5" required data-preview-content><%= questionText(question) %></textarea>
   </label>
+  <input type="hidden" data-preview-existing-images value="<%- escapeAttribute(JSON.stringify(questionImages)) %>">
 
   <fieldset class="choice-fieldset image-fieldset">
     <legend>Ảnh trong đề bài</legend>
@@ -72,8 +102,19 @@
         <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
       </label>
     </div>
-    <% if (question.content && question.content.images && question.content.images.length > 0) { %>
-      <p class="muted">Câu hỏi hiện có <%= question.content.images.length %> ảnh. Ảnh mới sẽ được thêm vào cuối đề bài.</p>
+    <% if (questionImages.length > 0) { %>
+      <div class="choice-existing-images">
+        <span class="form-note">Ảnh đề bài hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+        <% questionImages.forEach((image) => { %>
+          <label class="image-keep-option">
+            <input type="checkbox" name="remove_question_images" value="<%= image.id || image.url %>" data-preview-remove-image>
+            <span>Xóa</span>
+            <span class="question-image choice-existing-image">
+              <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa đề bài' %>" loading="lazy" decoding="async">
+            </span>
+          </label>
+        <% }) %>
+      </div>
     <% } %>
   </fieldset>
 
@@ -99,19 +140,54 @@
   <fieldset class="choice-fieldset">
     <legend>Phương án trả lời</legend>
     <% answerKeys.forEach((key) => { %>
+      <% const choice = choiceFor(question, key); %>
+      <% const choiceImages = Array.isArray(choice.images) ? choice.images : []; %>
+      <% const misconception = misconceptionByKey.get(key) || {}; %>
       <div class="choice-editor">
         <label class="choice-input">
           <span><%= key %></span>
-          <input name="choice_<%= key %>" value="<%= choiceText(question, key) %>" required data-preview-choice="<%= key %>">
+          <input name="choice_<%= key %>" value="<%= choice.text || '' %>" data-preview-choice="<%= key %>" placeholder="Nội dung đáp án <%= key %>">
         </label>
+        <input type="hidden" data-preview-choice-existing-images="<%= key %>" value="<%- escapeAttribute(JSON.stringify(choiceImages)) %>">
+        <% if (choiceImages.length > 0) { %>
+          <div class="choice-existing-images">
+            <span class="form-note">Ảnh đáp án hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+            <% choiceImages.forEach((image) => { %>
+              <label class="image-keep-option">
+                <input type="checkbox" name="remove_choice_images_<%= key %>" value="<%= image.id || image.url %>" data-preview-remove-image>
+                <span>Xóa</span>
+                <span class="question-image choice-existing-image">
+                  <img src="<%= image.url %>" alt="<%= image.alt_text || `Hình minh họa đáp án ${key}` %>" loading="lazy" decoding="async">
+                </span>
+              </label>
+            <% }) %>
+          </div>
+        <% } %>
+        <fieldset class="choice-fieldset image-fieldset choice-image-upload">
+          <legend>Ảnh đáp án <%= key %></legend>
+          <label>
+            Thêm ảnh cho đáp án <%= key %>
+            <input type="file" name="choice_image_<%= key %>" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-choice-images="<%= key %>">
+          </label>
+          <div class="two-fields">
+            <label>
+              Độ rộng ảnh mới (%)
+              <input type="number" name="choice_image_width_percent_<%= key %>" min="20" max="100" value="100" data-preview-choice-image-width="<%= key %>">
+            </label>
+            <label>
+              Mô tả ảnh mới
+              <input name="choice_image_alt_text_<%= key %>" placeholder="Ví dụ: Hình minh họa đáp án <%= key %>" data-preview-choice-image-alt="<%= key %>">
+            </label>
+          </div>
+        </fieldset>
         <div class="two-fields">
           <label>
             Tên lỗi sai <%= key %>
-            <input name="misconception_name_<%= key %>" placeholder="Ví dụ: Nhầm quy tắc">
+            <input name="misconception_name_<%= key %>" value="<%= misconception.misconception_name || '' %>" placeholder="Ví dụ: Nhầm quy tắc">
           </label>
           <label>
             Giải thích lỗi sai <%= key %>
-            <input name="misconception_<%= key %>" placeholder="Chỉ nhập nếu <%= key %> là đáp án sai">
+            <input name="misconception_<%= key %>" value="<%= misconception.explanation || '' %>" placeholder="Chỉ nhập nếu <%= key %> là đáp án sai">
           </label>
         </div>
       </div>
@@ -148,8 +224,19 @@
         <input name="explanation_image_alt_text" placeholder="Ví dụ: Hình minh họa lời giải">
       </label>
     </div>
-    <% if (question.explanation && question.explanation.images && question.explanation.images.length > 0) { %>
-      <p class="muted">Câu hỏi hiện có <%= question.explanation.images.length %> ảnh trong lời giải. Ảnh mới sẽ được thêm vào cuối phần lời giải.</p>
+    <% if (explanationImages.length > 0) { %>
+      <div class="choice-existing-images">
+        <span class="form-note">Ảnh lời giải hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+        <% explanationImages.forEach((image) => { %>
+          <label class="image-keep-option">
+            <input type="checkbox" name="remove_explanation_images" value="<%= image.id || image.url %>">
+            <span>Xóa</span>
+            <span class="question-image choice-existing-image">
+              <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lời giải' %>" loading="lazy" decoding="async">
+            </span>
+          </label>
+        <% }) %>
+      </div>
     <% } %>
   </fieldset>
 

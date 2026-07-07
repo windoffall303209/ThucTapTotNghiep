@@ -7,12 +7,17 @@
     chatsByQuestion.get(key).push(chat);
   });
 
-  function escapeAttribute(value) {
+  function escapeHtml(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
       .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
   }
 
   function imageHtml(image, fallbackAlt) {
@@ -24,9 +29,32 @@
     `;
   }
 
-  function imageRowHtml(images, fallbackAlt) {
+  function imageRowHtml(images, fallbackAlt, className = 'explanation-image-row') {
     if (!Array.isArray(images) || images.length === 0) return '';
-    return `<div class="explanation-image-row">${images.map((image) => imageHtml(image, fallbackAlt)).join('')}</div>`;
+    return `<div class="${className}">${images.map((image) => imageHtml(image, fallbackAlt)).join('')}</div>`;
+  }
+
+  function questionLayoutClass(question) {
+    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') return 'question-split-layout image-left';
+    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') return 'question-split-layout image-right';
+    return '';
+  }
+
+  function questionContentHtml(question) {
+    const content = question.content || {};
+    const images = Array.isArray(content.images) ? content.images : [];
+    let rawText = String(content.text || '');
+
+    images.forEach((image) => {
+      rawText = rawText.replaceAll(`[${image.id}]`, '');
+    });
+
+    const textHtml = `<div class="question-text-row">${escapeHtml(rawText).replace(/\r?\n/g, '<br>')}</div>`;
+    const imageHtmlBlock = imageRowHtml(images, 'Hình minh họa đề bài', 'question-image-row split-image-row');
+
+    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') return `<div class="${questionLayoutClass(question)}">${imageHtmlBlock}${textHtml}</div>`;
+    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') return `<div class="${questionLayoutClass(question)}">${textHtml}${imageHtmlBlock}</div>`;
+    return `${textHtml}${imageRowHtml(images, 'Hình minh họa đề bài', 'question-image-row')}`;
   }
 
   const answeredCount = (answers || []).length;
@@ -84,9 +112,9 @@
   <div>
     <div class="section-title">
       <i data-lucide="message-circle" class="lucide-icon"></i>
-      Chat AI
+      Gợi ý thêm
     </div>
-    <p>Các trao đổi với AI được lưu theo từng câu để em xem lại cách được gợi ý.</p>
+    <p>Các trao đổi gợi ý thêm được lưu theo từng câu để em xem lại cách được hướng dẫn.</p>
   </div>
 </section>
 
@@ -99,12 +127,15 @@
         <i data-lucide="circle-help" class="lucide-icon"></i>
         Câu <%= index + 1 %>
       </div>
-      <div class="question-content math-content"><%= question.content?.text || '' %></div>
-      <div class="answer-grid review-answer-grid">
+      <div class="question-content math-content"><%- questionContentHtml(question) %></div>
+      <div class="answer-grid review-answer-grid <%= question.layout_template === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
         <% question.choices.forEach((choice) => { %>
           <div class="answer-choice preview-choice <%= choice.key === question.correct_answer ? 'correct' : '' %> <%= answer && choice.key === answer.selected_answer && Number(answer.is_correct) !== 1 ? 'wrong' : '' %>">
             <span><%= choice.key %></span>
-            <strong><%= choice.text %></strong>
+            <div class="choice-body">
+              <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
+              <%- imageRowHtml(choice.images || [], `Hình minh họa đáp án ${choice.key}`, 'choice-image-row') %>
+            </div>
           </div>
         <% }) %>
       </div>
@@ -128,7 +159,7 @@
       <% } %>
       <% if (questionChats.length > 0) { %>
         <div class="review-chat">
-          <strong>Trao đổi với AI trong câu này</strong>
+          <strong>Trao đổi gợi ý thêm trong câu này</strong>
           <% questionChats.forEach((chat) => { %>
             <div class="chat-message <%= chat.role === 'student' ? 'student' : 'ai' %>"><%= chat.message %></div>
           <% }) %>

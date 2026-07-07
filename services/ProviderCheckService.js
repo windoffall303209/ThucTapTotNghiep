@@ -254,7 +254,7 @@ function buildAuthHeaders(apiKey, provider) {
     Authorization: `Bearer ${apiKey}`,
     ...(provider === 'openrouter' ? {
       'HTTP-Referer': 'http://localhost:3000',
-      'X-Title': 'Toán Bổ Trợ 1-7'
+      'X-Title': 'Toán Bổ Trợ Tiểu học'
     } : {})
   };
 }

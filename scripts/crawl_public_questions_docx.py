@@ -495,7 +495,7 @@ def parse_grades(value):
 
 def main():
     parser = argparse.ArgumentParser(description="Crawl câu hỏi công khai và xuất file Word để duyệt.")
-    parser.add_argument("--grades", default="1-7", help="Ví dụ: 1-7 hoặc 3,4,5")
+    parser.add_argument("--grades", default="1-5", help="Ví dụ: 1-5 hoặc 3,4,5")
     parser.add_argument("--max-lessons", type=int, default=0, help="Giới hạn số bài để test. 0 là không giới hạn.")
     parser.add_argument("--max-questions-per-lesson", type=int, default=0, help="Giới hạn câu mỗi bài. 0 là không giới hạn.")
     parser.add_argument("--delay", type=float, default=0.35, help="Độ trễ giữa các request.")

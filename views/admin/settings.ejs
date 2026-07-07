@@ -34,8 +34,8 @@
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Cấu hình hệ thống</p>
-    <h1>AI Tutor & lưu trữ ảnh</h1>
-    <p>Quản lý provider AI, timeout xử lý và Cloudinary. Secret đang được mask; để trống nếu muốn giữ giá trị cũ.</p>
+    <h1>Gợi ý học tập & lưu trữ ảnh</h1>
+    <p>Quản lý provider gợi ý, policy sử dụng, timeout xử lý và Cloudinary. Secret đang được mask; để trống nếu muốn giữ giá trị cũ.</p>
   </div>
 </section>
 
@@ -50,7 +50,7 @@
       <label>
         AI automation
         <select name="ai_automation_enabled">
-          <option value="true" <%= settings.ai_automation_enabled !== 'false' ? 'selected' : '' %>>Bật AI Tutor</option>
+          <option value="true" <%= settings.ai_automation_enabled !== 'false' ? 'selected' : '' %>>Bật gợi ý thêm</option>
           <option value="false" <%= settings.ai_automation_enabled === 'false' ? 'selected' : '' %>>Tắt, dùng fallback nội bộ</option>
         </select>
       </label>
@@ -59,7 +59,30 @@
         <input name="ai_json_timeout_ms" value="<%= settings.ai_json_timeout_ms %>" placeholder="12000">
       </label>
     </div>
-    <p class="form-note">Các cấu hình này ảnh hưởng tới gợi ý AI trong lý thuyết, luyện tập và kiểm tra provider.</p>
+    <div class="two-fields">
+      <label>
+        Khối lớp được bật gợi ý
+        <input name="ai_enabled_grades" value="<%= settings.ai_enabled_grades || '3,4,5' %>" placeholder="3,4,5">
+      </label>
+      <label>
+        Cần nộp đáp án trước khi hỏi
+        <select name="ai_require_answer_before_help">
+          <option value="true" <%= settings.ai_require_answer_before_help !== 'false' ? 'selected' : '' %>>Có</option>
+          <option value="false" <%= settings.ai_require_answer_before_help === 'false' ? 'selected' : '' %>>Không</option>
+        </select>
+      </label>
+    </div>
+    <div class="two-fields">
+      <label>
+        Số gợi ý tối đa / câu
+        <input name="ai_max_hints_per_question" value="<%= settings.ai_max_hints_per_question || '2' %>" placeholder="2">
+      </label>
+      <label>
+        Số gợi ý tối đa / phiên
+        <input name="ai_max_hints_per_session" value="<%= settings.ai_max_hints_per_session || '8' %>" placeholder="8">
+      </label>
+    </div>
+    <p class="form-note">Các cấu hình này ảnh hưởng tới gợi ý thêm trong lý thuyết, luyện tập và kiểm tra provider.</p>
     <div class="settings-actions">
       <button class="btn btn-primary" type="submit">
         <i data-lucide="save" class="lucide-icon"></i>

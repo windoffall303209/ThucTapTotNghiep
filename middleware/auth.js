@@ -1,8 +1,18 @@
+const { GRADE_RANGE_LABEL, isSupportedGrade } = require('../config/grades');
+
 function requireStudent(req, res, next) {
   if (!req.auth || req.auth.role !== 'student') {
     req.session.flash = {
       type: 'warning',
       message: 'Vui lòng đăng nhập để tiếp tục học tập.'
+    };
+    return res.redirect('/auth/login');
+  }
+
+  if (!isSupportedGrade(req.auth.current_grade)) {
+    req.session.flash = {
+      type: 'danger',
+      message: `Tài khoản đang có khối học ngoài phạm vi ${GRADE_RANGE_LABEL}. Vui lòng liên hệ quản trị viên để cập nhật.`
     };
     return res.redirect('/auth/login');
   }

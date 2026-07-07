@@ -4,6 +4,8 @@ USE webonluyen;
 -- Disable foreign key checks temporarily to drop tables in any order
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS AIConversationLogs;
+DROP TABLE IF EXISTS PracticeSessionChats;
+DROP TABLE IF EXISTS PracticeSessions;
 DROP TABLE IF EXISTS StudentLogs;
 DROP TABLE IF EXISTS CommonMisconceptions;
 DROP TABLE IF EXISTS QuestionBank;
@@ -44,8 +46,8 @@ CREATE TABLE Students (
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
-    registered_grade INT NOT NULL CHECK (registered_grade BETWEEN 1 AND 7),
-    current_grade INT NOT NULL CHECK (current_grade BETWEEN 1 AND 7),
+    registered_grade INT NOT NULL CHECK (registered_grade BETWEEN 1 AND 5),
+    current_grade INT NOT NULL CHECK (current_grade BETWEEN 1 AND 5),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -56,7 +58,7 @@ CREATE INDEX idx_students_current_grade ON Students(current_grade);
 -- 4. Table: Chapters (Quản lý Chương học)
 CREATE TABLE Chapters (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    grade INT NOT NULL CHECK (grade BETWEEN 1 AND 7),
+    grade INT NOT NULL CHECK (grade BETWEEN 1 AND 5),
     chapter_name VARCHAR(255) NOT NULL,
     sort_order INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -113,7 +115,7 @@ CREATE TABLE QuestionBank (
         'IMAGE_IN_CHOICES'
     )),
     content JSON NOT NULL, -- {"text": "...", "images": [{"id": "...", "url": "..."}]}
-    choices JSON NULL, -- [{"key": "A", "text": "...", "image_url": "..."}, ...]
+    choices JSON NULL, -- [{"key": "A", "text": "...", "images": []}, ...]
     correct_answer VARCHAR(50) NOT NULL,
     explanation JSON NOT NULL, -- {"text": "...", "images": []}
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -199,12 +201,19 @@ CREATE TABLE PracticeSessionChats (
 CREATE INDEX idx_practice_chats_session ON PracticeSessionChats(practice_session_id, question_id);
 CREATE INDEX idx_practice_chats_session_role ON PracticeSessionChats(practice_session_id, role, created_at, id);
 
--- 11. Table: AIConversationLogs (Nhật ký hỏi đáp với AI Socratic Tutor)
+-- 11. Table: AIConversationLogs (Nhật ký gợi ý học tập có kiểm soát)
 CREATE TABLE AIConversationLogs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     session_type VARCHAR(20) CHECK (session_type IN ('EXERCISE_HELP', 'THEORY_EXPLAIN')),
     reference_id INT NOT NULL,
+    practice_session_id BIGINT NULL,
+    question_id INT NULL,
+    lesson_id INT NULL,
+    provider VARCHAR(50) NULL,
+    model VARCHAR(120) NULL,
+    is_fallback TINYINT(1) DEFAULT 0,
+    blocked_reason VARCHAR(120) NULL,
     chat_history JSON NOT NULL, -- [{"role": "user", "text": "..."}, ...]
     total_tokens_used INT DEFAULT 0,
     estimated_cost_usd DECIMAL(10, 6) DEFAULT 0.000000,

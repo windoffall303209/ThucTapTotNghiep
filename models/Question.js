@@ -2,22 +2,118 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 const { normalizeExplanationText, normalizeQuestionText } = require('../utils/textCleanup');
+const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
+
+const LAYOUT_TEMPLATES = new Set([
+  'STACK_VERTICAL',
+  'SPLIT_HORIZONTAL_LEFT_IMAGE',
+  'SPLIT_HORIZONTAL_RIGHT_IMAGE',
+  'IMAGE_IN_CHOICES'
+]);
 
 function normalizeQuestion(row) {
   if (!row) return null;
-  const question = {
+  const content = normalizeQuestionContent(parseJsonField(row.content, row.content ?? { text: '', images: [] }));
+  const explanation = normalizeExplanation(parseJsonField(row.explanation, row.explanation ?? { text: '', images: [] }));
+
+  if (content.text) content.text = normalizeQuestionText(content.text);
+  if (explanation.text) explanation.text = normalizeExplanationText(explanation.text);
+
+  return {
     ...row,
-    content: parseJsonField(row.content, { text: '', images: [] }),
-    choices: parseJsonField(row.choices, []),
-    explanation: parseJsonField(row.explanation, { text: '', images: [] })
+    layout_template: normalizeLayoutTemplate(row.layout_template),
+    content,
+    choices: normalizeChoices(parseJsonField(row.choices, [])),
+    explanation
   };
-  if (question.explanation?.text) {
-    question.explanation.text = normalizeExplanationText(question.explanation.text);
+}
+
+function normalizeLayoutTemplate(value) {
+  const layout = String(value || '').trim().toUpperCase();
+  return LAYOUT_TEMPLATES.has(layout) ? layout : 'STACK_VERTICAL';
+}
+
+function normalizeQuestionContent(content) {
+  if (typeof content === 'string') {
+    return {
+      text: content.trim(),
+      instruction: '',
+      images: []
+    };
   }
-  if (question.content?.text) {
-    question.content.text = normalizeQuestionText(question.content.text);
+
+  return {
+    text: String(content?.text || '').trim(),
+    instruction: String(content?.instruction || '').trim(),
+    images: normalizeImages(content?.images, 'image', 'Hình minh họa')
+  };
+}
+
+function normalizeExplanation(explanation) {
+  if (typeof explanation === 'string') {
+    return {
+      text: explanation.trim(),
+      short_text: '',
+      steps: [],
+      images: []
+    };
   }
-  return question;
+
+  const steps = Array.isArray(explanation?.steps)
+    ? explanation.steps.map((step) => String(step || '').trim()).filter(Boolean)
+    : [];
+
+  return {
+    text: String(explanation?.text || '').trim(),
+    short_text: String(explanation?.short_text || explanation?.summary || '').trim(),
+    steps,
+    images: normalizeImages(explanation?.images, 'explanation-image', 'Hình minh họa lời giải')
+  };
+}
+
+function normalizeChoices(value) {
+  const rawChoices = Array.isArray(value)
+    ? value
+    : value && typeof value === 'object'
+      ? Object.entries(value).map(([key, text]) => ({ key, text }))
+      : [];
+
+  return rawChoices.map((choice, index) => {
+    const key = String(choice?.key || String.fromCharCode(65 + index)).trim().toUpperCase();
+    const legacyImages = [];
+    if (choice?.image_url) legacyImages.push({ url: choice.image_url, alt_text: choice.alt_text || choice.text });
+    if (typeof choice?.image === 'string') legacyImages.push({ url: choice.image, alt_text: choice.alt_text || choice.text });
+    if (choice?.image && typeof choice.image === 'object') legacyImages.push(choice.image);
+
+    return {
+      key,
+      text: String(choice?.text || choice?.label || choice?.value || '').trim(),
+      images: normalizeImages(
+        Array.isArray(choice?.images) ? choice.images : legacyImages,
+        `choice-${key}-image`,
+        `Hình minh họa đáp án ${key}`
+      )
+    };
+  });
+}
+
+function normalizeImages(images, idPrefix, defaultAlt) {
+  return (Array.isArray(images) ? images : [])
+    .map((image, index) => normalizeImage(image, index, idPrefix, defaultAlt))
+    .filter((image) => image.url);
+}
+
+function normalizeImage(image, index, idPrefix, defaultAlt) {
+  const value = typeof image === 'string' ? { url: image } : image || {};
+  const width = Number(value.width_percent || value.width || 100);
+  return {
+    id: String(value.id || `${idPrefix}-${index + 1}`),
+    url: String(value.url || value.src || value.image_url || value.image || '').trim(),
+    width_percent: Number.isFinite(width) ? Math.min(Math.max(Math.round(width), 20), 100) : 100,
+    alt_text: String(value.alt_text || value.alt || defaultAlt || 'Hình minh họa').trim(),
+    storage_provider: value.storage_provider || '',
+    public_id: value.public_id || null
+  };
 }
 
 async function getQuestionsByLesson(lessonId, options = {}) {
@@ -127,6 +223,20 @@ async function getMisconception(questionId, selectedAnswer) {
   }
 }
 
+async function getMisconceptionsByQuestion(questionId) {
+  try {
+    return await db.query(
+      `SELECT *
+       FROM CommonMisconceptions
+       WHERE question_id = ?
+       ORDER BY distractor_key, id`,
+      [questionId]
+    );
+  } catch (error) {
+    return sampleData.misconceptions.filter((item) => Number(item.question_id) === Number(questionId));
+  }
+}
+
 async function listQuestions() {
   try {
     const rows = await db.query(
@@ -134,6 +244,7 @@ async function listQuestions() {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        ORDER BY q.created_at DESC, q.id DESC`
     );
     return rows.map(normalizeQuestion);
@@ -158,9 +269,12 @@ async function getAdminStats() {
     const rows = await db.query(
       `SELECT
           COUNT(*) AS question_count,
-          COUNT(DISTINCT lesson_id) AS lesson_count,
-          SUM(CASE WHEN difficulty = 'EASY' THEN 1 ELSE 0 END) AS easy_count
-       FROM QuestionBank`
+          COUNT(DISTINCT q.lesson_id) AS lesson_count,
+          SUM(CASE WHEN q.difficulty = 'EASY' THEN 1 ELSE 0 END) AS easy_count
+       FROM QuestionBank q
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}`
     );
     const stats = rows[0] || {};
     return {
@@ -169,11 +283,17 @@ async function getAdminStats() {
       easyCount: Number(stats.easy_count || 0)
     };
   } catch (error) {
-    const lessonIds = new Set(sampleData.questions.map((question) => Number(question.lesson_id)));
+    const supportedLessonIds = new Set(
+      sampleData.chapters
+        .filter((chapter) => isSupportedGrade(chapter.grade))
+        .flatMap((chapter) => chapter.lessons.map((lesson) => Number(lesson.id)))
+    );
+    const supportedQuestions = sampleData.questions.filter((question) => supportedLessonIds.has(Number(question.lesson_id)));
+    const lessonIds = new Set(supportedQuestions.map((question) => Number(question.lesson_id)));
     return {
-      questionCount: sampleData.questions.length,
+      questionCount: supportedQuestions.length,
       lessonCount: lessonIds.size,
-      easyCount: sampleData.questions.filter((question) => question.difficulty === 'EASY').length
+      easyCount: supportedQuestions.filter((question) => question.difficulty === 'EASY').length
     };
   }
 }
@@ -186,6 +306,7 @@ async function getRecentQuestions(limit = 6) {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        ORDER BY q.created_at DESC, q.id DESC
        LIMIT ${safeLimit}`
     );
@@ -198,14 +319,23 @@ async function getRecentQuestions(limit = 6) {
 async function getQuestionCountsByLesson() {
   try {
     return await db.query(
-      `SELECT lesson_id, COUNT(*) AS question_count
-       FROM QuestionBank
-       GROUP BY lesson_id`
+      `SELECT q.lesson_id, COUNT(*) AS question_count
+       FROM QuestionBank q
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       GROUP BY q.lesson_id`
     );
   } catch (error) {
+    const supportedLessonIds = new Set(
+      sampleData.chapters
+        .filter((chapter) => isSupportedGrade(chapter.grade))
+        .flatMap((chapter) => chapter.lessons.map((lesson) => Number(lesson.id)))
+    );
     const counts = new Map();
     for (const question of sampleData.questions) {
       const lessonId = Number(question.lesson_id);
+      if (!supportedLessonIds.has(lessonId)) continue;
       counts.set(lessonId, (counts.get(lessonId) || 0) + 1);
     }
     return Array.from(counts.entries()).map(([lesson_id, question_count]) => ({
@@ -303,6 +433,7 @@ async function deleteQuestion(id) {
 
 async function getRandomQuestionsByGrade(grade, limit = 10) {
   const safeLimit = normalizeExamLimit(limit);
+  if (!isSupportedGrade(grade)) return [];
 
   try {
     const idRows = await db.query(
@@ -480,6 +611,7 @@ module.exports = {
   getQuestionById,
   getQuestionsByIds,
   getMisconception,
+  getMisconceptionsByQuestion,
   listQuestions,
   getAdminStats,
   getRecentQuestions,

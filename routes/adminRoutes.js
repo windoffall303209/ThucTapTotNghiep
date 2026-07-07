@@ -17,7 +17,11 @@ router.get('/questions/lesson/:lessonId', AdminController.lessonQuestions);
 router.get('/questions/:id/edit', AdminController.questionEditForm);
 const questionUploadFields = questionImageUpload.fields([
   { name: 'question_images', maxCount: 6 },
-  { name: 'explanation_images', maxCount: 6 }
+  { name: 'explanation_images', maxCount: 6 },
+  { name: 'choice_image_A', maxCount: 3 },
+  { name: 'choice_image_B', maxCount: 3 },
+  { name: 'choice_image_C', maxCount: 3 },
+  { name: 'choice_image_D', maxCount: 3 }
 ]);
 
 router.post('/questions', questionUploadFields, AdminController.createQuestion);

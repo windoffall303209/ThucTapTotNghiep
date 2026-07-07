@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 const { attachAuthUser } = require('./utils/authToken');
+const { gradeOptions, GRADE_RANGE_LABEL, SHORT_GRADE_RANGE_LABEL } = require('./config/grades');
 
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -52,6 +53,13 @@ const authLimiter = rateLimit({
   skipSuccessfulRequests: true,
   message: 'Quá nhiều lần thử đăng nhập. Vui lòng thử lại sau.'
 });
+const aiLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  limit: Number(process.env.AI_RATE_LIMIT || 30),
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: 'Em đã gửi quá nhiều yêu cầu gợi ý trong thời gian ngắn. Hãy thử lại sau ít phút.'
+});
 app.use(express.urlencoded({ extended: true, limit: process.env.BODY_LIMIT || '2mb' }));
 app.use(express.json({ limit: process.env.BODY_LIMIT || '2mb' }));
 app.use(methodOverride('_method'));
@@ -77,12 +85,17 @@ app.use((req, res, next) => {
   res.locals.student = req.auth?.role === 'student' ? req.auth : null;
   res.locals.admin = ['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth?.role) ? req.auth : null;
   res.locals.flash = req.session.flash || null;
+  res.locals.gradeOptions = gradeOptions();
+  res.locals.gradeRangeLabel = GRADE_RANGE_LABEL;
+  res.locals.shortGradeRangeLabel = SHORT_GRADE_RANGE_LABEL;
   delete req.session.flash;
   next();
 });
 
 app.use('/', homeRoutes);
 app.use('/auth', authLimiter, authRoutes);
+app.use('/student/theory/help', aiLimiter);
+app.use('/api/ai', aiLimiter);
 app.use('/student', studentRoutes);
 app.use('/admin', adminRoutes);
 app.use('/api', apiRoutes);

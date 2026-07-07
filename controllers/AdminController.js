@@ -6,6 +6,8 @@ const ImageStorageService = require('../services/ImageStorageService');
 const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 
+const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
+
 async function dashboard(req, res, next) {
   try {
     const [questionStats, recentQuestions, students] = await Promise.all([
@@ -224,9 +226,10 @@ async function lessonQuestions(req, res, next) {
 
 async function questionEditForm(req, res, next) {
   try {
-    const [question, lessons] = await Promise.all([
+    const [question, lessons, misconceptions] = await Promise.all([
       Question.getQuestionById(req.params.id),
-      Curriculum.getAllLessons()
+      Curriculum.getAllLessons(),
+      Question.getMisconceptionsByQuestion(req.params.id)
     ]);
 
     if (!question) {
@@ -236,7 +239,8 @@ async function questionEditForm(req, res, next) {
     return res.render('admin/partials/question-edit-form', {
       layout: false,
       question,
-      lessons
+      lessons,
+      misconceptions
     });
   } catch (error) {
     next(error);
@@ -245,15 +249,15 @@ async function questionEditForm(req, res, next) {
 
 async function createQuestion(req, res, next) {
   try {
-    const validation = validateQuestionBody(req.body);
+    const files = getUploadFiles(req.files);
+    const validation = validateQuestionBody(req.body, files.choiceImages);
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect('/admin/questions');
     }
 
-    const choices = buildChoices(req.body);
+    const choices = await buildChoices(req.body, files.choiceImages);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
-    const files = getUploadFiles(req.files);
     const questionImages = await buildQuestionImages(files.questionImages, req.body, {
       idPrefix: 'image',
       widthField: 'image_width_percent',
@@ -301,32 +305,40 @@ async function updateQuestion(req, res, next) {
       return res.redirect('/admin/questions');
     }
 
-    const validation = validateQuestionBody(req.body);
+    const files = getUploadFiles(req.files);
+    const existingChoices = new Map((question.choices || []).map((choice) => [choice.key, choice]));
+    const validation = validateQuestionBody(req.body, files.choiceImages, existingChoices);
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect('/admin/questions');
     }
 
-    const choices = buildChoices(req.body);
+    const choices = await buildChoices(req.body, files.choiceImages, existingChoices);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
-    const files = getUploadFiles(req.files);
     const existingImages = Array.isArray(question.content?.images) ? question.content.images : [];
+    const removedQuestionImages = getRemovedImages(existingImages, req.body.remove_question_images);
+    const keptQuestionImages = filterRemovedImages(existingImages, req.body.remove_question_images);
     const uploadedImages = await buildQuestionImages(files.questionImages, req.body, {
-      startIndex: existingImages.length,
+      startIndex: maxImageIndex(keptQuestionImages, 'image'),
       idPrefix: 'image',
       widthField: 'image_width_percent',
       altField: 'image_alt_text',
       defaultAlt: 'Hình minh họa'
     });
-    const questionImages = existingImages.concat(uploadedImages);
+    const questionImages = keptQuestionImages.concat(uploadedImages);
     const existingExplanationImages = Array.isArray(question.explanation?.images) ? question.explanation.images : [];
+    const keptExplanationImages = filterRemovedImages(existingExplanationImages, req.body.remove_explanation_images);
     const uploadedExplanationImages = await buildQuestionImages(files.explanationImages, req.body, {
-      startIndex: existingExplanationImages.length,
+      startIndex: maxImageIndex(keptExplanationImages, 'explanation-image'),
       idPrefix: 'explanation-image',
       widthField: 'explanation_image_width_percent',
       altField: 'explanation_image_alt_text',
       defaultAlt: 'Hình minh họa lời giải'
     });
+    const contentText = ensureImagePlaceholders(
+      stripImagePlaceholders(req.body.content_text, removedQuestionImages),
+      uploadedImages
+    );
 
     await Question.updateQuestion(Number(req.params.id), {
       lesson_id: Number(req.body.lesson_id),
@@ -334,14 +346,14 @@ async function updateQuestion(req, res, next) {
       difficulty: req.body.difficulty || question.difficulty || 'EASY',
       layout_template: req.body.layout_template || question.layout_template || 'STACK_VERTICAL',
       content: {
-        text: ensureImagePlaceholders(req.body.content_text, uploadedImages),
+        text: contentText,
         images: questionImages
       },
       choices,
       correct_answer: req.body.correct_answer,
       explanation: {
         text: req.body.explanation_text || 'Chưa có lời giải chi tiết.',
-        images: existingExplanationImages.concat(uploadedExplanationImages)
+        images: keptExplanationImages.concat(uploadedExplanationImages)
       },
       misconceptions
     });
@@ -363,24 +375,60 @@ async function deleteQuestion(req, res, next) {
   }
 }
 
-function validateQuestionBody(body) {
+function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map()) {
   if (!body.lesson_id || !body.content_text || !body.correct_answer) {
     return 'Vui lòng chọn bài học, nhập đề bài và chọn đáp án đúng.';
   }
 
-  const choices = buildChoices(body);
-  if (choices.some((choice) => !choice.text.trim())) {
-    return 'Vui lòng nhập đủ bốn phương án A, B, C, D.';
+  if (!ANSWER_KEYS.includes(body.correct_answer)) {
+    return 'Đáp án đúng phải là A, B, C hoặc D.';
+  }
+
+  const choiceSummaries = ANSWER_KEYS.map((key) => {
+    const existingImages = filterRemovedImages(existingChoices.get(key)?.images || [], body[`remove_choice_images_${key}`]);
+    const uploadedImages = choiceFiles[key] || [];
+    return {
+      key,
+      text: String(body[`choice_${key}`] || '').trim(),
+      imageCount: existingImages.length + uploadedImages.length
+    };
+  });
+
+  if (choiceSummaries.some((choice) => !choice.text && choice.imageCount === 0)) {
+    return 'Mỗi phương án A, B, C, D cần có nội dung chữ hoặc ảnh minh họa.';
+  }
+
+  if (body.layout_template === 'IMAGE_IN_CHOICES' && choiceSummaries.every((choice) => choice.imageCount === 0)) {
+    return 'Bố cục ảnh trong đáp án cần có ít nhất một ảnh ở các phương án.';
   }
 
   return null;
 }
 
-function buildChoices(body) {
-  return ['A', 'B', 'C', 'D'].map((key) => ({
-    key,
-    text: body[`choice_${key}`] || ''
-  }));
+async function buildChoices(body, choiceFiles = {}, existingChoices = new Map()) {
+  const choices = [];
+
+  for (const key of ANSWER_KEYS) {
+    const existingChoice = existingChoices.get(key) || {};
+    const existingImages = Array.isArray(existingChoice.images) ? existingChoice.images : [];
+    const keptImages = filterRemovedImages(existingImages, body[`remove_choice_images_${key}`]);
+    const uploadedImages = await buildQuestionImages(choiceFiles[key] || [], body, {
+      startIndex: maxImageIndex(keptImages, `choice-${key}-image`),
+      idPrefix: `choice-${key}-image`,
+      widthField: `choice_image_width_percent_${key}`,
+      altField: `choice_image_alt_text_${key}`,
+      defaultAlt: `Hình minh họa đáp án ${key}`,
+      folder: 'math-revision/choices'
+    });
+
+    choices.push({
+      key,
+      text: String(body[`choice_${key}`] || '').trim(),
+      images: keptImages.concat(uploadedImages)
+    });
+  }
+
+  return choices;
 }
 
 function buildMisconceptions(choices, correctAnswer, body) {
@@ -582,13 +630,18 @@ function getUploadFiles(files) {
   if (Array.isArray(files)) {
     return {
       questionImages: files,
-      explanationImages: []
+      explanationImages: [],
+      choiceImages: {}
     };
   }
 
   return {
     questionImages: files?.question_images || [],
-    explanationImages: files?.explanation_images || []
+    explanationImages: files?.explanation_images || [],
+    choiceImages: ANSWER_KEYS.reduce((result, key) => {
+      result[key] = files?.[`choice_image_${key}`] || [];
+      return result;
+    }, {})
   };
 }
 
@@ -625,6 +678,44 @@ function normalizeWidthPercent(value) {
   const width = Number(value || 70);
   if (!Number.isFinite(width)) return 70;
   return Math.min(Math.max(Math.round(width), 20), 100);
+}
+
+function normalizeRemoveIds(value) {
+  if (Array.isArray(value)) return new Set(value.map(String));
+  if (value == null || value === '') return new Set();
+  return new Set([String(value)]);
+}
+
+function filterRemovedImages(images, removeValue) {
+  const removeIds = normalizeRemoveIds(removeValue);
+  if (removeIds.size === 0) return images;
+  return images.filter((image) => !removeIds.has(String(image.id || image.url || '')));
+}
+
+function getRemovedImages(images, removeValue) {
+  const removeIds = normalizeRemoveIds(removeValue);
+  if (removeIds.size === 0) return [];
+  return images.filter((image) => removeIds.has(String(image.id || image.url || '')));
+}
+
+function maxImageIndex(images, idPrefix) {
+  const pattern = new RegExp(`^${escapeRegExp(idPrefix)}-(\\d+)$`);
+  return (images || []).reduce((max, image) => {
+    const match = String(image.id || '').match(pattern);
+    return match ? Math.max(max, Number(match[1]) || 0) : max;
+  }, 0);
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function stripImagePlaceholders(contentText, images) {
+  let text = contentText || '';
+  (images || []).forEach((image) => {
+    if (image.id) text = text.replaceAll(`[${image.id}]`, '');
+  });
+  return text;
 }
 
 function ensureImagePlaceholders(contentText, images) {
@@ -671,6 +762,10 @@ async function updateSettings(req, res, next) {
       ai_provider: req.body.ai_provider,
       ai_automation_enabled: req.body.ai_automation_enabled,
       ai_json_timeout_ms: req.body.ai_json_timeout_ms,
+      ai_enabled_grades: req.body.ai_enabled_grades,
+      ai_max_hints_per_question: req.body.ai_max_hints_per_question,
+      ai_max_hints_per_session: req.body.ai_max_hints_per_session,
+      ai_require_answer_before_help: req.body.ai_require_answer_before_help,
       openai_api_key: req.body.openai_api_key,
       openai_base_url: req.body.openai_base_url,
       openai_model: req.body.openai_model,
@@ -742,8 +837,8 @@ async function buildTheoryCardBody(cards, files) {
 }
 
 async function buildSingleTheoryCard(body, files, cardIndex = 0) {
-  const existingImages = parseExistingImages(body.existing_images);
-  const uploadedImages = await buildTheoryImages(files || [], cardIndex, existingImages.length);
+  const existingImages = filterRemovedImages(parseExistingImages(body.existing_images), body.remove_theory_images);
+  const uploadedImages = await buildTheoryImages(files || [], cardIndex, maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`));
 
   return {
     title: body.title || '',

@@ -1,5 +1,5 @@
 -- =========================================================================
--- SEED DATA DEMO CHO HỆ THỐNG ÔN LUYỆN TOÁN 1-7
+-- SEED DATA DEMO CHO HỆ THỐNG ÔN LUYỆN TOÁN TIỂU HỌC 1-5
 -- Lưu ý: Tất cả mật khẩu bên dưới đã được băm bằng bcrypt.
 -- Mật khẩu demo:
 --   admin / admin123
@@ -69,8 +69,8 @@ VALUES
     'chilam',
     '$2b$10$zDlho7mPUo/n3iGJQMqaputIhXPGWCAUSRkyAPS7quRn4Rz4BdRCS',
     'Lâm Chi',
-    6,
-    6
+    2,
+    2
   )
 ON DUPLICATE KEY UPDATE
   password_hash = VALUES(password_hash),
@@ -83,6 +83,10 @@ VALUES
   ('ai_provider', 'mock'),
   ('ai_automation_enabled', 'true'),
   ('ai_json_timeout_ms', '12000'),
+  ('ai_enabled_grades', '3,4,5'),
+  ('ai_max_hints_per_question', '2'),
+  ('ai_max_hints_per_session', '8'),
+  ('ai_require_answer_before_help', 'true'),
   ('openai_api_key', ''),
   ('openai_base_url', 'https://api.openai.com/v1'),
   ('openai_model', 'gpt-4o-mini'),

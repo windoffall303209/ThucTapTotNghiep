@@ -38,7 +38,7 @@
       <i data-lucide="lightbulb" class="lucide-icon"></i>
       Cách học đề xuất
     </div>
-    <p>Đọc từng mục theo thứ tự. Nếu chưa hiểu, bấm “Nhờ AI giải thích” để nhận gợi ý dễ hơn.</p>
+    <p>Đọc từng mục theo thứ tự. Nếu cần, bấm “Gợi ý thêm” để nhận giải thích ngắn hơn.</p>
   </div>
 </section>
 
@@ -74,15 +74,17 @@
           <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
         <% } %>
       </div>
+      <% if (Number(lesson.grade) >= 3) { %>
       <button
         class="btn btn-secondary theory-help-button"
         type="button"
         data-lesson-id="<%= lesson.id %>"
         data-card-index="<%= index %>">
         <i data-lucide="message-circle" class="lucide-icon"></i>
-        Nhờ AI giải thích dễ hơn
+        Gợi ý thêm dễ hiểu hơn
       </button>
       <div class="ai-inline-reply" hidden></div>
+      <% } %>
     </article>
   <% }) %>
 </section>

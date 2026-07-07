@@ -3,6 +3,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const mysql = require('mysql2/promise');
+const { isSupportedGrade } = require('../config/grades');
 
 const curriculumPath = path.join(__dirname, '..', 'Danh_sach_chuong_va_bai_hoc.txt');
 
@@ -96,7 +97,7 @@ function parseCurriculum(rawText) {
     }
   }
 
-  return chapters.filter((chapter) => chapter.lessons.length > 0);
+  return chapters.filter((chapter) => isSupportedGrade(chapter.grade) && chapter.lessons.length > 0);
 }
 
 function normalizeName(value) {

@@ -4,7 +4,10 @@ const Question = require('../models/Question');
 const PracticeSession = require('../models/PracticeSession');
 const Student = require('../models/Student');
 const SocraticAIService = require('../services/SocraticAIService');
+const SystemSetting = require('../models/SystemSetting');
+const AIConversationLog = require('../models/AIConversationLog');
 const { setFlash } = require('../utils/flash');
+const { isSupportedGrade } = require('../config/grades');
 
 const EXAM_LIMITS = [10, 15, 20, 25, 30];
 
@@ -42,6 +45,13 @@ async function lesson(req, res, next) {
       });
     }
 
+    if (!canAccessLesson(req.auth, lessonItem)) {
+      return res.status(403).render('error', {
+        title: 'Không thuộc khối học hiện tại',
+        message: 'Bài học này không thuộc khối học Tiểu học đang được hỗ trợ hoặc không đúng lớp của em.'
+      });
+    }
+
     res.render('student/lesson', {
       title: lessonItem.lesson_name,
       lesson: lessonItem
@@ -59,6 +69,13 @@ async function practice(req, res, next) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy bài luyện tập',
         message: 'Bài luyện tập không tồn tại hoặc chưa được nhập vào hệ thống.'
+      });
+    }
+
+    if (!canAccessLesson(student, lessonItem)) {
+      return res.status(403).render('error', {
+        title: 'Không thuộc khối học hiện tại',
+        message: 'Bài luyện tập này không thuộc khối học Tiểu học đang được hỗ trợ hoặc không đúng lớp của em.'
       });
     }
 
@@ -267,6 +284,31 @@ async function finishSession(req, res, next) {
   }
 }
 
+function canAccessLesson(student, lessonItem) {
+  return Boolean(
+    lessonItem
+    && isSupportedGrade(lessonItem.grade)
+    && Number(lessonItem.grade) === Number(student?.current_grade)
+  );
+}
+
+function isAIEnabledForGrade(grade, settings) {
+  const enabledGrades = String(settings.ai_enabled_grades || '3,4,5')
+    .split(/[,.\s]+/)
+    .map(Number)
+    .filter((item) => Number.isInteger(item));
+  return (enabledGrades.length > 0 ? enabledGrades : [3, 4, 5]).includes(Number(grade));
+}
+
+function modelForProvider(settings) {
+  if (settings.ai_provider === 'gemini') return settings.gemini_model;
+  if (settings.ai_provider === 'gemini_cli') return settings.gemini_cli_model;
+  if (settings.ai_provider === 'nvidia') return settings.nvidia_nim_model;
+  if (settings.ai_provider === 'openrouter') return settings.openrouter_model;
+  if (settings.ai_provider === 'openai') return settings.openai_model;
+  return 'mock';
+}
+
 function buildLegacyAttemptRows(attempts = []) {
   return attempts
     .filter((attempt) => !attempt.practice_session_id)
@@ -350,6 +392,29 @@ async function theoryHelp(req, res, next) {
       return res.redirect('/student/dashboard');
     }
 
+    if (!canAccessLesson(req.auth, lessonItem)) {
+      return res.status(403).json({
+        ok: false,
+        message: 'Bài học này không thuộc khối học hiện tại của em.'
+      });
+    }
+
+    const settings = await SystemSetting.getSettings();
+    if (!isAIEnabledForGrade(req.auth.current_grade, settings)) {
+      await AIConversationLog.logAIInteraction({
+        studentId: req.auth.id,
+        sessionType: 'THEORY_EXPLAIN',
+        referenceId: lessonItem.id,
+        lessonId: lessonItem.id,
+        blockedReason: 'grade_not_enabled',
+        chatHistory: [{ role: 'student', text: req.body.question || 'Yêu cầu giải thích lý thuyết' }]
+      });
+      return res.status(403).json({
+        ok: false,
+        message: 'Tính năng gợi ý thêm hiện chỉ bật cho một số khối lớp. Em hãy đọc thẻ lý thuyết và ví dụ trước nhé.'
+      });
+    }
+
     const cardIndex = Number(req.body.cardIndex || 0);
     const card = lessonItem.theory_cards[cardIndex];
     const reply = await SocraticAIService.explainTheory({
@@ -357,6 +422,20 @@ async function theoryHelp(req, res, next) {
       lesson: lessonItem,
       card,
       question: req.body.question || ''
+    });
+
+    await AIConversationLog.logAIInteraction({
+      studentId: req.auth.id,
+      sessionType: 'THEORY_EXPLAIN',
+      referenceId: lessonItem.id,
+      lessonId: lessonItem.id,
+      provider: settings.ai_provider,
+      model: modelForProvider(settings),
+      isFallback: String(settings.ai_automation_enabled || 'true') === 'false',
+      chatHistory: [
+        { role: 'student', text: req.body.question || 'Yêu cầu giải thích lý thuyết' },
+        { role: 'ai', text: reply }
+      ]
     });
 
     return res.json({ ok: true, reply });

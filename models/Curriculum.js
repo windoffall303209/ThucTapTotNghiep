@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
+const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 
 function normalizeLesson(row) {
   return {
@@ -17,6 +18,8 @@ function normalizeLessonMeta(row) {
 }
 
 async function getCurriculumByGrade(grade) {
+  if (!isSupportedGrade(grade)) return [];
+
   try {
     const chapters = await db.query(
       `SELECT id, grade, chapter_name, sort_order
@@ -66,43 +69,50 @@ async function getAllLessons(options = {}) {
           c.sort_order AS chapter_sort_order
        FROM Lessons l
        JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        ORDER BY c.grade, c.sort_order, l.sort_order`
     );
 
     return rows.map(includeTheoryCards ? normalizeLesson : normalizeLessonMeta);
   } catch (error) {
-    return sampleData.chapters.flatMap((chapter) =>
-      chapter.lessons.map((lesson) => ({
-        id: lesson.id,
-        chapter_id: chapter.id,
-        lesson_name: lesson.lesson_name,
-        theory_cards: lesson.theory_cards || [],
-        lesson_sort_order: lesson.sort_order,
-        chapter_name: chapter.chapter_name,
-        grade: chapter.grade,
-        chapter_sort_order: chapter.sort_order
-      }))
-    );
+    return sampleData.chapters
+      .filter((chapter) => isSupportedGrade(chapter.grade))
+      .flatMap((chapter) =>
+        chapter.lessons.map((lesson) => ({
+          id: lesson.id,
+          chapter_id: chapter.id,
+          lesson_name: lesson.lesson_name,
+          theory_cards: lesson.theory_cards || [],
+          lesson_sort_order: lesson.sort_order,
+          chapter_name: chapter.chapter_name,
+          grade: chapter.grade,
+          chapter_sort_order: chapter.sort_order
+        }))
+      );
   }
 }
 
 async function getTheoryCounts() {
   try {
     const rows = await db.query(
-      `SELECT id AS lesson_id, COALESCE(JSON_LENGTH(theory_cards), 0) AS theory_count
-       FROM Lessons`
+      `SELECT l.id AS lesson_id, COALESCE(JSON_LENGTH(l.theory_cards), 0) AS theory_count
+       FROM Lessons l
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}`
     );
     return rows.map((row) => ({
       lesson_id: Number(row.lesson_id),
       theory_count: Number(row.theory_count || 0)
     }));
   } catch (error) {
-    return sampleData.chapters.flatMap((chapter) =>
-      chapter.lessons.map((lesson) => ({
-        lesson_id: Number(lesson.id),
-        theory_count: Array.isArray(lesson.theory_cards) ? lesson.theory_cards.length : 0
-      }))
-    );
+    return sampleData.chapters
+      .filter((chapter) => isSupportedGrade(chapter.grade))
+      .flatMap((chapter) =>
+        chapter.lessons.map((lesson) => ({
+          lesson_id: Number(lesson.id),
+          theory_count: Array.isArray(lesson.theory_cards) ? lesson.theory_cards.length : 0
+        }))
+      );
   }
 }
 
