@@ -292,6 +292,23 @@ function canAccessLesson(student, lessonItem) {
   );
 }
 
+function answersMatch(question, selectedAnswer) {
+  const expected = String(question?.correct_answer || '').trim();
+  const actual = String(selectedAnswer || '').trim();
+  if (question?.question_type === 'FILL_IN_THE_BLANK') {
+    return normalizeFreeTextAnswer(actual) === normalizeFreeTextAnswer(expected);
+  }
+  return actual === expected;
+}
+
+function normalizeFreeTextAnswer(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/,/g, '.');
+}
+
 function isAIEnabledForGrade(grade, settings) {
   const enabledGrades = String(settings.ai_enabled_grades || '3,4,5')
     .split(/[,.\s]+/)
@@ -347,8 +364,8 @@ async function submitAnswer(req, res, next) {
       });
     }
 
-    const isCorrect = selectedAnswer === questionItem.correct_answer;
-    const misconception = isCorrect
+    const isCorrect = answersMatch(questionItem, selectedAnswer);
+    const misconception = isCorrect || questionItem.question_type === 'FILL_IN_THE_BLANK'
       ? null
       : await Question.getMisconception(questionItem.id, selectedAnswer);
 

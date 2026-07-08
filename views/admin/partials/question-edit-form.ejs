@@ -7,26 +7,26 @@
     { value: 'EXPERT', label: 'Nâng cao' }
   ];
   const layoutOptions = [
-    { value: 'STACK_VERTICAL', label: 'Xếp dọc' },
+    { value: 'STACK_VERTICAL', label: 'Chữ và ảnh theo thứ tự' },
+    { value: 'VISUAL_TOP', label: 'Ảnh lớn phía trên' },
+    { value: 'VISUAL_BOTTOM', label: 'Ảnh phía dưới' },
     { value: 'SPLIT_HORIZONTAL_LEFT_IMAGE', label: 'Ảnh trái, chữ phải' },
     { value: 'SPLIT_HORIZONTAL_RIGHT_IMAGE', label: 'Chữ trái, ảnh phải' },
-    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' }
+    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' },
+    { value: 'COMPACT', label: 'Gọn nhẹ' }
   ];
+  const misconceptionByKey = new Map((misconceptions || []).map((item) => [item.distractor_key, item]));
+  const questionImages = Array.isArray(question.content && question.content.images) ? question.content.images : [];
+  const explanationImages = Array.isArray(question.explanation && question.explanation.images) ? question.explanation.images : [];
+  const questionType = question.question_type || 'MULTIPLE_CHOICE';
+  const layoutVariant = question.content?.layout_variant || question.layout_template || 'STACK_VERTICAL';
 
   function selected(current, value) {
     return current === value ? 'selected' : '';
   }
 
-  const misconceptionByKey = new Map((misconceptions || []).map((item) => [item.distractor_key, item]));
-  const questionImages = Array.isArray(question.content && question.content.images) ? question.content.images : [];
-  const explanationImages = Array.isArray(question.explanation && question.explanation.images) ? question.explanation.images : [];
-
   function choiceFor(question, key) {
     return (question.choices || []).find((item) => item.key === key) || { key, text: '', images: [] };
-  }
-
-  function choiceText(question, key) {
-    return choiceFor(question, key).text || '';
   }
 
   function escapeHtml(value) {
@@ -40,15 +40,6 @@
 
   function escapeAttribute(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
-  }
-
-  function imageThumbs(images) {
-    if (!Array.isArray(images) || images.length === 0) return '';
-    return images.map((image) => `
-      <span class="question-image choice-existing-image">
-        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa đáp án')}" loading="lazy" decoding="async">
-      </span>
-    `).join('');
   }
 
   function questionText(question) {
@@ -80,13 +71,52 @@
     </select>
   </label>
 
+  <div class="two-fields">
+    <label>
+      Dạng câu hỏi
+      <select name="question_type" data-question-type>
+        <option value="MULTIPLE_CHOICE" <%= selected(questionType, 'MULTIPLE_CHOICE') %>>Trắc nghiệm A/B/C/D</option>
+        <option value="FILL_IN_THE_BLANK" <%= selected(questionType, 'FILL_IN_THE_BLANK') %>>Điền đáp án</option>
+      </select>
+    </label>
+    <label>
+      Bố cục hiển thị
+      <select name="layout_variant" data-layout-variant>
+        <% layoutOptions.forEach((option) => { %>
+          <option value="<%= option.value %>" <%= selected(layoutVariant, option.value) %>><%= option.label %></option>
+        <% }) %>
+      </select>
+    </label>
+  </div>
+
+  <div class="two-fields">
+    <label>
+      Độ khó
+      <select name="difficulty">
+        <% difficultyOptions.forEach((option) => { %>
+          <option value="<%= option.value %>" <%= selected(question.difficulty, option.value) %>><%= option.label %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Kiểu thao tác
+      <select name="question_interaction" data-question-interaction>
+        <option value="choose" <%= selected(question.content?.interaction, 'choose') %>>Chọn đáp án</option>
+        <option value="fill_blank" <%= selected(question.content?.interaction, 'fill_blank') %>>Điền số/kết quả</option>
+        <option value="count" <%= selected(question.content?.interaction, 'count') %>>Đếm hình</option>
+        <option value="compare" <%= selected(question.content?.interaction, 'compare') %>>So sánh</option>
+        <option value="none" <%= selected(question.content?.interaction || 'none', 'none') %>>Không phân loại</option>
+      </select>
+    </label>
+  </div>
+
   <label>
     Đề bài
     <textarea name="content_text" rows="5" required data-preview-content><%= questionText(question) %></textarea>
   </label>
   <input type="hidden" data-preview-existing-images value="<%- escapeAttribute(JSON.stringify(questionImages)) %>">
 
-  <fieldset class="choice-fieldset image-fieldset">
+  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
     <legend>Ảnh trong đề bài</legend>
     <label>
       Thêm ảnh minh họa mới
@@ -104,7 +134,7 @@
     </div>
     <% if (questionImages.length > 0) { %>
       <div class="choice-existing-images">
-        <span class="form-note">Ảnh đề bài hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+        <span class="form-note">Ảnh đề bài hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
         <% questionImages.forEach((image) => { %>
           <label class="image-keep-option">
             <input type="checkbox" name="remove_question_images" value="<%= image.id || image.url %>" data-preview-remove-image>
@@ -118,27 +148,8 @@
     <% } %>
   </fieldset>
 
-  <div class="two-fields">
-    <label>
-      Độ khó
-      <select name="difficulty">
-        <% difficultyOptions.forEach((option) => { %>
-          <option value="<%= option.value %>" <%= selected(question.difficulty, option.value) %>><%= option.label %></option>
-        <% }) %>
-      </select>
-    </label>
-    <label>
-      Bố cục hiển thị
-      <select name="layout_template">
-        <% layoutOptions.forEach((option) => { %>
-          <option value="<%= option.value %>" <%= selected(question.layout_template, option.value) %>><%= option.label %></option>
-        <% }) %>
-      </select>
-    </label>
-  </div>
-
-  <fieldset class="choice-fieldset">
-    <legend>Phương án trả lời</legend>
+  <fieldset class="choice-fieldset" data-choice-panel>
+    <legend>Phương án trả lời và lỗi sai thường gặp</legend>
     <% answerKeys.forEach((key) => { %>
       <% const choice = choiceFor(question, key); %>
       <% const choiceImages = Array.isArray(choice.images) ? choice.images : []; %>
@@ -151,7 +162,7 @@
         <input type="hidden" data-preview-choice-existing-images="<%= key %>" value="<%- escapeAttribute(JSON.stringify(choiceImages)) %>">
         <% if (choiceImages.length > 0) { %>
           <div class="choice-existing-images">
-            <span class="form-note">Ảnh đáp án hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+            <span class="form-note">Ảnh đáp án hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
             <% choiceImages.forEach((image) => { %>
               <label class="image-keep-option">
                 <input type="checkbox" name="remove_choice_images_<%= key %>" value="<%= image.id || image.url %>" data-preview-remove-image>
@@ -194,7 +205,7 @@
     <% }) %>
   </fieldset>
 
-  <label>
+  <label data-correct-choice-panel>
     Đáp án đúng
     <select name="correct_answer" required>
       <% answerKeys.forEach((key) => { %>
@@ -203,12 +214,17 @@
     </select>
   </label>
 
+  <label data-correct-free-panel hidden>
+    Đáp án đúng
+    <input name="correct_answer_free" value="<%= questionType === 'FILL_IN_THE_BLANK' ? question.correct_answer : '' %>" placeholder="Ví dụ: 15 hoặc 2/3" data-free-answer>
+  </label>
+
   <label>
     Lời giải chi tiết
     <textarea name="explanation_text" rows="5"><%= explanationText(question) %></textarea>
   </label>
 
-  <fieldset class="choice-fieldset image-fieldset">
+  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
     <legend>Ảnh trong lời giải</legend>
     <label>
       Thêm ảnh minh họa lời giải
@@ -226,7 +242,7 @@
     </div>
     <% if (explanationImages.length > 0) { %>
       <div class="choice-existing-images">
-        <span class="form-note">Ảnh lời giải hiện có (tích chọn “Xóa” nếu muốn bỏ ảnh khi lưu):</span>
+        <span class="form-note">Ảnh lời giải hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
         <% explanationImages.forEach((image) => { %>
           <label class="image-keep-option">
             <input type="checkbox" name="remove_explanation_images" value="<%= image.id || image.url %>">

@@ -7,6 +7,17 @@
         : [];
     return [card.body || '', ...legacyFormulas].filter(Boolean).join('\n');
   }
+
+  function typeLabel(type) {
+    const labels = {
+      observe: 'Quan sát',
+      concept: 'Kiến thức',
+      model: 'Ví dụ mẫu',
+      quick_try: 'Thử nhanh',
+      remember: 'Ghi nhớ'
+    };
+    return labels[type] || 'Kiến thức';
+  }
 %>
 
 <section class="workspace-head">
@@ -17,7 +28,7 @@
     </a>
     <p class="eyebrow">Lớp <%= lesson.grade %> · <%= lesson.chapter_name %></p>
     <h1><%= lesson.lesson_name %></h1>
-    <p>Đọc các ý chính, xem ví dụ minh họa rồi luyện tập để hệ thống ghi nhận phần em đã hiểu.</p>
+    <p>Đọc từng thẻ theo thứ tự, quan sát hình nếu có rồi luyện tập để hệ thống ghi nhận phần em đã hiểu.</p>
   </div>
   <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
     <i data-lucide="play-circle" class="lucide-icon"></i>
@@ -31,14 +42,14 @@
       <i data-lucide="target" class="lucide-icon"></i>
       Mục tiêu bài học
     </div>
-    <p>Hiểu kiến thức trọng tâm của bài, nhận biết dạng câu hỏi thường gặp và tự giải thích được các bước làm.</p>
+    <p>Hiểu ý chính của bài, biết cách làm ví dụ mẫu và nhận ra dạng câu hỏi thường gặp.</p>
   </div>
   <div>
     <div class="section-title">
       <i data-lucide="lightbulb" class="lucide-icon"></i>
       Cách học đề xuất
     </div>
-    <p>Đọc từng mục theo thứ tự. Nếu cần, bấm “Gợi ý thêm” để nhận giải thích ngắn hơn.</p>
+    <p>Với thẻ có hình, em quan sát trước. Với thẻ có bước làm, em đọc từng dòng rồi tự nhẩm lại cách làm.</p>
   </div>
 </section>
 
@@ -51,13 +62,13 @@
 
   <% (lesson.theory_cards || []).forEach((card, index) => { %>
     <% const images = Array.isArray(card.images) ? card.images : []; %>
-    <article class="theory-card math-content math-lazy">
+    <article class="theory-card theory-layout-<%= card.layout || 'text_first' %> math-content math-lazy">
       <div>
-        <span class="card-index">Mục <%= index + 1 %></span>
+        <span class="card-index">Mục <%= index + 1 %> · <%= typeLabel(card.type) %></span>
         <h2><%= card.title %></h2>
 
-        <% if (bodyValue(card)) { %>
-          <div class="theory-body"><%= bodyValue(card) %></div>
+        <% if (card.display_text) { %>
+          <p class="theory-display-text"><%= card.display_text %></p>
         <% } %>
 
         <% if (images.length > 0) { %>
@@ -70,8 +81,20 @@
           </div>
         <% } %>
 
+        <% if (bodyValue(card)) { %>
+          <div class="theory-body"><%= bodyValue(card) %></div>
+        <% } %>
+
+        <% if (card.student_task) { %>
+          <p class="theory-task"><strong>Em cần làm:</strong> <%= card.student_task %></p>
+        <% } %>
+
         <% if (card.example) { %>
           <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
+        <% } %>
+
+        <% if (card.remember) { %>
+          <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
         <% } %>
       </div>
       <% if (Number(lesson.grade) >= 3) { %>

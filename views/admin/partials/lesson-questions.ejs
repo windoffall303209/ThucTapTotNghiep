@@ -7,22 +7,17 @@
     { value: 'EXPERT', label: 'Nâng cao' }
   ];
   const layoutOptions = [
-    { value: 'STACK_VERTICAL', label: 'Xếp dọc' },
+    { value: 'STACK_VERTICAL', label: 'Chữ và ảnh theo thứ tự' },
+    { value: 'VISUAL_TOP', label: 'Ảnh lớn phía trên' },
+    { value: 'VISUAL_BOTTOM', label: 'Ảnh phía dưới' },
     { value: 'SPLIT_HORIZONTAL_LEFT_IMAGE', label: 'Ảnh trái, chữ phải' },
     { value: 'SPLIT_HORIZONTAL_RIGHT_IMAGE', label: 'Chữ trái, ảnh phải' },
-    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' }
+    { value: 'IMAGE_IN_CHOICES', label: 'Ảnh trong đáp án' },
+    { value: 'COMPACT', label: 'Gọn nhẹ' }
   ];
   const pageInfo = typeof pagination !== 'undefined'
     ? pagination
     : { page: 1, totalPages: 1, total: questions.length, limit: questions.length || 20 };
-
-  function choiceFor(question, key) {
-    return (question.choices || []).find((item) => item.key === key) || { key, text: '', images: [] };
-  }
-
-  function choiceText(question, key) {
-    return choiceFor(question, key).text || '';
-  }
 
   function escapeHtml(value) {
     return String(value || '')
@@ -35,6 +30,10 @@
 
   function escapeAttribute(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function choiceFor(question, key) {
+    return (question.choices || []).find((item) => item.key === key) || { key, text: '', images: [] };
   }
 
   function imageHtml(image) {
@@ -51,21 +50,53 @@
     return `<div class="saved-question-images">${images.map(imageHtml).join('')}</div>`;
   }
 
+  function displayLayout(question) {
+    return question.content?.layout_variant || question.layout_template || 'STACK_VERTICAL';
+  }
+
+  function questionTypeLabel(question) {
+    return question.question_type === 'FILL_IN_THE_BLANK' ? 'Điền đáp án' : 'Trắc nghiệm';
+  }
+
+  function savedQuestionLayoutClass(question) {
+    const map = {
+      STACK_VERTICAL: 'layout-stack',
+      VISUAL_TOP: 'layout-visual-top',
+      VISUAL_BOTTOM: 'layout-visual-bottom',
+      SPLIT_HORIZONTAL_LEFT_IMAGE: 'layout-image-left',
+      SPLIT_HORIZONTAL_RIGHT_IMAGE: 'layout-image-right',
+      IMAGE_IN_CHOICES: 'layout-image-choices',
+      COMPACT: 'layout-compact'
+    };
+    return map[displayLayout(question)] || 'layout-stack';
+  }
+
+  function stripImagePlaceholders(text, images) {
+    let value = String(text || '');
+    (images || []).forEach((image) => {
+      if (image.id) value = value.replaceAll(`[${image.id}]`, '');
+    });
+    return value;
+  }
+
   function contentHtml(question, options = {}) {
     const content = question.content || {};
     const images = Array.isArray(content.images) ? content.images : [];
-    let rawText = String(content.text || '');
-
-    if (options.removeImagePlaceholders) {
-      images.forEach((image) => {
-        rawText = rawText.replaceAll(`[${image.id}]`, '');
-      });
-    }
+    const layout = displayLayout(question);
+    let rawText = ['VISUAL_TOP', 'VISUAL_BOTTOM', 'SPLIT_HORIZONTAL_LEFT_IMAGE', 'SPLIT_HORIZONTAL_RIGHT_IMAGE'].includes(layout)
+      ? stripImagePlaceholders(content.text, images)
+      : String(content.text || '');
 
     let html = escapeHtml(rawText).replace(/\r?\n/g, '<br>');
     images.forEach((image) => {
       html = html.replaceAll(`[${escapeHtml(image.id)}]`, imageHtml(image));
     });
+    const imageGroup = imageGroupHtml(images);
+
+    if (layout === 'VISUAL_TOP') return `${imageGroup}<div class="saved-question-text">${html}</div>`;
+    if (layout === 'VISUAL_BOTTOM') return `<div class="saved-question-text">${html}</div>${imageGroup}`;
+    if (layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE') return `${imageGroup}<div class="saved-question-text">${html}</div>`;
+    if (layout === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') return `<div class="saved-question-text">${html}</div>${imageGroup}`;
 
     const missingImages = options.appendMissingImages === false
       ? ''
@@ -75,27 +106,6 @@
           .join('');
 
     return `${html}${missingImages}`;
-  }
-
-  function savedQuestionLayoutClass(question) {
-    const map = {
-      STACK_VERTICAL: 'layout-stack',
-      SPLIT_HORIZONTAL_LEFT_IMAGE: 'layout-image-left',
-      SPLIT_HORIZONTAL_RIGHT_IMAGE: 'layout-image-right',
-      IMAGE_IN_CHOICES: 'layout-image-choices'
-    };
-    return map[question.layout_template] || 'layout-stack';
-  }
-
-  function savedQuestionContentHtml(question) {
-    const images = Array.isArray(question.content && question.content.images) ? question.content.images : [];
-    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') {
-      return `${imageGroupHtml(images)}<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>`;
-    }
-    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') {
-      return `<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>${imageGroupHtml(images)}`;
-    }
-    return `<div class="saved-question-text">${contentHtml(question, { removeImagePlaceholders: true, appendMissingImages: false })}</div>${imageGroupHtml(images)}`;
   }
 
   function explanationHtml(question) {
@@ -117,7 +127,7 @@
   <div>
     <span class="bank-kicker">Workspace câu hỏi</span>
     <h2><%= lesson.lesson_name %></h2>
-    <p><%= pageInfo.total %> câu hỏi · Trang <%= pageInfo.page %>/<%= pageInfo.totalPages %>. Thêm câu hỏi mới hoặc mở từng câu để sửa.</p>
+    <p><%= pageInfo.total %> câu hỏi · Trang <%= pageInfo.page %>/<%= pageInfo.totalPages %>. Chọn dạng câu hỏi trước, form sẽ chỉ hiện phần cần nhập.</p>
   </div>
   <span class="status-pill status-in-progress">Bài #<%= lesson.id %></span>
 </div>
@@ -138,13 +148,52 @@
       </button>
     </div>
 
+    <div class="two-fields">
+      <label>
+        Dạng câu hỏi
+        <select name="question_type" data-question-type>
+          <option value="MULTIPLE_CHOICE">Trắc nghiệm A/B/C/D</option>
+          <option value="FILL_IN_THE_BLANK">Điền đáp án</option>
+        </select>
+      </label>
+      <label>
+        Bố cục hiển thị
+        <select name="layout_variant" data-layout-variant>
+          <% layoutOptions.forEach((option) => { %>
+            <option value="<%= option.value %>"><%= option.label %></option>
+          <% }) %>
+        </select>
+      </label>
+    </div>
+
+    <div class="two-fields">
+      <label>
+        Độ khó
+        <select name="difficulty">
+          <% difficultyOptions.forEach((option) => { %>
+            <option value="<%= option.value %>"><%= option.label %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>
+        Kiểu thao tác
+        <select name="question_interaction" data-question-interaction>
+          <option value="choose">Chọn đáp án</option>
+          <option value="fill_blank">Điền số/kết quả</option>
+          <option value="count">Đếm hình</option>
+          <option value="compare">So sánh</option>
+          <option value="none">Không phân loại</option>
+        </select>
+      </label>
+    </div>
+
     <label>
       Đề bài
       <textarea name="content_text" rows="5" placeholder="Ví dụ: Tính $\\frac{1}{3}+\\frac{2}{5}$." required data-preview-content></textarea>
     </label>
 
-    <fieldset class="choice-fieldset image-fieldset">
-      <legend>Hình ảnh trong đề bài</legend>
+    <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
+      <legend>Ảnh trong đề bài</legend>
       <label>
         Ảnh minh họa
         <input type="file" name="question_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-preview-images>
@@ -161,26 +210,7 @@
       </div>
     </fieldset>
 
-    <div class="two-fields">
-      <label>
-        Độ khó
-        <select name="difficulty">
-          <% difficultyOptions.forEach((option) => { %>
-            <option value="<%= option.value %>"><%= option.label %></option>
-          <% }) %>
-        </select>
-      </label>
-      <label>
-        Bố cục
-        <select name="layout_template">
-          <% layoutOptions.forEach((option) => { %>
-            <option value="<%= option.value %>"><%= option.label %></option>
-          <% }) %>
-        </select>
-      </label>
-    </div>
-
-    <fieldset class="choice-fieldset">
+    <fieldset class="choice-fieldset" data-choice-panel>
       <legend>Phương án trả lời và lỗi sai thường gặp</legend>
       <% answerKeys.forEach((key) => { %>
         <div class="choice-editor">
@@ -219,7 +249,7 @@
       <% }) %>
     </fieldset>
 
-    <label>
+    <label data-correct-choice-panel>
       Đáp án đúng
       <select name="correct_answer" required>
         <option value="">Chọn đáp án</option>
@@ -229,13 +259,18 @@
       </select>
     </label>
 
+    <label data-correct-free-panel hidden>
+      Đáp án đúng
+      <input name="correct_answer_free" placeholder="Ví dụ: 15 hoặc 2/3" data-free-answer>
+    </label>
+
     <label>
       Lời giải chi tiết
       <textarea name="explanation_text" rows="4" placeholder="Giải thích từng bước cho học sinh."></textarea>
     </label>
 
-    <fieldset class="choice-fieldset image-fieldset">
-      <legend>Hình ảnh trong lời giải</legend>
+    <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
+      <legend>Ảnh trong lời giải</legend>
       <label>
         Ảnh minh họa lời giải
         <input type="file" name="explanation_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
@@ -272,7 +307,7 @@
 </details>
 
 <% if (questions.length === 0) { %>
-  <div class="empty-state compact">Bài này chưa có câu hỏi. Bấm “Thêm câu hỏi mới” để nhập câu hỏi đầu tiên.</div>
+  <div class="empty-state compact">Bài này chưa có câu hỏi. Bấm "Thêm câu hỏi mới" để nhập câu hỏi đầu tiên.</div>
 <% } %>
 
 <% if (pageInfo.totalPages > 1) { %>
@@ -296,28 +331,31 @@
         <div>
           <div class="bank-question-meta">
             <span>ID #<%= question.id %></span>
+            <span><%= questionTypeLabel(question) %></span>
             <span><%= question.difficulty || 'EASY' %></span>
-            <span><%= question.layout_template || 'STACK_VERTICAL' %></span>
+            <span><%= displayLayout(question) %></span>
           </div>
           <div class="saved-question-layout <%= savedQuestionLayoutClass(question) %> math-content math-lazy">
-            <%- savedQuestionContentHtml(question) %>
+            <%- contentHtml(question) %>
           </div>
         </div>
         <span class="answer-badge">Đáp án <%= question.correct_answer %></span>
       </div>
 
-      <div class="question-choice-list math-content math-lazy <%= question.layout_template === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
-        <% answerKeys.forEach((key) => { %>
-          <% const choice = choiceFor(question, key); %>
-          <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
-            <span><%= key %></span>
-            <div class="choice-body">
-              <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
-              <%- imageGroupHtml(choice.images || []) %>
+      <% if (question.question_type !== 'FILL_IN_THE_BLANK') { %>
+        <div class="question-choice-list math-content math-lazy <%= displayLayout(question) === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
+          <% answerKeys.forEach((key) => { %>
+            <% const choice = choiceFor(question, key); %>
+            <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
+              <span><%= key %></span>
+              <div class="choice-body">
+                <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
+                <%- imageGroupHtml(choice.images || []) %>
+              </div>
             </div>
-          </div>
-        <% }) %>
-      </div>
+          <% }) %>
+        </div>
+      <% } %>
 
       <%- explanationHtml(question) %>
 
@@ -327,7 +365,6 @@
             <i data-lucide="pencil" class="lucide-icon"></i>
             Sửa câu hỏi
           </summary>
-
           <div class="question-edit-shell" data-question-edit-shell data-question-id="<%= question.id %>">
             <div class="empty-state compact">Mở phần sửa để tải form chỉnh sửa câu hỏi.</div>
           </div>

@@ -136,18 +136,52 @@ function normalizeTheoryCards(cards) {
   return (Array.isArray(cards) ? cards : [])
     .map((card, index) => ({
       id: String(card.id || `card-${index + 1}`),
+      type: normalizeTheoryCardType(card.type),
+      layout: normalizeTheoryCardLayout(card.layout),
       title: String(card.title || '').trim(),
+      display_text: String(card.display_text || '').trim(),
       body: String(card.body || '').trim(),
       formulas: normalizeFormulaList(card.formulas || card.formula),
       formula: normalizeFormulaList(card.formulas || card.formula).join('\n'),
       example: String(card.example || '').trim(),
+      student_task: String(card.student_task || '').trim(),
+      remember: String(card.remember || '').trim(),
+      interaction: normalizeTheoryInteraction(card.interaction),
       images: normalizeTheoryImages(card.images)
     }))
-    .filter((card) => card.title || card.body || card.formulas.length > 0 || card.example || card.images.length > 0)
+    .filter((card) =>
+      card.title
+      || card.display_text
+      || card.body
+      || card.formulas.length > 0
+      || card.example
+      || card.student_task
+      || card.remember
+      || card.images.length > 0
+    )
     .map((card, index) => ({
       ...card,
       id: `card-${index + 1}`
     }));
+}
+
+function normalizeTheoryCardType(value) {
+  const type = String(value || '').trim();
+  return ['observe', 'concept', 'model', 'quick_try', 'remember'].includes(type) ? type : 'concept';
+}
+
+function normalizeTheoryCardLayout(value) {
+  const layout = String(value || '').trim();
+  return ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'].includes(layout)
+    ? layout
+    : 'text_first';
+}
+
+function normalizeTheoryInteraction(value) {
+  const interaction = String(value || '').trim();
+  return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction)
+    ? interaction
+    : 'none';
 }
 
 function normalizeFormulaList(value) {

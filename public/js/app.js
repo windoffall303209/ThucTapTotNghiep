@@ -164,7 +164,7 @@
     app.innerHTML = `
       <article class="question-card" data-question-id="${question.id}">
         <div class="question-content math-content">${renderQuestionContent(question)}</div>
-        <div class="answer-grid ${answerGridClass(question)}">${renderChoices(question)}</div>
+        ${renderAnswerArea(question)}
       </article>
     `;
 
@@ -175,6 +175,10 @@
         app.querySelectorAll('.answer-choice').forEach((item) => item.classList.remove('selected'));
         button.classList.add('selected');
       });
+    });
+
+    app.querySelector('[data-free-answer-input]')?.addEventListener('input', (event) => {
+      state.selectedAnswer = event.target.value;
     });
 
     renderMath(app);
@@ -190,7 +194,10 @@
 
     if (!question || !feedback) return;
 
-    if (!state.selectedAnswer) {
+    const freeAnswerInput = document.querySelector('[data-free-answer-input]');
+    const selectedAnswer = freeAnswerInput ? freeAnswerInput.value.trim() : state.selectedAnswer;
+
+    if (!selectedAnswer) {
       showFeedback('warning', 'Vui lòng chọn một đáp án trước khi nộp.');
       return;
     }
@@ -201,7 +208,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        selectedAnswer: state.selectedAnswer,
+        selectedAnswer,
         practiceSessionId: state.practiceSessionId,
         questionIndex: state.currentIndex,
         timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
@@ -457,6 +464,8 @@
     const existingImagesInput = form.querySelector('[data-preview-existing-images]');
     const placeholderList = overrides.placeholderList || form.querySelector('[data-preview-placeholder-list]');
     const layoutInput = form.querySelector('[name="layout_template"]');
+    const layoutVariantInput = form.querySelector('[data-layout-variant], [name="layout_variant"]');
+    const questionTypeInput = form.querySelector('[data-question-type], [name="question_type"]');
 
     const updatePreview = () => {
       const allExistingImages = parsePreviewImages(existingImagesInput?.value);
@@ -471,9 +480,16 @@
         uploadImages
       );
       const question = {
-        layout_template: layoutInput?.value || 'STACK_VERTICAL',
-        content: { text: previewText, images },
-        choices: collectPreviewChoices(form)
+        question_type: questionTypeInput?.value || 'MULTIPLE_CHOICE',
+        layout_template: normalizeStorageLayout(layoutVariantInput?.value || layoutInput?.value || 'STACK_VERTICAL'),
+        content: {
+          text: previewText,
+          images,
+          layout_variant: layoutVariantInput?.value || layoutInput?.value || 'STACK_VERTICAL'
+        },
+        choices: (questionTypeInput?.value || 'MULTIPLE_CHOICE') === 'FILL_IN_THE_BLANK'
+          ? []
+          : collectPreviewChoices(form)
       };
 
       if (placeholderList) {
@@ -485,12 +501,12 @@
 
       preview.innerHTML = `
         <div class="question-content">${renderQuestionContent(question)}</div>
-        <div class="answer-grid ${answerGridClass(question)}">
-          ${renderChoices(question, { preview: true })}
-        </div>
+        ${renderAnswerArea(question, { preview: true })}
       `;
       renderMath(preview);
     };
+
+    initQuestionTypeControls(form, updatePreview);
 
     form.querySelectorAll([
       '[data-preview-content]',
@@ -503,6 +519,10 @@
       '[data-preview-choice-image-width]',
       '[data-preview-choice-image-alt]',
       '[name="layout_template"]',
+      '[name="layout_variant"]',
+      '[data-layout-variant]',
+      '[name="question_type"]',
+      '[data-question-type]',
       '[name="remove_question_images"]',
       '[name^="remove_choice_images_"]'
     ].join(',')).forEach((input) => {
@@ -511,6 +531,56 @@
     });
     form.addEventListener?.('reset', () => window.setTimeout(updatePreview, 0));
     updatePreview();
+  }
+
+  function initQuestionTypeControls(form, updatePreview) {
+    const typeInput = form.querySelector('[data-question-type], [name="question_type"]');
+    if (!typeInput || typeInput.dataset.questionTypeReady === 'true') return;
+
+    const choicePanel = form.querySelector('[data-choice-panel]');
+    const correctChoicePanel = form.querySelector('[data-correct-choice-panel]');
+    const correctChoiceInput = correctChoicePanel?.querySelector('[name="correct_answer"]');
+    const correctFreePanel = form.querySelector('[data-correct-free-panel]');
+    const correctFreeInput = correctFreePanel?.querySelector('[name="correct_answer_free"]');
+    const interactionInput = form.querySelector('[data-question-interaction], [name="question_interaction"]');
+
+    const sync = () => {
+      const isFreeAnswer = typeInput.value === 'FILL_IN_THE_BLANK';
+      if (choicePanel) choicePanel.hidden = isFreeAnswer;
+      if (correctChoicePanel) correctChoicePanel.hidden = isFreeAnswer;
+      if (correctFreePanel) correctFreePanel.hidden = !isFreeAnswer;
+
+      choicePanel?.querySelectorAll('input, select, textarea').forEach((input) => {
+        input.disabled = isFreeAnswer;
+      });
+
+      if (correctChoiceInput) {
+        correctChoiceInput.disabled = isFreeAnswer;
+        correctChoiceInput.required = !isFreeAnswer;
+      }
+      if (correctFreeInput) {
+        correctFreeInput.disabled = !isFreeAnswer;
+        correctFreeInput.required = isFreeAnswer;
+      }
+      if (interactionInput && isFreeAnswer && interactionInput.value === 'choose') {
+        interactionInput.value = 'fill_blank';
+      }
+      updatePreview?.();
+    };
+
+    typeInput.dataset.questionTypeReady = 'true';
+    typeInput.addEventListener('change', sync);
+    sync();
+  }
+
+  function normalizeStorageLayout(value) {
+    const layout = String(value || 'STACK_VERTICAL').toUpperCase();
+    return [
+      'STACK_VERTICAL',
+      'SPLIT_HORIZONTAL_LEFT_IMAGE',
+      'SPLIT_HORIZONTAL_RIGHT_IMAGE',
+      'IMAGE_IN_CHOICES'
+    ].includes(layout) ? layout : 'STACK_VERTICAL';
   }
 
   function initSettingsCards() {
@@ -627,8 +697,13 @@
     if (!preview) return;
 
     const titleInput = form.querySelector('[data-theory-title]');
+    const typeInput = form.querySelector('[data-theory-type]');
+    const layoutInput = form.querySelector('[data-theory-layout]');
+    const displayTextInput = form.querySelector('[data-theory-display-text]');
     const bodyInput = form.querySelector('[data-theory-body]');
+    const studentTaskInput = form.querySelector('[data-theory-student-task]');
     const exampleInput = form.querySelector('[data-theory-example]');
+    const rememberInput = form.querySelector('[data-theory-remember]');
     const imageInput = form.querySelector('[data-theory-images]');
     const existingImagesInput = form.querySelector('[data-theory-existing-images]');
 
@@ -642,6 +717,11 @@
       }));
       const images = [...existingImages, ...uploadImages];
       preview.innerHTML = renderTheoryCardPreview({
+        type: typeInput?.value || 'concept',
+        layout: layoutInput?.value || 'text_first',
+        display_text: displayTextInput?.value || '',
+        student_task: studentTaskInput?.value || '',
+        remember: rememberInput?.value || '',
         title: titleInput?.value || 'Tiêu đề thẻ lý thuyết',
         body: bodyInput?.value || 'Nội dung lý thuyết sẽ hiển thị tại đây.',
         example: exampleInput?.value || '',
@@ -651,7 +731,7 @@
       refreshIcons();
     };
 
-    form.querySelectorAll('[data-theory-title], [data-theory-body], [data-theory-example], [data-theory-images], [name="remove_theory_images"]').forEach((input) => {
+    form.querySelectorAll('[data-theory-type], [data-theory-layout], [data-theory-title], [data-theory-display-text], [data-theory-body], [data-theory-student-task], [data-theory-example], [data-theory-remember], [data-theory-images], [name="remove_theory_images"]').forEach((input) => {
       input.addEventListener('input', updatePreview);
       input.addEventListener('change', updatePreview);
     });
@@ -685,6 +765,38 @@
         ${card.example ? `<p class="muted">${escapeHtml(card.example)}</p>` : ''}
       </article>
     `;
+  }
+
+  function renderTheoryCardPreview(card) {
+    const imagesHtml = (card.images || []).map((image) => `
+      <span class="question-image">
+        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa lý thuyết')}">
+      </span>
+    `).join('');
+
+    return `
+      <article class="theory-preview-card theory-layout-${escapeAttribute(card.layout || 'text_first')}">
+        <span class="card-index">Xem trước - ${escapeHtml(theoryTypeLabel(card.type))}</span>
+        <h2>${escapeHtml(card.title || '')}</h2>
+        ${card.display_text ? `<p class="theory-display-text">${escapeHtml(card.display_text)}</p>` : ''}
+        ${imagesHtml ? `<div class="theory-image-row">${imagesHtml}</div>` : ''}
+        <div class="theory-body">${escapeHtml(card.body || '')}</div>
+        ${card.student_task ? `<p class="theory-task"><strong>Việc cần làm:</strong> ${escapeHtml(card.student_task)}</p>` : ''}
+        ${card.example ? `<p class="muted">${escapeHtml(card.example)}</p>` : ''}
+        ${card.remember ? `<p class="theory-remember"><strong>Ghi nhớ:</strong> ${escapeHtml(card.remember)}</p>` : ''}
+      </article>
+    `;
+  }
+
+  function theoryTypeLabel(type) {
+    const labels = {
+      observe: 'Quan sát',
+      concept: 'Kiến thức',
+      model: 'Ví dụ mẫu',
+      quick_try: 'Thử nhanh',
+      remember: 'Ghi nhớ'
+    };
+    return labels[type] || 'Kiến thức';
   }
 
   function initQuestionFlowSteps() {
@@ -1041,7 +1153,17 @@
       : { content: questionOrContent || {}, layout_template: 'STACK_VERTICAL' };
     const content = question.content || {};
     const images = normalizeImagesForRender(content.images);
-    const layout = question.layout_template || 'STACK_VERTICAL';
+    const layout = content.layout_variant || question.layout_template || 'STACK_VERTICAL';
+
+    if (layout === 'VISUAL_TOP' || layout === 'VISUAL_BOTTOM') {
+      const imagePanel = renderImageRow(images, 'question-image-row split-image-row', 'Hình minh họa đề bài');
+      const textPanel = `<div class="question-text-row">${escapeHtml(stripImagePlaceholders(content.text, images)).replace(/\r?\n/g, '<br>')}</div>`;
+      return `
+        <div class="question-visual-stack ${layout === 'VISUAL_TOP' ? 'visual-top' : 'visual-bottom'}">
+          ${layout === 'VISUAL_TOP' ? `${imagePanel}${textPanel}` : `${textPanel}${imagePanel}`}
+        </div>
+      `;
+    }
 
     if (layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' || layout === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') {
       const imagePanel = renderImageRow(images, 'question-image-row split-image-row', 'Hình minh họa đề bài');
@@ -1057,7 +1179,23 @@
   }
 
   function answerGridClass(question) {
-    return question?.layout_template === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '';
+    const layout = question?.content?.layout_variant || question?.layout_template;
+    return layout === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '';
+  }
+
+  function renderAnswerArea(question, options = {}) {
+    if (question?.question_type === 'FILL_IN_THE_BLANK') {
+      const inputHtml = options.preview
+        ? '<div class="free-answer-input preview-free-answer">Học sinh sẽ điền đáp án tại đây</div>'
+        : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án của em">';
+      return `<div class="free-answer-area">${inputHtml}</div>`;
+    }
+
+    return `
+      <div class="answer-grid ${answerGridClass(question)}">
+        ${renderChoices(question, options)}
+      </div>
+    `;
   }
 
   function renderChoices(question, options = {}) {

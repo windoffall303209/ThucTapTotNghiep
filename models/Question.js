@@ -38,6 +38,8 @@ function normalizeQuestionContent(content) {
     return {
       text: content.trim(),
       instruction: '',
+      interaction: 'none',
+      layout_variant: '',
       images: []
     };
   }
@@ -45,8 +47,28 @@ function normalizeQuestionContent(content) {
   return {
     text: String(content?.text || '').trim(),
     instruction: String(content?.instruction || '').trim(),
+    interaction: normalizeQuestionInteraction(content?.interaction),
+    layout_variant: normalizeLayoutVariant(content?.layout_variant),
     images: normalizeImages(content?.images, 'image', 'Hình minh họa')
   };
+}
+
+function normalizeQuestionInteraction(value) {
+  const interaction = String(value || '').trim();
+  return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
+}
+
+function normalizeLayoutVariant(value) {
+  const layout = String(value || '').trim().toUpperCase();
+  return [
+    'STACK_VERTICAL',
+    'VISUAL_TOP',
+    'VISUAL_BOTTOM',
+    'SPLIT_HORIZONTAL_LEFT_IMAGE',
+    'SPLIT_HORIZONTAL_RIGHT_IMAGE',
+    'IMAGE_IN_CHOICES',
+    'COMPACT'
+  ].includes(layout) ? layout : '';
 }
 
 function normalizeExplanation(explanation) {

@@ -7,6 +7,22 @@ const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
+const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
+const LAYOUT_TEMPLATES = [
+  'STACK_VERTICAL',
+  'SPLIT_HORIZONTAL_LEFT_IMAGE',
+  'SPLIT_HORIZONTAL_RIGHT_IMAGE',
+  'IMAGE_IN_CHOICES'
+];
+const LAYOUT_VARIANTS = [
+  'STACK_VERTICAL',
+  'VISUAL_TOP',
+  'VISUAL_BOTTOM',
+  'SPLIT_HORIZONTAL_LEFT_IMAGE',
+  'SPLIT_HORIZONTAL_RIGHT_IMAGE',
+  'IMAGE_IN_CHOICES',
+  'COMPACT'
+];
 
 async function dashboard(req, res, next) {
   try {
@@ -249,6 +265,7 @@ async function questionEditForm(req, res, next) {
 
 async function createQuestion(req, res, next) {
   try {
+    normalizeQuestionBody(req.body);
     const files = getUploadFiles(req.files);
     const validation = validateQuestionBody(req.body, files.choiceImages);
     if (validation) {
@@ -274,15 +291,17 @@ async function createQuestion(req, res, next) {
 
     await Question.createQuestion({
       lesson_id: Number(req.body.lesson_id),
-      question_type: 'MULTIPLE_CHOICE',
+      question_type: normalizeQuestionType(req.body.question_type),
       difficulty: req.body.difficulty || 'EASY',
-      layout_template: req.body.layout_template || 'STACK_VERTICAL',
+      layout_template: normalizeLayoutTemplate(req.body.layout_template),
       content: {
         text: contentText,
-        images: questionImages
+        images: questionImages,
+        interaction: normalizeQuestionInteraction(req.body.question_interaction),
+        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template)
       },
       choices,
-      correct_answer: req.body.correct_answer,
+      correct_answer: String(req.body.correct_answer || '').trim(),
       explanation: {
         text: req.body.explanation_text || 'Chưa có lời giải chi tiết.',
         images: explanationImages
@@ -299,6 +318,7 @@ async function createQuestion(req, res, next) {
 
 async function updateQuestion(req, res, next) {
   try {
+    normalizeQuestionBody(req.body);
     const question = await Question.getQuestionById(req.params.id);
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần sửa.');
@@ -342,15 +362,17 @@ async function updateQuestion(req, res, next) {
 
     await Question.updateQuestion(Number(req.params.id), {
       lesson_id: Number(req.body.lesson_id),
-      question_type: 'MULTIPLE_CHOICE',
+      question_type: normalizeQuestionType(req.body.question_type),
       difficulty: req.body.difficulty || question.difficulty || 'EASY',
-      layout_template: req.body.layout_template || question.layout_template || 'STACK_VERTICAL',
+      layout_template: normalizeLayoutTemplate(req.body.layout_template || question.layout_template),
       content: {
         text: contentText,
-        images: questionImages
+        images: questionImages,
+        interaction: normalizeQuestionInteraction(req.body.question_interaction),
+        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template || question.content?.layout_variant)
       },
       choices,
-      correct_answer: req.body.correct_answer,
+      correct_answer: String(req.body.correct_answer || '').trim(),
       explanation: {
         text: req.body.explanation_text || 'Chưa có lời giải chi tiết.',
         images: keptExplanationImages.concat(uploadedExplanationImages)
@@ -376,8 +398,13 @@ async function deleteQuestion(req, res, next) {
 }
 
 function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map()) {
+  const questionType = normalizeQuestionType(body.question_type);
   if (!body.lesson_id || !body.content_text || !body.correct_answer) {
     return 'Vui lòng chọn bài học, nhập đề bài và chọn đáp án đúng.';
+  }
+
+  if (questionType === 'FILL_IN_THE_BLANK') {
+    return null;
   }
 
   if (!ANSWER_KEYS.includes(body.correct_answer)) {
@@ -405,7 +432,24 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   return null;
 }
 
+function normalizeQuestionBody(body) {
+  body.question_type = normalizeQuestionType(body.question_type);
+  if (body.question_type === 'FILL_IN_THE_BLANK') {
+    body.correct_answer = String(body.correct_answer_free || body.correct_answer || '').trim();
+    body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
+    body.question_interaction = body.question_interaction || 'fill_blank';
+    return body;
+  }
+
+  body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
+  return body;
+}
+
 async function buildChoices(body, choiceFiles = {}, existingChoices = new Map()) {
+  if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
+    return [];
+  }
+
   const choices = [];
 
   for (const key of ANSWER_KEYS) {
@@ -432,6 +476,10 @@ async function buildChoices(body, choiceFiles = {}, existingChoices = new Map())
 }
 
 function buildMisconceptions(choices, correctAnswer, body) {
+  if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
+    return [];
+  }
+
   return choices
     .filter((choice) => choice.key !== correctAnswer)
     .map((choice) => ({
@@ -440,6 +488,26 @@ function buildMisconceptions(choices, correctAnswer, body) {
       explanation: body[`misconception_${choice.key}`] || ''
     }))
     .filter((item) => item.explanation.trim());
+}
+
+function normalizeQuestionType(value) {
+  const type = String(value || 'MULTIPLE_CHOICE').trim().toUpperCase();
+  return QUESTION_TYPES.includes(type) ? type : 'MULTIPLE_CHOICE';
+}
+
+function normalizeLayoutTemplate(value) {
+  const layout = String(value || 'STACK_VERTICAL').trim().toUpperCase();
+  return LAYOUT_TEMPLATES.includes(layout) ? layout : 'STACK_VERTICAL';
+}
+
+function normalizeLayoutVariant(value) {
+  const layout = String(value || 'STACK_VERTICAL').trim().toUpperCase();
+  return LAYOUT_VARIANTS.includes(layout) ? layout : normalizeLayoutTemplate(value);
+}
+
+function normalizeQuestionInteraction(value) {
+  const interaction = String(value || '').trim();
+  return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
 }
 
 function buildQuestionBankTree(lessons, questionCounts) {
@@ -818,15 +886,24 @@ async function buildTheoryCardBody(cards, files) {
     const uploadedImages = await buildTheoryImages(uploadedFilesByIndex.get(index) || [], index, existingImages.length);
     const normalizedCard = {
       title: card?.title || '',
+      type: normalizeTheoryType(card?.type),
+      layout: normalizeTheoryLayout(card?.layout),
+      display_text: card?.display_text || '',
       body: card?.body || '',
       example: card?.example || '',
+      student_task: card?.student_task || '',
+      remember: card?.remember || '',
+      interaction: normalizeTheoryInteraction(card?.interaction),
       images: [...existingImages, ...uploadedImages]
     };
 
     if (
       normalizedCard.title.trim()
+      || normalizedCard.display_text.trim()
       || normalizedCard.body.trim()
       || normalizedCard.example.trim()
+      || normalizedCard.student_task.trim()
+      || normalizedCard.remember.trim()
       || normalizedCard.images.length > 0
     ) {
       result.push(normalizedCard);
@@ -842,8 +919,14 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0) {
 
   return {
     title: body.title || '',
+    type: normalizeTheoryType(body.type),
+    layout: normalizeTheoryLayout(body.layout),
+    display_text: body.display_text || '',
     body: body.body || '',
     example: body.example || '',
+    student_task: body.student_task || '',
+    remember: body.remember || '',
+    interaction: normalizeTheoryInteraction(body.interaction),
     images: [...existingImages, ...uploadedImages]
   };
 }
@@ -851,10 +934,30 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0) {
 function hasTheoryCardContent(card) {
   return Boolean(
     String(card?.title || '').trim()
+    || String(card?.display_text || '').trim()
     || String(card?.body || '').trim()
     || String(card?.example || '').trim()
+    || String(card?.student_task || '').trim()
+    || String(card?.remember || '').trim()
     || (Array.isArray(card?.images) && card.images.length > 0)
   );
+}
+
+function normalizeTheoryType(value) {
+  const type = String(value || '').trim();
+  return ['observe', 'concept', 'model', 'quick_try', 'remember'].includes(type) ? type : 'concept';
+}
+
+function normalizeTheoryLayout(value) {
+  const layout = String(value || '').trim();
+  return ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'].includes(layout)
+    ? layout
+    : 'text_first';
+}
+
+function normalizeTheoryInteraction(value) {
+  const interaction = String(value || '').trim();
+  return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction) ? interaction : 'none';
 }
 
 function groupTheoryImageFiles(files) {
