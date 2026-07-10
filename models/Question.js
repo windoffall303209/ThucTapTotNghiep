@@ -40,6 +40,7 @@ function normalizeQuestionContent(content) {
       instruction: '',
       interaction: 'none',
       layout_variant: '',
+      grid_layout: normalizeGridLayout(null),
       images: []
     };
   }
@@ -49,6 +50,7 @@ function normalizeQuestionContent(content) {
     instruction: String(content?.instruction || '').trim(),
     interaction: normalizeQuestionInteraction(content?.interaction),
     layout_variant: normalizeLayoutVariant(content?.layout_variant),
+    grid_layout: normalizeGridLayout(content?.grid_layout),
     images: normalizeImages(content?.images, 'image', 'Hình minh họa')
   };
 }
@@ -69,6 +71,66 @@ function normalizeLayoutVariant(value) {
     'IMAGE_IN_CHOICES',
     'COMPACT'
   ].includes(layout) ? layout : '';
+}
+
+function normalizeGridLayout(value) {
+  const grid = value && typeof value === 'object' ? value : {};
+  const rows = clampGridSize(grid.rows || 5);
+  const columns = clampGridSize(grid.columns || 5);
+  const cells = Array.isArray(grid.cells) ? grid.cells : [];
+  return {
+    enabled: Boolean(grid.enabled),
+    rows,
+    columns,
+    cells: cells
+      .map((cell, index) => normalizeGridCell(cell, index, rows, columns))
+      .filter(Boolean)
+  };
+}
+
+function normalizeGridCell(cell, index, rows, columns) {
+  if (!cell || typeof cell !== 'object') return null;
+  const row = clampSpan(cell.row || 1, rows);
+  const col = clampSpan(cell.col || 1, columns);
+  const rowSpan = clampSpan(cell.rowSpan || 1, rows - row + 1);
+  const colSpan = clampSpan(cell.colSpan || 1, columns - col + 1);
+  const type = [
+    'empty',
+    'text',
+    'image',
+    'formula',
+    'question_text',
+    'answer',
+    'free_answer_input',
+    'solution',
+    'remember',
+    'instruction'
+  ].includes(cell.type) ? cell.type : 'text';
+  return {
+    id: String(cell.id || `grid-cell-${index + 1}`),
+    row,
+    col,
+    rowSpan,
+    colSpan,
+    type,
+    text: String(cell.text || '').trim(),
+    image_url: String(cell.image_url || '').trim(),
+    answer_key: String(cell.answer_key || '').trim().toUpperCase(),
+    align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
+    background: String(cell.background || '').trim()
+  };
+}
+
+function clampGridSize(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 5;
+  return Math.min(Math.max(Math.round(number), 1), 10);
+}
+
+function clampSpan(value, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 1;
+  return Math.min(Math.max(Math.round(number), 1), Math.max(max, 1));
 }
 
 function normalizeExplanation(explanation) {

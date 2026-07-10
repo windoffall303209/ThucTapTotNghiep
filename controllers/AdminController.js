@@ -266,6 +266,10 @@ async function questionEditForm(req, res, next) {
 async function createQuestion(req, res, next) {
   try {
     normalizeQuestionBody(req.body);
+    const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
+    const gridLayout = authoringMode === 'canvas'
+      ? parseGridLayout(req.body.grid_layout)
+      : parseGridLayout({ enabled: false });
     const files = getUploadFiles(req.files);
     const validation = validateQuestionBody(req.body, files.choiceImages);
     if (validation) {
@@ -275,19 +279,23 @@ async function createQuestion(req, res, next) {
 
     const choices = await buildChoices(req.body, files.choiceImages);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
-    const questionImages = await buildQuestionImages(files.questionImages, req.body, {
+    const uploadedQuestionImages = await buildQuestionImages(files.questionImages, req.body, {
       idPrefix: 'image',
       widthField: 'image_width_percent',
       altField: 'image_alt_text',
       defaultAlt: 'Hình minh họa'
     });
-    const explanationImages = await buildQuestionImages(files.explanationImages, req.body, {
+    const uploadedExplanationImages = await buildQuestionImages(files.explanationImages, req.body, {
       idPrefix: 'explanation-image',
       widthField: 'explanation_image_width_percent',
       altField: 'explanation_image_alt_text',
       defaultAlt: 'Hình minh họa lời giải'
     });
-    const contentText = ensureImagePlaceholders(req.body.content_text, questionImages);
+    const explanationImages = authoringMode === 'canvas' ? [] : uploadedExplanationImages;
+    const contentText = authoringMode === 'canvas'
+      ? ''
+      : ensureImagePlaceholders(req.body.content_text, uploadedQuestionImages);
+    const questionImages = authoringMode === 'canvas' ? [] : uploadedQuestionImages;
 
     await Question.createQuestion({
       lesson_id: Number(req.body.lesson_id),
@@ -298,7 +306,8 @@ async function createQuestion(req, res, next) {
         text: contentText,
         images: questionImages,
         interaction: normalizeQuestionInteraction(req.body.question_interaction),
-        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template)
+        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template),
+        grid_layout: gridLayout
       },
       choices,
       correct_answer: String(req.body.correct_answer || '').trim(),
@@ -319,6 +328,10 @@ async function createQuestion(req, res, next) {
 async function updateQuestion(req, res, next) {
   try {
     normalizeQuestionBody(req.body);
+    const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
+    const gridLayout = authoringMode === 'canvas'
+      ? parseGridLayout(req.body.grid_layout)
+      : parseGridLayout({ enabled: false });
     const question = await Question.getQuestionById(req.params.id);
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần sửa.');
@@ -345,7 +358,7 @@ async function updateQuestion(req, res, next) {
       altField: 'image_alt_text',
       defaultAlt: 'Hình minh họa'
     });
-    const questionImages = keptQuestionImages.concat(uploadedImages);
+    const questionImages = authoringMode === 'canvas' ? [] : keptQuestionImages.concat(uploadedImages);
     const existingExplanationImages = Array.isArray(question.explanation?.images) ? question.explanation.images : [];
     const keptExplanationImages = filterRemovedImages(existingExplanationImages, req.body.remove_explanation_images);
     const uploadedExplanationImages = await buildQuestionImages(files.explanationImages, req.body, {
@@ -355,10 +368,12 @@ async function updateQuestion(req, res, next) {
       altField: 'explanation_image_alt_text',
       defaultAlt: 'Hình minh họa lời giải'
     });
-    const contentText = ensureImagePlaceholders(
-      stripImagePlaceholders(req.body.content_text, removedQuestionImages),
-      uploadedImages
-    );
+    const contentText = authoringMode === 'canvas'
+      ? ''
+      : ensureImagePlaceholders(
+          stripImagePlaceholders(req.body.content_text, removedQuestionImages),
+          uploadedImages
+        );
 
     await Question.updateQuestion(Number(req.params.id), {
       lesson_id: Number(req.body.lesson_id),
@@ -369,13 +384,14 @@ async function updateQuestion(req, res, next) {
         text: contentText,
         images: questionImages,
         interaction: normalizeQuestionInteraction(req.body.question_interaction),
-        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template || question.content?.layout_variant)
+        layout_variant: normalizeLayoutVariant(req.body.layout_variant || req.body.layout_template || question.content?.layout_variant),
+        grid_layout: gridLayout
       },
       choices,
       correct_answer: String(req.body.correct_answer || '').trim(),
       explanation: {
         text: req.body.explanation_text || 'Chưa có lời giải chi tiết.',
-        images: keptExplanationImages.concat(uploadedExplanationImages)
+        images: authoringMode === 'canvas' ? [] : keptExplanationImages.concat(uploadedExplanationImages)
       },
       misconceptions
     });
@@ -399,7 +415,10 @@ async function deleteQuestion(req, res, next) {
 
 function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map()) {
   const questionType = normalizeQuestionType(body.question_type);
-  if (!body.lesson_id || !body.content_text || !body.correct_answer) {
+  const authoringMode = normalizeAuthoringMode(body.authoring_mode);
+  const gridLayout = authoringMode === 'canvas' ? parseGridLayout(body.grid_layout) : parseGridLayout({ enabled: false });
+  const hasGridLayout = gridLayout.enabled;
+  if (!body.lesson_id || (!body.content_text && !hasGridLayout) || !body.correct_answer) {
     return 'Vui lòng chọn bài học, nhập đề bài và chọn đáp án đúng.';
   }
 
@@ -409,6 +428,10 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
 
   if (!ANSWER_KEYS.includes(body.correct_answer)) {
     return 'Đáp án đúng phải là A, B, C hoặc D.';
+  }
+
+  if (gridHasAnswerOptions(gridLayout, body.correct_answer)) {
+    return null;
   }
 
   const choiceSummaries = ANSWER_KEYS.map((key) => {
@@ -432,6 +455,17 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   return null;
 }
 
+function gridHasAnswerOptions(gridLayout, correctAnswer = '') {
+  if (!gridLayout?.enabled) return false;
+  const keys = new Set(
+    (gridLayout.cells || [])
+      .filter((cell) => cell.type === 'answer')
+      .map((cell) => cell.answer_key)
+      .filter(Boolean)
+  );
+  return keys.size >= 2 && keys.has(String(correctAnswer || '').trim().toUpperCase());
+}
+
 function normalizeQuestionBody(body) {
   body.question_type = normalizeQuestionType(body.question_type);
   if (body.question_type === 'FILL_IN_THE_BLANK') {
@@ -447,6 +481,10 @@ function normalizeQuestionBody(body) {
 
 async function buildChoices(body, choiceFiles = {}, existingChoices = new Map()) {
   if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
+    return [];
+  }
+
+  if (normalizeAuthoringMode(body.authoring_mode) === 'canvas' && gridHasAnswerOptions(parseGridLayout(body.grid_layout), body.correct_answer)) {
     return [];
   }
 
@@ -508,6 +546,79 @@ function normalizeLayoutVariant(value) {
 function normalizeQuestionInteraction(value) {
   const interaction = String(value || '').trim();
   return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
+}
+
+function normalizeAuthoringMode(value) {
+  return String(value || '').trim() === 'canvas' ? 'canvas' : 'fields';
+}
+
+function parseGridLayout(value) {
+  let grid = value;
+  if (typeof value === 'string') {
+    try {
+      grid = value ? JSON.parse(value) : {};
+    } catch (error) {
+      grid = {};
+    }
+  }
+
+  if (!grid || typeof grid !== 'object') grid = {};
+  const rows = clampGridSize(grid.rows || 5);
+  const columns = clampGridSize(grid.columns || 5);
+  const cells = Array.isArray(grid.cells) ? grid.cells : [];
+  return {
+    enabled: Boolean(grid.enabled),
+    rows,
+    columns,
+    cells: cells
+      .map((cell, index) => normalizeGridCell(cell, index, rows, columns))
+      .filter(Boolean)
+  };
+}
+
+function normalizeGridCell(cell, index, rows, columns) {
+  if (!cell || typeof cell !== 'object') return null;
+  const row = clampGridSpan(cell.row || 1, rows);
+  const col = clampGridSpan(cell.col || 1, columns);
+  const rowSpan = clampGridSpan(cell.rowSpan || 1, rows - row + 1);
+  const colSpan = clampGridSpan(cell.colSpan || 1, columns - col + 1);
+  const type = [
+    'empty',
+    'text',
+    'image',
+    'formula',
+    'question_text',
+    'answer',
+    'free_answer_input',
+    'solution',
+    'remember',
+    'instruction'
+  ].includes(cell.type) ? cell.type : 'text';
+  return {
+    id: String(cell.id || `grid-cell-${index + 1}`),
+    row,
+    col,
+    rowSpan,
+    colSpan,
+    type,
+    text: String(cell.text || '').trim(),
+    image_url: String(cell.image_url || '').trim(),
+    answer_key: String(cell.answer_key || '').trim().toUpperCase(),
+    align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
+    background: String(cell.background || '').trim()
+  };
+}
+
+function clampGridSize(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 5;
+  return Math.min(Math.max(Math.round(number), 1), 10);
+}
+
+function clampGridSpan(value, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 1;
+  return Math.min(Math.max(Math.round(number), 1), Math.max(max, 1));
 }
 
 function buildQuestionBankTree(lessons, questionCounts) {
@@ -882,8 +993,12 @@ async function buildTheoryCardBody(cards, files) {
   const result = [];
 
   for (const [index, card] of items.entries()) {
+    const authoringMode = normalizeAuthoringMode(card?.authoring_mode);
     const existingImages = parseExistingImages(card?.existing_images);
     const uploadedImages = await buildTheoryImages(uploadedFilesByIndex.get(index) || [], index, existingImages.length);
+    const gridLayout = authoringMode === 'canvas'
+      ? parseGridLayout(card?.grid_layout)
+      : parseGridLayout({ enabled: false });
     const normalizedCard = {
       title: card?.title || '',
       type: normalizeTheoryType(card?.type),
@@ -894,7 +1009,8 @@ async function buildTheoryCardBody(cards, files) {
       student_task: card?.student_task || '',
       remember: card?.remember || '',
       interaction: normalizeTheoryInteraction(card?.interaction),
-      images: [...existingImages, ...uploadedImages]
+      grid_layout: gridLayout,
+      images: authoringMode === 'canvas' ? [] : [...existingImages, ...uploadedImages]
     };
 
     if (
@@ -904,6 +1020,7 @@ async function buildTheoryCardBody(cards, files) {
       || normalizedCard.example.trim()
       || normalizedCard.student_task.trim()
       || normalizedCard.remember.trim()
+      || normalizedCard.grid_layout.enabled
       || normalizedCard.images.length > 0
     ) {
       result.push(normalizedCard);
@@ -914,8 +1031,12 @@ async function buildTheoryCardBody(cards, files) {
 }
 
 async function buildSingleTheoryCard(body, files, cardIndex = 0) {
+  const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const existingImages = filterRemovedImages(parseExistingImages(body.existing_images), body.remove_theory_images);
   const uploadedImages = await buildTheoryImages(files || [], cardIndex, maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`));
+  const gridLayout = authoringMode === 'canvas'
+    ? parseGridLayout(body.grid_layout)
+    : parseGridLayout({ enabled: false });
 
   return {
     title: body.title || '',
@@ -927,7 +1048,8 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0) {
     student_task: body.student_task || '',
     remember: body.remember || '',
     interaction: normalizeTheoryInteraction(body.interaction),
-    images: [...existingImages, ...uploadedImages]
+    grid_layout: gridLayout,
+    images: authoringMode === 'canvas' ? [] : [...existingImages, ...uploadedImages]
   };
 }
 
@@ -939,6 +1061,7 @@ function hasTheoryCardContent(card) {
     || String(card?.example || '').trim()
     || String(card?.student_task || '').trim()
     || String(card?.remember || '').trim()
+    || card?.grid_layout?.enabled
     || (Array.isArray(card?.images) && card.images.length > 0)
   );
 }

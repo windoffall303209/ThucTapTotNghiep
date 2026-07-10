@@ -57,6 +57,11 @@
   function escapeAttribute(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
   }
+
+  function gridRenderHtml(grid) {
+    if (!grid || !grid.enabled) return '';
+    return `<div class="content-grid-render math-content" data-grid-render="${escapeAttribute(JSON.stringify(grid))}"></div>`;
+  }
 %>
 
 <div class="lesson-question-toolbar">
@@ -77,7 +82,18 @@
     Thêm thẻ lý thuyết
   </summary>
   <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards" method="post" enctype="multipart/form-data" data-theory-preview-form>
-    <div class="theory-card-fields">
+    <input type="hidden" name="authoring_mode" value="fields" data-authoring-mode-input>
+    <div class="authoring-mode-switch" data-authoring-mode>
+      <label>
+        <input type="radio" name="authoring_mode_choice_theory_<%= lesson.id %>_new" value="fields" checked>
+        Nhập từng trường
+      </label>
+      <label>
+        <input type="radio" name="authoring_mode_choice_theory_<%= lesson.id %>_new" value="canvas">
+        Thiết kế bằng canvas
+      </label>
+    </div>
+    <div class="theory-card-fields" data-author-mode-panel="fields">
       <div class="two-fields">
         <label>
           Loại thẻ
@@ -135,7 +151,71 @@
         <input type="file" name="theory_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-theory-images>
       </label>
     </div>
-    <aside class="question-form-preview">
+    <input type="hidden" name="grid_layout" value="<%- escapeAttribute(JSON.stringify({ enabled: false, rows: 5, columns: 5, cells: [] })) %>" data-grid-layout-input>
+    <section class="grid-editor" data-grid-editor data-grid-mode="theory" data-author-mode-panel="canvas" hidden>
+      <div class="grid-editor-head">
+        <label class="toggle-line">
+          <input type="checkbox" data-grid-enabled>
+          Dùng thiết kế dạng lưới
+        </label>
+        <div class="grid-size-controls">
+          <label>Dòng <input type="number" min="1" max="10" value="5" data-grid-rows></label>
+          <label>Cột <input type="number" min="1" max="10" value="5" data-grid-columns></label>
+        </div>
+      </div>
+      <div class="grid-editor-actions">
+        <button class="btn btn-secondary btn-compact" type="button" data-grid-merge>Gộp ô</button>
+        <button class="btn btn-secondary btn-compact" type="button" data-grid-unmerge>Tách ô</button>
+        <button class="btn btn-secondary btn-compact" type="button" data-grid-clear>Để trống ô</button>
+      </div>
+      <div class="grid-editor-workspace">
+        <div class="grid-editor-canvas" data-grid-canvas></div>
+        <div class="grid-cell-panel">
+          <div class="form-note">Chọn hoặc kéo qua nhiều ô, sau đó gán nội dung cho vùng đang chọn.</div>
+          <label>Loại ô
+            <select data-grid-cell-type>
+              <option value="text">Chữ</option>
+              <option value="image">Ảnh</option>
+              <option value="formula">Công thức</option>
+              <option value="question_text">Câu hỏi nhỏ</option>
+              <option value="answer">Đáp án</option>
+              <option value="solution">Lời giải</option>
+              <option value="remember">Ghi nhớ</option>
+              <option value="instruction">Hướng dẫn</option>
+              <option value="empty">Để trống</option>
+            </select>
+          </label>
+          <label>Nội dung
+            <textarea rows="4" data-grid-cell-text></textarea>
+          </label>
+          <label>URL ảnh
+            <input data-grid-cell-image placeholder="Dán link ảnh hoặc đường dẫn ảnh">
+          </label>
+          <div class="two-fields">
+            <label>Mã đáp án
+              <select data-grid-cell-answer>
+                <option value="">Không</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </label>
+            <label>Căn lề
+              <select data-grid-cell-align>
+                <option value="center">Giữa</option>
+                <option value="left">Trái</option>
+                <option value="right">Phải</option>
+              </select>
+            </label>
+          </div>
+          <label>Màu nền
+            <input type="color" value="#ffffff" data-grid-cell-background>
+          </label>
+        </div>
+      </div>
+    </section>
+    <aside class="question-form-preview" data-author-mode-panel="fields">
       <div class="section-title">
         <i data-lucide="eye" class="lucide-icon"></i>
         Preview thẻ lý thuyết
@@ -178,6 +258,8 @@
         <p class="theory-display-text"><%= card.display_text %></p>
       <% } %>
 
+      <%- gridRenderHtml(card.grid_layout) %>
+
       <% if (images.length > 0) { %>
         <div class="theory-image-row">
           <% images.forEach((image) => { %>
@@ -211,7 +293,18 @@
         </summary>
         <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards/<%= index %>" method="post" enctype="multipart/form-data" data-theory-preview-form>
           <input type="hidden" name="existing_images" value="<%- escapeAttribute(JSON.stringify(images)) %>" data-theory-existing-images>
-          <div class="theory-card-fields">
+          <input type="hidden" name="authoring_mode" value="<%= card.grid_layout?.enabled ? 'canvas' : 'fields' %>" data-authoring-mode-input>
+          <div class="authoring-mode-switch" data-authoring-mode>
+            <label>
+              <input type="radio" name="authoring_mode_choice_<%= index %>" value="fields" <%= card.grid_layout?.enabled ? '' : 'checked' %>>
+              Nhập từng trường
+            </label>
+            <label>
+              <input type="radio" name="authoring_mode_choice_<%= index %>" value="canvas" <%= card.grid_layout?.enabled ? 'checked' : '' %>>
+              Thiết kế bằng canvas
+            </label>
+          </div>
+          <div class="theory-card-fields" data-author-mode-panel="fields">
             <div class="two-fields">
               <label>
                 Loại thẻ
@@ -283,7 +376,71 @@
               <input type="file" name="theory_images" accept="image/png,image/jpeg,image/webp,image/gif" multiple data-theory-images>
             </label>
           </div>
-          <aside class="question-form-preview">
+          <input type="hidden" name="grid_layout" value="<%- escapeAttribute(JSON.stringify(card.grid_layout || { enabled: false, rows: 5, columns: 5, cells: [] })) %>" data-grid-layout-input>
+          <section class="grid-editor" data-grid-editor data-grid-mode="theory" data-author-mode-panel="canvas" <%= card.grid_layout?.enabled ? '' : 'hidden' %>>
+            <div class="grid-editor-head">
+              <label class="toggle-line">
+                <input type="checkbox" data-grid-enabled>
+                Dùng thiết kế dạng lưới
+              </label>
+              <div class="grid-size-controls">
+                <label>Dòng <input type="number" min="1" max="10" value="5" data-grid-rows></label>
+                <label>Cột <input type="number" min="1" max="10" value="5" data-grid-columns></label>
+              </div>
+            </div>
+            <div class="grid-editor-actions">
+              <button class="btn btn-secondary btn-compact" type="button" data-grid-merge>Gộp ô</button>
+              <button class="btn btn-secondary btn-compact" type="button" data-grid-unmerge>Tách ô</button>
+              <button class="btn btn-secondary btn-compact" type="button" data-grid-clear>Để trống ô</button>
+            </div>
+            <div class="grid-editor-workspace">
+              <div class="grid-editor-canvas" data-grid-canvas></div>
+              <div class="grid-cell-panel">
+                <div class="form-note">Chọn hoặc kéo qua nhiều ô, sau đó gán nội dung cho vùng đang chọn.</div>
+                <label>Loại ô
+                  <select data-grid-cell-type>
+                    <option value="text">Chữ</option>
+                    <option value="image">Ảnh</option>
+                    <option value="formula">Công thức</option>
+                    <option value="question_text">Câu hỏi nhỏ</option>
+                    <option value="answer">Đáp án</option>
+                    <option value="solution">Lời giải</option>
+                    <option value="remember">Ghi nhớ</option>
+                    <option value="instruction">Hướng dẫn</option>
+                    <option value="empty">Để trống</option>
+                  </select>
+                </label>
+                <label>Nội dung
+                  <textarea rows="4" data-grid-cell-text></textarea>
+                </label>
+                <label>URL ảnh
+                  <input data-grid-cell-image placeholder="Dán link ảnh hoặc đường dẫn ảnh">
+                </label>
+                <div class="two-fields">
+                  <label>Mã đáp án
+                    <select data-grid-cell-answer>
+                      <option value="">Không</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                    </select>
+                  </label>
+                  <label>Căn lề
+                    <select data-grid-cell-align>
+                      <option value="center">Giữa</option>
+                      <option value="left">Trái</option>
+                      <option value="right">Phải</option>
+                    </select>
+                  </label>
+                </div>
+                <label>Màu nền
+                  <input type="color" value="#ffffff" data-grid-cell-background>
+                </label>
+              </div>
+            </div>
+          </section>
+          <aside class="question-form-preview" data-author-mode-panel="fields">
             <div class="section-title">
               <i data-lucide="eye" class="lucide-icon"></i>
               Preview sau khi sửa

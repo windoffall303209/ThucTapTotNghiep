@@ -20,6 +20,7 @@
   const explanationImages = Array.isArray(question.explanation && question.explanation.images) ? question.explanation.images : [];
   const questionType = question.question_type || 'MULTIPLE_CHOICE';
   const layoutVariant = question.content?.layout_variant || question.layout_template || 'STACK_VERTICAL';
+  const gridLayout = question.content?.grid_layout || { enabled: false, rows: 5, columns: 5, cells: [] };
 
   function selected(current, value) {
     return current === value ? 'selected' : '';
@@ -60,6 +61,18 @@
     </button>
   </div>
 
+  <input type="hidden" name="authoring_mode" value="<%= gridLayout.enabled ? 'canvas' : 'fields' %>" data-authoring-mode-input>
+  <div class="authoring-mode-switch" data-authoring-mode>
+    <label>
+      <input type="radio" name="authoring_mode_choice_<%= question.id %>" value="fields" <%= gridLayout.enabled ? '' : 'checked' %>>
+      Nhập từng trường
+    </label>
+    <label>
+      <input type="radio" name="authoring_mode_choice_<%= question.id %>" value="canvas" <%= gridLayout.enabled ? 'checked' : '' %>>
+      Thiết kế bằng canvas
+    </label>
+  </div>
+
   <label>
     Bài học
     <select name="lesson_id" required>
@@ -79,7 +92,7 @@
         <option value="FILL_IN_THE_BLANK" <%= selected(questionType, 'FILL_IN_THE_BLANK') %>>Điền đáp án</option>
       </select>
     </label>
-    <label>
+    <label data-author-mode-panel="fields">
       Bố cục hiển thị
       <select name="layout_variant" data-layout-variant>
         <% layoutOptions.forEach((option) => { %>
@@ -98,7 +111,7 @@
         <% }) %>
       </select>
     </label>
-    <label>
+    <label data-author-mode-panel="fields">
       Kiểu thao tác
       <select name="question_interaction" data-question-interaction>
         <option value="choose" <%= selected(question.content?.interaction, 'choose') %>>Chọn đáp án</option>
@@ -110,13 +123,75 @@
     </label>
   </div>
 
-  <label>
+  <label data-author-mode-panel="fields">
     Đề bài
-    <textarea name="content_text" rows="5" required data-preview-content><%= questionText(question) %></textarea>
+    <textarea name="content_text" rows="5" data-preview-content><%= questionText(question) %></textarea>
   </label>
   <input type="hidden" data-preview-existing-images value="<%- escapeAttribute(JSON.stringify(questionImages)) %>">
 
-  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
+  <input type="hidden" name="grid_layout" value="<%- escapeAttribute(JSON.stringify(gridLayout)) %>" data-grid-layout-input>
+  <section class="grid-editor" data-grid-editor data-grid-mode="question" data-author-mode-panel="canvas" <%= gridLayout.enabled ? '' : 'hidden' %>>
+    <div class="grid-editor-head">
+      <label class="toggle-line">
+        <input type="checkbox" data-grid-enabled>
+        Dùng thiết kế dạng lưới
+      </label>
+      <div class="grid-size-controls">
+        <label>Dòng <input type="number" min="1" max="10" value="5" data-grid-rows></label>
+        <label>Cột <input type="number" min="1" max="10" value="5" data-grid-columns></label>
+      </div>
+    </div>
+    <div class="grid-editor-actions">
+      <button class="btn btn-secondary btn-compact" type="button" data-grid-merge>Gộp ô</button>
+      <button class="btn btn-secondary btn-compact" type="button" data-grid-unmerge>Tách ô</button>
+      <button class="btn btn-secondary btn-compact" type="button" data-grid-clear>Để trống ô</button>
+    </div>
+    <div class="grid-editor-workspace">
+      <div class="grid-editor-canvas" data-grid-canvas></div>
+      <div class="grid-cell-panel">
+        <div class="form-note">Chọn hoặc kéo qua nhiều ô, sau đó gán nội dung cho vùng đang chọn.</div>
+        <label>Loại ô
+          <select data-grid-cell-type>
+            <option value="text">Chữ</option>
+            <option value="question_text">Đề bài</option>
+            <option value="image">Ảnh</option>
+            <option value="formula">Công thức</option>
+            <option value="answer">Đáp án chọn</option>
+            <option value="free_answer_input">Ô điền đáp án</option>
+            <option value="solution">Lời giải</option>
+            <option value="instruction">Hướng dẫn</option>
+            <option value="empty">Để trống</option>
+          </select>
+        </label>
+        <label>Nội dung
+          <textarea rows="4" data-grid-cell-text></textarea>
+        </label>
+        <label>URL ảnh
+          <input data-grid-cell-image placeholder="Dán link ảnh hoặc đường dẫn ảnh">
+        </label>
+        <div class="two-fields">
+          <label>Mã đáp án
+            <select data-grid-cell-answer>
+              <option value="">Không</option>
+              <% answerKeys.forEach((key) => { %><option value="<%= key %>"><%= key %></option><% }) %>
+            </select>
+          </label>
+          <label>Căn lề
+            <select data-grid-cell-align>
+              <option value="center">Giữa</option>
+              <option value="left">Trái</option>
+              <option value="right">Phải</option>
+            </select>
+          </label>
+        </div>
+        <label>Màu nền
+          <input type="color" value="#ffffff" data-grid-cell-background>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel data-author-mode-panel="fields">
     <legend>Ảnh trong đề bài</legend>
     <label>
       Thêm ảnh minh họa mới
@@ -148,7 +223,7 @@
     <% } %>
   </fieldset>
 
-  <fieldset class="choice-fieldset" data-choice-panel>
+  <fieldset class="choice-fieldset" data-choice-panel data-author-mode-panel="fields">
     <legend>Phương án trả lời và lỗi sai thường gặp</legend>
     <% answerKeys.forEach((key) => { %>
       <% const choice = choiceFor(question, key); %>
@@ -219,12 +294,12 @@
     <input name="correct_answer_free" value="<%= questionType === 'FILL_IN_THE_BLANK' ? question.correct_answer : '' %>" placeholder="Ví dụ: 15 hoặc 2/3" data-free-answer>
   </label>
 
-  <label>
+  <label data-author-mode-panel="fields">
     Lời giải chi tiết
     <textarea name="explanation_text" rows="5"><%= explanationText(question) %></textarea>
   </label>
 
-  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel>
+  <fieldset class="choice-fieldset image-fieldset" data-advanced-panel data-author-mode-panel="fields">
     <legend>Ảnh trong lời giải</legend>
     <label>
       Thêm ảnh minh họa lời giải
@@ -256,7 +331,7 @@
     <% } %>
   </fieldset>
 
-  <aside class="question-form-preview">
+  <aside class="question-form-preview" data-author-mode-panel="fields">
     <div class="section-title">
       <i data-lucide="eye" class="lucide-icon"></i>
       Preview sau khi sửa

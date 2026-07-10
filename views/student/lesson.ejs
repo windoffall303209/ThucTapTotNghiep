@@ -18,6 +18,24 @@
     };
     return labels[type] || 'Kiến thức';
   }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function gridRenderHtml(grid) {
+    if (!grid || !grid.enabled) return '';
+    return `<div class="content-grid-render math-content" data-grid-render="${escapeAttribute(JSON.stringify(grid))}"></div>`;
+  }
 %>
 
 <section class="workspace-head">
@@ -70,6 +88,8 @@
         <% if (card.display_text) { %>
           <p class="theory-display-text"><%= card.display_text %></p>
         <% } %>
+
+        <%- gridRenderHtml(card.grid_layout) %>
 
         <% if (images.length > 0) { %>
           <div class="theory-image-row">

@@ -17,6 +17,9 @@
     initSettingsCards();
     initAdminQuestionBank();
     initTheoryEditors();
+    initGridEditors();
+    initAuthoringModeControls();
+    initRenderedGrids();
     initQuestionEditLoaders();
     initLazyMath();
   });
@@ -430,7 +433,12 @@
           if (parentDetails.dataset.questionPreviewToggleReady !== 'true') {
             parentDetails.dataset.questionPreviewToggleReady = 'true';
             parentDetails.addEventListener('toggle', () => {
-              if (parentDetails.open) initAdminPreview(parentDetails);
+              if (parentDetails.open) {
+                initAdminPreview(parentDetails);
+                initGridEditors(parentDetails);
+                initAuthoringModeControls(parentDetails);
+                initRenderedGrids(parentDetails);
+              }
             });
           }
           return;
@@ -466,6 +474,7 @@
     const layoutInput = form.querySelector('[name="layout_template"]');
     const layoutVariantInput = form.querySelector('[data-layout-variant], [name="layout_variant"]');
     const questionTypeInput = form.querySelector('[data-question-type], [name="question_type"]');
+    const gridInput = form.querySelector('[data-grid-layout-input]');
 
     const updatePreview = () => {
       const allExistingImages = parsePreviewImages(existingImagesInput?.value);
@@ -485,7 +494,8 @@
         content: {
           text: previewText,
           images,
-          layout_variant: layoutVariantInput?.value || layoutInput?.value || 'STACK_VERTICAL'
+          layout_variant: layoutVariantInput?.value || layoutInput?.value || 'STACK_VERTICAL',
+          grid_layout: parseGridLayoutValue(gridInput?.value)
         },
         choices: (questionTypeInput?.value || 'MULTIPLE_CHOICE') === 'FILL_IN_THE_BLANK'
           ? []
@@ -523,6 +533,7 @@
       '[data-layout-variant]',
       '[name="question_type"]',
       '[data-question-type]',
+      '[data-grid-layout-input]',
       '[name="remove_question_images"]',
       '[name^="remove_choice_images_"]'
     ].join(',')).forEach((input) => {
@@ -679,10 +690,15 @@
       const parentDetails = form.closest('details');
       if (parentDetails && !parentDetails.open) {
         if (parentDetails.dataset.theoryPreviewToggleReady !== 'true') {
-          parentDetails.dataset.theoryPreviewToggleReady = 'true';
-          parentDetails.addEventListener('toggle', () => {
-            if (parentDetails.open) initTheoryEditors(parentDetails);
-          });
+            parentDetails.dataset.theoryPreviewToggleReady = 'true';
+            parentDetails.addEventListener('toggle', () => {
+              if (parentDetails.open) {
+                initTheoryEditors(parentDetails);
+                initGridEditors(parentDetails);
+                initAuthoringModeControls(parentDetails);
+                initRenderedGrids(parentDetails);
+              }
+            });
         }
         return;
       }
@@ -706,6 +722,7 @@
     const rememberInput = form.querySelector('[data-theory-remember]');
     const imageInput = form.querySelector('[data-theory-images]');
     const existingImagesInput = form.querySelector('[data-theory-existing-images]');
+    const gridInput = form.querySelector('[data-grid-layout-input]');
 
     const updatePreview = () => {
       const existingImages = parsePreviewImages(existingImagesInput?.value)
@@ -725,18 +742,356 @@
         title: titleInput?.value || 'Tiêu đề thẻ lý thuyết',
         body: bodyInput?.value || 'Nội dung lý thuyết sẽ hiển thị tại đây.',
         example: exampleInput?.value || '',
+        grid_layout: parseGridLayoutValue(gridInput?.value),
         images
       });
       renderMath(preview);
       refreshIcons();
     };
 
-    form.querySelectorAll('[data-theory-type], [data-theory-layout], [data-theory-title], [data-theory-display-text], [data-theory-body], [data-theory-student-task], [data-theory-example], [data-theory-remember], [data-theory-images], [name="remove_theory_images"]').forEach((input) => {
+    form.querySelectorAll('[data-theory-type], [data-theory-layout], [data-theory-title], [data-theory-display-text], [data-theory-body], [data-theory-student-task], [data-theory-example], [data-theory-remember], [data-theory-images], [data-grid-layout-input], [name="remove_theory_images"]').forEach((input) => {
       input.addEventListener('input', updatePreview);
       input.addEventListener('change', updatePreview);
     });
 
     updatePreview();
+  }
+
+  function initAuthoringModeControls(root = document) {
+    root.querySelectorAll('[data-authoring-mode]:not([data-authoring-mode-ready])').forEach((switcher) => {
+      const form = switcher.closest('form');
+      if (!form) return;
+      switcher.dataset.authoringModeReady = 'true';
+      const hiddenInput = form.querySelector('[data-authoring-mode-input]');
+      const radios = Array.from(switcher.querySelectorAll('input[type="radio"]'));
+      const panels = Array.from(form.querySelectorAll('[data-author-mode-panel]'));
+      const gridInput = form.querySelector('[data-grid-layout-input]');
+      const gridEnabledInput = form.querySelector('[data-grid-enabled]');
+
+      const setGridEnabled = (enabled) => {
+        const grid = parseGridLayoutValue(gridInput?.value);
+        grid.enabled = enabled;
+        if (gridInput) {
+          gridInput.value = JSON.stringify(grid);
+          gridInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        if (gridEnabledInput) {
+          gridEnabledInput.checked = enabled;
+          gridEnabledInput.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      };
+
+      const applyMode = (mode) => {
+        const normalizedMode = mode === 'canvas' ? 'canvas' : 'fields';
+        if (hiddenInput) hiddenInput.value = normalizedMode;
+        radios.forEach((radio) => {
+          radio.checked = radio.value === normalizedMode;
+        });
+        panels.forEach((panel) => {
+          const isActive = panel.dataset.authorModePanel === normalizedMode;
+          panel.hidden = !isActive;
+          panel.querySelectorAll('input, textarea, select, button').forEach((control) => {
+            if (control.matches('[data-grid-enabled]')) return;
+            control.disabled = !isActive;
+          });
+        });
+        setGridEnabled(normalizedMode === 'canvas');
+      };
+
+      radios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          if (radio.checked) applyMode(radio.value);
+        });
+      });
+
+      applyMode(hiddenInput?.value || radios.find((radio) => radio.checked)?.value || 'fields');
+    });
+  }
+
+  function initGridEditors(root = document) {
+    root.querySelectorAll('[data-grid-editor]:not([data-grid-editor-ready])').forEach((editor) => {
+      const input = editor.closest('form')?.querySelector('[data-grid-layout-input]');
+      const canvas = editor.querySelector('[data-grid-canvas]');
+      if (!input || !canvas) return;
+
+      editor.dataset.gridEditorReady = 'true';
+      const state = {
+        grid: parseGridLayoutValue(input.value),
+        selectedIds: new Set(),
+        dragStart: null,
+        isDragging: false
+      };
+      if (!state.grid.cells.length) state.grid.cells = createBaseGridCells(state.grid.rows, state.grid.columns);
+
+      const enabledInput = editor.querySelector('[data-grid-enabled]');
+      const rowsInput = editor.querySelector('[data-grid-rows]');
+      const columnsInput = editor.querySelector('[data-grid-columns]');
+      const typeInput = editor.querySelector('[data-grid-cell-type]');
+      const textInput = editor.querySelector('[data-grid-cell-text]');
+      const imageInput = editor.querySelector('[data-grid-cell-image]');
+      const answerInput = editor.querySelector('[data-grid-cell-answer]');
+      const alignInput = editor.querySelector('[data-grid-cell-align]');
+      const backgroundInput = editor.querySelector('[data-grid-cell-background]');
+
+      const syncInputs = () => {
+        enabledInput.checked = Boolean(state.grid.enabled);
+        rowsInput.value = state.grid.rows;
+        columnsInput.value = state.grid.columns;
+        input.value = JSON.stringify(state.grid);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      };
+
+      const selectedCells = () => Array.from(state.selectedIds)
+        .map((id) => state.grid.cells.find((cell) => cell.id === id))
+        .filter(Boolean);
+
+      const syncPanel = () => {
+        const cell = selectedCells()[0] || state.grid.cells[0];
+        if (!cell) return;
+        typeInput.value = cell.type || 'text';
+        textInput.value = cell.text || '';
+        imageInput.value = cell.image_url || '';
+        answerInput.value = cell.answer_key || '';
+        alignInput.value = cell.align || 'center';
+        backgroundInput.value = isHexColor(cell.background) ? cell.background : '#ffffff';
+      };
+
+      const render = () => {
+        editor.classList.toggle('is-disabled', !state.grid.enabled);
+        canvas.style.setProperty('--grid-rows', state.grid.rows);
+        canvas.style.setProperty('--grid-columns', state.grid.columns);
+        canvas.innerHTML = state.grid.cells.map((cell) => `
+          <button class="grid-editor-cell ${state.selectedIds.has(cell.id) ? 'is-selected' : ''}" type="button"
+            data-cell-id="${escapeAttribute(cell.id)}"
+            style="grid-row:${cell.row} / span ${cell.rowSpan}; grid-column:${cell.col} / span ${cell.colSpan}; ${cell.background ? `background:${escapeAttribute(cell.background)};` : ''}">
+            <span class="grid-cell-type">${gridCellTypeLabel(cell.type)}${cell.answer_key ? ` ${escapeHtml(cell.answer_key)}` : ''}</span>
+            <span class="grid-cell-preview">${gridCellPreview(cell)}</span>
+          </button>
+        `).join('');
+        syncInputs();
+        syncPanel();
+        renderMath(canvas);
+      };
+
+      const selectRect = (startCell, endCell) => {
+        const rect = normalizeRect(cellRect(startCell), cellRect(endCell));
+        state.selectedIds = new Set(
+          state.grid.cells
+            .filter((cell) => rectContainsCell(rect, cell))
+            .map((cell) => cell.id)
+        );
+        render();
+      };
+
+      canvas.addEventListener('mousedown', (event) => {
+        const button = event.target.closest('[data-cell-id]');
+        if (!button) return;
+        const cell = state.grid.cells.find((item) => item.id === button.dataset.cellId);
+        if (!cell) return;
+        state.dragStart = cell;
+        state.isDragging = true;
+        state.selectedIds = new Set([cell.id]);
+        render();
+      });
+
+      canvas.addEventListener('mouseover', (event) => {
+        if (!state.isDragging || !state.dragStart) return;
+        const button = event.target.closest('[data-cell-id]');
+        const cell = state.grid.cells.find((item) => item.id === button?.dataset.cellId);
+        if (cell) selectRect(state.dragStart, cell);
+      });
+
+      document.addEventListener('mouseup', () => {
+        state.isDragging = false;
+        state.dragStart = null;
+      });
+
+      const applyPanelToSelection = () => {
+        const cells = selectedCells();
+        if (!cells.length) return;
+        cells.forEach((cell) => {
+          cell.type = typeInput.value || 'text';
+          cell.text = textInput.value || '';
+          cell.image_url = imageInput.value || '';
+          cell.answer_key = answerInput.value || '';
+          cell.align = alignInput.value || 'center';
+          cell.background = backgroundInput.value === '#ffffff' ? '' : backgroundInput.value;
+        });
+        render();
+      };
+
+      [typeInput, textInput, imageInput, answerInput, alignInput, backgroundInput].forEach((control) => {
+        control?.addEventListener('input', applyPanelToSelection);
+        control?.addEventListener('change', applyPanelToSelection);
+      });
+
+      enabledInput.addEventListener('change', () => {
+        state.grid.enabled = enabledInput.checked;
+        render();
+      });
+
+      [rowsInput, columnsInput].forEach((control) => {
+        control.addEventListener('change', () => {
+          const nextRows = clampGridSize(rowsInput.value);
+          const nextColumns = clampGridSize(columnsInput.value);
+          state.grid.rows = nextRows;
+          state.grid.columns = nextColumns;
+          state.grid.cells = createBaseGridCells(nextRows, nextColumns);
+          state.selectedIds.clear();
+          render();
+        });
+      });
+
+      editor.querySelector('[data-grid-merge]')?.addEventListener('click', () => {
+        const cells = selectedCells();
+        if (cells.length < 2) return;
+        const rect = boundsForCells(cells);
+        const affected = state.grid.cells.filter((cell) => rectIntersectsCell(rect, cell));
+        if (!affected.every((cell) => rectContainsCell(rect, cell))) {
+          window.alert('Vùng gộp không hợp lệ vì đang cắt ngang một ô đã gộp.');
+          return;
+        }
+        const master = { ...cells[0], id: `grid-cell-${Date.now()}`, row: rect.row, col: rect.col, rowSpan: rect.rowSpan, colSpan: rect.colSpan };
+        state.grid.cells = state.grid.cells.filter((cell) => !affected.some((item) => item.id === cell.id));
+        state.grid.cells.push(master);
+        state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
+        state.selectedIds = new Set([master.id]);
+        render();
+      });
+
+      editor.querySelector('[data-grid-unmerge]')?.addEventListener('click', () => {
+        const cell = selectedCells()[0];
+        if (!cell || (cell.rowSpan === 1 && cell.colSpan === 1)) return;
+        state.grid.cells = state.grid.cells.filter((item) => item.id !== cell.id);
+        for (let row = cell.row; row < cell.row + cell.rowSpan; row += 1) {
+          for (let col = cell.col; col < cell.col + cell.colSpan; col += 1) {
+            state.grid.cells.push(createGridCell(row, col));
+          }
+        }
+        state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
+        state.selectedIds.clear();
+        render();
+      });
+
+      editor.querySelector('[data-grid-clear]')?.addEventListener('click', () => {
+        selectedCells().forEach((cell) => {
+          cell.type = 'empty';
+          cell.text = '';
+          cell.image_url = '';
+          cell.answer_key = '';
+          cell.background = '';
+        });
+        render();
+      });
+
+      render();
+    });
+  }
+
+  function createBaseGridCells(rows, columns) {
+    const cells = [];
+    for (let row = 1; row <= rows; row += 1) {
+      for (let col = 1; col <= columns; col += 1) cells.push(createGridCell(row, col));
+    }
+    return cells;
+  }
+
+  function createGridCell(row, col) {
+    return { id: `grid-cell-${row}-${col}-${Date.now()}-${Math.random().toString(16).slice(2)}`, row, col, rowSpan: 1, colSpan: 1, type: 'empty', text: '', image_url: '', answer_key: '', align: 'center', background: '' };
+  }
+
+  function parseGridLayoutValue(value) {
+    try {
+      const parsed = typeof value === 'string' && value ? JSON.parse(value) : value;
+      const rows = clampGridSize(parsed?.rows || 5);
+      const columns = clampGridSize(parsed?.columns || 5);
+      const cells = Array.isArray(parsed?.cells) && parsed.cells.length
+        ? parsed.cells.map((cell, index) => normalizeGridCell(cell, index, rows, columns)).filter(Boolean)
+        : createBaseGridCells(rows, columns);
+      return { enabled: Boolean(parsed?.enabled), rows, columns, cells };
+    } catch (error) {
+      return { enabled: false, rows: 5, columns: 5, cells: createBaseGridCells(5, 5) };
+    }
+  }
+
+  function normalizeGridCell(cell, index, rows, columns) {
+    const row = clampSpan(cell?.row || 1, rows);
+    const col = clampSpan(cell?.col || 1, columns);
+    return {
+      id: String(cell?.id || `grid-cell-${index + 1}`),
+      row,
+      col,
+      rowSpan: clampSpan(cell?.rowSpan || 1, rows - row + 1),
+      colSpan: clampSpan(cell?.colSpan || 1, columns - col + 1),
+      type: String(cell?.type || 'text'),
+      text: String(cell?.text || ''),
+      image_url: String(cell?.image_url || ''),
+      answer_key: String(cell?.answer_key || '').toUpperCase(),
+      align: ['left', 'center', 'right'].includes(cell?.align) ? cell.align : 'center',
+      background: String(cell?.background || '')
+    };
+  }
+
+  function clampGridSize(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? Math.min(Math.max(Math.round(number), 1), 10) : 5;
+  }
+
+  function clampSpan(value, max) {
+    const number = Number(value);
+    return Number.isFinite(number) ? Math.min(Math.max(Math.round(number), 1), Math.max(max, 1)) : 1;
+  }
+
+  function cellRect(cell) {
+    return { row: cell.row, col: cell.col, rowEnd: cell.row + cell.rowSpan - 1, colEnd: cell.col + cell.colSpan - 1 };
+  }
+
+  function normalizeRect(a, b) {
+    const row = Math.min(a.row, b.row);
+    const col = Math.min(a.col, b.col);
+    const rowEnd = Math.max(a.rowEnd, b.rowEnd);
+    const colEnd = Math.max(a.colEnd, b.colEnd);
+    return { row, col, rowEnd, colEnd, rowSpan: rowEnd - row + 1, colSpan: colEnd - col + 1 };
+  }
+
+  function boundsForCells(cells) {
+    return cells.map(cellRect).reduce((rect, item) => normalizeRect(rect, item));
+  }
+
+  function rectContainsCell(rect, cell) {
+    const item = cellRect(cell);
+    return item.row >= rect.row && item.col >= rect.col && item.rowEnd <= rect.rowEnd && item.colEnd <= rect.colEnd;
+  }
+
+  function rectIntersectsCell(rect, cell) {
+    const item = cellRect(cell);
+    return item.row <= rect.rowEnd && item.rowEnd >= rect.row && item.col <= rect.colEnd && item.colEnd >= rect.col;
+  }
+
+  function gridCellTypeLabel(type) {
+    const labels = {
+      empty: 'Trống',
+      text: 'Chữ',
+      image: 'Ảnh',
+      formula: 'CT',
+      question_text: 'Đề',
+      answer: 'ĐA',
+      free_answer_input: 'Điền',
+      solution: 'Giải',
+      remember: 'Nhớ',
+      instruction: 'HD'
+    };
+    return labels[type] || 'Chữ';
+  }
+
+  function gridCellPreview(cell) {
+    if (cell.type === 'image') return cell.image_url ? 'Đã có ảnh' : 'Chưa có ảnh';
+    if (cell.type === 'free_answer_input') return 'Ô nhập đáp án';
+    return escapeHtml(cell.text || '');
+  }
+
+  function isHexColor(value) {
+    return /^#[0-9a-f]{6}$/i.test(String(value || ''));
   }
 
   function parsePreviewImages(value) {
@@ -779,6 +1134,7 @@
         <span class="card-index">Xem trước - ${escapeHtml(theoryTypeLabel(card.type))}</span>
         <h2>${escapeHtml(card.title || '')}</h2>
         ${card.display_text ? `<p class="theory-display-text">${escapeHtml(card.display_text)}</p>` : ''}
+        ${renderGridLayout(card.grid_layout)}
         ${imagesHtml ? `<div class="theory-image-row">${imagesHtml}</div>` : ''}
         <div class="theory-body">${escapeHtml(card.body || '')}</div>
         ${card.student_task ? `<p class="theory-task"><strong>Việc cần làm:</strong> ${escapeHtml(card.student_task)}</p>` : ''}
@@ -866,6 +1222,9 @@
       shell.dataset.currentPage = String(page);
       shell.dataset.loadedPage = String(page);
       initAdminPreview(shell);
+      initGridEditors(shell);
+      initAuthoringModeControls(shell);
+      initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
       initQuestionEditLoaders(shell);
       initLazyMath(shell);
@@ -912,6 +1271,9 @@
       shell.innerHTML = await response.text();
       shell.dataset.loaded = 'true';
       initAdminPreview(shell);
+      initGridEditors(shell);
+      initAuthoringModeControls(shell);
+      initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
       initLazyMath(shell);
       refreshIcons();
@@ -939,6 +1301,9 @@
       shell.dataset.loaded = 'true';
       initAdminPreview(shell);
       initTheoryEditors(shell);
+      initGridEditors(shell);
+      initAuthoringModeControls(shell);
+      initRenderedGrids(shell);
       initLazyMath(shell);
       refreshIcons();
     } catch (error) {
@@ -1147,6 +1512,65 @@
     return value;
   }
 
+  function initRenderedGrids(root = document) {
+    root.querySelectorAll('[data-grid-render]:not([data-grid-render-ready])').forEach((node) => {
+      node.dataset.gridRenderReady = 'true';
+      node.innerHTML = renderGridLayout(parseGridLayoutValue(node.dataset.gridRender));
+      renderMath(node);
+    });
+  }
+
+  function renderGridLayout(gridLayout, options = {}) {
+    const grid = parseGridLayoutValue(gridLayout);
+    if (!grid.enabled) return '';
+    return `
+      <div class="content-grid-layout" style="--grid-rows:${grid.rows}; --grid-columns:${grid.columns};">
+        ${grid.cells.map((cell) => renderGridCell(cell, options)).join('')}
+      </div>
+    `;
+  }
+
+  function renderGridCell(cell, options = {}) {
+    const style = [
+      `grid-row:${cell.row} / span ${cell.rowSpan}`,
+      `grid-column:${cell.col} / span ${cell.colSpan}`,
+      cell.background ? `background:${escapeAttribute(cell.background)}` : '',
+      cell.align ? `text-align:${escapeAttribute(cell.align)}` : ''
+    ].filter(Boolean).join(';');
+    const content = renderGridCellContent(cell, options);
+    const classes = `content-grid-cell grid-cell-${escapeAttribute(cell.type || 'text')}`;
+
+    if (cell.type === 'answer' && cell.answer_key && !options.preview) {
+      return `<button class="${classes} answer-choice" type="button" data-answer="${escapeAttribute(cell.answer_key)}" style="${style}">${content}</button>`;
+    }
+
+    return `<div class="${classes}" style="${style}">${content}</div>`;
+  }
+
+  function renderGridCellContent(cell, options = {}) {
+    if (cell.type === 'empty') return '';
+    if (cell.type === 'image') {
+      return cell.image_url
+        ? `<img src="${escapeAttribute(cell.image_url)}" alt="${escapeAttribute(cell.text || 'Hình minh họa')}" loading="lazy" decoding="async">`
+        : '<span class="muted">Chưa có ảnh</span>';
+    }
+    if (cell.type === 'answer') {
+      const label = cell.answer_key ? `<span>${escapeHtml(cell.answer_key)}</span>` : '';
+      return `${label}<strong>${escapeHtml(cell.text || 'Đáp án')}</strong>`;
+    }
+    if (cell.type === 'free_answer_input') {
+      return options.preview
+        ? '<div class="free-answer-input preview-free-answer">Học sinh sẽ điền đáp án tại đây</div>'
+        : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án">';
+    }
+    return escapeHtml(cell.text || '').replace(/\r?\n/g, '<br>');
+  }
+
+  function gridHasInteractiveAnswer(gridLayout) {
+    const grid = parseGridLayoutValue(gridLayout);
+    return grid.enabled && grid.cells.some((cell) => cell.type === 'answer' || cell.type === 'free_answer_input');
+  }
+
   function renderQuestionContent(questionOrContent) {
     const question = questionOrContent && questionOrContent.content
       ? questionOrContent
@@ -1154,12 +1578,14 @@
     const content = question.content || {};
     const images = normalizeImagesForRender(content.images);
     const layout = content.layout_variant || question.layout_template || 'STACK_VERTICAL';
+    const gridHtml = renderGridLayout(content.grid_layout);
 
     if (layout === 'VISUAL_TOP' || layout === 'VISUAL_BOTTOM') {
       const imagePanel = renderImageRow(images, 'question-image-row split-image-row', 'Hình minh họa đề bài');
       const textPanel = `<div class="question-text-row">${escapeHtml(stripImagePlaceholders(content.text, images)).replace(/\r?\n/g, '<br>')}</div>`;
       return `
         <div class="question-visual-stack ${layout === 'VISUAL_TOP' ? 'visual-top' : 'visual-bottom'}">
+          ${gridHtml}
           ${layout === 'VISUAL_TOP' ? `${imagePanel}${textPanel}` : `${textPanel}${imagePanel}`}
         </div>
       `;
@@ -1170,12 +1596,13 @@
       const textPanel = `<div class="question-text-row">${escapeHtml(stripImagePlaceholders(content.text, images)).replace(/\r?\n/g, '<br>')}</div>`;
       return `
         <div class="question-split-layout ${layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' ? 'image-left' : 'image-right'}">
+          ${gridHtml}
           ${layout === 'SPLIT_HORIZONTAL_LEFT_IMAGE' ? `${imagePanel}${textPanel}` : `${textPanel}${imagePanel}`}
         </div>
       `;
     }
 
-    return renderTextWithImagePlaceholders(content.text, images, 'Hình minh họa đề bài');
+    return `${gridHtml}${renderTextWithImagePlaceholders(content.text, images, 'Hình minh họa đề bài')}`;
   }
 
   function answerGridClass(question) {
@@ -1184,6 +1611,10 @@
   }
 
   function renderAnswerArea(question, options = {}) {
+    if (gridHasInteractiveAnswer(question?.content?.grid_layout)) {
+      return '';
+    }
+
     if (question?.question_type === 'FILL_IN_THE_BLANK') {
       const inputHtml = options.preview
         ? '<div class="free-answer-input preview-free-answer">Học sinh sẽ điền đáp án tại đây</div>'
