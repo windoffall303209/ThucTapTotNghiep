@@ -140,18 +140,22 @@ def duong_dan_anh(url: str) -> Path | None:
     return tep if tep.exists() else None
 
 
-def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> Path | None:
-    """Nén ảnh về JPEG cạnh dài tối đa 1400 để file Word không phình quá to."""
+def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
+    """Nén ảnh về JPEG cạnh dài tối đa 1400 để file Word không phình quá to.
+
+    Trả về kèm tỉ lệ cao trên rộng, để bên gọi tính được chiều cao khi nhúng.
+    """
     ANH_TAM.mkdir(parents=True, exist_ok=True)
     dich = ANH_TAM / f"{ma}-{thu_tu}.jpg"
-    if dich.exists():
-        return dich
     try:
-        with Image.open(nguon) as anh:
-            anh = anh.convert("RGB")
-            anh.thumbnail((1400, 1400), Image.Resampling.LANCZOS)
-            anh.save(dich, "JPEG", quality=78, optimize=True, progressive=True)
-        return dich
+        if not dich.exists():
+            with Image.open(nguon) as anh:
+                anh = anh.convert("RGB")
+                anh.thumbnail((1400, 1400), Image.Resampling.LANCZOS)
+                anh.save(dich, "JPEG", quality=78, optimize=True, progressive=True)
+        with Image.open(dich) as anh:
+            rong, cao = anh.size
+        return dich, (cao / rong if rong else 1.0)
     except Exception as loi:  # noqa: BLE001
         print(f"  CHÚ Ý: không xử lý được ảnh {nguon}: {loi}")
         return None
@@ -181,6 +185,47 @@ def giu_khoi(paragraph, dinh_doan_sau: bool = False) -> None:
     paragraph.paragraph_format.keep_with_next = dinh_doan_sau
 
 
+def ep_font(style, ten_font: str) -> None:
+    """Đặt font cho đủ bốn nhóm ký tự của Word.
+
+    Gán style.font.name chỉ ghi thuộc tính w:ascii. Các style tiêu đề của Word lại
+    thừa kế font chữ Latin từ theme thông qua w:asciiTheme, và thuộc tính theme
+    thắng w:ascii, nên tiêu đề vẫn hiện Calibri dù đã đặt Arial. Phải xoá các
+    thuộc tính theme rồi ghi thẳng cả bốn nhóm.
+    """
+    style.font.name = ten_font
+    rPr = style.element.get_or_add_rPr()
+    rFonts = rPr.find(qn("w:rFonts"))
+    if rFonts is None:
+        rFonts = OxmlElement("w:rFonts")
+        rPr.append(rFonts)
+    for thuoc_tinh in ("asciiTheme", "hAnsiTheme", "eastAsiaTheme", "cstheme"):
+        khoa = qn(f"w:{thuoc_tinh}")
+        if khoa in rFonts.attrib:
+            del rFonts.attrib[khoa]
+    for thuoc_tinh in ("ascii", "hAnsi", "eastAsia", "cs"):
+        rFonts.set(qn(f"w:{thuoc_tinh}"), ten_font)
+
+
+def them_chan_trang(section) -> None:
+    """Đặt số trang ở chân trang. Tài liệu dài vài nghìn trang mà không có số trang
+    thì không tra cứu và không đóng quyển được."""
+    p = section.footer.paragraphs[0] if section.footer.paragraphs else section.footer.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    for r in list(p.runs):
+        r._r.getparent().remove(r._r)
+    p.add_run("Trang ")
+    run = p.add_run()
+    bat_dau = OxmlElement("w:fldChar")
+    bat_dau.set(qn("w:fldCharType"), "begin")
+    lenh = OxmlElement("w:instrText")
+    lenh.set(qn("xml:space"), "preserve")
+    lenh.text = "PAGE"
+    ket = OxmlElement("w:fldChar")
+    ket.set(qn("w:fldCharType"), "end")
+    run._r.extend([bat_dau, lenh, ket])
+
+
 def dat_kieu(document: Document) -> None:
     section = document.sections[0]
     section.top_margin = section.bottom_margin = Cm(1.6)
@@ -189,7 +234,7 @@ def dat_kieu(document: Document) -> None:
     section.footer_distance = Cm(0.7)
 
     normal = document.styles["Normal"]
-    normal.font.name = "Arial"
+    ep_font(normal, "Arial")
     normal.font.size = Pt(10)
     normal.paragraph_format.space_after = Pt(3)
     normal.paragraph_format.line_spacing = 1.05
@@ -198,26 +243,45 @@ def dat_kieu(document: Document) -> None:
         ("Title", 22, XANH_DAM),
         ("Heading 1", 16, XANH_DAM),
         ("Heading 2", 12, XANH_VUA),
+        ("Subtitle", 10, RGBColor(0x55, 0x55, 0x55)),
     ]:
         style = document.styles[ten]
-        style.font.name = "Arial"
+        ep_font(style, "Arial")
         style.font.size = Pt(co)
         style.font.color.rgb = mau
 
 
+# Khổ A4 cao 29,7 cm, trừ lề trên dưới 1,6 cm mỗi bên còn 26,5 cm vùng in. Một câu
+# hỏi còn có tiêu đề, đề bài, phương án, đáp án và lời giải nên ảnh chỉ được chiếm
+# một phần. Giới hạn 12 cm để cả khối câu hỏi vừa một trang.
+ANH_RONG_TOI_DA = 14.5
+ANH_CAO_TOI_DA = 12.0
+
+
 def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
-    """Nhúng ảnh vào tài liệu, trả về số ảnh đã nhúng được."""
+    """Nhúng ảnh vào tài liệu, trả về số ảnh đã nhúng được.
+
+    Ảnh được giới hạn cả chiều rộng lẫn chiều cao. Bản đầu chỉ ép rộng 14,5 cm nên
+    ảnh dạng dọc bị kéo cao tới 21,8 cm, chiếm gần trọn chiều cao trang in và đẩy
+    phần phương án sang trang sau.
+    """
     da_nhung = 0
     for thu_tu, im in enumerate(images or [], start=1):
         nguon = duong_dan_anh((im or {}).get("url"))
         if nguon is None:
             continue
-        nen = anh_da_nen(nguon, ma, thu_tu)
-        if nen is None:
+        ket_qua = anh_da_nen(nguon, ma, thu_tu)
+        if ket_qua is None:
             continue
+        nen, ti_le_cao_tren_rong = ket_qua
+
+        rong = ANH_RONG_TOI_DA
+        if rong * ti_le_cao_tren_rong > ANH_CAO_TOI_DA:
+            rong = ANH_CAO_TOI_DA / ti_le_cao_tren_rong
+
         p = document.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.add_run().add_picture(str(nen), width=Cm(14.5))
+        p.add_run().add_picture(str(nen), width=Cm(rong))
         giu_khoi(p, giu_sau)
         da_nhung += 1
     return da_nhung
@@ -226,6 +290,7 @@ def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
 def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
     document = Document()
     dat_kieu(document)
+    them_chan_trang(document.sections[0])
 
     tong_cau = sum(len(b["questions"]) for b in bai_hoc)
     cau_chinh = sum(
@@ -271,7 +336,10 @@ def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
 
     for chi_so, bai in enumerate(bai_hoc):
         if chi_so:
-            document.add_section(WD_SECTION_START.NEW_PAGE)
+            moi = document.add_section(WD_SECTION_START.NEW_PAGE)
+            # Section mới trong Word mặc định có chân trang riêng và rỗng. Nối lại
+            # với section trước để số trang chạy liên tục suốt tài liệu.
+            moi.footer.is_linked_to_previous = True
         document.add_heading(f"Bài {bai['number']}. {bai['title']}", level=1)
         document.add_paragraph(f"{len(bai['questions'])} câu hỏi", style="Subtitle")
 
@@ -292,7 +360,9 @@ def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
 
             de = document.add_paragraph()
             de.add_run(str(noi_dung.get("text") or "").strip()).bold = True
-            giu_khoi(de, bool(anh_de))
+            # Luôn dính với đoạn sau, dù có ảnh hay không. Bản đầu chỉ đặt khi có
+            # ảnh nên 4164 câu bị Word cắt ngay giữa đề bài và danh sách phương án.
+            giu_khoi(de, True)
 
             nhung = them_anh(document, anh_de, ma, True)
             so_anh += nhung
