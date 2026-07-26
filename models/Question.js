@@ -655,45 +655,6 @@ async function deleteQuestion(id) {
   }
 }
 
-async function getRandomQuestionsByGrade(grade, limit = 10) {
-  const safeLimit = normalizeExamLimit(limit);
-  if (!isSupportedGrade(grade)) return [];
-
-  try {
-    const idRows = await db.query(
-      `SELECT q.id
-       FROM QuestionBank q
-       JOIN Lessons l ON l.id = q.lesson_id
-       JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade = ?`,
-      [grade]
-    );
-    const ids = sampleIds(idRows.map((row) => Number(row.id)).filter(Boolean), safeLimit);
-    return getQuestionsByIds(ids);
-  } catch (error) {
-    const lessonById = new Map();
-    sampleData.chapters
-      .filter((chapter) => Number(chapter.grade) === Number(grade))
-      .forEach((chapter) => {
-        chapter.lessons.forEach((lesson) => {
-          lessonById.set(Number(lesson.id), {
-            lesson_name: lesson.lesson_name,
-            grade: chapter.grade
-          });
-        });
-      });
-
-    return shuffle(
-      sampleData.questions
-        .filter((question) => lessonById.has(Number(question.lesson_id)))
-        .map((question) => ({
-          ...normalizeQuestion(question),
-          ...lessonById.get(Number(question.lesson_id))
-        }))
-    ).slice(0, safeLimit);
-  }
-}
-
 async function createQuestion(payload) {
   try {
     return await db.transaction(async (connection) => {
@@ -747,61 +708,10 @@ async function createQuestion(payload) {
   }
 }
 
-function normalizeExamLimit(value) {
-  const allowedLimits = [10, 15, 20, 25, 30];
-  const limit = Number(value);
-  return allowedLimits.includes(limit) ? limit : 10;
-}
-
-function shuffle(items) {
-  return [...items].sort(() => Math.random() - 0.5);
-}
-
-function sampleIds(ids, limit) {
-  if (ids.length <= limit) return ids;
-  const result = [];
-  const used = new Set();
-  while (result.length < limit && used.size < ids.length) {
-    const index = Math.floor(Math.random() * ids.length);
-    if (used.has(index)) continue;
-    used.add(index);
-    result.push(ids[index]);
-  }
-  return result;
-}
-
 function normalizePageLimit(value, fallback = 20, max = 100) {
   const limit = Number(value);
   if (!Number.isFinite(limit) || limit <= 0) return fallback;
   return Math.min(Math.max(Math.round(limit), 1), max);
-}
-
-async function deleteAllQuestionsAndActivity() {
-  try {
-    await db.transaction(async (connection) => {
-      await connection.execute('DELETE FROM PracticeSessionChats');
-      await connection.execute('DELETE FROM PracticeSessions');
-      await connection.execute("DELETE FROM AIConversationLogs WHERE session_type = 'EXERCISE_HELP'");
-      await connection.execute('DELETE FROM StudentLogs');
-      await connection.execute('DELETE FROM CommonMisconceptions');
-      await connection.execute('DELETE FROM QuestionBank');
-    });
-    await Promise.allSettled([
-      db.query('ALTER TABLE PracticeSessionChats AUTO_INCREMENT = 1'),
-      db.query('ALTER TABLE PracticeSessions AUTO_INCREMENT = 1'),
-      db.query('ALTER TABLE StudentLogs AUTO_INCREMENT = 1'),
-      db.query('ALTER TABLE CommonMisconceptions AUTO_INCREMENT = 1'),
-      db.query('ALTER TABLE QuestionBank AUTO_INCREMENT = 1')
-    ]);
-    return true;
-  } catch (error) {
-    sampleData.practiceChats = [];
-    sampleData.practiceSessions = [];
-    sampleData.studentLogs = [];
-    sampleData.misconceptions = [];
-    sampleData.questions = [];
-    return false;
-  }
 }
 
 async function recordAnswer({ studentId, practiceSessionId, questionId, selectedAnswer, isCorrect, misconceptionId, timeSpentSeconds }) {
@@ -835,7 +745,6 @@ module.exports = {
   searchQuestions,
   getDifficultyStats,
   countQuestionsByLesson,
-  getRandomQuestionsByGrade,
   getQuestionById,
   getQuestionsByIds,
   getMisconception,
@@ -847,6 +756,5 @@ module.exports = {
   createQuestion,
   updateQuestion,
   deleteQuestion,
-  deleteAllQuestionsAndActivity,
   recordAnswer
 };

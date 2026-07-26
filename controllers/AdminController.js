@@ -154,24 +154,6 @@ async function lessonTheory(req, res, next) {
   }
 }
 
-async function updateTheory(req, res, next) {
-  try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
-    if (!lesson) {
-      setFlash(req, 'danger', 'Không tìm thấy bài học cần cập nhật lý thuyết.');
-      return res.redirect(contentManagerUrl('theory', req.params.lessonId));
-    }
-
-    const cards = await buildTheoryCardBody(req.body.cards, req.files || []);
-    await Curriculum.updateLessonTheoryCards(lesson.id, cards);
-
-    setFlash(req, 'success', 'Đã cập nhật lý thuyết cho bài học.');
-    return res.redirect(contentManagerUrl('theory', lesson.id));
-  } catch (error) {
-    next(error);
-  }
-}
-
 async function createTheoryCard(req, res, next) {
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
@@ -1385,54 +1367,6 @@ async function checkSettings(req, res, next) {
   }
 }
 
-async function buildTheoryCardBody(cards, files) {
-  const items = Array.isArray(cards)
-    ? cards
-    : cards && typeof cards === 'object'
-      ? Object.keys(cards).sort((a, b) => Number(a) - Number(b)).map((key) => cards[key])
-      : [];
-
-  const uploadedFilesByIndex = groupTheoryImageFiles(files);
-  const result = [];
-
-  for (const [index, card] of items.entries()) {
-    const authoringMode = normalizeAuthoringMode(card?.authoring_mode);
-    const existingImages = parseExistingImages(card?.existing_images);
-    const uploadedImages = await buildTheoryImages(uploadedFilesByIndex.get(index) || [], index, existingImages.length);
-    const gridLayout = authoringMode === 'canvas'
-      ? parseGridLayout(card?.grid_layout)
-      : parseGridLayout({ enabled: false });
-    const normalizedCard = {
-      title: card?.title || '',
-      type: normalizeTheoryType(card?.type),
-      layout: normalizeTheoryLayout(card?.layout),
-      display_text: card?.display_text || '',
-      body: card?.body || '',
-      example: card?.example || '',
-      student_task: card?.student_task || '',
-      remember: card?.remember || '',
-      interaction: normalizeTheoryInteraction(card?.interaction),
-      grid_layout: gridLayout,
-      images: authoringMode === 'canvas' ? [] : [...existingImages, ...uploadedImages]
-    };
-
-    if (
-      normalizedCard.title.trim()
-      || normalizedCard.display_text.trim()
-      || normalizedCard.body.trim()
-      || normalizedCard.example.trim()
-      || normalizedCard.student_task.trim()
-      || normalizedCard.remember.trim()
-      || normalizedCard.grid_layout.enabled
-      || normalizedCard.images.length > 0
-    ) {
-      result.push(normalizedCard);
-    }
-  }
-
-  return result;
-}
-
 async function buildSingleTheoryCard(body, files, cardIndex = 0) {
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const existingImages = filterRemovedImages(parseExistingImages(body.existing_images), body.remove_theory_images);
@@ -1486,18 +1420,6 @@ function normalizeTheoryInteraction(value) {
   return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction) ? interaction : 'none';
 }
 
-function groupTheoryImageFiles(files) {
-  const map = new Map();
-  for (const file of files || []) {
-    const match = String(file.fieldname || '').match(/^theory_images_(\d+)$/);
-    if (!match) continue;
-    const index = Number(match[1]);
-    if (!map.has(index)) map.set(index, []);
-    map.get(index).push(file);
-  }
-  return map;
-}
-
 async function buildTheoryImages(files, cardIndex, startIndex = 0) {
   const images = [];
   for (const [index, file] of files.entries()) {
@@ -1540,7 +1462,6 @@ module.exports = {
   dashboard,
   theory,
   lessonTheory,
-  updateTheory,
   createTheoryCard,
   updateTheoryCard,
   deleteTheoryCard,
