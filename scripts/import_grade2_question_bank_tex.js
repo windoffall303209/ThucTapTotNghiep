@@ -126,16 +126,32 @@ async function main() {
   for (const payload of payloads) {
     sourceLessonTitles.set(payload.lesson_number, payload.lesson_title);
   }
+  const sourceTitleCounts = new Map();
+  for (const title of sourceLessonTitles.values()) {
+    const key = normalizeTitle(title);
+    sourceTitleCounts.set(key, (sourceTitleCounts.get(key) || 0) + 1);
+  }
   const mapping = new Map();
   const unmatched = [];
   for (const [lessonNumber, title] of sourceLessonTitles.entries()) {
-    const lesson = lessonByTitle.get(normalizeTitle(title));
+    const normalizedTitle = normalizeTitle(title);
+    const lesson = sourceTitleCounts.get(normalizedTitle) > 1
+      ? lessons[lessonNumber - 1]
+      : lessonByTitle.get(normalizedTitle);
     if (!lesson) unmatched.push(`Bài ${lessonNumber}: ${title}`);
     else mapping.set(lessonNumber, lesson);
   }
   if (unmatched.length) {
     throw new Error(
       `Không map được ${unmatched.length} bài vào Curriculum lớp 2:\n${unmatched.join('\n')}`
+    );
+  }
+  const mappedLessonIds = new Set(
+    [...mapping.values()].map((lesson) => Number(lesson.id))
+  );
+  if (mappedLessonIds.size !== mapping.size) {
+    throw new Error(
+      `Chỉ map được ${mappedLessonIds.size}/${mapping.size} bài đích duy nhất; dừng import để tránh gộp nhầm câu hỏi.`
     );
   }
 
