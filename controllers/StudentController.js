@@ -588,6 +588,54 @@ async function submitAnswer(req, res, next) {
       });
     }
 
+    // practiceSessionId do client gửi lên nên phải xác minh trước khi ghi:
+    // phiên phải tồn tại, thuộc đúng học sinh này, còn đang làm và chứa đúng
+    // câu hỏi đang nộp. Không kiểm thì một request tự chế có thể bơm log vào
+    // phiên của học sinh khác hoặc ghi tiếp vào bài đã kết thúc.
+    const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
+    const questionIndex = Number(req.body.questionIndex || 0);
+    if (practiceSessionId) {
+      const session = await PracticeSession.getSessionById(student.id, practiceSessionId);
+      if (!session) {
+        return res.status(404).json({
+          ok: false,
+          message: 'Không tìm thấy lần làm bài này trong tài khoản của em.'
+        });
+      }
+      if (session.status !== 'IN_PROGRESS') {
+        return res.status(409).json({
+          ok: false,
+          message: 'Bài làm này đã kết thúc, không nộp thêm được nữa. Em mở trang xem lại nhé.',
+          redirectUrl: `/student/sessions/${session.id}`
+        });
+      }
+      if (!session.question_ids.map(Number).includes(Number(questionItem.id))) {
+        return res.status(400).json({
+          ok: false,
+          message: 'Câu hỏi này không thuộc bài em đang làm.'
+        });
+      }
+
+      // Chống ghi trùng: mỗi câu trong một phiên chỉ có một dòng log. Nộp lại
+      // (bấm đúp, gửi lại request) thì trả về đúng kết quả đã chấm lần đầu,
+      // không chèn thêm bản ghi làm lệch số câu đúng trong lịch sử.
+      const previousAnswers = await PracticeSession.listAnswers(session.id);
+      const existingAnswer = previousAnswers.find(
+        (answer) => Number(answer.question_id) === Number(questionItem.id)
+      );
+      if (existingAnswer) {
+        return res.json({
+          ok: true,
+          isCorrect: Number(existingAnswer.is_correct) === 1 || existingAnswer.is_correct === true,
+          correctAnswer: questionItem.correct_answer,
+          explanation: questionItem.explanation,
+          misconception: null,
+          nextIndex: questionIndex + 1,
+          message: 'Câu này em đã nộp rồi, kết quả được giữ theo lần nộp đầu tiên.'
+        });
+      }
+    }
+
     const isCorrect = answersMatch(questionItem, selectedAnswer);
     const misconception = isCorrect || questionItem.question_type === 'FILL_IN_THE_BLANK'
       ? null
@@ -595,7 +643,7 @@ async function submitAnswer(req, res, next) {
 
     await Question.recordAnswer({
       studentId: student.id,
-      practiceSessionId: Number(req.body.practiceSessionId || 0) || null,
+      practiceSessionId,
       questionId: questionItem.id,
       selectedAnswer,
       isCorrect,
@@ -603,8 +651,6 @@ async function submitAnswer(req, res, next) {
       timeSpentSeconds: Number(req.body.timeSpentSeconds || 0) || null
     });
 
-    const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
-    const questionIndex = Number(req.body.questionIndex || 0);
     if (practiceSessionId) {
       await PracticeSession.syncSessionProgress(practiceSessionId);
     }

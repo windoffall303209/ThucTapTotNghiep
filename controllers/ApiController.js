@@ -15,7 +15,19 @@ async function exerciseHelp(req, res, next) {
       });
     }
 
+    // Xác minh phiên trước khi dùng: id do client gửi, không kiểm thì lời chat
+    // có thể bị ghi vào phiên của học sinh khác (hiện lên trang xem lại của em
+    // đó) và quota gợi ý bị tính trên phiên không thuộc về người hỏi.
     const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
+    if (practiceSessionId) {
+      const session = await PracticeSession.getSessionById(req.auth.id, practiceSessionId);
+      if (!session) {
+        return res.status(403).json({
+          ok: false,
+          message: 'Lần làm bài này không thuộc tài khoản của em nên chưa gửi được câu hỏi.'
+        });
+      }
+    }
     const selectedAnswer = String(req.body.selectedAnswer || '').trim();
     const studentMessage = String(req.body.message || '').trim();
     const settings = await SystemSetting.getSettings();
