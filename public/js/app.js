@@ -13,6 +13,7 @@
     renderInitialMath();
     initPractice();
     initTheoryHelp();
+    initProgressiveAuthoringForms();
     initAdminPreview();
     initSettingsCards();
     initAdminQuestionBank();
@@ -634,7 +635,7 @@
   }
 
   function initAdminQuestionBank() {
-    initQuestionFlowSteps();
+    initContentManagers();
     initQuestionDetailsControls();
 
     const dialog = document.getElementById('questionCreateDialog');
@@ -755,6 +756,75 @@
     });
 
     updatePreview();
+  }
+
+  function initProgressiveAuthoringForms(root = document) {
+    root.querySelectorAll('form[data-question-preview-form], form[data-theory-preview-form]').forEach((form) => {
+      if (form.dataset.progressiveFormReady === 'true') return;
+      form.dataset.progressiveFormReady = 'true';
+      form.classList.add('progressive-authoring-form');
+
+      if (form.matches('[data-question-preview-form]')) {
+        form.querySelectorAll('.choice-editor').forEach((choiceEditor) => {
+          const optionalItems = Array.from(choiceEditor.children)
+            .filter((item) => item.matches('.choice-fieldset, .two-fields'));
+          if (optionalItems.length === 0) return;
+
+          const key = choiceEditor.querySelector('[data-preview-choice]')?.dataset.previewChoice || '';
+          const details = document.createElement('details');
+          details.className = 'choice-optional-panel';
+          details.innerHTML = `<summary>Tùy chọn đáp án ${escapeHtml(key)}</summary><div class="choice-optional-content"></div>`;
+          const content = details.querySelector('.choice-optional-content');
+          optionalItems[0].before(details);
+          optionalItems.forEach((item) => content.appendChild(item));
+        });
+      }
+
+      const optionalPanel = document.createElement('details');
+      optionalPanel.className = 'form-optional-panel';
+      optionalPanel.innerHTML = `
+        <summary>
+          <span><i data-lucide="sliders-horizontal" class="lucide-icon"></i> Tùy chọn nâng cao</span>
+          <small>Ảnh, bố cục, canvas và xem trước</small>
+        </summary>
+        <div class="form-optional-content"></div>
+      `;
+      const optionalContent = optionalPanel.querySelector('.form-optional-content');
+      const optionalItems = [];
+
+      const addOptional = (item) => {
+        if (item && !optionalItems.includes(item)) optionalItems.push(item);
+      };
+
+      addOptional(form.querySelector(':scope > [data-authoring-mode]'));
+      if (form.matches('[data-question-preview-form]')) {
+        addOptional(form.querySelector('[data-layout-variant]')?.closest('label'));
+        addOptional(form.querySelector('[data-question-interaction]')?.closest('label'));
+        form.querySelectorAll(':scope > fieldset.image-fieldset').forEach(addOptional);
+      } else {
+        addOptional(form.querySelector('[data-theory-display-text]')?.closest('label'));
+        addOptional(form.querySelector('[data-theory-student-task]')?.closest('.two-fields'));
+        addOptional(form.querySelector('[data-theory-example]')?.closest('label'));
+        addOptional(form.querySelector('[data-theory-remember]')?.closest('label'));
+        addOptional(form.querySelector('[data-theory-images]')?.closest('label'));
+      }
+      addOptional(form.querySelector(':scope > [data-grid-editor]'));
+      addOptional(form.querySelector(':scope > .question-form-preview'));
+
+      optionalItems.forEach((item) => optionalContent.appendChild(item));
+      if (optionalItems.length > 0) {
+        const actionRows = Array.from(form.querySelectorAll(':scope > .form-actions'));
+        const finalActions = actionRows[actionRows.length - 1];
+        if (finalActions) form.insertBefore(optionalPanel, finalActions);
+        else form.appendChild(optionalPanel);
+      }
+
+      if (form.querySelector('[data-authoring-mode-input]')?.value === 'canvas') {
+        optionalPanel.open = true;
+      }
+    });
+
+    refreshIcons();
   }
 
   function initAuthoringModeControls(root = document) {
@@ -1155,6 +1225,118 @@
     return labels[type] || 'Kiến thức';
   }
 
+  function initContentManagers() {
+    document.querySelectorAll('[data-content-manager]:not([data-content-manager-ready])').forEach((manager) => {
+      manager.dataset.contentManagerReady = 'true';
+
+      const kind = manager.dataset.contentManager;
+      const lessonButtons = Array.from(manager.querySelectorAll('[data-lesson-select]'));
+      const gradeButtons = Array.from(manager.querySelectorAll('[data-grade-filter]'));
+      const searchInput = manager.querySelector('[data-lesson-search]');
+      const emptyResult = manager.querySelector('[data-lesson-empty]');
+      const emptyWorkspace = manager.querySelector('[data-workspace-empty]');
+      const workspacePanel = manager.querySelector('[data-workspace-panel]');
+      const workspaceTitle = manager.querySelector('[data-workspace-title]');
+      const workspaceMeta = manager.querySelector('[data-workspace-meta]');
+      const shell = manager.querySelector('[data-manager-shell]');
+      const closeButton = manager.querySelector('[data-workspace-close]');
+      let activeGrade = 'all';
+
+      const normalizedText = (value) => String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .toLowerCase()
+        .trim();
+
+      const applyFilters = () => {
+        const query = normalizedText(searchInput?.value);
+        let visibleCount = 0;
+
+        lessonButtons.forEach((button) => {
+          const matchesGrade = activeGrade === 'all' || button.dataset.grade === activeGrade;
+          const matchesQuery = !query || normalizedText(button.dataset.searchText).includes(query);
+          button.hidden = !(matchesGrade && matchesQuery);
+          if (!button.hidden) visibleCount += 1;
+        });
+
+        manager.querySelectorAll('[data-lesson-chapter]').forEach((chapter) => {
+          chapter.hidden = !Array.from(chapter.querySelectorAll('[data-lesson-select]'))
+            .some((button) => !button.hidden);
+        });
+        manager.querySelectorAll('[data-lesson-group]').forEach((group) => {
+          group.hidden = !Array.from(group.querySelectorAll('[data-lesson-chapter]'))
+            .some((chapter) => !chapter.hidden);
+        });
+
+        if (emptyResult) emptyResult.hidden = visibleCount > 0;
+      };
+
+      const setLessonInUrl = (lessonId) => {
+        const url = new URL(window.location.href);
+        if (lessonId) url.searchParams.set('lesson', lessonId);
+        else url.searchParams.delete('lesson');
+        window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+      };
+
+      const activateLesson = async (button, options = {}) => {
+        if (!button || !shell || !workspacePanel) return;
+
+        lessonButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+        if (workspaceTitle) workspaceTitle.textContent = button.dataset.lessonTitle || 'Bài học';
+        if (workspaceMeta) workspaceMeta.textContent = button.dataset.lessonMeta || '';
+        if (emptyWorkspace) emptyWorkspace.hidden = true;
+        workspacePanel.hidden = false;
+
+        shell.dataset.lessonId = button.dataset.lessonId || '';
+        shell.dataset.currentPage = '1';
+        delete shell.dataset.loaded;
+        delete shell.dataset.loadedPage;
+        delete shell.dataset.loading;
+
+        if (options.updateUrl !== false) setLessonInUrl(button.dataset.lessonId);
+
+        if (kind === 'questions') {
+          await fetchLessonQuestions(shell, 1);
+        } else {
+          await fetchLessonTheory(shell);
+        }
+
+        if (options.scroll !== false && window.matchMedia('(max-width: 920px)').matches) {
+          workspacePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      gradeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activeGrade = button.dataset.gradeFilter || 'all';
+          gradeButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+          applyFilters();
+        });
+      });
+
+      searchInput?.addEventListener('input', applyFilters);
+      lessonButtons.forEach((button) => {
+        button.addEventListener('click', () => activateLesson(button));
+      });
+
+      closeButton?.addEventListener('click', () => {
+        lessonButtons.forEach((button) => button.classList.remove('is-active'));
+        workspacePanel.hidden = true;
+        if (emptyWorkspace) emptyWorkspace.hidden = false;
+        shell.innerHTML = '';
+        setLessonInUrl('');
+      });
+
+      applyFilters();
+      const selectedLessonId = manager.dataset.selectedLesson;
+      const initialButton = lessonButtons.find((button) => button.dataset.lessonId === selectedLessonId)
+        || lessonButtons[0];
+      if (initialButton) activateLesson(initialButton, { updateUrl: Boolean(selectedLessonId), scroll: false });
+    });
+  }
+
   function initQuestionFlowSteps() {
     const flow = document.querySelector('[data-question-flow]');
     if (!flow) return;
@@ -1207,20 +1389,26 @@
 
   async function fetchLessonQuestions(shell, page = 1) {
     if (!shell || shell.dataset.loading === 'true') return;
+    const lessonId = shell.dataset.lessonId;
+    const requestId = `${lessonId}:${page}:${Date.now()}`;
+    shell.dataset.requestId = requestId;
     shell.dataset.loading = 'true';
     shell.innerHTML = '<div class="empty-state compact">Đang tải danh sách câu hỏi...</div>';
 
     try {
-      const url = `/admin/questions/lesson/${encodeURIComponent(shell.dataset.lessonId)}?page=${encodeURIComponent(page)}&limit=8`;
+      const url = `/admin/questions/lesson/${encodeURIComponent(lessonId)}?page=${encodeURIComponent(page)}&limit=8`;
       const response = await fetch(url, {
         headers: { 'X-Requested-With': 'fetch' }
       });
       if (!response.ok) throw new Error('Không tải được dữ liệu câu hỏi.');
 
-      shell.innerHTML = await response.text();
+      const html = await response.text();
+      if (shell.dataset.requestId !== requestId) return;
+      shell.innerHTML = html;
       shell.dataset.loaded = 'true';
       shell.dataset.currentPage = String(page);
       shell.dataset.loadedPage = String(page);
+      initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
       initGridEditors(shell);
       initAuthoringModeControls(shell);
@@ -1231,9 +1419,10 @@
       bindQuestionPagination(shell);
       refreshIcons();
     } catch (error) {
+      if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được danh sách câu hỏi. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      delete shell.dataset.loading;
+      if (shell.dataset.requestId === requestId) delete shell.dataset.loading;
     }
   }
 
@@ -1270,6 +1459,7 @@
 
       shell.innerHTML = await response.text();
       shell.dataset.loaded = 'true';
+      initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
       initGridEditors(shell);
       initAuthoringModeControls(shell);
@@ -1288,17 +1478,29 @@
     const shell = step.querySelector('[data-lesson-theory]');
     if (!shell || shell.dataset.loaded === 'true' || shell.dataset.loading === 'true') return;
 
+    await fetchLessonTheory(shell);
+  }
+
+  async function fetchLessonTheory(shell) {
+    if (!shell || shell.dataset.loading === 'true') return;
+    const lessonId = shell.dataset.lessonId;
+    const requestId = `${lessonId}:${Date.now()}`;
+    shell.dataset.requestId = requestId;
+
     shell.dataset.loading = 'true';
     shell.innerHTML = '<div class="empty-state compact">Đang tải thẻ lý thuyết...</div>';
 
     try {
-      const response = await fetch(`/admin/theory/lesson/${encodeURIComponent(shell.dataset.lessonId)}`, {
+      const response = await fetch(`/admin/theory/lesson/${encodeURIComponent(lessonId)}`, {
         headers: { 'X-Requested-With': 'fetch' }
       });
       if (!response.ok) throw new Error('Không tải được dữ liệu lý thuyết.');
 
-      shell.innerHTML = await response.text();
+      const html = await response.text();
+      if (shell.dataset.requestId !== requestId) return;
+      shell.innerHTML = html;
       shell.dataset.loaded = 'true';
+      initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
       initTheoryEditors(shell);
       initGridEditors(shell);
@@ -1307,9 +1509,10 @@
       initLazyMath(shell);
       refreshIcons();
     } catch (error) {
+      if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được thẻ lý thuyết. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      delete shell.dataset.loading;
+      if (shell.dataset.requestId === requestId) delete shell.dataset.loading;
     }
   }
 

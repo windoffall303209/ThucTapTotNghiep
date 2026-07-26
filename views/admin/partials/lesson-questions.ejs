@@ -134,13 +134,9 @@
   }
 %>
 
-<div class="lesson-question-toolbar">
-  <div>
-    <span class="bank-kicker">Workspace câu hỏi</span>
-    <h2><%= lesson.lesson_name %></h2>
-    <p><%= pageInfo.total %> câu hỏi · Trang <%= pageInfo.page %>/<%= pageInfo.totalPages %>. Chọn dạng câu hỏi trước, form sẽ chỉ hiện phần cần nhập.</p>
-  </div>
-  <span class="status-pill status-in-progress">Bài #<%= lesson.id %></span>
+<div class="lesson-content-toolbar">
+  <p><strong><%= pageInfo.total %></strong> câu hỏi · Trang <%= pageInfo.page %>/<%= pageInfo.totalPages %></p>
+  <span>Bài #<%= lesson.id %></span>
 </div>
 
 <details class="inline-create-panel">
@@ -411,6 +407,7 @@
 
 <div class="bank-question-list">
   <% questions.forEach((question) => { %>
+    <% const hasSupportingContent = question.question_type !== 'FILL_IN_THE_BLANK' || Boolean(question.explanation?.text) || (question.explanation?.images || []).length > 0; %>
     <article class="bank-question">
       <div class="bank-question-head">
         <div>
@@ -427,22 +424,28 @@
         <span class="answer-badge">Đáp án <%= question.correct_answer %></span>
       </div>
 
-      <% if (question.question_type !== 'FILL_IN_THE_BLANK' && !hasGridAnswers(question)) { %>
-        <div class="question-choice-list math-content math-lazy <%= displayLayout(question) === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
-          <% answerKeys.forEach((key) => { %>
-            <% const choice = choiceFor(question, key); %>
-            <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
-              <span><%= key %></span>
-              <div class="choice-body">
-                <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
-                <%- imageGroupHtml(choice.images || []) %>
+      <% if (hasSupportingContent) { %>
+        <details class="record-support">
+          <summary>Đáp án và lời giải</summary>
+          <div class="record-support-content">
+            <% if (question.question_type !== 'FILL_IN_THE_BLANK' && !hasGridAnswers(question)) { %>
+              <div class="question-choice-list math-content math-lazy <%= displayLayout(question) === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
+                <% answerKeys.forEach((key) => { %>
+                  <% const choice = choiceFor(question, key); %>
+                  <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
+                    <span><%= key %></span>
+                    <div class="choice-body">
+                      <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
+                      <%- imageGroupHtml(choice.images || []) %>
+                    </div>
+                  </div>
+                <% }) %>
               </div>
-            </div>
-          <% }) %>
-        </div>
+            <% } %>
+            <%- explanationHtml(question) %>
+          </div>
+        </details>
       <% } %>
-
-      <%- explanationHtml(question) %>
 
       <div class="question-actions">
         <details class="inline-edit-panel">
@@ -456,6 +459,7 @@
         </details>
 
         <form class="delete-question-form" action="/admin/questions/<%= question.id %>/delete" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa câu hỏi này? Lịch sử làm bài liên quan tới câu hỏi này cũng có thể bị ảnh hưởng.');">
+          <input type="hidden" name="lesson_id" value="<%= lesson.id %>">
           <button class="btn btn-danger btn-compact" type="submit">
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa

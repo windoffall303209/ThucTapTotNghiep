@@ -64,12 +64,8 @@
   }
 %>
 
-<div class="lesson-question-toolbar">
-  <div>
-    <span class="bank-kicker">Workspace lý thuyết</span>
-    <h2><%= lesson.lesson_name %></h2>
-    <p><%= cards.length %> thẻ hiện có. Chọn loại thẻ trước để nhập đúng kiểu nội dung cho từng nhóm lớp.</p>
-  </div>
+<div class="lesson-content-toolbar">
+  <p><strong><%= cards.length %></strong> thẻ lý thuyết</p>
   <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>" target="_blank" rel="noreferrer">
     <i data-lucide="external-link" class="lucide-icon"></i>
     Xem trang học sinh
@@ -254,37 +250,42 @@
         </form>
       </div>
 
-      <% if (card.display_text) { %>
-        <p class="theory-display-text"><%= card.display_text %></p>
-      <% } %>
+      <details class="record-support">
+        <summary>Xem nội dung thẻ</summary>
+        <div class="record-support-content">
+          <% if (card.display_text) { %>
+            <p class="theory-display-text"><%= card.display_text %></p>
+          <% } %>
 
-      <%- gridRenderHtml(card.grid_layout) %>
+          <%- gridRenderHtml(card.grid_layout) %>
 
-      <% if (images.length > 0) { %>
-        <div class="theory-image-row">
-          <% images.forEach((image) => { %>
-            <span class="question-image">
-              <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
-            </span>
-          <% }) %>
+          <% if (images.length > 0) { %>
+            <div class="theory-image-row">
+              <% images.forEach((image) => { %>
+                <span class="question-image">
+                  <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
+                </span>
+              <% }) %>
+            </div>
+          <% } %>
+
+          <% if (bodyValue(card)) { %>
+            <div class="theory-body"><%= bodyValue(card) %></div>
+          <% } %>
+
+          <% if (card.student_task) { %>
+            <p class="theory-task"><strong>Việc cần làm:</strong> <%= card.student_task %></p>
+          <% } %>
+
+          <% if (card.example) { %>
+            <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
+          <% } %>
+
+          <% if (card.remember) { %>
+            <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
+          <% } %>
         </div>
-      <% } %>
-
-      <% if (bodyValue(card)) { %>
-        <div class="theory-body"><%= bodyValue(card) %></div>
-      <% } %>
-
-      <% if (card.student_task) { %>
-        <p class="theory-task"><strong>Việc cần làm:</strong> <%= card.student_task %></p>
-      <% } %>
-
-      <% if (card.example) { %>
-        <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
-      <% } %>
-
-      <% if (card.remember) { %>
-        <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
-      <% } %>
+      </details>
 
       <details class="inline-edit-panel theory-edit-panel">
         <summary>

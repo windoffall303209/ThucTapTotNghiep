@@ -1,25 +1,19 @@
 <%
-  function chapterStepId(book, chapter) {
-    return `${book.id}-chapter-${chapter.id}`;
-  }
-
-  function lessonStepId(lesson) {
-    return `lesson-${lesson.id}`;
-  }
+  const grades = [...new Set((bookTree || []).map((book) => Number(book.grade)))].filter(Boolean);
 %>
 
-<section class="question-flow-page" data-question-flow>
-  <header class="question-flow-topbar">
-    <button class="flow-back-button" type="button" data-flow-back hidden aria-label="Quay lại">
-      <i data-lucide="arrow-left" class="lucide-icon"></i>
-    </button>
+<section
+  class="content-manager"
+  data-content-manager="questions"
+  data-selected-lesson="<%= selectedLessonId || '' %>"
+>
+  <header class="content-manager-header">
     <div>
       <p class="eyebrow">Ngân hàng câu hỏi</p>
-      <h1 data-flow-title>Chọn sách giáo khoa</h1>
-      <p data-flow-subtitle>Đi theo sách, chương và bài học để quản lý câu hỏi đúng ngữ cảnh.</p>
+      <h1>Quản lý câu hỏi</h1>
+      <p>Chọn một bài học để xem, thêm hoặc chỉnh sửa câu hỏi ngay trong cùng màn hình.</p>
     </div>
-    <div class="question-bank-stats">
-      <span><strong><%= bookTree.length %></strong> sách/tập</span>
+    <div class="content-manager-summary" aria-label="Thống kê ngân hàng câu hỏi">
       <span><strong><%= lessons.length %></strong> bài học</span>
       <span><strong><%= totalQuestionCount || 0 %></strong> câu hỏi</span>
     </div>
@@ -27,75 +21,82 @@
 
   <% if (!bookTree || bookTree.length === 0) { %>
     <div class="empty-state compact">Chưa có dữ liệu chương trình để quản lý ngân hàng câu hỏi.</div>
-  <% } %>
+  <% } else { %>
+    <div class="content-manager-layout">
+      <aside class="lesson-browser" aria-label="Danh sách bài học">
+        <div class="lesson-browser-head">
+          <label class="lesson-search">
+            <i data-lucide="search" class="lucide-icon"></i>
+            <input type="search" placeholder="Tìm bài hoặc chương..." data-lesson-search autocomplete="off">
+          </label>
 
-  <div class="question-flow-stage">
-    <section class="flow-step is-active" data-flow-step="books" data-flow-title="Chọn sách giáo khoa" data-flow-subtitle="Chọn sách/tập trước, sau đó đi vào chương và bài học.">
-      <div class="book-card-grid">
-        <% bookTree.forEach((book) => { %>
-          <button class="book-card" type="button" data-flow-target="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
-            <span class="book-card-kicker">Sách giáo khoa</span>
-            <strong><%= book.title %></strong>
-            <small><%= book.chapterCount %> chương · <%= book.lessonCount %> bài · <%= book.questionCount %> câu hỏi</small>
-          </button>
-        <% }) %>
-      </div>
-    </section>
-
-    <% bookTree.forEach((book) => { %>
-      <section class="flow-step" data-flow-step="book-<%= book.id %>" data-flow-title="<%= book.title %>" data-flow-subtitle="Chọn chương trong <%= book.title %>.">
-        <div class="flow-list">
-          <% book.chapters.forEach((chapter, index) => { %>
-            <button class="flow-list-row" type="button" data-flow-target="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học trong chương này.">
-              <span class="row-index"><%= index + 1 %></span>
-              <span>
-                <strong><%= chapter.chapter_name %></strong>
-                <small><%= chapter.lessons.length %> bài · <%= chapter.questionCount %> câu hỏi</small>
-              </span>
-              <i data-lucide="chevron-right" class="lucide-icon"></i>
-            </button>
-          <% }) %>
-        </div>
-      </section>
-
-      <% book.chapters.forEach((chapter) => { %>
-        <section class="flow-step" data-flow-step="<%= chapterStepId(book, chapter) %>" data-flow-title="<%= chapter.chapter_name %>" data-flow-subtitle="Chọn bài học để xem câu hỏi hiện có và thêm nội dung mới.">
-          <div class="flow-list">
-            <% chapter.lessons.forEach((lesson, index) => { %>
-              <button class="flow-list-row" type="button" data-flow-target="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.questionCount %> câu hỏi hiện có trong bài này.">
-                <span class="row-index"><%= index + 1 %></span>
-                <span>
-                  <strong><%= lesson.lesson_name %></strong>
-                  <small><%= lesson.questionCount %> câu hỏi</small>
-                </span>
-                <i data-lucide="chevron-right" class="lucide-icon"></i>
-              </button>
+          <div class="grade-filter" role="group" aria-label="Lọc theo lớp">
+            <button class="is-active" type="button" data-grade-filter="all">Tất cả</button>
+            <% grades.forEach((grade) => { %>
+              <button type="button" data-grade-filter="<%= grade %>">Lớp <%= grade %></button>
             <% }) %>
           </div>
-        </section>
+        </div>
 
-        <% chapter.lessons.forEach((lesson) => { %>
-          <section class="flow-step" data-flow-step="<%= lessonStepId(lesson) %>" data-flow-title="<%= lesson.lesson_name %>" data-flow-subtitle="<%= lesson.questionCount %> câu hỏi hiện có. Thêm, sửa hoặc xóa tại workspace bên dưới.">
-            <div class="lesson-question-toolbar">
-              <div>
-                <span class="bank-kicker">Bài học</span>
-                <h2><%= lesson.lesson_name %></h2>
-                <p><%= lesson.questionCount %> câu hỏi hiện có trong ngân hàng.</p>
+        <div class="lesson-browser-list" data-lesson-list>
+          <% bookTree.forEach((book) => { %>
+            <section class="lesson-book-group" data-lesson-group data-grade="<%= book.grade %>">
+              <div class="lesson-book-heading">
+                <strong><%= book.title %></strong>
+                <span><%= book.questionCount %> câu</span>
               </div>
-              <span class="status-pill status-in-progress">Lazy-load theo bài</span>
-            </div>
 
-            <div
-              class="lesson-question-shell"
-              data-lesson-questions
-              data-lesson-id="<%= lesson.id %>"
-              data-loaded="false"
-            >
-              <div class="empty-state compact">Chọn bài để tải danh sách câu hỏi và form nhập liệu.</div>
+              <% book.chapters.forEach((chapter) => { %>
+                <div class="lesson-chapter-group" data-lesson-chapter>
+                  <p><%= chapter.chapter_name %></p>
+                  <% chapter.lessons.forEach((lesson) => { %>
+                    <button
+                      class="lesson-select-button"
+                      type="button"
+                      data-lesson-select
+                      data-lesson-id="<%= lesson.id %>"
+                      data-grade="<%= book.grade %>"
+                      data-lesson-title="<%= lesson.lesson_name %>"
+                      data-lesson-meta="<%= book.title %> · <%= chapter.chapter_name %>"
+                      data-search-text="<%= `${book.title} ${chapter.chapter_name} ${lesson.lesson_name}`.toLowerCase() %>"
+                    >
+                      <span>
+                        <strong><%= lesson.lesson_name %></strong>
+                        <small><%= lesson.questionCount %> câu hỏi</small>
+                      </span>
+                      <i data-lucide="chevron-right" class="lucide-icon"></i>
+                    </button>
+                  <% }) %>
+                </div>
+              <% }) %>
+            </section>
+          <% }) %>
+
+          <div class="lesson-browser-empty" data-lesson-empty hidden>Không tìm thấy bài học phù hợp.</div>
+        </div>
+      </aside>
+
+      <main class="content-workspace" data-content-workspace>
+        <div class="content-workspace-empty" data-workspace-empty>
+          <i data-lucide="mouse-pointer-click" class="empty-icon"></i>
+          <h2>Chọn bài học để bắt đầu</h2>
+          <p>Bạn có thể tìm theo tên bài, tên chương hoặc lọc nhanh theo lớp.</p>
+        </div>
+
+        <section class="content-workspace-panel" data-workspace-panel hidden>
+          <header class="content-workspace-context">
+            <div>
+              <p data-workspace-meta></p>
+              <h2 data-workspace-title></h2>
             </div>
-          </section>
-        <% }) %>
-      <% }) %>
-    <% }) %>
-  </div>
+            <button class="icon-button workspace-close" type="button" data-workspace-close aria-label="Đóng bài đang chọn" title="Đóng bài đang chọn">
+              <i data-lucide="x" class="lucide-icon"></i>
+            </button>
+          </header>
+
+          <div class="lesson-question-shell" data-manager-shell data-content-kind="questions"></div>
+        </section>
+      </main>
+    </div>
+  <% } %>
 </section>
