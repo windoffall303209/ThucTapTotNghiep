@@ -570,7 +570,7 @@ async function submitAnswer(req, res, next) {
     const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
     const questionIndex = Number(req.body.questionIndex || 0);
     if (practiceSessionId) {
-      await PracticeSession.advanceSession(practiceSessionId, questionIndex + 1);
+      await PracticeSession.syncSessionProgress(practiceSessionId);
     }
 
     return res.json({

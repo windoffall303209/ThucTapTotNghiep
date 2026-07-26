@@ -313,19 +313,33 @@ async function saveChat({ sessionId, questionId, role, message }) {
   }
 }
 
-async function advanceSession(sessionId, nextIndex) {
+// current_index mang nghĩa "số câu học sinh đã làm trong phiên", dùng để hiển
+// thị tiến trình. Đếm trực tiếp từ StudentLogs thay vì tin vào chỉ số câu do
+// client gửi lên, nhờ đó con số vẫn đúng khi học sinh làm bài không theo thứ tự
+// (bấm chấm tiến trình nhảy tới câu bất kỳ).
+async function syncSessionProgress(sessionId) {
   await ensureSchema();
   try {
     await db.query(
-      `UPDATE PracticeSessions
-       SET current_index = GREATEST(current_index, ?)
-       WHERE id = ? AND status = 'IN_PROGRESS'`,
-      [Number(nextIndex), sessionId]
+      `UPDATE PracticeSessions ps
+       SET ps.current_index = (
+         SELECT COUNT(DISTINCT sl.question_id)
+         FROM StudentLogs sl
+         WHERE sl.practice_session_id = ps.id
+       )
+       WHERE ps.id = ? AND ps.status = 'IN_PROGRESS'`,
+      [sessionId]
     );
   } catch (error) {
     ensureFallbackStore();
     const session = sampleData.practiceSessions.find((item) => Number(item.id) === Number(sessionId));
-    if (session) session.current_index = Math.max(Number(session.current_index || 0), Number(nextIndex));
+    if (!session) return;
+    const answered = new Set(
+      sampleData.studentLogs
+        .filter((log) => Number(log.practice_session_id) === Number(sessionId))
+        .map((log) => Number(log.question_id))
+    );
+    session.current_index = answered.size;
   }
 }
 
@@ -407,6 +421,6 @@ module.exports = {
   listAnswers,
   listChats,
   saveChat,
-  advanceSession,
+  syncSessionProgress,
   completeSession
 };

@@ -165,8 +165,8 @@
       try {
         const context = JSON.parse(contextNode.textContent || '{}');
         state.practiceSessionId = context.practiceSessionId || null;
-        state.currentIndex = Math.min(Number(context.currentIndex || 0), Math.max(state.questions.length - 1, 0));
         state.results = context.answeredResults || {};
+        state.currentIndex = firstUnansweredIndex();
       } catch (error) {
         state.practiceSessionId = null;
       }
@@ -303,6 +303,14 @@
 
   function hasAnyAnswer() {
     return Object.keys(state.results).length > 0;
+  }
+
+  // Mở lại bài ở câu chưa làm đầu tiên. Không dùng current_index của phiên làm
+  // chỉ số câu nữa: từ khi có thanh chấm tiến trình, học sinh làm bài không theo
+  // thứ tự nên current_index chỉ còn mang nghĩa số câu đã làm.
+  function firstUnansweredIndex() {
+    const index = state.questions.findIndex((question) => !state.results[question.id]);
+    return index === -1 ? 0 : index;
   }
 
   // Dựng lại giao diện câu đã nộp: khóa lựa chọn, tô đúng/sai và nhắc lại kết quả.
