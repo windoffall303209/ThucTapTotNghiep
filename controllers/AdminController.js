@@ -24,6 +24,13 @@ const LAYOUT_VARIANTS = [
   'COMPACT'
 ];
 
+function contentManagerUrl(section, lessonId) {
+  const normalizedLessonId = Number(lessonId);
+  return Number.isInteger(normalizedLessonId) && normalizedLessonId > 0
+    ? `/admin/${section}?lesson=${normalizedLessonId}`
+    : `/admin/${section}`;
+}
+
 async function dashboard(req, res, next) {
   try {
     const [questionStats, recentQuestions, students] = await Promise.all([
@@ -67,7 +74,10 @@ async function questions(req, res, next) {
       lessons,
       questionBankTree,
       bookTree,
-      totalQuestionCount
+      totalQuestionCount,
+      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === Number(req.query.lesson))
+        ? Number(req.query.lesson)
+        : null
     });
   } catch (error) {
     next(error);
@@ -92,7 +102,10 @@ async function theory(req, res, next) {
       lessons,
       theoryTree,
       bookTree,
-      totalTheoryCardCount
+      totalTheoryCardCount,
+      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === Number(req.query.lesson))
+        ? Number(req.query.lesson)
+        : null
     });
   } catch (error) {
     next(error);
@@ -120,14 +133,14 @@ async function updateTheory(req, res, next) {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần cập nhật lý thuyết.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = await buildTheoryCardBody(req.body.cards, req.files || []);
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
 
     setFlash(req, 'success', 'Đã cập nhật lý thuyết cho bài học.');
-    return res.redirect('/admin/theory');
+    return res.redirect(contentManagerUrl('theory', lesson.id));
   } catch (error) {
     next(error);
   }
@@ -138,7 +151,7 @@ async function createTheoryCard(req, res, next) {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần thêm thẻ lý thuyết.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
@@ -146,14 +159,14 @@ async function createTheoryCard(req, res, next) {
 
     if (!hasTheoryCardContent(newCard)) {
       setFlash(req, 'danger', 'Thẻ lý thuyết cần có tiêu đề, nội dung, ví dụ hoặc ảnh minh họa.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
     cards.push(newCard);
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
 
     setFlash(req, 'success', 'Đã thêm thẻ lý thuyết.');
-    return res.redirect('/admin/theory');
+    return res.redirect(contentManagerUrl('theory', lesson.id));
   } catch (error) {
     next(error);
   }
@@ -165,26 +178,26 @@ async function updateTheoryCard(req, res, next) {
     const cardIndex = Number(req.params.cardIndex);
     if (!lesson || !Number.isInteger(cardIndex)) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
     if (!cards[cardIndex]) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
     const updatedCard = await buildSingleTheoryCard(req.body, req.files || [], cardIndex);
     if (!hasTheoryCardContent(updatedCard)) {
       setFlash(req, 'danger', 'Thẻ lý thuyết cần có tiêu đề, nội dung, ví dụ hoặc ảnh minh họa.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
     cards[cardIndex] = updatedCard;
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
 
     setFlash(req, 'success', 'Đã cập nhật thẻ lý thuyết.');
-    return res.redirect('/admin/theory');
+    return res.redirect(contentManagerUrl('theory', lesson.id));
   } catch (error) {
     next(error);
   }
@@ -196,20 +209,20 @@ async function deleteTheoryCard(req, res, next) {
     const cardIndex = Number(req.params.cardIndex);
     if (!lesson || !Number.isInteger(cardIndex)) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần xóa.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
     if (!cards[cardIndex]) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần xóa.');
-      return res.redirect('/admin/theory');
+      return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
     cards.splice(cardIndex, 1);
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
 
     setFlash(req, 'success', 'Đã xóa thẻ lý thuyết.');
-    return res.redirect('/admin/theory');
+    return res.redirect(contentManagerUrl('theory', lesson.id));
   } catch (error) {
     next(error);
   }
@@ -274,7 +287,7 @@ async function createQuestion(req, res, next) {
     const validation = validateQuestionBody(req.body, files.choiceImages);
     if (validation) {
       setFlash(req, 'danger', validation);
-      return res.redirect('/admin/questions');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
     }
 
     const choices = await buildChoices(req.body, files.choiceImages);
@@ -319,7 +332,7 @@ async function createQuestion(req, res, next) {
     });
 
     setFlash(req, 'success', 'Đã lưu câu hỏi mới.');
-    return res.redirect('/admin/questions');
+    return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
   } catch (error) {
     next(error);
   }
@@ -335,7 +348,7 @@ async function updateQuestion(req, res, next) {
     const question = await Question.getQuestionById(req.params.id);
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần sửa.');
-      return res.redirect('/admin/questions');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
     }
 
     const files = getUploadFiles(req.files);
@@ -343,7 +356,7 @@ async function updateQuestion(req, res, next) {
     const validation = validateQuestionBody(req.body, files.choiceImages, existingChoices);
     if (validation) {
       setFlash(req, 'danger', validation);
-      return res.redirect('/admin/questions');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
     }
 
     const choices = await buildChoices(req.body, files.choiceImages, existingChoices);
@@ -397,7 +410,7 @@ async function updateQuestion(req, res, next) {
     });
 
     setFlash(req, 'success', 'Đã cập nhật câu hỏi.');
-    return res.redirect('/admin/questions');
+    return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
   } catch (error) {
     next(error);
   }
@@ -405,9 +418,15 @@ async function updateQuestion(req, res, next) {
 
 async function deleteQuestion(req, res, next) {
   try {
+    const question = await Question.getQuestionById(req.params.id);
+    if (!question) {
+      setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần xóa.');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
+    }
+
     await Question.deleteQuestion(Number(req.params.id));
     setFlash(req, 'success', 'Đã xóa câu hỏi.');
-    return res.redirect('/admin/questions');
+    return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
   } catch (error) {
     next(error);
   }
