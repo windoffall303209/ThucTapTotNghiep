@@ -639,6 +639,18 @@
       return;
     }
 
+    // Kết thúc là thao tác một chiều: completeSession đặt status COMPLETED và
+    // sessionPractice sẽ chuyển mọi phiên COMPLETED sang trang xem lại, không có
+    // đường làm tiếp. Vì nút này nằm ngay cạnh "Câu tiếp theo" nên phải hỏi lại
+    // khi bài còn dở.
+    const remaining = state.questions.filter((question) => !state.results[question.id]).length;
+    if (remaining > 0) {
+      const confirmed = window.confirm(
+        `Em còn ${remaining} câu chưa làm. Kết thúc bây giờ thì bài này sẽ đóng lại và không làm tiếp được nữa. Em có chắc muốn kết thúc?`
+      );
+      if (!confirmed) return;
+    }
+
     const finishButton = document.getElementById('finishPracticeButton');
     setButtonBusy(finishButton, 'Đang lưu kết quả...');
     if (finishButton) finishButton.disabled = true;
