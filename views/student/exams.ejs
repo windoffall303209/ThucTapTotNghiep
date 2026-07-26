@@ -23,7 +23,7 @@
     <span class="status-pill status-new">15 hoặc 20 câu</span>
     <h2>Luyện tập theo chương</h2>
     <p class="muted">Câu hỏi được phủ lần lượt qua các bài trong chương, tránh tập trung quá nhiều vào một bài.</p>
-    <form class="stack-form" action="/student/exams/start" method="post">
+    <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
       <input type="hidden" name="mode" value="chapter">
       <label>
         Chương muốn luyện
@@ -51,7 +51,7 @@
     <span class="status-pill status-new">15 hoặc 20 câu</span>
     <h2>Luyện tập tổng hợp</h2>
     <p class="muted">Ôn nhiều chương trong học kỳ I, học kỳ II hoặc toàn bộ chương trình của lớp hiện tại.</p>
-    <form class="stack-form" action="/student/exams/start" method="post">
+    <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
       <input type="hidden" name="mode" value="comprehensive">
       <label>
         Phạm vi tổng hợp

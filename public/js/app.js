@@ -25,7 +25,34 @@
     initRenderedGrids();
     initQuestionEditLoaders();
     initLazyMath();
+    initSubmitBusyForms();
   });
+
+  // Form tạo đề gửi đi bằng POST rồi tải lại cả trang. Trong lúc chờ, học sinh
+  // không thấy phản hồi nào nên hay bấm thêm lần nữa và tạo trùng đề.
+  function initSubmitBusyForms() {
+    document.querySelectorAll('[data-busy-form]').forEach((form) => {
+      form.addEventListener('submit', () => {
+        const trigger = form.querySelector('button[type="submit"]:focus')
+          || document.activeElement?.closest?.('button[type="submit"]')
+          || form.querySelector('button[type="submit"]');
+
+        form.querySelectorAll('button[type="submit"]').forEach((button) => {
+          button.disabled = true;
+        });
+
+        if (trigger) {
+          // Nút submit mang giá trị name/value quyết định số câu, nên không thể
+          // disable trước khi trình duyệt thu thập dữ liệu form. Hoãn một nhịp.
+          trigger.disabled = false;
+          setButtonBusy(trigger, form.dataset.busyLabel || 'Đang xử lý...');
+          window.setTimeout(() => {
+            trigger.disabled = true;
+          }, 0);
+        }
+      });
+    });
+  }
 
   function refreshIcons() {
     if (window.lucide) {
