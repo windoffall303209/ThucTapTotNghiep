@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "test": "node --test",
     "db:init": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/database_schema.sql",
     "db:seed-curriculum": "node scripts/seed_curriculum.js",
     "db:seed-questions": "node scripts/generate_and_seed_questions.js",
