@@ -5,6 +5,7 @@ const SystemSetting = require('../models/SystemSetting');
 const ImageStorageService = require('../services/ImageStorageService');
 const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
+const { GRADE_RANGE_LABEL, gradeOptions, isSupportedGrade } = require('../config/grades');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
@@ -935,8 +936,77 @@ async function students(req, res, next) {
     res.render('admin/students', {
       title: 'Quản lý học sinh',
       students: studentList,
-      query: req.query.q || ''
+      query: req.query.q || '',
+      gradeOptions: gradeOptions()
     });
+  } catch (error) {
+    next(error);
+  }
+}
+
+function studentsRedirectUrl(req) {
+  const query = String(req.body.q || '').trim();
+  return query ? `/admin/students?q=${encodeURIComponent(query)}` : '/admin/students';
+}
+
+// Chức năng AD-09: đặt lại mật khẩu cho học sinh quên mật khẩu. Quản trị viên
+// đặt mật khẩu tạm rồi báo lại cho học sinh, hệ thống không lưu bản rõ.
+async function resetStudentPassword(req, res, next) {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+      setFlash(req, 'danger', 'Không tìm thấy học sinh cần đặt lại mật khẩu.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const newPassword = String(req.body.new_password || '');
+    if (newPassword.length < 8) {
+      setFlash(req, 'danger', 'Mật khẩu mới cần có ít nhất 8 ký tự.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    await Student.updatePassword(student.id, newPassword);
+    setFlash(
+      req,
+      'success',
+      `Đã đặt lại mật khẩu cho ${student.username}. Hãy báo mật khẩu mới cho học sinh và nhắc em đổi lại trong trang Tài khoản.`
+    );
+    return res.redirect(studentsRedirectUrl(req));
+  } catch (error) {
+    next(error);
+  }
+}
+
+// Chức năng AD-09: sửa khối lớp hiện tại. Cần thiết khi học sinh chọn nhầm lớp
+// lúc đăng ký, khi lên lớp, và để gỡ các tài khoản có khối lớp ngoài phạm vi hệ
+// thống hỗ trợ (trước đây chỉ sửa được bằng cách gõ SQL trực tiếp).
+async function updateStudentGrade(req, res, next) {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+      setFlash(req, 'danger', 'Không tìm thấy học sinh cần cập nhật khối lớp.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const grade = Number(req.body.current_grade);
+    if (!isSupportedGrade(grade)) {
+      setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    if (Number(student.current_grade) === grade) {
+      setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    await Student.updateCurrentGrade(student.id, grade);
+    setFlash(
+      req,
+      'success',
+      `Đã chuyển ${student.username} từ lớp ${student.current_grade} sang lớp ${grade}. `
+      + 'Chương trình học và tiến trình sẽ hiển thị theo lớp mới.'
+    );
+    return res.redirect(studentsRedirectUrl(req));
   } catch (error) {
     next(error);
   }
@@ -1167,6 +1237,8 @@ module.exports = {
   updateQuestion,
   deleteQuestion,
   students,
+  resetStudentPassword,
+  updateStudentGrade,
   settings,
   updateSettings,
   checkSettings

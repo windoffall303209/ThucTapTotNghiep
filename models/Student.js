@@ -94,10 +94,26 @@ async function updatePassword(studentId, password) {
   return passwordHash;
 }
 
+// Chỉ cập nhật current_grade, giữ nguyên registered_grade để vẫn tra được học
+// sinh vào hệ thống từ khối nào. Dùng khi lên lớp hoặc khi cần sửa tài khoản có
+// khối lớp nằm ngoài phạm vi hệ thống hỗ trợ.
+async function updateCurrentGrade(studentId, grade) {
+  try {
+    await db.query(
+      'UPDATE Students SET current_grade = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [Number(grade), studentId]
+    );
+  } catch (error) {
+    const student = sampleData.students.find((item) => Number(item.id) === Number(studentId));
+    if (student) student.current_grade = Number(grade);
+  }
+}
+
 module.exports = {
   findByUsername,
   findById,
   createStudent,
   listStudents,
-  updatePassword
+  updatePassword,
+  updateCurrentGrade
 };

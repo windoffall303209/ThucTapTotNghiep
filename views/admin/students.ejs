@@ -2,7 +2,7 @@
   <div>
     <p class="eyebrow">Người học</p>
     <h1>Danh sách học sinh</h1>
-    <p>Tìm kiếm tài khoản học sinh, kiểm tra lớp đăng ký và lớp hiện tại.</p>
+    <p>Tìm kiếm tài khoản học sinh, sửa khối lớp và đặt lại mật khẩu khi học sinh quên.</p>
   </div>
 </section>
 
@@ -19,33 +19,74 @@
     <i data-lucide="users" class="lucide-icon"></i>
     Tài khoản học sinh
   </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Tài khoản</th>
-          <th>Họ tên</th>
-          <th>Lớp đăng ký</th>
-          <th>Lớp hiện tại</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if (students.length === 0) { %>
-          <tr>
-            <td colspan="5">Không tìm thấy học sinh phù hợp.</td>
-          </tr>
+
+  <% if (students.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Không tìm thấy học sinh phù hợp.</p>
+    </div>
+  <% } %>
+
+  <div class="card-list">
+    <% students.forEach((item) => { %>
+      <% const ngoaiPhamVi = !gradeOptions.some((option) => Number(option.value) === Number(item.current_grade)); %>
+      <article class="activity-card student-card">
+        <div class="row-actions">
+          <span class="status-pill status-new">#<%= item.id %></span>
+          <span class="status-pill <%= ngoaiPhamVi ? 'status-review' : 'status-in-progress' %>">
+            Lớp hiện tại: <%= item.current_grade %>
+          </span>
+          <span class="status-pill status-new">Lớp đăng ký: <%= item.registered_grade %></span>
+        </div>
+
+        <h2><%= item.fullname %></h2>
+        <p class="muted">Tên đăng nhập: <strong><%= item.username %></strong></p>
+
+        <% if (ngoaiPhamVi) { %>
+          <p class="student-warning">
+            <i data-lucide="alert-triangle" class="lucide-icon"></i>
+            Khối lớp này ngoài phạm vi hệ thống hỗ trợ nên học sinh không đăng nhập được.
+            Hãy chuyển về một lớp trong danh sách bên dưới.
+          </p>
         <% } %>
-        <% students.forEach((item) => { %>
-          <tr>
-            <td>#<%= item.id %></td>
-            <td><strong><%= item.username %></strong></td>
-            <td><%= item.fullname %></td>
-            <td><span class="status-pill status-new">Lớp <%= item.registered_grade %></span></td>
-            <td><span class="status-pill status-in-progress">Lớp <%= item.current_grade %></span></td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+
+        <div class="student-actions">
+          <form class="inline-action-form" action="/admin/students/<%= item.id %>/grade" method="post">
+            <input type="hidden" name="q" value="<%= query %>">
+            <label>
+              Khối lớp hiện tại
+              <select name="current_grade">
+                <% gradeOptions.forEach((option) => { %>
+                  <option value="<%= option.value %>" <%= Number(option.value) === Number(item.current_grade) ? 'selected' : '' %>>
+                    <%= option.label %>
+                  </option>
+                <% }) %>
+              </select>
+            </label>
+            <button class="btn btn-secondary" type="submit">
+              <i data-lucide="graduation-cap" class="lucide-icon"></i>
+              Lưu khối lớp
+            </button>
+          </form>
+
+          <form class="inline-action-form" action="/admin/students/<%= item.id %>/password" method="post">
+            <input type="hidden" name="q" value="<%= query %>">
+            <label>
+              Mật khẩu mới
+              <input
+                name="new_password"
+                type="text"
+                minlength="8"
+                required
+                autocomplete="off"
+                placeholder="Tối thiểu 8 ký tự">
+            </label>
+            <button class="btn btn-secondary" type="submit">
+              <i data-lucide="key-round" class="lucide-icon"></i>
+              Đặt lại mật khẩu
+            </button>
+          </form>
+        </div>
+      </article>
+    <% }) %>
   </div>
 </section>
