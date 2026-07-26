@@ -50,7 +50,13 @@
         <% } %>
 
         <div class="student-actions">
-          <form class="inline-action-form" action="/admin/students/<%= item.id %>/grade" method="post">
+          <%# Đổi khối lớp thay đổi toàn bộ chương trình mà học sinh nhìn thấy,
+              nên bắt xác nhận trước khi lưu để không lỡ tay chọn nhầm dòng. %>
+          <form
+            class="inline-action-form"
+            action="/admin/students/<%= item.id %>/grade"
+            method="post"
+            data-confirm="Đổi khối lớp của <%= item.fullname %>? Học sinh sẽ thấy chương trình của khối mới ngay lần đăng nhập tới.">
             <input type="hidden" name="q" value="<%= query %>">
             <label>
               Khối lớp hiện tại
@@ -68,16 +74,23 @@
             </button>
           </form>
 
-          <form class="inline-action-form" action="/admin/students/<%= item.id %>/password" method="post">
+          <%# type=password để mật khẩu mới không nằm trần trên màn hình nơi
+              đông người nhìn; kèm xác nhận vì thao tác này vô hiệu hóa mật khẩu
+              cũ của học sinh ngay lập tức. %>
+          <form
+            class="inline-action-form"
+            action="/admin/students/<%= item.id %>/password"
+            method="post"
+            data-confirm="Đặt lại mật khẩu cho <%= item.fullname %>? Mật khẩu cũ sẽ không dùng được nữa.">
             <input type="hidden" name="q" value="<%= query %>">
             <label>
               Mật khẩu mới
               <input
                 name="new_password"
-                type="text"
+                type="password"
                 minlength="8"
                 required
-                autocomplete="off"
+                autocomplete="new-password"
                 placeholder="Tối thiểu 8 ký tự">
             </label>
             <button class="btn btn-secondary" type="submit">
