@@ -5,7 +5,9 @@
     selectedAnswer: null,
     answered: false,
     startedAt: Date.now(),
-    practiceSessionId: null
+    practiceSessionId: null,
+    // Kết quả từng câu đã nộp, khóa là questionId: { selectedAnswer, isCorrect }
+    results: {}
   };
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -129,17 +131,56 @@
         const context = JSON.parse(contextNode.textContent || '{}');
         state.practiceSessionId = context.practiceSessionId || null;
         state.currentIndex = Math.min(Number(context.currentIndex || 0), Math.max(state.questions.length - 1, 0));
+        state.results = context.answeredResults || {};
       } catch (error) {
         state.practiceSessionId = null;
       }
     }
 
     renderCurrentQuestion();
+    initQuestionProgressBar();
 
     document.getElementById('submitAnswerButton')?.addEventListener('click', submitAnswer);
     document.getElementById('nextQuestionButton')?.addEventListener('click', nextQuestion);
     document.getElementById('finishPracticeButton')?.addEventListener('click', finishPractice);
     document.getElementById('aiHelpForm')?.addEventListener('submit', requestExerciseHelp);
+  }
+
+  function initQuestionProgressBar() {
+    const bar = document.getElementById('questionProgressBar');
+    if (!bar) return;
+
+    bar.querySelectorAll('[data-progress-dot]').forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index);
+        if (!Number.isInteger(index) || index === state.currentIndex) return;
+        state.currentIndex = index;
+        renderCurrentQuestion();
+      });
+    });
+
+    updateQuestionProgressBar();
+  }
+
+  function updateQuestionProgressBar() {
+    const bar = document.getElementById('questionProgressBar');
+    if (!bar) return;
+
+    bar.querySelectorAll('[data-progress-dot]').forEach((dot) => {
+      const index = Number(dot.dataset.index);
+      const question = state.questions[index];
+      const result = question ? state.results[question.id] : null;
+
+      dot.classList.toggle('current', index === state.currentIndex);
+      dot.classList.toggle('correct', Boolean(result && result.isCorrect));
+      dot.classList.toggle('wrong', Boolean(result && !result.isCorrect));
+      dot.setAttribute('aria-current', index === state.currentIndex ? 'true' : 'false');
+
+      const stateLabel = result
+        ? (result.isCorrect ? 'đã làm đúng' : 'đã làm sai')
+        : 'chưa làm';
+      dot.setAttribute('aria-label', `Câu ${index + 1}, ${stateLabel}`);
+    });
   }
 
   function renderCurrentQuestion() {
@@ -153,13 +194,18 @@
 
     if (!app || !question) return;
 
-    state.selectedAnswer = null;
-    state.answered = false;
+    const savedResult = state.results[question.id] || null;
+
+    state.selectedAnswer = savedResult ? savedResult.selectedAnswer : null;
+    state.answered = Boolean(savedResult);
     state.startedAt = Date.now();
     if (feedback) feedback.hidden = true;
-    if (nextButton) nextButton.hidden = true;
-    if (finishButton) finishButton.hidden = state.currentIndex === 0;
-    if (submitButton) submitButton.disabled = false;
+    if (nextButton) nextButton.hidden = state.currentIndex >= state.questions.length - 1;
+    if (finishButton) finishButton.hidden = !hasAnyAnswer();
+    if (submitButton) {
+      submitButton.disabled = Boolean(savedResult);
+      submitButton.hidden = Boolean(savedResult);
+    }
 
     if (counter) {
       counter.textContent = `Câu ${state.currentIndex + 1}/${state.questions.length}`;
@@ -187,10 +233,53 @@
       saveAnswerDraft(question.id, state.selectedAnswer);
     });
 
-    restoreAnswerDraft(app, question);
+    if (savedResult) {
+      renderAnsweredState(app, question, savedResult);
+    } else {
+      restoreAnswerDraft(app, question);
+    }
 
+    updateQuestionProgressBar();
     renderMath(app);
     refreshIcons();
+  }
+
+  function hasAnyAnswer() {
+    return Object.keys(state.results).length > 0;
+  }
+
+  // Dựng lại giao diện câu đã nộp: khóa lựa chọn, tô đúng/sai và nhắc lại kết quả.
+  function renderAnsweredState(app, question, savedResult) {
+    app.querySelectorAll('.answer-choice').forEach((button) => {
+      button.disabled = true;
+      const answer = button.dataset.answer;
+      if (answer === question.correct_answer) button.classList.add('correct');
+      if (answer === savedResult.selectedAnswer && !savedResult.isCorrect) {
+        button.classList.add('wrong');
+      }
+      if (answer === savedResult.selectedAnswer) button.classList.add('selected');
+    });
+
+    const freeInput = app.querySelector('[data-free-answer-input]');
+    if (freeInput) {
+      freeInput.value = savedResult.selectedAnswer || '';
+      freeInput.disabled = true;
+    }
+
+    showFeedback(
+      savedResult.isCorrect ? 'success' : 'danger',
+      `
+        <h2>${savedResult.isCorrect ? 'Câu này em đã làm đúng' : 'Câu này em đã làm sai'}</h2>
+        <p>Em chọn: <strong>${escapeHtml(savedResult.selectedAnswer || '')}</strong></p>
+        ${question.correct_answer && !savedResult.isCorrect
+          ? `<p>Đáp án đúng: <strong>${escapeHtml(question.correct_answer)}</strong></p>`
+          : ''}
+        ${question.explanation
+          ? `<div class="explanation-content"><strong>Lời giải:</strong>${renderExplanationContent(question.explanation)}</div>`
+          : ''}
+      `,
+      true
+    );
   }
 
   function draftStorageKey(questionId) {
@@ -295,10 +384,16 @@
     }
 
     state.answered = true;
+    state.results[question.id] = {
+      selectedAnswer,
+      isCorrect: Boolean(result.isCorrect)
+    };
     clearAnswerDraft(question.id);
     markAnswerState(result);
     showResultFeedback(result);
+    updateQuestionProgressBar();
 
+    if (submitButton) submitButton.hidden = true;
     if (nextButton && state.currentIndex < state.questions.length - 1) {
       nextButton.hidden = false;
     }

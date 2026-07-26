@@ -15,6 +15,21 @@
       <span id="questionCounter">Câu 1/<%= Math.max(questions.length, 1) %></span>
     </div>
 
+    <% if (questions.length > 0) { %>
+      <nav id="questionProgressBar" class="question-progress" aria-label="Danh sách câu hỏi trong bài">
+        <% questions.forEach((question, index) => { %>
+          <button
+            class="progress-dot"
+            type="button"
+            data-progress-dot
+            data-index="<%= index %>"
+            aria-label="Câu <%= index + 1 %>">
+            <%= index + 1 %>
+          </button>
+        <% }) %>
+      </nav>
+    <% } %>
+
     <h1><%= session?.title || lesson.lesson_name %></h1>
     <% if (questions.length === 0) { %>
       <div class="empty-state compact">
@@ -71,5 +86,6 @@
 <script id="practice-data" type="application/json"><%- JSON.stringify(questions) %></script>
 <script id="practice-context" type="application/json"><%- JSON.stringify({
   practiceSessionId: session?.id || null,
-  currentIndex: session?.current_index || 0
+  currentIndex: session?.current_index || 0,
+  answeredResults: answeredResults || {}
 }) %></script>

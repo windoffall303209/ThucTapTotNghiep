@@ -1290,6 +1290,69 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
+/* Thanh tiến trình câu hỏi: cho phép nhảy tới câu bất kỳ trong bài */
+.question-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+
+.progress-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--muted);
+  background: var(--surface);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.progress-dot:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.progress-dot:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+.progress-dot.correct {
+  color: #14532d;
+  border-color: #86efac;
+  background: var(--success-soft);
+}
+
+.progress-dot.wrong {
+  color: #7f1d1d;
+  border-color: #fca5a5;
+  background: var(--danger-soft);
+}
+
+.progress-dot.current {
+  color: #fff;
+  border-color: var(--primary-dark);
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-dot {
+    transition: none;
+  }
+
+  .progress-dot:hover {
+    transform: none;
+  }
+}
+
 .explanation-content,
 .review-explanation,
 .saved-explanation {

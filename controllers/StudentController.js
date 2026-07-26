@@ -120,11 +120,13 @@ async function practice(req, res, next) {
       });
       sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
+    const lessonAnswers = await PracticeSession.listAnswers(session.id);
     res.render('student/practice', {
       title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
       questions: sessionQuestions,
-      session
+      session,
+      answeredResults: buildAnsweredResults(lessonAnswers)
     });
   } catch (error) {
     next(error);
@@ -177,11 +179,13 @@ async function reviewLesson(req, res, next) {
       sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
 
+    const reviewAnswers = await PracticeSession.listAnswers(session.id);
     return res.render('student/practice', {
       title: session.title,
       lesson: lessonItem,
       questions: sessionQuestions,
-      session
+      session,
+      answeredResults: buildAnsweredResults(reviewAnswers)
     });
   } catch (error) {
     next(error);
@@ -363,7 +367,10 @@ async function sessionPractice(req, res, next) {
       return res.redirect(`/student/sessions/${session.id}`);
     }
 
-    const questions = await Question.getQuestionsByIds(session.question_ids);
+    const [questions, answers] = await Promise.all([
+      Question.getQuestionsByIds(session.question_ids),
+      PracticeSession.listAnswers(session.id)
+    ]);
     res.render('student/practice', {
       title: session.title,
       lesson: {
@@ -371,7 +378,8 @@ async function sessionPractice(req, res, next) {
         lesson_name: session.title
       },
       questions,
-      session
+      session,
+      answeredResults: buildAnsweredResults(answers)
     });
   } catch (error) {
     next(error);
@@ -422,6 +430,18 @@ async function finishSession(req, res, next) {
   } catch (error) {
     next(error);
   }
+}
+
+function buildAnsweredResults(answers = []) {
+  return (answers || []).reduce((result, answer) => {
+    const questionId = Number(answer.question_id);
+    if (!questionId) return result;
+    result[questionId] = {
+      selectedAnswer: answer.selected_answer,
+      isCorrect: Number(answer.is_correct) === 1 || answer.is_correct === true
+    };
+    return result;
+  }, {});
 }
 
 function canAccessLesson(student, lessonItem) {
