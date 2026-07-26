@@ -581,6 +581,40 @@
     renderSummary();
   }
 
+  // Ba sao theo tỉ lệ đúng: mốc quen thuộc với trẻ em từ các trò chơi. Ngưỡng
+  // rộng rãi có chủ đích — mục tiêu là động viên, không phải xếp hạng.
+  function tinhSoSao(correctCount, total) {
+    if (total === 0) return 0;
+    const percent = correctCount / total;
+    if (percent >= 0.9) return 3;
+    if (percent >= 0.65) return 2;
+    if (percent >= 0.4) return 1;
+    return 0;
+  }
+
+  function loiNhanTongKet(soSao, correctCount, total) {
+    if (correctCount === total && total > 0) return 'Tuyệt vời! Em làm đúng hết cả bài!';
+    if (soSao === 3) return 'Giỏi quá! Em sắp đúng hết rồi!';
+    if (soSao === 2) return 'Em làm tốt lắm! Xem lại vài câu là giỏi hẳn luôn!';
+    if (soSao === 1) return 'Em đã cố gắng nhiều rồi! Xem lại các câu sai để lần sau cao điểm hơn nhé.';
+    return 'Không sao đâu! Xem lại lời giải rồi thử lại, em sẽ làm được!';
+  }
+
+  // Mưa giấy màu thuần CSS khi đạt 2 sao trở lên. Tôn trọng cài đặt giảm chuyển
+  // động của thiết bị: không rơi giấy với người dùng bật reduced-motion.
+  function confettiHtml(soSao) {
+    if (soSao < 2) return '';
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return '';
+    const mau = ['#2563eb', '#f97316', '#16a34a', '#eab308', '#ec4899'];
+    const manh = Array.from({ length: 18 }, (_, i) => {
+      const left = (i * 137) % 100;
+      const delay = ((i * 53) % 40) / 100;
+      const color = mau[i % mau.length];
+      return `<i style="left:${left}%;animation-delay:${delay}s;background:${color}"></i>`;
+    }).join('');
+    return `<div class="confetti" aria-hidden="true">${manh}</div>`;
+  }
+
   function renderSummary() {
     const panel = document.getElementById('practiceSummary');
     if (!panel) return;
@@ -590,6 +624,8 @@
       .map((question, index) => ({ question, index, result: state.results[question.id] }))
       .filter((item) => item.result && !item.result.isCorrect);
     const correctCount = total - wrongQuestions.length;
+    const soSao = tinhSoSao(correctCount, total);
+    const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
     const wrongListHtml = wrongQuestions.length > 0
       ? `
@@ -605,15 +641,25 @@
           <p class="muted">Bấm vào số câu để xem lại đề bài và lời giải.</p>
         </div>
       `
-      : '<p class="summary-perfect">Em làm đúng toàn bộ bài này. Rất tốt!</p>';
+      : '';
+
+    const saoHtml = `
+      <div class="summary-stars" role="img" aria-label="Em đạt ${soSao} trên 3 sao">
+        ${[1, 2, 3].map((moc) => `
+          <span class="summary-star ${soSao >= moc ? 'earned' : ''}" style="animation-delay:${moc * 0.18}s" aria-hidden="true">★</span>
+        `).join('')}
+      </div>
+    `;
 
     panel.innerHTML = `
+      ${confettiHtml(soSao)}
       <div class="summary-head">
-        <h2>Em đã làm xong bài</h2>
+        ${saoHtml}
+        <h2>${loiNhanTongKet(soSao, correctCount, total)}</h2>
         <p class="summary-score"><strong>${correctCount}</strong>/${total} câu đúng</p>
       </div>
-      <div class="progress-track large">
-        <span style="width: ${total > 0 ? Math.round((correctCount / total) * 100) : 0}%"></span>
+      <div class="progress-track large" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Đúng ${correctCount} trên ${total} câu">
+        <span style="width: ${percent}%"></span>
       </div>
       ${wrongListHtml}
     `;
@@ -696,8 +742,29 @@
     });
   }
 
+  // Lời khen và lời động viên xoay vòng ngẫu nhiên. Với trẻ 6-11 tuổi, một câu
+  // "Giỏi quá!" kèm mặt cười có sức giữ chân hơn mọi thông báo nghiệp vụ; câu
+  // chữ lúc sai tuyệt đối không chê, chỉ rủ em thử tiếp.
+  const LOI_KHEN = [
+    '🎉 Giỏi quá! Em làm đúng rồi!',
+    '⭐ Chính xác! Em tính chuẩn ghê!',
+    '👏 Hay lắm! Cứ đà này nhé!',
+    '🌟 Đúng rồi! Em thật cừ!',
+    '🥳 Tuyệt vời! Thêm một câu đúng nữa!'
+  ];
+  const LOI_DONG_VIEN = [
+    '💪 Chưa đúng, nhưng không sao! Xem lời giải rồi mình làm tiếp nhé.',
+    '🌱 Gần đúng rồi! Đọc lời giải để biết chỗ cần sửa nha.',
+    '🤗 Sai một chút thôi! Ai học giỏi cũng từng sai mà.',
+    '🔍 Chưa đúng rồi. Xem lời giải bên dưới, em sẽ hiểu ngay!'
+  ];
+
+  function cauNgauNhien(danhSach) {
+    return danhSach[Math.floor(Math.random() * danhSach.length)];
+  }
+
   function showResultFeedback(result) {
-    const title = result.isCorrect ? 'Đúng rồi' : 'Chưa đúng';
+    const title = result.isCorrect ? cauNgauNhien(LOI_KHEN) : cauNgauNhien(LOI_DONG_VIEN);
     const tone = result.isCorrect ? 'success' : 'danger';
     const misconception = result.misconception
       ? `<p><strong>Lỗi sai thường gặp:</strong> ${escapeHtml(result.misconception.explanation)}</p>`
@@ -712,8 +779,7 @@
       : '';
 
     showFeedback(tone, `
-      <h2>${title}</h2>
-      <p>${escapeHtml(result.message)}</p>
+      <h2>${escapeHtml(title)}</h2>
       ${correctAnswerLine}
       ${misconception}
       ${explanation}
