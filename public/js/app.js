@@ -7,7 +7,9 @@
     startedAt: Date.now(),
     practiceSessionId: null,
     // Kết quả từng câu đã nộp, khóa là questionId: { selectedAnswer, isCorrect }
-    results: {}
+    results: {},
+    // Id câu đang chờ phản hồi chấm điểm, null khi không có request nào treo
+    pendingQuestionId: null
   };
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -388,13 +390,18 @@
   }
 
   async function submitAnswer() {
-    const question = state.questions[state.currentIndex];
+    // Ghi lại câu và vị trí ngay lúc gửi. Học sinh có thể bấm chấm tiến trình
+    // để chuyển câu trong lúc chờ phản hồi, khi đó kết quả trả về thuộc câu cũ
+    // và không được phép áp lên giao diện của câu đang xem.
+    const submittedIndex = state.currentIndex;
+    const question = state.questions[submittedIndex];
     const feedback = document.getElementById('answerFeedback');
     const submitButton = document.getElementById('submitAnswerButton');
     const nextButton = document.getElementById('nextQuestionButton');
     const finishButton = document.getElementById('finishPracticeButton');
 
     if (!question || !feedback) return;
+    if (state.pendingQuestionId) return;
 
     const freeAnswerInput = document.querySelector('[data-free-answer-input]');
     const selectedAnswer = freeAnswerInput ? freeAnswerInput.value.trim() : state.selectedAnswer;
@@ -404,6 +411,7 @@
       return;
     }
 
+    state.pendingQuestionId = question.id;
     submitButton.disabled = true;
     setButtonBusy(submitButton, 'Đang chấm bài...');
 
@@ -415,21 +423,23 @@
         body: JSON.stringify({
           selectedAnswer,
           practiceSessionId: state.practiceSessionId,
-          questionIndex: state.currentIndex,
+          questionIndex: submittedIndex,
           timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
         })
       });
       result = await response.json();
     } catch (error) {
+      state.pendingQuestionId = null;
+      restoreButton(submitButton);
+      submitButton.disabled = false;
       showRetryFeedback(
         'Chưa gửi được đáp án. Em kiểm tra lại kết nối mạng rồi bấm "Thử lại" nhé.',
         submitAnswer
       );
-      restoreButton(submitButton);
-      submitButton.disabled = false;
       return;
     }
 
+    state.pendingQuestionId = null;
     restoreButton(submitButton);
 
     if (!result.ok) {
@@ -438,15 +448,25 @@
       return;
     }
 
-    state.answered = true;
+    // Kết quả luôn được ghi nhận và thanh tiến trình luôn cập nhật, bất kể học
+    // sinh còn ở câu đó hay đã chuyển đi.
     state.results[question.id] = {
       selectedAnswer,
       isCorrect: Boolean(result.isCorrect)
     };
     clearAnswerDraft(question.id);
+    updateQuestionProgressBar();
+
+    if (state.currentIndex !== submittedIndex) {
+      // Học sinh đã sang câu khác. Không tô màu, không hiện lời giải, không ẩn
+      // nút nộp và không đặt state.answered của câu đang xem.
+      maybeShowSummary();
+      return;
+    }
+
+    state.answered = true;
     markAnswerState(result);
     showResultFeedback(result);
-    updateQuestionProgressBar();
 
     if (submitButton) submitButton.hidden = true;
     if (nextButton && state.currentIndex < state.questions.length - 1) {
