@@ -1261,6 +1261,35 @@ tbody tr:last-child td {
   background: #fffbeb;
 }
 
+/* Trạng thái đang xử lý và nút thử lại khi mất kết nối */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  vertical-align: -3px;
+  animation: btn-spin 0.7s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+.answer-feedback [data-retry-action] {
+  margin-top: 12px;
+}
+
 .explanation-content,
 .review-explanation,
 .saved-explanation {

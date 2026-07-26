@@ -207,19 +207,33 @@
     }
 
     submitButton.disabled = true;
+    setButtonBusy(submitButton, 'Đang chấm bài...');
 
-    const response = await fetch(`/student/questions/${question.id}/answer`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        selectedAnswer,
-        practiceSessionId: state.practiceSessionId,
-        questionIndex: state.currentIndex,
-        timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
-      })
-    });
+    let result;
+    try {
+      const response = await fetch(`/student/questions/${question.id}/answer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          selectedAnswer,
+          practiceSessionId: state.practiceSessionId,
+          questionIndex: state.currentIndex,
+          timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
+        })
+      });
+      result = await response.json();
+    } catch (error) {
+      showRetryFeedback(
+        'Chưa gửi được đáp án. Em kiểm tra lại kết nối mạng rồi bấm "Thử lại" nhé.',
+        submitAnswer
+      );
+      restoreButton(submitButton);
+      submitButton.disabled = false;
+      return;
+    }
 
-    const result = await response.json();
+    restoreButton(submitButton);
+
     if (!result.ok) {
       showFeedback('danger', result.message || 'Không thể nộp đáp án.');
       submitButton.disabled = false;
@@ -236,6 +250,34 @@
     if (finishButton) {
       finishButton.hidden = false;
     }
+  }
+
+  function setButtonBusy(button, busyLabel) {
+    if (!button || button.dataset.originalHtml) return;
+    button.dataset.originalHtml = button.innerHTML;
+    button.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>${escapeHtml(busyLabel)}`;
+  }
+
+  function restoreButton(button) {
+    if (!button || !button.dataset.originalHtml) return;
+    button.innerHTML = button.dataset.originalHtml;
+    delete button.dataset.originalHtml;
+    refreshIcons();
+  }
+
+  function showRetryFeedback(message, retryHandler) {
+    const feedback = document.getElementById('answerFeedback');
+    if (!feedback) return;
+    feedback.className = 'answer-feedback feedback-danger';
+    feedback.hidden = false;
+    feedback.innerHTML = `
+      <p>${escapeHtml(message)}</p>
+      <button class="btn btn-secondary" type="button" data-retry-action>Thử lại</button>
+    `;
+    feedback.querySelector('[data-retry-action]')?.addEventListener('click', () => {
+      feedback.hidden = true;
+      retryHandler();
+    });
   }
 
   function markAnswerState(result) {
@@ -290,12 +332,25 @@
       return;
     }
 
-    const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
-    });
-    const result = await response.json();
-    window.location.href = result.redirectUrl || '/student/history';
+    const finishButton = document.getElementById('finishPracticeButton');
+    setButtonBusy(finishButton, 'Đang lưu kết quả...');
+    if (finishButton) finishButton.disabled = true;
+
+    try {
+      const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json();
+      window.location.href = result.redirectUrl || '/student/history';
+    } catch (error) {
+      restoreButton(finishButton);
+      if (finishButton) finishButton.disabled = false;
+      showRetryFeedback(
+        'Chưa lưu được kết quả bài làm. Em kiểm tra kết nối mạng rồi bấm "Thử lại" nhé.',
+        finishPractice
+      );
+    }
   }
 
   async function requestExerciseHelp(event) {
