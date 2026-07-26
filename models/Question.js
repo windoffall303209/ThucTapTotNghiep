@@ -223,6 +223,82 @@ async function getQuestionsByLesson(lessonId, options = {}) {
   }
 }
 
+async function getTheoryReviewQuestions(lessonId, limit = 8) {
+  return getQuestionsByLesson(lessonId, {
+    limit: normalizePageLimit(limit, 8, 8),
+    offset: 0
+  });
+}
+
+async function getQuestionCandidates(options = {}) {
+  const grade = Number(options.grade);
+  if (!isSupportedGrade(grade)) return [];
+
+  const chapterId = Number(options.chapterId || 0);
+  const lessonId = Number(options.lessonId || 0);
+  const semester = [1, 2].includes(Number(options.semester))
+    ? Number(options.semester)
+    : null;
+  const conditions = ['c.grade = ?'];
+  const params = [grade];
+
+  if (chapterId > 0) {
+    conditions.push('c.id = ?');
+    params.push(chapterId);
+  }
+  if (lessonId > 0) {
+    conditions.push('l.id = ?');
+    params.push(lessonId);
+  }
+  if (semester) {
+    conditions.push('c.semester = ?');
+    params.push(semester);
+  }
+
+  try {
+    return await db.query(
+      `SELECT
+          q.id,
+          q.lesson_id,
+          l.chapter_id,
+          l.lesson_name,
+          c.chapter_name,
+          c.grade,
+          c.semester
+       FROM QuestionBank q
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE ${conditions.join(' AND ')}
+       ORDER BY c.sort_order, l.sort_order, q.id`,
+      params
+    );
+  } catch (error) {
+    return sampleData.chapters
+      .filter((chapter) =>
+        Number(chapter.grade) === grade
+        && (!chapterId || Number(chapter.id) === chapterId)
+        && (!semester || Number(chapter.semester) === semester)
+      )
+      .flatMap((chapter) =>
+        chapter.lessons
+          .filter((lesson) => !lessonId || Number(lesson.id) === lessonId)
+          .flatMap((lesson) =>
+            sampleData.questions
+              .filter((question) => Number(question.lesson_id) === Number(lesson.id))
+              .map((question) => ({
+                id: Number(question.id),
+                lesson_id: Number(lesson.id),
+                chapter_id: Number(chapter.id),
+                lesson_name: lesson.lesson_name,
+                chapter_name: chapter.chapter_name,
+                grade: Number(chapter.grade),
+                semester: Number(chapter.semester)
+              }))
+          )
+      );
+  }
+}
+
 async function countQuestionsByLesson(lessonId) {
   try {
     const rows = await db.query(
@@ -689,6 +765,8 @@ async function recordAnswer({ studentId, practiceSessionId, questionId, selected
 
 module.exports = {
   getQuestionsByLesson,
+  getTheoryReviewQuestions,
+  getQuestionCandidates,
   getQuestionPageByLesson,
   countQuestionsByLesson,
   getRandomQuestionsByGrade,
