@@ -99,7 +99,14 @@ async function practice(req, res, next) {
       Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT)
     ]);
     let session = await PracticeSession.getActiveLessonSession(student.id, lessonItem.id);
-    if (!session) {
+    let sessionQuestions = session
+      ? await Question.getQuestionsByIds(session.question_ids)
+      : [];
+    if (
+      !session
+      || Number(session.question_count) !== LESSON_PRACTICE_COUNT
+      || sessionQuestions.length !== LESSON_PRACTICE_COUNT
+    ) {
       const questions = selectRandomQuestions(candidates, LESSON_PRACTICE_COUNT, {
         excludeIds: reviewQuestions.map((question) => question.id)
       });
@@ -111,8 +118,8 @@ async function practice(req, res, next) {
         title: `Luyện theo bài: ${lessonItem.lesson_name}`,
         questionIds: questions.map((question) => question.id)
       });
+      sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
-    const sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     res.render('student/practice', {
       title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
@@ -151,7 +158,14 @@ async function reviewLesson(req, res, next) {
       lessonItem.id,
       'REVIEW'
     );
-    if (!session) {
+    let sessionQuestions = session
+      ? await Question.getQuestionsByIds(session.question_ids)
+      : [];
+    if (
+      !session
+      || Number(session.question_count) !== questions.length
+      || sessionQuestions.length !== questions.length
+    ) {
       session = await PracticeSession.createSession({
         studentId: student.id,
         lessonId: lessonItem.id,
@@ -160,9 +174,9 @@ async function reviewLesson(req, res, next) {
         title: `Ôn sau lý thuyết: ${lessonItem.lesson_name}`,
         questionIds: questions.map((question) => question.id)
       });
+      sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
 
-    const sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     return res.render('student/practice', {
       title: session.title,
       lesson: lessonItem,
