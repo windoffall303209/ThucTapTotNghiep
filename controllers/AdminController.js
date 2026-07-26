@@ -7,6 +7,7 @@ const ImageStorageService = require('../services/ImageStorageService');
 const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 const { GRADE_RANGE_LABEL, gradeOptions, isSupportedGrade } = require('../config/grades');
+const { parseGridLayout } = require('../utils/gridLayout');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
@@ -678,75 +679,6 @@ function normalizeQuestionInteraction(value) {
 
 function normalizeAuthoringMode(value) {
   return String(value || '').trim() === 'canvas' ? 'canvas' : 'fields';
-}
-
-function parseGridLayout(value) {
-  let grid = value;
-  if (typeof value === 'string') {
-    try {
-      grid = value ? JSON.parse(value) : {};
-    } catch (error) {
-      grid = {};
-    }
-  }
-
-  if (!grid || typeof grid !== 'object') grid = {};
-  const rows = clampGridSize(grid.rows || 5);
-  const columns = clampGridSize(grid.columns || 5);
-  const cells = Array.isArray(grid.cells) ? grid.cells : [];
-  return {
-    enabled: Boolean(grid.enabled),
-    rows,
-    columns,
-    cells: cells
-      .map((cell, index) => normalizeGridCell(cell, index, rows, columns))
-      .filter(Boolean)
-  };
-}
-
-function normalizeGridCell(cell, index, rows, columns) {
-  if (!cell || typeof cell !== 'object') return null;
-  const row = clampGridSpan(cell.row || 1, rows);
-  const col = clampGridSpan(cell.col || 1, columns);
-  const rowSpan = clampGridSpan(cell.rowSpan || 1, rows - row + 1);
-  const colSpan = clampGridSpan(cell.colSpan || 1, columns - col + 1);
-  const type = [
-    'empty',
-    'text',
-    'image',
-    'formula',
-    'question_text',
-    'answer',
-    'free_answer_input',
-    'solution',
-    'remember',
-    'instruction'
-  ].includes(cell.type) ? cell.type : 'text';
-  return {
-    id: String(cell.id || `grid-cell-${index + 1}`),
-    row,
-    col,
-    rowSpan,
-    colSpan,
-    type,
-    text: String(cell.text || '').trim(),
-    image_url: String(cell.image_url || '').trim(),
-    answer_key: String(cell.answer_key || '').trim().toUpperCase(),
-    align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
-    background: String(cell.background || '').trim()
-  };
-}
-
-function clampGridSize(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return 5;
-  return Math.min(Math.max(Math.round(number), 1), 10);
-}
-
-function clampGridSpan(value, max) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return 1;
-  return Math.min(Math.max(Math.round(number), 1), Math.max(max, 1));
 }
 
 function buildQuestionBankTree(lessons, questionCounts) {

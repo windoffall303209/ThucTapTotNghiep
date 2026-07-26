@@ -2,6 +2,7 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
+const { normalizeGridLayout } = require('../utils/gridLayout');
 
 function normalizeLesson(row) {
   return {
@@ -185,56 +186,6 @@ function normalizeTheoryInteraction(value) {
   return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction)
     ? interaction
     : 'none';
-}
-
-function normalizeGridLayout(value) {
-  const grid = value && typeof value === 'object' ? value : {};
-  const rows = clampGridSize(grid.rows || 5);
-  const columns = clampGridSize(grid.columns || 5);
-  const cells = Array.isArray(grid.cells) ? grid.cells : [];
-  return {
-    enabled: Boolean(grid.enabled),
-    rows,
-    columns,
-    cells: cells
-      .map((cell, index) => normalizeGridCell(cell, index, rows, columns))
-      .filter(Boolean)
-  };
-}
-
-function normalizeGridCell(cell, index, rows, columns) {
-  if (!cell || typeof cell !== 'object') return null;
-  const row = clampSpan(cell.row || 1, rows);
-  const col = clampSpan(cell.col || 1, columns);
-  const rowSpan = clampSpan(cell.rowSpan || 1, rows - row + 1);
-  const colSpan = clampSpan(cell.colSpan || 1, columns - col + 1);
-  const type = ['empty', 'text', 'image', 'formula', 'question_text', 'answer', 'solution', 'remember', 'instruction']
-    .includes(cell.type) ? cell.type : 'text';
-  return {
-    id: String(cell.id || `grid-cell-${index + 1}`),
-    row,
-    col,
-    rowSpan,
-    colSpan,
-    type,
-    text: String(cell.text || '').trim(),
-    image_url: String(cell.image_url || '').trim(),
-    answer_key: String(cell.answer_key || '').trim().toUpperCase(),
-    align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
-    background: String(cell.background || '').trim()
-  };
-}
-
-function clampGridSize(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return 5;
-  return Math.min(Math.max(Math.round(number), 1), 10);
-}
-
-function clampSpan(value, max) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return 1;
-  return Math.min(Math.max(Math.round(number), 1), Math.max(max, 1));
 }
 
 function normalizeFormulaList(value) {
