@@ -1353,6 +1353,53 @@ tbody tr:last-child td {
   }
 }
 
+/* Bảng tổng kết hiện ra khi học sinh đã trả lời hết các câu trong bài */
+.practice-summary {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-blue);
+}
+
+.practice-summary .summary-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.practice-summary h2 {
+  margin: 0;
+}
+
+.summary-score {
+  margin: 0;
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.summary-wrong {
+  display: grid;
+  gap: 10px;
+}
+
+.summary-wrong-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-perfect {
+  margin: 0;
+  color: #14532d;
+  font-weight: 700;
+}
+
 .explanation-content,
 .review-explanation,
 .saved-explanation {

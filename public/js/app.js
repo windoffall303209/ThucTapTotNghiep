@@ -139,6 +139,7 @@
 
     renderCurrentQuestion();
     initQuestionProgressBar();
+    maybeShowSummary();
 
     document.getElementById('submitAnswerButton')?.addEventListener('click', submitAnswer);
     document.getElementById('nextQuestionButton')?.addEventListener('click', nextQuestion);
@@ -400,6 +401,68 @@
     if (finishButton) {
       finishButton.hidden = false;
     }
+
+    maybeShowSummary();
+  }
+
+  // Khi mọi câu trong bài đã có kết quả, hiện bảng tổng kết thay cho việc để
+  // học sinh đứng lại ở câu cuối mà không biết làm gì tiếp.
+  function maybeShowSummary() {
+    if (state.questions.length === 0) return;
+    const allAnswered = state.questions.every((question) => state.results[question.id]);
+    if (!allAnswered) return;
+    renderSummary();
+  }
+
+  function renderSummary() {
+    const panel = document.getElementById('practiceSummary');
+    if (!panel) return;
+
+    const total = state.questions.length;
+    const wrongQuestions = state.questions
+      .map((question, index) => ({ question, index, result: state.results[question.id] }))
+      .filter((item) => item.result && !item.result.isCorrect);
+    const correctCount = total - wrongQuestions.length;
+
+    const wrongListHtml = wrongQuestions.length > 0
+      ? `
+        <div class="summary-wrong">
+          <strong>Các câu cần xem lại:</strong>
+          <div class="summary-wrong-list">
+            ${wrongQuestions.map((item) => `
+              <button class="progress-dot wrong" type="button" data-summary-jump="${item.index}">
+                ${item.index + 1}
+              </button>
+            `).join('')}
+          </div>
+          <p class="muted">Bấm vào số câu để xem lại đề bài và lời giải.</p>
+        </div>
+      `
+      : '<p class="summary-perfect">Em làm đúng toàn bộ bài này. Rất tốt!</p>';
+
+    panel.innerHTML = `
+      <div class="summary-head">
+        <h2>Em đã làm xong bài</h2>
+        <p class="summary-score"><strong>${correctCount}</strong>/${total} câu đúng</p>
+      </div>
+      <div class="progress-track large">
+        <span style="width: ${total > 0 ? Math.round((correctCount / total) * 100) : 0}%"></span>
+      </div>
+      ${wrongListHtml}
+    `;
+    panel.hidden = false;
+
+    panel.querySelectorAll('[data-summary-jump]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const index = Number(button.dataset.summaryJump);
+        if (!Number.isInteger(index)) return;
+        state.currentIndex = index;
+        renderCurrentQuestion();
+        document.getElementById('practiceApp')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function setButtonBusy(button, busyLabel) {
