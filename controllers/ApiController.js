@@ -62,7 +62,7 @@ async function exerciseHelp(req, res, next) {
       });
     }
 
-    const reply = await SocraticAIService.explainExercise({
+    const aiResult = await SocraticAIService.explainExercise({
       grade: req.auth?.current_grade || 4,
       question,
       selectedAnswer,
@@ -70,6 +70,7 @@ async function exerciseHelp(req, res, next) {
       studentMessage,
       chatHistory
     });
+    const reply = aiResult.reply;
 
     if (practiceSessionId) {
       await PracticeSession.saveChat({
@@ -86,9 +87,11 @@ async function exerciseHelp(req, res, next) {
       referenceId: question.id,
       practiceSessionId,
       questionId: question.id,
-      provider: settings.ai_provider,
-      model: modelForProvider(settings),
-      isFallback: String(settings.ai_automation_enabled || 'true') === 'false',
+      // Ghi provider và model THỰC TẾ đã sinh ra câu trả lời, không phải giá trị
+      // admin đang cấu hình, vì hai thứ này lệch nhau khi phải rơi sang dự phòng.
+      provider: aiResult.provider,
+      model: aiResult.model,
+      isFallback: aiResult.isFallback,
       chatHistory: [
         ...chatHistory.map((chat) => ({ role: chat.role, text: chat.message })),
         ...(studentMessage ? [{ role: 'student', text: studentMessage }] : []),
@@ -146,15 +149,6 @@ function parseEnabledGrades(value) {
     .map(Number)
     .filter((grade) => Number.isInteger(grade));
   return grades.length > 0 ? grades : [3, 4, 5];
-}
-
-function modelForProvider(settings) {
-  if (settings.ai_provider === 'gemini') return settings.gemini_model;
-  if (settings.ai_provider === 'gemini_cli') return settings.gemini_cli_model;
-  if (settings.ai_provider === 'nvidia') return settings.nvidia_nim_model;
-  if (settings.ai_provider === 'openrouter') return settings.openrouter_model;
-  if (settings.ai_provider === 'openai') return settings.openai_model;
-  return 'mock';
 }
 
 module.exports = { exerciseHelp };

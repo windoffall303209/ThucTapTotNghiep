@@ -26,7 +26,14 @@ async function explainTheory({ grade, lesson, card, question }) {
 async function explainExercise({ grade, question, selectedAnswer, misconception, studentMessage, chatHistory = [] }) {
   const fallback = buildExerciseFallback({ grade, question, selectedAnswer, misconception, studentMessage });
   const deterministicReply = buildKnownExerciseReply({ question, selectedAnswer, studentMessage });
-  if (deterministicReply) return deterministicReply;
+  if (deterministicReply) {
+    return {
+      reply: deterministicReply,
+      provider: 'deterministic',
+      model: null,
+      isFallback: false
+    };
+  }
 
   const selectedText = question.choices.find((choice) => choice.key === selectedAnswer)?.text || 'chưa chọn';
   const correctText = question.choices.find((choice) => choice.key === question.correct_answer)?.text || '';
@@ -94,44 +101,56 @@ function isSetNotationCountQuestion(text) {
   );
 }
 
+// Trả về { reply, provider, model, isFallback } thay vì chuỗi trơn. Nhờ đó nơi
+// gọi ghi được ĐÚNG provider và model đã sinh ra câu trả lời, kể cả khi lựa chọn
+// chính lỗi và hệ thống rơi sang provider dự phòng.
 async function callConfiguredAI(settings, prompt, fallback) {
+  const fallbackResult = {
+    reply: fallback,
+    provider: 'fallback',
+    model: null,
+    isFallback: true
+  };
+
   if (String(settings.ai_automation_enabled || 'true') === 'false') {
-    return fallback;
+    return fallbackResult;
   }
 
   const providers = getProviderPriority(settings);
   if (providers.length === 0) {
-    return fallback;
+    return fallbackResult;
   }
 
   for (const provider of providers) {
+    const model = getChatModel(settings, provider) || null;
     try {
       if (provider === 'gemini_cli') {
-        return await callGeminiCli(settings, prompt, fallback);
+        const reply = await callGeminiCli(settings, prompt, fallback);
+        return { reply, provider, model, isFallback: reply === fallback };
       }
 
       const apiKey = getApiKey(settings, provider);
       if (!apiKey) continue;
 
-      if (provider === 'gemini') {
-        return cleanTutorReply(await callGemini(settings, apiKey, prompt));
-      }
-      return cleanTutorReply(await callOpenAICompatible(settings, provider, apiKey, prompt));
+      const reply = provider === 'gemini'
+        ? cleanTutorReply(await callGemini(settings, apiKey, prompt))
+        : cleanTutorReply(await callOpenAICompatible(settings, provider, apiKey, prompt));
+      return { reply, provider, model, isFallback: false };
     } catch (error) {
       console.warn(`Không thể gọi AI provider ${provider}:`, error.message);
     }
   }
 
-  return fallback;
+  return fallbackResult;
 }
 
 function getProviderPriority(settings) {
   const providers = [];
+  // Provider mà quản trị viên chọn ở /admin/settings phải được thử TRƯỚC. Các
+  // provider còn lại chỉ đóng vai trò dự phòng khi lựa chọn chính gặp lỗi.
+  addProviderIfAvailable(providers, settings, normalizeProvider(settings.ai_provider));
   addProviderIfAvailable(providers, settings, 'gemini');
   addProviderIfAvailable(providers, settings, 'nvidia');
-
-  const configuredProvider = normalizeProvider(settings.ai_provider);
-  addProviderIfAvailable(providers, settings, configuredProvider);
 
   return providers;
 }
@@ -273,6 +292,8 @@ function getChatModel(settings, provider) {
   if (provider === 'openai') return settings.openai_model || 'gpt-4o-mini';
   if (provider === 'nvidia') return settings.nvidia_nim_model || 'meta/llama-3.3-70b-instruct';
   if (provider === 'openrouter') return settings.openrouter_model || 'openai/gpt-4o-mini';
+  if (provider === 'gemini') return settings.gemini_model || 'gemini-1.5-flash';
+  if (provider === 'gemini_cli') return settings.gemini_cli_model || 'gemini-2.5-flash-lite';
   return '';
 }
 

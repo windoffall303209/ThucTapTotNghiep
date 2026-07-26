@@ -511,15 +511,6 @@ function isAIEnabledForGrade(grade, settings) {
   return (enabledGrades.length > 0 ? enabledGrades : [3, 4, 5]).includes(Number(grade));
 }
 
-function modelForProvider(settings) {
-  if (settings.ai_provider === 'gemini') return settings.gemini_model;
-  if (settings.ai_provider === 'gemini_cli') return settings.gemini_cli_model;
-  if (settings.ai_provider === 'nvidia') return settings.nvidia_nim_model;
-  if (settings.ai_provider === 'openrouter') return settings.openrouter_model;
-  if (settings.ai_provider === 'openai') return settings.openai_model;
-  return 'mock';
-}
-
 function buildLegacyAttemptRows(attempts = []) {
   return attempts
     .filter((attempt) => !attempt.practice_session_id)
@@ -628,21 +619,23 @@ async function theoryHelp(req, res, next) {
 
     const cardIndex = Number(req.body.cardIndex || 0);
     const card = lessonItem.theory_cards[cardIndex];
-    const reply = await SocraticAIService.explainTheory({
+    const aiResult = await SocraticAIService.explainTheory({
       grade: req.auth.current_grade,
       lesson: lessonItem,
       card,
       question: req.body.question || ''
     });
+    const reply = aiResult.reply;
 
     await AIConversationLog.logAIInteraction({
       studentId: req.auth.id,
       sessionType: 'THEORY_EXPLAIN',
       referenceId: lessonItem.id,
       lessonId: lessonItem.id,
-      provider: settings.ai_provider,
-      model: modelForProvider(settings),
-      isFallback: String(settings.ai_automation_enabled || 'true') === 'false',
+      // Ghi provider và model THỰC TẾ đã trả lời, xem chú thích ở ApiController.
+      provider: aiResult.provider,
+      model: aiResult.model,
+      isFallback: aiResult.isFallback,
       chatHistory: [
         { role: 'student', text: req.body.question || 'Yêu cầu giải thích lý thuyết' },
         { role: 'ai', text: reply }
