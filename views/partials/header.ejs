@@ -93,4 +93,25 @@
     <% } %>
   </nav>
 </header>
+
+<% if (student) { %>
+<nav class="bottom-nav" aria-label="Điều hướng nhanh">
+  <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
+    <i data-lucide="sparkles" class="lucide-icon"></i>
+    <span>Học</span>
+  </a>
+  <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>">
+    <i data-lucide="clipboard-list" class="lucide-icon"></i>
+    <span>Làm bài</span>
+  </a>
+  <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>">
+    <i data-lucide="history" class="lucide-icon"></i>
+    <span>Lịch sử</span>
+  </a>
+  <a href="/student/account" class="<%= currentPath.startsWith('/student/account') ? 'active' : '' %>">
+    <i data-lucide="user-circle" class="lucide-icon"></i>
+    <span>Tài khoản</span>
+  </a>
+</nav>
+<% } %>
 <% } %>

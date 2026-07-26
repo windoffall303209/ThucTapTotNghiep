@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
-  <body class="<%= admin ? 'admin-body' : '' %>">
+  <body
+    class="<%= admin ? 'admin-body' : '' %><%= student ? ' student-body' : '' %>"
+    <% if (student) { %>data-grade="<%= student.current_grade %>"<% } %>>
     <%- include('../partials/header') %>
     <main class="page-shell">
       <% if (flash) { %>
