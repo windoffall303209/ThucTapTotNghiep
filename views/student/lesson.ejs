@@ -46,7 +46,7 @@
     </a>
     <p class="eyebrow">Lớp <%= lesson.grade %> · <%= lesson.chapter_name %></p>
     <h1><%= lesson.lesson_name %></h1>
-    <p>Đọc từng thẻ theo thứ tự, quan sát hình nếu có rồi luyện tập để hệ thống ghi nhận phần em đã hiểu.</p>
+    <p>Em đọc từng thẻ theo thứ tự, xem hình nếu có, rồi làm thử vài câu để nhớ bài lâu hơn nhé.</p>
   </div>
   <div class="row-actions">
     <% if (Number(reviewQuestionCount || 0) > 0) { %>
@@ -63,26 +63,33 @@
 </section>
 
 <section class="learning-summary">
+  <%# Không đặt tên "Mục tiêu bài học" cho một câu chữ chung: nội dung này giống
+      hệt nhau ở mọi bài nên gọi là mục tiêu của bài sẽ thành lời hứa giả. Muốn
+      có mục tiêu riêng từng bài thì cần thêm trường dữ liệu trong Lessons. %>
   <div>
     <div class="section-title">
       <i data-lucide="target" class="lucide-icon"></i>
-      Mục tiêu bài học
+      Em sẽ luyện được gì?
     </div>
-    <p>Hiểu ý chính của bài, biết cách làm ví dụ mẫu và nhận ra dạng câu hỏi thường gặp.</p>
+    <p>Hiểu ý chính của bài, biết cách làm theo ví dụ mẫu và quen với dạng câu hỏi thường gặp.</p>
   </div>
   <div>
     <div class="section-title">
       <i data-lucide="lightbulb" class="lucide-icon"></i>
-      Cách học đề xuất
+      Học thế nào cho dễ nhớ?
     </div>
-    <p>Với thẻ có hình, em quan sát trước. Với thẻ có bước làm, em đọc từng dòng rồi tự nhẩm lại cách làm.</p>
+    <p>Thẻ có hình thì em xem hình trước. Thẻ có bước làm thì em đọc từng dòng rồi tự nhẩm lại cách làm.</p>
   </div>
 </section>
 
 <section class="theory-grid">
   <% if (!lesson.theory_cards || lesson.theory_cards.length === 0) { %>
     <div class="empty-state compact">
-      <p>Bài học này chưa có nội dung lý thuyết. Quản trị viên cần bổ sung nội dung.</p>
+      <p>Bài này chưa có phần lý thuyết. Em vẫn có thể làm thử câu hỏi luyện tập trước nhé!</p>
+      <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
+        <i data-lucide="play-circle" class="lucide-icon"></i>
+        Luyện tập bài này
+      </a>
     </div>
   <% } %>
 

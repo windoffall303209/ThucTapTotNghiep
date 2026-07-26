@@ -25,7 +25,7 @@
 
   <% if (!sessionRows || sessionRows.length === 0) { %>
     <div class="empty-state compact">
-      <p>Em chưa có lịch sử luyện tập. Hãy chọn một bài học hoặc phạm vi tổng hợp để hệ thống ghi nhận tiến trình.</p>
+      <p>Em chưa có bài luyện nào. Bấm "Tạo bài luyện mới" để làm bài đầu tiên nhé!</p>
     </div>
   <% } else { %>
     <div class="card-list">
@@ -48,13 +48,23 @@
                   : session.session_mode === 'REVIEW'
                     ? 'Ôn lý thuyết'
                     : session.session_mode === 'LEGACY'
-                      ? 'Luyện tập cũ'
+                      ? 'Bài trước đây'
                       : 'Theo bài' %>
             </span>
           </div>
           <h2><%= session.title %></h2>
-          <p class="muted"><strong><%= session.correct_count %></strong>/<strong><%= answered %></strong> câu đã làm đúng · Tiến trình <%= session.current_index %>/<%= session.question_count %> câu · <%= session.chat_count %> tin nhắn gợi ý.</p>
-          <div class="progress-track"><span style="width: <%= Math.min(Math.max(percent, 0), 100) %>%"></span></div>
+          <%# Bỏ metric "N tin nhắn gợi ý": con số nội bộ của nhật ký AI, không
+              giúp gì cho học sinh khi xem lại bài. %>
+          <p class="muted">Đúng <strong><%= session.correct_count %></strong>/<strong><%= answered %></strong> câu · Đã làm <%= session.current_index %>/<%= session.question_count %> câu.</p>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-valuenow="<%= Math.min(Math.max(percent, 0), 100) %>"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="Đã làm <%= session.current_index %> trên <%= session.question_count %> câu">
+            <span style="width: <%= Math.min(Math.max(percent, 0), 100) %>%"></span>
+          </div>
           <p class="muted">Bắt đầu: <%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></p>
           <div class="row-actions">
             <% if (session.status === 'IN_PROGRESS') { %>

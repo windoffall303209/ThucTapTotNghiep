@@ -1,28 +1,28 @@
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Luyện tập</p>
-    <h1>Chọn phạm vi em muốn ôn</h1>
-    <p>Câu hỏi được chọn ngẫu nhiên và phân bổ đều giữa các bài. Em tự chọn nội dung cần ôn, không phụ thuộc vào lịch sử học trên website.</p>
+    <h1>Em muốn luyện phần nào?</h1>
+    <p>Chọn một bài, một chương hoặc luyện trộn nhiều phần. Em thích phần nào thì luyện phần đó.</p>
   </div>
 </section>
 
 <section class="card-list">
   <article class="activity-card">
     <span class="status-pill status-new">5 câu</span>
-    <h2>Luyện tập theo bài học</h2>
-    <p class="muted">Chọn một bài trên bảng học tập. Hệ thống lấy ngẫu nhiên 5 câu ngoài phần ôn nhanh sau lý thuyết.</p>
+    <h2>Luyện theo bài học</h2>
+    <p class="muted">Mỗi lần luyện là 5 câu mới lấy từ bài em chọn.</p>
     <div class="row-actions">
-      <a class="btn btn-primary" href="/student/dashboard">
+      <a class="btn btn-primary" href="/student/dashboard#chuong-hoc">
         <i data-lucide="book-open" class="lucide-icon"></i>
-        Chọn bài học
+        Mở danh sách bài học
       </a>
     </div>
   </article>
 
   <article class="activity-card">
     <span class="status-pill status-new">15 hoặc 20 câu</span>
-    <h2>Luyện tập theo chương</h2>
-    <p class="muted">Câu hỏi được phủ lần lượt qua các bài trong chương, tránh tập trung quá nhiều vào một bài.</p>
+    <h2>Luyện theo chương</h2>
+    <p class="muted">Đề có câu hỏi từ tất cả các bài trong chương em chọn.</p>
     <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
       <input type="hidden" name="mode" value="chapter">
       <label>
@@ -31,7 +31,9 @@
           <option value="">Chọn một chương</option>
           <% (chapters || []).forEach((chapter) => { %>
             <option value="<%= chapter.id %>">
-              Học kỳ <%= Number(chapter.semester) === 1 ? 'I' : 'II' %> · <%= chapter.chapter_name %>
+              <%# Dùng số 1/2 thay cho số La Mã I/II: học sinh lớp 1-2 chưa học
+                  số La Mã nên "Học kỳ II" là ký hiệu lạ với các em. %>
+              Học kỳ <%= Number(chapter.semester) === 1 ? '1' : '2' %> · <%= chapter.chapter_name %>
             </option>
           <% }) %>
         </select>
@@ -49,15 +51,15 @@
 
   <article class="activity-card">
     <span class="status-pill status-new">15 hoặc 20 câu</span>
-    <h2>Luyện tập tổng hợp</h2>
-    <p class="muted">Ôn nhiều chương trong học kỳ I, học kỳ II hoặc toàn bộ chương trình của lớp hiện tại.</p>
+    <h2>Luyện tổng hợp</h2>
+    <p class="muted">Đề trộn câu hỏi của nhiều chương trong học kỳ 1, học kỳ 2 hoặc cả năm học.</p>
     <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
       <input type="hidden" name="mode" value="comprehensive">
       <label>
-        Phạm vi tổng hợp
+        Em muốn luyện phần nào?
         <select name="scope" required>
-          <option value="semester-1">Học kỳ I</option>
-          <option value="semester-2">Học kỳ II</option>
+          <option value="semester-1">Học kỳ 1</option>
+          <option value="semester-2">Học kỳ 2</option>
           <option value="year">Cả năm</option>
         </select>
       </label>
@@ -81,7 +83,7 @@
 
   <% if (!sessions || sessions.length === 0) { %>
     <div class="empty-state compact">
-      <p>Không có bài nào đang làm dở. Em có thể chọn một phạm vi ở phía trên để bắt đầu.</p>
+      <p>Em không có bài nào đang làm dở. Chọn một kiểu luyện ở phía trên để bắt đầu nhé!</p>
     </div>
   <% } else { %>
     <div class="card-list">
@@ -91,7 +93,15 @@
           <span class="status-pill status-in-progress">Đang làm</span>
           <h2><%= session.title %></h2>
           <p class="muted">Đã làm <strong><%= session.current_index %></strong>/<strong><%= session.question_count %></strong> câu · Bắt đầu <%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></p>
-          <div class="progress-track"><span style="width: <%= sessionPercent %>%"></span></div>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-valuenow="<%= sessionPercent %>"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="Đã làm <%= session.current_index %> trên <%= session.question_count %> câu">
+            <span style="width: <%= sessionPercent %>%"></span>
+          </div>
           <div class="row-actions">
             <a class="btn btn-primary" href="/student/sessions/<%= session.id %>/practice">
               <i data-lucide="play-circle" class="lucide-icon"></i>

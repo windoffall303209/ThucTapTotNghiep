@@ -11,7 +11,7 @@
     </a>
     <a class="btn btn-primary" href="/student/exams">
       <i data-lucide="clipboard-list" class="lucide-icon"></i>
-      Chọn phạm vi luyện tập
+      Chọn bài để luyện
     </a>
   </div>
 </section>
@@ -20,8 +20,16 @@
   <article class="stat-card">
     <span class="status-pill status-in-progress">Bài đã luyện</span>
     <strong class="stat-value"><%= progress.percent %>%</strong>
-    <p class="muted">Đã có lượt luyện ở <strong><%= progress.completed %></strong>/<strong><%= progress.total %></strong> bài có dữ liệu.</p>
-    <div class="progress-track large"><span style="width: <%= progress.percent %>%"></span></div>
+    <p class="muted">Em đã luyện <strong><%= progress.completed %></strong> trên <strong><%= progress.total %></strong> bài của lớp mình.</p>
+    <div
+      class="progress-track large"
+      role="progressbar"
+      aria-valuenow="<%= progress.percent %>"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="Em đã luyện <%= progress.completed %> trên <%= progress.total %> bài">
+      <span style="width: <%= progress.percent %>%"></span>
+    </div>
   </article>
   <article class="action-card">
     <span class="status-pill status-review">Cần ôn</span>
@@ -30,9 +38,9 @@
       <p class="muted">Hệ thống thấy bài này có lỗi sai nổi bật. Ôn lại lý thuyết trước khi luyện tiếp.</p>
       <a class="btn btn-secondary" href="/student/lessons/<%= recommendation.id %>">Ôn lại bài này</a>
     <% } else { %>
-      <strong>Chưa có bài yếu rõ ràng</strong>
-      <p class="muted">Em có thể chọn bài mới bên dưới hoặc tạo bài luyện tập tổng hợp.</p>
-      <a class="btn btn-secondary" href="/student/exams">Chọn phạm vi luyện tập</a>
+      <strong>Em đang học tốt, chưa có bài nào cần ôn lại</strong>
+      <p class="muted">Em có thể chọn bài mới bên dưới hoặc làm một bài luyện tổng hợp.</p>
+      <a class="btn btn-secondary" href="/student/exams">Chọn bài để luyện</a>
     <% } %>
   </article>
   <article class="action-card">
@@ -60,7 +68,7 @@
       </div>
     <% } else { %>
       <strong>Học theo chương bài</strong>
-      <p class="muted">Mở một chương, đọc lý thuyết ngắn rồi làm câu hỏi để hệ thống ghi nhận tiến trình.</p>
+      <p class="muted">Mở một chương, đọc phần lý thuyết ngắn rồi làm thử vài câu hỏi nhé.</p>
       <a class="btn btn-primary" href="#chuong-hoc">Xem chương học</a>
     <% } %>
   </article>
@@ -74,7 +82,14 @@
 
   <% if (chapters.length === 0) { %>
     <div class="empty-state compact">
-      <p>Chưa có chương học cho khối này. Quản trị viên cần nhập dữ liệu chương và bài học.</p>
+      <%# Empty state là màn hình học sinh nhìn thấy, không phải nơi giao việc
+          cho quản trị viên. Nói với các em bằng giọng của các em và chỉ một
+          lối đi tiếp. %>
+      <p>Các bài học của lớp em đang được chuẩn bị. Em quay lại sau nhé!</p>
+      <a class="btn btn-secondary" href="/student/account">
+        <i data-lucide="user-circle" class="lucide-icon"></i>
+        Xem trang tài khoản
+      </a>
     </div>
   <% } %>
 
@@ -123,7 +138,7 @@
 
   <% if (!recentAttempts || recentAttempts.length === 0) { %>
     <div class="empty-state compact">
-      <p>Em chưa có lịch sử làm bài. Hãy chọn một bài học và nộp đáp án để hệ thống ghi nhận tiến trình.</p>
+      <p>Em chưa làm bài nào. Chọn một bài học ở trên và làm thử — kết quả sẽ hiện ở đây.</p>
     </div>
   <% } else { %>
     <div class="table-wrap">

@@ -26,13 +26,26 @@
         </label>
         <label>
           Mật khẩu
-          <input name="password" type="password" autocomplete="current-password" required>
+          <span class="password-field">
+            <input name="password" type="password" autocomplete="current-password" required>
+            <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
+              <i data-lucide="eye" class="lucide-icon"></i>
+            </button>
+          </span>
         </label>
         <button class="btn btn-primary full-width" type="submit">
           <i data-lucide="log-in" class="lucide-icon"></i>
           Đăng nhập
         </button>
       </form>
+      <% if (role !== 'admin') { %>
+        <%# Trẻ em là nhóm quên mật khẩu nhiều nhất. Hệ thống chưa có luồng tự
+            đặt lại nên phải chỉ rõ lối thoát thay vì để các em bế tắc ở đây:
+            quản trị viên đặt lại được mật khẩu trong trang Học sinh. %>
+        <p class="form-note">
+          Quên mật khẩu? Em nhờ bố mẹ hoặc thầy cô liên hệ quản trị viên để đặt lại mật khẩu mới nhé.
+        </p>
+      <% } %>
       <div class="auth-links">
         <% if (role === 'admin') { %>
           <a href="/auth/login">Đăng nhập học sinh</a>

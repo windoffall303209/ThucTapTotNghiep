@@ -981,6 +981,48 @@ tbody tr:last-child td {
   font-weight: 900;
 }
 
+/* Ô mật khẩu có nút con mắt hiện/ẩn bên phải. Nút nằm đè trong input nên input
+   cần chừa lối cho nó bằng padding phải. */
+.password-field {
+  position: relative;
+  display: block;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 46px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+/* Mặt cười bối rối trên trang lỗi, thay icon cảnh báo khô khan. */
+.error-face {
+  display: block;
+  font-size: 54px;
+  line-height: 1;
+}
+
 /* Workspace/student */
 .workspace-head {
   display: grid;

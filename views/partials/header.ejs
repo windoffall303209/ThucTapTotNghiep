@@ -67,11 +67,14 @@
 
   <nav class="nav-links" aria-label="Điều hướng chính">
     <% if (student) { %>
+      <%# Nhãn và điều kiện active phải TRÙNG với bottom-nav bên dưới: cùng một
+          trang mà thanh trên gọi "Hôm nay", thanh dưới gọi "Học" thì trẻ tưởng
+          là hai nơi khác nhau. %>
       <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
         <i data-lucide="sparkles" class="lucide-icon"></i>
-        Hôm nay
+        Học bài
       </a>
-      <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') ? 'active' : '' %>">
+      <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>">
         <i data-lucide="clipboard-list" class="lucide-icon"></i>
         Luyện tập
       </a>
@@ -108,11 +111,11 @@
 <nav class="bottom-nav" aria-label="Điều hướng nhanh">
   <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
     <i data-lucide="sparkles" class="lucide-icon"></i>
-    <span>Học</span>
+    <span>Học bài</span>
   </a>
   <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>">
     <i data-lucide="clipboard-list" class="lucide-icon"></i>
-    <span>Làm bài</span>
+    <span>Luyện tập</span>
   </a>
   <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>">
     <i data-lucide="history" class="lucide-icon"></i>

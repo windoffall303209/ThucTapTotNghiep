@@ -12,7 +12,10 @@
           Về lý thuyết
         </a>
       <% } %>
-      <span id="questionCounter">Câu 1/<%= Math.max(questions.length, 1) %></span>
+      <%# Không in sẵn "Câu 1/..." vì khi mở lại bài đang làm dở, câu hiện tại
+          không phải câu 1 — con số cứng nháy sai một nhịp rồi mới bị JS sửa.
+          Để JS điền ngay khi dựng câu hỏi đầu tiên. %>
+      <span id="questionCounter">Câu …/<%= Math.max(questions.length, 1) %></span>
     </div>
 
     <% if (questions.length > 0) { %>
@@ -33,7 +36,11 @@
     <h1><%= session?.title || lesson.lesson_name %></h1>
     <% if (questions.length === 0) { %>
       <div class="empty-state compact">
-        <p>Bài học này chưa có câu hỏi luyện tập. Quản trị viên cần bổ sung ngân hàng câu hỏi.</p>
+        <p>Bài này chưa có câu hỏi luyện tập. Em chọn bài khác nhé!</p>
+        <a class="btn btn-primary" href="/student/dashboard#chuong-hoc">
+          <i data-lucide="book-open" class="lucide-icon"></i>
+          Chọn bài khác
+        </a>
       </div>
     <% } else { %>
       <div class="practice-panel">

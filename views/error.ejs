@@ -1,9 +1,11 @@
 <section class="auth-shell">
   <div class="narrow-panel">
     <div class="empty-state">
-      <i data-lucide="circle-alert" class="empty-icon"></i>
+      <%# Hình mặt cười bối rối thay cho icon cảnh báo khô khan: trang lỗi là
+          nơi trẻ dễ hoảng, giọng điệu cần nhẹ nhàng như một sự cố nhỏ. %>
+      <span class="error-face" aria-hidden="true">😵‍💫</span>
       <div>
-        <p class="eyebrow">Có lỗi xảy ra</p>
+        <p class="eyebrow">Ôi, có chuyện nhỏ xảy ra</p>
         <h1><%= title %></h1>
         <p><%= message %></p>
       </div>
