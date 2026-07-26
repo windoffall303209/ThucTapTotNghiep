@@ -8,6 +8,7 @@ const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
 const { setFlash } = require('../utils/flash');
 const { isSupportedGrade } = require('../config/grades');
+const { isAIEnabledForGrade } = require('../utils/aiPolicy');
 const {
   selectRandomQuestions,
   selectBalancedQuestions
@@ -59,15 +60,16 @@ async function lesson(req, res, next) {
       });
     }
 
-    const reviewQuestions = await Question.getTheoryReviewQuestions(
-      lessonItem.id,
-      THEORY_REVIEW_COUNT
-    );
+    const [reviewQuestions, settings] = await Promise.all([
+      Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT),
+      SystemSetting.getSettings()
+    ]);
 
     res.render('student/lesson', {
       title: lessonItem.lesson_name,
       lesson: lessonItem,
-      reviewQuestionCount: reviewQuestions.length
+      reviewQuestionCount: reviewQuestions.length,
+      aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
   } catch (error) {
     next(error);
@@ -127,13 +129,17 @@ async function practice(req, res, next) {
       sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
 
-    const lessonAnswers = session ? await PracticeSession.listAnswers(session.id) : [];
+    const [lessonAnswers, settings] = await Promise.all([
+      session ? PracticeSession.listAnswers(session.id) : Promise.resolve([]),
+      SystemSetting.getSettings()
+    ]);
     res.render('student/practice', {
       title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
       questions: sessionQuestions,
       session,
-      answeredResults: buildAnsweredResults(lessonAnswers)
+      answeredResults: buildAnsweredResults(lessonAnswers),
+      aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
   } catch (error) {
     next(error);
@@ -186,13 +192,17 @@ async function reviewLesson(req, res, next) {
       sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
 
-    const reviewAnswers = await PracticeSession.listAnswers(session.id);
+    const [reviewAnswers, settings] = await Promise.all([
+      PracticeSession.listAnswers(session.id),
+      SystemSetting.getSettings()
+    ]);
     return res.render('student/practice', {
       title: session.title,
       lesson: lessonItem,
       questions: sessionQuestions,
       session,
-      answeredResults: buildAnsweredResults(reviewAnswers)
+      answeredResults: buildAnsweredResults(reviewAnswers),
+      aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
   } catch (error) {
     next(error);
@@ -374,9 +384,10 @@ async function sessionPractice(req, res, next) {
       return res.redirect(`/student/sessions/${session.id}`);
     }
 
-    const [questions, answers] = await Promise.all([
+    const [questions, answers, settings] = await Promise.all([
       Question.getQuestionsByIds(session.question_ids),
-      PracticeSession.listAnswers(session.id)
+      PracticeSession.listAnswers(session.id),
+      SystemSetting.getSettings()
     ]);
     res.render('student/practice', {
       title: session.title,
@@ -386,7 +397,8 @@ async function sessionPractice(req, res, next) {
       },
       questions,
       session,
-      answeredResults: buildAnsweredResults(answers)
+      answeredResults: buildAnsweredResults(answers),
+      aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
   } catch (error) {
     next(error);
@@ -501,14 +513,6 @@ function normalizeFreeTextAnswer(value) {
     .toLowerCase()
     .replace(/\s+/g, ' ')
     .replace(/,/g, '.');
-}
-
-function isAIEnabledForGrade(grade, settings) {
-  const enabledGrades = String(settings.ai_enabled_grades || '3,4,5')
-    .split(/[,.\s]+/)
-    .map(Number)
-    .filter((item) => Number.isInteger(item));
-  return (enabledGrades.length > 0 ? enabledGrades : [3, 4, 5]).includes(Number(grade));
 }
 
 function buildLegacyAttemptRows(attempts = []) {

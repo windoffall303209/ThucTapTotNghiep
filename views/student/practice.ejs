@@ -1,4 +1,4 @@
-<section class="practice-shell <%= Number(student.current_grade) >= 3 ? '' : 'practice-shell-no-chat' %>" data-session-id="<%= session?.id || '' %>">
+<section class="practice-shell <%= aiHelpEnabled ? '' : 'practice-shell-no-chat' %>" data-session-id="<%= session?.id || '' %>">
   <div class="practice-main">
     <div class="practice-topline">
       <% if (['CHAPTER', 'COMPREHENSIVE'].includes(session?.session_mode)) { %>
@@ -62,7 +62,7 @@
     <% } %>
   </div>
 
-  <% if (Number(student.current_grade) >= 3) { %>
+  <% if (aiHelpEnabled) { %>
     <aside class="ai-chat">
       <div class="chat-head">
         <div>

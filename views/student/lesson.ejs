@@ -125,7 +125,7 @@
           <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
         <% } %>
       </div>
-      <% if (Number(lesson.grade) >= 3) { %>
+      <% if (aiHelpEnabled) { %>
       <button
         class="btn btn-secondary theory-help-button"
         type="button"

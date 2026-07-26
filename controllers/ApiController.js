@@ -3,6 +3,7 @@ const PracticeSession = require('../models/PracticeSession');
 const SocraticAIService = require('../services/SocraticAIService');
 const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
+const { isAIEnabledForGrade } = require('../utils/aiPolicy');
 
 async function exerciseHelp(req, res, next) {
   try {
@@ -106,8 +107,7 @@ async function exerciseHelp(req, res, next) {
 }
 
 function evaluateAIPolicy({ grade, settings, hasAnsweredQuestion, chatHistory, sessionChats }) {
-  const enabledGrades = parseEnabledGrades(settings.ai_enabled_grades);
-  if (!enabledGrades.includes(Number(grade))) {
+  if (!isAIEnabledForGrade(grade, settings)) {
     return {
       reason: 'grade_not_enabled',
       message: 'Tính năng gợi ý thêm hiện chỉ bật cho một số khối lớp. Em hãy xem lời giải có sẵn trước nhé.'
@@ -141,14 +141,6 @@ function evaluateAIPolicy({ grade, settings, hasAnsweredQuestion, chatHistory, s
   }
 
   return null;
-}
-
-function parseEnabledGrades(value) {
-  const grades = String(value || '3,4,5')
-    .split(/[,.\s]+/)
-    .map(Number)
-    .filter((grade) => Number.isInteger(grade));
-  return grades.length > 0 ? grades : [3, 4, 5];
 }
 
 module.exports = { exerciseHelp };
