@@ -427,7 +427,7 @@
     try {
       const response = await fetch(`/student/questions/${question.id}/answer`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           selectedAnswer,
           practiceSessionId: state.practiceSessionId,
@@ -435,7 +435,16 @@
           timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
         })
       });
-      result = await response.json();
+      result = await response.json().catch(() => null);
+
+      if (isSessionExpired(response, result)) {
+        state.pendingQuestionId = null;
+        restoreButton(submitButton);
+        submitButton.disabled = false;
+        showSessionExpiredFeedback(result && result.message);
+        return;
+      }
+      if (!result) throw new Error('Phản hồi không phải JSON');
     } catch (error) {
       state.pendingQuestionId = null;
       restoreButton(submitButton);
@@ -575,6 +584,24 @@
     });
   }
 
+  // Hết phiên đăng nhập không phải lỗi mạng: bấm "Thử lại" bao nhiêu lần cũng
+  // vô ích. Phải chỉ đúng đường cho học sinh là đăng nhập lại.
+  function showSessionExpiredFeedback(message) {
+    const feedback = document.getElementById('answerFeedback');
+    if (!feedback) return;
+    feedback.className = 'answer-feedback feedback-warning';
+    feedback.hidden = false;
+    feedback.innerHTML = `
+      <h2>Em cần đăng nhập lại</h2>
+      <p>${escapeHtml(message || 'Phiên học đã hết hạn vì để lâu không dùng.')}</p>
+      <a class="btn btn-primary" href="/auth/login">Đăng nhập lại</a>
+    `;
+  }
+
+  function isSessionExpired(response, result) {
+    return response.status === 401 || (result && result.code === 'SESSION_EXPIRED');
+  }
+
   function markAnswerState(result) {
     document.querySelectorAll('.answer-choice').forEach((button) => {
       const answer = button.dataset.answer;
@@ -658,9 +685,18 @@
     try {
       const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
       });
-      const result = await response.json();
+      const result = await response.json().catch(() => null);
+
+      if (isSessionExpired(response, result)) {
+        restoreButton(finishButton);
+        if (finishButton) finishButton.disabled = false;
+        showSessionExpiredFeedback(result && result.message);
+        return;
+      }
+      if (!result) throw new Error('Phản hồi không phải JSON');
+
       window.location.href = result.redirectUrl || '/student/history';
     } catch (error) {
       restoreButton(finishButton);
