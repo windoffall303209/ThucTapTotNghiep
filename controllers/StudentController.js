@@ -8,8 +8,14 @@ const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
 const { setFlash } = require('../utils/flash');
 const { isSupportedGrade } = require('../config/grades');
+const {
+  selectRandomQuestions,
+  selectBalancedQuestions
+} = require('../utils/practiceQuestionSelector');
 
-const EXAM_LIMITS = [10, 15, 20, 25, 30];
+const PRACTICE_LIMITS = [15, 20];
+const THEORY_REVIEW_COUNT = 8;
+const LESSON_PRACTICE_COUNT = 5;
 
 async function dashboard(req, res, next) {
   try {
@@ -52,9 +58,15 @@ async function lesson(req, res, next) {
       });
     }
 
+    const reviewQuestions = await Question.getTheoryReviewQuestions(
+      lessonItem.id,
+      THEORY_REVIEW_COUNT
+    );
+
     res.render('student/lesson', {
       title: lessonItem.lesson_name,
-      lesson: lessonItem
+      lesson: lessonItem,
+      reviewQuestionCount: reviewQuestions.length
     });
   } catch (error) {
     next(error);
@@ -75,26 +87,86 @@ async function practice(req, res, next) {
     if (!canAccessLesson(student, lessonItem)) {
       return res.status(403).render('error', {
         title: 'Không thuộc khối học hiện tại',
-        message: 'Bài luyện tập này không thuộc khối học Tiểu học đang được hỗ trợ hoặc không đúng lớp của em.'
+        message: 'Bài luyện tập này không thuộc lớp hiện tại của em.'
       });
     }
 
-    const questions = await Question.getQuestionsByLesson(req.params.id);
+    const [candidates, reviewQuestions] = await Promise.all([
+      Question.getQuestionCandidates({
+        grade: student.current_grade,
+        lessonId: lessonItem.id
+      }),
+      Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT)
+    ]);
     let session = await PracticeSession.getActiveLessonSession(student.id, lessonItem.id);
     if (!session) {
+      const questions = selectRandomQuestions(candidates, LESSON_PRACTICE_COUNT, {
+        excludeIds: reviewQuestions.map((question) => question.id)
+      });
       session = await PracticeSession.createSession({
         studentId: student.id,
         lessonId: lessonItem.id,
+        chapterId: lessonItem.chapter_id,
         mode: 'LESSON',
-        title: lessonItem.lesson_name,
+        title: `Luyện theo bài: ${lessonItem.lesson_name}`,
         questionIds: questions.map((question) => question.id)
       });
     }
     const sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     res.render('student/practice', {
-      title: `Luyện tập: ${lessonItem.lesson_name}`,
+      title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
-      questions: sessionQuestions.length > 0 ? sessionQuestions : questions,
+      questions: sessionQuestions,
+      session
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function reviewLesson(req, res, next) {
+  try {
+    const student = req.auth;
+    const lessonItem = await Curriculum.getLessonById(req.params.id);
+    if (!lessonItem) {
+      return res.status(404).render('error', {
+        title: 'Không tìm thấy bài ôn tập',
+        message: 'Bài ôn tập không tồn tại hoặc chưa được nhập vào hệ thống.'
+      });
+    }
+
+    if (!canAccessLesson(student, lessonItem)) {
+      return res.status(403).render('error', {
+        title: 'Không thuộc khối học hiện tại',
+        message: 'Bài ôn tập này không thuộc lớp hiện tại của em.'
+      });
+    }
+
+    const questions = await Question.getTheoryReviewQuestions(
+      lessonItem.id,
+      THEORY_REVIEW_COUNT
+    );
+    let session = await PracticeSession.getActiveLessonSession(
+      student.id,
+      lessonItem.id,
+      'REVIEW'
+    );
+    if (!session) {
+      session = await PracticeSession.createSession({
+        studentId: student.id,
+        lessonId: lessonItem.id,
+        chapterId: lessonItem.chapter_id,
+        mode: 'REVIEW',
+        title: `Ôn sau lý thuyết: ${lessonItem.lesson_name}`,
+        questionIds: questions.map((question) => question.id)
+      });
+    }
+
+    const sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
+    return res.render('student/practice', {
+      title: session.title,
+      lesson: lessonItem,
+      questions: sessionQuestions,
       session
     });
   } catch (error) {
@@ -173,12 +245,19 @@ async function updatePassword(req, res, next) {
 
 async function exams(req, res, next) {
   try {
-    const sessions = await PracticeSession.listSessions(req.auth.id, 20);
+    const [sessions, chapters] = await Promise.all([
+      PracticeSession.listSessions(req.auth.id, 20),
+      Curriculum.getCurriculumByGrade(req.auth.current_grade)
+    ]);
 
     res.render('student/exams', {
-      title: 'Luyện đề',
-      limits: EXAM_LIMITS,
-      sessions: sessions.filter((session) => session.session_mode === 'EXAM' && session.status === 'IN_PROGRESS')
+      title: 'Luyện tập',
+      limits: PRACTICE_LIMITS,
+      chapters,
+      sessions: sessions.filter((session) =>
+        ['CHAPTER', 'COMPREHENSIVE'].includes(session.session_mode)
+        && session.status === 'IN_PROGRESS'
+      )
     });
   } catch (error) {
     next(error);
@@ -187,19 +266,66 @@ async function exams(req, res, next) {
 
 async function startExam(req, res, next) {
   try {
-    const count = EXAM_LIMITS.includes(Number(req.body.count)) ? Number(req.body.count) : 10;
-    const questions = await Question.getRandomQuestionsByGrade(req.auth.current_grade, count);
+    const grade = Number(req.auth.current_grade);
+    const count = PRACTICE_LIMITS.includes(Number(req.body.count))
+      ? Number(req.body.count)
+      : PRACTICE_LIMITS[0];
+    const requestedMode = String(req.body.mode || 'comprehensive');
+    let candidates = [];
+    let sessionData = {
+      chapterId: null,
+      semester: null,
+      mode: 'COMPREHENSIVE',
+      title: `Luyện tập tổng hợp cả năm · ${count} câu`
+    };
+
+    if (requestedMode === 'chapter') {
+      const chapter = await Curriculum.getChapterById(req.body.chapter_id);
+      if (!chapter || Number(chapter.grade) !== grade) {
+        setFlash(req, 'danger', 'Vui lòng chọn một chương thuộc đúng lớp hiện tại.');
+        return res.redirect('/student/exams');
+      }
+      candidates = await Question.getQuestionCandidates({
+        grade,
+        chapterId: chapter.id
+      });
+      sessionData = {
+        chapterId: chapter.id,
+        semester: chapter.semester,
+        mode: 'CHAPTER',
+        title: `${chapter.chapter_name} · ${count} câu`
+      };
+    } else {
+      const scope = String(req.body.scope || 'year');
+      const semester = scope === 'semester-1'
+        ? 1
+        : scope === 'semester-2'
+          ? 2
+          : null;
+      candidates = await Question.getQuestionCandidates({ grade, semester });
+      sessionData.semester = semester;
+      sessionData.title = semester
+        ? `Luyện tập tổng hợp học kỳ ${semester === 1 ? 'I' : 'II'} · ${count} câu`
+        : `Luyện tập tổng hợp cả năm · ${count} câu`;
+    }
+
+    const selectedCandidates = selectBalancedQuestions(candidates, count);
+    const questions = await Question.getQuestionsByIds(
+      selectedCandidates.map((question) => question.id)
+    );
 
     if (questions.length === 0) {
-      setFlash(req, 'danger', 'Ngân hàng câu hỏi chưa có dữ liệu phù hợp với khối hiện tại.');
+      setFlash(req, 'danger', 'Ngân hàng câu hỏi chưa có dữ liệu phù hợp với phạm vi đã chọn.');
       return res.redirect('/student/exams');
     }
 
     const session = await PracticeSession.createSession({
       studentId: req.auth.id,
       lessonId: null,
-      mode: 'EXAM',
-      title: `Đề ngẫu nhiên ${questions.length} câu`,
+      chapterId: sessionData.chapterId,
+      semester: sessionData.semester,
+      mode: sessionData.mode,
+      title: sessionData.title.replace(`${count} câu`, `${questions.length} câu`),
       questionIds: questions.map((question) => question.id)
     });
 
@@ -465,6 +591,7 @@ module.exports = {
   dashboard,
   lesson,
   practice,
+  reviewLesson,
   history,
   account,
   updatePassword,

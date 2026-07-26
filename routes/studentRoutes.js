@@ -15,6 +15,7 @@ router.get('/sessions/:id/practice', StudentController.sessionPractice);
 router.get('/sessions/:id', StudentController.reviewSession);
 router.post('/sessions/:id/finish', StudentController.finishSession);
 router.get('/lessons/:id', StudentController.lesson);
+router.get('/lessons/:id/review', StudentController.reviewLesson);
 router.get('/lessons/:id/practice', StudentController.practice);
 router.post('/questions/:questionId/answer', StudentController.submitAnswer);
 router.post('/theory/help', StudentController.theoryHelp);
