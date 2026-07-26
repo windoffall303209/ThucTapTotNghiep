@@ -8,6 +8,13 @@
  * Quy tắc an toàn: KHÔNG đổi đáp án. Nếu một đợt rà soát nghi đáp án sai thì phải
  * xử lý riêng bằng bước có kiểm chứng, không gộp vào đây.
  *
+ * Cách khớp câu trong .tex: file .tex không lưu id của MySQL nên phải dò lại. Chỉ
+ * dò theo đề bài là SAI, vì ngân hàng lớp 1 có 20 đề bài dùng chung cho nhiều câu
+ * khác nhau, ví dụ "Phép tính nào phù hợp với tranh?" xuất hiện 30 lần với 30 bộ
+ * phương án khác nhau. Khớp theo đề bài sẽ ghi cùng một lời giải cho cả 30 câu.
+ * Vì vậy khoá khớp là bộ ba: đề bài + toàn bộ phương án + đáp án đúng. Câu nào vẫn
+ * còn nhập nhằng sau khoá này thì bỏ qua và báo ra, không đoán bừa.
+ *
  * Dùng:
  *   node scripts/apply_explanations.js <tệp.json>            -> xem trước
  *   node scripts/apply_explanations.js <tệp.json> --commit   -> ghi thật
@@ -48,6 +55,17 @@ function encode(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
 
+/**
+ * Chữ ký nhận dạng một câu hỏi, dùng để nối bản ghi trong MySQL với khối tương ứng
+ * trong .tex. Gồm đề bài, toàn bộ phương án theo đúng thứ tự và đáp án đúng.
+ */
+function chuKy(deBai, choices, dapAn) {
+  const pa = (choices || [])
+    .map((c) => `${String(c.key || '').trim()}=${String(c.text || '').trim()}`)
+    .join('');
+  return `${String(deBai || '').trim()}${pa}${String(dapAn || '').trim()}`;
+}
+
 async function main() {
   if (!NGUON || !fs.existsSync(NGUON)) {
     throw new Error('Cần truyền đường dẫn tệp JSON chứa danh sách lời giải mới.');
@@ -64,7 +82,7 @@ async function main() {
 
   for (const item of danhSach) {
     const rows = await db.query(
-      `SELECT q.id, ch.grade, q.content, q.explanation FROM QuestionBank q
+      `SELECT q.id, ch.grade, q.content, q.choices, q.correct_answer, q.explanation FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters ch ON ch.id = l.chapter_id
        WHERE q.id = ?`,
@@ -89,7 +107,8 @@ async function main() {
 
     if (!theoKhoi.has(row.grade)) theoKhoi.set(row.grade, []);
     theoKhoi.get(row.grade).push({
-      deBai: String(contentCu.text || ''),
+      id: row.id,
+      chuKy: chuKy(contentCu.text, parseJson(row.choices, []), row.correct_answer),
       loiGiaiMoi: String(item.loi_giai_moi).trim()
     });
 
@@ -103,6 +122,9 @@ async function main() {
   }
 
   let suaTex = 0;
+  const khongKhop = [];
+  const nhapNhang = [];
+
   if (COMMIT) {
     for (const [grade, muc] of theoKhoi) {
       const fileName = TEX_THEO_KHOI[grade];
@@ -111,8 +133,9 @@ async function main() {
       if (!fs.existsSync(filePath)) continue;
 
       const lines = fs.readFileSync(filePath, 'utf8').split('\n');
-      const theoDeBai = new Map(muc.map((m) => [m.deBai, m.loiGiaiMoi]));
 
+      // Lượt 1: lập chỉ mục chữ ký -> các dòng DBJSON mang chữ ký đó.
+      const viTriTheoChuKy = new Map();
       for (let i = 0; i < lines.length; i += 1) {
         if (!lines[i].startsWith('% DBJSON ')) continue;
         let payload;
@@ -121,23 +144,41 @@ async function main() {
         } catch (error) {
           continue;
         }
-        const moi = theoDeBai.get(String(payload.content?.text || ''));
-        if (!moi) continue;
+        const key = chuKy(payload.content?.text, payload.choices, payload.correct_answer);
+        if (!viTriTheoChuKy.has(key)) viTriTheoChuKy.set(key, []);
+        viTriTheoChuKy.get(key).push(i);
+      }
 
-        payload.explanation = { ...(payload.explanation || {}), text: moi };
-        lines[i] = `% DBJSON ${encode(payload)}`;
-
-        let end = i + 1;
-        while (end < lines.length && !lines[end].includes('\\end{minipage}')) end += 1;
-        for (let j = i + 1; j <= end; j += 1) {
-          const cr = lines[j].endsWith('\r') ? '\r' : '';
-          const noiDung = lines[j].replace(/\r$/, '');
-          if (noiDung.includes('\\textbf{Lời giải:}')) {
-            lines[j] = `\\textbf{Lời giải:} ${moi}${cr}`;
-            break;
-          }
+      // Lượt 2: mỗi câu chỉ ghi khi chữ ký trỏ tới đúng MỘT khối trong .tex.
+      for (const m of muc) {
+        const viTri = viTriTheoChuKy.get(m.chuKy) || [];
+        if (viTri.length === 0) {
+          khongKhop.push({ id: m.id, grade, ly_do: 'không tìm thấy khối tương ứng trong .tex' });
+          continue;
         }
-        suaTex += 1;
+        if (viTri.length > 1) {
+          // Hai câu giống hệt nhau cả đề, phương án lẫn đáp án: ghi cùng lời giải
+          // cho mọi bản là đúng, vì chúng thực sự là một câu bị lặp.
+          nhapNhang.push({ id: m.id, grade, so_ban: viTri.length });
+        }
+
+        for (const i of viTri) {
+          const payload = decode(lines[i].slice('% DBJSON '.length).trim());
+          payload.explanation = { ...(payload.explanation || {}), text: m.loiGiaiMoi };
+          lines[i] = `% DBJSON ${encode(payload)}`;
+
+          let end = i + 1;
+          while (end < lines.length && !lines[end].includes('\\end{minipage}')) end += 1;
+          for (let j = i + 1; j <= end; j += 1) {
+            const cr = lines[j].endsWith('\r') ? '\r' : '';
+            const noiDung = lines[j].replace(/\r$/, '');
+            if (noiDung.includes('\\textbf{Lời giải:}')) {
+              lines[j] = `\\textbf{Lời giải:} ${m.loiGiaiMoi}${cr}`;
+              break;
+            }
+          }
+          suaTex += 1;
+        }
       }
 
       fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
@@ -152,6 +193,14 @@ async function main() {
   if (COMMIT) {
     console.log(`  Cập nhật MySQL: ${chiTiet.length}`);
     console.log(`  Sửa trong .tex: ${suaTex}`);
+    if (nhapNhang.length) {
+      console.log(`  Câu bị lặp y hệt trong .tex: ${nhapNhang.length} (đã ghi cho mọi bản)`);
+    }
+    if (khongKhop.length) {
+      console.log(`  KHÔNG khớp được trong .tex: ${khongKhop.length}`);
+      khongKhop.slice(0, 10).forEach((k) => console.log(`    id ${k.id} (lớp ${k.grade}): ${k.ly_do}`));
+      if (khongKhop.length > 10) console.log(`    ... còn ${khongKhop.length - 10} câu nữa`);
+    }
   } else {
     console.log('\nĐây là bản xem trước. Thêm --commit để ghi thật.');
     chiTiet.slice(0, 3).forEach((c) => {
