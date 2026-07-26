@@ -1,7 +1,8 @@
 """Xuất báo cáo Word tổng hợp các câu hỏi có ảnh bị lỗi đã được xử lý.
 
-Nguồn dữ liệu: tmp/bao_cao_sua_anh.json do scripts/fix_broken_image_questions.js
-sinh ra sau khi gỡ ảnh và viết lại đề bài.
+Nguồn dữ liệu: các tệp báo cáo trong tmp/ do scripts/fix_broken_image_questions.js
+và scripts/fix_all_broken_images.js sinh ra sau khi gỡ ảnh, viết lại đề bài và
+sửa đáp án.
 
 Mục đích của báo cáo: người làm đồ án rà lại được từng câu đã bị sửa, biết ảnh cũ
 sai ở đâu và đề bài mới thay thế ra sao, để quyết định có vẽ lại ảnh hay giữ
@@ -21,13 +22,31 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parent.parent
-NGUON = ROOT / "tmp" / "bao_cao_sua_anh.json"
+
+# Gộp mọi đợt xử lý: đợt đầu chỉ có lớp 1, đợt sau phủ cả 5 khối.
+NGUON = [
+    ROOT / "tmp" / "bao_cao_sua_anh.json",
+    ROOT / "tmp" / "bao_cao_sua_gop.json",
+]
 
 NHAN_LOAI = {
     "to_de_gop": "Ảnh là tờ đề gộp nhiều câu, in sẵn phương án bên trong",
     "thieu_du_kien": "Ảnh mâu thuẫn với dữ kiện của đề hoặc với đáp án đúng",
     "lech_noi_dung": "Ảnh vẽ nội dung không liên quan tới đề bài",
+    "sai_dap_an": "Ảnh dùng được nhưng đáp án lưu trong hệ thống bị sai",
 }
+
+
+def nap_nguon() -> list[dict]:
+    """Đọc và gộp các tệp báo cáo, khử trùng theo id câu hỏi."""
+    theo_id: dict[int, dict] = {}
+    for tep in NGUON:
+        if not tep.exists():
+            continue
+        for muc in json.loads(tep.read_text(encoding="utf-8")):
+            # Bản ghi của đợt sau ghi đè đợt trước vì phản ánh trạng thái mới nhất.
+            theo_id[muc["id"]] = muc
+    return list(theo_id.values())
 
 
 def dat_mau(run, mau: RGBColor) -> None:
@@ -48,10 +67,9 @@ def main() -> None:
     dich = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "outputs" / "bao_cao_cau_hoi_anh_loi.docx"
     dich.parent.mkdir(parents=True, exist_ok=True)
 
-    if not NGUON.exists():
-        raise SystemExit(f"Không tìm thấy {NGUON}. Hãy chạy fix_broken_image_questions.js trước.")
-
-    data = json.loads(NGUON.read_text(encoding="utf-8"))
+    data = nap_nguon()
+    if not data:
+        raise SystemExit("Không tìm thấy tệp báo cáo nào trong tmp/. Hãy chạy các script sửa trước.")
     doc = Document()
 
     style = doc.styles["Normal"]
@@ -63,9 +81,11 @@ def main() -> None:
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.add_run(
-        "Tài liệu này liệt kê các câu hỏi Toán lớp 1 có ảnh minh họa không dùng được, "
-        "đã được gỡ ảnh và viết lại đề bài thành dạng tự đủ nghĩa. Bộ phương án và đáp án "
-        "đúng của từng câu được giữ nguyên; đề bài mới được viết sao cho đáp án cũ vẫn đúng."
+        "Tài liệu này liệt kê các câu hỏi Toán lớp 1 đến lớp 5 có ảnh minh họa không dùng "
+        "được, đã được gỡ ảnh khỏi câu hỏi. Phần lớn câu có đề bài tự nêu đủ dữ kiện nên chỉ "
+        "cần bỏ ảnh là dùng được ngay; số còn lại được viết lại đề thành dạng tự đủ nghĩa, "
+        "giữ nguyên bộ phương án và đáp án. Riêng một số câu bị sai đáp án đã được sửa sau "
+        "khi người kiểm duyệt tự mở ảnh xác minh lại."
     )
 
     doc.add_heading("1. Tổng quan", level=1)
@@ -76,6 +96,19 @@ def main() -> None:
 
     tong_anh = sum(len(item.get("anh_da_go") or []) for item in data)
     them_dong(doc, "Số tệp ảnh đã gỡ khỏi câu hỏi", str(tong_anh))
+
+    theo_khoi = Counter(item.get("grade") or item.get("khoi") or "?" for item in data)
+    if len(theo_khoi) > 1:
+        them_dong(
+            doc,
+            "Phân bố theo khối lớp",
+            ", ".join(f"lớp {k}: {v} câu" for k, v in sorted(theo_khoi.items(), key=lambda x: str(x[0]))),
+        )
+
+    so_viet_lai = sum(1 for item in data if item.get("da_viet_lai_de"))
+    so_doi_dap_an = sum(1 for item in data if item.get("da_doi_dap_an"))
+    them_dong(doc, "Số câu phải viết lại đề bài", str(so_viet_lai))
+    them_dong(doc, "Số câu phải đổi đáp án", str(so_doi_dap_an))
 
     p = doc.add_paragraph()
     p.add_run(
@@ -131,7 +164,16 @@ def main() -> None:
             if i < len(cac_pa) - 1:
                 p.add_run("   |   ")
 
-        them_dong(doc, "Đáp án đúng", item.get("dap_an_dung", ""), xanh)
+        if item.get("da_doi_dap_an"):
+            them_dong(
+                doc,
+                "ĐÃ ĐỔI ĐÁP ÁN",
+                f'{item.get("dap_an_cu", "")} thành {item.get("dap_an_moi", "")} '
+                f'— lý do: {item.get("ly_do_doi_dap_an", "")}',
+                do,
+            )
+        else:
+            them_dong(doc, "Đáp án đúng", item.get("dap_an_moi") or item.get("dap_an_dung", ""), xanh)
         if item.get("loi_giai"):
             them_dong(doc, "Lời giải hiện có", item["loi_giai"])
 
@@ -147,8 +189,16 @@ def main() -> None:
         style="List Number",
     )
     doc.add_paragraph(
-        "Kiểm tra thêm các ảnh chưa nằm trong đợt rà soát này, vì đợt vừa rồi tập trung vào "
-        "nhóm nghi ngờ cao và mới xem 246 trong tổng số 846 ảnh của lớp 1.",
+        "Với các câu đã đổi đáp án, đối chiếu lại một lần nữa trước khi nộp đồ án. Đáp án mới "
+        "đã được người kiểm duyệt tự mở ảnh đếm lại, nhưng đây là thay đổi ảnh hưởng trực tiếp "
+        "tới kết quả chấm của học sinh.",
+        style="List Number",
+    )
+    doc.add_paragraph(
+        "Toàn bộ 3715 ảnh của lớp 1 đến lớp 5 đã được rà soát trong đợt này. Tỉ lệ lỗi không "
+        "đều giữa các khối: lớp 1 khoảng 12,4 phần trăm và lớp 3 khoảng 11,8 phần trăm, trong "
+        "khi lớp 2 chỉ 0,6 phần trăm. Điều này gợi ý ảnh được sinh theo từng đợt và có đợt "
+        "không được đối chiếu lại với đề bài.",
         style="List Number",
     )
 
