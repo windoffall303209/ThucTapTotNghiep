@@ -178,15 +178,69 @@
         state.selectedAnswer = button.dataset.answer;
         app.querySelectorAll('.answer-choice').forEach((item) => item.classList.remove('selected'));
         button.classList.add('selected');
+        saveAnswerDraft(question.id, state.selectedAnswer);
       });
     });
 
     app.querySelector('[data-free-answer-input]')?.addEventListener('input', (event) => {
       state.selectedAnswer = event.target.value;
+      saveAnswerDraft(question.id, state.selectedAnswer);
     });
+
+    restoreAnswerDraft(app, question);
 
     renderMath(app);
     refreshIcons();
+  }
+
+  function draftStorageKey(questionId) {
+    return `practice-draft:${state.practiceSessionId || 'no-session'}:${questionId}`;
+  }
+
+  function saveAnswerDraft(questionId, value) {
+    try {
+      if (value === null || value === undefined || value === '') {
+        window.sessionStorage.removeItem(draftStorageKey(questionId));
+        return;
+      }
+      window.sessionStorage.setItem(draftStorageKey(questionId), String(value));
+    } catch (error) {
+      /* Trình duyệt chặn sessionStorage (chế độ riêng tư): bỏ qua, không chặn luồng làm bài. */
+    }
+  }
+
+  function readAnswerDraft(questionId) {
+    try {
+      return window.sessionStorage.getItem(draftStorageKey(questionId));
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function clearAnswerDraft(questionId) {
+    try {
+      window.sessionStorage.removeItem(draftStorageKey(questionId));
+    } catch (error) {
+      /* Không có gì để dọn khi sessionStorage không dùng được. */
+    }
+  }
+
+  function restoreAnswerDraft(app, question) {
+    const draft = readAnswerDraft(question.id);
+    if (!draft) return;
+
+    const freeInput = app.querySelector('[data-free-answer-input]');
+    if (freeInput) {
+      freeInput.value = draft;
+      state.selectedAnswer = draft;
+      return;
+    }
+
+    const choiceButton = Array.from(app.querySelectorAll('.answer-choice'))
+      .find((button) => button.dataset.answer === draft);
+    if (!choiceButton) return;
+    choiceButton.classList.add('selected');
+    state.selectedAnswer = draft;
   }
 
   async function submitAnswer() {
@@ -241,6 +295,7 @@
     }
 
     state.answered = true;
+    clearAnswerDraft(question.id);
     markAnswerState(result);
     showResultFeedback(result);
 
