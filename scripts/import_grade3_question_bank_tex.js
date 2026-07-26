@@ -56,6 +56,7 @@ function normalizeTitle(value) {
     .replace(/\s+trang\s+\d+\s*$/i, '')
     .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .replace(/\s+/g, ' ')
+    .replace(/\s+trong\s+pham\s+vi\s+[\d\s]+$/i, '')
     .trim();
 }
 
