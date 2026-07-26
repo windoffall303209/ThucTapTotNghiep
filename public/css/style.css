@@ -1290,6 +1290,70 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
+/* Phản hồi thị giác tức thời sau khi nộp đáp án.
+   Cố ý không dùng điểm số, chuỗi ngày hay huy hiệu để giữ đúng định hướng bỏ
+   gamification của dự án: chỉ xác nhận kết quả ngay lúc đó rồi thôi. */
+.answer-choice.just-answered.correct {
+  animation: choice-correct 380ms ease-out;
+}
+
+.answer-choice.just-answered.wrong {
+  animation: choice-wrong 320ms ease-out;
+}
+
+@keyframes choice-correct {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.035);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes choice-wrong {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.answer-feedback {
+  animation: feedback-appear 260ms ease-out;
+}
+
+@keyframes feedback-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer-choice.just-answered.correct,
+  .answer-choice.just-answered.wrong,
+  .answer-feedback {
+    animation: none;
+  }
+}
+
 /* Nhắc lại đáp án đúng khi học sinh làm sai */
 .feedback-correct-answer {
   margin: 10px 0;

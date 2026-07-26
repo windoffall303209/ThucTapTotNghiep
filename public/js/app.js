@@ -550,6 +550,12 @@
       if (answer === state.selectedAnswer && !result.isCorrect) {
         button.classList.add('wrong');
       }
+      // Class này chỉ gắn ở lượt vừa nộp để chạy animation một lần. Khi học
+      // sinh quay lại xem câu cũ, renderAnsweredState() dựng lại nút mà không
+      // gắn class nên màn hình không nhấp nháy lại.
+      if (button.classList.contains('correct') || button.classList.contains('wrong')) {
+        button.classList.add('just-answered');
+      }
     });
   }
 
