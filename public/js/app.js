@@ -32,23 +32,29 @@
   // không thấy phản hồi nào nên hay bấm thêm lần nữa và tạo trùng đề.
   function initSubmitBusyForms() {
     document.querySelectorAll('[data-busy-form]').forEach((form) => {
-      form.addEventListener('submit', () => {
-        const trigger = form.querySelector('button[type="submit"]:focus')
-          || document.activeElement?.closest?.('button[type="submit"]')
+      form.addEventListener('submit', (event) => {
+        // Chặn bấm lần hai bằng cờ trên form. Tuyệt đối không dùng cách disable
+        // nút submit: nút mang cặp name/value quyết định số câu, disable nó là
+        // trình duyệt loại luôn giá trị đó khỏi dữ liệu gửi lên.
+        if (form.dataset.submitting === 'true') {
+          event.preventDefault();
+          return;
+        }
+        form.dataset.submitting = 'true';
+
+        const trigger = event.submitter
+          || form.querySelector('button[type="submit"]:focus')
           || form.querySelector('button[type="submit"]');
 
+        // Chỉ khóa các nút KHÁC nút vừa bấm. Nút vừa bấm luôn được giữ nguyên
+        // trạng thái để giá trị của nó chắc chắn đi cùng request.
         form.querySelectorAll('button[type="submit"]').forEach((button) => {
-          button.disabled = true;
+          if (button !== trigger) button.disabled = true;
         });
 
         if (trigger) {
-          // Nút submit mang giá trị name/value quyết định số câu, nên không thể
-          // disable trước khi trình duyệt thu thập dữ liệu form. Hoãn một nhịp.
-          trigger.disabled = false;
+          trigger.setAttribute('aria-busy', 'true');
           setButtonBusy(trigger, form.dataset.busyLabel || 'Đang xử lý...');
-          window.setTimeout(() => {
-            trigger.disabled = true;
-          }, 0);
         }
       });
     });

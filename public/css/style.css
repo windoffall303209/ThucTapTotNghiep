@@ -1290,6 +1290,13 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
+/* Nút đang gửi form: chặn bấm lại bằng con trỏ mà không dùng thuộc tính
+   disabled, vì disable nút submit sẽ làm mất cặp name/value của nó. */
+.btn[aria-busy="true"] {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
 /* Phản hồi thị giác tức thời sau khi nộp đáp án.
    Cố ý không dùng điểm số, chuỗi ngày hay huy hiệu để giữ đúng định hướng bỏ
    gamification của dự án: chỉ xác nhận kết quả ngay lúc đó rồi thôi. */
