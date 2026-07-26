@@ -18,6 +18,9 @@
   --muted-2: #94a3b8;
   --line: #dbe4ef;
   --line-strong: #cbd5e1;
+  /* Bí danh của --line: một số khối viết sau này dùng tên --border-color nhưng
+     biến chưa từng được khai báo, khiến viền rơi về màu mặc định (đen). */
+  --border-color: var(--line);
   --surface: #ffffff;
   --surface-soft: #f8fafc;
   --surface-blue: #f4f8ff;
@@ -2046,8 +2049,7 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
 .question-image-row,
 .explanation-image-row,
 .theory-image-row,
-.choice-image-row,
-.choice-image-thumbs {
+.choice-image-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
@@ -2055,14 +2057,11 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
   margin-top: 12px;
 }
 
-.saved-question-images .question-image,
-.question-image-row .question-image,
-.explanation-image-row .question-image,
-.theory-image-row .question-image,
-.choice-image-row .question-image,
-.choice-image-thumbs .question-image {
-  max-width: none !important;
-}
+/* KHÔNG ép max-width: none !important cho .question-image trong các hàng ảnh.
+   renderImageNode() gắn max-width theo width_percent mà admin đặt cho từng ảnh;
+   luật !important cũ đè lên inline style nên mọi ảnh luôn chiếm hết ô bất kể
+   admin thu nhỏ bao nhiêu. (Nhóm selector .choice-image-thumbs cũ cũng đã bỏ vì
+   không còn markup nào dùng tới class đó.) */
 
 .saved-question-layout {
   margin-top: 10px;
@@ -3602,8 +3601,24 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
     align-items: stretch;
   }
 
-  .admin-sidebar-footer {
+  /* Trên màn hẹp chỉ giấu phần tên và chức danh cho gọn, KHÔNG giấu cả footer:
+     footer chứa nút Đăng xuất, ẩn nó là admin dùng điện thoại bị kẹt trong
+     phiên đăng nhập vì không còn lối thoát nào trên giao diện. */
+  .admin-sidebar-footer > div {
     display: none;
+  }
+
+  .admin-sidebar-footer {
+    padding: 6px 0 0;
+  }
+
+  .admin-sidebar-footer form {
+    width: 100%;
+  }
+
+  .admin-sidebar-footer .nav-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .lesson-row,

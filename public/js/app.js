@@ -1714,24 +1714,9 @@
     }
   }
 
-  function renderTheoryCardPreview(card) {
-    const imagesHtml = (card.images || []).map((image) => `
-      <span class="question-image">
-        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || 'Hình minh họa lý thuyết')}">
-      </span>
-    `).join('');
-
-    return `
-      <article class="theory-preview-card">
-        <span class="card-index">Xem trước</span>
-        <h2>${escapeHtml(card.title || '')}</h2>
-        <div class="theory-body">${escapeHtml(card.body || '')}</div>
-        ${imagesHtml ? `<div class="theory-image-row">${imagesHtml}</div>` : ''}
-        ${card.example ? `<p class="muted">${escapeHtml(card.example)}</p>` : ''}
-      </article>
-    `;
-  }
-
+  // Chỉ có MỘT bản renderTheoryCardPreview. Trước đây file có hai bản trùng tên,
+  // bản khai báo sau (bản đầy đủ, có layout và grid) đè bản trước theo cơ chế
+  // hoisting nên bản trước là code chết và đã được xóa.
   function renderTheoryCardPreview(card) {
     const imagesHtml = (card.images || []).map((image) => `
       <span class="question-image">
@@ -1877,55 +1862,10 @@
     });
   }
 
-  function initQuestionFlowSteps() {
-    const flow = document.querySelector('[data-question-flow]');
-    if (!flow) return;
-
-    const steps = Array.from(flow.querySelectorAll('[data-flow-step]'));
-    const backButton = flow.querySelector('[data-flow-back]');
-    const titleNode = flow.querySelector('[data-flow-title]');
-    const subtitleNode = flow.querySelector('[data-flow-subtitle]');
-    const history = ['books'];
-
-    const showStep = (stepId, shouldPush = true) => {
-      const step = steps.find((item) => item.dataset.flowStep === stepId);
-      if (!step) return;
-
-      steps.forEach((item) => item.classList.toggle('is-active', item === step));
-      if (shouldPush && history[history.length - 1] !== stepId) {
-        history.push(stepId);
-      }
-
-      if (titleNode) titleNode.textContent = step.dataset.flowTitle || 'Ngân hàng câu hỏi';
-      if (subtitleNode) subtitleNode.textContent = step.dataset.flowSubtitle || '';
-      if (backButton) backButton.hidden = history.length <= 1;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      loadLessonQuestions(step);
-      loadLessonTheory(step);
-      step.querySelectorAll('.math-content:not(.math-lazy)').forEach((node) => renderMath(node));
-      initLazyMath(step);
-      refreshIcons();
-    };
-
-    flow.querySelectorAll('[data-flow-target]').forEach((button) => {
-      button.addEventListener('click', () => showStep(button.dataset.flowTarget));
-    });
-
-    backButton?.addEventListener('click', () => {
-      if (history.length <= 1) return;
-      history.pop();
-      showStep(history[history.length - 1], false);
-    });
-  }
-
-  async function loadLessonQuestions(step) {
-    const shell = step.querySelector('[data-lesson-questions]');
-    if (!shell || shell.dataset.loading === 'true') return;
-
-    const page = Number(shell.dataset.currentPage || 1);
-    if (shell.dataset.loadedPage === String(page)) return;
-    await fetchLessonQuestions(shell, page);
-  }
+  // Luong "flow-step" cu (initQuestionFlowSteps / loadLessonQuestions) da bi go:
+  // khong con view nao co [data-question-flow] nen toan bo nhanh nay la code chet.
+  // fetchLessonQuestions / fetchLessonTheory ben duoi van song vi trang admin goi
+  // truc tiep khi mo tung bai.
 
   async function fetchLessonQuestions(shell, page = 1) {
     if (!shell || shell.dataset.loading === 'true') return;
@@ -2014,13 +1954,6 @@
     } finally {
       delete shell.dataset.loading;
     }
-  }
-
-  async function loadLessonTheory(step) {
-    const shell = step.querySelector('[data-lesson-theory]');
-    if (!shell || shell.dataset.loaded === 'true' || shell.dataset.loading === 'true') return;
-
-    await fetchLessonTheory(shell);
   }
 
   async function fetchLessonTheory(shell) {
