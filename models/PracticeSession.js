@@ -138,16 +138,17 @@ async function createSession({
   }
 }
 
-async function getActiveLessonSession(studentId, lessonId) {
+async function getActiveLessonSession(studentId, lessonId, mode = 'LESSON') {
   await ensureSchema();
+  const sessionMode = ['REVIEW', 'LESSON'].includes(mode) ? mode : 'LESSON';
   try {
     const rows = await db.query(
       `SELECT *
        FROM PracticeSessions
-       WHERE student_id = ? AND lesson_id = ? AND session_mode = 'LESSON' AND status = 'IN_PROGRESS'
+       WHERE student_id = ? AND lesson_id = ? AND session_mode = ? AND status = 'IN_PROGRESS'
        ORDER BY started_at DESC
        LIMIT 1`,
-      [studentId, lessonId]
+      [studentId, lessonId, sessionMode]
     );
     return hydrateSessionFromLogs(normalizeSession(rows[0]));
   } catch (error) {
@@ -156,7 +157,7 @@ async function getActiveLessonSession(studentId, lessonId) {
       .filter((session) =>
         Number(session.student_id) === Number(studentId)
         && Number(session.lesson_id) === Number(lessonId)
-        && session.session_mode === 'LESSON'
+        && session.session_mode === sessionMode
         && session.status === 'IN_PROGRESS'
       )
       .at(-1) || null;
