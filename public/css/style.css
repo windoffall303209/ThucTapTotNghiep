@@ -1400,6 +1400,59 @@ tbody tr:last-child td {
   font-weight: 700;
 }
 
+/* ---------------------------------------------------------------------------
+   Phân tầng giao diện theo khối lớp
+
+   Học sinh lớp 1-2 mới biết đọc, mắt và ngón tay đều cần khoảng rộng hơn so
+   với lớp 3-5. Các quy tắc dưới đây chỉ tăng cỡ chữ và vùng chạm, không đổi
+   bố cục, nên mọi trang đang có vẫn giữ nguyên cấu trúc.
+   ------------------------------------------------------------------------- */
+body[data-grade="1"],
+body[data-grade="2"] {
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+body[data-grade="1"] .question-content,
+body[data-grade="2"] .question-content {
+  font-size: clamp(21px, 2.4vw, 27px);
+  line-height: 1.85;
+}
+
+body[data-grade="1"] .answer-choice,
+body[data-grade="2"] .answer-choice {
+  grid-template-columns: 46px minmax(0, 1fr);
+  min-height: 76px;
+  padding: 16px;
+  font-size: 1.05em;
+}
+
+body[data-grade="1"] .btn,
+body[data-grade="2"] .btn {
+  min-height: 54px;
+  padding: 0 22px;
+  font-size: 1.02em;
+}
+
+body[data-grade="1"] .progress-dot,
+body[data-grade="2"] .progress-dot {
+  width: 48px;
+  height: 48px;
+  font-size: 1.05em;
+}
+
+body[data-grade="1"] .free-answer-input,
+body[data-grade="2"] .free-answer-input {
+  min-height: 66px;
+  font-size: 1.15em;
+}
+
+/* Lớp 1-2 chỉ hiển thị một đáp án mỗi hàng cho dễ đọc và dễ chạm. */
+body[data-grade="1"] .answer-grid:not(.answer-grid-image-choices),
+body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
+  grid-template-columns: 1fr;
+}
+
 /* Thanh điều hướng dưới màn hình, chỉ dùng cho học sinh trên thiết bị hẹp */
 .bottom-nav {
   display: none;
