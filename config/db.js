@@ -92,9 +92,18 @@ function isDatabaseConnected() {
   return connected;
 }
 
+async function close() {
+  if (pool) {
+    await pool.end();
+    pool = null;
+  }
+  connected = false;
+}
+
 module.exports = {
   query,
   transaction,
   testConnection,
-  isDatabaseConnected
+  isDatabaseConnected,
+  close
 };
