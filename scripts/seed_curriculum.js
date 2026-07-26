@@ -24,8 +24,8 @@ async function main() {
 
     for (const chapter of items) {
       const [chapterResult] = await connection.execute(
-        'INSERT INTO Chapters (grade, chapter_name, sort_order) VALUES (?, ?, ?)',
-        [chapter.grade, chapter.name, chapter.sortOrder]
+        'INSERT INTO Chapters (grade, semester, chapter_name, sort_order) VALUES (?, ?, ?, ?)',
+        [chapter.grade, chapter.semester, chapter.name, chapter.sortOrder]
       );
 
       for (const lesson of chapter.lessons) {
@@ -56,6 +56,7 @@ function parseCurriculum(rawText) {
   const lines = rawText.split(/\r?\n/);
   const chapters = [];
   let currentGrade = null;
+  let currentSemester = null;
   let currentChapter = null;
   let chapterOrderByGrade = new Map();
 
@@ -66,6 +67,7 @@ function parseCurriculum(rawText) {
     const gradeMatch = trimmed.match(/^LỚP\s+(\d+)/i);
     if (gradeMatch) {
       currentGrade = Number(gradeMatch[1]);
+      currentSemester = null;
       currentChapter = null;
       if (!chapterOrderByGrade.has(currentGrade)) {
         chapterOrderByGrade.set(currentGrade, 0);
@@ -74,6 +76,16 @@ function parseCurriculum(rawText) {
     }
 
     if (!currentGrade) continue;
+
+    if (/tập\s*1/i.test(trimmed)) {
+      currentSemester = 1;
+      continue;
+    }
+
+    if (/tập\s*2/i.test(trimmed)) {
+      currentSemester = 2;
+      continue;
+    }
 
     const lessonMatch = trimmed.match(/^\+\s*(.+)$/);
     if (lessonMatch && currentChapter) {
@@ -89,6 +101,7 @@ function parseCurriculum(rawText) {
       chapterOrderByGrade.set(currentGrade, currentOrder);
       currentChapter = {
         grade: currentGrade,
+        semester: currentSemester,
         name: normalizeName(trimmed),
         sortOrder: currentOrder,
         lessons: []
@@ -97,7 +110,26 @@ function parseCurriculum(rawText) {
     }
   }
 
-  return chapters.filter((chapter) => isSupportedGrade(chapter.grade) && chapter.lessons.length > 0);
+  const supportedChapters = chapters.filter(
+    (chapter) => isSupportedGrade(chapter.grade) && chapter.lessons.length > 0
+  );
+  assignMissingSemesters(supportedChapters);
+  return supportedChapters;
+}
+
+function assignMissingSemesters(chapters) {
+  const grades = [...new Set(chapters.map((chapter) => chapter.grade))];
+  grades.forEach((grade) => {
+    const gradeChapters = chapters
+      .filter((chapter) => chapter.grade === grade)
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+    const firstSemesterCount = Math.ceil(gradeChapters.length / 2);
+    gradeChapters.forEach((chapter, index) => {
+      if (![1, 2].includes(chapter.semester)) {
+        chapter.semester = index < firstSemesterCount ? 1 : 2;
+      }
+    });
+  });
 }
 
 function normalizeName(value) {
@@ -115,4 +147,11 @@ function defaultTheoryCards(lessonName) {
   ];
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  parseCurriculum,
+  assignMissingSemesters
+};

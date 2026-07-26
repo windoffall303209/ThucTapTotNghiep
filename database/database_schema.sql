@@ -59,6 +59,7 @@ CREATE INDEX idx_students_current_grade ON Students(current_grade);
 CREATE TABLE Chapters (
     id INT AUTO_INCREMENT PRIMARY KEY,
     grade INT NOT NULL CHECK (grade BETWEEN 1 AND 5),
+    semester TINYINT NOT NULL DEFAULT 1 CHECK (semester IN (1, 2)),
     chapter_name VARCHAR(255) NOT NULL,
     sort_order INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -66,6 +67,7 @@ CREATE TABLE Chapters (
 
 CREATE INDEX idx_chapters_grade ON Chapters(grade);
 CREATE INDEX idx_chapters_grade_sort ON Chapters(grade, sort_order, id);
+CREATE INDEX idx_chapters_grade_semester_sort ON Chapters(grade, semester, sort_order, id);
 
 -- 5. Table: Lessons (Quản lý Bài học)
 CREATE TABLE Lessons (

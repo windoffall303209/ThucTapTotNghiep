@@ -15,6 +15,7 @@ const chapters = [
   {
     id: 1,
     grade: 1,
+    semester: 1,
     chapter_name: 'Chủ đề 1. Các số đến 10',
     sort_order: 1,
     lessons: [
@@ -43,6 +44,7 @@ const chapters = [
   {
     id: 2,
     grade: 2,
+    semester: 1,
     chapter_name: 'Chủ đề 2. Phép cộng và phép trừ trong phạm vi 100',
     sort_order: 1,
     lessons: [
@@ -65,6 +67,7 @@ const chapters = [
   {
     id: 3,
     grade: 4,
+    semester: 2,
     chapter_name: 'Chủ đề 3. Phân số',
     sort_order: 1,
     lessons: [
@@ -110,6 +113,7 @@ const chapters = [
   {
     id: 4,
     grade: 5,
+    semester: 1,
     chapter_name: 'Chủ đề 2. Các phép tính với số thập phân',
     sort_order: 1,
     lessons: [

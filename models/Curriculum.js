@@ -22,7 +22,7 @@ async function getCurriculumByGrade(grade) {
 
   try {
     const chapters = await db.query(
-      `SELECT id, grade, chapter_name, sort_order
+      `SELECT id, grade, semester, chapter_name, sort_order
        FROM Chapters
        WHERE grade = ?
        ORDER BY sort_order, id`,
@@ -66,6 +66,7 @@ async function getAllLessons(options = {}) {
           c.id AS chapter_id,
           c.chapter_name,
           c.grade,
+          c.semester,
           c.sort_order AS chapter_sort_order
        FROM Lessons l
        JOIN Chapters c ON c.id = l.chapter_id
