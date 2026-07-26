@@ -1294,6 +1294,12 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
+/* Hộp báo lỗi khi biểu mẫu soạn câu hỏi chưa hợp lệ. Hiện ngay trong form để
+   người biên soạn không mất nội dung đang gõ vì trang bị tải lại. */
+.form-error-box {
+  margin: 0 0 14px;
+}
+
 /* Nút đang gửi form: chặn bấm lại bằng con trỏ mà không dùng thuộc tính
    disabled, vì disable nút submit sẽ làm mất cặp name/value của nó. */
 .btn[aria-busy="true"] {

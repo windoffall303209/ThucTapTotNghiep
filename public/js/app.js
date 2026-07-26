@@ -28,6 +28,7 @@
     initQuestionEditLoaders();
     initLazyMath();
     initSubmitBusyForms();
+    initQuestionFormGuards();
   });
 
   // Form tạo đề gửi đi bằng POST rồi tải lại cả trang. Trong lúc chờ, học sinh
@@ -865,6 +866,7 @@
 
         form.dataset.questionPreviewReady = 'true';
         initQuestionPreviewForm(form);
+        initQuestionFormGuards(form.parentElement || document);
       });
       return;
     }
@@ -961,6 +963,105 @@
     });
     form.addEventListener?.('reset', () => window.setTimeout(updatePreview, 0));
     updatePreview();
+  }
+
+  // Kiểm tra biểu mẫu câu hỏi ngay trên trình duyệt, phản chiếu đúng các quy tắc
+  // của validateQuestionBody ở controllers/AdminController.js. Mục đích không phải
+  // thay thế kiểm tra phía server mà là chặn vòng gửi đi rồi chuyển hướng, vì
+  // chuyển hướng làm mất trắng toàn bộ nội dung đang soạn và cả các tệp ảnh đã
+  // chọn (trình duyệt không cho phép nạp lại giá trị của input type=file).
+  const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
+
+  function initQuestionFormGuards(root = document) {
+    root.querySelectorAll('[data-question-preview-form]:not([data-question-guard-ready])').forEach((form) => {
+      form.dataset.questionGuardReady = 'true';
+      form.addEventListener('submit', (event) => {
+        const message = validateQuestionForm(form);
+        if (!message) {
+          clearFormError(form);
+          return;
+        }
+        event.preventDefault();
+        showFormError(form, message);
+      });
+    });
+  }
+
+  function countChoiceImages(form, key) {
+    const existingInput = form.querySelector(`[data-preview-choice-existing-images="${key}"]`);
+    const existing = parsePreviewImages(existingInput?.value)
+      .filter((image) => !isImageMarkedForRemoval(form, `remove_choice_images_${key}`, image));
+    const uploads = form.querySelector(`[data-preview-choice-images="${key}"]`)?.files?.length || 0;
+    return existing.length + uploads;
+  }
+
+  function validateQuestionForm(form) {
+    const questionType = form.querySelector('[data-question-type], [name="question_type"]')?.value
+      || 'MULTIPLE_CHOICE';
+    const authoringMode = form.querySelector('[name="authoring_mode"]')?.value || 'fields';
+    const gridLayout = parseGridLayoutValue(form.querySelector('[data-grid-layout-input]')?.value);
+    const hasGrid = authoringMode === 'canvas' && gridLayout.enabled;
+    const contentText = String(form.querySelector('[data-preview-content]')?.value || '').trim();
+
+    if (!contentText && !hasGrid) {
+      return 'Chưa có đề bài. Em hãy nhập nội dung đề bài trước khi lưu.';
+    }
+
+    const correctAnswer = String(form.querySelector('[name="correct_answer"]:not([disabled])')?.value || '').trim();
+    const freeAnswer = String(form.querySelector('[name="correct_answer_free"]:not([disabled])')?.value || '').trim();
+
+    if (questionType === 'FILL_IN_THE_BLANK') {
+      if (!freeAnswer) return 'Chưa nhập đáp án đúng cho dạng điền khuyết.';
+      return null;
+    }
+
+    if (!correctAnswer) return 'Chưa chọn đáp án đúng cho câu hỏi.';
+
+    // Lưới canvas có thể tự chứa các ô đáp án, khi đó không cần bốn phương án rời.
+    const gridAnswerKeys = new Set(
+      (gridLayout.cells || [])
+        .filter((cell) => cell.type === 'answer' && cell.answer_key)
+        .map((cell) => String(cell.answer_key).toUpperCase())
+    );
+    if (hasGrid && gridAnswerKeys.size >= 2 && gridAnswerKeys.has(correctAnswer.toUpperCase())) {
+      return null;
+    }
+
+    const thieu = ANSWER_KEYS.filter((key) => {
+      const text = String(form.querySelector(`[data-preview-choice="${key}"]`)?.value || '').trim();
+      return !text && countChoiceImages(form, key) === 0;
+    });
+    if (thieu.length > 0) {
+      return `Phương án ${thieu.join(', ')} còn trống. Mỗi phương án cần có nội dung chữ hoặc ảnh minh họa.`;
+    }
+
+    const layout = form.querySelector('[name="layout_variant"], [data-layout-variant], [name="layout_template"]')?.value;
+    if (layout === 'IMAGE_IN_CHOICES'
+      && ANSWER_KEYS.every((key) => countChoiceImages(form, key) === 0)) {
+      return 'Bố cục ảnh trong đáp án cần có ít nhất một ảnh ở các phương án.';
+    }
+
+    return null;
+  }
+
+  function showFormError(form, message) {
+    let box = form.querySelector('[data-form-error]');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'flash flash-danger form-error-box';
+      box.setAttribute('role', 'alert');
+      box.dataset.formError = 'true';
+      const anchor = form.querySelector('.form-actions') || form.firstElementChild;
+      form.insertBefore(box, anchor);
+    }
+    box.textContent = message;
+    box.hidden = false;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearFormError(form) {
+    const box = form.querySelector('[data-form-error]');
+    if (box) box.hidden = true;
   }
 
   function initQuestionTypeControls(form, updatePreview) {
@@ -1833,6 +1934,7 @@
       initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
       initQuestionEditLoaders(shell);
+      initQuestionFormGuards(shell);
       initLazyMath(shell);
       bindQuestionPagination(shell);
       refreshIcons();
@@ -1883,6 +1985,7 @@
       initAuthoringModeControls(shell);
       initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
+      initQuestionFormGuards(shell);
       initLazyMath(shell);
       refreshIcons();
     } catch (error) {
