@@ -1,10 +1,10 @@
 <section class="practice-shell <%= Number(student.current_grade) >= 3 ? '' : 'practice-shell-no-chat' %>" data-session-id="<%= session?.id || '' %>">
   <div class="practice-main">
     <div class="practice-topline">
-      <% if (session?.session_mode === 'EXAM') { %>
+      <% if (['CHAPTER', 'COMPREHENSIVE'].includes(session?.session_mode)) { %>
         <a class="back-link" href="/student/exams">
           <i data-lucide="arrow-left" class="lucide-icon"></i>
-          Về luyện đề
+          Về chọn phạm vi
         </a>
       <% } else { %>
         <a class="back-link" href="/student/lessons/<%= lesson.id %>">

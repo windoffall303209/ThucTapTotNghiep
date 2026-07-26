@@ -48,10 +48,18 @@
     <h1><%= lesson.lesson_name %></h1>
     <p>Đọc từng thẻ theo thứ tự, quan sát hình nếu có rồi luyện tập để hệ thống ghi nhận phần em đã hiểu.</p>
   </div>
-  <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
-    <i data-lucide="play-circle" class="lucide-icon"></i>
-    Bắt đầu luyện tập
-  </a>
+  <div class="row-actions">
+    <% if (Number(reviewQuestionCount || 0) > 0) { %>
+      <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>/review">
+        <i data-lucide="clipboard-check" class="lucide-icon"></i>
+        Ôn nhanh <%= reviewQuestionCount %> câu
+      </a>
+    <% } %>
+    <a class="btn btn-primary" href="/student/lessons/<%= lesson.id %>/practice">
+      <i data-lucide="shuffle" class="lucide-icon"></i>
+      Luyện 5 câu ngẫu nhiên
+    </a>
+  </div>
 </section>
 
 <section class="learning-summary">

@@ -1,35 +1,87 @@
 <section class="workspace-head">
   <div>
-    <p class="eyebrow">Luyện đề</p>
-    <h1>Tạo đề luyện ngẫu nhiên</h1>
-    <p>Chọn số câu phù hợp với thời gian của em. Mỗi đề sẽ được lưu để có thể tiếp tục sau.</p>
+    <p class="eyebrow">Luyện tập</p>
+    <h1>Chọn phạm vi em muốn ôn</h1>
+    <p>Câu hỏi được chọn ngẫu nhiên và phân bổ đều giữa các bài. Em tự chọn nội dung cần ôn, không phụ thuộc vào lịch sử học trên website.</p>
   </div>
 </section>
 
-<section class="exam-picker info-panel">
-  <div class="section-title">
-    <i data-lucide="sliders-horizontal" class="lucide-icon"></i>
-    Chọn độ dài đề
-  </div>
-  <form class="exam-limit-form" action="/student/exams/start" method="post">
-    <% limits.forEach((limit) => { %>
-      <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
-        <i data-lucide="file-question" class="lucide-icon"></i>
-        <%= limit %> câu
-      </button>
-    <% }) %>
-  </form>
+<section class="card-list">
+  <article class="activity-card">
+    <span class="status-pill status-new">5 câu</span>
+    <h2>Luyện tập theo bài học</h2>
+    <p class="muted">Chọn một bài trên bảng học tập. Hệ thống lấy ngẫu nhiên 5 câu ngoài phần ôn nhanh sau lý thuyết.</p>
+    <div class="row-actions">
+      <a class="btn btn-primary" href="/student/dashboard">
+        <i data-lucide="book-open" class="lucide-icon"></i>
+        Chọn bài học
+      </a>
+    </div>
+  </article>
+
+  <article class="activity-card">
+    <span class="status-pill status-new">15 hoặc 20 câu</span>
+    <h2>Luyện tập theo chương</h2>
+    <p class="muted">Câu hỏi được phủ lần lượt qua các bài trong chương, tránh tập trung quá nhiều vào một bài.</p>
+    <form class="stack-form" action="/student/exams/start" method="post">
+      <input type="hidden" name="mode" value="chapter">
+      <label>
+        Chương muốn luyện
+        <select name="chapter_id" required>
+          <option value="">Chọn một chương</option>
+          <% (chapters || []).forEach((chapter) => { %>
+            <option value="<%= chapter.id %>">
+              Học kỳ <%= Number(chapter.semester) === 1 ? 'I' : 'II' %> · <%= chapter.chapter_name %>
+            </option>
+          <% }) %>
+        </select>
+      </label>
+      <div class="row-actions">
+        <% limits.forEach((limit) => { %>
+          <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
+            <i data-lucide="file-question" class="lucide-icon"></i>
+            Tạo đề <%= limit %> câu
+          </button>
+        <% }) %>
+      </div>
+    </form>
+  </article>
+
+  <article class="activity-card">
+    <span class="status-pill status-new">15 hoặc 20 câu</span>
+    <h2>Luyện tập tổng hợp</h2>
+    <p class="muted">Ôn nhiều chương trong học kỳ I, học kỳ II hoặc toàn bộ chương trình của lớp hiện tại.</p>
+    <form class="stack-form" action="/student/exams/start" method="post">
+      <input type="hidden" name="mode" value="comprehensive">
+      <label>
+        Phạm vi tổng hợp
+        <select name="scope" required>
+          <option value="semester-1">Học kỳ I</option>
+          <option value="semester-2">Học kỳ II</option>
+          <option value="year">Cả năm</option>
+        </select>
+      </label>
+      <div class="row-actions">
+        <% limits.forEach((limit) => { %>
+          <button class="btn btn-primary" type="submit" name="count" value="<%= limit %>">
+            <i data-lucide="shuffle" class="lucide-icon"></i>
+            Tạo đề <%= limit %> câu
+          </button>
+        <% }) %>
+      </div>
+    </form>
+  </article>
 </section>
 
 <section class="table-section">
   <div class="section-title">
     <i data-lucide="play-circle" class="lucide-icon"></i>
-    Đề đang làm dở
+    Bài đang làm dở
   </div>
 
   <% if (!sessions || sessions.length === 0) { %>
     <div class="empty-state compact">
-      <p>Không có đề nào đang làm dở. Hãy tạo đề mới bằng một trong các nút phía trên.</p>
+      <p>Không có bài nào đang làm dở. Em có thể chọn một phạm vi ở phía trên để bắt đầu.</p>
     </div>
   <% } else { %>
     <div class="card-list">

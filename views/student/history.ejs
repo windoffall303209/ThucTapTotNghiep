@@ -13,7 +13,7 @@
   </div>
   <a class="btn btn-primary" href="/student/exams">
     <i data-lucide="clipboard-list" class="lucide-icon"></i>
-    Tạo đề luyện mới
+    Tạo bài luyện mới
   </a>
 </section>
 
@@ -41,7 +41,15 @@
               <span class="status-pill status-in-progress">Đang làm dở</span>
             <% } %>
             <span class="status-pill status-new">
-              <%= session.session_mode === 'EXAM' ? 'Luyện đề' : session.session_mode === 'LEGACY' ? 'Luyện tập cũ' : 'Luyện bài' %>
+              <%= session.session_mode === 'CHAPTER'
+                ? 'Theo chương'
+                : session.session_mode === 'COMPREHENSIVE'
+                  ? 'Tổng hợp'
+                  : session.session_mode === 'REVIEW'
+                    ? 'Ôn lý thuyết'
+                    : session.session_mode === 'LEGACY'
+                      ? 'Luyện tập cũ'
+                      : 'Theo bài' %>
             </span>
           </div>
           <h2><%= session.title %></h2>
