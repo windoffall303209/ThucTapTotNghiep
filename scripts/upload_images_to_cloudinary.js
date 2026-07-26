@@ -6,9 +6,8 @@
  * 4786 tệp ảnh chỉ tồn tại trên máy đang phát triển. Máy hỏng hoặc clone repo ở
  * nơi khác là mất toàn bộ phần hình của ngân hàng câu hỏi.
  *
- * Ảnh được đưa qua Cloudinary với chuyển đổi sang WebP và giới hạn chiều rộng,
- * vì ảnh gốc là PNG khoảng 1500x1000 nặng trung bình 740 KB cho tranh minh họa
- * phẳng, tổng cộng 3,38 GB.
+ * Ảnh được tải lên NGUYÊN GỐC, không nén và không thu nhỏ. Phần tối ưu chuyển
+ * sang làm lúc phục vụ, xem chú thích ở hằng TRANSFORMATION bên dưới.
  *
  * Dùng:
  *   node scripts/upload_images_to_cloudinary.js --limit 5     -> thử 5 ảnh
@@ -34,9 +33,27 @@ const COMMIT = process.argv.includes('--commit');
 const limitArg = process.argv.indexOf('--limit');
 const LIMIT = limitArg !== -1 ? Number(process.argv[limitArg + 1]) : Infinity;
 
-// Ảnh minh họa phẳng nên WebP giảm rất mạnh mà mắt thường không thấy khác. Giới
-// hạn 1200px vì giao diện học sinh hiển thị tối đa khoảng 700px.
-const TRANSFORMATION = [{ width: 1200, crop: 'limit', quality: 'auto:good', fetch_format: 'webp' }];
+/**
+ * KHÔNG biến đổi ảnh khi tải lên. Bản lưu trên Cloudinary giữ nguyên độ phân giải
+ * và chất lượng gốc.
+ *
+ * Ban đầu script có nén sang WebP 1200px để tiết kiệm dung lượng (giảm khoảng
+ * 92%), nhưng đó là tối ưu sai chỗ: tài khoản mới dùng 1,72% trong 25 credits nên
+ * dung lượng không phải thứ cần tiết kiệm, còn ảnh gốc thì nén rồi không lấy lại
+ * được. Với ngân hàng câu hỏi của một đồ án thì bản gốc quan trọng hơn.
+ *
+ * Việc tối ưu chuyển sang làm lúc PHỤC VỤ: đường dẫn hiển thị chèn f_auto,q_auto
+ * để Cloudinary tự chọn định dạng nhẹ nhất mà trình duyệt của học sinh hỗ trợ,
+ * trong khi bản gốc vẫn nằm nguyên trên máy chủ và lấy về được bất cứ lúc nào.
+ */
+const TRANSFORMATION = undefined;
+
+// Chèn vào giữa "/upload/" và phần còn lại của đường dẫn để lấy bản đã tối ưu.
+const DELIVERY_HINT = 'f_auto,q_auto';
+
+function duongDanToiUu(secureUrl) {
+  return secureUrl.replace('/image/upload/', `/image/upload/${DELIVERY_HINT}/`);
+}
 
 function parseJson(value, fallback) {
   if (value === null || value === undefined) return fallback;
@@ -128,8 +145,8 @@ async function main() {
   }
 
   if (!COMMIT) {
-    const tong = saoChep.reduce((sum, url) => sum + fs.statSync(duongDanCucBo(url)).size, 0);
-    console.log(`  Dung lượng gốc:         ${(tong / 1024 / 1024 / 1024).toFixed(2)} GB`);
+    const tongXemTruoc = saoChep.reduce((sum, url) => sum + fs.statSync(duongDanCucBo(url)).size, 0);
+    console.log(`  Dung lượng gốc:         ${(tongXemTruoc / 1024 / 1024 / 1024).toFixed(2)} GB`);
     console.log('\nĐây là bản xem trước. Thêm --commit để đẩy thật.');
     return;
   }
@@ -147,13 +164,16 @@ async function main() {
       const goc = fs.statSync(filePath).size;
       const result = await cloudinary.uploader.upload(filePath, {
         public_id: publicIdTu(url),
-        overwrite: false,
+        overwrite: true,
         resource_type: 'image',
         transformation: TRANSFORMATION
       });
 
       map[url] = {
+        // Bản gốc, dùng khi cần lấy lại đúng chất lượng ban đầu.
         secure_url: result.secure_url,
+        // Bản để nhúng vào trang, Cloudinary tự tối ưu theo trình duyệt.
+        delivery_url: duongDanToiUu(result.secure_url),
         public_id: result.public_id,
         bytes: result.bytes,
         format: result.format,
