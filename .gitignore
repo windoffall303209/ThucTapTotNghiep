@@ -68,6 +68,9 @@ Desktop.ini
 *.sln
 *.sw?
 output/
+outputs/
+tmp/
+$texOut/
 # 
 PhanTichNghiepVu.md
 KeHoachThucHien.md
