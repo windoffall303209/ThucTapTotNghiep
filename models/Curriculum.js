@@ -287,6 +287,23 @@ async function getLessonById(id) {
   }
 }
 
+async function getChapterById(id) {
+  try {
+    const rows = await db.query(
+      `SELECT id, grade, semester, chapter_name, sort_order
+       FROM Chapters
+       WHERE id = ?
+       LIMIT 1`,
+      [id]
+    );
+    return rows[0] || null;
+  } catch (error) {
+    return sampleData.chapters.find(
+      (chapter) => Number(chapter.id) === Number(id)
+    ) || null;
+  }
+}
+
 async function getProgress(studentId, grade) {
   try {
     const rows = await db.query(
@@ -489,6 +506,7 @@ module.exports = {
   getAllLessons,
   getTheoryCounts,
   getLessonById,
+  getChapterById,
   updateLessonTheoryCards,
   getProgress,
   getRecommendation,
