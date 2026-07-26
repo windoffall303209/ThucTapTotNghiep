@@ -21,6 +21,11 @@ from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, RGBColor
 
+# Console Windows mặc định dùng bảng mã cp1252, in tiếng Việt sẽ ném
+# UnicodeEncodeError sau khi tệp đã ghi xong, trông như script chạy hỏng.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parent.parent
 
 # Gộp mọi đợt xử lý: đợt đầu chỉ có lớp 1, đợt sau phủ cả 5 khối.
