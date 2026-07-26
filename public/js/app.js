@@ -327,11 +327,16 @@
   }
 
   // Dựng lại giao diện câu đã nộp: khóa lựa chọn, tô đúng/sai và nhắc lại kết quả.
+  // Đáp án đúng và lời giải đọc từ savedResult chứ KHÔNG từ question: dữ liệu câu
+  // hỏi nhúng trong trang đã bị cắt hết đáp án để học sinh không View Source ra
+  // được; server chỉ gửi kèm đáp án cho những câu các em đã nộp.
   function renderAnsweredState(app, question, savedResult) {
     app.querySelectorAll('.answer-choice').forEach((button) => {
       button.disabled = true;
       const answer = button.dataset.answer;
-      if (answer === question.correct_answer) button.classList.add('correct');
+      if (savedResult.correctAnswer && answer === savedResult.correctAnswer) {
+        button.classList.add('correct');
+      }
       if (answer === savedResult.selectedAnswer && !savedResult.isCorrect) {
         button.classList.add('wrong');
       }
@@ -349,11 +354,11 @@
       `
         <h2>${savedResult.isCorrect ? 'Câu này em đã làm đúng' : 'Câu này em đã làm sai'}</h2>
         <p>Em chọn: <strong>${escapeHtml(savedResult.selectedAnswer || '')}</strong></p>
-        ${question.correct_answer && !savedResult.isCorrect
-          ? `<p>Đáp án đúng: <strong>${escapeHtml(question.correct_answer)}</strong></p>`
+        ${savedResult.correctAnswer && !savedResult.isCorrect
+          ? `<p>Đáp án đúng: <strong>${escapeHtml(savedResult.correctAnswer)}</strong></p>`
           : ''}
-        ${question.explanation
-          ? `<div class="explanation-content"><strong>Lời giải:</strong>${renderExplanationContent(question.explanation)}</div>`
+        ${savedResult.explanation
+          ? `<div class="explanation-content"><strong>Lời giải:</strong>${renderExplanationContent(savedResult.explanation)}</div>`
           : ''}
       `,
       true
@@ -479,10 +484,14 @@
     }
 
     // Kết quả luôn được ghi nhận và thanh tiến trình luôn cập nhật, bất kể học
-    // sinh còn ở câu đó hay đã chuyển đi.
+    // sinh còn ở câu đó hay đã chuyển đi. Lưu luôn đáp án đúng và lời giải mà
+    // server vừa trả, vì dữ liệu câu hỏi nhúng trong trang không còn chứa chúng;
+    // nhờ đó quay lại xem câu cũ vẫn dựng lại được đầy đủ phản hồi.
     state.results[question.id] = {
       selectedAnswer,
-      isCorrect: Boolean(result.isCorrect)
+      isCorrect: Boolean(result.isCorrect),
+      correctAnswer: result.correctAnswer || null,
+      explanation: result.explanation || null
     };
     clearAnswerDraft(question.id);
     updateQuestionProgressBar();

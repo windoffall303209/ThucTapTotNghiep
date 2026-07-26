@@ -136,9 +136,9 @@ async function practice(req, res, next) {
     res.render('student/practice', {
       title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
-      questions: sessionQuestions,
+      questions: sanitizeQuestionsForClient(sessionQuestions),
       session,
-      answeredResults: buildAnsweredResults(lessonAnswers),
+      answeredResults: buildAnsweredResults(lessonAnswers, sessionQuestions),
       aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
   } catch (error) {
@@ -199,9 +199,9 @@ async function reviewLesson(req, res, next) {
     return res.render('student/practice', {
       title: session.title,
       lesson: lessonItem,
-      questions: sessionQuestions,
+      questions: sanitizeQuestionsForClient(sessionQuestions),
       session,
-      answeredResults: buildAnsweredResults(reviewAnswers),
+      answeredResults: buildAnsweredResults(reviewAnswers, sessionQuestions),
       aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
   } catch (error) {
@@ -395,9 +395,9 @@ async function sessionPractice(req, res, next) {
         id: session.lesson_id || '',
         lesson_name: session.title
       },
-      questions,
+      questions: sanitizeQuestionsForClient(questions),
       session,
-      answeredResults: buildAnsweredResults(answers),
+      answeredResults: buildAnsweredResults(answers, questions),
       aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
   } catch (error) {
@@ -478,13 +478,48 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
   return { ...allLessons[0], reason: 'all_done' };
 }
 
-function buildAnsweredResults(answers = []) {
+/**
+ * Cắt câu hỏi về đúng phần client cần để HIỂN THỊ. Tuyệt đối không đưa
+ * correct_answer, explanation hay misconceptions xuống trang làm bài: JSON này
+ * nằm nguyên trong HTML nên học sinh chỉ cần View Source là đọc được hết đáp án
+ * trước khi làm. Đáp án và lời giải chỉ trả về từ POST /questions/:id/answer
+ * sau khi các em đã nộp câu đó.
+ *
+ * Dùng danh sách trắng thay vì xóa từng trường nhạy cảm, để trường mới thêm vào
+ * QuestionBank sau này không tự động bị lộ.
+ */
+function sanitizeQuestionsForClient(questions = []) {
+  return (questions || []).map((question) => ({
+    id: question.id,
+    question_type: question.question_type,
+    difficulty: question.difficulty,
+    layout_template: question.layout_template,
+    content: question.content,
+    choices: (question.choices || []).map((choice) => ({
+      key: choice.key,
+      text: choice.text,
+      images: choice.images || []
+    })),
+    lesson_name: question.lesson_name || null
+  }));
+}
+
+/**
+ * Với câu ĐÃ trả lời thì gửi kèm đáp án đúng và lời giải, để lúc mở lại bài
+ * đang làm dở client vẫn tô được nút đúng/sai và hiện lời giải như trước.
+ * Câu chưa trả lời không có mặt ở đây nên không lộ gì.
+ */
+function buildAnsweredResults(answers = [], questions = []) {
+  const questionById = new Map((questions || []).map((question) => [Number(question.id), question]));
   return (answers || []).reduce((result, answer) => {
     const questionId = Number(answer.question_id);
     if (!questionId) return result;
+    const question = questionById.get(questionId);
     result[questionId] = {
       selectedAnswer: answer.selected_answer,
-      isCorrect: Number(answer.is_correct) === 1 || answer.is_correct === true
+      isCorrect: Number(answer.is_correct) === 1 || answer.is_correct === true,
+      correctAnswer: question ? question.correct_answer : null,
+      explanation: question ? question.explanation : null
     };
     return result;
   }, {});
