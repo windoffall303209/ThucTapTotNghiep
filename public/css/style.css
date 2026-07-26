@@ -129,6 +129,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Thanh điều hướng trên cùng dùng position sticky và cao 72px, nên mọi lần
+     cuộn tới một phần tử (link neo, scrollIntoView) đều bị nó che mất phần đầu.
+     Chừa sẵn khoảng này cho mọi thao tác cuộn của trình duyệt. */
+  scroll-padding-top: 84px;
 }
 
 body {
