@@ -1514,6 +1514,68 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
   }
 }
 
+/* Bảng nhiều cột chuyển thành danh sách thẻ trên màn hình hẹp, tránh phải
+   cuộn ngang mới đọc hết một dòng. */
+@media (max-width: 760px) {
+  .stacked-table thead {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+  }
+
+  .stacked-table,
+  .stacked-table tbody,
+  .stacked-table tr,
+  .stacked-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .stacked-table tr {
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+
+  .stacked-table tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .stacked-table td {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 6px 0;
+    border: 0;
+    text-align: right;
+  }
+
+  .stacked-table td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-weight: 800;
+    text-align: left;
+  }
+
+  /* Tên bài học thường dài, cho xuống dòng riêng và làm nổi bật như tiêu đề. */
+  .stacked-table td:first-child {
+    display: grid;
+    gap: 2px;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 800;
+    text-align: left;
+  }
+}
+
 .explanation-content,
 .review-explanation,
 .saved-explanation {

@@ -104,7 +104,7 @@
     </div>
   <% } else { %>
     <div class="table-wrap">
-      <table>
+      <table class="stacked-table">
         <thead>
           <tr>
             <th>Bài học</th>
@@ -117,17 +117,17 @@
         <tbody>
           <% recentAttempts.forEach((attempt) => { %>
             <tr>
-              <td><%= attempt.lesson_name %></td>
-              <td>
+              <td data-label="Bài học"><%= attempt.lesson_name %></td>
+              <td data-label="Kết quả">
                 <% if (Number(attempt.is_correct) === 1 || attempt.is_correct === true) { %>
                   <span class="status-pill status-completed">Đúng</span>
                 <% } else { %>
                   <span class="status-pill status-review">Cần xem lại</span>
                 <% } %>
               </td>
-              <td><%= attempt.selected_answer %></td>
-              <td><%= attempt.correct_answer %></td>
-              <td><%= attempt.created_at ? new Date(attempt.created_at).toLocaleString('vi-VN') : 'Vừa xong' %></td>
+              <td data-label="Em chọn"><%= attempt.selected_answer %></td>
+              <td data-label="Đáp án đúng"><%= attempt.correct_answer %></td>
+              <td data-label="Thời gian"><%= attempt.created_at ? new Date(attempt.created_at).toLocaleString('vi-VN') : 'Vừa xong' %></td>
             </tr>
           <% }) %>
         </tbody>
