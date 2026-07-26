@@ -140,11 +140,32 @@
     renderCurrentQuestion();
     initQuestionProgressBar();
     maybeShowSummary();
+    initLeaveGuard();
 
     document.getElementById('submitAnswerButton')?.addEventListener('click', submitAnswer);
     document.getElementById('nextQuestionButton')?.addEventListener('click', nextQuestion);
     document.getElementById('finishPracticeButton')?.addEventListener('click', finishPractice);
     document.getElementById('aiHelpForm')?.addEventListener('submit', requestExerciseHelp);
+  }
+
+  // Nhắc học sinh xác nhận trước khi rời khỏi bài còn dang dở, tránh bấm nhầm
+  // link "Về lý thuyết" hay nút back rồi mất mạch làm bài.
+  function initLeaveGuard() {
+    const hasUnfinishedWork = () =>
+      state.questions.length > 0
+      && state.questions.some((question) => !state.results[question.id]);
+
+    document.querySelectorAll('.practice-topline .back-link').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (!hasUnfinishedWork()) return;
+        const answeredCount = Object.keys(state.results).length;
+        const remaining = state.questions.length - answeredCount;
+        const confirmed = window.confirm(
+          `Em còn ${remaining} câu chưa làm. Bài làm đã được lưu lại, em có thể quay lại làm tiếp sau. Rời khỏi bài bây giờ?`
+        );
+        if (!confirmed) event.preventDefault();
+      });
+    });
   }
 
   function initQuestionProgressBar() {
