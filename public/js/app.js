@@ -693,23 +693,31 @@
         const card = button.closest('.theory-card');
         const replyBox = card.querySelector('.ai-inline-reply');
         button.disabled = true;
-        button.textContent = 'Đang tạo giải thích...';
+        setButtonBusy(button, 'Đang tạo giải thích...');
 
-        const response = await fetch('/student/theory/help', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lessonId: button.dataset.lessonId,
-            cardIndex: button.dataset.cardIndex
-          })
-        });
-        const result = await response.json();
+        try {
+          const response = await fetch('/student/theory/help', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              lessonId: button.dataset.lessonId,
+              cardIndex: button.dataset.cardIndex
+            })
+          });
+          const result = await response.json();
 
-        replyBox.hidden = false;
-        replyBox.textContent = result.reply || result.message || 'Chưa có phản hồi.';
-        button.innerHTML = '<i data-lucide="message-circle" class="lucide-icon"></i> Gợi ý thêm';
-        button.disabled = false;
-        refreshIcons();
+          replyBox.hidden = false;
+          replyBox.innerHTML = renderMarkdownText(
+            result.reply || result.message || 'Chưa có phản hồi.'
+          );
+          renderMath(replyBox);
+        } catch (error) {
+          replyBox.hidden = false;
+          replyBox.textContent = 'Chưa kết nối được phần gợi ý. Em thử lại sau ít phút nhé.';
+        } finally {
+          restoreButton(button);
+          button.disabled = false;
+        }
       });
     });
   }
