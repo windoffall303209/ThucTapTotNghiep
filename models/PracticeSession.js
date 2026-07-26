@@ -14,6 +14,8 @@ async function ensureSchema() {
         id BIGINT AUTO_INCREMENT PRIMARY KEY,
         student_id INT NOT NULL,
         lesson_id INT NULL,
+        chapter_id INT NULL,
+        scope_semester TINYINT NULL,
         session_mode VARCHAR(20) NOT NULL,
         title VARCHAR(255) NOT NULL,
         question_ids JSON NOT NULL,
@@ -24,7 +26,8 @@ async function ensureSchema() {
         completed_at TIMESTAMP NULL,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
-        FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE SET NULL
+        FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE SET NULL,
+        FOREIGN KEY (chapter_id) REFERENCES Chapters(id) ON DELETE SET NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
     );
     await db.query(
@@ -43,6 +46,16 @@ async function ensureSchema() {
       'StudentLogs',
       'practice_session_id',
       'ALTER TABLE StudentLogs ADD COLUMN practice_session_id BIGINT NULL AFTER student_id'
+    );
+    await addColumnIfMissing(
+      'PracticeSessions',
+      'chapter_id',
+      'ALTER TABLE PracticeSessions ADD COLUMN chapter_id INT NULL AFTER lesson_id'
+    );
+    await addColumnIfMissing(
+      'PracticeSessions',
+      'scope_semester',
+      'ALTER TABLE PracticeSessions ADD COLUMN scope_semester TINYINT NULL AFTER chapter_id'
     );
     await addIndexIfMissing('StudentLogs', 'idx_logs_practice_session', 'CREATE INDEX idx_logs_practice_session ON StudentLogs(practice_session_id)');
   } catch (error) {
@@ -74,16 +87,33 @@ async function addIndexIfMissing(tableName, indexName, createSql) {
   }
 }
 
-async function createSession({ studentId, lessonId = null, mode, title, questionIds }) {
+async function createSession({
+  studentId,
+  lessonId = null,
+  chapterId = null,
+  semester = null,
+  mode,
+  title,
+  questionIds
+}) {
   await ensureSchema();
   const ids = questionIds.map(Number).filter(Boolean);
 
   try {
     const result = await db.query(
       `INSERT INTO PracticeSessions
-        (student_id, lesson_id, session_mode, title, question_ids, question_count, current_index, status)
-       VALUES (?, ?, ?, ?, CAST(? AS JSON), ?, 0, 'IN_PROGRESS')`,
-      [studentId, lessonId, mode, title, JSON.stringify(ids), ids.length]
+        (student_id, lesson_id, chapter_id, scope_semester, session_mode, title, question_ids, question_count, current_index, status)
+       VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, 0, 'IN_PROGRESS')`,
+      [
+        studentId,
+        lessonId,
+        chapterId,
+        [1, 2].includes(Number(semester)) ? Number(semester) : null,
+        mode,
+        title,
+        JSON.stringify(ids),
+        ids.length
+      ]
     );
     return getSessionById(studentId, result.insertId);
   } catch (error) {
@@ -92,6 +122,8 @@ async function createSession({ studentId, lessonId = null, mode, title, question
       id: Date.now(),
       student_id: studentId,
       lesson_id: lessonId,
+      chapter_id: chapterId,
+      scope_semester: [1, 2].includes(Number(semester)) ? Number(semester) : null,
       session_mode: mode,
       title,
       question_ids: ids,

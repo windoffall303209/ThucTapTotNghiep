@@ -171,7 +171,9 @@ CREATE TABLE PracticeSessions (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     lesson_id INT NULL,
-    session_mode VARCHAR(20) NOT NULL CHECK (session_mode IN ('LESSON', 'EXAM')),
+    chapter_id INT NULL,
+    scope_semester TINYINT NULL CHECK (scope_semester IN (1, 2)),
+    session_mode VARCHAR(20) NOT NULL CHECK (session_mode IN ('REVIEW', 'LESSON', 'CHAPTER', 'COMPREHENSIVE')),
     title VARCHAR(255) NOT NULL,
     question_ids JSON NOT NULL,
     question_count INT NOT NULL DEFAULT 0,
@@ -181,7 +183,8 @@ CREATE TABLE PracticeSessions (
     completed_at TIMESTAMP NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
-    FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE SET NULL
+    FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE SET NULL,
+    FOREIGN KEY (chapter_id) REFERENCES Chapters(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_practice_sessions_student ON PracticeSessions(student_id, status);
