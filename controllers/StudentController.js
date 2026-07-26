@@ -34,7 +34,8 @@ async function dashboard(req, res, next) {
       progress,
       recommendation,
       lessonProgress,
-      recentAttempts
+      recentAttempts,
+      nextLesson: pickNextLesson(chapters, lessonProgress)
     });
   } catch (error) {
     next(error);
@@ -430,6 +431,33 @@ async function finishSession(req, res, next) {
   } catch (error) {
     next(error);
   }
+}
+
+// Chọn sẵn một bài để học sinh vào luyện ngay mà không phải tự dò trong cây
+// chương trình. Ưu tiên bài đang yếu, sau đó tới bài chưa học, cuối cùng mới
+// quay lại bài đầu tiên của khối.
+function pickNextLesson(chapters = [], lessonProgress = {}) {
+  const allLessons = [];
+  (chapters || []).forEach((chapter) => {
+    (chapter.lessons || []).forEach((lesson) => {
+      allLessons.push({
+        id: lesson.id,
+        lesson_name: lesson.lesson_name,
+        chapter_name: chapter.chapter_name,
+        status: (lessonProgress[lesson.id] || {}).status || 'not_started'
+      });
+    });
+  });
+
+  if (allLessons.length === 0) return null;
+
+  const needsReview = allLessons.find((lesson) => lesson.status === 'needs_review');
+  if (needsReview) return { ...needsReview, reason: 'needs_review' };
+
+  const notStarted = allLessons.find((lesson) => lesson.status === 'not_started');
+  if (notStarted) return { ...notStarted, reason: 'not_started' };
+
+  return { ...allLessons[0], reason: 'all_done' };
 }
 
 function buildAnsweredResults(answers = []) {

@@ -37,9 +37,32 @@
   </article>
   <article class="action-card">
     <span class="status-pill status-new">Bước tiếp theo</span>
-    <strong>Học theo chương bài</strong>
-    <p class="muted">Mở một chương, đọc lý thuyết ngắn rồi làm câu hỏi để hệ thống ghi nhận tiến trình.</p>
-    <a class="btn btn-primary" href="#chuong-hoc">Xem chương học</a>
+    <% if (nextLesson) { %>
+      <strong><%= nextLesson.lesson_name %></strong>
+      <p class="muted">
+        <% if (nextLesson.reason === 'needs_review') { %>
+          Bài này em còn làm sai nhiều, luyện lại để nắm chắc hơn.
+        <% } else if (nextLesson.reason === 'not_started') { %>
+          Bài tiếp theo em chưa luyện, thuộc <%= nextLesson.chapter_name %>.
+        <% } else { %>
+          Em đã luyện hết các bài. Làm lại bài này để ôn cho nhớ lâu.
+        <% } %>
+      </p>
+      <div class="row-actions">
+        <a class="btn btn-primary" href="/student/lessons/<%= nextLesson.id %>/practice">
+          <i data-lucide="play-circle" class="lucide-icon"></i>
+          Luyện ngay
+        </a>
+        <a class="btn btn-secondary" href="/student/lessons/<%= nextLesson.id %>">
+          <i data-lucide="book-text" class="lucide-icon"></i>
+          Đọc lý thuyết
+        </a>
+      </div>
+    <% } else { %>
+      <strong>Học theo chương bài</strong>
+      <p class="muted">Mở một chương, đọc lý thuyết ngắn rồi làm câu hỏi để hệ thống ghi nhận tiến trình.</p>
+      <a class="btn btn-primary" href="#chuong-hoc">Xem chương học</a>
+    <% } %>
   </article>
 </section>
 
