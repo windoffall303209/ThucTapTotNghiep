@@ -13,6 +13,10 @@
     </a>
 
     <span class="admin-nav-label">Nội dung</span>
+    <a href="/admin/curriculum" class="<%= currentPath.startsWith('/admin/curriculum') ? 'active' : '' %>">
+      <i data-lucide="list-tree" class="lucide-icon"></i>
+      Khung chương trình
+    </a>
     <a href="/admin/questions" class="<%= currentPath.startsWith('/admin/questions') ? 'active' : '' %>">
       <i data-lucide="list-checks" class="lucide-icon"></i>
       Ngân hàng câu hỏi

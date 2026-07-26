@@ -1013,6 +1013,195 @@ async function updateStudentGrade(req, res, next) {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Chức năng AD-01: quản lý khung chương trình
+   ------------------------------------------------------------------------- */
+
+function curriculumUrl(grade) {
+  return `/admin/curriculum?grade=${Number(grade)}`;
+}
+
+async function curriculum(req, res, next) {
+  try {
+    const grade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : 1;
+    const chapters = await Curriculum.listChaptersForAdmin(grade);
+    const lessonsByChapter = {};
+    await Promise.all(chapters.map(async (chapter) => {
+      lessonsByChapter[chapter.id] = await Curriculum.listLessonsForAdmin(chapter.id);
+    }));
+
+    res.render('admin/curriculum', {
+      title: 'Khung chương trình',
+      grade,
+      gradeOptions: gradeOptions(),
+      chapters,
+      lessonsByChapter,
+      nextChapterOrder: await Curriculum.nextChapterSortOrder(grade)
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function createChapter(req, res, next) {
+  try {
+    const grade = isSupportedGrade(req.body.grade) ? Number(req.body.grade) : null;
+    const chapterName = String(req.body.chapter_name || '').trim();
+
+    if (!grade) {
+      setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+    if (!chapterName) {
+      setFlash(req, 'danger', 'Vui lòng nhập tên chương.');
+      return res.redirect(curriculumUrl(grade));
+    }
+
+    await Curriculum.createChapter({
+      grade,
+      semester: req.body.semester,
+      chapterName,
+      sortOrder: req.body.sort_order
+    });
+    setFlash(req, 'success', `Đã thêm chương "${chapterName}" vào lớp ${grade}.`);
+    return res.redirect(curriculumUrl(grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateChapter(req, res, next) {
+  try {
+    const chapter = await Curriculum.getChapterById(req.params.id);
+    if (!chapter) {
+      setFlash(req, 'danger', 'Không tìm thấy chương cần cập nhật.');
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+
+    const chapterName = String(req.body.chapter_name || '').trim();
+    if (!chapterName) {
+      setFlash(req, 'danger', 'Tên chương không được để trống.');
+      return res.redirect(curriculumUrl(chapter.grade));
+    }
+
+    await Curriculum.updateChapter(chapter.id, {
+      semester: req.body.semester,
+      chapterName,
+      sortOrder: req.body.sort_order
+    });
+    setFlash(req, 'success', `Đã cập nhật chương "${chapterName}".`);
+    return res.redirect(curriculumUrl(chapter.grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function deleteChapter(req, res, next) {
+  try {
+    const chapter = await Curriculum.getChapterById(req.params.id);
+    if (!chapter) {
+      setFlash(req, 'danger', 'Không tìm thấy chương cần xóa.');
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+
+    // Ngoại lệ 10a: chương còn bài học thì không cho xóa, vì khóa ngoại khai báo
+    // ON DELETE CASCADE sẽ kéo theo bài học, câu hỏi và lịch sử làm bài.
+    const lessonCount = await Curriculum.countLessonsInChapter(chapter.id);
+    if (lessonCount > 0) {
+      setFlash(
+        req,
+        'danger',
+        `Không thể xóa chương đang chứa ${lessonCount} bài học. Vui lòng xóa hết bài học con trước.`
+      );
+      return res.redirect(curriculumUrl(chapter.grade));
+    }
+
+    await Curriculum.deleteChapter(chapter.id);
+    setFlash(req, 'success', `Đã xóa chương "${chapter.chapter_name}".`);
+    return res.redirect(curriculumUrl(chapter.grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function createLesson(req, res, next) {
+  try {
+    const chapter = await Curriculum.getChapterById(req.body.chapter_id);
+    if (!chapter) {
+      setFlash(req, 'danger', 'Không tìm thấy chương để thêm bài học.');
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+
+    const lessonName = String(req.body.lesson_name || '').trim();
+    if (!lessonName) {
+      setFlash(req, 'danger', 'Vui lòng nhập tên bài học.');
+      return res.redirect(curriculumUrl(chapter.grade));
+    }
+
+    await Curriculum.createLesson({
+      chapterId: chapter.id,
+      lessonName,
+      sortOrder: req.body.sort_order
+    });
+    setFlash(req, 'success', `Đã thêm bài học "${lessonName}" vào chương "${chapter.chapter_name}".`);
+    return res.redirect(curriculumUrl(chapter.grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateLesson(req, res, next) {
+  try {
+    const lesson = await Curriculum.getLessonById(req.params.id);
+    if (!lesson) {
+      setFlash(req, 'danger', 'Không tìm thấy bài học cần cập nhật.');
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+
+    const lessonName = String(req.body.lesson_name || '').trim();
+    if (!lessonName) {
+      setFlash(req, 'danger', 'Tên bài học không được để trống.');
+      return res.redirect(curriculumUrl(lesson.grade));
+    }
+
+    await Curriculum.updateLesson(lesson.id, {
+      lessonName,
+      sortOrder: req.body.sort_order
+    });
+    setFlash(req, 'success', `Đã cập nhật bài học "${lessonName}".`);
+    return res.redirect(curriculumUrl(lesson.grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function deleteLesson(req, res, next) {
+  try {
+    const lesson = await Curriculum.getLessonById(req.params.id);
+    if (!lesson) {
+      setFlash(req, 'danger', 'Không tìm thấy bài học cần xóa.');
+      return res.redirect(curriculumUrl(req.body.grade || 1));
+    }
+
+    // Cùng lý do như xóa chương: QuestionBank cascade theo lesson_id.
+    const questionCount = await Curriculum.countQuestionsInLesson(lesson.id);
+    if (questionCount > 0) {
+      setFlash(
+        req,
+        'danger',
+        `Không thể xóa bài học đang có ${questionCount} câu hỏi. Vui lòng xóa hết câu hỏi trong ngân hàng trước.`
+      );
+      return res.redirect(curriculumUrl(lesson.grade));
+    }
+
+    await Curriculum.deleteLesson(lesson.id);
+    setFlash(req, 'success', `Đã xóa bài học "${lesson.lesson_name}".`);
+    return res.redirect(curriculumUrl(lesson.grade));
+  } catch (error) {
+    next(error);
+  }
+}
+
 const AI_SESSION_TYPES = ['EXERCISE_HELP', 'THEORY_EXPLAIN'];
 
 // Chức năng AD-08: giám sát nội dung hội thoại giữa học sinh và AI.
@@ -1297,6 +1486,13 @@ module.exports = {
   students,
   resetStudentPassword,
   updateStudentGrade,
+  curriculum,
+  createChapter,
+  updateChapter,
+  deleteChapter,
+  createLesson,
+  updateLesson,
+  deleteLesson,
   aiLogs,
   flagAiLog,
   settings,

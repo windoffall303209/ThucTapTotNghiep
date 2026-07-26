@@ -29,7 +29,19 @@
     initLazyMath();
     initSubmitBusyForms();
     initQuestionFormGuards();
+    initConfirmForms();
   });
+
+  // Form mang thuộc tính data-confirm là thao tác không hoàn tác được (xóa chương,
+  // xóa bài học). Hỏi lại trước khi gửi đi.
+  function initConfirmForms(root = document) {
+    root.querySelectorAll('form[data-confirm]:not([data-confirm-ready])').forEach((form) => {
+      form.dataset.confirmReady = 'true';
+      form.addEventListener('submit', (event) => {
+        if (!window.confirm(form.dataset.confirm)) event.preventDefault();
+      });
+    });
+  }
 
   // Form tạo đề gửi đi bằng POST rồi tải lại cả trang. Trong lúc chờ, học sinh
   // không thấy phản hồi nào nên hay bấm thêm lần nữa và tạo trùng đề.

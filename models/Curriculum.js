@@ -501,6 +501,145 @@ function findSampleLesson(lessonId) {
   return null;
 }
 
+/* ---------------------------------------------------------------------------
+   Chức năng AD-01: quản lý khung chương trình (Chương và Bài học).
+   Trước đây không có hàm ghi nào, mọi thay đổi cấu trúc chương trình phải mở
+   MySQL gõ SQL tay.
+   ------------------------------------------------------------------------- */
+
+// Danh sách chương kèm số bài và số câu hỏi, dùng cho trang quản trị. Đếm sẵn
+// để giao diện biết chương nào còn bài, bài nào còn câu hỏi mà chặn xóa.
+async function listChaptersForAdmin(grade) {
+  const rows = await db.query(
+    `SELECT
+        c.id,
+        c.grade,
+        c.semester,
+        c.chapter_name,
+        c.sort_order,
+        COUNT(DISTINCT l.id) AS lesson_count,
+        COUNT(q.id) AS question_count
+     FROM Chapters c
+     LEFT JOIN Lessons l ON l.chapter_id = c.id
+     LEFT JOIN QuestionBank q ON q.lesson_id = l.id
+     WHERE c.grade = ?
+     GROUP BY c.id
+     ORDER BY c.semester, c.sort_order, c.id`,
+    [Number(grade)]
+  );
+  return rows.map((row) => ({
+    ...row,
+    lesson_count: Number(row.lesson_count || 0),
+    question_count: Number(row.question_count || 0)
+  }));
+}
+
+async function listLessonsForAdmin(chapterId) {
+  const rows = await db.query(
+    `SELECT
+        l.id,
+        l.chapter_id,
+        l.lesson_name,
+        l.sort_order,
+        COUNT(q.id) AS question_count,
+        CASE WHEN JSON_LENGTH(COALESCE(l.theory_cards, JSON_ARRAY())) > 0 THEN 1 ELSE 0 END AS has_theory
+     FROM Lessons l
+     LEFT JOIN QuestionBank q ON q.lesson_id = l.id
+     WHERE l.chapter_id = ?
+     GROUP BY l.id
+     ORDER BY l.sort_order, l.id`,
+    [Number(chapterId)]
+  );
+  return rows.map((row) => ({
+    ...row,
+    question_count: Number(row.question_count || 0),
+    has_theory: Number(row.has_theory) === 1
+  }));
+}
+
+// Số thứ tự kế tiếp, để quản trị viên không phải tự nhớ đang tới số nào.
+async function nextChapterSortOrder(grade) {
+  const rows = await db.query(
+    'SELECT COALESCE(MAX(sort_order), 0) + 1 AS next FROM Chapters WHERE grade = ?',
+    [Number(grade)]
+  );
+  return Number(rows[0]?.next || 1);
+}
+
+async function nextLessonSortOrder(chapterId) {
+  const rows = await db.query(
+    'SELECT COALESCE(MAX(sort_order), 0) + 1 AS next FROM Lessons WHERE chapter_id = ?',
+    [Number(chapterId)]
+  );
+  return Number(rows[0]?.next || 1);
+}
+
+async function createChapter({ grade, semester, chapterName, sortOrder }) {
+  const order = Number(sortOrder) > 0 ? Number(sortOrder) : await nextChapterSortOrder(grade);
+  const result = await db.query(
+    'INSERT INTO Chapters (grade, semester, chapter_name, sort_order) VALUES (?, ?, ?, ?)',
+    [Number(grade), Number(semester) === 2 ? 2 : 1, String(chapterName).trim(), order]
+  );
+  return result.insertId;
+}
+
+async function updateChapter(chapterId, { semester, chapterName, sortOrder }) {
+  await db.query(
+    'UPDATE Chapters SET semester = ?, chapter_name = ?, sort_order = ? WHERE id = ?',
+    [
+      Number(semester) === 2 ? 2 : 1,
+      String(chapterName).trim(),
+      Number(sortOrder) > 0 ? Number(sortOrder) : 1,
+      Number(chapterId)
+    ]
+  );
+}
+
+// Ngoại lệ 10a trong tài liệu: không cho xóa chương còn chứa bài học. Bảng
+// Lessons khai báo ON DELETE CASCADE nên nếu không chặn ở đây thì một cú bấm sẽ
+// kéo theo toàn bộ bài học, câu hỏi và lịch sử làm bài của học sinh.
+async function countLessonsInChapter(chapterId) {
+  const rows = await db.query(
+    'SELECT COUNT(*) AS total FROM Lessons WHERE chapter_id = ?',
+    [Number(chapterId)]
+  );
+  return Number(rows[0]?.total || 0);
+}
+
+async function deleteChapter(chapterId) {
+  await db.query('DELETE FROM Chapters WHERE id = ?', [Number(chapterId)]);
+}
+
+async function createLesson({ chapterId, lessonName, sortOrder }) {
+  const order = Number(sortOrder) > 0 ? Number(sortOrder) : await nextLessonSortOrder(chapterId);
+  const result = await db.query(
+    'INSERT INTO Lessons (chapter_id, lesson_name, sort_order, theory_cards) VALUES (?, ?, ?, CAST(? AS JSON))',
+    [Number(chapterId), String(lessonName).trim(), order, '[]']
+  );
+  return result.insertId;
+}
+
+async function updateLesson(lessonId, { lessonName, sortOrder }) {
+  await db.query(
+    'UPDATE Lessons SET lesson_name = ?, sort_order = ? WHERE id = ?',
+    [String(lessonName).trim(), Number(sortOrder) > 0 ? Number(sortOrder) : 1, Number(lessonId)]
+  );
+}
+
+// Cùng lý do như xóa chương: QuestionBank khai báo ON DELETE CASCADE theo
+// lesson_id, nên bài còn câu hỏi thì phải chặn.
+async function countQuestionsInLesson(lessonId) {
+  const rows = await db.query(
+    'SELECT COUNT(*) AS total FROM QuestionBank WHERE lesson_id = ?',
+    [Number(lessonId)]
+  );
+  return Number(rows[0]?.total || 0);
+}
+
+async function deleteLesson(lessonId) {
+  await db.query('DELETE FROM Lessons WHERE id = ?', [Number(lessonId)]);
+}
+
 module.exports = {
   getCurriculumByGrade,
   getAllLessons,
@@ -511,5 +650,17 @@ module.exports = {
   getProgress,
   getRecommendation,
   getLessonProgressByGrade,
-  getRecentAttempts
+  getRecentAttempts,
+  listChaptersForAdmin,
+  listLessonsForAdmin,
+  nextChapterSortOrder,
+  nextLessonSortOrder,
+  createChapter,
+  updateChapter,
+  countLessonsInChapter,
+  deleteChapter,
+  createLesson,
+  updateLesson,
+  countQuestionsInLesson,
+  deleteLesson
 };

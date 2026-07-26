@@ -1,0 +1,176 @@
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Nội dung</p>
+    <h1>Khung chương trình lớp <%= grade %></h1>
+    <p>Thêm, sửa và xóa chương cùng bài học. Chương còn bài học hoặc bài học còn câu hỏi sẽ không cho xóa.</p>
+  </div>
+</section>
+
+<nav class="grade-tabs" aria-label="Chọn khối lớp">
+  <% gradeOptions.forEach((option) => { %>
+    <a
+      class="btn <%= Number(option.value) === Number(grade) ? 'btn-primary' : 'btn-secondary' %>"
+      href="/admin/curriculum?grade=<%= option.value %>">
+      <%= option.label %>
+    </a>
+  <% }) %>
+</nav>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="folder-plus" class="lucide-icon"></i>
+    Thêm chương mới cho lớp <%= grade %>
+  </div>
+  <form class="curriculum-form" action="/admin/curriculum/chapters" method="post">
+    <input type="hidden" name="grade" value="<%= grade %>">
+    <label>
+      Tên chương
+      <input name="chapter_name" required placeholder="Ví dụ: Chủ đề 1. Số tự nhiên">
+    </label>
+    <label>
+      Học kỳ
+      <select name="semester">
+        <option value="1">Học kỳ I</option>
+        <option value="2">Học kỳ II</option>
+      </select>
+    </label>
+    <label>
+      Số thứ tự
+      <input type="number" name="sort_order" min="1" value="<%= nextChapterOrder %>">
+    </label>
+    <button class="btn btn-primary" type="submit">
+      <i data-lucide="plus" class="lucide-icon"></i>
+      Thêm chương
+    </button>
+  </form>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="list-tree" class="lucide-icon"></i>
+    Danh sách chương
+    <small class="muted"><%= chapters.length %> chương</small>
+  </div>
+
+  <% if (chapters.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Lớp <%= grade %> chưa có chương nào. Hãy thêm chương đầu tiên ở phía trên.</p>
+    </div>
+  <% } %>
+
+  <% chapters.forEach((chapter) => { %>
+    <% const lessons = lessonsByChapter[chapter.id] || []; %>
+    <details class="chapter-panel curriculum-panel">
+      <summary>
+        <span>
+          <strong>Học kỳ <%= Number(chapter.semester) === 1 ? 'I' : 'II' %></strong>
+          · <%= chapter.chapter_name %>
+        </span>
+        <small>
+          <%= chapter.lesson_count %> bài học · <%= chapter.question_count %> câu hỏi
+        </small>
+      </summary>
+
+      <div class="curriculum-chapter-body">
+        <form class="curriculum-form" action="/admin/curriculum/chapters/<%= chapter.id %>" method="post">
+          <label>
+            Tên chương
+            <input name="chapter_name" value="<%= chapter.chapter_name %>" required>
+          </label>
+          <label>
+            Học kỳ
+            <select name="semester">
+              <option value="1" <%= Number(chapter.semester) === 1 ? 'selected' : '' %>>Học kỳ I</option>
+              <option value="2" <%= Number(chapter.semester) === 2 ? 'selected' : '' %>>Học kỳ II</option>
+            </select>
+          </label>
+          <label>
+            Số thứ tự
+            <input type="number" name="sort_order" min="1" value="<%= chapter.sort_order %>">
+          </label>
+          <button class="btn btn-secondary" type="submit">
+            <i data-lucide="save" class="lucide-icon"></i>
+            Lưu chương
+          </button>
+        </form>
+
+        <form
+          class="curriculum-delete-form"
+          action="/admin/curriculum/chapters/<%= chapter.id %>/delete"
+          method="post"
+          data-confirm="Xóa chương &quot;<%= chapter.chapter_name %>&quot;? Thao tác này không thể hoàn tác.">
+          <button class="btn btn-danger" type="submit" <%= chapter.lesson_count > 0 ? 'disabled' : '' %>>
+            <i data-lucide="trash-2" class="lucide-icon"></i>
+            Xóa chương
+          </button>
+          <% if (chapter.lesson_count > 0) { %>
+            <small class="muted">Còn <%= chapter.lesson_count %> bài học nên chưa xóa được.</small>
+          <% } %>
+        </form>
+
+        <div class="section-title">
+          <i data-lucide="file-plus" class="lucide-icon"></i>
+          Bài học trong chương
+        </div>
+
+        <% if (lessons.length === 0) { %>
+          <p class="muted">Chương này chưa có bài học nào.</p>
+        <% } %>
+
+        <% lessons.forEach((lesson) => { %>
+          <article class="curriculum-lesson-row">
+            <form class="curriculum-form" action="/admin/curriculum/lessons/<%= lesson.id %>" method="post">
+              <label>
+                Tên bài học
+                <input name="lesson_name" value="<%= lesson.lesson_name %>" required>
+              </label>
+              <label>
+                Số thứ tự
+                <input type="number" name="sort_order" min="1" value="<%= lesson.sort_order %>">
+              </label>
+              <button class="btn btn-secondary" type="submit">
+                <i data-lucide="save" class="lucide-icon"></i>
+                Lưu
+              </button>
+            </form>
+
+            <div class="curriculum-lesson-meta">
+              <span class="status-pill <%= lesson.question_count > 0 ? 'status-completed' : 'status-new' %>">
+                <%= lesson.question_count %> câu hỏi
+              </span>
+              <span class="status-pill <%= lesson.has_theory ? 'status-completed' : 'status-review' %>">
+                <%= lesson.has_theory ? 'Đã có lý thuyết' : 'Chưa có lý thuyết' %>
+              </span>
+              <form
+                action="/admin/curriculum/lessons/<%= lesson.id %>/delete"
+                method="post"
+                data-confirm="Xóa bài học &quot;<%= lesson.lesson_name %>&quot;? Thao tác này không thể hoàn tác.">
+                <button class="btn btn-danger btn-compact" type="submit" <%= lesson.question_count > 0 ? 'disabled' : '' %>>
+                  <i data-lucide="trash-2" class="lucide-icon"></i>
+                  Xóa
+                </button>
+              </form>
+            </div>
+          </article>
+        <% }) %>
+
+        <form class="curriculum-form curriculum-add-lesson" action="/admin/curriculum/lessons" method="post">
+          <input type="hidden" name="chapter_id" value="<%= chapter.id %>">
+          <input type="hidden" name="grade" value="<%= grade %>">
+          <label>
+            Tên bài học mới
+            <input name="lesson_name" required placeholder="Ví dụ: Bài 1. Ôn tập các số đến 100">
+          </label>
+          <label>
+            Số thứ tự
+            <input type="number" name="sort_order" min="1" value="<%= lessons.length + 1 %>">
+          </label>
+          <button class="btn btn-primary" type="submit">
+            <i data-lucide="plus" class="lucide-icon"></i>
+            Thêm bài học
+          </button>
+        </form>
+      </div>
+    </details>
+  <% }) %>
+</section>
