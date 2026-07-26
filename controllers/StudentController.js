@@ -99,18 +99,23 @@ async function practice(req, res, next) {
       }),
       Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT)
     ]);
-    let session = await PracticeSession.getActiveLessonSession(student.id, lessonItem.id);
+    const reviewIds = reviewQuestions.map((question) => question.id);
+    // Bài nào có ít câu hơn phần ôn nhanh (8 câu) thì loại trừ hết sẽ không còn
+    // gì để luyện. Khi đó dùng lại chính các câu đó, thà cho học sinh làm lại
+    // còn hơn mở ra một trang trống.
+    const outsideReview = candidates.filter((question) => !reviewIds.includes(question.id));
+    const pool = outsideReview.length > 0 ? outsideReview : candidates;
+    const targetCount = Math.min(LESSON_PRACTICE_COUNT, pool.length);
+
+    let session = targetCount > 0
+      ? await PracticeSession.getActiveLessonSession(student.id, lessonItem.id)
+      : null;
     let sessionQuestions = session
       ? await Question.getQuestionsByIds(session.question_ids)
       : [];
-    if (
-      !session
-      || Number(session.question_count) !== LESSON_PRACTICE_COUNT
-      || sessionQuestions.length !== LESSON_PRACTICE_COUNT
-    ) {
-      const questions = selectRandomQuestions(candidates, LESSON_PRACTICE_COUNT, {
-        excludeIds: reviewQuestions.map((question) => question.id)
-      });
+
+    if (targetCount > 0 && (!session || sessionQuestions.length !== targetCount)) {
+      const questions = selectRandomQuestions(pool, targetCount);
       session = await PracticeSession.createSession({
         studentId: student.id,
         lessonId: lessonItem.id,
@@ -121,7 +126,8 @@ async function practice(req, res, next) {
       });
       sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
     }
-    const lessonAnswers = await PracticeSession.listAnswers(session.id);
+
+    const lessonAnswers = session ? await PracticeSession.listAnswers(session.id) : [];
     res.render('student/practice', {
       title: `Luyện theo bài: ${lessonItem.lesson_name}`,
       lesson: lessonItem,
