@@ -59,6 +59,17 @@ async function createStudent({ username, password, fullname, grade }) {
   }
 }
 
+// Đếm tổng số học sinh cho khối thống kê. Dashboard chỉ cần con số, không
+// được kéo toàn bộ bảng Students về chỉ để lấy .length.
+async function countStudents() {
+  try {
+    const rows = await db.query('SELECT COUNT(*) AS total FROM Students');
+    return Number(rows[0]?.total || 0);
+  } catch (error) {
+    return sampleData.students.length;
+  }
+}
+
 async function listStudents(search = '') {
   const keyword = `%${search}%`;
 
@@ -177,6 +188,7 @@ module.exports = {
   findByUsername,
   findById,
   createStudent,
+  countStudents,
   listStudents,
   listStudentsPaged,
   updatePassword,

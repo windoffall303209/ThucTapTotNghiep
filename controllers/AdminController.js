@@ -35,10 +35,10 @@ function contentManagerUrl(section, lessonId) {
 
 async function dashboard(req, res, next) {
   try {
-    const [questionStats, recentQuestions, students, difficultyStats, allLessons, questionCounts, theoryCounts] = await Promise.all([
+    const [questionStats, recentQuestions, studentCount, difficultyStats, allLessons, questionCounts, theoryCounts] = await Promise.all([
       Question.getAdminStats(),
       Question.getRecentQuestions(6),
-      Student.listStudents(),
+      Student.countStudents(),
       Question.getDifficultyStats(),
       Curriculum.getAllLessons(),
       Question.getQuestionCountsByLesson(),
@@ -61,7 +61,7 @@ async function dashboard(req, res, next) {
       title: 'Bảng quản trị',
       stats: {
         questionCount: questionStats.questionCount,
-        studentCount: students.length,
+        studentCount,
         lessonCount: questionStats.lessonCount,
         easyCount: questionStats.easyCount
       },
@@ -1148,11 +1148,20 @@ function curriculumUrl(grade, openChapterId = null) {
 async function curriculum(req, res, next) {
   try {
     const grade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : 1;
-    const chapters = await Curriculum.listChaptersForAdmin(grade);
+    // Một truy vấn cho tất cả bài học của khối rồi gom theo chương, thay vì
+    // mỗi chương một truy vấn riêng.
+    const [chapters, lessons, nextChapterOrder] = await Promise.all([
+      Curriculum.listChaptersForAdmin(grade),
+      Curriculum.listLessonsForAdminByGrade(grade),
+      Curriculum.nextChapterSortOrder(grade)
+    ]);
     const lessonsByChapter = {};
-    await Promise.all(chapters.map(async (chapter) => {
-      lessonsByChapter[chapter.id] = await Curriculum.listLessonsForAdmin(chapter.id);
-    }));
+    chapters.forEach((chapter) => {
+      lessonsByChapter[chapter.id] = [];
+    });
+    lessons.forEach((lesson) => {
+      (lessonsByChapter[lesson.chapter_id] = lessonsByChapter[lesson.chapter_id] || []).push(lesson);
+    });
 
     res.render('admin/curriculum', {
       title: 'Khung chương trình',
@@ -1162,7 +1171,7 @@ async function curriculum(req, res, next) {
       lessonsByChapter,
       // Chương cần mở sẵn sau một thao tác lưu, đọc từ ?open= do curriculumUrl gắn.
       openChapterId: Number(req.query.open || 0) || null,
-      nextChapterOrder: await Curriculum.nextChapterSortOrder(grade)
+      nextChapterOrder
     });
   } catch (error) {
     next(error);

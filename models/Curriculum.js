@@ -534,7 +534,10 @@ async function listChaptersForAdmin(grade) {
   }));
 }
 
-async function listLessonsForAdmin(chapterId) {
+// Toàn bộ bài học của một khối trong MỘT truy vấn, controller tự gom theo
+// chương. Bản trước truy vấn theo từng chapter_id: khối 15 chương là 15 lượt
+// query cho mỗi lần mở trang khung chương trình.
+async function listLessonsForAdminByGrade(grade) {
   const rows = await db.query(
     `SELECT
         l.id,
@@ -544,11 +547,12 @@ async function listLessonsForAdmin(chapterId) {
         COUNT(q.id) AS question_count,
         CASE WHEN JSON_LENGTH(COALESCE(l.theory_cards, JSON_ARRAY())) > 0 THEN 1 ELSE 0 END AS has_theory
      FROM Lessons l
+     JOIN Chapters c ON c.id = l.chapter_id
      LEFT JOIN QuestionBank q ON q.lesson_id = l.id
-     WHERE l.chapter_id = ?
+     WHERE c.grade = ?
      GROUP BY l.id
-     ORDER BY l.sort_order, l.id`,
-    [Number(chapterId)]
+     ORDER BY l.chapter_id, l.sort_order, l.id`,
+    [Number(grade)]
   );
   return rows.map((row) => ({
     ...row,
@@ -652,7 +656,7 @@ module.exports = {
   getLessonProgressByGrade,
   getRecentAttempts,
   listChaptersForAdmin,
-  listLessonsForAdmin,
+  listLessonsForAdminByGrade,
   nextChapterSortOrder,
   nextLessonSortOrder,
   createChapter,
