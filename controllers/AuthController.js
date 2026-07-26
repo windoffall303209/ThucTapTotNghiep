@@ -89,6 +89,19 @@ async function login(req, res, next) {
       return res.redirect('/auth/login');
     }
 
+    // Phải kiểm tra khối lớp TRƯỚC khi cấp cookie. Nếu để requireStudent chặn
+    // sau thì học sinh đã có cookie hợp lệ, bị đá về trang đăng nhập, đăng nhập
+    // lại thành công rồi lại bị đá tiếp: vòng lặp không có lối thoát.
+    if (!isSupportedGrade(student.current_grade)) {
+      setFlash(
+        req,
+        'danger',
+        `Tài khoản đang ở lớp ${student.current_grade}, ngoài phạm vi ${GRADE_RANGE_LABEL} mà hệ thống hỗ trợ. `
+        + 'Vui lòng liên hệ quản trị viên để cập nhật lại khối lớp.'
+      );
+      return res.redirect('/auth/login');
+    }
+
     setAuthCookie(res, toStudentTokenPayload(student));
     setFlash(req, 'success', 'Đăng nhập thành công.');
     return res.redirect('/student/dashboard');
