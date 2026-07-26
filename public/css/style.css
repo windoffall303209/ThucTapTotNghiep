@@ -1290,6 +1290,17 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
+/* Nhắc lại đáp án đúng khi học sinh làm sai */
+.feedback-correct-answer {
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-left: 4px solid var(--success);
+  border-radius: var(--radius-xs);
+  background: var(--success-soft);
+  color: #14532d;
+  font-size: 1.05em;
+}
+
 /* Thanh tiến trình câu hỏi: cho phép nhảy tới câu bất kỳ trong bài */
 .question-progress {
   display: flex;

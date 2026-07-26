@@ -559,6 +559,11 @@
     const misconception = result.misconception
       ? `<p><strong>Lỗi sai thường gặp:</strong> ${escapeHtml(result.misconception.explanation)}</p>`
       : '';
+    // Khi sai, nhắc lại đáp án đúng ngay trong phản hồi. Chỉ tô màu ở nút thì
+    // học sinh nhỏ tuổi dễ bỏ sót vì mắt còn đang dừng ở khung phản hồi.
+    const correctAnswerLine = !result.isCorrect && result.correctAnswer
+      ? `<p class="feedback-correct-answer">Đáp án đúng là <strong>${escapeHtml(result.correctAnswer)}</strong></p>`
+      : '';
     const explanation = result.explanation
       ? `<div class="explanation-content"><strong>Lời giải:</strong>${renderExplanationContent(result.explanation)}</div>`
       : '';
@@ -566,6 +571,7 @@
     showFeedback(tone, `
       <h2>${title}</h2>
       <p>${escapeHtml(result.message)}</p>
+      ${correctAnswerLine}
       ${misconception}
       ${explanation}
     `, true);

@@ -364,6 +364,21 @@ async function getQuestionsByIds(ids) {
   }
 }
 
+// Script import câu hỏi tự sinh sẵn các dòng lỗi sai rỗng để giáo viên bổ sung
+// nội dung sau. Những dòng chưa được biên soạn này không giúp ích gì cho học
+// sinh nên bị lọc bỏ, nhường chỗ cho lời giải từng bước.
+const PLACEHOLDER_MISCONCEPTION_TEXTS = [
+  'đối chiếu lại dữ kiện và yêu cầu của câu hỏi.',
+  'đối chiếu lại dữ kiện và yêu cầu của câu hỏi'
+];
+
+function isPlaceholderMisconception(misconception) {
+  if (!misconception) return true;
+  const explanation = String(misconception.explanation || '').trim().toLowerCase();
+  if (!explanation) return true;
+  return PLACEHOLDER_MISCONCEPTION_TEXTS.includes(explanation);
+}
+
 async function getMisconception(questionId, selectedAnswer) {
   try {
     const rows = await db.query(
@@ -373,13 +388,13 @@ async function getMisconception(questionId, selectedAnswer) {
        LIMIT 1`,
       [questionId, selectedAnswer]
     );
-    return rows[0] || null;
+    const misconception = rows[0] || null;
+    return isPlaceholderMisconception(misconception) ? null : misconception;
   } catch (error) {
-    return (
-      sampleData.misconceptions.find(
-        (item) => Number(item.question_id) === Number(questionId) && item.distractor_key === selectedAnswer
-      ) || null
-    );
+    const fallback = sampleData.misconceptions.find(
+      (item) => Number(item.question_id) === Number(questionId) && item.distractor_key === selectedAnswer
+    ) || null;
+    return isPlaceholderMisconception(fallback) ? null : fallback;
   }
 }
 
