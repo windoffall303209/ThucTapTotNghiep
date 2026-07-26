@@ -49,7 +49,9 @@
           Làm từng câu, xem phản hồi sau khi nộp
         </div>
         <div id="practiceApp" class="question-zone"></div>
-        <div id="answerFeedback" class="answer-feedback" hidden></div>
+        <%# aria-live: kết quả chấm phải được trình đọc màn hình tự đọc lên ngay
+            khi hiện ra, không bắt học sinh dò lại trang. %>
+        <div id="answerFeedback" class="answer-feedback" aria-live="polite" hidden></div>
         <div id="practiceSummary" class="practice-summary" role="status" hidden></div>
         <div class="practice-actions">
           <button id="submitAnswerButton" class="btn btn-primary" type="button">
@@ -78,11 +80,27 @@
         </div>
         <i data-lucide="sparkles" class="lucide-icon"></i>
       </div>
-      <div id="chatMessages" class="chat-messages">
-        <div class="chat-message ai">Khi em gặp khó, hãy thử chọn đáp án trước. Sau đó hệ thống sẽ giúp em hiểu vì sao đúng hoặc sai.</div>
+      <%# aria-live để trình đọc màn hình đọc câu trả lời mới của trợ lý ngay
+          khi nó hiện ra, thay vì im lặng. %>
+      <div id="chatMessages" class="chat-messages" aria-live="polite">
+        <div class="chat-message ai">Khi em gặp khó, hãy thử chọn đáp án trước. Sau đó bấm một nút bên dưới hoặc tự gõ câu hỏi nhé.</div>
+      </div>
+      <%# Nút gợi ý bấm-là-hỏi: học sinh lớp 1-2 chưa gõ được câu hỏi tự do,
+          không có các nút này thì khung chat gần như vô dụng với các em. %>
+      <div class="chat-quick-actions" aria-label="Câu hỏi nhanh">
+        <button type="button" class="chat-quick" data-chat-quick="Em chưa hiểu câu này, giải thích dễ hơn giúp em.">
+          Giải thích dễ hơn
+        </button>
+        <button type="button" class="chat-quick" data-chat-quick="Cho em một ví dụ khác giống câu này.">
+          Cho em ví dụ khác
+        </button>
+        <button type="button" class="chat-quick" data-chat-quick="Em phải bắt đầu từ bước nào trước?">
+          Bắt đầu từ đâu?
+        </button>
       </div>
       <form id="aiHelpForm" class="chat-form">
-        <input name="message" placeholder="Ví dụ: Em chưa hiểu bước rút gọn...">
+        <label class="sr-only" for="aiHelpInput">Câu hỏi của em</label>
+        <input id="aiHelpInput" name="message" placeholder="Ví dụ: Em chưa hiểu bước rút gọn...">
         <button type="submit" aria-label="Gửi câu hỏi">
           <i data-lucide="send" class="lucide-icon"></i>
         </button>

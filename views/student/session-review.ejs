@@ -119,10 +119,25 @@
 </section>
 
 <section class="review-list">
+  <% if (wrongCount > 0) { %>
+    <%# Bài 15-20 câu thì trang xem lại rất dài; nút lọc giúp em nhảy thẳng tới
+        các câu cần sửa thay vì cuộn qua cả các câu đã đúng. %>
+    <div class="review-filter" role="group" aria-label="Lọc danh sách câu hỏi">
+      <button type="button" class="btn btn-secondary active" data-review-filter="all">
+        <i data-lucide="list" class="lucide-icon"></i>
+        Tất cả câu (<%= questions.length %>)
+      </button>
+      <button type="button" class="btn btn-secondary" data-review-filter="wrong">
+        <i data-lucide="circle-x" class="lucide-icon"></i>
+        Chỉ xem câu sai (<%= wrongCount %>)
+      </button>
+    </div>
+  <% } %>
   <% questions.forEach((question, index) => { %>
     <% const answer = answerByQuestion.get(Number(question.id)); %>
     <% const questionChats = chatsByQuestion.get(Number(question.id)) || []; %>
-    <article class="review-item">
+    <% const laCauSai = Boolean(answer) && Number(answer.is_correct) !== 1; %>
+    <article class="review-item" data-review-result="<%= laCauSai ? 'wrong' : 'ok' %>">
       <div class="section-title">
         <i data-lucide="circle-help" class="lucide-icon"></i>
         Câu <%= index + 1 %>
@@ -154,7 +169,10 @@
         <div class="review-explanation">
           <strong>Lời giải:</strong>
           <%- imageRowHtml(question.explanation.images, 'Hình minh họa lời giải') %>
-          <span class="math-content"><%= question.explanation.text %></span>
+          <%# Escape rồi mới đổi ky tu xuong dong thanh the br: in truc tiep
+              bang the EJS thuan thi loi giai nhieu dong bi don thanh mot dong
+              vi HTML nuot ky tu xuong dong. %>
+          <span class="math-content"><%- escapeHtml(question.explanation.text).replace(/\r?\n/g, '<br>') %></span>
         </div>
       <% } %>
       <% if (questionChats.length > 0) { %>

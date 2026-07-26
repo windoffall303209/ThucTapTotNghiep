@@ -32,7 +32,25 @@
     initConfirmForms();
     initPasswordToggles();
     initPasswordMatchForms();
+    initReviewFilter();
   });
+
+  // Trang xem lại bài: nút "Chỉ xem câu sai" ẩn các câu đã đúng để em nhảy
+  // thẳng tới phần cần sửa, không phải cuộn qua 15-20 câu.
+  function initReviewFilter() {
+    const buttons = document.querySelectorAll('[data-review-filter]');
+    if (buttons.length === 0) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const mode = button.dataset.reviewFilter;
+        buttons.forEach((other) => other.classList.toggle('active', other === button));
+        document.querySelectorAll('[data-review-result]').forEach((item) => {
+          item.hidden = mode === 'wrong' && item.dataset.reviewResult !== 'wrong';
+        });
+      });
+    });
+  }
 
   // Nút con mắt cạnh ô mật khẩu. Trẻ em gõ chậm và hay gõ nhầm; cho các em nhìn
   // thấy mình vừa gõ gì giảm hẳn số lần đăng nhập trượt.
@@ -248,6 +266,18 @@
     document.getElementById('nextQuestionButton')?.addEventListener('click', nextQuestion);
     document.getElementById('finishPracticeButton')?.addEventListener('click', finishPractice);
     document.getElementById('aiHelpForm')?.addEventListener('submit', requestExerciseHelp);
+
+    // Nút hỏi nhanh: điền sẵn câu hỏi rồi gửi luôn. Học sinh lớp 1-2 chưa gõ
+    // được câu hỏi tự do nên đây là đường dùng chính của khung gợi ý.
+    document.querySelectorAll('[data-chat-quick]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const form = document.getElementById('aiHelpForm');
+        const input = form?.querySelector('[name="message"]');
+        if (!form || !input) return;
+        input.value = button.dataset.chatQuick || '';
+        form.requestSubmit();
+      });
+    });
   }
 
   // Nhắc học sinh xác nhận trước khi rời khỏi bài còn dang dở, tránh bấm nhầm

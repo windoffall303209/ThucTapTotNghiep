@@ -367,7 +367,8 @@ h3 {
   border-radius: 999px;
   color: var(--primary-dark);
   background: #eff6ff;
-  font-size: 13px;
+  /* 14px la co chu san nho nhat cho hoc sinh; 13px qua nho voi tre moi biet doc. */
+  font-size: 14px;
   font-weight: 900;
 }
 
@@ -544,7 +545,7 @@ h3 {
   padding: 4px 10px;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
   white-space: nowrap;
 }
@@ -783,7 +784,7 @@ td {
 th {
   color: #475569;
   background: #f8fafc;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -849,7 +850,7 @@ tbody tr:last-child td {
   border-radius: 999px;
   color: var(--secondary);
   background: var(--secondary-soft);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
 }
 
@@ -1869,6 +1870,47 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
   grid-template-columns: 1fr;
 }
 
+/* Mở rộng chế độ lớp 1-2 ra TOÀN giao diện. Cỡ 19px ở body chỉ phóng được phần
+   chữ thừa kế; các thành phần đặt cỡ chữ bằng px cứng (nhãn, pill, bảng, nav)
+   vẫn đứng nguyên cỡ người lớn nên dashboard và lịch sử trước đây không to lên
+   cùng vùng làm bài. Nhóm luật dưới đây phủ nốt các thành phần đó. */
+body[data-grade="1"] .eyebrow,
+body[data-grade="2"] .eyebrow,
+body[data-grade="1"] .status-pill,
+body[data-grade="2"] .status-pill {
+  font-size: 15px;
+}
+
+body[data-grade="1"] th,
+body[data-grade="2"] th {
+  font-size: 15px;
+}
+
+body[data-grade="1"] .section-title,
+body[data-grade="2"] .section-title {
+  font-size: 21px;
+}
+
+body[data-grade="1"] .back-link,
+body[data-grade="2"] .back-link,
+body[data-grade="1"] .form-note,
+body[data-grade="2"] .form-note {
+  font-size: 1em;
+}
+
+/* Thanh điều hướng dưới cùng: chữ và icon to hơn, vùng chạm cao hơn. */
+body[data-grade="1"] .bottom-nav a,
+body[data-grade="2"] .bottom-nav a {
+  min-height: 60px;
+  font-size: 14px;
+}
+
+body[data-grade="1"] .bottom-nav .lucide-icon,
+body[data-grade="2"] .bottom-nav .lucide-icon {
+  width: 24px;
+  height: 24px;
+}
+
 /* Thanh điều hướng dưới màn hình, chỉ dùng cho học sinh trên thiết bị hẹp */
 .bottom-nav {
   display: none;
@@ -1899,7 +1941,7 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
     padding: 7px 4px;
     border-radius: var(--radius-sm);
     color: var(--muted);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
     text-align: center;
   }
@@ -2089,11 +2131,66 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
   background: var(--primary);
 }
 
+/* Bộ lọc trên trang xem lại bài: Tất cả câu / Chỉ xem câu sai. */
+.review-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.review-filter .btn.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+/* Ẩn về thị giác nhưng trình đọc màn hình vẫn đọc được (label của ô chat). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Dãy nút hỏi nhanh phía trên ô nhập chat: bấm là gửi luôn câu hỏi soạn sẵn. */
+.chat-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.chat-quick {
+  padding: 7px 12px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.chat-quick:hover,
+.chat-quick:focus-visible {
+  background: #c7dbfd;
+  transform: translateY(-1px);
+}
+
 .chat-form {
   display: flex;
   gap: 8px;
   padding: 14px;
-  border-top: 1px solid var(--line);
+  border-top: 0;
   background: #fff;
 }
 
