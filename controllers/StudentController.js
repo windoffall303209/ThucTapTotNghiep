@@ -673,10 +673,15 @@ async function submitAnswer(req, res, next) {
 
 async function theoryHelp(req, res, next) {
   try {
+    // Endpoint này được gọi bằng fetch nên mọi nhánh đều phải trả JSON.
+    // Redirect ở đây làm client nhận về HTML kèm mã 200, response.json() ném
+    // lỗi và học sinh thấy nhầm thông báo "mất kết nối".
     const lessonItem = await Curriculum.getLessonById(req.body.lessonId);
     if (!lessonItem) {
-      setFlash(req, 'danger', 'Không tìm thấy bài học cần giải thích.');
-      return res.redirect('/student/dashboard');
+      return res.status(404).json({
+        ok: false,
+        message: 'Không tìm thấy bài học cần giải thích. Em tải lại trang rồi thử lại nhé.'
+      });
     }
 
     if (!canAccessLesson(req.auth, lessonItem)) {
