@@ -2,7 +2,7 @@
   <div>
     <p class="eyebrow">Hôm nay học gì?</p>
     <h1>Chào, <%= student.fullname %></h1>
-    <p>Lớp <%= student.current_grade %> · Chọn bài cần học tiếp, ôn lại phần còn yếu hoặc luyện đề tổng hợp.</p>
+    <p>Lớp <%= student.current_grade %> · Chọn bài cần học tiếp, ôn lại phần còn yếu hoặc luyện tập tổng hợp.</p>
   </div>
   <div class="row-actions">
     <a class="btn btn-secondary" href="/student/history">
@@ -11,7 +11,7 @@
     </a>
     <a class="btn btn-primary" href="/student/exams">
       <i data-lucide="clipboard-list" class="lucide-icon"></i>
-      Luyện đề
+      Chọn phạm vi luyện tập
     </a>
   </div>
 </section>
@@ -31,7 +31,7 @@
       <a class="btn btn-secondary" href="/student/lessons/<%= recommendation.id %>">Ôn lại bài này</a>
     <% } else { %>
       <strong>Chưa có bài yếu rõ ràng</strong>
-      <p class="muted">Em có thể chọn bài mới bên dưới hoặc làm một đề ngẫu nhiên.</p>
+      <p class="muted">Em có thể chọn bài mới bên dưới hoặc tạo bài luyện tập tổng hợp.</p>
       <a class="btn btn-secondary" href="/student/exams">Chọn phạm vi luyện tập</a>
     <% } %>
   </article>
