@@ -434,6 +434,48 @@ async function deleteQuestion(req, res, next) {
   }
 }
 
+/**
+ * Nhân bản một câu hỏi trong cùng bài học. Người soạn hay cần một loạt câu cùng
+ * khuôn chỉ khác con số; trước đây phải gõ lại từ đầu cả đề, bốn phương án lẫn
+ * lời giải. Bản sao được đánh dấu ngay trong đề bài để không bỏ quên hai câu
+ * trùng nhau trong ngân hàng, và sao chép cả các lỗi sai thường gặp.
+ */
+async function duplicateQuestion(req, res, next) {
+  try {
+    const question = await Question.getQuestionById(req.params.id);
+    if (!question) {
+      setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần nhân bản.');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
+    }
+
+    const misconceptions = await Question.getMisconceptionsByQuestion(question.id);
+    const content = question.content || {};
+    const newId = await Question.createQuestion({
+      lesson_id: question.lesson_id,
+      question_type: question.question_type,
+      difficulty: question.difficulty,
+      layout_template: question.layout_template,
+      content: {
+        ...content,
+        text: `${String(content.text || '').trim()} (bản sao — cần sửa lại)`.trim()
+      },
+      choices: question.choices || [],
+      correct_answer: question.correct_answer,
+      explanation: question.explanation || {},
+      misconceptions: (misconceptions || []).map((item) => ({
+        distractor_key: item.distractor_key,
+        misconception_name: item.misconception_name,
+        explanation: item.explanation
+      }))
+    });
+
+    setFlash(req, 'success', `Đã nhân bản câu hỏi #${question.id} thành câu #${newId}. Nhớ sửa lại nội dung bản sao.`);
+    return res.redirect(contentManagerUrl('questions', question.lesson_id));
+  } catch (error) {
+    next(error);
+  }
+}
+
 function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map()) {
   const questionType = normalizeQuestionType(body.question_type);
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
@@ -1017,8 +1059,15 @@ async function updateStudentGrade(req, res, next) {
    Chức năng AD-01: quản lý khung chương trình
    ------------------------------------------------------------------------- */
 
-function curriculumUrl(grade) {
-  return `/admin/curriculum?grade=${Number(grade)}`;
+/**
+ * Địa chỉ quay về trang khung chương trình. openChapterId là chương cần mở sẵn
+ * sau khi tải lại: mọi thao tác lưu ở trang này đều là full POST rồi redirect,
+ * không kèm tham số này thì mọi <details> đóng sập lại và admin sửa 10 bài học
+ * phải tự tìm lại vị trí 10 lần.
+ */
+function curriculumUrl(grade, openChapterId = null) {
+  const base = `/admin/curriculum?grade=${Number(grade)}`;
+  return openChapterId ? `${base}&open=${Number(openChapterId)}#chapter-${Number(openChapterId)}` : base;
 }
 
 async function curriculum(req, res, next) {
@@ -1036,6 +1085,8 @@ async function curriculum(req, res, next) {
       gradeOptions: gradeOptions(),
       chapters,
       lessonsByChapter,
+      // Chương cần mở sẵn sau một thao tác lưu, đọc từ ?open= do curriculumUrl gắn.
+      openChapterId: Number(req.query.open || 0) || null,
       nextChapterOrder: await Curriculum.nextChapterSortOrder(grade)
     });
   } catch (error) {
@@ -1057,14 +1108,14 @@ async function createChapter(req, res, next) {
       return res.redirect(curriculumUrl(grade));
     }
 
-    await Curriculum.createChapter({
+    const newChapterId = await Curriculum.createChapter({
       grade,
       semester: req.body.semester,
       chapterName,
       sortOrder: req.body.sort_order
     });
     setFlash(req, 'success', `Đã thêm chương "${chapterName}" vào lớp ${grade}.`);
-    return res.redirect(curriculumUrl(grade));
+    return res.redirect(curriculumUrl(grade, newChapterId));
   } catch (error) {
     next(error);
   }
@@ -1081,7 +1132,7 @@ async function updateChapter(req, res, next) {
     const chapterName = String(req.body.chapter_name || '').trim();
     if (!chapterName) {
       setFlash(req, 'danger', 'Tên chương không được để trống.');
-      return res.redirect(curriculumUrl(chapter.grade));
+      return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
 
     await Curriculum.updateChapter(chapter.id, {
@@ -1090,7 +1141,7 @@ async function updateChapter(req, res, next) {
       sortOrder: req.body.sort_order
     });
     setFlash(req, 'success', `Đã cập nhật chương "${chapterName}".`);
-    return res.redirect(curriculumUrl(chapter.grade));
+    return res.redirect(curriculumUrl(chapter.grade, chapter.id));
   } catch (error) {
     next(error);
   }
@@ -1113,7 +1164,7 @@ async function deleteChapter(req, res, next) {
         'danger',
         `Không thể xóa chương đang chứa ${lessonCount} bài học. Vui lòng xóa hết bài học con trước.`
       );
-      return res.redirect(curriculumUrl(chapter.grade));
+      return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
 
     await Curriculum.deleteChapter(chapter.id);
@@ -1135,7 +1186,7 @@ async function createLesson(req, res, next) {
     const lessonName = String(req.body.lesson_name || '').trim();
     if (!lessonName) {
       setFlash(req, 'danger', 'Vui lòng nhập tên bài học.');
-      return res.redirect(curriculumUrl(chapter.grade));
+      return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
 
     await Curriculum.createLesson({
@@ -1144,7 +1195,7 @@ async function createLesson(req, res, next) {
       sortOrder: req.body.sort_order
     });
     setFlash(req, 'success', `Đã thêm bài học "${lessonName}" vào chương "${chapter.chapter_name}".`);
-    return res.redirect(curriculumUrl(chapter.grade));
+    return res.redirect(curriculumUrl(chapter.grade, chapter.id));
   } catch (error) {
     next(error);
   }
@@ -1161,7 +1212,7 @@ async function updateLesson(req, res, next) {
     const lessonName = String(req.body.lesson_name || '').trim();
     if (!lessonName) {
       setFlash(req, 'danger', 'Tên bài học không được để trống.');
-      return res.redirect(curriculumUrl(lesson.grade));
+      return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
     }
 
     await Curriculum.updateLesson(lesson.id, {
@@ -1169,7 +1220,7 @@ async function updateLesson(req, res, next) {
       sortOrder: req.body.sort_order
     });
     setFlash(req, 'success', `Đã cập nhật bài học "${lessonName}".`);
-    return res.redirect(curriculumUrl(lesson.grade));
+    return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
   } catch (error) {
     next(error);
   }
@@ -1191,12 +1242,12 @@ async function deleteLesson(req, res, next) {
         'danger',
         `Không thể xóa bài học đang có ${questionCount} câu hỏi. Vui lòng xóa hết câu hỏi trong ngân hàng trước.`
       );
-      return res.redirect(curriculumUrl(lesson.grade));
+      return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
     }
 
     await Curriculum.deleteLesson(lesson.id);
     setFlash(req, 'success', `Đã xóa bài học "${lesson.lesson_name}".`);
-    return res.redirect(curriculumUrl(lesson.grade));
+    return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
   } catch (error) {
     next(error);
   }
@@ -1481,6 +1532,7 @@ module.exports = {
   lessonQuestions,
   questionEditForm,
   createQuestion,
+  duplicateQuestion,
   updateQuestion,
   deleteQuestion,
   students,

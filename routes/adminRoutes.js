@@ -27,6 +27,7 @@ const questionUploadFields = questionImageUpload.fields([
 router.post('/questions', questionUploadFields, AdminController.createQuestion);
 router.post('/questions/:id', questionUploadFields, AdminController.updateQuestion);
 router.post('/questions/:id/delete', AdminController.deleteQuestion);
+router.post('/questions/:id/duplicate', AdminController.duplicateQuestion);
 router.get('/students', requireRoles(['SYSADMIN']), AdminController.students);
 router.post('/students/:id/password', requireRoles(['SYSADMIN']), AdminController.resetStudentPassword);
 router.post('/students/:id/grade', requireRoles(['SYSADMIN']), AdminController.updateStudentGrade);

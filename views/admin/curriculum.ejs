@@ -30,8 +30,8 @@
     <label>
       Học kỳ
       <select name="semester">
-        <option value="1">Học kỳ I</option>
-        <option value="2">Học kỳ II</option>
+        <option value="1">Học kỳ 1</option>
+        <option value="2">Học kỳ 2</option>
       </select>
     </label>
     <label>
@@ -60,10 +60,15 @@
 
   <% chapters.forEach((chapter) => { %>
     <% const lessons = lessonsByChapter[chapter.id] || []; %>
-    <details class="chapter-panel curriculum-panel">
+    <%# id để redirect sau khi lưu nhảy thẳng về chương vừa thao tác; thuộc tính
+        open đọc từ ?open= nên trạng thái đang mở không mất sau mỗi lần lưu. %>
+    <details
+      class="chapter-panel curriculum-panel"
+      id="chapter-<%= chapter.id %>"
+      <%= Number(openChapterId) === Number(chapter.id) ? 'open' : '' %>>
       <summary>
         <span>
-          <strong>Học kỳ <%= Number(chapter.semester) === 1 ? 'I' : 'II' %></strong>
+          <strong>Học kỳ <%= Number(chapter.semester) === 1 ? '1' : '2' %></strong>
           · <%= chapter.chapter_name %>
         </span>
         <small>
@@ -80,8 +85,8 @@
           <label>
             Học kỳ
             <select name="semester">
-              <option value="1" <%= Number(chapter.semester) === 1 ? 'selected' : '' %>>Học kỳ I</option>
-              <option value="2" <%= Number(chapter.semester) === 2 ? 'selected' : '' %>>Học kỳ II</option>
+              <option value="1" <%= Number(chapter.semester) === 1 ? 'selected' : '' %>>Học kỳ 1</option>
+              <option value="2" <%= Number(chapter.semester) === 2 ? 'selected' : '' %>>Học kỳ 2</option>
             </select>
           </label>
           <label>
@@ -135,12 +140,19 @@
             </form>
 
             <div class="curriculum-lesson-meta">
-              <span class="status-pill <%= lesson.question_count > 0 ? 'status-completed' : 'status-new' %>">
+              <%# Pill giờ là link chéo sang thẳng trang biên soạn của đúng bài
+                  này: thấy "0 câu hỏi" hay "Chưa có lý thuyết" là bấm đi bổ
+                  sung được ngay, không phải tự mò qua menu rồi tìm lại bài. %>
+              <a class="status-pill <%= lesson.question_count > 0 ? 'status-completed' : 'status-new' %>"
+                 href="/admin/questions?lesson=<%= lesson.id %>"
+                 title="Mở ngân hàng câu hỏi của bài này">
                 <%= lesson.question_count %> câu hỏi
-              </span>
-              <span class="status-pill <%= lesson.has_theory ? 'status-completed' : 'status-review' %>">
+              </a>
+              <a class="status-pill <%= lesson.has_theory ? 'status-completed' : 'status-review' %>"
+                 href="/admin/theory?lesson=<%= lesson.id %>"
+                 title="Mở kho lý thuyết của bài này">
                 <%= lesson.has_theory ? 'Đã có lý thuyết' : 'Chưa có lý thuyết' %>
-              </span>
+              </a>
               <form
                 action="/admin/curriculum/lessons/<%= lesson.id %>/delete"
                 method="post"

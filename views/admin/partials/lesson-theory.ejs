@@ -242,7 +242,7 @@
           <span class="status-pill status-new"><%= labelFor(theoryTypes, card.type || 'concept', 'Khái niệm') %></span>
           <h2><%= card.title || `Thẻ lý thuyết ${index + 1}` %></h2>
         </div>
-        <form action="/admin/theory/<%= lesson.id %>/cards/<%= index %>/delete" method="post" onsubmit="return confirm('Xóa thẻ lý thuyết này?');">
+        <form action="/admin/theory/<%= lesson.id %>/cards/<%= index %>/delete" method="post" data-confirm="Xóa thẻ lý thuyết này? Thao tác này không thể hoàn tác.">
           <button class="btn btn-danger btn-compact" type="submit">
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa

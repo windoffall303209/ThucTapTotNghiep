@@ -64,6 +64,19 @@
     return question.content?.layout_variant || question.layout_template || 'STACK_VERTICAL';
   }
 
+  // Dịch mã thô ra tiếng Việt ở chế độ XEM. Danh sách nhãn đã có sẵn cho các ô
+  // select của form soạn; chế độ xem trước đây lại in thẳng EASY hay
+  // STACK_VERTICAL khiến người rà soát phải tự thuộc bảng mã.
+  function difficultyLabel(question) {
+    const value = question.difficulty || 'EASY';
+    return (difficultyOptions.find((option) => option.value === value) || {}).label || value;
+  }
+
+  function layoutLabel(question) {
+    const value = displayLayout(question);
+    return (layoutOptions.find((option) => option.value === value) || {}).label || value;
+  }
+
   function questionTypeLabel(question) {
     return question.question_type === 'FILL_IN_THE_BLANK' ? 'Điền đáp án' : 'Trắc nghiệm';
   }
@@ -414,8 +427,8 @@
           <div class="bank-question-meta">
             <span>ID #<%= question.id %></span>
             <span><%= questionTypeLabel(question) %></span>
-            <span><%= question.difficulty || 'EASY' %></span>
-            <span><%= displayLayout(question) %></span>
+            <span><%= difficultyLabel(question) %></span>
+            <span><%= layoutLabel(question) %></span>
           </div>
           <div class="saved-question-layout <%= savedQuestionLayoutClass(question) %> math-content math-lazy">
             <%- contentHtml(question) %>
@@ -458,7 +471,24 @@
           </div>
         </details>
 
-        <form class="delete-question-form" action="/admin/questions/<%= question.id %>/delete" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa câu hỏi này? Lịch sử làm bài liên quan tới câu hỏi này cũng có thể bị ảnh hưởng.');">
+        <%# Nhân bản: tạo bản sao trong cùng bài để soạn loạt câu cùng khuôn,
+            đề bản sao được đánh dấu "cần sửa lại" để không quên hai câu trùng. %>
+        <form action="/admin/questions/<%= question.id %>/duplicate" method="post">
+          <input type="hidden" name="lesson_id" value="<%= lesson.id %>">
+          <button class="btn btn-secondary btn-compact" type="submit">
+            <i data-lucide="copy" class="lucide-icon"></i>
+            Nhân bản
+          </button>
+        </form>
+
+        <%# data-confirm thay cho onsubmit inline: cả trang admin dùng chung một
+            cơ chế xác nhận trong app.js, không rải confirm() thủ công mỗi nơi
+            một kiểu. %>
+        <form
+          class="delete-question-form"
+          action="/admin/questions/<%= question.id %>/delete"
+          method="post"
+          data-confirm="Bạn chắc chắn muốn xóa câu hỏi này? Lịch sử làm bài liên quan tới câu hỏi này cũng có thể bị ảnh hưởng.">
           <input type="hidden" name="lesson_id" value="<%= lesson.id %>">
           <button class="btn btn-danger btn-compact" type="submit">
             <i data-lucide="trash-2" class="lucide-icon"></i>
