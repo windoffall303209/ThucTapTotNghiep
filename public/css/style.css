@@ -1435,6 +1435,35 @@ tbody tr:last-child td {
   }
 }
 
+/* Trên màn hình hẹp, đề 15-20 câu làm thanh chấm xuống 3 hàng và đẩy đề bài lẫn
+   đáp án ra khỏi vùng nhìn. Thu về một hàng cuộn ngang để đề bài luôn thấy ngay. */
+@media (max-width: 760px) {
+  .question-progress {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    margin: 10px 0 2px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .progress-dot {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  /* Lớp 1-2 vẫn giữ vùng chạm lớn hơn, chỉ giảm nhẹ so với bản desktop. */
+  body[data-grade="1"] .progress-dot,
+  body[data-grade="2"] .progress-dot {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
 /* Bảng tổng kết hiện ra khi học sinh đã trả lời hết các câu trong bài */
 .practice-summary {
   display: grid;
