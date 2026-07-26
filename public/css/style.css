@@ -2131,6 +2131,46 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
   background: var(--primary);
 }
 
+/* Link phân trang bị vô hiệu (đang ở trang đầu/cuối). */
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Thanh lọc câu hỏi trong một bài (admin) và form tìm kiếm xuyên ngân hàng. */
+.question-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+}
+
+.question-filter-bar label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.question-search-form .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.question-search-form .checkbox-label input {
+  width: 18px;
+  height: 18px;
+}
+
 /* Bộ lọc trên trang xem lại bài: Tất cả câu / Chỉ xem câu sai. */
 .review-filter {
   display: flex;

@@ -13,6 +13,7 @@ router.post('/theory/:lessonId/cards', questionImageUpload.any(), AdminControlle
 router.post('/theory/:lessonId/cards/:cardIndex', questionImageUpload.any(), AdminController.updateTheoryCard);
 router.post('/theory/:lessonId/cards/:cardIndex/delete', AdminController.deleteTheoryCard);
 router.get('/questions', AdminController.questions);
+router.get('/questions/search', AdminController.questionSearch);
 router.get('/questions/lesson/:lessonId', AdminController.lessonQuestions);
 router.get('/questions/:id/edit', AdminController.questionEditForm);
 const questionUploadFields = questionImageUpload.fields([

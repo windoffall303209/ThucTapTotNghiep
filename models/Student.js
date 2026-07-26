@@ -78,6 +78,70 @@ async function listStudents(search = '') {
   }
 }
 
+/**
+ * Danh sách học sinh có phân trang, lọc theo lớp và kèm lần làm bài gần nhất.
+ *
+ * last_activity_at lấy từ StudentLogs để admin phân biệt được tài khoản đang
+ * học thật với tài khoản tạo ra rồi bỏ; danh sách vài trăm em mà đổ hết ra một
+ * trang thì vừa chậm vừa không tra cứu nổi.
+ */
+async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 20 } = {}) {
+  const keyword = `%${search}%`;
+  const safePage = Math.max(Number(page) || 1, 1);
+  const safeLimit = Math.min(Math.max(Number(limit) || 20, 5), 50);
+  const offset = (safePage - 1) * safeLimit;
+
+  const where = ['(s.username LIKE ? OR s.fullname LIKE ?)'];
+  const params = [keyword, keyword];
+  if (Number(grade) > 0) {
+    where.push('s.current_grade = ?');
+    params.push(Number(grade));
+  }
+  const whereClause = where.join(' AND ');
+
+  try {
+    const [rows, countRows] = await Promise.all([
+      db.query(
+        `SELECT s.id, s.username, s.fullname, s.registered_grade, s.current_grade, s.created_at,
+                (SELECT MAX(sl.created_at) FROM StudentLogs sl WHERE sl.student_id = s.id) AS last_activity_at
+         FROM Students s
+         WHERE ${whereClause}
+         ORDER BY s.created_at DESC
+         LIMIT ${safeLimit} OFFSET ${offset}`,
+        params
+      ),
+      db.query(`SELECT COUNT(*) AS total FROM Students s WHERE ${whereClause}`, params)
+    ]);
+
+    const total = Number(countRows[0]?.total || 0);
+    return {
+      students: rows,
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total,
+        totalPages: Math.max(Math.ceil(total / safeLimit), 1)
+      }
+    };
+  } catch (error) {
+    const filtered = sampleData.students.filter((student) => {
+      const text = `${student.username} ${student.fullname}`.toLowerCase();
+      const matchText = text.includes(String(search).toLowerCase());
+      const matchGrade = !Number(grade) || Number(student.current_grade) === Number(grade);
+      return matchText && matchGrade;
+    });
+    return {
+      students: filtered.slice(offset, offset + safeLimit),
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total: filtered.length,
+        totalPages: Math.max(Math.ceil(filtered.length / safeLimit), 1)
+      }
+    };
+  }
+}
+
 async function updatePassword(studentId, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
@@ -114,6 +178,7 @@ module.exports = {
   findById,
   createStudent,
   listStudents,
+  listStudentsPaged,
   updatePassword,
   updateCurrentGrade
 };

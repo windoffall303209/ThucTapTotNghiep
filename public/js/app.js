@@ -2055,7 +2055,12 @@
     shell.innerHTML = '<div class="empty-state compact">Đang tải danh sách câu hỏi...</div>';
 
     try {
-      const url = `/admin/questions/lesson/${encodeURIComponent(lessonId)}?page=${encodeURIComponent(page)}&limit=8`;
+      // Bộ lọc độ khó/từ khóa lưu trên dataset của shell để các lần lật trang
+      // sau vẫn giữ nguyên điều kiện lọc.
+      const params = new URLSearchParams({ page: String(page), limit: '8' });
+      if (shell.dataset.filterDifficulty) params.set('difficulty', shell.dataset.filterDifficulty);
+      if (shell.dataset.filterKeyword) params.set('q', shell.dataset.filterKeyword);
+      const url = `/admin/questions/lesson/${encodeURIComponent(lessonId)}?${params.toString()}`;
       const response = await fetch(url, {
         headers: { 'X-Requested-With': 'fetch' }
       });
@@ -2092,6 +2097,25 @@
       button.addEventListener('click', () => {
         const page = Number(button.dataset.questionPage || 1);
         fetchLessonQuestions(shell, page);
+      });
+    });
+
+    // Thanh lọc trong bài: submit là tải lại partial từ trang 1 với điều kiện
+    // mới; "Bỏ lọc" xóa điều kiện rồi tải lại toàn bộ.
+    shell.querySelectorAll('[data-question-filter]').forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        shell.dataset.filterDifficulty = String(form.querySelector('[name="difficulty"]')?.value || '');
+        shell.dataset.filterKeyword = String(form.querySelector('[name="q"]')?.value || '').trim();
+        delete shell.dataset.loadedPage;
+        fetchLessonQuestions(shell, 1);
+      });
+
+      form.querySelector('[data-question-filter-clear]')?.addEventListener('click', () => {
+        delete shell.dataset.filterDifficulty;
+        delete shell.dataset.filterKeyword;
+        delete shell.dataset.loadedPage;
+        fetchLessonQuestions(shell, 1);
       });
     });
   }

@@ -35,11 +35,27 @@ function contentManagerUrl(section, lessonId) {
 
 async function dashboard(req, res, next) {
   try {
-    const [questionStats, recentQuestions, students] = await Promise.all([
+    const [questionStats, recentQuestions, students, difficultyStats, allLessons, questionCounts, theoryCounts] = await Promise.all([
       Question.getAdminStats(),
       Question.getRecentQuestions(6),
-      Student.listStudents()
+      Student.listStudents(),
+      Question.getDifficultyStats(),
+      Curriculum.getAllLessons(),
+      Question.getQuestionCountsByLesson(),
+      Curriculum.getTheoryCounts()
     ]);
+
+    // Việc tồn đọng: bài chưa có câu hỏi và bài chưa có thẻ lý thuyết. Đây là
+    // hai con số người soạn nội dung cần nhìn thấy đầu tiên mỗi sáng, thay vì
+    // phải tự dò từng bài trong khung chương trình.
+    const lessonIdsCoCauHoi = new Set(
+      questionCounts.filter((row) => Number(row.question_count) > 0).map((row) => Number(row.lesson_id))
+    );
+    const lessonIdsCoLyThuyet = new Set(
+      theoryCounts.filter((row) => Number(row.theory_count) > 0).map((row) => Number(row.lesson_id))
+    );
+    const baiThieuCauHoi = allLessons.filter((lesson) => !lessonIdsCoCauHoi.has(Number(lesson.id)));
+    const baiThieuLyThuyet = allLessons.filter((lesson) => !lessonIdsCoLyThuyet.has(Number(lesson.id)));
 
     res.render('admin/dashboard', {
       title: 'Bảng quản trị',
@@ -48,6 +64,13 @@ async function dashboard(req, res, next) {
         studentCount: students.length,
         lessonCount: questionStats.lessonCount,
         easyCount: questionStats.easyCount
+      },
+      difficultyStats,
+      backlog: {
+        thieuCauHoi: baiThieuCauHoi.length,
+        thieuLyThuyet: baiThieuLyThuyet.length,
+        viDuThieuCauHoi: baiThieuCauHoi.slice(0, 5),
+        viDuThieuLyThuyet: baiThieuLyThuyet.slice(0, 5)
       },
       questions: recentQuestions
     });
@@ -242,13 +265,55 @@ async function lessonQuestions(req, res, next) {
 
     const page = Math.max(Number(req.query.page || 1), 1);
     const limit = Math.min(Math.max(Number(req.query.limit || 8), 5), 20);
-    const questionPage = await Question.getQuestionPageByLesson(req.params.lessonId, { page, limit });
+    // Lọc theo độ khó và từ khóa ngay trong một bài: bài 30-40 câu mà chỉ có
+    // lật trang tuần tự thì việc tìm một câu cụ thể rất mất thời gian.
+    const difficulty = String(req.query.difficulty || '').trim().toUpperCase();
+    const keyword = String(req.query.q || '').trim();
+    const questionPage = await Question.getQuestionPageByLesson(req.params.lessonId, {
+      page,
+      limit,
+      difficulty,
+      keyword
+    });
 
     return res.render('admin/partials/lesson-questions', {
       layout: false,
       lesson,
       questions: questionPage.questions,
-      pagination: questionPage.pagination
+      pagination: questionPage.pagination,
+      filters: { difficulty, keyword }
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Tìm kiếm xuyên toàn bộ ngân hàng câu hỏi theo lớp, độ khó, dạng câu, từ khóa
+ * và cờ "chưa có lời giải". Kết quả link thẳng về trang biên soạn của bài chứa
+ * câu đó.
+ */
+async function questionSearch(req, res, next) {
+  try {
+    const filters = {
+      grade: Number(req.query.grade || 0) || null,
+      difficulty: String(req.query.difficulty || '').trim().toUpperCase() || null,
+      questionType: String(req.query.type || '').trim().toUpperCase() || null,
+      keyword: String(req.query.q || '').trim(),
+      missingExplanation: req.query.missing_explanation === '1'
+    };
+    const daLoc = Boolean(
+      filters.grade || filters.difficulty || filters.questionType
+      || filters.keyword || filters.missingExplanation
+    );
+    const results = daLoc ? await Question.searchQuestions({ ...filters, limit: 50 }) : [];
+
+    res.render('admin/question-search', {
+      title: 'Tìm kiếm câu hỏi',
+      filters,
+      daLoc,
+      results,
+      gradeOptions: gradeOptions()
     });
   } catch (error) {
     next(error);
@@ -975,11 +1040,21 @@ function ensureImagePlaceholders(contentText, images) {
 
 async function students(req, res, next) {
   try {
-    const studentList = await Student.listStudents(req.query.q || '');
+    const filterGrade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : null;
+    const page = Math.max(Number(req.query.page || 1), 1);
+    const result = await Student.listStudentsPaged({
+      search: req.query.q || '',
+      grade: filterGrade,
+      page,
+      limit: 20
+    });
+
     res.render('admin/students', {
       title: 'Quản lý học sinh',
-      students: studentList,
+      students: result.students,
+      pagination: result.pagination,
       query: req.query.q || '',
+      filterGrade,
       gradeOptions: gradeOptions()
     });
   } catch (error) {
@@ -1533,6 +1608,7 @@ module.exports = {
   questionEditForm,
   createQuestion,
   duplicateQuestion,
+  questionSearch,
   updateQuestion,
   deleteQuestion,
   students,

@@ -400,8 +400,44 @@
   </form>
 </details>
 
+<%
+  const boLoc = typeof filters === 'object' && filters !== null ? filters : { difficulty: '', keyword: '' };
+  const dangLoc = Boolean(boLoc.difficulty || boLoc.keyword);
+%>
+<%# Lọc ngay trong một bài theo độ khó và từ khóa: bài 30-40 câu mà chỉ lật
+    trang tuần tự thì tìm một câu cụ thể rất mất thời gian. Form này do JS bắt
+    submit và tải lại partial với tham số lọc, giữ nguyên cơ chế nạp động. %>
+<form class="question-filter-bar" data-question-filter>
+  <label>
+    Độ khó
+    <select name="difficulty">
+      <option value="">Tất cả</option>
+      <% difficultyOptions.forEach((option) => { %>
+        <option value="<%= option.value %>" <%= boLoc.difficulty === option.value ? 'selected' : '' %>><%= option.label %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>
+    Từ khóa trong đề bài
+    <input type="search" name="q" value="<%= boLoc.keyword %>" placeholder="Ví dụ: quả cam...">
+  </label>
+  <button class="btn btn-secondary btn-compact" type="submit">
+    <i data-lucide="filter" class="lucide-icon"></i>
+    Lọc
+  </button>
+  <% if (dangLoc) { %>
+    <button class="btn btn-secondary btn-compact" type="button" data-question-filter-clear>
+      Bỏ lọc
+    </button>
+  <% } %>
+</form>
+
 <% if (questions.length === 0) { %>
-  <div class="empty-state compact">Bài này chưa có câu hỏi. Bấm "Thêm câu hỏi mới" để nhập câu hỏi đầu tiên.</div>
+  <div class="empty-state compact">
+    <%= dangLoc
+      ? 'Không có câu hỏi nào khớp bộ lọc trong bài này. Bấm "Bỏ lọc" để xem lại toàn bộ.'
+      : 'Bài này chưa có câu hỏi. Bấm "Thêm câu hỏi mới" để nhập câu hỏi đầu tiên.' %>
+  </div>
 <% } %>
 
 <% if (pageInfo.totalPages > 1) { %>

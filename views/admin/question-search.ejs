@@ -1,0 +1,122 @@
+<%
+  // Nhãn tiếng Việt cho mã thô, đồng bộ với bảng nhãn của form soạn câu hỏi.
+  const difficultyLabels = { EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó', EXPERT: 'Nâng cao' };
+  const typeLabels = { MULTIPLE_CHOICE: 'Trắc nghiệm', FILL_IN_THE_BLANK: 'Điền đáp án' };
+%>
+
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Nội dung</p>
+    <h1>Tìm kiếm xuyên ngân hàng câu hỏi</h1>
+    <p>Tìm theo lớp, độ khó, dạng câu, từ khóa trong đề bài hoặc lọc các câu chưa có lời giải — không phải mở từng bài.</p>
+  </div>
+  <a class="btn btn-secondary" href="/admin/questions">
+    <i data-lucide="list-checks" class="lucide-icon"></i>
+    Về ngân hàng câu hỏi
+  </a>
+</section>
+
+<section class="table-section">
+  <form class="curriculum-form question-search-form" action="/admin/questions/search" method="get">
+    <label>
+      Từ khóa trong đề bài
+      <input name="q" value="<%= filters.keyword %>" placeholder="Ví dụ: quả táo, chu vi...">
+    </label>
+    <label>
+      Khối lớp
+      <select name="grade">
+        <option value="">Tất cả lớp</option>
+        <% gradeOptions.forEach((option) => { %>
+          <option value="<%= option.value %>" <%= Number(filters.grade) === Number(option.value) ? 'selected' : '' %>>
+            <%= option.label %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Độ khó
+      <select name="difficulty">
+        <option value="">Tất cả</option>
+        <% Object.entries(difficultyLabels).forEach(([value, label]) => { %>
+          <option value="<%= value %>" <%= filters.difficulty === value ? 'selected' : '' %>><%= label %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Dạng câu
+      <select name="type">
+        <option value="">Tất cả</option>
+        <% Object.entries(typeLabels).forEach(([value, label]) => { %>
+          <option value="<%= value %>" <%= filters.questionType === value ? 'selected' : '' %>><%= label %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" name="missing_explanation" value="1" <%= filters.missingExplanation ? 'checked' : '' %>>
+      Chỉ câu chưa có lời giải
+    </label>
+    <button class="btn btn-primary" type="submit">
+      <i data-lucide="search" class="lucide-icon"></i>
+      Tìm kiếm
+    </button>
+  </form>
+</section>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="list-checks" class="lucide-icon"></i>
+    Kết quả
+    <% if (daLoc) { %>
+      <small class="muted"><%= results.length %> câu<%= results.length >= 50 ? ' (hiện 50 câu đầu, hãy thu hẹp bộ lọc)' : '' %></small>
+    <% } %>
+  </div>
+
+  <% if (!daLoc) { %>
+    <div class="empty-state compact">
+      <p>Nhập ít nhất một điều kiện lọc ở phía trên rồi bấm Tìm kiếm.</p>
+    </div>
+  <% } else if (results.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Không có câu hỏi nào khớp bộ lọc. Thử bớt điều kiện hoặc đổi từ khóa.</p>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Đề bài</th>
+            <th>Lớp / Bài học</th>
+            <th>Độ khó</th>
+            <th>Lời giải</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach((question) => { %>
+            <% const coLoiGiai = Boolean((question.explanation?.text || '').trim()); %>
+            <tr>
+              <td data-label="ID">#<%= question.id %></td>
+              <td data-label="Đề bài"><%= String(question.content?.text || '').slice(0, 120) %><%= String(question.content?.text || '').length > 120 ? '…' : '' %></td>
+              <td data-label="Lớp / Bài học">Lớp <%= question.grade %> · <%= question.lesson_name %></td>
+              <td data-label="Độ khó">
+                <span class="status-pill status-new"><%= difficultyLabels[question.difficulty] || question.difficulty %></span>
+              </td>
+              <td data-label="Lời giải">
+                <span class="status-pill <%= coLoiGiai ? 'status-completed' : 'status-review' %>">
+                  <%= coLoiGiai ? 'Đã có' : 'Chưa có' %>
+                </span>
+              </td>
+              <td data-label="Thao tác">
+                <a class="btn btn-secondary btn-compact" href="/admin/questions?lesson=<%= question.lesson_id %>">
+                  <i data-lucide="pencil" class="lucide-icon"></i>
+                  Mở bài để sửa
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>

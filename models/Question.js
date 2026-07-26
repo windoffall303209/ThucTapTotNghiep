@@ -200,19 +200,41 @@ function normalizeImage(image, index, idPrefix, defaultAlt) {
   };
 }
 
+/**
+ * Điều kiện lọc dùng chung cho danh sách và phép đếm câu hỏi trong một bài.
+ * Không lọc ở đây mà lọc sau khi truy vấn thì phân trang sẽ đếm sai tổng số.
+ */
+function buildLessonQuestionFilter(options = {}) {
+  const where = ['lesson_id = ?'];
+  const params = [];
+  const difficulty = String(options.difficulty || '').trim().toUpperCase();
+  const keyword = String(options.keyword || '').trim();
+
+  if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
+    where.push('difficulty = ?');
+    params.push(difficulty);
+  }
+  if (keyword) {
+    where.push("JSON_UNQUOTE(JSON_EXTRACT(content, '$.text')) LIKE ?");
+    params.push(`%${keyword}%`);
+  }
+  return { whereClause: where.join(' AND '), params };
+}
+
 async function getQuestionsByLesson(lessonId, options = {}) {
   const limit = normalizePageLimit(options.limit || 0, 0);
   const offset = Math.max(Number(options.offset || 0), 0);
   const limitClause = limit > 0 ? `LIMIT ${limit} OFFSET ${offset}` : '';
+  const filter = buildLessonQuestionFilter(options);
 
   try {
     const rows = await db.query(
       `SELECT *
        FROM QuestionBank
-       WHERE lesson_id = ?
+       WHERE ${filter.whereClause}
        ORDER BY FIELD(difficulty, 'EASY', 'MEDIUM', 'HARD', 'EXPERT'), id
        ${limitClause}`,
-      [lessonId]
+      [lessonId, ...filter.params]
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
@@ -299,13 +321,14 @@ async function getQuestionCandidates(options = {}) {
   }
 }
 
-async function countQuestionsByLesson(lessonId) {
+async function countQuestionsByLesson(lessonId, options = {}) {
+  const filter = buildLessonQuestionFilter(options);
   try {
     const rows = await db.query(
       `SELECT COUNT(*) AS total
        FROM QuestionBank
-       WHERE lesson_id = ?`,
-      [lessonId]
+       WHERE ${filter.whereClause}`,
+      [lessonId, ...filter.params]
     );
     return Number(rows[0]?.total || 0);
   } catch (error) {
@@ -317,9 +340,10 @@ async function getQuestionPageByLesson(lessonId, options = {}) {
   const page = Math.max(Number(options.page || 1), 1);
   const limit = normalizePageLimit(options.limit || 20, 20);
   const offset = (page - 1) * limit;
+  const filterOptions = { difficulty: options.difficulty, keyword: options.keyword };
   const [questions, total] = await Promise.all([
-    getQuestionsByLesson(lessonId, { limit, offset }),
-    countQuestionsByLesson(lessonId)
+    getQuestionsByLesson(lessonId, { limit, offset, ...filterOptions }),
+    countQuestionsByLesson(lessonId, filterOptions)
   ]);
 
   return {
@@ -331,6 +355,90 @@ async function getQuestionPageByLesson(lessonId, options = {}) {
       totalPages: Math.max(Math.ceil(total / limit), 1)
     }
   };
+}
+
+/**
+ * Phân bố câu hỏi theo bốn mức độ khó, cho khối thống kê ở dashboard admin.
+ */
+async function getDifficultyStats() {
+  const base = { EASY: 0, MEDIUM: 0, HARD: 0, EXPERT: 0 };
+  try {
+    const rows = await db.query(
+      `SELECT q.difficulty, COUNT(*) AS total
+       FROM QuestionBank q
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       GROUP BY q.difficulty`
+    );
+    rows.forEach((row) => {
+      const key = String(row.difficulty || '').toUpperCase();
+      if (key in base) base[key] = Number(row.total || 0);
+    });
+    return base;
+  } catch (error) {
+    return base;
+  }
+}
+
+/**
+ * Tìm kiếm xuyên toàn bộ ngân hàng câu hỏi, không phải đi qua từng bài. Đây là
+ * điểm nghẽn năng suất số một của người soạn nội dung: trước đây muốn tìm một
+ * câu chỉ nhớ mang máng từ khóa thì phải mở lần lượt hàng chục bài học.
+ *
+ * missingExplanation lọc các câu chưa có lời giải — loại việc tồn đọng từng
+ * phải rà bằng script trong đợt rà soát chất lượng ngân hàng.
+ */
+async function searchQuestions(filters = {}) {
+  const where = [];
+  const params = [];
+
+  const grade = Number(filters.grade || 0);
+  if (grade >= MIN_GRADE && grade <= MAX_GRADE) {
+    where.push('c.grade = ?');
+    params.push(grade);
+  }
+
+  const difficulty = String(filters.difficulty || '').trim().toUpperCase();
+  if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
+    where.push('q.difficulty = ?');
+    params.push(difficulty);
+  }
+
+  const questionType = String(filters.questionType || '').trim().toUpperCase();
+  if (['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'].includes(questionType)) {
+    where.push('q.question_type = ?');
+    params.push(questionType);
+  }
+
+  const keyword = String(filters.keyword || '').trim();
+  if (keyword) {
+    where.push("JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) LIKE ?");
+    params.push(`%${keyword}%`);
+  }
+
+  if (filters.missingExplanation) {
+    where.push("TRIM(COALESCE(JSON_UNQUOTE(JSON_EXTRACT(q.explanation, '$.text')), '')) = ''");
+  }
+
+  const whereClause = where.length ? `WHERE ${where.join(' AND ')}` : '';
+  const limit = normalizePageLimit(filters.limit || 50, 50);
+
+  try {
+    const rows = await db.query(
+      `SELECT q.*, l.lesson_name, c.chapter_name, c.grade
+       FROM QuestionBank q
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       ${whereClause}
+       ORDER BY q.id DESC
+       LIMIT ${limit}`,
+      params
+    );
+    return rows.map(normalizeQuestion);
+  } catch (error) {
+    return [];
+  }
 }
 
 async function getQuestionById(id) {
@@ -783,6 +891,8 @@ module.exports = {
   getTheoryReviewQuestions,
   getQuestionCandidates,
   getQuestionPageByLesson,
+  searchQuestions,
+  getDifficultyStats,
   countQuestionsByLesson,
   getRandomQuestionsByGrade,
   getQuestionById,
