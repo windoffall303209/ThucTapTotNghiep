@@ -22,6 +22,12 @@
       Kho lý thuyết
     </a>
 
+    <span class="admin-nav-label">Giám sát</span>
+    <a href="/admin/logs/ai" class="<%= currentPath.startsWith('/admin/logs') ? 'active' : '' %>">
+      <i data-lucide="message-square" class="lucide-icon"></i>
+      Nhật ký AI
+    </a>
+
     <% if (admin.role === 'SYSADMIN') { %>
       <span class="admin-nav-label">Hệ thống</span>
       <a href="/admin/students" class="<%= currentPath.startsWith('/admin/students') ? 'active' : '' %>">

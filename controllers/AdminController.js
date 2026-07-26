@@ -2,6 +2,7 @@ const Curriculum = require('../models/Curriculum');
 const Question = require('../models/Question');
 const Student = require('../models/Student');
 const SystemSetting = require('../models/SystemSetting');
+const AIConversationLog = require('../models/AIConversationLog');
 const ImageStorageService = require('../services/ImageStorageService');
 const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
@@ -1012,6 +1013,63 @@ async function updateStudentGrade(req, res, next) {
   }
 }
 
+const AI_SESSION_TYPES = ['EXERCISE_HELP', 'THEORY_EXPLAIN'];
+
+// Chức năng AD-08: giám sát nội dung hội thoại giữa học sinh và AI.
+async function aiLogs(req, res, next) {
+  try {
+    const sessionType = AI_SESSION_TYPES.includes(req.query.type) ? req.query.type : '';
+    const studentId = Number(req.query.student_id || 0) || null;
+    const onlyFlagged = String(req.query.flagged || '') === '1';
+
+    const [result, stats, studentList] = await Promise.all([
+      AIConversationLog.listLogs({
+        page: req.query.page,
+        limit: 20,
+        studentId,
+        sessionType,
+        onlyFlagged
+      }),
+      AIConversationLog.getLogStats(),
+      Student.listStudents('')
+    ]);
+
+    res.render('admin/ai-logs', {
+      title: 'Nhật ký hội thoại AI',
+      logs: result.logs,
+      pagination: result.pagination,
+      stats,
+      students: studentList,
+      filters: { sessionType, studentId, onlyFlagged }
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function flagAiLog(req, res, next) {
+  try {
+    const flagged = String(req.body.flagged || '1') === '1';
+    const updated = await AIConversationLog.setFlagged(req.params.id, flagged);
+
+    if (!updated) {
+      setFlash(req, 'danger', 'Không tìm thấy hội thoại cần đánh dấu.');
+    } else {
+      setFlash(
+        req,
+        'success',
+        flagged
+          ? 'Đã đánh dấu hội thoại này là AI trả lời chưa đúng kiến thức.'
+          : 'Đã bỏ đánh dấu cho hội thoại này.'
+      );
+    }
+
+    return res.redirect(req.body.return_to || '/admin/logs/ai');
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function settings(req, res, next) {
   try {
     const settings = await SystemSetting.getSettings();
@@ -1239,6 +1297,8 @@ module.exports = {
   students,
   resetStudentPassword,
   updateStudentGrade,
+  aiLogs,
+  flagAiLog,
   settings,
   updateSettings,
   checkSettings

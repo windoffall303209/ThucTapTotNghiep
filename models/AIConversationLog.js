@@ -93,6 +93,168 @@ async function logAIInteraction(input) {
   }
 }
 
+function parseChatHistory(value) {
+  if (Array.isArray(value)) return value;
+  try {
+    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function normalizeLogRow(row) {
+  return {
+    ...row,
+    chat_history: parseChatHistory(row.chat_history),
+    is_fallback: Number(row.is_fallback) === 1 || row.is_fallback === true,
+    is_flagged_inaccurate: Number(row.is_flagged_inaccurate) === 1 || row.is_flagged_inaccurate === true
+  };
+}
+
+// Chức năng AD-08: liệt kê nhật ký hội thoại để quản trị viên rà soát chất lượng
+// câu trả lời của AI và phát hiện câu hỏi lệch chủ đề từ học sinh.
+async function listLogs({ page = 1, limit = 20, studentId = null, sessionType = '', onlyFlagged = false } = {}) {
+  await ensureSchema();
+  const safeLimit = Math.min(Math.max(Number(limit) || 20, 5), 100);
+  const safePage = Math.max(Number(page) || 1, 1);
+  const offset = (safePage - 1) * safeLimit;
+
+  const conditions = [];
+  const params = [];
+  if (studentId) {
+    conditions.push('log.student_id = ?');
+    params.push(Number(studentId));
+  }
+  if (sessionType) {
+    conditions.push('log.session_type = ?');
+    params.push(sessionType);
+  }
+  if (onlyFlagged) {
+    conditions.push('log.is_flagged_inaccurate = 1');
+  }
+  const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+
+  try {
+    const countRows = await db.query(
+      `SELECT COUNT(*) AS total FROM AIConversationLogs log ${whereClause}`,
+      params
+    );
+    const total = Number(countRows[0]?.total || 0);
+
+    const rows = await db.query(
+      `SELECT
+          log.*,
+          s.username,
+          s.fullname,
+          s.current_grade,
+          l.lesson_name
+       FROM AIConversationLogs log
+       LEFT JOIN Students s ON s.id = log.student_id
+       LEFT JOIN Lessons l ON l.id = log.lesson_id
+       ${whereClause}
+       ORDER BY log.created_at DESC, log.id DESC
+       LIMIT ${safeLimit} OFFSET ${offset}`,
+      params
+    );
+
+    return {
+      logs: rows.map(normalizeLogRow),
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total,
+        totalPages: Math.max(Math.ceil(total / safeLimit), 1)
+      }
+    };
+  } catch (error) {
+    const all = (sampleData.aiLogs || []).map(normalizeLogRow);
+    return {
+      logs: all.slice(offset, offset + safeLimit),
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total: all.length,
+        totalPages: Math.max(Math.ceil(all.length / safeLimit), 1)
+      }
+    };
+  }
+}
+
+// Số liệu tổng quan. Cố ý KHÔNG trả về token hay chi phí: câu INSERT trong
+// logAIInteraction gán cứng total_tokens_used và estimated_cost_usd bằng 0 nên
+// hai cột đó chưa có dữ liệu thật, hiển thị ra sẽ gây hiểu sai.
+async function getLogStats() {
+  await ensureSchema();
+  try {
+    const rows = await db.query(
+      `SELECT
+          COUNT(*) AS total,
+          SUM(CASE WHEN is_fallback = 1 THEN 1 ELSE 0 END) AS fallback_count,
+          SUM(CASE WHEN blocked_reason IS NOT NULL THEN 1 ELSE 0 END) AS blocked_count,
+          SUM(CASE WHEN is_flagged_inaccurate = 1 THEN 1 ELSE 0 END) AS flagged_count,
+          COUNT(DISTINCT student_id) AS student_count
+       FROM AIConversationLogs`
+    );
+    const providers = await db.query(
+      `SELECT COALESCE(provider, 'chưa ghi nhận') AS provider, COUNT(*) AS count
+       FROM AIConversationLogs
+       GROUP BY provider
+       ORDER BY count DESC`
+    );
+    const blocked = await db.query(
+      `SELECT blocked_reason, COUNT(*) AS count
+       FROM AIConversationLogs
+       WHERE blocked_reason IS NOT NULL
+       GROUP BY blocked_reason
+       ORDER BY count DESC`
+    );
+
+    const summary = rows[0] || {};
+    return {
+      total: Number(summary.total || 0),
+      fallbackCount: Number(summary.fallback_count || 0),
+      blockedCount: Number(summary.blocked_count || 0),
+      flaggedCount: Number(summary.flagged_count || 0),
+      studentCount: Number(summary.student_count || 0),
+      providers: providers.map((row) => ({ provider: row.provider, count: Number(row.count) })),
+      blockedReasons: blocked.map((row) => ({ reason: row.blocked_reason, count: Number(row.count) }))
+    };
+  } catch (error) {
+    const all = sampleData.aiLogs || [];
+    return {
+      total: all.length,
+      fallbackCount: all.filter((item) => item.is_fallback).length,
+      blockedCount: all.filter((item) => item.blocked_reason).length,
+      flaggedCount: 0,
+      studentCount: new Set(all.map((item) => item.student_id)).size,
+      providers: [],
+      blockedReasons: []
+    };
+  }
+}
+
+// Đánh dấu một hội thoại là AI trả lời sai kiến thức, phục vụ việc tối ưu prompt
+// về sau. Trả về true nếu có bản ghi được cập nhật.
+async function setFlagged(logId, flagged) {
+  await ensureSchema();
+  try {
+    const result = await db.query(
+      'UPDATE AIConversationLogs SET is_flagged_inaccurate = ? WHERE id = ?',
+      [flagged ? 1 : 0, Number(logId)]
+    );
+    return Number(result?.affectedRows || 0) > 0;
+  } catch (error) {
+    const log = (sampleData.aiLogs || []).find((item) => Number(item.id) === Number(logId));
+    if (!log) return false;
+    log.is_flagged_inaccurate = Boolean(flagged);
+    return true;
+  }
+}
+
 module.exports = {
-  logAIInteraction
+  logAIInteraction,
+  listLogs,
+  getLogStats,
+  setFlagged
 };

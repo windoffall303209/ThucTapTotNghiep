@@ -30,6 +30,8 @@ router.post('/questions/:id/delete', AdminController.deleteQuestion);
 router.get('/students', requireRoles(['SYSADMIN']), AdminController.students);
 router.post('/students/:id/password', requireRoles(['SYSADMIN']), AdminController.resetStudentPassword);
 router.post('/students/:id/grade', requireRoles(['SYSADMIN']), AdminController.updateStudentGrade);
+router.get('/logs/ai', AdminController.aiLogs);
+router.post('/logs/ai/:id/flag', AdminController.flagAiLog);
 router.get('/settings', requireRoles(['SYSADMIN']), AdminController.settings);
 router.post('/settings/check', requireRoles(['SYSADMIN']), AdminController.checkSettings);
 router.post('/settings', requireRoles(['SYSADMIN']), AdminController.updateSettings);

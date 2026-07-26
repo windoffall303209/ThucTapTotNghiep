@@ -1,0 +1,208 @@
+<%
+  function roleLabel(role) {
+    return role === 'ai' ? 'AI' : 'Học sinh';
+  }
+
+  function sessionTypeLabel(type) {
+    if (type === 'THEORY_EXPLAIN') return 'Giảng lý thuyết';
+    if (type === 'EXERCISE_HELP') return 'Gợi ý bài tập';
+    return type || 'Khác';
+  }
+
+  function blockedLabel(reason) {
+    const labels = {
+      grade_not_enabled: 'Khối lớp chưa được bật gợi ý',
+      answer_required: 'Chưa nộp đáp án nên chưa mở gợi ý',
+      question_quota_exceeded: 'Hết lượt gợi ý cho câu này',
+      session_quota_exceeded: 'Hết lượt gợi ý cho lần luyện tập này'
+    };
+    return labels[reason] || reason;
+  }
+
+  const currentQuery = [
+    filters.sessionType ? `type=${encodeURIComponent(filters.sessionType)}` : '',
+    filters.studentId ? `student_id=${filters.studentId}` : '',
+    filters.onlyFlagged ? 'flagged=1' : ''
+  ].filter(Boolean).join('&');
+
+  function pageUrl(page) {
+    return `/admin/logs/ai?page=${page}${currentQuery ? `&${currentQuery}` : ''}`;
+  }
+
+  const returnTo = pageUrl(pagination.page);
+%>
+
+<section class="workspace-head">
+  <div>
+    <p class="eyebrow">Giám sát AI</p>
+    <h1>Nhật ký hội thoại AI</h1>
+    <p>Rà soát nội dung AI trả lời học sinh, phát hiện câu giải sai kiến thức và các lượt bị chặn theo chính sách.</p>
+  </div>
+</section>
+
+<section class="admin-metrics">
+  <article class="stat-card">
+    <span class="status-pill status-new">Tổng lượt</span>
+    <strong class="stat-value"><%= stats.total %></strong>
+    <p class="muted">Hội thoại đã ghi nhận của <%= stats.studentCount %> học sinh.</p>
+  </article>
+  <article class="stat-card">
+    <span class="status-pill status-review">Dùng câu dự phòng</span>
+    <strong class="stat-value"><%= stats.fallbackCount %></strong>
+    <p class="muted">Lượt AI không phản hồi được nên hệ thống trả lời thay.</p>
+  </article>
+  <article class="stat-card">
+    <span class="status-pill status-review">Bị chặn</span>
+    <strong class="stat-value"><%= stats.blockedCount %></strong>
+    <p class="muted">Lượt bị chính sách chặn trước khi gọi AI.</p>
+  </article>
+  <article class="stat-card">
+    <span class="status-pill status-completed">Đã đánh dấu sai</span>
+    <strong class="stat-value"><%= stats.flaggedCount %></strong>
+    <p class="muted">Hội thoại quản trị viên ghi nhận AI trả lời chưa đúng.</p>
+  </article>
+</section>
+
+<% if (stats.providers.length > 0 || stats.blockedReasons.length > 0) { %>
+  <section class="learning-summary">
+    <div>
+      <div class="section-title">
+        <i data-lucide="server" class="lucide-icon"></i>
+        Nguồn AI đã trả lời
+      </div>
+      <% stats.providers.forEach((row) => { %>
+        <p><strong><%= row.provider %></strong>: <%= row.count %> lượt</p>
+      <% }) %>
+      <p class="muted">
+        Chưa thống kê được token và chi phí: hệ thống hiện chưa ghi hai chỉ số này khi lưu nhật ký.
+      </p>
+    </div>
+    <div>
+      <div class="section-title">
+        <i data-lucide="shield" class="lucide-icon"></i>
+        Lý do bị chặn
+      </div>
+      <% if (stats.blockedReasons.length === 0) { %>
+        <p class="muted">Chưa có lượt nào bị chặn.</p>
+      <% } %>
+      <% stats.blockedReasons.forEach((row) => { %>
+        <p><strong><%= blockedLabel(row.reason) %></strong>: <%= row.count %> lượt</p>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<form class="search-bar ai-log-filters" action="/admin/logs/ai" method="get">
+  <label>
+    Học sinh
+    <select name="student_id">
+      <option value="">Tất cả học sinh</option>
+      <% students.forEach((item) => { %>
+        <option value="<%= item.id %>" <%= Number(filters.studentId) === Number(item.id) ? 'selected' : '' %>>
+          <%= item.fullname %> (<%= item.username %>)
+        </option>
+      <% }) %>
+    </select>
+  </label>
+  <label>
+    Loại hội thoại
+    <select name="type">
+      <option value="">Tất cả</option>
+      <option value="EXERCISE_HELP" <%= filters.sessionType === 'EXERCISE_HELP' ? 'selected' : '' %>>Gợi ý bài tập</option>
+      <option value="THEORY_EXPLAIN" <%= filters.sessionType === 'THEORY_EXPLAIN' ? 'selected' : '' %>>Giảng lý thuyết</option>
+    </select>
+  </label>
+  <label class="checkbox-label">
+    <input type="checkbox" name="flagged" value="1" <%= filters.onlyFlagged ? 'checked' : '' %>>
+    Chỉ xem hội thoại đã đánh dấu sai
+  </label>
+  <button class="btn btn-secondary" type="submit">
+    <i data-lucide="filter" class="lucide-icon"></i>
+    Áp dụng
+  </button>
+</form>
+
+<section class="table-section">
+  <div class="section-title">
+    <i data-lucide="message-square" class="lucide-icon"></i>
+    Danh sách hội thoại
+    <small class="muted">Trang <%= pagination.page %>/<%= pagination.totalPages %> · <%= pagination.total %> bản ghi</small>
+  </div>
+
+  <% if (logs.length === 0) { %>
+    <div class="empty-state compact">
+      <p>Chưa có hội thoại nào khớp điều kiện đang chọn.</p>
+    </div>
+  <% } %>
+
+  <div class="card-list">
+    <% logs.forEach((log) => { %>
+      <article class="activity-card ai-log-card <%= log.is_flagged_inaccurate ? 'ai-log-flagged' : '' %>">
+        <div class="row-actions">
+          <span class="status-pill status-new"><%= sessionTypeLabel(log.session_type) %></span>
+          <% if (log.blocked_reason) { %>
+            <span class="status-pill status-review">Bị chặn</span>
+          <% } %>
+          <% if (log.is_fallback) { %>
+            <span class="status-pill status-review">Câu dự phòng</span>
+          <% } %>
+          <% if (log.is_flagged_inaccurate) { %>
+            <span class="status-pill status-review">Đã đánh dấu sai</span>
+          <% } %>
+        </div>
+
+        <h2><%= log.fullname || 'Học sinh đã xóa' %></h2>
+        <p class="muted">
+          <% if (log.username) { %>Tài khoản <strong><%= log.username %></strong> · Lớp <%= log.current_grade %> · <% } %>
+          <%= log.created_at ? new Date(log.created_at).toLocaleString('vi-VN') : '-' %>
+          <% if (log.lesson_name) { %> · Bài: <%= log.lesson_name %><% } %>
+        </p>
+        <p class="muted">
+          Nguồn: <strong><%= log.provider || 'chưa ghi nhận' %></strong>
+          <% if (log.model) { %> · Model: <%= log.model %><% } %>
+          <% if (log.question_id) { %> · Câu hỏi #<%= log.question_id %><% } %>
+        </p>
+
+        <% if (log.blocked_reason) { %>
+          <p class="student-warning">
+            <i data-lucide="shield-off" class="lucide-icon"></i>
+            <%= blockedLabel(log.blocked_reason) %>
+          </p>
+        <% } %>
+
+        <div class="review-chat ai-log-chat">
+          <% if (log.chat_history.length === 0) { %>
+            <p class="muted">Không có nội dung hội thoại.</p>
+          <% } %>
+          <% log.chat_history.forEach((message) => { %>
+            <div class="chat-message <%= message.role === 'ai' ? 'ai' : 'student' %>">
+              <strong><%= roleLabel(message.role) %>:</strong>
+              <%= message.text || '' %>
+            </div>
+          <% }) %>
+        </div>
+
+        <form class="inline-flag-form" action="/admin/logs/ai/<%= log.id %>/flag" method="post">
+          <input type="hidden" name="return_to" value="<%= returnTo %>">
+          <input type="hidden" name="flagged" value="<%= log.is_flagged_inaccurate ? '0' : '1' %>">
+          <button class="btn <%= log.is_flagged_inaccurate ? 'btn-secondary' : 'btn-danger' %>" type="submit">
+            <i data-lucide="<%= log.is_flagged_inaccurate ? 'undo-2' : 'flag' %>" class="lucide-icon"></i>
+            <%= log.is_flagged_inaccurate ? 'Bỏ đánh dấu' : 'Đánh dấu AI trả lời sai' %>
+          </button>
+        </form>
+      </article>
+    <% }) %>
+  </div>
+
+  <% if (pagination.totalPages > 1) { %>
+    <nav class="pagination" aria-label="Phân trang nhật ký">
+      <% if (pagination.page > 1) { %>
+        <a class="btn btn-secondary" href="<%= pageUrl(pagination.page - 1) %>">Trang trước</a>
+      <% } %>
+      <span class="muted">Trang <%= pagination.page %>/<%= pagination.totalPages %></span>
+      <% if (pagination.page < pagination.totalPages) { %>
+        <a class="btn btn-secondary" href="<%= pageUrl(pagination.page + 1) %>">Trang sau</a>
+      <% } %>
+    </nav>
+  <% } %>
+</section>
