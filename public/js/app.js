@@ -182,6 +182,17 @@
     }
   }
 
+  // Hoãn thực thi tới khi người dùng ngừng gõ. Preview của form soạn thảo chạy
+  // lại cả KaTeX; không hoãn thì mỗi phím gõ là một lượt dựng lại toàn bộ khung
+  // xem trước, máy yếu gõ chữ thấy khựng rõ rệt.
+  function debounce(fn, delayMs = 200) {
+    let timer = null;
+    return (...args) => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => fn(...args), delayMs);
+    };
+  }
+
   function renderMath(root = document.body) {
     if (window.renderMathInElement) {
       normalizeMathTextNodes(root);
@@ -1130,12 +1141,17 @@
         `).join('');
       }
 
+      // Thu hồi các blob URL của lượt xem trước cũ NGAY TRƯỚC khi thay nội
+      // dung: ảnh chọn từ máy được cấp URL tạm bằng createObjectURL, không thu
+      // hồi thì mỗi lần gõ phím lại rò thêm một tấm ảnh trong bộ nhớ.
+      preview.querySelectorAll('img[src^="blob:"]').forEach((img) => URL.revokeObjectURL(img.src));
       preview.innerHTML = `
         <div class="question-content">${renderQuestionContent(question)}</div>
         ${renderAnswerArea(question, { preview: true })}
       `;
       renderMath(preview);
     };
+    const updatePreviewDebounced = debounce(updatePreview, 200);
 
     initQuestionTypeControls(form, updatePreview);
 
@@ -1158,7 +1174,9 @@
       '[name="remove_question_images"]',
       '[name^="remove_choice_images_"]'
     ].join(',')).forEach((input) => {
-      input.addEventListener('input', updatePreview);
+      // Gõ chữ thì hoãn 200ms cho tới khi ngừng tay; sự kiện change (chọn
+      // file, đổi ô chọn) thưa nên cập nhật ngay.
+      input.addEventListener('input', updatePreviewDebounced);
       input.addEventListener('change', updatePreview);
     });
     form.addEventListener?.('reset', () => window.setTimeout(updatePreview, 0));
@@ -1453,6 +1471,8 @@
         alt_text: file.name || `Ảnh minh họa ${index + 1}`
       }));
       const images = [...existingImages, ...uploadImages];
+      // Thu hồi blob URL của lượt xem trước cũ, cùng lý do với preview câu hỏi.
+      preview.querySelectorAll('img[src^="blob:"]').forEach((img) => URL.revokeObjectURL(img.src));
       preview.innerHTML = renderTheoryCardPreview({
         type: typeInput?.value || 'concept',
         layout: layoutInput?.value || 'text_first',
@@ -1470,7 +1490,7 @@
     };
 
     form.querySelectorAll('[data-theory-type], [data-theory-layout], [data-theory-title], [data-theory-display-text], [data-theory-body], [data-theory-student-task], [data-theory-example], [data-theory-remember], [data-theory-images], [data-grid-layout-input], [name="remove_theory_images"]').forEach((input) => {
-      input.addEventListener('input', updatePreview);
+      input.addEventListener('input', debounce(updatePreview, 200));
       input.addEventListener('change', updatePreview);
     });
 
@@ -1690,10 +1710,18 @@
         if (cell) selectRect(state.dragStart, cell);
       });
 
-      document.addEventListener('mouseup', () => {
+      // Listener gắn ở document nên sống lâu hơn canvas: partial admin nạp lại
+      // là canvas cũ bị thay nhưng listener cũ vẫn tích lũy. Cho nó tự gỡ khi
+      // thấy canvas không còn trong DOM.
+      const onDocumentMouseUp = () => {
+        if (!canvas.isConnected) {
+          document.removeEventListener('mouseup', onDocumentMouseUp);
+          return;
+        }
         state.isDragging = false;
         state.dragStart = null;
-      });
+      };
+      document.addEventListener('mouseup', onDocumentMouseUp);
 
       const applyPanelToSelection = () => {
         const cells = selectedCells();
