@@ -280,8 +280,13 @@ async function updatePassword(req, res, next) {
 
 async function exams(req, res, next) {
   try {
+    // Lọc "đang làm dở" ngay trong SQL. Lấy 20 phiên gần nhất rồi mới lọc thì
+    // đề dang dở nào bị 20 phiên đã xong che mất sẽ không còn đường "Tiếp tục".
     const [sessions, chapters] = await Promise.all([
-      PracticeSession.listSessions(req.auth.id, 20),
+      PracticeSession.listSessions(req.auth.id, 20, {
+        status: 'IN_PROGRESS',
+        modes: ['CHAPTER', 'COMPREHENSIVE']
+      }),
       Curriculum.getCurriculumByGrade(req.auth.current_grade)
     ]);
 
@@ -289,10 +294,7 @@ async function exams(req, res, next) {
       title: 'Luyện tập',
       limits: PRACTICE_LIMITS,
       chapters,
-      sessions: sessions.filter((session) =>
-        ['CHAPTER', 'COMPREHENSIVE'].includes(session.session_mode)
-        && session.status === 'IN_PROGRESS'
-      )
+      sessions
     });
   } catch (error) {
     next(error);

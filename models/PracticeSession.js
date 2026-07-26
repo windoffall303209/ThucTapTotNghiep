@@ -183,17 +183,39 @@ async function getSessionById(studentId, sessionId) {
   }
 }
 
-async function listSessions(studentId, limit = 50) {
+/**
+ * Danh sách phiên của học sinh, mới nhất trước. options.status và
+ * options.modes lọc ngay trong SQL: lọc sau khi cắt LIMIT thì phiên đang làm
+ * dở nào cũ hơn N dòng gần nhất sẽ biến mất khỏi danh sách "Tiếp tục".
+ */
+async function listSessions(studentId, limit = 50, options = {}) {
   await ensureSchema();
   const safeLimit = Math.min(Math.max(Number(limit) || 50, 1), 200);
+  const status = String(options.status || '').trim().toUpperCase();
+  const modes = (Array.isArray(options.modes) ? options.modes : [])
+    .map((mode) => String(mode || '').trim().toUpperCase())
+    .filter(Boolean);
+  const where = ['ps.student_id = ?'];
+  const params = [studentId];
+  if (status) {
+    where.push('ps.status = ?');
+    params.push(status);
+  }
+  if (modes.length > 0) {
+    where.push(`ps.session_mode IN (${modes.map(() => '?').join(',')})`);
+    params.push(...modes);
+  }
+  const matchesFilters = (session) =>
+    (!status || session.status === status)
+    && (modes.length === 0 || modes.includes(session.session_mode));
   try {
     const rows = await db.query(
       `SELECT ps.*
        FROM PracticeSessions ps
-       WHERE ps.student_id = ?
+       WHERE ${where.join(' AND ')}
        ORDER BY ps.started_at DESC
        LIMIT ${safeLimit}`,
-      [studentId]
+      params
     );
 
     if (rows.length === 0) return [];
@@ -237,8 +259,8 @@ async function listSessions(studentId, limit = 50) {
   } catch (error) {
     ensureFallbackStore();
     return sampleData.practiceSessions
-      .filter((session) => Number(session.student_id) === Number(studentId))
-      .slice(-limit)
+      .filter((session) => Number(session.student_id) === Number(studentId) && matchesFilters(session))
+      .slice(-safeLimit)
       .reverse()
       .map((session) => ({
         ...session,
