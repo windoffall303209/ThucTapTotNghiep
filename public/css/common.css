@@ -1069,20 +1069,6 @@ tbody tr:last-child td {
   height: 18px;
 }
 
-/* Bộ lọc trên trang xem lại bài: Tất cả câu / Chỉ xem câu sai. */
-.review-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.review-filter .btn.active {
-  border-color: var(--primary);
-  background: var(--primary-soft);
-  color: var(--primary-dark);
-}
-
 /* Ẩn về thị giác nhưng trình đọc màn hình vẫn đọc được (label của ô chat). */
 .sr-only {
   position: absolute;
@@ -1097,32 +1083,6 @@ tbody tr:last-child td {
 }
 
 /* Review/images */
-.review-item {
-  display: grid;
-  gap: 14px;
-}
-
-.review-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  color: var(--muted);
-}
-
-.review-explanation {
-  padding: 14px;
-  border-radius: var(--radius-md);
-  background: var(--surface-soft);
-}
-
-.review-chat {
-  display: grid;
-  gap: 10px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
 .question-image {
   display: block;
   width: 100%;
