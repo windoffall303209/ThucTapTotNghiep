@@ -2,7 +2,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     refreshIcons();
     renderInitialMath();
-    initTheoryHelp();
     initProgressiveAuthoringForms();
     initAdminPreview();
     initAdminQuestionBank();
@@ -202,41 +201,6 @@
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach((node) => {
       node.nodeValue = node.nodeValue.replace(escapedCommandPattern, '\\');
-    });
-  }
-
-  function initTheoryHelp() {
-    document.querySelectorAll('.theory-help-button').forEach((button) => {
-      button.addEventListener('click', async () => {
-        const card = button.closest('.theory-card');
-        const replyBox = card.querySelector('.ai-inline-reply');
-        button.disabled = true;
-        setButtonBusy(button, 'Đang tạo giải thích...');
-
-        try {
-          const response = await fetch('/student/theory/help', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              lessonId: button.dataset.lessonId,
-              cardIndex: button.dataset.cardIndex
-            })
-          });
-          const result = await response.json();
-
-          replyBox.hidden = false;
-          replyBox.innerHTML = renderMarkdownText(
-            result.reply || result.message || 'Chưa có phản hồi.'
-          );
-          renderMath(replyBox);
-        } catch (error) {
-          replyBox.hidden = false;
-          replyBox.textContent = 'Chưa kết nối được phần gợi ý. Em thử lại sau ít phút nhé.';
-        } finally {
-          restoreButton(button);
-          button.disabled = false;
-        }
-      });
     });
   }
 
