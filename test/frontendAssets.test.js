@@ -79,3 +79,16 @@ test('EJS không chứa CSS hoặc JavaScript thực thi viết trực tiếp', 
 
   assert.deepEqual(violations, []);
 });
+
+test('CSS dùng chung sở hữu các grid và card xuất hiện trên nhiều route', () => {
+  const commonCss = fs.readFileSync(path.join(publicRoot, 'css', 'common.css'), 'utf8');
+
+  assert.match(commonCss, /\.stat-grid,\s*\.today-grid,\s*\.quick-grid\s*\{[^}]*display:\s*grid/s);
+  assert.match(commonCss, /\.stat-card,\s*\.action-card,\s*\.activity-card\s*\{[^}]*padding:/s);
+});
+
+test('responsive chung không ép toàn bộ nút thành một cột trên mobile', () => {
+  const commonCss = fs.readFileSync(path.join(publicRoot, 'css', 'common.css'), 'utf8');
+
+  assert.doesNotMatch(commonCss, /\.nav-button,\s*\.btn,\s*\.search-bar button/);
+});

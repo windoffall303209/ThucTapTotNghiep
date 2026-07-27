@@ -7,42 +7,42 @@
    ------------------------------------------------------------------------- */
 body[data-grade="1"],
 body[data-grade="2"] {
-  font-size: 19px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.55;
 }
 
 body[data-grade="1"] .question-content,
 body[data-grade="2"] .question-content {
-  font-size: clamp(21px, 2.4vw, 27px);
-  line-height: 1.85;
+  font-size: clamp(19px, 2.2vw, 22px);
+  line-height: 1.65;
 }
 
 body[data-grade="1"] .answer-choice,
 body[data-grade="2"] .answer-choice {
-  grid-template-columns: 46px minmax(0, 1fr);
-  min-height: 76px;
-  padding: 16px;
-  font-size: 1.05em;
+  grid-template-columns: 40px minmax(0, 1fr);
+  min-height: 56px;
+  padding: 12px;
+  font-size: 1.02em;
 }
 
 body[data-grade="1"] .btn,
 body[data-grade="2"] .btn {
-  min-height: 54px;
-  padding: 0 22px;
-  font-size: 1.02em;
+  min-height: 48px;
+  padding: 0 16px;
+  font-size: 1em;
 }
 
 body[data-grade="1"] .progress-dot,
 body[data-grade="2"] .progress-dot {
-  width: 48px;
-  height: 48px;
-  font-size: 1.05em;
+  width: 44px;
+  height: 44px;
+  font-size: 1em;
 }
 
 body[data-grade="1"] .free-answer-input,
 body[data-grade="2"] .free-answer-input {
-  min-height: 66px;
-  font-size: 1.15em;
+  min-height: 54px;
+  font-size: 1.08em;
 }
 
 /* Lớp 1-2 chỉ hiển thị một đáp án mỗi hàng cho dễ đọc và dễ chạm. */
@@ -51,25 +51,18 @@ body[data-grade="2"] .answer-grid:not(.answer-grid-image-choices) {
   grid-template-columns: 1fr;
 }
 
-/* Mở rộng chế độ lớp 1-2 ra TOÀN giao diện. Cỡ 19px ở body chỉ phóng được phần
-   chữ thừa kế; các thành phần đặt cỡ chữ bằng px cứng (nhãn, pill, bảng, nav)
-   vẫn đứng nguyên cỡ người lớn nên dashboard và lịch sử trước đây không to lên
-   cùng vùng làm bài. Nhóm luật dưới đây phủ nốt các thành phần đó. */
+/* Chỉ tăng nhẹ các nhãn quan trọng; dashboard, bảng và điều hướng không bị
+   phóng đồng loạt như vùng làm bài. */
 body[data-grade="1"] .eyebrow,
 body[data-grade="2"] .eyebrow,
 body[data-grade="1"] .status-pill,
 body[data-grade="2"] .status-pill {
-  font-size: 15px;
-}
-
-body[data-grade="1"] th,
-body[data-grade="2"] th {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 body[data-grade="1"] .section-title,
 body[data-grade="2"] .section-title {
-  font-size: 21px;
+  font-size: 17px;
 }
 
 body[data-grade="1"] .back-link,
@@ -82,14 +75,14 @@ body[data-grade="2"] .form-note {
 /* Thanh điều hướng dưới cùng: chữ và icon to hơn, vùng chạm cao hơn. */
 body[data-grade="1"] .bottom-nav a,
 body[data-grade="2"] .bottom-nav a {
-  min-height: 60px;
-  font-size: 14px;
+  min-height: 52px;
+  font-size: 12px;
 }
 
 body[data-grade="1"] .bottom-nav .lucide-icon,
 body[data-grade="2"] .bottom-nav .lucide-icon {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 /* Thanh điều hướng dưới màn hình, chỉ dùng cho học sinh trên thiết bị hẹp */
@@ -107,7 +100,7 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom));
     border-top: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(12px);
@@ -118,11 +111,11 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
     display: grid;
     gap: 3px;
     justify-items: center;
-    min-height: 54px;
-    padding: 7px 4px;
+    min-height: 48px;
+    padding: 5px 4px;
     border-radius: var(--radius-sm);
     color: var(--muted);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
     text-align: center;
   }
@@ -149,6 +142,6 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
 
   /* Chừa chỗ cho thanh dưới để nội dung cuối trang không bị che khuất. */
   .student-body .page-shell {
-    padding-bottom: 96px;
+    padding-bottom: 76px;
   }
 }
