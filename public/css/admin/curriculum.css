@@ -1,0 +1,74 @@
+/* Trang khung chương trình */
+.grade-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.curriculum-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.curriculum-form label {
+  display: grid;
+  flex: 1 1 220px;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.curriculum-form input,
+.curriculum-form select {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+}
+
+.curriculum-form input[type="number"] {
+  flex: 0 1 120px;
+}
+
+.curriculum-chapter-body {
+  display: grid;
+  gap: 16px;
+  padding: 16px 0 4px;
+}
+
+.curriculum-delete-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.curriculum-lesson-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+
+.curriculum-lesson-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.curriculum-add-lesson {
+  padding: 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-blue);
+}
