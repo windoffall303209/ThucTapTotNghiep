@@ -1,0 +1,81 @@
+const fs = require('fs');
+const path = require('path');
+const test = require('node:test');
+const assert = require('node:assert/strict');
+
+const projectRoot = path.resolve(__dirname, '..');
+const viewsRoot = path.join(projectRoot, 'views');
+const publicRoot = path.join(projectRoot, 'public');
+
+function listFiles(directory, extension) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return listFiles(absolutePath, extension);
+    return absolutePath.endsWith(extension) ? [absolutePath] : [];
+  });
+}
+
+test('không dùng lại hai bundle frontend cũ', () => {
+  assert.equal(fs.existsSync(path.join(publicRoot, 'css', 'style.css')), false);
+  assert.equal(fs.existsSync(path.join(publicRoot, 'js', 'app.js')), false);
+
+  const layout = fs.readFileSync(path.join(viewsRoot, 'layouts', 'main.ejs'), 'utf8');
+  assert.doesNotMatch(layout, /\/css\/style\.css/);
+  assert.doesNotMatch(layout, /\/js\/app\.js/);
+});
+
+test('mọi asset tĩnh được khai báo trong EJS đều tồn tại', () => {
+  const missingAssets = [];
+
+  for (const viewPath of listFiles(viewsRoot, '.ejs')) {
+    const source = fs.readFileSync(viewPath, 'utf8');
+    const assetPaths = [...source.matchAll(/['"](\/(?:css|js)\/[^'"]+\.(?:css|js))['"]/g)]
+      .map((match) => match[1]);
+
+    for (const assetPath of assetPaths) {
+      const publicPath = path.join(publicRoot, ...assetPath.split('/').filter(Boolean));
+      if (!fs.existsSync(publicPath)) {
+        missingAssets.push(`${path.relative(projectRoot, viewPath)} -> ${assetPath}`);
+      }
+    }
+  }
+
+  assert.deepEqual(missingAssets, []);
+});
+
+test('tài nguyên riêng của admin nằm trong thư mục admin', () => {
+  const invalidAssets = [];
+
+  for (const viewPath of listFiles(path.join(viewsRoot, 'admin'), '.ejs')) {
+    const source = fs.readFileSync(viewPath, 'utf8');
+    const pageAssets = [...source.matchAll(/['"](\/(?:css|js)\/[^'"]+\.(?:css|js))['"]/g)]
+      .map((match) => match[1]);
+
+    for (const assetPath of pageAssets) {
+      if (!assetPath.startsWith('/css/admin/') && !assetPath.startsWith('/js/admin/')) {
+        invalidAssets.push(`${path.relative(projectRoot, viewPath)} -> ${assetPath}`);
+      }
+    }
+  }
+
+  assert.deepEqual(invalidAssets, []);
+});
+
+test('EJS không chứa CSS hoặc JavaScript thực thi viết trực tiếp', () => {
+  const violations = [];
+
+  for (const viewPath of listFiles(viewsRoot, '.ejs')) {
+    const source = fs.readFileSync(viewPath, 'utf8');
+    if (/<style(?:\s|>)/i.test(source)) {
+      violations.push(`${path.relative(projectRoot, viewPath)} chứa thẻ style`);
+    }
+
+    const inlineScripts = [...source.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>/gi)]
+      .filter((match) => !/type=["']application\/json["']/i.test(match[1]));
+    if (inlineScripts.length > 0) {
+      violations.push(`${path.relative(projectRoot, viewPath)} chứa script thực thi inline`);
+    }
+  }
+
+  assert.deepEqual(violations, []);
+});
