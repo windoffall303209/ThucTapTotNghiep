@@ -45,15 +45,30 @@
     <form class="stack-form" action="/student/account/password" method="post">
       <label>
         Mật khẩu hiện tại
-        <input name="current_password" type="password" autocomplete="current-password" required>
+        <span class="password-field">
+          <input name="current_password" type="password" autocomplete="current-password" required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
+            <i data-lucide="eye" class="lucide-icon"></i>
+          </button>
+        </span>
       </label>
       <label>
         Mật khẩu mới
-        <input name="new_password" type="password" autocomplete="new-password" minlength="8" required>
+        <span class="password-field">
+          <input name="new_password" type="password" autocomplete="new-password" minlength="8" required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
+            <i data-lucide="eye" class="lucide-icon"></i>
+          </button>
+        </span>
       </label>
       <label>
         Xác nhận mật khẩu mới
-        <input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required>
+        <span class="password-field">
+          <input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
+            <i data-lucide="eye" class="lucide-icon"></i>
+          </button>
+        </span>
       </label>
       <p class="form-note">Mật khẩu mới cần tối thiểu 8 ký tự.</p>
       <button class="btn btn-primary" type="submit">

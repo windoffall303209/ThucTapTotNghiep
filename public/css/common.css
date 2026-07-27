@@ -755,9 +755,40 @@ tbody tr:last-child td {
   background: #fff;
 }
 
-/* Auth */
-/* Ô mật khẩu có nút con mắt hiện/ẩn bên phải. Nút nằm đè trong input nên input
-   cần chừa lối cho nó bằng padding phải. */
+/* Trường mật khẩu dùng chung cho xác thực và trang tài khoản. */
+.password-field {
+  position: relative;
+  display: block;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  color: var(--ink);
+  background: var(--surface-soft);
+}
+
 /* Mặt cười bối rối trên trang lỗi, thay icon cảnh báo khô khan. */
 .error-face {
   display: block;

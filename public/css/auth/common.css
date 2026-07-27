@@ -74,39 +74,6 @@
   font-size: 13px;
 }
 
-.password-field {
-  position: relative;
-  display: block;
-}
-
-.password-field input {
-  width: 100%;
-  padding-right: 44px;
-}
-
-.password-toggle {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: var(--radius-xs);
-  color: var(--muted);
-  background: transparent;
-  cursor: pointer;
-}
-
-.password-toggle:hover,
-.password-toggle:focus-visible {
-  color: var(--ink);
-  background: var(--surface-soft);
-}
-
 @media (min-width: 760px) {
   .auth-layout {
     grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);

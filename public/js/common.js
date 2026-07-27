@@ -5,6 +5,7 @@
     initRenderedGrids();
     initLazyMath();
     initConfirmForms();
+    initPasswordToggles();
   });
 
   // Form mang thuộc tính data-confirm là thao tác không hoàn tác được (xóa chương,
@@ -22,6 +23,29 @@
     if (window.lucide) {
       window.lucide.createIcons();
     }
+  }
+
+  function initPasswordToggles(root = document) {
+    root.querySelectorAll('[data-password-toggle]:not([data-password-toggle-ready])').forEach((button) => {
+      const input = button.closest('.password-field')?.querySelector('input');
+      if (!input) return;
+      button.dataset.passwordToggleReady = 'true';
+      button.addEventListener('click', () => {
+        const isVisible = input.type === 'text';
+        input.type = isVisible ? 'password' : 'text';
+        button.setAttribute('aria-pressed', isVisible ? 'false' : 'true');
+        button.setAttribute('aria-label', isVisible ? 'Hiện mật khẩu' : 'Ẩn mật khẩu');
+        const icon = button.querySelector('i[data-lucide], svg');
+        if (icon) {
+          const replacement = document.createElement('i');
+          replacement.dataset.lucide = isVisible ? 'eye' : 'eye-off';
+          replacement.className = 'lucide-icon';
+          icon.replaceWith(replacement);
+          refreshIcons();
+        }
+        input.focus();
+      });
+    });
   }
 
   // Hoãn thực thi tới khi người dùng ngừng gõ. Preview của form soạn thảo chạy
@@ -601,6 +625,7 @@
     gridCellTypeLabel,
     initConfirmForms,
     initLazyMath,
+    initPasswordToggles,
     initRenderedGrids,
     isHexColor,
     isImageMarkedForRemoval,

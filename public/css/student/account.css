@@ -1,9 +1,14 @@
-/* Thông tin và biểu mẫu của trang tài khoản học sinh. */
 .account-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 12px;
   align-items: start;
+}
+
+.account-grid .info-panel {
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: none;
 }
 
 .account-details {
@@ -13,10 +18,10 @@
 }
 
 .account-details div {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 12px 0;
+  display: grid;
+  grid-template-columns: minmax(120px, 0.45fr) minmax(0, 0.55fr);
+  gap: 12px;
+  padding: 9px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -31,11 +36,47 @@
 
 .account-details dt {
   color: var(--muted);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .account-details dd {
   margin: 0;
   text-align: right;
-  font-weight: 900;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.account-grid .form-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+.account-grid .stack-form {
+  gap: 10px;
+}
+
+.account-grid .stack-form .btn {
+  justify-self: start;
+}
+
+@media (min-width: 760px) {
+  .account-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-details div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .account-details dd {
+    text-align: left;
+  }
+
+  .account-grid .stack-form .btn {
+    width: 100%;
+  }
 }
