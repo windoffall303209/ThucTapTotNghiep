@@ -1,0 +1,41 @@
+/* Thông tin và biểu mẫu của trang tài khoản học sinh. */
+.account-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.account-details {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.account-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.account-details div:first-child {
+  padding-top: 0;
+}
+
+.account-details div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.account-details dt {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.account-details dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 900;
+}
