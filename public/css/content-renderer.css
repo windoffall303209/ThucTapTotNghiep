@@ -1,7 +1,62 @@
 /* Admin authoring improvements */
+.answer-grid,
+.review-answer-grid,
+.question-choice-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.answer-choice,
+.question-choice-list > div {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-align: left;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.choice-body {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.answer-choice:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: #f8fbff;
+}
+
+.answer-choice.selected {
+  border-color: var(--primary);
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.answer-choice.correct,
+.question-choice-list .is-correct,
+.content-grid-cell.correct {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.answer-choice.wrong,
+.content-grid-cell.wrong {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
 .free-answer-area {
   display: grid;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .free-answer-input {
@@ -248,6 +303,12 @@
 }
 
 @media (max-width: 640px) {
+  .answer-grid:not(.answer-grid-image-choices),
+  .review-answer-grid:not(.answer-grid-image-choices),
+  .question-choice-list:not(.answer-grid-image-choices) {
+    grid-template-columns: 1fr;
+  }
+
   .theory-layout-visual_left,
   .theory-layout-visual_right,
   .saved-question-layout.layout-image-left,
