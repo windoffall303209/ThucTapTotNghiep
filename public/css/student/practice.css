@@ -1,0 +1,573 @@
+/* Giao diện làm bài, phản hồi, tổng kết và trợ giúp trong phiên luyện tập. */
+.practice-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  gap: 22px;
+  align-items: start;
+}
+
+.practice-main {
+  min-width: 0;
+}
+
+.practice-shell-no-chat {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.practice-main > h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.practice-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.question-card {
+  display: grid;
+  gap: 18px;
+}
+
+.question-content {
+  color: #1f2937;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.75;
+}
+
+.answer-grid,
+.review-answer-grid,
+.question-choice-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.answer-choice,
+.question-choice-list > div {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-align: left;
+  background: #fff;
+  cursor: pointer;
+}
+
+.choice-body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.answer-choice:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: #f8fbff;
+}
+
+.answer-choice.selected {
+  border-color: var(--primary);
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.answer-choice.correct,
+.question-choice-list .is-correct {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.answer-choice.wrong {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.answer-feedback {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  line-height: 1.65;
+}
+
+.answer-feedback h2 {
+  margin: 0 0 8px;
+}
+
+.feedback-success {
+  color: #14532d;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.feedback-danger {
+  color: #7f1d1d;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.feedback-warning {
+  color: #78350f;
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+/* Trạng thái đang xử lý và nút thử lại khi mất kết nối */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  vertical-align: -3px;
+  animation: btn-spin 0.7s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+.answer-feedback [data-retry-action] {
+  margin-top: 12px;
+}
+
+/* Phản hồi thị giác tức thời sau khi nộp đáp án.
+   Cố ý không dùng điểm số, chuỗi ngày hay huy hiệu để giữ đúng định hướng bỏ
+   gamification của dự án: chỉ xác nhận kết quả ngay lúc đó rồi thôi. */
+.answer-choice.just-answered.correct {
+  animation: choice-correct 380ms ease-out;
+}
+
+.answer-choice.just-answered.wrong {
+  animation: choice-wrong 320ms ease-out;
+}
+
+@keyframes choice-correct {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.035);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes choice-wrong {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.answer-feedback {
+  animation: feedback-appear 260ms ease-out;
+}
+
+@keyframes feedback-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer-choice.just-answered.correct,
+  .answer-choice.just-answered.wrong,
+  .answer-feedback {
+    animation: none;
+  }
+}
+
+/* Nhắc lại đáp án đúng khi học sinh làm sai */
+.feedback-correct-answer {
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-left: 4px solid var(--success);
+  border-radius: var(--radius-xs);
+  background: var(--success-soft);
+  color: #14532d;
+  font-size: 1.05em;
+}
+
+/* Thanh tiến trình câu hỏi: cho phép nhảy tới câu bất kỳ trong bài */
+.question-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+
+.progress-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--muted);
+  background: var(--surface);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.progress-dot:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.progress-dot:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+.progress-dot.correct {
+  color: #14532d;
+  border-color: #86efac;
+  background: var(--success-soft);
+}
+
+.progress-dot.wrong {
+  color: #7f1d1d;
+  border-color: #fca5a5;
+  background: var(--danger-soft);
+}
+
+.progress-dot.current {
+  color: #fff;
+  border-color: var(--primary-dark);
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-dot {
+    transition: none;
+  }
+
+  .progress-dot:hover {
+    transform: none;
+  }
+}
+
+/* Trên màn hình hẹp, đề 15-20 câu làm thanh chấm xuống 3 hàng và đẩy đề bài lẫn
+   đáp án ra khỏi vùng nhìn. Thu về một hàng cuộn ngang để đề bài luôn thấy ngay. */
+@media (max-width: 760px) {
+  .question-progress {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    margin: 10px 0 2px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .progress-dot {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  /* Lớp 1-2 vẫn giữ vùng chạm lớn hơn, chỉ giảm nhẹ so với bản desktop. */
+  body[data-grade="1"] .progress-dot,
+  body[data-grade="2"] .progress-dot {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Bảng tổng kết hiện ra khi học sinh đã trả lời hết các câu trong bài */
+.practice-summary {
+  /* position: relative để lớp mưa giấy màu tuyệt đối định vị theo khung này. */
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-blue);
+}
+
+/* --- Lớp khích lệ ở màn tổng kết: dải sao và mưa giấy màu thuần CSS --- */
+
+.summary-stars {
+  display: inline-flex;
+  gap: 6px;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.summary-star {
+  color: var(--line-strong);
+  transform: scale(0.85);
+}
+
+.summary-star.earned {
+  color: #fbbf24;
+  text-shadow: 0 2px 10px rgba(251, 191, 36, 0.45);
+  animation: star-pop 480ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes star-pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti i {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.9;
+  animation: confetti-fall 1.9s ease-in forwards;
+}
+
+.confetti i:nth-child(2n) {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.95; }
+  100% { transform: translateY(340px) rotate(320deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summary-star.earned {
+    animation: none;
+  }
+
+  .confetti {
+    display: none;
+  }
+}
+
+.practice-summary .summary-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.practice-summary h2 {
+  margin: 0;
+}
+
+.summary-score {
+  margin: 0;
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.summary-wrong {
+  display: grid;
+  gap: 10px;
+}
+
+.summary-wrong-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-perfect {
+  margin: 0;
+  color: #14532d;
+  font-weight: 700;
+}
+
+.ai-chat {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: calc(100svh - 124px);
+  overflow: hidden;
+}
+
+.chat-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  background: #f8fafc;
+}
+
+.chat-head small {
+  display: block;
+  color: var(--muted);
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  padding: 16px;
+}
+
+.chat-message {
+  max-width: 90%;
+  padding: 11px 13px;
+  border-radius: var(--radius-md);
+  line-height: 1.5;
+}
+
+.chat-message p {
+  margin: 0 0 8px;
+}
+
+.chat-message p:last-child,
+.chat-message ul:last-child {
+  margin-bottom: 0;
+}
+
+.chat-message ul {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+.chat-message code {
+  padding: 1px 5px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.chat-message.ai {
+  align-self: flex-start;
+  color: #243447;
+  background: #f1f5f9;
+}
+
+.chat-message.loading {
+  color: #64748b;
+  font-style: italic;
+}
+
+.chat-message.loading::after {
+  content: '';
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+  animation: chatTypingDots 1.1s steps(4, end) infinite;
+}
+
+@keyframes chatTypingDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75%, 100% { content: '...'; }
+}
+
+.chat-message.student {
+  align-self: flex-end;
+  color: #fff;
+  background: var(--primary);
+}
+
+/* Dãy nút hỏi nhanh phía trên ô nhập chat: bấm là gửi luôn câu hỏi soạn sẵn. */
+.chat-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.chat-quick {
+  padding: 7px 12px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.chat-quick:hover,
+.chat-quick:focus-visible {
+  background: #c7dbfd;
+  transform: translateY(-1px);
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-top: 0;
+  background: #fff;
+}
+
+.chat-form button {
+  display: grid;
+  width: 44px;
+  flex: 0 0 44px;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  background: var(--primary);
+  cursor: pointer;
+}
