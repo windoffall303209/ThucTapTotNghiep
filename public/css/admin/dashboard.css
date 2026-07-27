@@ -1,0 +1,152 @@
+.admin-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.admin-metrics > div {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--admin-radius);
+  background: var(--surface);
+}
+
+.admin-metrics span {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.admin-metrics small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dashboard-panel {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--admin-radius);
+  background: var(--surface);
+}
+
+.difficulty-bars {
+  display: grid;
+  gap: 10px;
+}
+
+.difficulty-row {
+  display: grid;
+  grid-template-columns: 76px minmax(100px, 1fr) 80px;
+  gap: 10px;
+  align-items: center;
+}
+
+.difficulty-label,
+.difficulty-value {
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.difficulty-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.difficulty-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 0 4px 4px 0;
+  background: #e8eef8;
+}
+
+.difficulty-track > span {
+  display: block;
+  min-width: 2px;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: var(--primary);
+}
+
+.backlog-panel > p {
+  margin: 8px 0 5px;
+}
+
+.backlog-panel .row-actions {
+  gap: 5px;
+}
+
+.quick-grid {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.quick-grid .action-card {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 2px 9px;
+  align-items: center;
+  padding: 11px 12px;
+  border-radius: var(--admin-radius);
+}
+
+.quick-grid .action-card .feature-icon {
+  grid-row: 1 / span 2;
+  width: 24px;
+  height: 24px;
+}
+
+.quick-grid .action-card strong,
+.quick-grid .action-card p {
+  margin: 0;
+}
+
+.quick-grid .action-card strong {
+  font-size: 13px;
+}
+
+.quick-grid .action-card p {
+  font-size: 12px;
+}
+
+@media (min-width: 720px) {
+  .admin-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .admin-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .difficulty-row {
+    grid-template-columns: 64px minmax(70px, 1fr) 70px;
+    gap: 7px;
+  }
+}
+
+@media (forced-colors: active) {
+  .difficulty-track {
+    border: 1px solid CanvasText;
+  }
+
+  .difficulty-track > span {
+    background: Highlight;
+  }
+}

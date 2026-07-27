@@ -48,28 +48,33 @@
     { key: 'EXPERT', label: 'Nâng cao' }
   ];
 %>
-<section class="learning-summary">
-  <div>
+<section class="admin-dashboard-grid">
+  <div class="dashboard-panel difficulty-panel">
     <div class="section-title">
       <i data-lucide="bar-chart-3" class="lucide-icon"></i>
       Phân bố độ khó ngân hàng câu hỏi
     </div>
-    <% mucDoKho.forEach((muc) => { %>
-      <% const soCau = Number(difficultyStats[muc.key] || 0); %>
-      <% const phanTram = Math.round((soCau / tongCau) * 100); %>
-      <p class="muted"><%= muc.label %>: <strong><%= soCau %></strong> câu (<%= phanTram %>%)</p>
-      <div
-        class="progress-track"
-        role="progressbar"
-        aria-valuenow="<%= phanTram %>"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-label="<%= muc.label %>: <%= soCau %> câu">
-        <span style="width: <%= phanTram %>%"></span>
-      </div>
-    <% }) %>
+    <div class="difficulty-bars" aria-label="Bảng phân bố câu hỏi theo độ khó">
+      <% mucDoKho.forEach((muc) => { %>
+        <% const soCau = Number(difficultyStats[muc.key] || 0); %>
+        <% const phanTram = Math.round((soCau / tongCau) * 100); %>
+        <div class="difficulty-row">
+          <span class="difficulty-label"><%= muc.label %></span>
+          <div
+            class="difficulty-track"
+            role="progressbar"
+            aria-valuenow="<%= phanTram %>"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="<%= muc.label %>: <%= soCau %> câu, chiếm <%= phanTram %> phần trăm">
+            <span style="width: <%= phanTram %>%"></span>
+          </div>
+          <strong class="difficulty-value"><%= soCau %> · <%= phanTram %>%</strong>
+        </div>
+      <% }) %>
+    </div>
   </div>
-  <div>
+  <div class="dashboard-panel backlog-panel">
     <div class="section-title">
       <i data-lucide="alert-circle" class="lucide-icon"></i>
       Việc tồn đọng
@@ -172,3 +177,4 @@
     </div>
   <% } %>
 </section>
+<% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/dashboard.css'); %>
