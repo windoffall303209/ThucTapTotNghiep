@@ -43,7 +43,7 @@
       <a class="btn btn-secondary" href="/student/exams">Chọn bài để luyện</a>
     <% } %>
   </article>
-  <article class="action-card">
+  <article class="action-card next-lesson-card">
     <span class="status-pill status-new">Bước tiếp theo</span>
     <% if (nextLesson) { %>
       <strong><%= nextLesson.lesson_name %></strong>
@@ -173,3 +173,4 @@
     </div>
   <% } %>
 </section>
+<% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/student/dashboard.css'); %>

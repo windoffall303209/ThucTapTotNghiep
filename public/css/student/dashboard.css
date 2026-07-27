@@ -1,0 +1,115 @@
+.student-body .today-grid {
+  grid-template-columns: 1fr;
+}
+
+.student-body .today-grid .stat-card,
+.student-body .today-grid .action-card {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.student-body .today-grid p {
+  margin: 0;
+}
+
+.student-body .next-lesson-card {
+  border-color: #bfdbfe;
+  background: linear-gradient(145deg, #eff6ff, #fff);
+}
+
+.student-body .next-lesson-card .btn-primary {
+  min-width: 120px;
+}
+
+.student-body .curriculum-list {
+  gap: 8px;
+}
+
+.student-body .curriculum-list > .section-title {
+  margin: 4px 0 2px;
+}
+
+.student-body .chapter-panel {
+  margin-bottom: 7px;
+  border-radius: var(--radius-md);
+}
+
+.student-body .chapter-panel summary small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.student-body .chapter-panel summary::after {
+  content: '＋';
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.student-body .chapter-panel[open] summary::after {
+  content: '−';
+}
+
+.student-body .chapter-panel summary > small {
+  margin-left: 10px;
+}
+
+.student-body .lesson-row h2 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.student-body .lesson-row p {
+  font-size: 13px;
+}
+
+.student-body .lesson-row .row-actions {
+  flex-wrap: nowrap;
+}
+
+.student-body .table-section {
+  padding: 14px;
+}
+
+.student-body .table-section td {
+  font-size: 13px;
+}
+
+@media (min-width: 760px) {
+  .student-body .today-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .student-body .next-lesson-card {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+@media (min-width: 1040px) {
+  .student-body .today-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 1.3fr);
+  }
+
+  .student-body .next-lesson-card {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .student-body .lesson-row {
+    gap: 10px;
+  }
+
+  .student-body .lesson-row .row-actions {
+    width: 100%;
+  }
+
+  .student-body .lesson-row .btn {
+    flex: 1;
+  }
+}
