@@ -1,34 +1,101 @@
-/* Nội dung lý thuyết và phần trợ giúp AI của bài học. */
+.workspace-head.lesson-reading {
+  align-items: center;
+}
+
 .theory-grid {
   grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 .theory-card {
   display: grid;
-  gap: 16px;
+  gap: 10px;
   max-width: 980px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: none;
 }
 
 .theory-card.math-lazy {
   content-visibility: auto;
-  contain-intrinsic-size: 420px;
+  contain-intrinsic-size: 320px;
 }
 
 .theory-card h2 {
+  margin: 5px 0 8px;
+  font-size: clamp(18px, 2.5vw, 21px);
+  font-weight: 800;
+}
+
+.theory-card .card-index {
+  font-size: 11px;
+}
+
+.theory-display-text {
   margin: 8px 0;
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 800;
 }
 
 .theory-body {
   color: #243447;
-  line-height: 1.75;
+  line-height: 1.6;
   white-space: pre-line;
 }
 
+.theory-card .theory-image-row {
+  margin: 8px 0;
+}
+
+.theory-card .question-image img {
+  max-height: 420px;
+}
+
+.theory-task,
+.theory-remember {
+  margin-top: 9px;
+  padding: 10px 12px;
+}
+
+.theory-help-button {
+  justify-self: start;
+}
+
 .ai-inline-reply {
-  padding: 14px;
-  border-left: 4px solid var(--secondary);
+  padding: 11px 13px;
+  border-left: 3px solid var(--secondary);
   border-radius: var(--radius-sm);
   background: #f0fdfa;
-  line-height: 1.65;
+  line-height: 1.55;
+}
+
+.student-body .learning-summary {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.student-body .learning-summary > div {
+  padding: 14px 16px;
+}
+
+.student-body .learning-summary p {
+  margin: 0;
+}
+
+@media (min-width: 760px) {
+  .student-body .learning-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .theory-card {
+    padding: 14px;
+  }
+
+  .theory-help-button {
+    width: 100%;
+  }
 }
