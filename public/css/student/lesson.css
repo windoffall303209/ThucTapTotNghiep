@@ -1,0 +1,34 @@
+/* Nội dung lý thuyết và phần trợ giúp AI của bài học. */
+.theory-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.theory-card {
+  display: grid;
+  gap: 16px;
+  max-width: 980px;
+}
+
+.theory-card.math-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 420px;
+}
+
+.theory-card h2 {
+  margin: 8px 0;
+  font-size: 24px;
+}
+
+.theory-body {
+  color: #243447;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.ai-inline-reply {
+  padding: 14px;
+  border-left: 4px solid var(--secondary);
+  border-radius: var(--radius-sm);
+  background: #f0fdfa;
+  line-height: 1.65;
+}

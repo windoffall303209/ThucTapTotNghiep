@@ -146,4 +146,7 @@
     </article>
   <% }) %>
 </section>
-<% if (typeof pageScripts !== 'undefined') pageScripts.push('/js/student/lesson.js'); %>
+<%
+  if (typeof pageStyles !== 'undefined') pageStyles.push('/css/student/lesson.css');
+  if (typeof pageScripts !== 'undefined') pageScripts.push('/js/student/lesson.js');
+%>
