@@ -119,7 +119,7 @@ test('màn cài đặt giữ hook dialog, chọn model và kiểm tra provider',
     /data-model-select=/,
     /data-model-input=/,
     /data-check-provider="openai"/,
-    /data-check-status/,
+    /data-check-status role="status" aria-live="polite"/,
     /data-modal-close/,
     /\/js\/admin\/settings\.js/
   ]);

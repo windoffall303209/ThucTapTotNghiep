@@ -180,7 +180,7 @@
       <label>Base URL <input name="openai_base_url" value="<%= settings.openai_base_url %>" placeholder="https://api.openai.com/v1"></label>
       <% modelField('Chat model', 'openai_model', settings.openai_model, openaiChatModels); %>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="openai"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
@@ -203,7 +203,7 @@
       </label>
       <% modelField('Gemini model', 'gemini_model', settings.gemini_model, geminiModels); %>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="gemini"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
@@ -223,7 +223,7 @@
       <% modelField('Gemini CLI model', 'gemini_cli_model', settings.gemini_cli_model, geminiCliModels); %>
       <label>Gemini CLI timeout (ms) <input name="gemini_cli_timeout_ms" value="<%= settings.gemini_cli_timeout_ms %>" placeholder="120000"></label>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="gemini_cli"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
@@ -247,7 +247,7 @@
       <label>Base URL <input name="nvidia_nim_base_url" value="<%= settings.nvidia_nim_base_url %>" placeholder="https://integrate.api.nvidia.com/v1"></label>
       <% modelField('Chat model', 'nvidia_nim_model', settings.nvidia_nim_model, nvidiaChatModels); %>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="nvidia"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
@@ -271,7 +271,7 @@
       <label>Base URL <input name="openrouter_base_url" value="<%= settings.openrouter_base_url %>" placeholder="https://openrouter.ai/api/v1"></label>
       <% modelField('Chat model', 'openrouter_model', settings.openrouter_model, openrouterModels); %>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="openrouter"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
@@ -299,7 +299,7 @@
           placeholder="<%= settings.cloudinary_api_secret ? `Đang dùng secret ${maskSecret(settings.cloudinary_api_secret)} — nhập để thay` : 'Nhập Cloudinary API secret' %>">
       </label>
     </div>
-    <div class="api-check-status" data-check-status hidden></div>
+    <div class="api-check-status" data-check-status role="status" aria-live="polite" hidden></div>
     <footer class="settings-modal-actions">
       <button class="btn btn-secondary" type="button" data-check-provider="cloudinary"><i data-lucide="plug-zap" class="lucide-icon"></i>Check</button>
       <span class="modal-spacer"></span>
