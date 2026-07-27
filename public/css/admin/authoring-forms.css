@@ -1,0 +1,58 @@
+/* Hộp báo lỗi khi biểu mẫu soạn câu hỏi chưa hợp lệ. Hiện ngay trong form để
+   người biên soạn không mất nội dung đang gõ vì trang bị tải lại. */
+.form-error-box {
+  margin: 0 0 14px;
+}
+
+/* Legacy compatibility */
+.question-bank-page,
+.question-bank-section,
+.question-bank-tree,
+.grade-index,
+.bank-grade,
+.bank-chapter,
+.bank-lesson,
+.bank-lesson-list,
+.editor-grid,
+.editor-form,
+.live-preview,
+.theory-editor-form,
+.theory-editor-list,
+.theory-editor-card {
+  display: grid;
+  gap: 16px;
+}
+
+.live-preview {
+  position: sticky;
+  top: 94px;
+  padding: 20px;
+}
+
+.preview-phone {
+  min-height: 420px;
+  padding: 16px;
+  border: 8px solid #0f172a;
+  border-radius: 26px;
+  background: #fff;
+}
+
+.question-create-dialog {
+  width: min(920px, calc(100vw - 32px));
+  max-height: min(900px, calc(100svh - 32px));
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+}
+
+.question-create-card {
+  overflow: auto;
+}
+
+.question-create-card > label,
+.question-create-card > fieldset,
+.question-create-card > .two-fields {
+  margin-inline: 20px;
+}

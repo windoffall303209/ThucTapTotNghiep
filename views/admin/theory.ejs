@@ -101,6 +101,8 @@
   <% } %>
 </section>
 <%
-  if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/content-manager.css');
+  if (typeof pageStyles !== 'undefined') {
+    pageStyles.push('/css/admin/content-manager.css', '/css/admin/authoring-forms.css');
+  }
   if (typeof pageScripts !== 'undefined') pageScripts.push('/js/admin/content-manager.js');
 %>
