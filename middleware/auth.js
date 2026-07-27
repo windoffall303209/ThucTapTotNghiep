@@ -1,4 +1,6 @@
 const { GRADE_RANGE_LABEL, isSupportedGrade } = require('../config/grades');
+const Student = require('../models/Student');
+const { clearAuthCookie } = require('../utils/authToken');
 
 // Trang luyện tập nộp đáp án bằng fetch. Nếu chặn bằng redirect thì fetch đi
 // theo chuyển hướng, nhận về HTML trang đăng nhập kèm mã 200, rồi response.json()
@@ -12,7 +14,7 @@ function wantsJson(req) {
   );
 }
 
-function requireStudent(req, res, next) {
+async function requireStudent(req, res, next) {
   if (!req.auth || req.auth.role !== 'student') {
     if (wantsJson(req)) {
       return res.status(401).json({
@@ -28,15 +30,37 @@ function requireStudent(req, res, next) {
     return res.redirect('/auth/login');
   }
 
-  if (!isSupportedGrade(req.auth.current_grade)) {
-    req.session.flash = {
-      type: 'danger',
-      message: `Tài khoản đang có khối học ngoài phạm vi ${GRADE_RANGE_LABEL}. Vui lòng liên hệ quản trị viên để cập nhật.`
-    };
-    return res.redirect('/auth/login');
-  }
+  try {
+    const student = await Student.findById(req.auth.id);
+    if (!student || Number(student.is_active ?? 1) !== 1) {
+      clearAuthCookie(res);
+      if (wantsJson(req)) {
+        return res.status(403).json({
+          ok: false,
+          code: 'ACCOUNT_DISABLED',
+          message: 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên.'
+        });
+      }
+      req.session.flash = {
+        type: 'danger',
+        message: 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.'
+      };
+      return res.redirect('/auth/login');
+    }
 
-  return next();
+    if (!isSupportedGrade(student.current_grade)) {
+      req.session.flash = {
+        type: 'danger',
+        message: `Tài khoản đang có khối học ngoài phạm vi ${GRADE_RANGE_LABEL}. Vui lòng liên hệ quản trị viên để cập nhật.`
+      };
+      return res.redirect('/auth/login');
+    }
+
+    req.auth.current_grade = student.current_grade;
+    return next();
+  } catch (error) {
+    return next(error);
+  }
 }
 
 function requireAdmin(req, res, next) {

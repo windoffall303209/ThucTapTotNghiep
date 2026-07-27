@@ -89,6 +89,11 @@ async function login(req, res, next) {
       return res.redirect('/auth/login');
     }
 
+    if (Number(student.is_active ?? 1) !== 1) {
+      setFlash(req, 'danger', 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.');
+      return res.redirect('/auth/login');
+    }
+
     // Phải kiểm tra khối lớp TRƯỚC khi cấp cookie. Nếu để requireStudent chặn
     // sau thì học sinh đã có cookie hợp lệ, bị đá về trang đăng nhập, đăng nhập
     // lại thành công rồi lại bị đá tiếp: vòng lặp không có lối thoát.
@@ -157,6 +162,7 @@ function toStudentTokenPayload(student) {
     fullname: student.fullname,
     registered_grade: student.registered_grade,
     current_grade: student.current_grade,
+    is_active: Number(student.is_active ?? 1),
     role: 'student',
     type: 'student'
   };

@@ -36,7 +36,8 @@ async function createStudent({ username, password, fullname, grade }) {
       password_hash: passwordHash,
       fullname,
       registered_grade: grade,
-      current_grade: grade
+      current_grade: grade,
+      is_active: 1
     };
   } catch (error) {
     const duplicate = sampleData.students.some((student) => student.username === username);
@@ -52,7 +53,8 @@ async function createStudent({ username, password, fullname, grade }) {
       password_hash: passwordHash,
       fullname,
       registered_grade: grade,
-      current_grade: grade
+      current_grade: grade,
+      is_active: 1
     };
     sampleData.students.push(student);
     return student;
@@ -75,7 +77,7 @@ async function listStudents(search = '') {
 
   try {
     return await db.query(
-      `SELECT id, username, fullname, registered_grade, current_grade, created_at
+      `SELECT id, username, fullname, registered_grade, current_grade, is_active, created_at
        FROM Students
        WHERE username LIKE ? OR fullname LIKE ?
        ORDER BY created_at DESC`,
@@ -113,7 +115,7 @@ async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 
   try {
     const [rows, countRows] = await Promise.all([
       db.query(
-        `SELECT s.id, s.username, s.fullname, s.registered_grade, s.current_grade, s.created_at,
+        `SELECT s.id, s.username, s.fullname, s.registered_grade, s.current_grade, s.is_active, s.created_at,
                 (SELECT MAX(sl.created_at) FROM StudentLogs sl WHERE sl.student_id = s.id) AS last_activity_at
          FROM Students s
          WHERE ${whereClause}
@@ -169,19 +171,21 @@ async function updatePassword(studentId, password) {
   return passwordHash;
 }
 
-// Chỉ cập nhật current_grade, giữ nguyên registered_grade để vẫn tra được học
-// sinh vào hệ thống từ khối nào. Dùng khi lên lớp hoặc khi cần sửa tài khoản có
-// khối lớp nằm ngoài phạm vi hệ thống hỗ trợ.
-async function updateCurrentGrade(studentId, grade) {
+async function updateActiveStatus(studentId, isActive) {
+  const normalizedStatus = isActive ? 1 : 0;
+
   try {
     await db.query(
-      'UPDATE Students SET current_grade = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-      [Number(grade), studentId]
+      'UPDATE Students SET is_active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [normalizedStatus, studentId]
     );
   } catch (error) {
     const student = sampleData.students.find((item) => Number(item.id) === Number(studentId));
-    if (student) student.current_grade = Number(grade);
+    if (!student) throw error;
+    student.is_active = normalizedStatus;
   }
+
+  return normalizedStatus;
 }
 
 module.exports = {
@@ -192,5 +196,5 @@ module.exports = {
   listStudents,
   listStudentsPaged,
   updatePassword,
-  updateCurrentGrade
+  updateActiveStatus
 };

@@ -30,6 +30,7 @@
     "db:questions-report": "node scripts/report_question_database.js",
     "db:session-report": "node scripts/report_practice_session.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
+    "db:student-status": "node scripts/apply_student_account_status.js",
     "db:seed-demo": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/seed.sql"
   },
   "keywords": [

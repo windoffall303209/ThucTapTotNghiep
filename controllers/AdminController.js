@@ -964,7 +964,7 @@ async function students(req, res, next) {
     });
 
     res.render('admin/students', {
-      title: 'Quản lý học sinh',
+      title: 'Quản lý tài khoản học sinh',
       students: result.students,
       pagination: result.pagination,
       query: req.query.q || '',
@@ -977,70 +977,48 @@ async function students(req, res, next) {
 }
 
 function studentsRedirectUrl(req) {
+  const params = new URLSearchParams();
   const query = String(req.body.q || '').trim();
-  return query ? `/admin/students?q=${encodeURIComponent(query)}` : '/admin/students';
+  const grade = Number(req.body.grade);
+  const page = Math.max(Number(req.body.page || 1), 1);
+  if (query) params.set('q', query);
+  if (isSupportedGrade(grade)) params.set('grade', String(grade));
+  if (page > 1) params.set('page', String(page));
+  const queryString = params.toString();
+  return queryString ? `/admin/students?${queryString}` : '/admin/students';
 }
 
-// Chức năng AD-09: đặt lại mật khẩu cho học sinh quên mật khẩu. Quản trị viên
-// đặt mật khẩu tạm rồi báo lại cho học sinh, hệ thống không lưu bản rõ.
-async function resetStudentPassword(req, res, next) {
+async function updateStudentStatus(req, res, next) {
   try {
     const student = await Student.findById(req.params.id);
     if (!student) {
-      setFlash(req, 'danger', 'Không tìm thấy học sinh cần đặt lại mật khẩu.');
+      setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần cập nhật.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
-    const newPassword = String(req.body.new_password || '');
-    if (newPassword.length < 8) {
-      setFlash(req, 'danger', 'Mật khẩu mới cần có ít nhất 8 ký tự.');
+    const rawStatus = String(req.body.is_active || '');
+    if (!['0', '1'].includes(rawStatus)) {
+      setFlash(req, 'danger', 'Trạng thái tài khoản không hợp lệ.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
-    await Student.updatePassword(student.id, newPassword);
+    const isActive = rawStatus === '1';
+    if (Number(student.is_active ?? 1) === Number(isActive)) {
+      setFlash(req, 'warning', `Tài khoản ${student.username} đã ở trạng thái được chọn.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    await Student.updateActiveStatus(student.id, isActive);
     setFlash(
       req,
       'success',
-      `Đã đặt lại mật khẩu cho ${student.username}. Hãy báo mật khẩu mới cho học sinh và nhắc em đổi lại trong trang Tài khoản.`
+      isActive
+        ? `Đã mở lại tài khoản ${student.username}.`
+        : `Đã tạm khóa tài khoản ${student.username}.`
     );
     return res.redirect(studentsRedirectUrl(req));
   } catch (error) {
-    next(error);
-  }
-}
-
-// Chức năng AD-09: sửa khối lớp hiện tại. Cần thiết khi học sinh chọn nhầm lớp
-// lúc đăng ký, khi lên lớp, và để gỡ các tài khoản có khối lớp ngoài phạm vi hệ
-// thống hỗ trợ (trước đây chỉ sửa được bằng cách gõ SQL trực tiếp).
-async function updateStudentGrade(req, res, next) {
-  try {
-    const student = await Student.findById(req.params.id);
-    if (!student) {
-      setFlash(req, 'danger', 'Không tìm thấy học sinh cần cập nhật khối lớp.');
-      return res.redirect(studentsRedirectUrl(req));
-    }
-
-    const grade = Number(req.body.current_grade);
-    if (!isSupportedGrade(grade)) {
-      setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
-      return res.redirect(studentsRedirectUrl(req));
-    }
-
-    if (Number(student.current_grade) === grade) {
-      setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
-      return res.redirect(studentsRedirectUrl(req));
-    }
-
-    await Student.updateCurrentGrade(student.id, grade);
-    setFlash(
-      req,
-      'success',
-      `Đã chuyển ${student.username} từ lớp ${student.current_grade} sang lớp ${grade}. `
-      + 'Chương trình học và tiến trình sẽ hiển thị theo lớp mới.'
-    );
-    return res.redirect(studentsRedirectUrl(req));
-  } catch (error) {
-    next(error);
+    return next(error);
   }
 }
 
@@ -1474,8 +1452,7 @@ module.exports = {
   updateQuestion,
   deleteQuestion,
   students,
-  resetStudentPassword,
-  updateStudentGrade,
+  updateStudentStatus,
   curriculum,
   createChapter,
   updateChapter,

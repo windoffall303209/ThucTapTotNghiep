@@ -1,146 +1,218 @@
-<section class="workspace-head">
+<%
+  function formatDate(value, includeTime = false) {
+    if (!value) return '—';
+    const options = includeTime
+      ? { dateStyle: 'short', timeStyle: 'short' }
+      : { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Intl.DateTimeFormat('vi-VN', options).format(new Date(value));
+  }
+
+  function pageUrl(page) {
+    const params = new URLSearchParams();
+    if (query) params.set('q', query);
+    if (filterGrade) params.set('grade', String(filterGrade));
+    params.set('page', String(page));
+    return `/admin/students?${params.toString()}`;
+  }
+
+  function paginationItems(currentPage, totalPages) {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, index) => index + 1);
+    }
+
+    const items = [1];
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(totalPages - 1, currentPage + 1);
+
+    if (start > 2) items.push('start-ellipsis');
+    for (let page = start; page <= end; page += 1) items.push(page);
+    if (end < totalPages - 1) items.push('end-ellipsis');
+    items.push(totalPages);
+    return items;
+  }
+
+  const shownFrom = pagination.total === 0 ? 0 : ((pagination.page - 1) * pagination.limit) + 1;
+  const shownTo = Math.min(pagination.page * pagination.limit, pagination.total);
+  const pages = paginationItems(pagination.page, pagination.totalPages);
+%>
+
+<section class="workspace-head account-directory-head">
   <div>
-    <p class="eyebrow">Người học</p>
-    <h1>Danh sách học sinh</h1>
-    <p>Tìm kiếm tài khoản học sinh, sửa khối lớp và đặt lại mật khẩu khi học sinh quên.</p>
+    <p class="eyebrow">Tài khoản người dùng</p>
+    <h1>Quản lý tài khoản học sinh</h1>
+    <p>Tra cứu tài khoản đã đăng ký và theo dõi trạng thái sử dụng hệ thống.</p>
+  </div>
+  <div class="account-directory-total" aria-label="<%= pagination.total %> tài khoản học sinh">
+    <strong><%= pagination.total %></strong>
+    <span>tài khoản</span>
   </div>
 </section>
 
-<form class="search-bar" action="/admin/students" method="get">
-  <input name="q" value="<%= query %>" placeholder="Tìm theo tên hoặc tài khoản">
-  <%# Lọc theo lớp: danh sách trải cả 5 khối, không lọc thì tìm học sinh của
-      một lớp cụ thể phải cuộn qua toàn trường. %>
-  <select name="grade">
-    <option value="">Tất cả lớp</option>
-    <% gradeOptions.forEach((option) => { %>
-      <option value="<%= option.value %>" <%= Number(filterGrade) === Number(option.value) ? 'selected' : '' %>>
-        <%= option.label %>
-      </option>
-    <% }) %>
-  </select>
-  <button class="btn btn-secondary" type="submit">
-    <i data-lucide="search" class="lucide-icon"></i>
-    Tìm kiếm
-  </button>
+<form class="search-bar account-filter-bar" action="/admin/students" method="get">
+  <label class="account-search-field">
+    <span>Tìm tài khoản</span>
+    <span class="account-input-shell">
+      <i data-lucide="search" class="lucide-icon"></i>
+      <input
+        name="q"
+        value="<%= query %>"
+        placeholder="Tên học sinh hoặc tên đăng nhập"
+        autocomplete="off">
+    </span>
+  </label>
+
+  <label class="account-grade-filter">
+    <span>Khối lớp</span>
+    <select name="grade">
+      <option value="">Tất cả lớp</option>
+      <% gradeOptions.forEach((option) => { %>
+        <option value="<%= option.value %>" <%= Number(filterGrade) === Number(option.value) ? 'selected' : '' %>>
+          <%= option.label %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <div class="account-filter-actions">
+    <button class="btn btn-secondary" type="submit">
+      <i data-lucide="filter" class="lucide-icon"></i>
+      Lọc danh sách
+    </button>
+    <% if (query || filterGrade) { %>
+      <a class="account-clear-filter" href="/admin/students">Xóa bộ lọc</a>
+    <% } %>
+  </div>
 </form>
 
-<section class="table-section">
-  <div class="section-title">
-    <i data-lucide="users" class="lucide-icon"></i>
-    Tài khoản học sinh
-    <small class="muted"><%= pagination.total %> tài khoản · Trang <%= pagination.page %>/<%= pagination.totalPages %></small>
+<section class="table-section account-directory">
+  <div class="account-table-heading">
+    <div>
+      <h2>Danh sách tài khoản</h2>
+      <p>Hiển thị <strong><%= shownFrom %>–<%= shownTo %></strong> trong <strong><%= pagination.total %></strong> tài khoản</p>
+    </div>
+    <span><%= pagination.limit %> tài khoản mỗi trang</span>
   </div>
 
   <% if (students.length === 0) { %>
-    <div class="empty-state compact">
-      <p>Không tìm thấy học sinh phù hợp.</p>
+    <div class="empty-state account-empty-state">
+      <i data-lucide="user-search" class="empty-icon"></i>
+      <h2>Không tìm thấy tài khoản</h2>
+      <p>Thử thay đổi tên tìm kiếm hoặc chọn lại khối lớp.</p>
+      <% if (query || filterGrade) { %>
+        <a class="btn btn-secondary" href="/admin/students">Xem tất cả tài khoản</a>
+      <% } %>
+    </div>
+  <% } else { %>
+    <div class="table-wrap account-table-wrap">
+      <table class="account-table">
+        <caption class="sr-only">Danh sách tài khoản học sinh</caption>
+        <thead>
+          <tr>
+            <th scope="col">Học sinh</th>
+            <th scope="col">Khối lớp</th>
+            <th scope="col">Hoạt động</th>
+            <th scope="col">Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach((item) => { %>
+            <%
+              const gradeSupported = gradeOptions.some((option) => Number(option.value) === Number(item.current_grade));
+              const isActive = Number(item.is_active ?? 1) === 1;
+            %>
+            <tr>
+              <td data-label="Học sinh">
+                <div class="account-user-cell">
+                  <span class="account-avatar" aria-hidden="true"><%= String(item.fullname || item.username || '?').trim().charAt(0).toUpperCase() %></span>
+                  <span>
+                    <strong><%= item.fullname %></strong>
+                    <small>@<%= item.username %> · #<%= item.id %></small>
+                  </span>
+                </div>
+              </td>
+              <td data-label="Khối lớp">
+                <strong class="account-grade">Lớp <%= item.current_grade %></strong>
+                <% if (Number(item.registered_grade) !== Number(item.current_grade)) { %>
+                  <small class="account-secondary">Đăng ký lớp <%= item.registered_grade %></small>
+                <% } %>
+                <% if (!gradeSupported) { %>
+                  <small class="account-grade-warning">Ngoài phạm vi hỗ trợ</small>
+                <% } %>
+              </td>
+              <td data-label="Hoạt động">
+                <strong class="account-date"><%= item.last_activity_at ? formatDate(item.last_activity_at, true) : 'Chưa có hoạt động' %></strong>
+                <small class="account-secondary">Đăng ký: <%= formatDate(item.created_at) %></small>
+              </td>
+              <td data-label="Trạng thái">
+                <div class="account-status-cell">
+                  <span class="account-status account-status-<%= isActive ? 'active' : 'locked' %>">
+                    <span aria-hidden="true"></span>
+                    <%= isActive ? 'Đang hoạt động' : 'Tạm khóa' %>
+                  </span>
+
+                  <details class="account-status-editor">
+                    <summary>
+                      <i data-lucide="pencil" class="lucide-icon"></i>
+                      Sửa
+                    </summary>
+                    <form
+                      action="/admin/students/<%= item.id %>/status"
+                      method="post"
+                      data-confirm="Cập nhật trạng thái tài khoản <%= item.username %>?">
+                      <input type="hidden" name="q" value="<%= query %>">
+                      <input type="hidden" name="grade" value="<%= filterGrade || '' %>">
+                      <input type="hidden" name="page" value="<%= pagination.page %>">
+                      <label>
+                        Trạng thái mới
+                        <select name="is_active">
+                          <option value="1" <%= isActive ? 'selected' : '' %>>Đang hoạt động</option>
+                          <option value="0" <%= !isActive ? 'selected' : '' %>>Tạm khóa</option>
+                        </select>
+                      </label>
+                      <button class="btn btn-secondary btn-compact" type="submit">Lưu trạng thái</button>
+                    </form>
+                  </details>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
   <% } %>
 
-  <div class="card-list">
-    <% students.forEach((item) => { %>
-      <% const ngoaiPhamVi = !gradeOptions.some((option) => Number(option.value) === Number(item.current_grade)); %>
-      <article class="activity-card student-card">
-        <div class="row-actions">
-          <span class="status-pill status-new">#<%= item.id %></span>
-          <span class="status-pill <%= ngoaiPhamVi ? 'status-review' : 'status-in-progress' %>">
-            Lớp hiện tại: <%= item.current_grade %>
-          </span>
-          <span class="status-pill status-new">Lớp đăng ký: <%= item.registered_grade %></span>
-        </div>
-
-        <h2><%= item.fullname %></h2>
-        <p class="muted">
-          Tên đăng nhập: <strong><%= item.username %></strong>
-          <%# Lần làm bài gần nhất giúp phân biệt tài khoản đang học thật với
-              tài khoản tạo ra rồi bỏ. %>
-          · Làm bài gần nhất:
-          <strong><%= item.last_activity_at ? new Date(item.last_activity_at).toLocaleString('vi-VN') : 'Chưa làm bài nào' %></strong>
-        </p>
-
-        <% if (ngoaiPhamVi) { %>
-          <p class="student-warning">
-            <i data-lucide="alert-triangle" class="lucide-icon"></i>
-            Khối lớp này ngoài phạm vi hệ thống hỗ trợ nên học sinh không đăng nhập được.
-            Hãy chuyển về một lớp trong danh sách bên dưới.
-          </p>
-        <% } %>
-
-        <div class="student-actions">
-          <%# Đổi khối lớp thay đổi toàn bộ chương trình mà học sinh nhìn thấy,
-              nên bắt xác nhận trước khi lưu để không lỡ tay chọn nhầm dòng. %>
-          <form
-            class="inline-action-form"
-            action="/admin/students/<%= item.id %>/grade"
-            method="post"
-            data-confirm="Đổi khối lớp của <%= item.fullname %>? Học sinh sẽ thấy chương trình của khối mới ngay lần đăng nhập tới.">
-            <input type="hidden" name="q" value="<%= query %>">
-            <label>
-              Khối lớp hiện tại
-              <select name="current_grade">
-                <% gradeOptions.forEach((option) => { %>
-                  <option value="<%= option.value %>" <%= Number(option.value) === Number(item.current_grade) ? 'selected' : '' %>>
-                    <%= option.label %>
-                  </option>
-                <% }) %>
-              </select>
-            </label>
-            <button class="btn btn-secondary" type="submit">
-              <i data-lucide="graduation-cap" class="lucide-icon"></i>
-              Lưu khối lớp
-            </button>
-          </form>
-
-          <%# type=password để mật khẩu mới không nằm trần trên màn hình nơi
-              đông người nhìn; kèm xác nhận vì thao tác này vô hiệu hóa mật khẩu
-              cũ của học sinh ngay lập tức. %>
-          <form
-            class="inline-action-form"
-            action="/admin/students/<%= item.id %>/password"
-            method="post"
-            data-confirm="Đặt lại mật khẩu cho <%= item.fullname %>? Mật khẩu cũ sẽ không dùng được nữa.">
-            <input type="hidden" name="q" value="<%= query %>">
-            <label>
-              Mật khẩu mới
-              <input
-                name="new_password"
-                type="password"
-                minlength="8"
-                required
-                autocomplete="new-password"
-                placeholder="Tối thiểu 8 ký tự">
-            </label>
-            <button class="btn btn-secondary" type="submit">
-              <i data-lucide="key-round" class="lucide-icon"></i>
-              Đặt lại mật khẩu
-            </button>
-          </form>
-        </div>
-      </article>
-    <% }) %>
-  </div>
-
   <% if (pagination.totalPages > 1) { %>
-    <%
-      // Giữ nguyên từ khóa và bộ lọc lớp khi lật trang.
-      function trangUrl(p) {
-        const params = new URLSearchParams();
-        if (query) params.set('q', query);
-        if (filterGrade) params.set('grade', String(filterGrade));
-        params.set('page', String(p));
-        return `/admin/students?${params.toString()}`;
-      }
-    %>
-    <nav class="question-pagination" aria-label="Phân trang học sinh">
-      <a class="btn btn-secondary btn-compact <%= pagination.page <= 1 ? 'disabled-link' : '' %>"
-         href="<%= pagination.page <= 1 ? '#' : trangUrl(pagination.page - 1) %>">
+    <nav class="account-pagination" aria-label="Phân trang tài khoản học sinh">
+      <a
+        class="account-page-nav <%= pagination.page <= 1 ? 'is-disabled' : '' %>"
+        href="<%= pagination.page <= 1 ? '#' : pageUrl(pagination.page - 1) %>"
+        aria-label="Trang trước"
+        <% if (pagination.page <= 1) { %>aria-disabled="true" tabindex="-1"<% } %>>
         <i data-lucide="chevron-left" class="lucide-icon"></i>
-        Trước
+        <span>Trước</span>
       </a>
-      <span>Trang <strong><%= pagination.page %></strong>/<%= pagination.totalPages %> · <%= pagination.total %> tài khoản</span>
-      <a class="btn btn-secondary btn-compact <%= pagination.page >= pagination.totalPages ? 'disabled-link' : '' %>"
-         href="<%= pagination.page >= pagination.totalPages ? '#' : trangUrl(pagination.page + 1) %>">
-        Sau
+
+      <div class="account-page-list">
+        <% pages.forEach((item) => { %>
+          <% if (typeof item === 'string') { %>
+            <span class="account-page-ellipsis" aria-hidden="true">…</span>
+          <% } else { %>
+            <a
+              class="account-page-number <%= item === pagination.page ? 'is-current' : '' %>"
+              href="<%= pageUrl(item) %>"
+              <% if (item === pagination.page) { %>aria-current="page"<% } %>>
+              <%= item %>
+            </a>
+          <% } %>
+        <% }) %>
+      </div>
+
+      <a
+        class="account-page-nav <%= pagination.page >= pagination.totalPages ? 'is-disabled' : '' %>"
+        href="<%= pagination.page >= pagination.totalPages ? '#' : pageUrl(pagination.page + 1) %>"
+        aria-label="Trang sau"
+        <% if (pagination.page >= pagination.totalPages) { %>aria-disabled="true" tabindex="-1"<% } %>>
+        <span>Sau</span>
         <i data-lucide="chevron-right" class="lucide-icon"></i>
       </a>
     </nav>

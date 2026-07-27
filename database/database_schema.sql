@@ -48,12 +48,14 @@ CREATE TABLE Students (
     fullname VARCHAR(100) NOT NULL,
     registered_grade INT NOT NULL CHECK (registered_grade BETWEEN 1 AND 5),
     current_grade INT NOT NULL CHECK (current_grade BETWEEN 1 AND 5),
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_students_username ON Students(username);
 CREATE INDEX idx_students_current_grade ON Students(current_grade);
+CREATE INDEX idx_students_is_active ON Students(is_active);
 
 -- 4. Table: Chapters (Quản lý Chương học)
 CREATE TABLE Chapters (
