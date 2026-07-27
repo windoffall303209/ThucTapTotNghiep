@@ -104,4 +104,7 @@
     </div>
   <% } %>
 </section>
-<% if (typeof pageScripts !== 'undefined') pageScripts.push('/js/admin/content-manager.js'); %>
+<%
+  if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/content-manager.css');
+  if (typeof pageScripts !== 'undefined') pageScripts.push('/js/admin/content-manager.js');
+%>
