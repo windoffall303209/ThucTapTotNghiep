@@ -93,6 +93,38 @@ test('responsive chung không ép toàn bộ nút thành một cột trên mobil
   assert.doesNotMatch(commonCss, /\.nav-button,\s*\.btn,\s*\.search-bar button/);
 });
 
+test('CSS dùng chung không còn sở hữu shell admin hoặc cascade mobile cũ', () => {
+  const commonCss = fs.readFileSync(path.join(publicRoot, 'css', 'common.css'), 'utf8');
+  const adminCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'common.css'), 'utf8');
+
+  assert.doesNotMatch(commonCss, /\.admin-body \.page-shell\s*\{/);
+  assert.doesNotMatch(commonCss, /\.admin-sidebar\s*\{/);
+  assert.doesNotMatch(commonCss, /\.admin-nav(?:\s|[.{])/);
+  assert.doesNotMatch(commonCss, /padding-top:\s*210px/);
+  assert.match(adminCss, /\.admin-body \.page-shell\s*\{/);
+  assert.match(adminCss, /\.admin-sidebar\s*\{/);
+  assert.match(adminCss, /padding-top:\s*calc\(var\(--admin-app-bar-height\) \+ 12px\)/);
+});
+
+test('responsive học sinh sở hữu bố cục một cột của header và hàng bài học', () => {
+  const studentCss = fs.readFileSync(path.join(publicRoot, 'css', 'student', 'common.css'), 'utf8');
+  const dashboardCss = fs.readFileSync(path.join(publicRoot, 'css', 'student', 'dashboard.css'), 'utf8');
+
+  assert.match(
+    studentCss,
+    /\.student-body \.workspace-head,\s*\.student-body \.learning-summary\s*\{[^}]*grid-template-columns:\s*1fr/s
+  );
+  assert.match(dashboardCss, /\.student-body \.lesson-row\s*\{[^}]*grid-template-columns:\s*1fr/s);
+});
+
+test('CSS admin không giữ lại flow và dialog authoring đã bỏ khỏi view', () => {
+  const managerCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'content-manager.css'), 'utf8');
+  const authoringCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'authoring-forms.css'), 'utf8');
+
+  assert.doesNotMatch(managerCss, /\.(?:question-flow|question-bank-topbar|flow-step|book-card|flow-list-row)/);
+  assert.doesNotMatch(authoringCss, /\.(?:question-create-dialog|preview-phone|live-preview)/);
+});
+
 test('CSS renderer dùng chung sở hữu bố cục grid và đáp án cho mọi màn hình', () => {
   const rendererCss = fs.readFileSync(path.join(publicRoot, 'css', 'content-renderer.css'), 'utf8');
   const adminManagerCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'content-manager.css'), 'utf8');

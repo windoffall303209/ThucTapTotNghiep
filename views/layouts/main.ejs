@@ -25,8 +25,9 @@
   <body
     class="<%= admin ? 'admin-body' : '' %><%= student ? ' student-body' : '' %>"
     <% if (student) { %>data-grade="<%= student.current_grade %>"<% } %>>
+    <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
     <%- include('../partials/header') %>
-    <main class="page-shell">
+    <main id="main-content" class="page-shell" tabindex="-1">
       <% if (flash) { %>
         <div class="flash flash-<%= flash.type %>" role="status">
           <%= flash.message %>

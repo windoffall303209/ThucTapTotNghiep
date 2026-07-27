@@ -145,7 +145,7 @@
     </div>
   <% } else { %>
     <div class="table-wrap">
-      <table>
+      <table class="stacked-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -158,11 +158,11 @@
         <tbody>
           <% questions.forEach((question) => { %>
             <tr>
-              <td>#<%= question.id %></td>
-              <td><%= question.lesson_name %></td>
-              <td><span class="status-pill status-new"><%= difficultyLabels[question.difficulty] || question.difficulty %></span></td>
-              <td><span class="answer-badge"><%= question.correct_answer %></span></td>
-              <td>
+              <td data-label="ID">#<%= question.id %></td>
+              <td data-label="Bài học"><%= question.lesson_name %></td>
+              <td data-label="Độ khó"><span class="status-pill status-new"><%= difficultyLabels[question.difficulty] || question.difficulty %></span></td>
+              <td data-label="Đáp án"><span class="answer-badge"><%= question.correct_answer %></span></td>
+              <td data-label="Thao tác">
                 <%# Link thẳng sang bài chứa câu này để sửa, thay vì bắt admin tự
                     mò qua menu Ngân hàng câu hỏi rồi tìm lại. %>
                 <a class="btn btn-secondary btn-compact" href="/admin/questions?lesson=<%= question.lesson_id %>">

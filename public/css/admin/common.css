@@ -20,13 +20,22 @@ body.admin-body {
 }
 
 .admin-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 40;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   width: var(--admin-sidebar-width);
   padding: 16px 12px;
+  border-right: 1px solid var(--line);
+  background: #fff;
   box-shadow: none;
 }
 
 .admin-brand {
+  display: inline-flex;
   align-items: center;
+  gap: 9px;
   min-height: 48px;
   padding: 0 8px 14px;
   margin-bottom: 10px;
@@ -43,24 +52,45 @@ body.admin-body {
 }
 
 .admin-nav {
+  display: grid;
+  align-content: start;
   gap: 3px;
   overflow-y: auto;
 }
 
 .admin-nav-label {
+  color: var(--muted);
   margin: 13px 9px 4px;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .admin-nav a,
 .admin-sidebar-footer .nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  width: 100%;
   min-height: 36px;
   padding: 0 10px;
+  border: 1px solid transparent;
   border-radius: var(--admin-radius);
+  color: #475569;
+  background: transparent;
   font-size: 13.5px;
   font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.admin-nav a:hover,
+.admin-sidebar-footer .nav-button:hover {
+  color: var(--primary-dark);
+  border-color: rgba(37, 99, 235, 0.18);
+  background: var(--primary-soft);
 }
 
 .admin-nav a.active {
@@ -70,8 +100,10 @@ body.admin-body {
 }
 
 .admin-sidebar-footer {
+  display: grid;
   gap: 10px;
   padding: 12px 4px 0;
+  border-top: 1px solid var(--line);
 }
 
 .admin-sidebar-footer strong {
@@ -79,7 +111,10 @@ body.admin-body {
 }
 
 .admin-sidebar-footer small {
+  display: block;
+  margin-top: 2px;
   font-size: 11.5px;
+  color: var(--muted);
 }
 
 .admin-body .workspace-head,

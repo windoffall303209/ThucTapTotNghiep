@@ -32,6 +32,30 @@ test('layout giữ đúng thứ tự tài nguyên dùng chung và tài nguyên t
   assert.ok(adminJs < pageJs);
 });
 
+test('layout có lối bỏ qua điều hướng và đích nội dung chính cho bàn phím', () => {
+  const layout = read('views/layouts/main.ejs');
+  const commonCss = read('public/css/common.css');
+
+  assertContainsAll(layout, [
+    /class="skip-link" href="#main-content"/,
+    /<main id="main-content" class="page-shell" tabindex="-1">/
+  ]);
+  assert.match(commonCss, /\.skip-link:focus\s*\{/);
+  assert.match(commonCss, /@media \(prefers-reduced-motion: reduce\)/);
+});
+
+test('header công khai giữ điều hướng đầy đủ trên desktop và rút gọn link neo trên mobile', () => {
+  const header = read('views/partials/header.ejs');
+  const commonCss = read('public/css/common.css');
+
+  assert.match(header, /class="nav-anchor" href="\/#cach-hoc"/);
+  assert.match(header, /class="nav-anchor" href="\/#chuong-trinh"/);
+  assert.match(
+    commonCss,
+    /body:not\(\.student-body\):not\(\.admin-body\) \.nav-anchor\s*\{[^}]*display:\s*none/s
+  );
+});
+
 test('màn luyện tập giữ các điểm nối dữ liệu và điều khiển phiên làm bài', () => {
   const practice = read('views/student/practice.ejs');
 
@@ -137,6 +161,19 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /data-admin-sidebar-backdrop/,
     /id="adminSidebar"/,
     /aria-label="Menu quản trị"/
+  ]);
+});
+
+test('bảng câu hỏi gần đây của dashboard admin chuyển thành bản ghi xếp dọc trên mobile', () => {
+  const dashboard = read('views/admin/dashboard.ejs');
+
+  assertContainsAll(dashboard, [
+    /<table class="stacked-table">/,
+    /<td data-label="ID">/,
+    /<td data-label="Bài học">/,
+    /<td data-label="Độ khó">/,
+    /<td data-label="Đáp án">/,
+    /<td data-label="Thao tác">/
   ]);
 });
 

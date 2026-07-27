@@ -102,6 +102,7 @@
 
 @media (max-width: 640px) {
   .student-body .lesson-row {
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 

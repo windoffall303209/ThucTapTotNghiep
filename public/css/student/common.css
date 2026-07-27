@@ -145,3 +145,14 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
     padding-bottom: 76px;
   }
 }
+
+@media (max-width: 640px) {
+  .student-body .workspace-head,
+  .student-body .learning-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .student-body .workspace-head {
+    align-items: start;
+  }
+}

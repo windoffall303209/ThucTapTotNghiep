@@ -25,7 +25,6 @@
   --surface-soft: #f8fafc;
   --surface-blue: #f4f8ff;
   --page: #f6f8fb;
-  --admin-page: #f3f6fb;
   --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
   --shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.07);
   --shadow-md: 0 14px 36px rgba(15, 23, 42, 0.09);
@@ -34,7 +33,6 @@
   --radius-md: 14px;
   --radius-lg: 16px;
   --radius-xl: 20px;
-  --admin-sidebar-width: 224px;
   --container: 1240px;
 }
 [hidden] {
@@ -63,14 +61,6 @@ body {
   font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 15px;
   line-height: 1.5;
-}
-
-body.admin-body {
-  background: var(--admin-page);
-}
-
-[hidden] {
-  display: none !important;
 }
 
 a {
@@ -102,6 +92,34 @@ textarea {
   background: var(--primary);
 }
 
+/* Keyboard users can bypass persistent navigation without adding visual chrome. */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  background: var(--ink);
+  font-weight: 800;
+  transform: translateY(calc(-100% - 16px));
+  transition: transform 140ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
 /* Shell */
 .topbar {
   position: sticky;
@@ -124,34 +142,13 @@ textarea {
   padding: 24px 0 56px;
 }
 
-.admin-body .page-shell {
-  width: auto;
-  margin-left: var(--admin-sidebar-width);
-  padding: 32px 34px 72px;
-}
-
-.admin-sidebar {
-  position: fixed;
-  inset: 0 auto 0 0;
-  z-index: 40;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  width: var(--admin-sidebar-width);
-  padding: 22px 18px;
-  border-right: 1px solid var(--line);
-  background: #ffffff;
-  box-shadow: 16px 0 44px rgba(15, 23, 42, 0.05);
-}
-
 .brand,
 .nav-links,
 .nav-links a,
 .nav-button,
 .btn,
 .section-title,
-.back-link,
-.admin-nav a,
-.admin-sidebar-footer .nav-button {
+.back-link {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -181,9 +178,7 @@ textarea {
 }
 
 .nav-links a,
-.nav-button,
-.admin-nav a,
-.admin-sidebar-footer .nav-button {
+.nav-button {
   min-height: 36px;
   padding: 0 11px;
   border: 1px solid transparent;
@@ -197,10 +192,7 @@ textarea {
 
 .nav-links a:hover,
 .nav-links a.active,
-.nav-button:hover,
-.admin-nav a:hover,
-.admin-nav a.active,
-.admin-sidebar-footer .nav-button:hover {
+.nav-button:hover {
   color: var(--primary-dark);
   border-color: rgba(37, 99, 235, 0.18);
   background: var(--primary-soft);
@@ -210,49 +202,6 @@ textarea {
   color: #fff !important;
   border-color: transparent !important;
   background: var(--primary) !important;
-}
-
-.admin-brand {
-  align-items: flex-start;
-  padding: 4px 6px 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-.admin-nav {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-}
-
-.admin-nav a,
-.admin-sidebar-footer .nav-button {
-  justify-content: flex-start;
-  width: 100%;
-  border-radius: 14px;
-}
-
-.nav-group-label,
-.admin-nav-label {
-  margin: 14px 10px 4px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.admin-sidebar-footer {
-  display: grid;
-  gap: 14px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-.admin-sidebar-footer small {
-  display: block;
-  margin-top: 2px;
-  color: var(--muted);
 }
 
 /* Type */
@@ -365,12 +314,8 @@ h3 {
 .settings-panel,
 .review-item,
 .provider-card,
-.book-card,
-.flow-list-row,
 .bank-question,
-.admin-theory-card,
 .question-form-preview,
-.lesson-question-toolbar,
 .practice-panel,
 .stat-card,
 .action-card,
@@ -478,7 +423,6 @@ h3 {
 .status-pill,
 .card-index,
 .question-meta span,
-.bank-grade-head > span,
 .answer-badge,
 .bank-question-meta span,
 .placeholder-list span,
@@ -830,7 +774,6 @@ tbody tr:last-child td {
 }
 
 .metric-block span,
-.admin-metrics span,
 .stat-value {
   display: block;
   color: var(--ink);
@@ -1021,178 +964,8 @@ tbody tr:last-child td {
   border: 0;
 }
 
-/* Responsive */
-@media (max-width: 1100px) {
-  :root {
-    --admin-sidebar-width: 220px;
-  }
-
-  .admin-metrics,
-  .stat-grid,
-  .today-grid,
-  .step-list,
-  .benefit-grid,
-  .feature-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .grade-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 920px) {
-  .content-manager-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .lesson-browser {
-    position: static;
-    max-height: 430px;
-  }
-
-  .content-manager-header {
-    align-items: flex-start;
-  }
-
-  .topbar,
-  .workspace-head,
-  .lesson-row {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .home-hero,
-  .landing-hero,
-  .auth-layout,
-  .learning-summary,
-  .account-grid,
-  .practice-shell,
-  .editor-grid,
-  .theory-grid,
-  .inline-edit-form,
-  .question-create-inline,
-  .theory-card-form,
-  .question-flow-topbar,
-  .question-bank-topbar {
-    grid-template-columns: 1fr;
-  }
-
-  .workspace-head,
-  .question-flow-topbar,
-  .question-bank-topbar {
-    display: grid;
-  }
-
-  .inline-edit-form .question-form-preview,
-  .question-create-inline .question-form-preview,
-  .theory-card-form .question-form-preview,
-  .ai-chat,
-  .live-preview,
-  .grade-index {
-    position: static;
-    height: auto;
-  }
-
-  .inline-edit-form .question-form-preview,
-  .question-create-inline .question-form-preview,
-  .theory-card-form .question-form-preview,
-  .inline-edit-form > :not(.question-form-preview):not(.form-actions),
-  .question-create-inline > :not(.question-form-preview):not(.form-actions) {
-    grid-column: 1;
-  }
-
-  .admin-body .page-shell {
-    margin-left: 0;
-    padding: 116px 18px 56px;
-  }
-
-  .admin-sidebar {
-    right: 0;
-    bottom: auto;
-    width: auto;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto;
-    gap: 14px;
-    align-items: center;
-    padding: 12px 16px;
-  }
-
-  .admin-brand {
-    padding: 0;
-    margin-bottom: 0;
-    border-bottom: 0;
-  }
-
-  .admin-nav {
-    display: flex;
-    overflow-x: auto;
-  }
-
-  .admin-nav a,
-  .admin-sidebar-footer .nav-button {
-    width: max-content;
-    white-space: nowrap;
-  }
-
-  .admin-nav-label,
-  .nav-group-label,
-  .admin-sidebar-footer div {
-    display: none;
-  }
-
-  .admin-sidebar-footer {
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  .settings-provider-grid,
-  .admin-metrics,
-  .today-grid,
-  .quick-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .question-bank-stats {
-    justify-content: flex-start;
-  }
-}
-
+/* Shared responsive utilities. Role and route layouts live in their own layers. */
 @media (max-width: 640px) {
-  .content-manager-header,
-  .lesson-content-toolbar,
-  .content-workspace-context {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .content-manager-summary {
-    white-space: normal;
-  }
-
-  .content-manager-summary span:first-child {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .content-workspace-context .workspace-close {
-    position: absolute;
-    align-self: flex-end;
-  }
-
-  .lesson-question-shell {
-    padding: 14px;
-  }
-
-  .form-optional-panel > summary {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .form-optional-content {
-    grid-template-columns: 1fr;
-  }
-
   .page-shell {
     width: min(100% - 20px, var(--container));
     padding: 22px 0 52px;
@@ -1200,24 +973,31 @@ tbody tr:last-child td {
 
   .topbar,
   .nav-links,
-  .hero-actions,
-  .auth-links,
-  .search-bar,
-  .exam-limit-form,
-  .chat-form,
-  .lesson-question-toolbar,
-  .bank-question-head,
-  .question-bank-heading,
-  .bank-grade-head {
+  .search-bar {
     align-items: stretch;
     flex-direction: column;
   }
 
   .topbar .nav-links a,
   .topbar .nav-button,
-  .search-bar button,
-  .exam-limit-form button {
+  .search-bar button {
     width: 100%;
+  }
+
+  body:not(.student-body):not(.admin-body) .topbar {
+    flex-flow: row wrap;
+    align-items: center;
+    padding-block: 10px;
+  }
+
+  body:not(.student-body):not(.admin-body) .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  body:not(.student-body):not(.admin-body) .nav-anchor {
+    display: none;
   }
 
   .brand {
@@ -1229,122 +1009,42 @@ tbody tr:last-child td {
     height: 36px;
   }
 
-  .hero-copy h1,
-  .landing-hero h1,
-  .auth-panel h1 {
-    font-size: 30px;
-  }
-
-  .workspace-head h1,
-  .practice-main > h1 {
+  .workspace-head h1 {
     font-size: 24px;
   }
 
-  .auth-copy,
-  .auth-panel,
-  .narrow-panel,
   .workspace-head,
   .table-section,
   .info-panel,
-  .settings-panel,
-  .review-item,
-  .theory-card,
-  .question-card,
-  .practice-panel,
-  .hero-board,
-  .landing-preview {
+  .review-item {
     padding: 14px;
     border-radius: var(--radius-md);
   }
 
-  .feature-strip,
-  .step-list,
-  .benefit-grid,
-  .grade-grid,
   .stat-grid,
   .today-grid,
   .quick-grid,
-  .admin-metrics,
-  .settings-provider-grid,
-  .answer-grid,
-  .review-answer-grid,
-  .question-choice-list,
   .two-fields {
     grid-template-columns: 1fr;
-  }
-
-  .admin-body .page-shell {
-    padding-top: 210px;
-    padding-inline: 10px;
-  }
-
-  .admin-sidebar {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-
-  /* Trên màn hẹp chỉ giấu phần tên và chức danh cho gọn, KHÔNG giấu cả footer:
-     footer chứa nút Đăng xuất, ẩn nó là admin dùng điện thoại bị kẹt trong
-     phiên đăng nhập vì không còn lối thoát nào trên giao diện. */
-  .admin-sidebar-footer > div {
-    display: none;
-  }
-
-  .admin-sidebar-footer {
-    padding: 6px 0 0;
-  }
-
-  .admin-sidebar-footer form {
-    width: 100%;
-  }
-
-  .admin-sidebar-footer .nav-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .lesson-row,
-  .practice-topline,
-  .account-details div {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-
-  .account-details dd {
-    text-align: left;
-  }
-
-  .saved-question-layout.layout-image-left,
-  .saved-question-layout.layout-image-right,
-  .question-split-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .settings-modal,
-  .question-create-dialog {
-    width: calc(100vw - 18px);
-    max-height: calc(100svh - 18px);
-  }
-
-  .settings-modal-card,
-  .question-create-card {
-    max-height: calc(100svh - 18px);
-  }
-
-  .settings-modal-head,
-  .settings-modal-actions,
-  .settings-modal-body,
-  .modal-head,
-  .modal-actions {
-    padding: 16px;
-  }
-
-  .modal-spacer {
-    display: none;
   }
 
   th,
   td {
     padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
