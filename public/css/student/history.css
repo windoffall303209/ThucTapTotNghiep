@@ -1,0 +1,62 @@
+.student-body .table-section .card-list {
+  gap: 8px;
+}
+
+.student-body .table-section .activity-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 16px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.student-body .table-section .activity-card > .row-actions:first-child,
+.student-body .table-section .activity-card h2,
+.student-body .table-section .activity-card > p,
+.student-body .table-section .activity-card .progress-track {
+  grid-column: 1;
+}
+
+.student-body .table-section .activity-card > .row-actions:last-child {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  flex-wrap: nowrap;
+}
+
+.student-body .table-section .activity-card h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.student-body .table-section .activity-card p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.student-body .table-section .activity-card .progress-track {
+  width: min(520px, 100%);
+}
+
+@media (max-width: 640px) {
+  .student-body .table-section .activity-card {
+    grid-template-columns: 1fr;
+  }
+
+  .student-body .table-section .activity-card > .row-actions:first-child,
+  .student-body .table-section .activity-card h2,
+  .student-body .table-section .activity-card > p,
+  .student-body .table-section .activity-card .progress-track,
+  .student-body .table-section .activity-card > .row-actions:last-child {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .student-body .table-section .activity-card > .row-actions:last-child {
+    width: 100%;
+  }
+
+  .student-body .table-section .activity-card > .row-actions:last-child .btn {
+    flex: 1;
+  }
+}
