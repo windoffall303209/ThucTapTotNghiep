@@ -1134,62 +1134,6 @@ tbody tr:last-child td {
   margin-top: 12px;
 }
 
-/* Trang nhật ký hội thoại AI */
-.ai-log-filters {
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 14px;
-}
-
-.ai-log-filters label {
-  display: grid;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.ai-log-filters select {
-  min-height: 42px;
-  min-width: 200px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  color: var(--ink);
-  background: #fff;
-  font: inherit;
-  font-weight: 700;
-}
-
-.ai-log-filters .checkbox-label {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  min-height: 42px;
-}
-
-.ai-log-card.ai-log-flagged {
-  border-color: #fca5a5;
-  background: #fffafa;
-}
-
-.ai-log-chat {
-  max-height: 340px;
-  overflow-y: auto;
-}
-
-.inline-flag-form {
-  margin-top: 12px;
-}
-
-.pagination {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 18px;
-}
-
 /* Danh sách tài khoản học sinh: ưu tiên khả năng quét nhanh như một bảng vận hành,
    không dùng thẻ riêng cho từng tài khoản vì sẽ làm danh sách dài và khó đối chiếu. */
 /* Hộp báo lỗi khi biểu mẫu soạn câu hỏi chưa hợp lệ. Hiện ngay trong form để
