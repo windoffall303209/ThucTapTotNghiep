@@ -1,4 +1,82 @@
-/* Khoảng cách giữa các nhóm chọn đề luyện tập. */
-.exam-picker {
-  margin-bottom: 24px;
+.student-body .card-list {
+  gap: 10px;
+}
+
+.student-body .card-list > .activity-card {
+  display: grid;
+  gap: 9px;
+  padding: 16px;
+}
+
+.student-body .card-list > .activity-card h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.student-body .card-list > .activity-card > p {
+  margin: 0;
+}
+
+.student-body .card-list > .activity-card .stack-form {
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.student-body .card-list > .activity-card .row-actions {
+  margin-top: auto;
+}
+
+.student-body .table-section > .card-list .activity-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 7px 14px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.student-body .table-section > .card-list .activity-card h2,
+.student-body .table-section > .card-list .activity-card p,
+.student-body .table-section > .card-list .activity-card .progress-track {
+  grid-column: 1;
+}
+
+.student-body .table-section > .card-list .activity-card > .status-pill,
+.student-body .table-section > .card-list .activity-card > .row-actions {
+  grid-column: 2;
+}
+
+.student-body .table-section > .card-list .activity-card > .status-pill {
+  grid-row: 1;
+  justify-self: end;
+}
+
+.student-body .table-section > .card-list .activity-card > .row-actions {
+  grid-row: 2 / span 3;
+}
+
+@media (min-width: 760px) {
+  .student-body > .page-shell > .card-list,
+  .student-body .page-shell > .card-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .student-body .card-list > .activity-card .row-actions .btn {
+    flex: 1;
+  }
+
+  .student-body .table-section > .card-list .activity-card {
+    grid-template-columns: 1fr;
+  }
+
+  .student-body .table-section > .card-list .activity-card h2,
+  .student-body .table-section > .card-list .activity-card p,
+  .student-body .table-section > .card-list .activity-card .progress-track,
+  .student-body .table-section > .card-list .activity-card > .status-pill,
+  .student-body .table-section > .card-list .activity-card > .row-actions {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
 }
