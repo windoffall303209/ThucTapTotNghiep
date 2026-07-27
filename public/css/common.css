@@ -1188,10 +1188,6 @@ tbody tr:last-child td {
 }
 
 /* Legacy compatibility */
-.exam-picker {
-  margin-bottom: 24px;
-}
-
 .question-bank-page,
 .question-bank-section,
 .question-bank-tree,
