@@ -5,15 +5,15 @@
 
 .account-directory-total {
   display: grid;
-  min-width: 138px;
-  padding-left: 24px;
+  min-width: 112px;
+  padding-left: 16px;
   border-left: 1px solid var(--line);
   text-align: right;
 }
 
 .account-directory-total strong {
   color: var(--ink);
-  font-size: 36px;
+  font-size: 28px;
   letter-spacing: -0.05em;
   line-height: 1;
 }
@@ -28,15 +28,15 @@
 
 .account-filter-bar {
   align-items: end;
-  padding: 16px 18px;
+  padding: 10px 12px;
 }
 
 .account-filter-bar label {
   display: grid;
-  gap: 7px;
+  gap: 4px;
   color: var(--ink-soft);
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .account-search-field {
@@ -66,7 +66,7 @@
 .account-filter-bar input,
 .account-filter-bar select {
   width: 100%;
-  min-height: 44px;
+  min-height: 38px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
   color: var(--ink);
@@ -93,7 +93,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  min-height: 44px;
+  min-height: 38px;
 }
 
 .account-filter-actions .btn {
@@ -120,12 +120,12 @@
   justify-content: space-between;
   gap: 18px;
   align-items: end;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .account-table-heading h2 {
   margin: 0 0 4px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .account-table-heading p,
@@ -149,14 +149,14 @@
 }
 
 .account-table th {
-  padding: 12px 16px;
+  padding: 9px 11px;
   color: var(--muted);
   font-size: 11px;
   letter-spacing: 0.07em;
 }
 
 .account-table td {
-  padding: 15px 16px;
+  padding: 10px 11px;
   vertical-align: middle;
 }
 
@@ -168,7 +168,7 @@
   display: flex;
   gap: 11px;
   align-items: center;
-  min-width: 210px;
+  min-width: 190px;
 }
 
 .account-user-cell > span:last-child {
@@ -189,9 +189,9 @@
 
 .account-avatar {
   display: grid;
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border-radius: 50%;
   color: var(--primary-dark);
@@ -254,7 +254,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  min-width: 210px;
+  min-width: 190px;
 }
 
 .account-status-editor {
@@ -337,7 +337,7 @@
   grid-template-columns: 110px minmax(0, 1fr) 110px;
   gap: 18px;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .account-page-list {
@@ -352,8 +352,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 38px;
-  height: 38px;
+  min-width: 32px;
+  height: 32px;
   border: 1px solid transparent;
   border-radius: var(--radius-xs);
   color: var(--ink-soft);
@@ -393,7 +393,7 @@
 .account-page-ellipsis {
   display: grid;
   min-width: 30px;
-  height: 38px;
+  height: 32px;
   place-items: center;
   color: var(--muted);
 }
@@ -447,8 +447,8 @@
   }
 
   .account-filter-actions {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
   }
 
   .account-clear-filter {
