@@ -7,55 +7,6 @@
     chatsByQuestion.get(key).push(chat);
   });
 
-  function escapeHtml(value) {
-    return String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
-
-  function escapeAttribute(value) {
-    return escapeHtml(value).replace(/`/g, '&#096;');
-  }
-
-  function imageHtml(image, fallbackAlt) {
-    const width = Math.min(Math.max(Number(image.width_percent || image.width || 100), 20), 100);
-    return `
-      <span class="question-image" style="max-width:${width}%">
-        <img src="${escapeAttribute(image.url || '')}" alt="${escapeAttribute(image.alt_text || image.alt || fallbackAlt)}">
-      </span>
-    `;
-  }
-
-  function imageRowHtml(images, fallbackAlt, className = 'explanation-image-row') {
-    if (!Array.isArray(images) || images.length === 0) return '';
-    return `<div class="${className}">${images.map((image) => imageHtml(image, fallbackAlt)).join('')}</div>`;
-  }
-
-  function questionLayoutClass(question) {
-    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') return 'question-split-layout image-left';
-    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') return 'question-split-layout image-right';
-    return '';
-  }
-
-  function questionContentHtml(question) {
-    const content = question.content || {};
-    const images = Array.isArray(content.images) ? content.images : [];
-    let rawText = String(content.text || '');
-
-    images.forEach((image) => {
-      rawText = rawText.replaceAll(`[${image.id}]`, '');
-    });
-
-    const textHtml = `<div class="question-text-row">${escapeHtml(rawText).replace(/\r?\n/g, '<br>')}</div>`;
-    const imageHtmlBlock = imageRowHtml(images, 'Hình minh họa đề bài', 'question-image-row split-image-row');
-
-    if (question.layout_template === 'SPLIT_HORIZONTAL_LEFT_IMAGE') return `<div class="${questionLayoutClass(question)}">${imageHtmlBlock}${textHtml}</div>`;
-    if (question.layout_template === 'SPLIT_HORIZONTAL_RIGHT_IMAGE') return `<div class="${questionLayoutClass(question)}">${textHtml}${imageHtmlBlock}</div>`;
-    return `${textHtml}${imageRowHtml(images, 'Hình minh họa đề bài', 'question-image-row')}`;
-  }
 
   const answeredCount = (answers || []).length;
   const correctCount = (answers || []).filter((answer) => Number(answer.is_correct) === 1 || answer.is_correct === true).length;
@@ -142,18 +93,16 @@
         <i data-lucide="circle-help" class="lucide-icon"></i>
         Câu <%= index + 1 %>
       </div>
-      <div class="question-content math-content"><%- questionContentHtml(question) %></div>
-      <div class="answer-grid review-answer-grid <%= question.layout_template === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
-        <% question.choices.forEach((choice) => { %>
-          <div class="answer-choice preview-choice <%= choice.key === question.correct_answer ? 'correct' : '' %> <%= answer && choice.key === answer.selected_answer && Number(answer.is_correct) !== 1 ? 'wrong' : '' %>">
-            <span><%= choice.key %></span>
-            <div class="choice-body">
-              <strong><%= choice.text || 'Đáp án bằng hình ảnh' %></strong>
-              <%- imageRowHtml(choice.images || [], `Hình minh họa đáp án ${choice.key}`, 'choice-image-row') %>
-            </div>
-          </div>
-        <% }) %>
-      </div>
+      <div class="question-content math-content"><%- contentRenderer.renderQuestionContent(question, {
+        preview: true,
+        selectedAnswer: answer?.selected_answer,
+        correctAnswer: question.correct_answer
+      }) %></div>
+      <%- contentRenderer.renderAnswerArea(question, {
+        preview: true,
+        selectedAnswer: answer?.selected_answer,
+        correctAnswer: question.correct_answer
+      }) %>
       <div class="review-meta">
         <span>Em chọn: <strong><%= answer?.selected_answer || 'Chưa làm' %></strong></span>
         <span>Đáp án đúng: <strong><%= question.correct_answer %></strong></span>
@@ -166,13 +115,9 @@
         <% } %>
       </div>
       <% if (question.explanation?.text || (question.explanation?.images || []).length > 0) { %>
-        <div class="review-explanation">
+        <div class="review-explanation math-content">
           <strong>Lời giải:</strong>
-          <%- imageRowHtml(question.explanation.images, 'Hình minh họa lời giải') %>
-          <%# Escape rồi mới đổi ky tu xuong dong thanh the br: in truc tiep
-              bang the EJS thuan thi loi giai nhieu dong bi don thanh mot dong
-              vi HTML nuot ky tu xuong dong. %>
-          <span class="math-content"><%- escapeHtml(question.explanation.text).replace(/\r?\n/g, '<br>') %></span>
+          <%- contentRenderer.renderExplanationContent(question.explanation) %>
         </div>
       <% } %>
       <% if (questionChats.length > 0) { %>

@@ -594,8 +594,8 @@
     createGridCell,
     debounce,
     ensurePreviewPlaceholders,
-    escapeAttribute,
-    escapeHtml,
+    escapeAttribute: window.ContentRenderer?.escapeAttribute || escapeAttribute,
+    escapeHtml: window.ContentRenderer?.escapeHtml || escapeHtml,
     getPreviewImages,
     gridCellPreview,
     gridCellTypeLabel,
@@ -612,14 +612,14 @@
     rectContainsCell,
     rectIntersectsCell,
     refreshIcons,
-    renderAnswerArea,
-    renderExplanationContent,
+    renderAnswerArea: window.ContentRenderer?.renderAnswerArea || renderAnswerArea,
+    renderExplanationContent: window.ContentRenderer?.renderExplanationContent || renderExplanationContent,
     renderMath,
-    renderQuestionContent,
-    renderTheoryCardPreview,
+    renderQuestionContent: window.ContentRenderer?.renderQuestionContent || renderQuestionContent,
+    renderTheoryCardPreview: window.ContentRenderer?.renderTheoryCardPreview || renderTheoryCardPreview,
     stripRemovedPreviewPlaceholders,
-    theoryTypeLabel,
-    translateDifficulty,
-    translateLayout
+    theoryTypeLabel: window.ContentRenderer?.theoryTypeLabel || theoryTypeLabel,
+    translateDifficulty: window.ContentRenderer?.translateDifficulty || translateDifficulty,
+    translateLayout: window.ContentRenderer?.translateLayout || translateLayout
   };
 })();

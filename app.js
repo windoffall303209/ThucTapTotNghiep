@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 const { attachAuthUser } = require('./utils/authToken');
 const { gradeOptions, GRADE_RANGE_LABEL, SHORT_GRADE_RANGE_LABEL } = require('./config/grades');
+const contentRenderer = require('./public/js/content-renderer');
 
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -90,6 +91,7 @@ app.use((req, res, next) => {
   res.locals.gradeOptions = gradeOptions();
   res.locals.gradeRangeLabel = GRADE_RANGE_LABEL;
   res.locals.shortGradeRangeLabel = SHORT_GRADE_RANGE_LABEL;
+  res.locals.contentRenderer = contentRenderer;
   delete req.session.flash;
   next();
 });

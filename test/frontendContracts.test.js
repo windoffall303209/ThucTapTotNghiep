@@ -19,6 +19,7 @@ test('layout giữ đúng thứ tự tài nguyên dùng chung và tài nguyên t
   const rendererCss = layout.indexOf('/css/content-renderer.css');
   const studentCss = layout.indexOf('/css/student/common.css');
   const pageCss = layout.indexOf('for (const stylesheet');
+  const rendererJs = layout.indexOf('/js/content-renderer.js');
   const commonJs = layout.indexOf('/js/common.js');
   const adminJs = layout.indexOf('/js/admin/common.js');
   const pageJs = layout.indexOf('for (const script');
@@ -26,6 +27,7 @@ test('layout giữ đúng thứ tự tài nguyên dùng chung và tài nguyên t
   assert.ok(commonCss < rendererCss);
   assert.ok(rendererCss < studentCss);
   assert.ok(studentCss < pageCss);
+  assert.ok(rendererJs < commonJs);
   assert.ok(commonJs < adminJs);
   assert.ok(adminJs < pageJs);
 });
@@ -141,4 +143,15 @@ test('thẻ lý thuyết vẫn hiển thị nội dung khi có hình minh họa'
 
   assert.match(lesson, /if \(bodyValue\(card\)\) \{/);
   assert.doesNotMatch(lesson, /bodyValue\(card\) && images\.length === 0/);
+});
+
+test('session review dùng renderer chung thay vì sao chép logic hiển thị', () => {
+  const review = read('views/student/session-review.ejs');
+
+  assertContainsAll(review, [
+    /contentRenderer\.renderQuestionContent/,
+    /contentRenderer\.renderAnswerArea/,
+    /contentRenderer\.renderExplanationContent/
+  ]);
+  assert.doesNotMatch(review, /function questionContentHtml|function imageRowHtml/);
 });
