@@ -34,6 +34,9 @@
         đụng vào mã nguồn. Dùng jsdelivr cho đồng bộ với KaTeX ở trên. %>
     <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <script defer src="/js/common.js"></script>
+    <% if (admin) { %>
+      <script defer src="/js/admin/common.js"></script>
+    <% } %>
     <% for (const script of (typeof pageScripts !== 'undefined' ? pageScripts : [])) { %>
       <script defer src="<%= script %>"></script>
     <% } %>
