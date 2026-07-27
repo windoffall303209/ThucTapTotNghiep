@@ -19,6 +19,21 @@
   font-weight: 700;
 }
 
+.question-search-form {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) repeat(3, minmax(120px, 0.65fr)) auto auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.question-search-form > label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .question-search-form .checkbox-label {
   display: flex;
   align-items: center;
@@ -28,6 +43,31 @@
 }
 
 .question-search-form .checkbox-label input {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+}
+
+.question-search-table td:nth-child(2) {
+  min-width: 280px;
+}
+
+.question-search-table td:last-child {
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .question-search-form {
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .question-search-form {
+    grid-template-columns: 1fr;
+  }
+
+  .question-search-form .checkbox-label {
+    min-height: 32px;
+  }
 }
