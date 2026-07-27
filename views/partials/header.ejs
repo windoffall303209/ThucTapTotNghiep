@@ -1,5 +1,21 @@
 <% if (admin) { %>
-<aside class="admin-sidebar">
+<header class="admin-mobile-bar">
+  <a class="brand admin-mobile-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
+    <span class="brand-mark">π</span>
+    <span>MathLab Admin</span>
+  </a>
+  <button
+    class="admin-menu-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="adminSidebar"
+    aria-label="Mở menu quản trị"
+    data-admin-menu-toggle>
+    <i data-lucide="menu" class="lucide-icon"></i>
+  </button>
+</header>
+<div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop hidden></div>
+<aside id="adminSidebar" class="admin-sidebar" aria-label="Menu quản trị">
   <a class="brand admin-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
     <span class="brand-mark">π</span>
     <span>MathLab Admin</span>

@@ -15,6 +15,9 @@
     <% if (student) { %>
       <link rel="stylesheet" href="/css/student/common.css">
     <% } %>
+    <% if (admin) { %>
+      <link rel="stylesheet" href="/css/admin/common.css">
+    <% } %>
     <% for (const stylesheet of (typeof pageStyles !== 'undefined' ? pageStyles : [])) { %>
       <link rel="stylesheet" href="<%= stylesheet %>">
     <% } %>

@@ -120,3 +120,18 @@ test('màn cài đặt giữ hook dialog, chọn model và kiểm tra provider',
     /\/js\/admin\/settings\.js/
   ]);
 });
+
+test('shell admin có app bar và drawer truy cập được trên màn hình hẹp', () => {
+  const layout = read('views/layouts/main.ejs');
+  const header = read('views/partials/header.ejs');
+
+  assert.match(layout, /<link rel="stylesheet" href="\/css\/admin\/common\.css">/);
+  assertContainsAll(header, [
+    /class="admin-mobile-bar"/,
+    /aria-controls="adminSidebar"/,
+    /data-admin-menu-toggle/,
+    /data-admin-sidebar-backdrop/,
+    /id="adminSidebar"/,
+    /aria-label="Menu quản trị"/
+  ]);
+});
