@@ -1,4 +1,8 @@
 <%
+  if (typeof pageStyles !== 'undefined') {
+    pageStyles.push('/css/admin/students.css');
+  }
+
   function formatDate(value, includeTime = false) {
     if (!value) return '—';
     const options = includeTime

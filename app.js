@@ -85,6 +85,8 @@ app.use((req, res, next) => {
   res.locals.student = req.auth?.role === 'student' ? req.auth : null;
   res.locals.admin = ['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth?.role) ? req.auth : null;
   res.locals.flash = req.session.flash || null;
+  res.locals.pageStyles = [];
+  res.locals.pageScripts = [];
   res.locals.gradeOptions = gradeOptions();
   res.locals.gradeRangeLabel = GRADE_RANGE_LABEL;
   res.locals.shortGradeRangeLabel = SHORT_GRADE_RANGE_LABEL;
