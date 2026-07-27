@@ -92,3 +92,13 @@ test('responsive chung không ép toàn bộ nút thành một cột trên mobil
 
   assert.doesNotMatch(commonCss, /\.nav-button,\s*\.btn,\s*\.search-bar button/);
 });
+
+test('CSS renderer dùng chung sở hữu bố cục grid cho cả học sinh và admin', () => {
+  const rendererCss = fs.readFileSync(path.join(publicRoot, 'css', 'content-renderer.css'), 'utf8');
+  const adminManagerCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'content-manager.css'), 'utf8');
+
+  assert.match(rendererCss, /\.content-grid-layout\s*\{[^}]*display:\s*grid/s);
+  assert.match(rendererCss, /\.content-grid-cell\s*\{[^}]*min-height:/s);
+  assert.doesNotMatch(adminManagerCss, /\.content-grid-layout\s*\{/);
+  assert.doesNotMatch(adminManagerCss, /\.content-grid-cell\s*\{/);
+});

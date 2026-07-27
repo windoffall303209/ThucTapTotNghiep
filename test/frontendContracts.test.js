@@ -135,3 +135,10 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /aria-label="Menu quản trị"/
   ]);
 });
+
+test('thẻ lý thuyết vẫn hiển thị nội dung khi có hình minh họa', () => {
+  const lesson = read('views/student/lesson.ejs');
+
+  assert.match(lesson, /if \(bodyValue\(card\)\) \{/);
+  assert.doesNotMatch(lesson, /bodyValue\(card\) && images\.length === 0/);
+});
