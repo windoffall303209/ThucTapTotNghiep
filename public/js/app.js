@@ -1577,20 +1577,20 @@
       const gridInput = form.querySelector('[data-grid-layout-input]');
       const gridEnabledInput = form.querySelector('[data-grid-enabled]');
 
-      const setGridEnabled = (enabled) => {
+      const setGridEnabled = (enabled, notifyChange = true) => {
         const grid = parseGridLayoutValue(gridInput?.value);
         grid.enabled = enabled;
         if (gridInput) {
           gridInput.value = JSON.stringify(grid);
-          gridInput.dispatchEvent(new Event('input', { bubbles: true }));
+          if (notifyChange) gridInput.dispatchEvent(new Event('input', { bubbles: true }));
         }
         if (gridEnabledInput) {
           gridEnabledInput.checked = enabled;
-          gridEnabledInput.dispatchEvent(new Event('change', { bubbles: true }));
+          if (notifyChange) gridEnabledInput.dispatchEvent(new Event('change', { bubbles: true }));
         }
       };
 
-      const applyMode = (mode) => {
+      const applyMode = (mode, notifyChange = true) => {
         const normalizedMode = mode === 'canvas' ? 'canvas' : 'fields';
         if (hiddenInput) hiddenInput.value = normalizedMode;
         radios.forEach((radio) => {
@@ -1604,7 +1604,7 @@
             control.disabled = !isActive;
           });
         });
-        setGridEnabled(normalizedMode === 'canvas');
+        setGridEnabled(normalizedMode === 'canvas', notifyChange);
       };
 
       radios.forEach((radio) => {
@@ -1613,7 +1613,9 @@
         });
       });
 
-      applyMode(hiddenInput?.value || radios.find((radio) => radio.checked)?.value || 'fields');
+      // Chỉ đồng bộ giao diện khi form vừa được nạp. Không phát input/change ở đây,
+      // nếu không bộ cảnh báo rời trang sẽ hiểu nhầm là quản trị viên đã sửa dữ liệu.
+      applyMode(hiddenInput?.value || radios.find((radio) => radio.checked)?.value || 'fields', false);
     });
   }
 
@@ -1642,12 +1644,12 @@
       const alignInput = editor.querySelector('[data-grid-cell-align]');
       const backgroundInput = editor.querySelector('[data-grid-cell-background]');
 
-      const syncInputs = () => {
+      const syncInputs = (notifyChange = false) => {
         enabledInput.checked = Boolean(state.grid.enabled);
         rowsInput.value = state.grid.rows;
         columnsInput.value = state.grid.columns;
         input.value = JSON.stringify(state.grid);
-        input.dispatchEvent(new Event('input', { bubbles: true }));
+        if (notifyChange) input.dispatchEvent(new Event('input', { bubbles: true }));
       };
 
       const selectedCells = () => Array.from(state.selectedIds)
@@ -1665,7 +1667,7 @@
         backgroundInput.value = isHexColor(cell.background) ? cell.background : '#ffffff';
       };
 
-      const render = () => {
+      const render = (notifyChange = false) => {
         editor.classList.toggle('is-disabled', !state.grid.enabled);
         canvas.style.setProperty('--grid-rows', state.grid.rows);
         canvas.style.setProperty('--grid-columns', state.grid.columns);
@@ -1677,7 +1679,7 @@
             <span class="grid-cell-preview">${gridCellPreview(cell)}</span>
           </button>
         `).join('');
-        syncInputs();
+        syncInputs(notifyChange);
         syncPanel();
         renderMath(canvas);
       };
@@ -1734,7 +1736,7 @@
           cell.align = alignInput.value || 'center';
           cell.background = backgroundInput.value === '#ffffff' ? '' : backgroundInput.value;
         });
-        render();
+        render(true);
       };
 
       [typeInput, textInput, imageInput, answerInput, alignInput, backgroundInput].forEach((control) => {
@@ -1744,7 +1746,7 @@
 
       enabledInput.addEventListener('change', () => {
         state.grid.enabled = enabledInput.checked;
-        render();
+        render(true);
       });
 
       [rowsInput, columnsInput].forEach((control) => {
@@ -1755,7 +1757,7 @@
           state.grid.columns = nextColumns;
           state.grid.cells = createBaseGridCells(nextRows, nextColumns);
           state.selectedIds.clear();
-          render();
+          render(true);
         });
       });
 
@@ -1773,7 +1775,7 @@
         state.grid.cells.push(master);
         state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
         state.selectedIds = new Set([master.id]);
-        render();
+        render(true);
       });
 
       editor.querySelector('[data-grid-unmerge]')?.addEventListener('click', () => {
@@ -1787,7 +1789,7 @@
         }
         state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
         state.selectedIds.clear();
-        render();
+        render(true);
       });
 
       editor.querySelector('[data-grid-clear]')?.addEventListener('click', () => {
@@ -1798,7 +1800,7 @@
           cell.answer_key = '';
           cell.background = '';
         });
-        render();
+        render(true);
       });
 
       render();
