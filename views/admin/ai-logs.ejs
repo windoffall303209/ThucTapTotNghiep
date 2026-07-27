@@ -170,17 +170,23 @@
           </p>
         <% } %>
 
-        <div class="review-chat ai-log-chat">
-          <% if (log.chat_history.length === 0) { %>
-            <p class="muted">Không có nội dung hội thoại.</p>
-          <% } %>
-          <% log.chat_history.forEach((message) => { %>
-            <div class="chat-message <%= message.role === 'ai' ? 'ai' : 'student' %>">
-              <strong><%= roleLabel(message.role) %>:</strong>
-              <%= message.text || '' %>
-            </div>
-          <% }) %>
-        </div>
+        <details class="ai-log-detail">
+          <summary>
+            <i data-lucide="messages-square" class="lucide-icon"></i>
+            Xem hội thoại (<%= log.chat_history.length %> tin nhắn)
+          </summary>
+          <div class="review-chat ai-log-chat">
+            <% if (log.chat_history.length === 0) { %>
+              <p class="muted">Không có nội dung hội thoại.</p>
+            <% } %>
+            <% log.chat_history.forEach((message) => { %>
+              <div class="chat-message <%= message.role === 'ai' ? 'ai' : 'student' %>">
+                <strong><%= roleLabel(message.role) %>:</strong>
+                <%= message.text || '' %>
+              </div>
+            <% }) %>
+          </div>
+        </details>
 
         <form class="inline-flag-form" action="/admin/logs/ai/<%= log.id %>/flag" method="post">
           <input type="hidden" name="return_to" value="<%= returnTo %>">
