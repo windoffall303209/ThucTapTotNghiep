@@ -1,0 +1,28 @@
+.error-page {
+  min-height: calc(100svh - 110px);
+}
+
+.error-page .narrow-panel {
+  width: min(560px, 100%);
+}
+
+.error-page .empty-state {
+  justify-items: center;
+  padding: clamp(24px, 6vw, 42px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.error-page .error-face {
+  font-size: clamp(38px, 9vw, 54px);
+}
+
+.error-page h1 {
+  margin-bottom: 8px;
+  font-size: clamp(24px, 6vw, 32px);
+}
+
+.error-page p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}

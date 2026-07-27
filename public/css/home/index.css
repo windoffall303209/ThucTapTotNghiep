@@ -1,111 +1,154 @@
-/* Landing */
 .home-hero,
 .landing-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: clamp(28px, 6vw, 70px);
+  gap: 24px;
   align-items: center;
-  padding: clamp(32px, 6vw, 78px) 0 48px;
+  padding: 28px 0 24px;
 }
 
 .hero-copy h1,
 .landing-hero h1 {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0;
-  font-size: clamp(34px, 5vw, 56px);
+  font-size: clamp(32px, 7vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 .hero-text {
-  max-width: 660px;
+  max-width: 650px;
+  margin: 14px 0 18px;
   color: #475569;
-  font-size: clamp(17px, 2vw, 20px);
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .hero-board,
 .landing-preview {
   position: relative;
   display: grid;
-  gap: 16px;
-  padding: 24px;
+  gap: 10px;
+  padding: 16px;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  background: linear-gradient(180deg, #fff 0%, #f7faff 100%);
 }
 
 .demo-label {
   width: max-content;
-  padding: 5px 10px;
+  max-width: 100%;
+  padding: 4px 8px;
   border-radius: 999px;
   color: var(--secondary);
   background: var(--secondary-soft);
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .path-list,
 .step-list,
 .benefit-grid,
 .grade-grid,
-.feature-strip,
-.stat-grid,
-.today-grid,
-.quick-grid {
+.feature-strip {
   display: grid;
-  gap: 16px;
-}
-
-.step-list,
-.benefit-grid,
-.feature-strip,
-.grade-grid,
-.stat-grid,
-.quick-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grade-grid {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .step-card,
 .feature-strip > div,
-.grade-card,
-.action-card,
-.stat-card,
-.activity-card,
-.lesson-card {
-  padding: 20px;
+.grade-card {
+  padding: 14px;
+}
+
+.path-list .step-card {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.35fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
 }
 
 .step-card > strong,
-.grade-card > strong,
-.stat-card > strong,
-.action-card > strong {
+.grade-card > strong {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: var(--ink);
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.stat-card p strong,
-.action-card p strong,
-.activity-card p strong {
-  display: inline;
+.path-list .step-card p,
+.step-card p,
+.feature-strip p {
   margin: 0;
-  font-size: inherit;
-  line-height: inherit;
+}
+
+.grade-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grade-card {
+  display: grid;
+  gap: 2px;
   text-align: center;
 }
 
 .grade-card strong {
-  font-size: 22px;
+  font-size: 17px;
 }
 
 .home-section,
 .landing-section {
-  margin-top: 34px;
+  margin-top: 24px;
+}
+
+.feature-strip > div {
+  border-top: 2px solid var(--primary-soft);
+}
+
+.feature-strip h2 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  .grade-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .step-list,
+  .feature-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 920px) {
+  .home-hero,
+  .landing-hero {
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: clamp(32px, 5vw, 56px);
+    padding: 48px 0 36px;
+  }
+
+  .hero-copy h1,
+  .landing-hero h1 {
+    font-size: clamp(40px, 4.5vw, 50px);
+  }
+
+  .grade-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .path-list .step-card {
+    grid-template-columns: 1fr;
+  }
 }
