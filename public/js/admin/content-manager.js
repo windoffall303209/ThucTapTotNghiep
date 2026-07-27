@@ -818,7 +818,7 @@
         shell.dataset.currentPage = '1';
         delete shell.dataset.loaded;
         delete shell.dataset.loadedPage;
-        delete shell.dataset.loading;
+        setShellBusy(shell, false);
 
         if (options.updateUrl !== false) setLessonInUrl(button.dataset.lessonId);
 
@@ -867,12 +867,19 @@
   // fetchLessonQuestions / fetchLessonTheory ben duoi van song vi trang admin goi
   // truc tiep khi mo tung bai.
 
+  function setShellBusy(shell, isBusy) {
+    if (!shell) return;
+    shell.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+    if (isBusy) shell.dataset.loading = 'true';
+    else delete shell.dataset.loading;
+  }
+
   async function fetchLessonQuestions(shell, page = 1) {
     if (!shell || shell.dataset.loading === 'true') return;
     const lessonId = shell.dataset.lessonId;
     const requestId = `${lessonId}:${page}:${Date.now()}`;
     shell.dataset.requestId = requestId;
-    shell.dataset.loading = 'true';
+    setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải danh sách câu hỏi...</div>';
 
     try {
@@ -909,7 +916,7 @@
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được danh sách câu hỏi. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      if (shell.dataset.requestId === requestId) delete shell.dataset.loading;
+      if (shell.dataset.requestId === requestId) setShellBusy(shell, false);
     }
   }
 
@@ -954,7 +961,7 @@
   }
 
   async function loadQuestionEditForm(shell) {
-    shell.dataset.loading = 'true';
+    setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải form sửa câu hỏi...</div>';
 
     try {
@@ -977,7 +984,7 @@
     } catch (error) {
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được form sửa câu hỏi. Vui lòng thử lại.</div>';
     } finally {
-      delete shell.dataset.loading;
+      setShellBusy(shell, false);
     }
   }
 
@@ -987,7 +994,7 @@
     const requestId = `${lessonId}:${Date.now()}`;
     shell.dataset.requestId = requestId;
 
-    shell.dataset.loading = 'true';
+    setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải thẻ lý thuyết...</div>';
 
     try {
@@ -1013,7 +1020,7 @@
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được thẻ lý thuyết. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      if (shell.dataset.requestId === requestId) delete shell.dataset.loading;
+      if (shell.dataset.requestId === requestId) setShellBusy(shell, false);
     }
   }
 

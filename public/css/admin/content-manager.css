@@ -902,3 +902,231 @@
     min-height: 38px;
   }
 }
+
+/* Mật độ vận hành mới cho trình quản lý nội dung. */
+.content-manager {
+  gap: 12px;
+}
+
+.content-manager-header {
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.content-manager-header h1 {
+  font-size: clamp(24px, 3vw, 28px);
+  font-weight: 800;
+}
+
+.content-manager-summary strong {
+  font-size: 18px;
+}
+
+.content-manager-layout {
+  grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.lesson-browser {
+  top: 16px;
+  max-height: calc(100svh - 32px);
+}
+
+.lesson-browser-head {
+  gap: 8px;
+  padding: 10px;
+}
+
+.grade-filter button {
+  min-height: 28px;
+  padding-inline: 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.lesson-book-heading {
+  padding: 10px 10px 5px;
+}
+
+.lesson-book-heading strong {
+  font-size: 13px;
+}
+
+.lesson-chapter-group > p {
+  margin: 6px 10px 3px;
+  font-size: 11px;
+}
+
+.lesson-select-button {
+  min-height: 42px;
+  padding: 6px 9px 6px 10px;
+  font-size: 12.5px;
+}
+
+.lesson-select-button small {
+  font-size: 11px;
+}
+
+.content-workspace,
+.content-workspace-empty {
+  min-height: 420px;
+}
+
+.content-workspace-context {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 11px 14px;
+}
+
+.content-workspace-context p {
+  font-size: 11.5px;
+}
+
+.content-workspace-context h2 {
+  font-size: 17px;
+}
+
+.lesson-question-shell {
+  padding: 13px 14px;
+}
+
+.lesson-content-toolbar {
+  margin-bottom: 9px;
+  font-size: 12px;
+}
+
+.content-workspace .bank-question-list,
+.content-workspace .theory-card-list {
+  margin-top: 9px;
+}
+
+.content-workspace .bank-question,
+.content-workspace .admin-theory-card {
+  gap: 10px;
+  padding: 12px 0;
+}
+
+.bank-question-head,
+.theory-card-head {
+  gap: 10px;
+}
+
+.bank-question h3,
+.theory-card-head h2 {
+  font-size: 15px;
+}
+
+.record-support > summary,
+.choice-optional-panel > summary {
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inline-create-panel > summary,
+.inline-edit-panel > summary {
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inline-edit-form,
+.question-create-inline,
+.theory-card-form {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 12px 14px;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 9px;
+}
+
+.question-preview-box,
+.theory-preview-box {
+  min-height: 200px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.form-optional-panel > summary {
+  padding: 10px 11px;
+}
+
+.form-optional-panel > summary span {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.form-optional-content {
+  gap: 10px;
+  padding: 11px;
+}
+
+.question-pagination {
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.grid-editor {
+  gap: 9px;
+  padding: 10px;
+}
+
+.authoring-mode-switch label {
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 920px) {
+  .content-manager-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-browser {
+    position: static;
+    max-height: 330px;
+  }
+
+  .inline-edit-form,
+  .question-create-inline,
+  .theory-card-form {
+    grid-template-columns: 1fr;
+  }
+
+  .inline-edit-form .question-form-preview,
+  .question-create-inline .question-form-preview,
+  .theory-card-form .question-form-preview {
+    grid-column: 1;
+    grid-row: auto;
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-manager-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .content-manager-summary {
+    flex-wrap: wrap;
+    gap: 6px;
+    white-space: normal;
+  }
+
+  .content-manager-summary span {
+    padding: 0 8px 0 0;
+    border-left: 0;
+  }
+
+  .lesson-question-shell {
+    padding: 10px;
+  }
+}

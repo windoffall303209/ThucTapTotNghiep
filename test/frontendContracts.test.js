@@ -70,6 +70,8 @@ test('trình quản lý nội dung giữ contract tải động cho câu hỏi v
       /data-content-workspace/,
       /data-workspace-panel/,
       /data-manager-shell/,
+      /aria-live="polite"/,
+      /aria-busy="false"/,
       /\/js\/admin\/content-manager\.js/
     ]);
   });
