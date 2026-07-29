@@ -6,7 +6,21 @@
     initLazyMath();
     initConfirmForms();
     initPasswordToggles();
+    initFlashToasts();
   });
+
+  function initFlashToasts(root = document) {
+    root.querySelectorAll('[data-flash-autohide="true"]').forEach((flash) => {
+      const requestedDuration = Number(flash.dataset.duration);
+      const duration = Number.isFinite(requestedDuration) && requestedDuration > 0
+        ? requestedDuration
+        : 3000;
+      window.setTimeout(() => {
+        flash.classList.add('is-hiding');
+        window.setTimeout(() => flash.remove(), 220);
+      }, duration);
+    });
+  }
 
   // Form mang thuộc tính data-confirm là thao tác không hoàn tác được (xóa chương,
   // xóa bài học). Hỏi lại trước khi gửi đi.

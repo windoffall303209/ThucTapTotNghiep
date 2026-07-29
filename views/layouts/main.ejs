@@ -29,7 +29,14 @@
     <%- include('../partials/header') %>
     <main id="main-content" class="page-shell" tabindex="-1">
       <% if (flash) { %>
-        <div class="flash flash-<%= flash.type %>" role="status">
+        <div
+          class="flash flash-<%= flash.type %><%= flash.transient ? ' flash-toast' : '' %>"
+          role="status"
+          aria-live="polite"
+          <% if (flash.transient) { %>
+            data-flash-autohide="true"
+            data-duration="<%= Number(flash.durationMs || 3000) %>"
+          <% } %>>
           <%= flash.message %>
         </div>
       <% } %>

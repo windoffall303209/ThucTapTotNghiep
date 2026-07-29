@@ -62,7 +62,7 @@
   </div>
 </section>
 
-<section class="learning-summary">
+<section class="learning-summary" hidden aria-hidden="true">
   <%# Không đặt tên "Mục tiêu bài học" cho một câu chữ chung: nội dung này giống
       hệt nhau ở mọi bài nên gọi là mục tiêu của bài sẽ thành lời hứa giả. Muốn
       có mục tiêu riêng từng bài thì cần thêm trường dữ liệu trong Lessons. %>
@@ -155,6 +155,22 @@
     </article>
   <% }) %>
 </section>
+
+<nav class="lesson-navigation" aria-label="Điều hướng bài học">
+  <a class="btn btn-secondary" href="/student/dashboard">
+    <i data-lucide="list" class="lucide-icon"></i>
+    Danh sách bài học
+  </a>
+  <% if (nextLesson) { %>
+    <a class="btn btn-primary lesson-next-button" href="/student/lessons/<%= nextLesson.id %>">
+      <span>
+        <strong>Bài tiếp theo</strong>
+        <small><%= nextLesson.lesson_name %></small>
+      </span>
+      <i data-lucide="arrow-right" class="lucide-icon"></i>
+    </a>
+  <% } %>
+</nav>
 <%
   if (typeof pageStyles !== 'undefined') pageStyles.push('/css/student/lesson.css');
   if (typeof pageScripts !== 'undefined') pageScripts.push('/js/student/lesson.js');

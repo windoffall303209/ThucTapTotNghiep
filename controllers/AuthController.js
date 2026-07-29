@@ -108,7 +108,10 @@ async function login(req, res, next) {
     }
 
     setAuthCookie(res, toStudentTokenPayload(student));
-    setFlash(req, 'success', 'Đăng nhập thành công.');
+    setFlash(req, 'success', 'Đăng nhập thành công.', {
+      transient: true,
+      durationMs: 3000
+    });
     return res.redirect('/student/dashboard');
   } catch (error) {
     return next(error);
@@ -133,7 +136,10 @@ async function loginAdmin(req, res, username, password) {
       role: admin.role,
       type: 'admin'
     });
-    setFlash(req, 'success', 'Đăng nhập quản trị thành công.');
+    setFlash(req, 'success', 'Đăng nhập quản trị thành công.', {
+      transient: true,
+      durationMs: 3000
+    });
     return res.redirect('/admin/dashboard');
   }
 

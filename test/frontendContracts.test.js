@@ -195,6 +195,46 @@ test('thẻ lý thuyết chỉ có ảnh không tự sinh nhãn hoặc nút gợ
   ]);
 });
 
+test('trang lý thuyết tạm ẩn phần hướng dẫn chung và có điều hướng bài tiếp theo', () => {
+  const lesson = read('views/student/lesson.ejs');
+  const controller = read('controllers/StudentController.js');
+
+  assertContainsAll(lesson, [
+    /<section class="learning-summary" hidden aria-hidden="true">/,
+    /if \(nextLesson\)/,
+    /href="\/student\/lessons\/<%= nextLesson\.id %>"/,
+    /Bài tiếp theo/
+  ]);
+  assertContainsAll(controller, [
+    /Curriculum\.getCurriculumByGrade\(lessonItem\.grade\)/,
+    /nextLesson: findFollowingLesson\(chapters, lessonItem\.id\)/,
+    /function findFollowingLesson/
+  ]);
+});
+
+test('thông báo đăng nhập là toast nổi tự tắt sau ba giây', () => {
+  const auth = read('controllers/AuthController.js');
+  const layout = read('views/layouts/main.ejs');
+  const commonJs = read('public/js/common.js');
+  const commonCss = read('public/css/common.css');
+
+  assertContainsAll(auth, [
+    /Đăng nhập thành công\.',\s*\{\s*transient: true,\s*durationMs: 3000/s,
+    /Đăng nhập quản trị thành công\.',\s*\{\s*transient: true,\s*durationMs: 3000/s
+  ]);
+  assertContainsAll(layout, [
+    /flash\.transient \? ' flash-toast'/,
+    /data-flash-autohide="true"/,
+    /data-duration="<%= Number\(flash\.durationMs \|\| 3000\) %>"/
+  ]);
+  assertContainsAll(commonJs, [
+    /initFlashToasts\(\)/,
+    /querySelectorAll\('\[data-flash-autohide="true"\]'\)/,
+    /flash\.remove\(\)/
+  ]);
+  assert.match(commonCss, /\.flash-toast\s*\{[^}]*position:\s*fixed/s);
+});
+
 test('session review dùng renderer chung thay vì sao chép logic hiển thị', () => {
   const review = read('views/student/session-review.ejs');
 

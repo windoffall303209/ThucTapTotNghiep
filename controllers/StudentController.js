@@ -60,14 +60,16 @@ async function lesson(req, res, next) {
       });
     }
 
-    const [reviewQuestions, settings] = await Promise.all([
+    const [reviewQuestions, settings, chapters] = await Promise.all([
       Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT),
-      SystemSetting.getSettings()
+      SystemSetting.getSettings(),
+      Curriculum.getCurriculumByGrade(lessonItem.grade)
     ]);
 
     res.render('student/lesson', {
       title: lessonItem.lesson_name,
       lesson: lessonItem,
+      nextLesson: findFollowingLesson(chapters, lessonItem.id),
       reviewQuestionCount: reviewQuestions.length,
       aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
@@ -478,6 +480,19 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
   if (notStarted) return { ...notStarted, reason: 'not_started' };
 
   return { ...allLessons[0], reason: 'all_done' };
+}
+
+function findFollowingLesson(chapters = [], currentLessonId) {
+  const lessons = (chapters || []).flatMap((chapter) =>
+    (chapter.lessons || []).map((lesson) => ({
+      ...lesson,
+      chapter_name: chapter.chapter_name
+    }))
+  );
+  const currentIndex = lessons.findIndex(
+    (lesson) => Number(lesson.id) === Number(currentLessonId)
+  );
+  return currentIndex >= 0 ? lessons[currentIndex + 1] || null : null;
 }
 
 /**

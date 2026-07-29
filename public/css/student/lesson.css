@@ -87,6 +87,33 @@
   line-height: 1.55;
 }
 
+.lesson-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 980px;
+  margin: 18px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.lesson-next-button {
+  text-align: left;
+}
+
+.lesson-next-button span {
+  display: grid;
+}
+
+.lesson-next-button small {
+  max-width: 320px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .student-body .learning-summary {
   grid-template-columns: 1fr;
   gap: 10px;
@@ -113,5 +140,21 @@
 
   .theory-help-button {
     width: 100%;
+  }
+
+  .lesson-navigation {
+    align-items: stretch;
+  }
+
+  .lesson-navigation .btn {
+    flex: 1;
+  }
+
+  .lesson-next-button {
+    justify-content: space-between;
+  }
+
+  .lesson-next-button small {
+    max-width: 160px;
   }
 }
