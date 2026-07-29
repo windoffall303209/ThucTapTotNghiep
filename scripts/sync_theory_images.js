@@ -84,7 +84,7 @@ function sourceIndex() {
     const gradePath = path.join(SOURCE_ROOT, `Lop_${String(grade).padStart(2, '0')}`);
     for (const chapter of listDirectories(gradePath)) {
       const chapterOrder = chapterNumber(chapter.name);
-      if (!chapterOrder || (grade === 5 && chapterOrder > 2)) continue;
+      if (!chapterOrder) continue;
 
       const chapterKey = `${grade}:${chapterOrder}`;
       const lessonMap = new Map();
@@ -121,7 +121,6 @@ async function curriculumRows() {
      FROM Chapters c
      JOIN Lessons l ON l.chapter_id = c.id
      WHERE c.grade BETWEEN 1 AND 5
-       AND (c.grade < 5 OR c.sort_order <= 2)
      ORDER BY c.grade, c.sort_order, l.sort_order, l.id`
   );
 }
@@ -236,17 +235,14 @@ function theoryImage(image, index, entry) {
   };
 }
 
-function cardsWithImages(rawCards, entry) {
-  const cards = parseCards(rawCards).map((card) => ({ ...card, images: [] }));
-  if (!entry.images.length) return cards;
-
-  const availableCards = cards.length ? cards : [{
-    id: 'card-1',
+function cardsWithImages(_rawCards, entry) {
+  return entry.images.map((image, index) => ({
+    id: `card-${index + 1}`,
     type: 'concept',
     layout: 'visual_top',
-    title: entry.title,
+    title: '',
     display_text: '',
-    body: `Quan sát thẻ lý thuyết để ghi nhớ kiến thức trọng tâm của bài ${entry.title}.`,
+    body: '',
     formulas: [],
     formula: '',
     example: '',
@@ -254,15 +250,8 @@ function cardsWithImages(rawCards, entry) {
     remember: '',
     interaction: 'none',
     grid_layout: { enabled: false },
-    images: []
-  }];
-
-  entry.images.forEach((image, index) => {
-    const cardIndex = availableCards.length > 1 ? Math.min(index, availableCards.length - 1) : 0;
-    availableCards[cardIndex].images.push(theoryImage(image, index, entry));
-    availableCards[cardIndex].layout = 'visual_top';
-  });
-  return availableCards;
+    images: [theoryImage(image, index, entry)]
+  }));
 }
 
 function writeReports(manifest) {
@@ -270,7 +259,7 @@ function writeReports(manifest) {
   const payload = {
     generated_at: new Date().toISOString(),
     source_root: SOURCE_ROOT,
-    scope: 'Grades 1-4 all chapters; Grade 5 chapters 1-2 only',
+    scope: 'Grades 1-5 all chapters',
     lesson_count: manifest.entries.length,
     mapped_lesson_count: manifest.entries.filter((entry) => entry.status === 'MAPPED').length,
     missing_lesson_count: manifest.missing.length,

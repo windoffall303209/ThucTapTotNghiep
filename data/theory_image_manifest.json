@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-29T07:00:38.219Z",
+  "generated_at": "2026-07-29T07:17:22.899Z",
   "source_root": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan",
-  "scope": "Grades 1-4 all chapters; Grade 5 chapters 1-2 only",
-  "lesson_count": 256,
-  "mapped_lesson_count": 237,
-  "missing_lesson_count": 0,
+  "scope": "Grades 1-5 all chapters",
+  "lesson_count": 302,
+  "mapped_lesson_count": 258,
+  "missing_lesson_count": 25,
   "generated_lesson_count": 19,
-  "image_count": 379,
+  "image_count": 400,
   "unused_source_folders": [
     "Lop_03\\Chuong_03_Các số trong phạm vi 100 000\\14. Đồng hồ"
   ],
@@ -6522,6 +6522,818 @@
         }
       ],
       "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 366,
+      "lesson_order": 46,
+      "lesson_name": "Bài 46. Luyện tập chung",
+      "title": "Luyện tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 367,
+      "lesson_order": 47,
+      "lesson_name": "Bài 47. Em ôn lại những gì đã học",
+      "title": "Em ôn lại những gì đã học",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 368,
+      "lesson_order": 48,
+      "lesson_name": "Bài 48. Em vui học toán",
+      "title": "Em vui học toán",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 369,
+      "lesson_order": 49,
+      "lesson_name": "Bài 49. Ôn tập chung",
+      "title": "Ôn tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 241,
+      "lesson_order": 50,
+      "lesson_name": "1. Bài 50. Hình tam giác",
+      "title": "Hình tam giác",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\1. Bài 50. Hình tam giác",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\1. Bài 50. Hình tam giác",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\1. Bài 50. Hình tam giác\\Bai_50_Hinh_tam_giac.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\1. Bài 50. Hình tam giác\\Bai_50_Hinh_tam_giac.png",
+          "source_sha256": "ad78837128e0a323d345740e79576b21a9c5cf91cad4ab1ce516ee68ef2f1a09",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-241\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-241/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 242,
+      "lesson_order": 51,
+      "lesson_name": "2. Bài 51. Diện tích hình tam giác",
+      "title": "Diện tích hình tam giác",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\2. Bài 51. Diện tích hình tam giác",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\2. Bài 51. Diện tích hình tam giác",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\2. Bài 51. Diện tích hình tam giác\\Bai_51_Dien_tich_hinh_tam_giac.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\2. Bài 51. Diện tích hình tam giác\\Bai_51_Dien_tich_hinh_tam_giac.png",
+          "source_sha256": "3c7ec2aa9069b01d191a44116cf9f4f3311604992ab486b0e69ca5db25b05b2e",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-242\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-242/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 243,
+      "lesson_order": 52,
+      "lesson_name": "3. Bài 52. Hình thang",
+      "title": "Hình thang",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\3. Bài 52. Hình thang",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\3. Bài 52. Hình thang",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\3. Bài 52. Hình thang\\Bai_52_Hinh_thang.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\3. Bài 52. Hình thang\\Bai_52_Hinh_thang.png",
+          "source_sha256": "f2db30cb7ddb7357657e4613e35f4928f506bae34484c7c42abb9597d23c2ba3",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-243\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-243/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 244,
+      "lesson_order": 53,
+      "lesson_name": "4. Bài 53. Diện tích hình thang",
+      "title": "Diện tích hình thang",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\4. Bài 53. Diện tích hình thang",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\4. Bài 53. Diện tích hình thang",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\4. Bài 53. Diện tích hình thang\\Bai_53_Dien_tich_hinh_thang.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\4. Bài 53. Diện tích hình thang\\Bai_53_Dien_tich_hinh_thang.png",
+          "source_sha256": "fddb2cd42711e2a0c79d52837333cc857a4a9b4c63747f48716772d671bae2da",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-244\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-244/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 245,
+      "lesson_order": 54,
+      "lesson_name": "5. Bài 54 Hình tròn. Đường tròn",
+      "title": "Hình tròn. Đường tròn",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\5. Bài 54 Hình tròn. Đường tròn",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\5. Bài 54 Hình tròn. Đường tròn",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\5. Bài 54 Hình tròn. Đường tròn\\Bai_54_Hinh_tron_duong_tron.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\5. Bài 54 Hình tròn. Đường tròn\\Bai_54_Hinh_tron_duong_tron.png",
+          "source_sha256": "44fe241717d6da0f67cb75ab7727f3222fbcfeb10264dc376db85d675984d378",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-245\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-245/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 246,
+      "lesson_order": 55,
+      "lesson_name": "6. Bài 55. Chu vi hình tròn",
+      "title": "Chu vi hình tròn",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\6. Bài 55. Chu vi hình tròn",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\6. Bài 55. Chu vi hình tròn",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\6. Bài 55. Chu vi hình tròn\\Bai_55_Chu_vi_hinh_tron.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\6. Bài 55. Chu vi hình tròn\\Bai_55_Chu_vi_hinh_tron.png",
+          "source_sha256": "a5c034dd50bf87f48736bcec060a76ac381f713872c0f53f60312950b870a72c",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-246\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-246/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 247,
+      "lesson_order": 56,
+      "lesson_name": "7. Bài 56. Diện tích hình tròn",
+      "title": "Diện tích hình tròn",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\7. Bài 56. Diện tích hình tròn",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\7. Bài 56. Diện tích hình tròn",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\7. Bài 56. Diện tích hình tròn\\Bai_56_Dien_tich_hinh_tron.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\7. Bài 56. Diện tích hình tròn\\Bai_56_Dien_tich_hinh_tron.png",
+          "source_sha256": "73b36cb94d25e41e3f1b951348e4e09cad312b6759fd6d5e588ee7694d865a45",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-247\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-247/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 370,
+      "lesson_order": 57,
+      "lesson_name": "Bài 57. Luyện tập về tính diện tích",
+      "title": "Luyện tập về tính diện tích",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 248,
+      "lesson_order": 58,
+      "lesson_name": "9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+      "title": "Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ\\Bai_58_Cac_hinh_khoi.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\9. Bài 58. Hình hộp chữ nhật. Hình lập phương. Hình trụ\\Bai_58_Cac_hinh_khoi.png",
+          "source_sha256": "6dc0da0946897bfe6ea69bf8dca0f842e675cf518623e09cb540c7a55f9f3402",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-248\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-248/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 249,
+      "lesson_order": 59,
+      "lesson_name": "10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+      "title": "Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ\\Bai_59_Hinh_khai_trien.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\10. Bài 59. Hình khai triển của hình hộp chữ nhật, Hình lập phương, hình trụ\\Bai_59_Hinh_khai_trien.png",
+          "source_sha256": "827e8e4ada66360a8688546851ff4b9cd35a74565cebd65b3014888329cfe973",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-249\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-249/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 250,
+      "lesson_order": 60,
+      "lesson_name": "11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+      "title": "Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương\\Bai_60_Dien_tich_xung_quanh_toan_phan.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\11. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương\\Bai_60_Dien_tich_xung_quanh_toan_phan.png",
+          "source_sha256": "52099f07961b6ca2b014733172c41cfaeae28e950f54361a44c7607b8886afd9",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-250\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-250/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 371,
+      "lesson_order": 61,
+      "lesson_name": "Bài 61. Luyện tập chung",
+      "title": "Luyện tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 251,
+      "lesson_order": 62,
+      "lesson_name": "13. Bài 62. Thể tích của một hình",
+      "title": "Thể tích của một hình",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\13. Bài 62. Thể tích của một hình",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\13. Bài 62. Thể tích của một hình",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\13. Bài 62. Thể tích của một hình\\Bai_62_The_tich_cua_mot_hinh.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\13. Bài 62. Thể tích của một hình\\Bai_62_The_tich_cua_mot_hinh.png",
+          "source_sha256": "5518d7748ad5a505f597ed7ad95eeca095f1e8fbd8355b26167dcbe41d8672e1",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-251\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-251/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 252,
+      "lesson_order": 63,
+      "lesson_name": "14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+      "title": "Xăng-ti-mét khối. Đề-xi-mét khối",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối\\Bai_63_Cm_khoi_dm_khoi.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối\\Bai_63_Cm_khoi_dm_khoi.png",
+          "source_sha256": "cf3b7d3fbffc59df365d81ee6f1033ec6b96569d961e8a3987abae522785ec38",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-252\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-252/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 253,
+      "lesson_order": 64,
+      "lesson_name": "15. Bài 64. Mét khối",
+      "title": "Mét khối",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\15. Bài 64. Mét khối",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\15. Bài 64. Mét khối",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\15. Bài 64. Mét khối\\Bai_64_Met_khoi.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\15. Bài 64. Mét khối\\Bai_64_Met_khoi.png",
+          "source_sha256": "ef97cfea461a1be7517af48609f00b5e5f5af18f5787469945f3682d26a81c03",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-253\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-253/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 254,
+      "lesson_order": 65,
+      "lesson_name": "16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+      "title": "Thể tích hình hộp chữ nhật, hình lập phương",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương\\Bai_65_The_tich_hinh_hop_lap_phuong.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương\\Bai_65_The_tich_hinh_hop_lap_phuong.png",
+          "source_sha256": "1ae1ca4046b14e8d90e70fe7382baf5ae1375958cbb6a8af65db9c06b3c8bba3",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-254\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-254/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 372,
+      "lesson_order": 66,
+      "lesson_name": "Bài 66. Luyện tập",
+      "title": "Luyện tập",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 373,
+      "lesson_order": 67,
+      "lesson_name": "Bài 67. Luyện tập chung",
+      "title": "Luyện tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 374,
+      "lesson_order": 68,
+      "lesson_name": "Bài 68. Ôn tập về các đơn vị đo thời gian",
+      "title": "Ôn tập về các đơn vị đo thời gian",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 255,
+      "lesson_order": 69,
+      "lesson_name": "20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+      "title": "Cộng số đo thời gian. Trừ số đo thời gian",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian\\Bai_69_Cong_tru_so_do_thoi_gian.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian\\Bai_69_Cong_tru_so_do_thoi_gian.png",
+          "source_sha256": "f032b8c589be7941fdc166c42715428595e55360dd3fedc14234f9b9177ba7e6",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-255\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-255/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 256,
+      "lesson_order": 70,
+      "lesson_name": "21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+      "title": "Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số\\Bai_70_Nhan_chia_so_do_thoi_gian.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số\\Bai_70_Nhan_chia_so_do_thoi_gian.png",
+          "source_sha256": "cd2f3f43e6f4a31f030827021222eaf9b23192b3705cd51ac9e77792aa7bd871",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-256\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-256/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 375,
+      "lesson_order": 71,
+      "lesson_name": "Bài 71. Luyện tập",
+      "title": "Luyện tập",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 257,
+      "lesson_order": 72,
+      "lesson_name": "23. Bài 72. Vận tốc",
+      "title": "Vận tốc",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\23. Bài 72. Vận tốc",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\23. Bài 72. Vận tốc",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\23. Bài 72. Vận tốc\\Bai_72_Van_toc.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\23. Bài 72. Vận tốc\\Bai_72_Van_toc.png",
+          "source_sha256": "2ae68adfb8469da556397e1a005fa7d90a97b8702c2d399818b9112cf9bffae6",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-257\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-257/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 376,
+      "lesson_order": 73,
+      "lesson_name": "Bài 73. Luyện tập",
+      "title": "Luyện tập",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 258,
+      "lesson_order": 74,
+      "lesson_name": "25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+      "title": "Quãng đường, thời gian trong chuyển động đều",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+      "source_folder_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_03_Hình học và đo lường\\25. Bài 74. Quãng đường, thời gian trong chuyển động đều\\Bai_74_Quang_duong_thoi_gian.png",
+          "source_relative": "Lop_05\\Chuong_03_Hình học và đo lường\\25. Bài 74. Quãng đường, thời gian trong chuyển động đều\\Bai_74_Quang_duong_thoi_gian.png",
+          "source_sha256": "37630dcab9b60bd25ee70e397928773f8bf261c80ad1870c333bacac73d33235",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-03\\lesson-258\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-03/lesson-258/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 377,
+      "lesson_order": 75,
+      "lesson_name": "Bài 75. Luyện tập",
+      "title": "Luyện tập",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 378,
+      "lesson_order": 76,
+      "lesson_name": "Bài 76. Luyện tập chung",
+      "title": "Luyện tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 379,
+      "lesson_order": 77,
+      "lesson_name": "Bài 77. Em ôn lại những gì đã học",
+      "title": "Em ôn lại những gì đã học",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 19,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 380,
+      "lesson_order": 78,
+      "lesson_name": "Bài 78. Em vui học Toán",
+      "title": "Em vui học Toán",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 259,
+      "lesson_order": 79,
+      "lesson_name": "1. Bài 79. Biểu đồ hình quạt",
+      "title": "Biểu đồ hình quạt",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\1. Bài 79. Biểu đồ hình quạt",
+      "source_folder_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\1. Bài 79. Biểu đồ hình quạt",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\1. Bài 79. Biểu đồ hình quạt\\Bai_79_Bieu_do_hinh_quat.png",
+          "source_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\1. Bài 79. Biểu đồ hình quạt\\Bai_79_Bieu_do_hinh_quat.png",
+          "source_sha256": "a8d2818ecded9864d2c5a7196f90789eefccda2b5a31ec2522269dddc93d5878",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-04\\lesson-259\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-04/lesson-259/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 260,
+      "lesson_order": 80,
+      "lesson_name": "2. Bài 80. Một số cách biểu diễn số liệu thống kê",
+      "title": "Một số cách biểu diễn số liệu thống kê",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\2. Bài 80. Một số cách biểu diễn số liệu thống kê",
+      "source_folder_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\2. Bài 80. Một số cách biểu diễn số liệu thống kê",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\2. Bài 80. Một số cách biểu diễn số liệu thống kê\\Bai_80_Cac_cach_bieu_dien_so_lieu.png",
+          "source_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\2. Bài 80. Một số cách biểu diễn số liệu thống kê\\Bai_80_Cac_cach_bieu_dien_so_lieu.png",
+          "source_sha256": "156137d04dad6e8f74829ab83ce9b3cf7bbced76b699022b8ac69e5a76574a35",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-04\\lesson-260\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-04/lesson-260/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 261,
+      "lesson_order": 81,
+      "lesson_name": "3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+      "title": "Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+      "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+      "source_folder_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản",
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản\\Bai_81_So_lan_lap_lai_ket_qua.png",
+          "source_relative": "Lop_05\\Chuong_04_Thống kê và xác suất. Ôn tập cuối năm\\3. Bài 81. Mô tả số lần lặp lại của một kết quả có thể Xảy ra trong một số trò chơi đơn giản\\Bai_81_So_lan_lap_lai_ket_qua.png",
+          "source_sha256": "a12eeaef7139b6d0064b2a8c74629821218623456b38cd96e0a8f56f3d7c1a64",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-04\\lesson-261\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-04/lesson-261/theory-01.png"
+        }
+      ],
+      "status": "MAPPED"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 381,
+      "lesson_order": 82,
+      "lesson_name": "Bài 82. Ôn tập về số tự nhiên và các phép tính với số tự nhiên",
+      "title": "Ôn tập về số tự nhiên và các phép tính với số tự nhiên",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 382,
+      "lesson_order": 83,
+      "lesson_name": "Bài 83. Ôn tập về phân số và các phép tính với phân số",
+      "title": "Ôn tập về phân số và các phép tính với phân số",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 383,
+      "lesson_order": 84,
+      "lesson_name": "Bài 84. Ôn tập về số thập phân và các phép tính với số thập phân",
+      "title": "Ôn tập về số thập phân và các phép tính với số thập phân",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 384,
+      "lesson_order": 85,
+      "lesson_name": "Bài 85. Ôn tập về tỉ số, tỉ số phần trăm",
+      "title": "Ôn tập về tỉ số, tỉ số phần trăm",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 385,
+      "lesson_order": 86,
+      "lesson_name": "Bài 86. Ôn tập về hình học",
+      "title": "Ôn tập về hình học",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 386,
+      "lesson_order": 87,
+      "lesson_name": "Bài 87. Ôn tập về đo lường",
+      "title": "Ôn tập về đo lường",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 387,
+      "lesson_order": 88,
+      "lesson_name": "Bài 88. Ôn tập về một số yếu tố thống kê và xác suất",
+      "title": "Ôn tập về một số yếu tố thống kê và xác suất",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 388,
+      "lesson_order": 89,
+      "lesson_name": "Bài 89. Em ôn lại những gì đã học",
+      "title": "Em ôn lại những gì đã học",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 389,
+      "lesson_order": 90,
+      "lesson_name": "Bài 90. Em vui học Toán",
+      "title": "Em vui học Toán",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
+    },
+    {
+      "grade": 5,
+      "chapter_id": 20,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 390,
+      "lesson_order": 91,
+      "lesson_name": "Bài 91. Ôn tập chung",
+      "title": "Ôn tập chung",
+      "source_folder": null,
+      "source_folder_relative": null,
+      "images": [],
+      "status": "MISSING_FOLDER"
     }
   ]
 }
