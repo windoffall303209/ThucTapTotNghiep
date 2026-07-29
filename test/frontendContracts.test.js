@@ -74,7 +74,57 @@ test('màn luyện tập giữ các điểm nối dữ liệu và điều khiể
     /id="practice-context" type="application\/json"/,
     /practiceSessionId:/,
     /answeredResults:/,
+    /id="practiceTimer"/,
+    /deadlineAtMs:/,
+    /serverNowMs:/,
     /\/js\/student\/practice\.js/
+  ]);
+});
+
+test('popup trình duyệt được thay bằng dialog dùng chung ở giữa màn hình', () => {
+  const layout = read('views/layouts/main.ejs');
+  const commonJs = read('public/js/common.js');
+  const practiceJs = read('public/js/student/practice.js');
+  const managerJs = read('public/js/admin/content-manager.js');
+
+  assertContainsAll(layout, [
+    /<dialog id="appDialog" class="app-dialog"/,
+    /data-app-dialog-cancel/,
+    /data-app-dialog-confirm/
+  ]);
+  assertContainsAll(commonJs, [
+    /function showAppAlert/,
+    /function showAppConfirm/,
+    /confirm: showAppConfirm/,
+    /alert: showAppAlert/
+  ]);
+  [commonJs, practiceJs, managerJs].forEach((source) => {
+    assert.doesNotMatch(source, /window\.(?:alert|confirm|prompt)\s*\(/);
+  });
+});
+
+test('đề có đồng hồ đếm ngược và tự kết thúc khi hết thời gian', () => {
+  const practiceJs = read('public/js/student/practice.js');
+  const controller = read('controllers/StudentController.js');
+  const sessionModel = read('models/PracticeSession.js');
+
+  assertContainsAll(practiceJs, [
+    /function initCountdown/,
+    /function updateCountdown/,
+    /remainingSeconds <= 0/,
+    /finishPractice\(\{ timedOut: true \}\)/,
+    /showTimeExpiredDialog/
+  ]);
+  assertContainsAll(controller, [
+    /PracticeSession\.getSessionTiming\(session\)\.isExpired/,
+    /code: 'PRACTICE_TIME_EXPIRED'/,
+    /practiceTiming/
+  ]);
+  assertContainsAll(sessionModel, [
+    /5: 10 \* 60/,
+    /15: 30 \* 60/,
+    /20: 60 \* 60/,
+    /completeExpiredSessions/
   ]);
 });
 

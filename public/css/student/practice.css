@@ -32,6 +32,38 @@
   background: #fff;
 }
 
+.practice-status {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.practice-timer {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: #eff6ff;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+}
+
+.practice-timer.is-warning {
+  color: #92400e;
+  border-color: #fde68a;
+  background: var(--warning-soft);
+}
+
+.practice-timer.is-urgent {
+  color: #991b1b;
+  border-color: #fecaca;
+  background: var(--danger-soft);
+}
+
 .question-card {
   display: grid;
   gap: 14px;
@@ -95,6 +127,17 @@
 @media (prefers-reduced-motion: reduce) {
   .btn-spinner {
     animation-duration: 2.4s;
+  }
+}
+
+@media (max-width: 520px) {
+  .practice-topline {
+    align-items: flex-start;
+  }
+
+  .practice-status {
+    flex-direction: column;
+    align-items: flex-end;
   }
 }
 

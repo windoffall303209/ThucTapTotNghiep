@@ -114,6 +114,10 @@ async function practice(req, res, next) {
     let session = targetCount > 0
       ? await PracticeSession.getActiveLessonSession(student.id, lessonItem.id)
       : null;
+    if (session && PracticeSession.getSessionTiming(session).isExpired) {
+      await PracticeSession.completeSession(student.id, session.id);
+      session = null;
+    }
     let sessionQuestions = session
       ? await Question.getQuestionsByIds(session.question_ids)
       : [];
@@ -140,6 +144,7 @@ async function practice(req, res, next) {
       lesson: lessonItem,
       questions: sanitizeQuestionsForClient(sessionQuestions),
       session,
+      practiceTiming: PracticeSession.getSessionTiming(session),
       answeredResults: buildAnsweredResults(lessonAnswers, sessionQuestions),
       aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
@@ -203,6 +208,7 @@ async function reviewLesson(req, res, next) {
       lesson: lessonItem,
       questions: sanitizeQuestionsForClient(sessionQuestions),
       session,
+      practiceTiming: PracticeSession.getSessionTiming(session),
       answeredResults: buildAnsweredResults(reviewAnswers, sessionQuestions),
       aiHelpEnabled: isAIEnabledForGrade(student.current_grade, settings)
     });
@@ -291,7 +297,6 @@ async function exams(req, res, next) {
       }),
       Curriculum.getCurriculumByGrade(req.auth.current_grade)
     ]);
-
     res.render('student/exams', {
       title: 'Luyện tập',
       limits: PRACTICE_LIMITS,
@@ -376,7 +381,7 @@ async function startExam(req, res, next) {
 
 async function sessionPractice(req, res, next) {
   try {
-    const session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
+    let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
     if (!session) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy lần làm bài',
@@ -385,6 +390,15 @@ async function sessionPractice(req, res, next) {
     }
 
     if (session.status === 'COMPLETED') {
+      return res.redirect(`/student/sessions/${session.id}`);
+    }
+
+    const practiceTiming = PracticeSession.getSessionTiming(session);
+    if (practiceTiming.isExpired) {
+      session = await PracticeSession.completeSession(req.auth.id, session.id);
+      setFlash(req, 'warning', 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc và lưu các câu em đã nộp.', {
+        modal: true
+      });
       return res.redirect(`/student/sessions/${session.id}`);
     }
 
@@ -401,6 +415,7 @@ async function sessionPractice(req, res, next) {
       },
       questions: sanitizeQuestionsForClient(questions),
       session,
+      practiceTiming,
       answeredResults: buildAnsweredResults(answers, questions),
       aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
@@ -411,12 +426,16 @@ async function sessionPractice(req, res, next) {
 
 async function reviewSession(req, res, next) {
   try {
-    const session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
+    let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
     if (!session) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy lịch sử',
         message: 'Lịch sử làm bài này không tồn tại hoặc không thuộc tài khoản của em.'
       });
+    }
+
+    if (session.status === 'IN_PROGRESS' && PracticeSession.getSessionTiming(session).isExpired) {
+      session = await PracticeSession.completeSession(req.auth.id, session.id);
     }
 
     const [questions, answers, chats] = await Promise.all([
@@ -617,6 +636,15 @@ async function submitAnswer(req, res, next) {
         return res.status(404).json({
           ok: false,
           message: 'Không tìm thấy lần làm bài này trong tài khoản của em.'
+        });
+      }
+      if (PracticeSession.getSessionTiming(session).isExpired) {
+        await PracticeSession.completeSession(student.id, session.id);
+        return res.status(409).json({
+          ok: false,
+          code: 'PRACTICE_TIME_EXPIRED',
+          message: 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc bài của em.',
+          redirectUrl: `/student/sessions/${session.id}`
         });
       }
       if (session.status !== 'IN_PROGRESS') {

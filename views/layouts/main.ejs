@@ -28,7 +28,14 @@
     <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
     <%- include('../partials/header') %>
     <main id="main-content" class="page-shell" tabindex="-1">
-      <% if (flash) { %>
+      <% if (flash && flash.modal) { %>
+        <div
+          data-flash-modal
+          data-tone="<%= flash.type %>"
+          data-title="<%= flash.type === 'warning' ? 'Thông báo' : 'Có điều cần lưu ý' %>"
+          data-message="<%= flash.message %>"
+          hidden></div>
+      <% } else if (flash) { %>
         <div
           class="flash flash-<%= flash.type %><%= flash.transient ? ' flash-toast' : '' %>"
           role="status"
@@ -42,6 +49,21 @@
       <% } %>
       <%- body %>
     </main>
+    <dialog id="appDialog" class="app-dialog" aria-labelledby="appDialogTitle" aria-describedby="appDialogMessage">
+      <div class="app-dialog-card">
+        <div class="app-dialog-icon" data-app-dialog-icon aria-hidden="true">
+          <i data-lucide="info" class="lucide-icon"></i>
+        </div>
+        <div class="app-dialog-copy">
+          <h2 id="appDialogTitle">Thông báo</h2>
+          <p id="appDialogMessage"></p>
+        </div>
+        <div class="app-dialog-actions">
+          <button class="btn btn-secondary" type="button" data-app-dialog-cancel>Hủy</button>
+          <button class="btn btn-primary" type="button" data-app-dialog-confirm>Đồng ý</button>
+        </div>
+      </div>
+    </dialog>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <%# Ghim đúng phiên bản lucide thay vì @latest: bản mới phát hành có thể đổi

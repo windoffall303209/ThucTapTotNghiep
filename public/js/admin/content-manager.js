@@ -704,13 +704,17 @@
         });
       });
 
-      editor.querySelector('[data-grid-merge]')?.addEventListener('click', () => {
+      editor.querySelector('[data-grid-merge]')?.addEventListener('click', async () => {
         const cells = selectedCells();
         if (cells.length < 2) return;
         const rect = boundsForCells(cells);
         const affected = state.grid.cells.filter((cell) => rectIntersectsCell(rect, cell));
         if (!affected.every((cell) => rectContainsCell(rect, cell))) {
-          window.alert('Vùng gộp không hợp lệ vì đang cắt ngang một ô đã gộp.');
+          await window.AppUI.alert({
+            title: 'Không thể gộp ô',
+            message: 'Vùng gộp không hợp lệ vì đang cắt ngang một ô đã gộp.',
+            tone: 'warning'
+          });
           return;
         }
         const master = { ...cells[0], id: `grid-cell-${Date.now()}`, row: rect.row, col: rect.col, rowSpan: rect.rowSpan, colSpan: rect.colSpan };

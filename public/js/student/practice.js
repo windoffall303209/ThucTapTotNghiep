@@ -1,5 +1,7 @@
 (function () {
   const {
+    alert: showAppAlert,
+    confirm: showAppConfirm,
     escapeHtml,
     renderAnswerArea,
     renderExplanationContent,
@@ -21,7 +23,11 @@
     // Kết quả từng câu đã nộp, khóa là questionId: { selectedAnswer, isCorrect }
     results: {},
     // Id câu đang chờ phản hồi chấm điểm, null khi không có request nào treo
-    pendingQuestionId: null
+    pendingQuestionId: null,
+    deadlineAtMs: null,
+    countdownId: null,
+    timeExpired: false,
+    finishing: false
   };
 
   function initPractice() {
@@ -42,6 +48,15 @@
         state.practiceSessionId = context.practiceSessionId || null;
         state.results = context.answeredResults || {};
         state.currentIndex = firstUnansweredIndex();
+        if (
+          context.timing
+          && Number.isFinite(Number(context.timing.deadlineAtMs))
+          && Number.isFinite(Number(context.timing.serverNowMs))
+        ) {
+          const remainingAtRender = Number(context.timing.deadlineAtMs)
+            - Number(context.timing.serverNowMs);
+          state.deadlineAtMs = Date.now() + Math.max(0, remainingAtRender);
+        }
       } catch (error) {
         state.practiceSessionId = null;
       }
@@ -54,7 +69,7 @@
 
     document.getElementById('submitAnswerButton')?.addEventListener('click', submitAnswer);
     document.getElementById('nextQuestionButton')?.addEventListener('click', nextQuestion);
-    document.getElementById('finishPracticeButton')?.addEventListener('click', finishPractice);
+    document.getElementById('finishPracticeButton')?.addEventListener('click', () => finishPractice());
     document.getElementById('aiHelpForm')?.addEventListener('submit', requestExerciseHelp);
 
     // Nút hỏi nhanh: điền sẵn câu hỏi rồi gửi luôn. Học sinh lớp 1-2 chưa gõ
@@ -68,6 +83,7 @@
         form.requestSubmit();
       });
     });
+    initCountdown();
   }
 
   // Nhắc học sinh xác nhận trước khi rời khỏi bài còn dang dở, tránh bấm nhầm
@@ -78,15 +94,71 @@
       && state.questions.some((question) => !state.results[question.id]);
 
     document.querySelectorAll('.practice-topline .back-link').forEach((link) => {
-      link.addEventListener('click', (event) => {
+      link.addEventListener('click', async (event) => {
         if (!hasUnfinishedWork()) return;
+        event.preventDefault();
         const answeredCount = Object.keys(state.results).length;
         const remaining = state.questions.length - answeredCount;
-        const confirmed = window.confirm(
-          `Em còn ${remaining} câu chưa làm. Bài làm đã được lưu lại, em có thể quay lại làm tiếp sau. Rời khỏi bài bây giờ?`
-        );
-        if (!confirmed) event.preventDefault();
+        const confirmed = await showAppConfirm({
+          title: 'Rời khỏi bài đang làm?',
+          message: `Em còn ${remaining} câu chưa làm. Bài làm đã được lưu lại, em có thể quay lại làm tiếp sau.`,
+          tone: 'warning',
+          confirmLabel: 'Rời khỏi bài',
+          cancelLabel: 'Ở lại làm tiếp'
+        });
+        if (confirmed) window.location.href = link.href;
       });
+    });
+  }
+
+  function initCountdown() {
+    if (!state.deadlineAtMs || !document.getElementById('practiceTimer')) return;
+    updateCountdown();
+    if (!state.timeExpired) {
+      state.countdownId = window.setInterval(updateCountdown, 250);
+    }
+  }
+
+  function updateCountdown() {
+    const timer = document.getElementById('practiceTimer');
+    const value = timer?.querySelector('[data-timer-value]');
+    if (!timer || !value || !state.deadlineAtMs || state.timeExpired) return;
+
+    const remainingSeconds = Math.max(0, Math.ceil((state.deadlineAtMs - Date.now()) / 1000));
+    value.textContent = formatCountdown(remainingSeconds);
+    timer.classList.toggle('is-warning', remainingSeconds <= 5 * 60 && remainingSeconds > 60);
+    timer.classList.toggle('is-urgent', remainingSeconds <= 60);
+    timer.setAttribute('aria-label', `Thời gian còn lại ${formatCountdown(remainingSeconds)}`);
+
+    if (remainingSeconds <= 0) {
+      clearCountdown();
+      state.timeExpired = true;
+      finishPractice({ timedOut: true });
+    }
+  }
+
+  function formatCountdown(totalSeconds) {
+    const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+    const hours = Math.floor(safeSeconds / 3600);
+    const minutes = Math.floor((safeSeconds % 3600) / 60);
+    const seconds = Math.floor(safeSeconds % 60);
+    const minuteText = String(minutes).padStart(2, '0');
+    const secondText = String(seconds).padStart(2, '0');
+    return hours > 0
+      ? `${String(hours).padStart(2, '0')}:${minuteText}:${secondText}`
+      : `${minuteText}:${secondText}`;
+  }
+
+  function clearCountdown() {
+    if (state.countdownId) window.clearInterval(state.countdownId);
+    state.countdownId = null;
+  }
+
+  function disablePracticeControls() {
+    document.querySelectorAll(
+      '.practice-shell button, .practice-shell input, .practice-shell textarea, .practice-shell select'
+    ).forEach((control) => {
+      control.disabled = true;
     });
   }
 
@@ -329,6 +401,12 @@
       });
       result = await response.json().catch(() => null);
 
+      if (result && result.code === 'PRACTICE_TIME_EXPIRED') {
+        state.pendingQuestionId = null;
+        restoreButton(submitButton);
+        await showTimeExpiredDialog(result.redirectUrl);
+        return;
+      }
       if (isSessionExpired(response, result)) {
         state.pendingQuestionId = null;
         restoreButton(submitButton);
@@ -622,7 +700,9 @@
     }
   }
 
-  async function finishPractice() {
+  async function finishPractice(options = {}) {
+    const timedOut = Boolean(options.timedOut);
+    if (state.finishing) return;
     if (!state.practiceSessionId) {
       window.location.href = '/student/history';
       return;
@@ -633,13 +713,19 @@
     // đường làm tiếp. Vì nút này nằm ngay cạnh "Câu tiếp theo" nên phải hỏi lại
     // khi bài còn dở.
     const remaining = state.questions.filter((question) => !state.results[question.id]).length;
-    if (remaining > 0) {
-      const confirmed = window.confirm(
-        `Em còn ${remaining} câu chưa làm. Kết thúc bây giờ thì bài này sẽ đóng lại và không làm tiếp được nữa. Em có chắc muốn kết thúc?`
-      );
+    if (!timedOut && remaining > 0) {
+      const confirmed = await showAppConfirm({
+        title: 'Kết thúc bài làm?',
+        message: `Em còn ${remaining} câu chưa làm. Kết thúc bây giờ thì bài này sẽ đóng lại và không làm tiếp được nữa.`,
+        tone: 'warning',
+        confirmLabel: 'Kết thúc bài',
+        cancelLabel: 'Tiếp tục làm'
+      });
       if (!confirmed) return;
     }
 
+    state.finishing = true;
+    if (timedOut) disablePracticeControls();
     const finishButton = document.getElementById('finishPracticeButton');
     setButtonBusy(finishButton, 'Đang lưu kết quả...');
     if (finishButton) finishButton.disabled = true;
@@ -652,6 +738,7 @@
       const result = await response.json().catch(() => null);
 
       if (isSessionExpired(response, result)) {
+        state.finishing = false;
         restoreButton(finishButton);
         if (finishButton) finishButton.disabled = false;
         showSessionExpiredFeedback(result && result.message);
@@ -659,8 +746,17 @@
       }
       if (!result) throw new Error('Phản hồi không phải JSON');
 
+      if (timedOut) {
+        await showTimeExpiredDialog(result.redirectUrl);
+        return;
+      }
       window.location.href = result.redirectUrl || '/student/history';
     } catch (error) {
+      if (timedOut) {
+        await showTimeExpiredDialog(`/student/sessions/${state.practiceSessionId}`);
+        return;
+      }
+      state.finishing = false;
       restoreButton(finishButton);
       if (finishButton) finishButton.disabled = false;
       showRetryFeedback(
@@ -668,6 +764,19 @@
         finishPractice
       );
     }
+  }
+
+  async function showTimeExpiredDialog(redirectUrl) {
+    clearCountdown();
+    state.timeExpired = true;
+    disablePracticeControls();
+    await showAppAlert({
+      title: 'Đã hết thời gian làm bài',
+      message: 'Hệ thống đã tự động kết thúc bài và lưu lại những câu em đã nộp.',
+      tone: 'warning',
+      confirmLabel: 'Xem kết quả'
+    });
+    window.location.href = redirectUrl || `/student/sessions/${state.practiceSessionId}`;
   }
 
   async function requestExerciseHelp(event) {

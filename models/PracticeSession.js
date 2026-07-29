@@ -2,6 +2,45 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 
+const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze({
+  5: 10 * 60,
+  15: 30 * 60,
+  20: 60 * 60
+});
+
+function getSessionTiming(session, nowMs = Date.now()) {
+  const timedMode = ['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(
+    String(session?.session_mode || '').toUpperCase()
+  );
+  const durationSeconds = timedMode
+    ? DURATION_SECONDS_BY_QUESTION_COUNT[Number(session?.question_count)] || null
+    : null;
+  const startedAtMs = session?.started_at instanceof Date
+    ? session.started_at.getTime()
+    : Date.parse(String(session?.started_at || ''));
+  if (!durationSeconds || !Number.isFinite(startedAtMs)) {
+    return {
+      enabled: false,
+      durationSeconds: null,
+      deadlineAtMs: null,
+      serverNowMs: Number(nowMs),
+      remainingSeconds: null,
+      isExpired: false
+    };
+  }
+
+  const deadlineAtMs = startedAtMs + durationSeconds * 1000;
+  const remainingSeconds = Math.max(0, Math.ceil((deadlineAtMs - Number(nowMs)) / 1000));
+  return {
+    enabled: true,
+    durationSeconds,
+    deadlineAtMs,
+    serverNowMs: Number(nowMs),
+    remainingSeconds,
+    isExpired: deadlineAtMs <= Number(nowMs)
+  };
+}
+
 function ensureFallbackStore() {
   sampleData.practiceSessions = sampleData.practiceSessions || [];
   sampleData.practiceChats = sampleData.practiceChats || [];
@@ -190,6 +229,7 @@ async function getSessionById(studentId, sessionId) {
  */
 async function listSessions(studentId, limit = 50, options = {}) {
   await ensureSchema();
+  await completeExpiredSessions(studentId);
   const safeLimit = Math.min(Math.max(Number(limit) || 50, 1), 200);
   const status = String(options.status || '').trim().toUpperCase();
   const modes = (Array.isArray(options.modes) ? options.modes : [])
@@ -268,6 +308,38 @@ async function listSessions(studentId, limit = 50, options = {}) {
         correct_count: sampleData.studentLogs.filter((log) => Number(log.practice_session_id) === Number(session.id) && log.is_correct).length,
         chat_count: sampleData.practiceChats.filter((chat) => Number(chat.practice_session_id) === Number(session.id) && chat.role === 'student').length
       }));
+  }
+}
+
+async function completeExpiredSessions(studentId) {
+  await ensureSchema();
+  try {
+    await db.query(
+      `UPDATE PracticeSessions
+       SET status = 'COMPLETED', completed_at = CURRENT_TIMESTAMP
+       WHERE student_id = ?
+         AND status = 'IN_PROGRESS'
+         AND session_mode IN ('LESSON', 'CHAPTER', 'COMPREHENSIVE')
+         AND (
+           (question_count = 5 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE))
+           OR (question_count = 15 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 MINUTE))
+           OR (question_count = 20 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 60 MINUTE))
+         )`,
+      [studentId]
+    );
+  } catch (error) {
+    ensureFallbackStore();
+    const nowMs = Date.now();
+    sampleData.practiceSessions
+      .filter((session) =>
+        Number(session.student_id) === Number(studentId)
+        && session.status === 'IN_PROGRESS'
+        && getSessionTiming(session, nowMs).isExpired
+      )
+      .forEach((session) => {
+        session.status = 'COMPLETED';
+        session.completed_at = new Date(nowMs);
+      });
   }
 }
 
@@ -435,6 +507,7 @@ async function hydrateSessionFromLogs(session) {
 }
 
 module.exports = {
+  DURATION_SECONDS_BY_QUESTION_COUNT,
   ensureSchema,
   createSession,
   getActiveLessonSession,
@@ -444,5 +517,7 @@ module.exports = {
   listChats,
   saveChat,
   syncSessionProgress,
-  completeSession
+  completeSession,
+  completeExpiredSessions,
+  getSessionTiming
 };

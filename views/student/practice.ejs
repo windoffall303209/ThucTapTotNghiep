@@ -1,3 +1,4 @@
+<% const timing = typeof practiceTiming !== 'undefined' ? practiceTiming : { enabled: false }; %>
 <section class="practice-shell <%= aiHelpEnabled ? '' : 'practice-shell-no-chat' %>" data-session-id="<%= session?.id || '' %>">
   <div class="practice-main">
     <div class="practice-topline">
@@ -15,7 +16,19 @@
       <%# Không in sẵn "Câu 1/..." vì khi mở lại bài đang làm dở, câu hiện tại
           không phải câu 1 — con số cứng nháy sai một nhịp rồi mới bị JS sửa.
           Để JS điền ngay khi dựng câu hỏi đầu tiên. %>
-      <span id="questionCounter">Câu …/<%= Math.max(questions.length, 1) %></span>
+      <div class="practice-status">
+        <% if (timing.enabled) { %>
+          <span
+            id="practiceTimer"
+            class="practice-timer"
+            role="timer"
+            aria-label="Thời gian còn lại">
+            <i data-lucide="clock-3" class="lucide-icon"></i>
+            <span data-timer-value>--:--</span>
+          </span>
+        <% } %>
+        <span id="questionCounter">Câu …/<%= Math.max(questions.length, 1) %></span>
+      </div>
     </div>
 
     <% if (questions.length > 0) { %>
@@ -113,7 +126,12 @@
 <script id="practice-context" type="application/json"><%- JSON.stringify({
   practiceSessionId: session?.id || null,
   currentIndex: session?.current_index || 0,
-  answeredResults: answeredResults || {}
+  answeredResults: answeredResults || {},
+  timing: timing.enabled ? {
+    durationSeconds: timing.durationSeconds,
+    deadlineAtMs: timing.deadlineAtMs,
+    serverNowMs: timing.serverNowMs
+  } : null
 }) %></script>
 <%
   if (typeof pageStyles !== 'undefined') pageStyles.push('/css/student/practice.css');

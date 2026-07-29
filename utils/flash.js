@@ -3,6 +3,7 @@ function setFlash(req, type, message, options = {}) {
     type,
     message,
     transient: Boolean(options.transient),
+    modal: Boolean(options.modal),
     durationMs: Number(options.durationMs) > 0 ? Number(options.durationMs) : undefined
   };
 }

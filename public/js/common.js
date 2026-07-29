@@ -7,7 +7,111 @@
     initConfirmForms();
     initPasswordToggles();
     initFlashToasts();
+    initAppDialog();
+    initFlashModals();
   });
+
+  let appDialogResolver = null;
+
+  function initAppDialog(root = document) {
+    const dialog = root.getElementById?.('appDialog') || document.getElementById('appDialog');
+    if (!dialog || dialog.dataset.dialogReady === 'true') return dialog;
+    dialog.dataset.dialogReady = 'true';
+
+    dialog.querySelector('[data-app-dialog-confirm]')?.addEventListener('click', () => {
+      closeAppDialog(dialog, true);
+    });
+    dialog.querySelector('[data-app-dialog-cancel]')?.addEventListener('click', () => {
+      closeAppDialog(dialog, false);
+    });
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeAppDialog(dialog, false);
+    });
+    dialog.addEventListener('close', () => settleAppDialog(dialog.returnValue === 'confirm'));
+    return dialog;
+  }
+
+  function closeAppDialog(dialog, confirmed) {
+    if (typeof dialog.close === 'function') {
+      dialog.close(confirmed ? 'confirm' : 'cancel');
+      return;
+    }
+    dialog.removeAttribute('open');
+    settleAppDialog(confirmed);
+  }
+
+  function settleAppDialog(confirmed) {
+    const resolver = appDialogResolver;
+    appDialogResolver = null;
+    if (resolver) resolver(Boolean(confirmed));
+  }
+
+  function showAppDialog(options = {}) {
+    const dialog = initAppDialog();
+    if (!dialog) return Promise.resolve(false);
+    if (appDialogResolver) {
+      const previousResolver = appDialogResolver;
+      appDialogResolver = null;
+      previousResolver(false);
+      if (dialog.open) {
+        if (typeof dialog.close === 'function') dialog.close('cancel');
+        else dialog.removeAttribute('open');
+      }
+    }
+
+    const tone = ['success', 'warning', 'danger'].includes(options.tone)
+      ? options.tone
+      : 'info';
+    const iconName = tone === 'danger'
+      ? 'circle-alert'
+      : tone === 'warning'
+        ? 'triangle-alert'
+        : tone === 'success'
+          ? 'circle-check'
+          : 'info';
+    dialog.dataset.tone = tone;
+    dialog.querySelector('#appDialogTitle').textContent = options.title || 'Thông báo';
+    dialog.querySelector('#appDialogMessage').textContent = options.message || '';
+
+    const icon = dialog.querySelector('[data-app-dialog-icon]');
+    if (icon) icon.innerHTML = `<i data-lucide="${iconName}" class="lucide-icon"></i>`;
+
+    const cancelButton = dialog.querySelector('[data-app-dialog-cancel]');
+    const confirmButton = dialog.querySelector('[data-app-dialog-confirm]');
+    if (cancelButton) {
+      cancelButton.hidden = options.showCancel === false;
+      cancelButton.textContent = options.cancelLabel || 'Hủy';
+    }
+    if (confirmButton) confirmButton.textContent = options.confirmLabel || 'Đồng ý';
+    refreshIcons();
+
+    return new Promise((resolve) => {
+      appDialogResolver = resolve;
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+      window.setTimeout(() => confirmButton?.focus(), 0);
+    });
+  }
+
+  function showAppAlert(options = {}) {
+    return showAppDialog({ ...options, showCancel: false, confirmLabel: options.confirmLabel || 'Đã hiểu' });
+  }
+
+  function showAppConfirm(options = {}) {
+    return showAppDialog({ ...options, showCancel: true });
+  }
+
+  function initFlashModals(root = document) {
+    root.querySelectorAll('[data-flash-modal]').forEach((source) => {
+      showAppAlert({
+        title: source.dataset.title || 'Thông báo',
+        message: source.dataset.message || '',
+        tone: source.dataset.tone || 'info'
+      });
+      source.remove();
+    });
+  }
 
   function initFlashToasts(root = document) {
     root.querySelectorAll('[data-flash-autohide="true"]').forEach((flash) => {
@@ -27,8 +131,23 @@
   function initConfirmForms(root = document) {
     root.querySelectorAll('form[data-confirm]:not([data-confirm-ready])').forEach((form) => {
       form.dataset.confirmReady = 'true';
-      form.addEventListener('submit', (event) => {
-        if (!window.confirm(form.dataset.confirm)) event.preventDefault();
+      form.addEventListener('submit', async (event) => {
+        if (form.dataset.confirmBypass === 'true') {
+          delete form.dataset.confirmBypass;
+          return;
+        }
+        event.preventDefault();
+        const submitter = event.submitter;
+        const confirmed = await showAppConfirm({
+          title: 'Xác nhận thao tác',
+          message: form.dataset.confirm,
+          tone: 'warning',
+          confirmLabel: 'Tiếp tục'
+        });
+        if (!confirmed) return;
+        form.dataset.confirmBypass = 'true';
+        if (submitter && submitter.form === form) form.requestSubmit(submitter);
+        else form.requestSubmit();
       });
     });
   }
@@ -638,6 +757,9 @@
     gridCellPreview,
     gridCellTypeLabel,
     initConfirmForms,
+    alert: showAppAlert,
+    confirm: showAppConfirm,
+    initAppDialog,
     initLazyMath,
     initPasswordToggles,
     initRenderedGrids,
