@@ -206,11 +206,30 @@ function buildManifest(rows, source) {
   return { entries, missing, unusedFolders };
 }
 
-function theoryImage(image, index) {
+function hydrateGeneratedImages(manifest) {
+  for (const entry of manifest.entries) {
+    if (entry.images.length) continue;
+    const generated = targetInfo(entry, 'theory.png', 0);
+    if (!fs.existsSync(generated.targetPath)) continue;
+    entry.images = [{
+      source_path: generated.targetPath,
+      source_relative: path.relative(ROOT, generated.targetPath),
+      source_sha256: sha256(generated.targetPath),
+      target_path: generated.targetPath,
+      url: generated.url,
+      generated_by_ai: true
+    }];
+    entry.status = 'GENERATED';
+  }
+  manifest.missing = manifest.entries.filter((entry) => !entry.images.length);
+  return manifest;
+}
+
+function theoryImage(image, index, entry) {
   return {
     id: `theory-image-${index + 1}`,
     url: image.url,
-    alt_text: 'Thẻ lý thuyết minh họa bài học',
+    alt_text: `Thẻ lý thuyết: ${entry.title}`,
     width_percent: 100,
     storage_provider: 'local',
     public_id: null
@@ -240,13 +259,14 @@ function cardsWithImages(rawCards, entry) {
 
   entry.images.forEach((image, index) => {
     const cardIndex = availableCards.length > 1 ? Math.min(index, availableCards.length - 1) : 0;
-    availableCards[cardIndex].images.push(theoryImage(image, index));
+    availableCards[cardIndex].images.push(theoryImage(image, index, entry));
     availableCards[cardIndex].layout = 'visual_top';
   });
   return availableCards;
 }
 
 function writeReports(manifest) {
+  const generated = manifest.entries.filter((entry) => entry.status === 'GENERATED');
   const payload = {
     generated_at: new Date().toISOString(),
     source_root: SOURCE_ROOT,
@@ -254,6 +274,7 @@ function writeReports(manifest) {
     lesson_count: manifest.entries.length,
     mapped_lesson_count: manifest.entries.filter((entry) => entry.status === 'MAPPED').length,
     missing_lesson_count: manifest.missing.length,
+    generated_lesson_count: generated.length,
     image_count: manifest.entries.reduce((sum, entry) => sum + entry.images.length, 0),
     unused_source_folders: manifest.unusedFolders,
     entries: manifest.entries
@@ -262,8 +283,11 @@ function writeReports(manifest) {
   fs.writeFileSync(MISSING_PATH, `${JSON.stringify({
     generated_at: payload.generated_at,
     scope: payload.scope,
-    missing_lesson_count: manifest.missing.length,
-    lessons: manifest.missing
+    originally_missing_lesson_count: generated.length + manifest.missing.length,
+    generated_lesson_count: generated.length,
+    remaining_missing_lesson_count: manifest.missing.length,
+    generated_lessons: generated,
+    remaining_missing_lessons: manifest.missing
   }, null, 2)}\n`, 'utf8');
 }
 
@@ -272,7 +296,9 @@ function copyImages(entries) {
   for (const entry of entries) {
     for (const image of entry.images) {
       fs.mkdirSync(path.dirname(image.target_path), { recursive: true });
-      fs.copyFileSync(image.source_path, image.target_path);
+      if (path.resolve(image.source_path) !== path.resolve(image.target_path)) {
+        fs.copyFileSync(image.source_path, image.target_path);
+      }
       copied += 1;
     }
   }
@@ -301,7 +327,7 @@ async function main() {
   const args = new Set(process.argv.slice(2));
   const rows = await curriculumRows();
   const source = sourceIndex();
-  const manifest = buildManifest(rows, source);
+  const manifest = hydrateGeneratedImages(buildManifest(rows, source));
   writeReports(manifest);
 
   let copied = 0;
@@ -332,4 +358,3 @@ main()
     process.exitCode = 1;
   })
   .finally(() => db.close());
-

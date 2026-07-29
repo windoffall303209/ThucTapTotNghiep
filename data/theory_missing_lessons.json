@@ -1,8 +1,10 @@
 {
-  "generated_at": "2026-07-29T06:13:43.290Z",
+  "generated_at": "2026-07-29T07:00:38.219Z",
   "scope": "Grades 1-4 all chapters; Grade 5 chapters 1-2 only",
-  "missing_lesson_count": 19,
-  "lessons": [
+  "originally_missing_lesson_count": 19,
+  "generated_lesson_count": 19,
+  "remaining_missing_lesson_count": 0,
+  "generated_lessons": [
     {
       "grade": 2,
       "chapter_id": 6,
@@ -14,8 +16,17 @@
       "title": "Đo độ dài đoạn thẳng, độ dài đường gấp khúc 1",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-2\\chapter-02\\lesson-062\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-2\\chapter-02\\lesson-062\\theory-01.png",
+          "source_sha256": "96f42bb0de50aec43d44e266c11a79b03131c90dbe65ffcd97c486d14b4ba409",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-2\\chapter-02\\lesson-062\\theory-01.png",
+          "url": "/uploads/images/theory/grade-2/chapter-02/lesson-062/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 2,
@@ -28,8 +39,17 @@
       "title": "Làm quen với phép nhân. Dấu nhân",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-2\\chapter-03\\lesson-063\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-2\\chapter-03\\lesson-063\\theory-01.png",
+          "source_sha256": "4891ee7ad71b0207f3c63d35dee01d9d639e82be898349a7d638d0d9546e288b",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-2\\chapter-03\\lesson-063\\theory-01.png",
+          "url": "/uploads/images/theory/grade-2/chapter-03/lesson-063/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 4,
@@ -42,8 +62,17 @@
       "title": "Các số có nhiều chữ số (tiếp theo)",
       "source_folder": "C:\\Users\\WIND-OF-FALL\\Pictures\\DataToan\\Lop_04\\Chuong_01_Số tự nhiên\\7. Bài 7 Các số có nhiều chữ số (tiếp theo)",
       "source_folder_relative": "Lop_04\\Chuong_01_Số tự nhiên\\7. Bài 7 Các số có nhiều chữ số (tiếp theo)",
-      "images": [],
-      "status": "EMPTY_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-4\\chapter-01\\lesson-160\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-4\\chapter-01\\lesson-160\\theory-01.png",
+          "source_sha256": "c89585b80fbfe0b26377bc237f46c8227fa3d6fe7d66d16176f67fa3c655141d",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-4\\chapter-01\\lesson-160\\theory-01.png",
+          "url": "/uploads/images/theory/grade-4/chapter-01/lesson-160/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -56,8 +85,17 @@
       "title": "Ôn tập về số tự nhiên",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-350\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-350\\theory-01.png",
+          "source_sha256": "e5afecc4f672882f14be335a6cb49465366e95603d2880c74dc71add2ccf3767",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-350\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-350/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -70,8 +108,17 @@
       "title": "Ôn tập về các phép tính với số tự nhiên",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-351\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-351\\theory-01.png",
+          "source_sha256": "2d0592a8b818ee0423f884052536987364664c82e1b4b0145e7ca4a9a920a34a",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-351\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-351/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -84,8 +131,17 @@
       "title": "Ôn tập về giải toán",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-352\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-352\\theory-01.png",
+          "source_sha256": "3d1aa7fd1de5fb3672544d8092e00bd57b81918397c637c586202c5cec68bd07",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-352\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-352/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -98,8 +154,17 @@
       "title": "Ôn tập và bổ sung về phân số",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-353\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-353\\theory-01.png",
+          "source_sha256": "e6a82929d4f5e72d0f41f5c42b55c3c78a20bab76ca785ca2c6e64271f3d6ed9",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-353\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-353/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -112,8 +177,17 @@
       "title": "Ôn tập và bổ sung về các phép tính với phân số",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-354\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-354\\theory-01.png",
+          "source_sha256": "d48e162fa6691ee52c0d9cba20cfb05857f2d1db5b775b9887da9e8e8e2323b7",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-354\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-354/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -126,8 +200,17 @@
       "title": "Luyện tập",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-355\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-355\\theory-01.png",
+          "source_sha256": "064a958199ea6f2fbb853ad4ec681e7c86fae3b5a96754750249f2cccfafeb1a",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-355\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-355/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -140,8 +223,17 @@
       "title": "Ôn tập về các đơn vị đo diện tích đã học",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-356\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-356\\theory-01.png",
+          "source_sha256": "f122d0b34e6948e3451d27dd1bdcb08b1447a518d156224c2f6ca404463fd48b",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-356\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-356/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -154,8 +246,17 @@
       "title": "Em ôn lại những gì đã học",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-357\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-357\\theory-01.png",
+          "source_sha256": "334aee0207134a1ae409daaa43e515b6e888fb7c3506d74c12dda7b1a7572ba6",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-357\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-357/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -168,8 +269,17 @@
       "title": "Em vui học toán",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-358\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-358\\theory-01.png",
+          "source_sha256": "1797b184f6b39491e78e935ca4ccc3afee95d753b84dc5daab2708a4d21f5c2e",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-01\\lesson-358\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-01/lesson-358/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -182,8 +292,17 @@
       "title": "Luyện tập",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-359\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-359\\theory-01.png",
+          "source_sha256": "fa08eff98c4215996e2beecf6e7d10bfa9d20802d59ec084398214c5ed07f5b1",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-359\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-359/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -196,8 +315,17 @@
       "title": "Luyện tập",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-360\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-360\\theory-01.png",
+          "source_sha256": "66e8a683a46f4643476dfedcb8e39f653b53df9ccf4718f8f879aa3428f87b4c",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-360\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-360/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -210,8 +338,17 @@
       "title": "Luyện tập",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-361\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-361\\theory-01.png",
+          "source_sha256": "69c7f498f4ee7ccf89b44c91ebc35b42452419f7d8c13c188c3c2fb074ea284b",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-361\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-361/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -224,8 +361,17 @@
       "title": "Luyện tập",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-362\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-362\\theory-01.png",
+          "source_sha256": "20657cbd584334b1523d5733df5c1bed14fe65ace67f9c197ba74bad16531e85",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-362\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-362/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -238,8 +384,17 @@
       "title": "Luyện tập chung",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-363\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-363\\theory-01.png",
+          "source_sha256": "633b0fa74385b981a6b7d35f55f3952fb96b5b92408c8393081c737ae5a15cce",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-363\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-363/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -252,8 +407,17 @@
       "title": "Luyện tập chung",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-364\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-364\\theory-01.png",
+          "source_sha256": "59dbc4c993c2b8b4b2cbf9bbb7d79068ccef963047fe5c55a7505aa20b16df01",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-364\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-364/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     },
     {
       "grade": 5,
@@ -266,8 +430,18 @@
       "title": "Luyện tập chung",
       "source_folder": null,
       "source_folder_relative": null,
-      "images": [],
-      "status": "MISSING_FOLDER"
+      "images": [
+        {
+          "source_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-365\\theory-01.png",
+          "source_relative": "public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-365\\theory-01.png",
+          "source_sha256": "759d29b99df6a41a06b4735ebc4a84cd3d3a4c9b1995c074c2ef3c0fb43c4661",
+          "target_path": "C:\\Users\\WIND-OF-FALL\\Documents\\ThucTapTotNghiep\\public\\uploads\\images\\theory\\grade-5\\chapter-02\\lesson-365\\theory-01.png",
+          "url": "/uploads/images/theory/grade-5/chapter-02/lesson-365/theory-01.png",
+          "generated_by_ai": true
+        }
+      ],
+      "status": "GENERATED"
     }
-  ]
+  ],
+  "remaining_missing_lessons": []
 }
