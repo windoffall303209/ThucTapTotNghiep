@@ -1,0 +1,635 @@
+{
+  "title": "Ngân hàng câu hỏi bổ sung Toán 5 Cánh Diều - Bài 68, 71, 73",
+  "source": "Biên soạn thủ công sau khi đối chiếu trực tiếp SGK Toán 5 Cánh Diều, tập hai: Bài 68 trang 50-51, Bài 71 trang 56-57, Bài 73 trang 60-61.",
+  "questions": [
+    {
+      "lesson": 68,
+      "number": 1,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Lịch sinh hoạt trong hình gồm đủ các ngày của một tuần. Một tuần có bao nhiêu ngày?",
+      "image": "b68-q01.png",
+      "choices": ["A. 5 ngày", "B. 6 ngày", "C. 7 ngày", "D. 8 ngày"],
+      "answer": "C. 7 ngày",
+      "explanation": "Một tuần bắt đầu từ thứ Hai và kết thúc vào Chủ nhật, gồm: thứ Hai, thứ Ba, thứ Tư, thứ Năm, thứ Sáu, thứ Bảy và Chủ nhật. Đếm các ngày đó ta được 7 ngày."
+    },
+    {
+      "lesson": 68,
+      "number": 2,
+      "type": "Điền số - quan sát đồng hồ",
+      "question": "Từ 8 giờ sáng hôm nay đến 8 giờ sáng hôm sau là một ngày trọn vẹn. Khoảng thời gian đó có bao nhiêu giờ?",
+      "image": "b68-q02.png",
+      "response": "Điền số giờ thích hợp.",
+      "answer": "24 giờ",
+      "explanation": "Một ngày đêm có 24 giờ. Từ 8 giờ sáng hôm nay đến 8 giờ sáng hôm sau, kim giờ đi hết hai vòng trên mặt đồng hồ, mỗi vòng 12 giờ. Vì vậy khoảng thời gian là 12 + 12 = 24 giờ."
+    },
+    {
+      "lesson": 68,
+      "number": 3,
+      "type": "Đổi đơn vị - quan sát hình",
+      "question": "Bạn Nam học bài trong 2 giờ 15 phút. Thời gian học của Nam bằng bao nhiêu phút?",
+      "image": "b68-q03.png",
+      "response": "Viết phép đổi và đáp số.",
+      "answer": "135 phút",
+      "explanation": "Ta có 1 giờ = 60 phút nên 2 giờ = 2 × 60 = 120 phút. Cộng thêm 15 phút: 120 + 15 = 135 phút. Vậy Nam học bài trong 135 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 4,
+      "type": "Trắc nghiệm ABCD - quan sát lịch",
+      "question": "Hình minh họa là tờ lịch tháng Hai của một năm nhuận. Tháng Hai trong năm nhuận có bao nhiêu ngày?",
+      "image": "b68-q04.png",
+      "choices": ["A. 28 ngày", "B. 29 ngày", "C. 30 ngày", "D. 31 ngày"],
+      "answer": "B. 29 ngày",
+      "explanation": "Thông thường tháng Hai có 28 ngày. Riêng năm nhuận, tháng Hai có thêm một ngày nên có 29 ngày. Vì đề bài nói đây là năm nhuận, ta chọn 29 ngày."
+    },
+    {
+      "lesson": 68,
+      "number": 5,
+      "type": "Đổi đơn vị - quan sát dòng thời gian",
+      "question": "Trên dòng thời gian, một thế kỉ được chia thành bốn phần bằng nhau. Ba phần như vậy bằng 3/4 thế kỉ. 3/4 thế kỉ bằng bao nhiêu năm?",
+      "image": "b68-q05.png",
+      "response": "Điền số năm thích hợp.",
+      "answer": "75 năm",
+      "explanation": "Một thế kỉ có 100 năm. Muốn tìm 3/4 của 100 năm, ta tính 100 : 4 × 3 = 25 × 3 = 75. Vậy 3/4 thế kỉ bằng 75 năm."
+    },
+    {
+      "lesson": 68,
+      "number": 6,
+      "type": "Đổi số thập phân - quan sát hình",
+      "question": "Bạn Mai đọc sách trong 1,25 giờ. Khoảng thời gian đó bằng bao nhiêu phút?",
+      "image": "b68-q06.png",
+      "response": "Viết phép đổi và đáp số.",
+      "answer": "75 phút",
+      "explanation": "Ta tách 1,25 giờ = 1 giờ + 0,25 giờ. Một giờ bằng 60 phút; 0,25 giờ = 1/4 giờ = 60 : 4 = 15 phút. Do đó 1,25 giờ = 60 + 15 = 75 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 7,
+      "type": "Tình huống thực tế - quan sát bảng",
+      "question": "Trong một tuần, Minh đạp xe lần lượt 30 phút, 45 phút, 35 phút, 40 phút, 50 phút, 40 phút và 30 phút. Tổng thời gian Minh đạp xe là bao nhiêu giờ, bao nhiêu phút?",
+      "image": "b68-q07.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "4 giờ 30 phút",
+      "explanation": "Cộng thời gian của bảy ngày: 30 + 45 + 35 + 40 + 50 + 40 + 30 = 270 phút. Đổi 270 phút ra giờ: 270 : 60 = 4 giờ và còn 30 phút. Vậy tổng thời gian là 4 giờ 30 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 8,
+      "type": "Đổi đơn vị - quan sát đồng hồ bấm giờ",
+      "question": "Đồng hồ bấm giờ ghi 150 giây. Thời gian đó bằng bao nhiêu phút, bao nhiêu giây?",
+      "image": "b68-q08.png",
+      "choices": ["A. 1 phút 50 giây", "B. 2 phút 15 giây", "C. 2 phút 30 giây", "D. 3 phút"],
+      "answer": "C. 2 phút 30 giây",
+      "explanation": "Một phút bằng 60 giây. Ta có 150 = 60 × 2 + 30. Vì thế 150 giây gồm 2 phút và còn 30 giây, tức là 2 phút 30 giây."
+    },
+    {
+      "lesson": 68,
+      "number": 9,
+      "type": "Tính thời điểm - quan sát đồng hồ",
+      "question": "Nồi canh bắt đầu được nấu lúc 17 giờ 35 phút và cần 1 giờ 20 phút. Nồi canh chín lúc mấy giờ?",
+      "image": "b68-q09.png",
+      "response": "Ghi thời điểm nồi canh chín.",
+      "answer": "18 giờ 55 phút",
+      "explanation": "Cộng 1 giờ vào 17 giờ 35 phút được 18 giờ 35 phút. Cộng tiếp 20 phút được 18 giờ 55 phút. Vậy nồi canh chín lúc 18 giờ 55 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 10,
+      "type": "Đổi đơn vị - quan sát lịch tháng",
+      "question": "Một hoạt động kéo dài 2,5 năm. Nếu quy ước 1 năm = 12 tháng thì hoạt động đó kéo dài bao nhiêu tháng?",
+      "image": "b68-q10.png",
+      "response": "Điền số tháng thích hợp.",
+      "answer": "30 tháng",
+      "explanation": "Ta có 2,5 năm = 2 năm + 0,5 năm. Hai năm có 2 × 12 = 24 tháng; nửa năm có 12 : 2 = 6 tháng. Tổng cộng 24 + 6 = 30 tháng."
+    },
+    {
+      "lesson": 68,
+      "number": 11,
+      "type": "Đổi đơn vị tổng hợp - quan sát hình",
+      "question": "Một video học tập dài 216 phút. Hãy viết thời lượng đó dưới dạng giờ và phút, rồi dưới dạng số thập phân của giờ.",
+      "image": "b68-q11.png",
+      "response": "Ghi đủ hai kết quả.",
+      "answer": "3 giờ 36 phút; 3,6 giờ",
+      "explanation": "Ta có 216 : 60 = 3 dư 36 nên 216 phút = 3 giờ 36 phút. Mặt khác, 36 phút = 36/60 giờ = 0,6 giờ. Vì vậy 216 phút = 3,6 giờ."
+    },
+    {
+      "lesson": 68,
+      "number": 12,
+      "type": "Điền số",
+      "question": "Điền số thích hợp: 5,5 năm = ____ tháng.",
+      "response": "Điền một số.",
+      "answer": "66",
+      "explanation": "Vì 1 năm = 12 tháng nên 5,5 năm = 5,5 × 12 tháng. Ta tính 5 × 12 = 60 và 0,5 × 12 = 6; do đó tổng là 66 tháng."
+    },
+    {
+      "lesson": 68,
+      "number": 13,
+      "type": "Trắc nghiệm ABCD",
+      "question": "2/3 ngày bằng bao nhiêu giờ?",
+      "choices": ["A. 8 giờ", "B. 12 giờ", "C. 16 giờ", "D. 18 giờ"],
+      "answer": "C. 16 giờ",
+      "explanation": "Một ngày có 24 giờ. Hai phần ba ngày là 24 × 2/3 = 24 : 3 × 2 = 8 × 2 = 16 giờ."
+    },
+    {
+      "lesson": 68,
+      "number": 14,
+      "type": "Đổi số thập phân",
+      "question": "Đổi 2,8 phút ra giây.",
+      "response": "Viết phép đổi và đáp số.",
+      "answer": "168 giây",
+      "explanation": "Mỗi phút có 60 giây. Ta tính 2,8 × 60 = 168. Có thể kiểm tra: 2 phút là 120 giây, 0,8 phút là 48 giây; 120 + 48 = 168 giây."
+    },
+    {
+      "lesson": 68,
+      "number": 15,
+      "type": "Đổi đơn vị",
+      "question": "Một chương trình kéo dài 84 ngày. Chương trình đó kéo dài đúng bao nhiêu tuần?",
+      "response": "Điền số tuần.",
+      "answer": "12 tuần",
+      "explanation": "Một tuần có 7 ngày. Số tuần là 84 : 7 = 12. Vậy 84 ngày bằng đúng 12 tuần."
+    },
+    {
+      "lesson": 68,
+      "number": 16,
+      "type": "So sánh",
+      "question": "So sánh 1,4 giờ và 1 giờ 20 phút.",
+      "response": "Điền dấu >, < hoặc = và giải thích.",
+      "answer": "1,4 giờ > 1 giờ 20 phút",
+      "explanation": "Đổi về phút: 1,4 giờ = 1,4 × 60 = 84 phút; 1 giờ 20 phút = 60 + 20 = 80 phút. Vì 84 > 80 nên 1,4 giờ dài hơn 1 giờ 20 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 17,
+      "type": "Đúng - sai",
+      "question": "Bạn An nói: “90 giây bằng 1,5 phút.” An nói đúng hay sai?",
+      "choices": ["Đúng", "Sai"],
+      "answer": "Đúng",
+      "explanation": "Ta có 90 giây = 60 giây + 30 giây = 1 phút + 1/2 phút = 1,5 phút. Vì vậy nhận xét của An là đúng."
+    },
+    {
+      "lesson": 68,
+      "number": 18,
+      "type": "Sắp xếp",
+      "question": "Sắp xếp các khoảng thời gian sau từ ngắn đến dài: 210 phút; 3 giờ 45 phút; 3,6 giờ; 4 giờ.",
+      "response": "Ghi lại thứ tự đúng.",
+      "answer": "210 phút; 3,6 giờ; 3 giờ 45 phút; 4 giờ",
+      "explanation": "Đổi tất cả ra phút: 210 phút; 3,6 giờ = 216 phút; 3 giờ 45 phút = 225 phút; 4 giờ = 240 phút. Vì 210 < 216 < 225 < 240 nên thứ tự như đáp án."
+    },
+    {
+      "lesson": 68,
+      "number": 19,
+      "type": "Nối",
+      "question": "Nối mỗi đơn vị với số năm tương ứng: (a) 1 thập kỉ; (b) 1 thế kỉ; (c) nửa thế kỉ. Các số: (1) 50 năm; (2) 10 năm; (3) 100 năm.",
+      "response": "Ghi các cặp nối.",
+      "answer": "a-2; b-3; c-1",
+      "explanation": "Một thập kỉ có 10 năm nên a nối với 2. Một thế kỉ có 100 năm nên b nối với 3. Nửa thế kỉ là 100 : 2 = 50 năm nên c nối với 1."
+    },
+    {
+      "lesson": 68,
+      "number": 20,
+      "type": "Trắc nghiệm nhiều lựa chọn",
+      "question": "Nhóm nào chỉ gồm những tháng có 31 ngày?",
+      "choices": ["A. Tháng 1, tháng 3, tháng 5", "B. Tháng 2, tháng 4, tháng 6", "C. Tháng 4, tháng 6, tháng 9", "D. Tháng 2, tháng 7, tháng 11"],
+      "answer": "A. Tháng 1, tháng 3, tháng 5",
+      "explanation": "Các tháng 1, 3, 5, 7, 8, 10, 12 có 31 ngày. Tháng 4, 6, 9, 11 có 30 ngày; tháng 2 có 28 hoặc 29 ngày. Vì thế chỉ phương án A gồm toàn tháng 31 ngày."
+    },
+    {
+      "lesson": 68,
+      "number": 21,
+      "type": "Tình huống thực tế",
+      "question": "Lan tập đàn 35 phút mỗi ngày từ thứ Hai đến thứ Sáu và 50 phút mỗi ngày vào thứ Bảy, Chủ nhật. Một tuần Lan tập đàn bao lâu?",
+      "response": "Ghi kết quả theo giờ và phút.",
+      "answer": "4 giờ 35 phút",
+      "explanation": "Năm ngày từ thứ Hai đến thứ Sáu có 35 × 5 = 175 phút. Hai ngày cuối tuần có 50 × 2 = 100 phút. Tổng là 175 + 100 = 275 phút = 4 giờ 35 phút."
+    },
+    {
+      "lesson": 68,
+      "number": 22,
+      "type": "Chọn đơn vị phù hợp",
+      "question": "Chọn đơn vị thích hợp nhất để đo mỗi khoảng thời gian: (a) một cái chớp mắt; (b) một tiết học; (c) tuổi của một ngôi trường.",
+      "response": "Ghi đơn vị tương ứng.",
+      "answer": "a) giây; b) phút; c) năm",
+      "explanation": "Một cái chớp mắt diễn ra rất nhanh nên đo bằng giây. Một tiết học thường kéo dài vài chục phút nên đo bằng phút. Tuổi của trường kéo dài nhiều năm nên dùng đơn vị năm."
+    },
+
+    {
+      "lesson": 71,
+      "number": 1,
+      "type": "Cộng số đo thời gian - quan sát hình",
+      "question": "Hai công việc lần lượt kéo dài 4 giờ 35 phút và 2 giờ 48 phút. Tổng thời gian của hai công việc là bao lâu?",
+      "image": "b71-q01.png",
+      "response": "Đặt tính hoặc trình bày cách cộng.",
+      "answer": "7 giờ 23 phút",
+      "explanation": "Cộng phút: 35 + 48 = 83 phút = 1 giờ 23 phút. Cộng giờ: 4 + 2 = 6 giờ, rồi thêm 1 giờ vừa đổi được thành 7 giờ. Vậy tổng thời gian là 7 giờ 23 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 2,
+      "type": "Trừ số đo thời gian - quan sát hình",
+      "question": "Một công việc dự kiến 9 giờ 15 phút nhưng thực tế chỉ hết 3 giờ 47 phút. Thời gian còn lại là bao lâu?",
+      "image": "b71-q02.png",
+      "response": "Trình bày phép trừ.",
+      "answer": "5 giờ 28 phút",
+      "explanation": "Vì 15 phút không trừ được 47 phút, ta đổi 1 giờ thành 60 phút: 9 giờ 15 phút = 8 giờ 75 phút. Trừ phút: 75 - 47 = 28; trừ giờ: 8 - 3 = 5. Kết quả là 5 giờ 28 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 3,
+      "type": "Nhân số đo thời gian - quan sát hình",
+      "question": "Mỗi lượt luyện tập kéo dài 1 giờ 36 phút. Bốn lượt như vậy kéo dài tất cả bao lâu?",
+      "image": "b71-q03.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "6 giờ 24 phút",
+      "explanation": "Nhân riêng từng đơn vị: 1 giờ × 4 = 4 giờ; 36 phút × 4 = 144 phút = 2 giờ 24 phút. Cộng lại: 4 giờ + 2 giờ 24 phút = 6 giờ 24 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 4,
+      "type": "Chia số đo thời gian - quan sát sơ đồ",
+      "question": "Một công việc kéo dài 8 giờ 20 phút và được chia đều thành 5 phần. Mỗi phần kéo dài bao lâu?",
+      "image": "b71-q04.png",
+      "response": "Viết phép chia và đáp số.",
+      "answer": "1 giờ 40 phút",
+      "explanation": "Đổi 8 giờ 20 phút ra phút: 8 × 60 + 20 = 500 phút. Chia đều cho 5: 500 : 5 = 100 phút. Đổi 100 phút = 1 giờ 40 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 5,
+      "type": "Tính thời điểm - quan sát hình",
+      "question": "Máy bay cất cánh lúc 10 giờ 25 phút và bay trong 2 giờ 10 phút. Máy bay hạ cánh lúc mấy giờ?",
+      "image": "b71-q05.png",
+      "response": "Ghi thời điểm hạ cánh.",
+      "answer": "12 giờ 35 phút",
+      "explanation": "Cộng thời gian bay vào thời điểm cất cánh: 10 giờ 25 phút + 2 giờ = 12 giờ 25 phút; cộng thêm 10 phút được 12 giờ 35 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 6,
+      "type": "Tính thời điểm bắt đầu - quan sát hình",
+      "question": "Chuyến bay khởi hành lúc 8 giờ 40 phút. Gia đình cần có mặt trước 1 giờ 35 phút. Gia đình phải đến sân bay lúc mấy giờ?",
+      "image": "b71-q06.png",
+      "response": "Ghi thời điểm phải có mặt.",
+      "answer": "7 giờ 05 phút",
+      "explanation": "Ta lấy 8 giờ 40 phút trừ 1 giờ 35 phút. Trừ phút: 40 - 35 = 5 phút; trừ giờ: 8 - 1 = 7 giờ. Viết đủ hai chữ số phút, ta được 7 giờ 05 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 7,
+      "type": "Tình huống lặp lại - quan sát sơ đồ",
+      "question": "Một vệ tinh hoàn thành một vòng trong 1 giờ 25 phút. Từ 14 giờ 10 phút, vệ tinh hoàn thành 3 vòng liên tiếp. Khi đó là mấy giờ?",
+      "image": "b71-q07.png",
+      "response": "Ghi thời điểm kết thúc.",
+      "answer": "18 giờ 25 phút",
+      "explanation": "Ba vòng kéo dài: 1 giờ 25 phút × 3 = 3 giờ 75 phút = 4 giờ 15 phút. Cộng vào 14 giờ 10 phút: 14 giờ 10 phút + 4 giờ 15 phút = 18 giờ 25 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 8,
+      "type": "So sánh thành tích - quan sát hình",
+      "question": "Bạn An chạy hết 4 phút 10 giây, bạn Bình chạy hết 2 phút 28 giây. Bình nhanh hơn An bao nhiêu thời gian?",
+      "image": "b71-q08.png",
+      "response": "Ghi số phút và giây chênh lệch.",
+      "answer": "1 phút 42 giây",
+      "explanation": "Ta tính 4 phút 10 giây - 2 phút 28 giây. Đổi 1 phút thành 60 giây: 4 phút 10 giây = 3 phút 70 giây. Khi đó 70 - 28 = 42 giây và 3 - 2 = 1 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 9,
+      "type": "Chia đều thời gian - quan sát hình",
+      "question": "Bác nông dân làm ba luống rau như nhau từ 6 giờ 20 phút đến 10 giờ 05 phút. Nếu thời gian làm mỗi luống bằng nhau thì mỗi luống hết bao lâu?",
+      "image": "b71-q09.png",
+      "response": "Viết các bước tính.",
+      "answer": "1 giờ 15 phút",
+      "explanation": "Tổng thời gian làm việc là 10 giờ 05 phút - 6 giờ 20 phút = 3 giờ 45 phút. Đổi ra phút: 3 × 60 + 45 = 225 phút. Chia đều cho 3 luống: 225 : 3 = 75 phút = 1 giờ 15 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 10,
+      "type": "Chia đều thời gian - quan sát hình",
+      "question": "Một thợ mộc làm bốn chiếc ghế giống nhau từ 13 giờ 10 phút đến 18 giờ 10 phút. Trung bình làm một chiếc ghế hết bao lâu?",
+      "image": "b71-q10.png",
+      "response": "Ghi thời gian trung bình.",
+      "answer": "1 giờ 15 phút",
+      "explanation": "Từ 13 giờ 10 phút đến 18 giờ 10 phút là đúng 5 giờ. Đổi 5 giờ = 300 phút. Chia đều cho 4 chiếc ghế: 300 : 4 = 75 phút = 1 giờ 15 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 11,
+      "type": "Bài toán hai bước - quan sát hình",
+      "question": "Một thợ sơn sơn 3 mảng tường giống nhau trong 3 giờ 27 phút. Với tốc độ như vậy, sơn 5 mảng tường hết bao lâu?",
+      "image": "b71-q11.png",
+      "response": "Trình bày hai bước tính.",
+      "answer": "5 giờ 45 phút",
+      "explanation": "Đổi 3 giờ 27 phút = 207 phút. Một mảng tường hết 207 : 3 = 69 phút = 1 giờ 9 phút. Năm mảng hết 69 × 5 = 345 phút = 5 giờ 45 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 12,
+      "type": "Tính giá trị biểu thức",
+      "question": "Tính: (2 giờ 18 phút + 1 giờ 42 phút) × 6.",
+      "response": "Ghi kết quả.",
+      "answer": "24 giờ",
+      "explanation": "Trong ngoặc: 2 giờ 18 phút + 1 giờ 42 phút = 3 giờ 60 phút = 4 giờ. Sau đó 4 giờ × 6 = 24 giờ."
+    },
+    {
+      "lesson": 71,
+      "number": 13,
+      "type": "Tính giá trị biểu thức",
+      "question": "Tính: (7 giờ 30 phút - 4 giờ 06 phút) : 2.",
+      "response": "Ghi kết quả.",
+      "answer": "1 giờ 42 phút",
+      "explanation": "Hiệu trong ngoặc là 3 giờ 24 phút. Đổi ra phút được 3 × 60 + 24 = 204 phút. Chia 204 : 2 = 102 phút = 1 giờ 42 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 14,
+      "type": "Tính toán tổng hợp",
+      "question": "Một nhóm làm 3 sản phẩm, mỗi sản phẩm hết 2 giờ 35 phút; sau đó sửa 2 sản phẩm, mỗi sản phẩm hết 1 giờ 25 phút. Tổng thời gian là bao lâu?",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "10 giờ 35 phút",
+      "explanation": "Thời gian làm mới: 2 giờ 35 phút × 3 = 6 giờ 105 phút = 7 giờ 45 phút. Thời gian sửa: 1 giờ 25 phút × 2 = 2 giờ 50 phút. Cộng lại: 7 giờ 45 phút + 2 giờ 50 phút = 10 giờ 35 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 15,
+      "type": "Tính toán tổng hợp",
+      "question": "Tính tổng: 14 giờ 24 phút : 6 + 8 giờ 15 phút : 5.",
+      "response": "Ghi kết quả.",
+      "answer": "4 giờ 03 phút",
+      "explanation": "14 giờ 24 phút = 864 phút; 864 : 6 = 144 phút = 2 giờ 24 phút. 8 giờ 15 phút = 495 phút; 495 : 5 = 99 phút = 1 giờ 39 phút. Cộng: 2 giờ 24 phút + 1 giờ 39 phút = 4 giờ 03 phút."
+    },
+    {
+      "lesson": 71,
+      "number": 16,
+      "type": "Đúng - sai",
+      "question": "Bạn Hoa tính 3 giờ 45 phút × 4 = 15 giờ. Hoa tính đúng hay sai?",
+      "choices": ["Đúng", "Sai"],
+      "answer": "Đúng",
+      "explanation": "Ba giờ nhân 4 bằng 12 giờ; 45 phút nhân 4 bằng 180 phút = 3 giờ. Tổng cộng 12 + 3 = 15 giờ, nên kết quả của Hoa đúng."
+    },
+    {
+      "lesson": 71,
+      "number": 17,
+      "type": "Tình huống đọc sách",
+      "question": "Trung bình Lan đọc một trang sách trong 3 phút. Nếu giữ đều tốc độ đó, Lan đọc 180 trang trong bao lâu?",
+      "response": "Ghi kết quả theo giờ.",
+      "answer": "9 giờ",
+      "explanation": "Thời gian đọc 180 trang là 3 × 180 = 540 phút. Đổi ra giờ: 540 : 60 = 9 giờ."
+    },
+    {
+      "lesson": 71,
+      "number": 18,
+      "type": "Tình huống sản xuất",
+      "question": "Một máy cần 15 phút để hoàn thành một chi tiết. Máy làm liên tục 8 chi tiết như nhau thì mất bao lâu?",
+      "response": "Ghi kết quả theo giờ.",
+      "answer": "2 giờ",
+      "explanation": "Tám chi tiết cần 15 × 8 = 120 phút. Vì 120 : 60 = 2 nên tổng thời gian là 2 giờ."
+    },
+    {
+      "lesson": 71,
+      "number": 19,
+      "type": "Tính thời điểm qua ngày",
+      "question": "Xe khách rời bến lúc 22 giờ 35 phút và đi trong 2 giờ 50 phút. Xe đến nơi lúc mấy giờ?",
+      "response": "Ghi rõ thời điểm và ngày.",
+      "answer": "1 giờ 25 phút ngày hôm sau",
+      "explanation": "Từ 22 giờ 35 phút đến 24 giờ còn 1 giờ 25 phút. Trong 2 giờ 50 phút, sau khi đi đến nửa đêm còn 1 giờ 25 phút. Vì vậy xe đến lúc 1 giờ 25 phút ngày hôm sau."
+    },
+    {
+      "lesson": 71,
+      "number": 20,
+      "type": "So sánh",
+      "question": "So sánh hai khoảng thời gian: 2 giờ 36 phút × 3 và 8 giờ.",
+      "response": "Điền dấu >, < hoặc =.",
+      "answer": "2 giờ 36 phút × 3 < 8 giờ",
+      "explanation": "Ta tính 2 giờ 36 phút × 3 = 6 giờ 108 phút = 7 giờ 48 phút. Vì 7 giờ 48 phút còn thiếu 12 phút mới đủ 8 giờ nên vế trái nhỏ hơn vế phải."
+    },
+    {
+      "lesson": 71,
+      "number": 21,
+      "type": "Sắp xếp",
+      "question": "Sắp xếp từ ngắn đến dài: 1 giờ 20 phút × 2; 5 giờ 30 phút : 2; 170 phút; 3 giờ.",
+      "response": "Ghi thứ tự đúng.",
+      "answer": "1 giờ 20 phút × 2; 5 giờ 30 phút : 2; 170 phút; 3 giờ",
+      "explanation": "Đổi ra phút: 1 giờ 20 phút × 2 = 160 phút; 170 phút; 5 giờ 30 phút : 2 = 330 : 2 = 165 phút; 3 giờ = 180 phút. Theo thứ tự số đo là 160, 165, 170, 180 phút. Vì vậy thứ tự đúng phải là 1 giờ 20 phút × 2; 5 giờ 30 phút : 2; 170 phút; 3 giờ."
+    },
+    {
+      "lesson": 71,
+      "number": 22,
+      "type": "Tình huống thực tế",
+      "question": "Ba bạn cùng dọn thư viện. Nếu làm riêng, mỗi bạn cần 2 giờ 15 phút cho phần việc của mình. Sau khi cả ba hoàn thành, nhóm nghỉ 25 phút. Tổng thời gian cộng dồn của ba phần việc và giờ nghỉ là bao lâu?",
+      "response": "Ghi kết quả.",
+      "answer": "7 giờ 10 phút",
+      "explanation": "Ba phần việc có tổng thời gian cộng dồn là 2 giờ 15 phút × 3 = 6 giờ 45 phút. Cộng thêm 25 phút nghỉ được 6 giờ 70 phút = 7 giờ 10 phút."
+    },
+
+    {
+      "lesson": 73,
+      "number": 1,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một bạn đi xe đạp được 18 km trong 45 phút. Vận tốc của bạn đó là bao nhiêu ki-lô-mét mỗi giờ?",
+      "image": "b73-q01.png",
+      "response": "Viết phép đổi, công thức và đáp số.",
+      "answer": "24 km/h",
+      "explanation": "Đổi 45 phút = 45/60 giờ = 0,75 giờ. Vận tốc bằng quãng đường chia thời gian: 18 : 0,75 = 24. Vậy vận tốc của bạn đi xe đạp là 24 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 2,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một vận động viên chạy 400 m trong 80 giây. Vận tốc trung bình của vận động viên là bao nhiêu mét mỗi giây?",
+      "image": "b73-q02.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "5 m/s",
+      "explanation": "Dùng công thức v = s : t. Thay số: 400 : 80 = 5. Vậy mỗi giây vận động viên chạy trung bình 5 m, tức vận tốc là 5 m/s."
+    },
+    {
+      "lesson": 73,
+      "number": 3,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một chiếc thuyền đi được 36 km trong 1,5 giờ. Vận tốc của thuyền là bao nhiêu?",
+      "image": "b73-q03.png",
+      "response": "Ghi đáp số theo km/h.",
+      "answer": "24 km/h",
+      "explanation": "Vận tốc bằng quãng đường chia thời gian: 36 : 1,5 = 24. Có thể kiểm tra: trong 1 giờ thuyền đi 24 km, trong nửa giờ đi 12 km; tổng là 36 km."
+    },
+    {
+      "lesson": 73,
+      "number": 4,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một con đại bàng bay được 96 km trong 1 giờ. Vận tốc của đại bàng là bao nhiêu ki-lô-mét mỗi giờ?",
+      "image": "b73-q04.png",
+      "choices": ["A. 48 km/h", "B. 96 km/h", "C. 97 km/h", "D. 192 km/h"],
+      "answer": "B. 96 km/h",
+      "explanation": "Vận tốc bằng quãng đường chia cho thời gian. Ta có 96 : 1 = 96 km/h. Khi thời gian đúng 1 giờ, số ki-lô-mét đi được cũng chính là số đo vận tốc theo km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 5,
+      "type": "Tính vận tốc số thập phân - quan sát hình",
+      "question": "Một con ốc sên bò được 4,2 m trong 35 phút. Vận tốc trung bình của ốc sên là bao nhiêu mét mỗi phút?",
+      "image": "b73-q05.png",
+      "response": "Ghi đáp số theo m/phút.",
+      "answer": "0,12 m/phút",
+      "explanation": "Ta lấy quãng đường chia thời gian: 4,2 : 35 = 0,12. Nghĩa là trung bình mỗi phút ốc sên bò được 0,12 m, hay 12 cm."
+    },
+    {
+      "lesson": 73,
+      "number": 6,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một con cá heo bơi 240 m trong 12 giây. Vận tốc của cá heo là bao nhiêu mét mỗi giây?",
+      "image": "b73-q06.png",
+      "response": "Viết phép tính.",
+      "answer": "20 m/s",
+      "explanation": "Áp dụng công thức v = s : t, ta có 240 : 12 = 20. Vậy trong mỗi giây cá heo bơi trung bình 20 m, nên vận tốc là 20 m/s."
+    },
+    {
+      "lesson": 73,
+      "number": 7,
+      "type": "Đổi thời gian rồi tính vận tốc - quan sát hình",
+      "question": "Một xe máy đi 12 km trong 20 phút. Vận tốc của xe máy là bao nhiêu km/h?",
+      "image": "b73-q07.png",
+      "response": "Trình bày bước đổi thời gian.",
+      "answer": "36 km/h",
+      "explanation": "Đổi 20 phút = 20/60 giờ = 1/3 giờ. Vận tốc là 12 : 1/3 = 12 × 3 = 36 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 8,
+      "type": "Tình huống thực tế - quan sát hình",
+      "question": "Một học sinh đi bộ 4,8 km từ nhà đến trường trong 1 giờ 12 phút. Vận tốc đi bộ trung bình là bao nhiêu km/h?",
+      "image": "b73-q08.png",
+      "response": "Viết phép đổi và phép tính.",
+      "answer": "4 km/h",
+      "explanation": "Đổi 1 giờ 12 phút = 1 + 12/60 = 1,2 giờ. Vận tốc là 4,8 : 1,2 = 4 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 9,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một chiếc ca nô đi 15 km trong 50 phút. Vận tốc của ca nô là bao nhiêu km/h?",
+      "image": "b73-q09.png",
+      "response": "Ghi đáp số.",
+      "answer": "18 km/h",
+      "explanation": "Đổi 50 phút = 5/6 giờ. Vận tốc là 15 : 5/6 = 15 × 6/5 = 18 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 10,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Xe giao hàng đi từ kho đến cửa hàng, quãng đường 72 km, hết 1 giờ 36 phút. Vận tốc trung bình của xe là bao nhiêu km/h?",
+      "image": "b73-q10.png",
+      "response": "Trình bày cách tính.",
+      "answer": "45 km/h",
+      "explanation": "Đổi 1 giờ 36 phút = 1 + 36/60 = 1,6 giờ. Vận tốc là 72 : 1,6 = 45 km/h. Kiểm tra: 45 × 1,6 = 72 km."
+    },
+    {
+      "lesson": 73,
+      "number": 11,
+      "type": "Tính vận tốc - quan sát hình",
+      "question": "Một đoàn tàu đi 1 728 km trong 24 giờ. Vận tốc trung bình của tàu là bao nhiêu km/h?",
+      "image": "b73-q11.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "72 km/h",
+      "explanation": "Vận tốc trung bình là 1 728 : 24. Ta tính được 72 vì 72 × 24 = 1 728. Vậy tàu đi trung bình 72 km trong mỗi giờ."
+    },
+    {
+      "lesson": 73,
+      "number": 12,
+      "type": "Nối công thức",
+      "question": "Nối đại lượng với công thức đúng: (a) vận tốc; (b) quãng đường; (c) thời gian. Công thức: (1) s : v; (2) v × t; (3) s : t.",
+      "response": "Ghi các cặp nối.",
+      "answer": "a-3; b-2; c-1",
+      "explanation": "Vận tốc bằng quãng đường chia thời gian nên a-3. Quãng đường bằng vận tốc nhân thời gian nên b-2. Thời gian bằng quãng đường chia vận tốc nên c-1."
+    },
+    {
+      "lesson": 73,
+      "number": 13,
+      "type": "Tìm thời gian",
+      "question": "Một ô tô đi quãng đường 54 km với vận tốc 36 km/h. Ô tô đi hết quãng đường trong bao lâu?",
+      "response": "Ghi kết quả theo giờ và phút.",
+      "answer": "1 giờ 30 phút",
+      "explanation": "Thời gian bằng quãng đường chia vận tốc: 54 : 36 = 1,5 giờ. Vì 0,5 giờ = 30 phút nên thời gian là 1 giờ 30 phút."
+    },
+    {
+      "lesson": 73,
+      "number": 14,
+      "type": "Tìm thời gian",
+      "question": "Một xe khách đi 120 km với vận tốc trung bình 60 km/h. Xe đi trong bao lâu?",
+      "choices": ["A. 1 giờ", "B. 1 giờ 30 phút", "C. 2 giờ", "D. 3 giờ"],
+      "answer": "C. 2 giờ",
+      "explanation": "Thời gian t = s : v = 120 : 60 = 2 giờ. Ta cũng có thể kiểm tra: 60 km/h × 2 giờ = 120 km."
+    },
+    {
+      "lesson": 73,
+      "number": 15,
+      "type": "Tìm quãng đường",
+      "question": "Một người chạy với vận tốc 6 m/s trong 45 giây. Người đó chạy được bao nhiêu mét?",
+      "response": "Ghi phép tính.",
+      "answer": "270 m",
+      "explanation": "Quãng đường bằng vận tốc nhân thời gian: s = 6 × 45 = 270 m. Các đơn vị m/s và giây phù hợp nên kết quả là mét."
+    },
+    {
+      "lesson": 73,
+      "number": 16,
+      "type": "Đổi đơn vị vận tốc",
+      "question": "Đổi 5 m/s ra km/h.",
+      "response": "Trình bày cách đổi.",
+      "answer": "18 km/h",
+      "explanation": "Trong 1 giờ có 3 600 giây nên đi được 5 × 3 600 = 18 000 m = 18 km. Vì vậy 5 m/s = 18 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 17,
+      "type": "So sánh vận tốc",
+      "question": "So sánh 20 km/h và 300 m/phút.",
+      "response": "Điền dấu >, < hoặc = và giải thích.",
+      "answer": "20 km/h > 300 m/phút",
+      "explanation": "Đổi 300 m/phút ra km/h: trong 60 phút đi 300 × 60 = 18 000 m = 18 km, nên bằng 18 km/h. Vì 20 > 18 nên 20 km/h lớn hơn 300 m/phút."
+    },
+    {
+      "lesson": 73,
+      "number": 18,
+      "type": "Đúng - sai",
+      "question": "Một xe đi 90 km trong 2 giờ thì có vận tốc trung bình 45 km/h.",
+      "choices": ["Đúng", "Sai"],
+      "answer": "Đúng",
+      "explanation": "Vận tốc trung bình là 90 : 2 = 45 km/h. Nhận định đã dùng đúng công thức và đúng phép tính nên là đúng."
+    },
+    {
+      "lesson": 73,
+      "number": 19,
+      "type": "Bài toán nhiều chặng",
+      "question": "Một người đi 12 km trong 30 phút rồi đi tiếp 18 km trong 30 phút. Tính vận tốc trung bình trên cả quãng đường.",
+      "response": "Ghi đáp số theo km/h.",
+      "answer": "30 km/h",
+      "explanation": "Tổng quãng đường là 12 + 18 = 30 km. Tổng thời gian là 30 + 30 = 60 phút = 1 giờ. Vận tốc trung bình trên cả hành trình là 30 : 1 = 30 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 20,
+      "type": "Ước lượng và làm tròn",
+      "question": "Một xe đạp đi 10 km trong 28 phút. Tính vận tốc theo km/h và làm tròn đến hàng đơn vị.",
+      "response": "Ghi phép tính và kết quả làm tròn.",
+      "answer": "Khoảng 21 km/h",
+      "explanation": "Đổi 28 phút = 28/60 giờ. Vận tốc là 10 : 28/60 = 10 × 60 : 28 ≈ 21,43 km/h. Làm tròn đến hàng đơn vị được 21 km/h."
+    },
+    {
+      "lesson": 73,
+      "number": 21,
+      "type": "Tính thời điểm đến",
+      "question": "Một ô tô rời bến lúc 7 giờ 15 phút, đi 135 km với vận tốc 54 km/h và không nghỉ. Ô tô đến nơi lúc mấy giờ?",
+      "response": "Ghi thời điểm đến.",
+      "answer": "9 giờ 45 phút",
+      "explanation": "Thời gian đi là 135 : 54 = 2,5 giờ = 2 giờ 30 phút. Cộng vào 7 giờ 15 phút: 7 giờ 15 phút + 2 giờ 30 phút = 9 giờ 45 phút."
+    },
+    {
+      "lesson": 73,
+      "number": 22,
+      "type": "Nối tình huống với vận tốc",
+      "question": "Nối mỗi tình huống với vận tốc phù hợp: (a) người đi bộ; (b) xe đạp; (c) ô tô trên đường trường. Các vận tốc: (1) 60 km/h; (2) 5 km/h; (3) 18 km/h.",
+      "response": "Ghi các cặp nối và giải thích ngắn.",
+      "answer": "a-2; b-3; c-1",
+      "explanation": "Người đi bộ thường chậm nhất, khoảng 5 km/h. Xe đạp nhanh hơn người đi bộ, khoảng 18 km/h. Ô tô trên đường trường thường nhanh nhất trong ba phương tiện, phù hợp với 60 km/h."
+    }
+  ]
+}
