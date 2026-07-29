@@ -1,0 +1,635 @@
+{
+  "title": "Ngân hàng câu hỏi bổ sung Toán 5 Cánh Diều - Bài 75, 76, 77",
+  "source": "Biên soạn thủ công sau khi đối chiếu trực tiếp SGK Toán 5 Cánh Diều, tập hai: Bài 75 trang 65-66, Bài 76 trang 67-68, Bài 77 trang 69-71.",
+  "questions": [
+    {
+      "lesson": 75,
+      "number": 1,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Minh và Nam cùng xuất phát từ một điểm rồi đi xe đạp ngược chiều nhau. Minh đi với vận tốc 16 km/h, Nam đi với vận tốc 12 km/h. Sau 2 giờ, hai bạn cách nhau bao nhiêu ki-lô-mét?",
+      "image": "b75-q01.png",
+      "choices": ["A. 8 km", "B. 28 km", "C. 32 km", "D. 56 km"],
+      "answer": "D. 56 km",
+      "explanation": "Sau mỗi giờ, khoảng cách giữa hai bạn tăng thêm 16 + 12 = 28 km vì hai bạn đi ngược chiều. Trong 2 giờ, khoảng cách tăng thành 28 × 2 = 56 km. Vậy sau 2 giờ, Minh và Nam cách nhau 56 km."
+    },
+    {
+      "lesson": 75,
+      "number": 2,
+      "type": "Điền số - quan sát hình",
+      "question": "Hai đoàn tàu cách nhau 220 km và cùng chạy về phía nhau. Tàu A chạy 24,5 km/h, tàu B chạy 30,5 km/h. Nếu cùng khởi hành một lúc thì sau bao lâu hai tàu gặp nhau?",
+      "image": "b75-q02.png",
+      "response": "Viết phép tính và thời gian gặp nhau.",
+      "answer": "4 giờ",
+      "explanation": "Trong 1 giờ, hai tàu rút ngắn khoảng cách được 24,5 + 30,5 = 55 km. Thời gian để rút ngắn hết 220 km là 220 : 55 = 4 giờ. Vậy hai tàu gặp nhau sau 4 giờ."
+    },
+    {
+      "lesson": 75,
+      "number": 3,
+      "type": "Tình huống thực tế - quan sát hình",
+      "question": "Nhà An và nhà Bình cách nhau 1 080 m. Hai bạn cùng đi về phía điểm hẹn nằm giữa hai nhà; An đi 70 m/phút, Bình đi 65 m/phút. Sau bao nhiêu phút hai bạn gặp nhau?",
+      "image": "b75-q03.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "8 phút",
+      "explanation": "Mỗi phút, An và Bình cùng làm khoảng cách giữa hai bạn giảm 70 + 65 = 135 m. Thời gian để hai bạn đi hết khoảng cách 1 080 m là 1 080 : 135 = 8 phút. Vì vậy hai bạn gặp nhau sau 8 phút."
+    },
+    {
+      "lesson": 75,
+      "number": 4,
+      "type": "Suy luận chuyển động trên đường tròn - quan sát hình",
+      "question": "Hai bạn chạy từ cùng một vạch xuất phát theo hai chiều ngược nhau trên đường chạy hình tròn. Vận tốc của hai bạn là 4,5 m/s và 5,5 m/s. Sau 40 giây hai bạn gặp nhau lần đầu. Đường chạy dài bao nhiêu mét?",
+      "image": "b75-q04.png",
+      "response": "Tính độ dài một vòng đường chạy.",
+      "answer": "400 m",
+      "explanation": "Khi chạy ngược chiều, trong mỗi giây hai bạn đi được tổng cộng 4,5 + 5,5 = 10 m trên đường tròn. Đến lần gặp đầu tiên, tổng quãng đường hai bạn đã chạy đúng bằng một vòng. Độ dài đường chạy là 10 × 40 = 400 m."
+    },
+    {
+      "lesson": 75,
+      "number": 5,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Hai thuyền máy xuất phát cùng lúc từ hai bến cách nhau 180 km và đi về phía nhau. Thuyền xanh chạy 22 km/h, thuyền đỏ chạy 23 km/h. Hai thuyền gặp nhau sau bao lâu?",
+      "image": "b75-q05.png",
+      "choices": ["A. 3 giờ", "B. 4 giờ", "C. 5 giờ", "D. 8 giờ"],
+      "answer": "B. 4 giờ",
+      "explanation": "Mỗi giờ, khoảng cách giữa hai thuyền giảm 22 + 23 = 45 km. Thời gian gặp nhau là 180 : 45 = 4 giờ. Do đó chọn B."
+    },
+    {
+      "lesson": 75,
+      "number": 6,
+      "type": "Điền số - quan sát hình",
+      "question": "Hai ô tô cùng rời một thị trấn và đi theo hai hướng ngược nhau. Xe đỏ chạy 48 km/h, xe xanh chạy 52 km/h. Sau 1,5 giờ, hai xe cách nhau bao nhiêu ki-lô-mét?",
+      "image": "b75-q06.png",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "150 km",
+      "explanation": "Trong 1 giờ, khoảng cách giữa hai xe tăng 48 + 52 = 100 km. Sau 1,5 giờ, khoảng cách là 100 × 1,5 = 150 km. Vậy hai xe cách nhau 150 km."
+    },
+    {
+      "lesson": 75,
+      "number": 7,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Hai chú chim bay từ hai cây cách nhau 900 m về phía nhau. Chim xanh bay 12 m/s, chim đỏ bay 13 m/s. Hai chú chim gặp nhau sau bao nhiêu giây?",
+      "image": "b75-q07.png",
+      "choices": ["A. 25 giây", "B. 30 giây", "C. 36 giây", "D. 75 giây"],
+      "answer": "C. 36 giây",
+      "explanation": "Mỗi giây, hai chú chim rút ngắn khoảng cách được 12 + 13 = 25 m. Thời gian gặp nhau là 900 : 25 = 36 giây. Vì vậy đáp án đúng là C."
+    },
+    {
+      "lesson": 75,
+      "number": 8,
+      "type": "Điền số - quan sát hình",
+      "question": "Hai xe buýt khởi hành cùng lúc từ hai thị trấn cách nhau 270 km và đi về phía nhau. Mỗi xe chạy 45 km/h. Sau bao lâu hai xe gặp nhau?",
+      "image": "b75-q08.png",
+      "response": "Điền số giờ thích hợp.",
+      "answer": "3 giờ",
+      "explanation": "Tổng vận tốc của hai xe là 45 + 45 = 90 km/h. Thời gian gặp nhau được tính bằng khoảng cách ban đầu chia cho tổng vận tốc: 270 : 90 = 3 giờ."
+    },
+    {
+      "lesson": 75,
+      "number": 9,
+      "type": "Tình huống thực tế - quan sát hình",
+      "question": "Huy và Châu cùng rời nhà để đi đến trường nằm giữa hai nhà. Huy đi 72 m/phút, Châu đi 63 m/phút và hai bạn cùng đến trường sau 8 phút. Hai nhà cách nhau bao nhiêu mét?",
+      "image": "b75-q09.png",
+      "response": "Tính khoảng cách giữa hai nhà.",
+      "answer": "1 080 m",
+      "explanation": "Trong 8 phút, Huy đi được 72 × 8 = 576 m, còn Châu đi được 63 × 8 = 504 m. Trường nằm giữa hai nhà nên khoảng cách giữa hai nhà bằng tổng hai quãng đường: 576 + 504 = 1 080 m."
+    },
+    {
+      "lesson": 75,
+      "number": 10,
+      "type": "Suy luận chuyển động - quan sát hình",
+      "question": "Hai thuyền kayak xuất phát ở hai đầu đường đua dài 600 m và chèo về phía nhau. Thuyền đỏ đi 4 m/s, thuyền xanh đi 6 m/s. Khi gặp nhau, thuyền đỏ đã đi được bao nhiêu mét?",
+      "image": "b75-q10.png",
+      "response": "Tính thời gian gặp nhau rồi tính quãng đường thuyền đỏ đi.",
+      "answer": "240 m",
+      "explanation": "Tổng vận tốc là 4 + 6 = 10 m/s nên hai thuyền gặp nhau sau 600 : 10 = 60 giây. Trong 60 giây, thuyền đỏ đi được 4 × 60 = 240 m. Vậy thuyền đỏ đã đi 240 m."
+    },
+    {
+      "lesson": 75,
+      "number": 11,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Hai xe giao hàng cùng rời kho và đi theo hai hướng ngược nhau. Xe xanh chạy 42 km/h, xe lục chạy 38 km/h. Sau 2 giờ, khoảng cách giữa hai xe là bao nhiêu?",
+      "image": "b75-q11.png",
+      "choices": ["A. 8 km", "B. 80 km", "C. 152 km", "D. 160 km"],
+      "answer": "D. 160 km",
+      "explanation": "Trong mỗi giờ, khoảng cách giữa hai xe tăng 42 + 38 = 80 km. Sau 2 giờ, khoảng cách là 80 × 2 = 160 km. Do đó chọn D."
+    },
+    {
+      "lesson": 75,
+      "number": 12,
+      "type": "Đúng - sai",
+      "question": "Hai người đi từ hai điểm khác nhau về phía nhau. Muốn tính thời gian gặp nhau, ta lấy khoảng cách ban đầu chia cho tổng hai vận tốc. Khẳng định này đúng hay sai?",
+      "response": "Ghi Đúng hoặc Sai và giải thích ngắn gọn.",
+      "answer": "Đúng",
+      "explanation": "Khi hai người đi về phía nhau, mỗi đơn vị thời gian khoảng cách giảm một lượng bằng tổng hai vận tốc. Vì thế số đơn vị thời gian cần có bằng khoảng cách ban đầu chia cho tổng vận tốc. Công thức là t = s : (v₁ + v₂)."
+    },
+    {
+      "lesson": 75,
+      "number": 13,
+      "type": "Trắc nghiệm ABCD",
+      "question": "Hai xe đạp cách nhau 54 km và đi về phía nhau với vận tốc 12 km/h và 15 km/h. Thời gian gặp nhau là:",
+      "choices": ["A. 1 giờ", "B. 2 giờ", "C. 3 giờ", "D. 4 giờ"],
+      "answer": "B. 2 giờ",
+      "explanation": "Tổng vận tốc của hai xe là 12 + 15 = 27 km/h. Thời gian gặp nhau là 54 : 27 = 2 giờ. Vì vậy chọn B."
+    },
+    {
+      "lesson": 75,
+      "number": 14,
+      "type": "Điền số",
+      "question": "Hai bạn đi bộ cùng xuất phát từ một điểm theo hai hướng ngược nhau. Sau 30 phút, một bạn đi được 2,4 km và bạn kia đi được 1,8 km. Khi đó hai bạn cách nhau ____ km.",
+      "response": "Điền một số thích hợp.",
+      "answer": "4,2 km",
+      "explanation": "Hai bạn đi ngược hướng nên khoảng cách giữa hai bạn bằng tổng quãng đường đã đi. Ta tính 2,4 + 1,8 = 4,2 km. Vậy số cần điền là 4,2."
+    },
+    {
+      "lesson": 75,
+      "number": 15,
+      "type": "Tìm thành phần chưa biết",
+      "question": "Hai ô tô cách nhau 315 km và đi về phía nhau. Sau 3 giờ chúng gặp nhau. Xe thứ nhất chạy 48 km/h. Tính vận tốc xe thứ hai.",
+      "response": "Viết đầy đủ các bước tính.",
+      "answer": "57 km/h",
+      "explanation": "Trong 3 giờ, mỗi giờ hai xe phải rút ngắn 315 : 3 = 105 km, nên 105 km/h là tổng vận tốc. Vận tốc xe thứ hai là 105 - 48 = 57 km/h. Vậy xe thứ hai chạy 57 km/h."
+    },
+    {
+      "lesson": 75,
+      "number": 16,
+      "type": "Sắp xếp bước giải",
+      "question": "Sắp xếp ba bước sau để giải bài toán hai vật đi ngược chiều từ cùng một điểm: (1) Nhân tổng vận tốc với thời gian; (2) Cộng hai vận tốc; (3) Kết luận khoảng cách giữa hai vật.",
+      "response": "Ghi thứ tự đúng của các bước.",
+      "answer": "(2) → (1) → (3)",
+      "explanation": "Trước hết cần cộng hai vận tốc để biết mỗi giờ khoảng cách tăng bao nhiêu. Tiếp theo lấy tổng vận tốc nhân với thời gian để tìm khoảng cách. Cuối cùng mới ghi kết luận, nên thứ tự đúng là (2), (1), (3)."
+    },
+    {
+      "lesson": 75,
+      "number": 17,
+      "type": "Trắc nghiệm ABCD",
+      "question": "Hai người cùng xuất phát từ A và đi ngược chiều nhau. Người thứ nhất đi 5 km/h, người thứ hai đi 4 km/h. Sau bao lâu họ cách nhau 22,5 km?",
+      "choices": ["A. 2 giờ", "B. 2,5 giờ", "C. 3 giờ", "D. 4,5 giờ"],
+      "answer": "B. 2,5 giờ",
+      "explanation": "Mỗi giờ, khoảng cách giữa hai người tăng 5 + 4 = 9 km. Thời gian để khoảng cách đạt 22,5 km là 22,5 : 9 = 2,5 giờ. Vì vậy chọn B."
+    },
+    {
+      "lesson": 75,
+      "number": 18,
+      "type": "So sánh",
+      "question": "Cặp A có hai xe đi về phía nhau với vận tốc 35 km/h và 45 km/h. Cặp B có hai xe đi về phía nhau với vận tốc 38 km/h và 42 km/h. Nếu khoảng cách ban đầu bằng nhau thì cặp nào gặp nhau trước?",
+      "response": "Nêu kết luận và giải thích.",
+      "answer": "Hai cặp gặp nhau sau thời gian bằng nhau",
+      "explanation": "Tổng vận tốc của cặp A là 35 + 45 = 80 km/h. Tổng vận tốc của cặp B là 38 + 42 = 80 km/h. Khoảng cách ban đầu giống nhau và tốc độ rút ngắn khoảng cách cũng giống nhau nên thời gian gặp nhau bằng nhau."
+    },
+    {
+      "lesson": 75,
+      "number": 19,
+      "type": "Tình huống thực tế",
+      "question": "Hai đội sửa đường bắt đầu từ hai đầu một đoạn đường dài 7,2 km và làm về phía nhau. Mỗi ngày đội thứ nhất làm được 0,45 km, đội thứ hai làm được 0,35 km. Sau bao nhiêu ngày hai đội hoàn thành và gặp nhau?",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "9 ngày",
+      "explanation": "Mỗi ngày hai đội làm được tổng cộng 0,45 + 0,35 = 0,8 km. Số ngày cần để làm hết 7,2 km là 7,2 : 0,8 = 9 ngày. Vậy sau 9 ngày hai đội gặp nhau."
+    },
+    {
+      "lesson": 75,
+      "number": 20,
+      "type": "Đúng - sai",
+      "question": "Hai xe cùng xuất phát từ một điểm theo hai hướng ngược nhau, có vận tốc 40 km/h và 50 km/h. Bạn Mai tính khoảng cách sau 3 giờ bằng (50 - 40) × 3 = 30 km. Cách tính của Mai đúng hay sai?",
+      "response": "Ghi Đúng hoặc Sai và sửa lại nếu sai.",
+      "answer": "Sai; khoảng cách đúng là 270 km",
+      "explanation": "Hai xe đi ngược hướng nên phải cộng vận tốc, không lấy hiệu. Mỗi giờ khoảng cách tăng 40 + 50 = 90 km; sau 3 giờ là 90 × 3 = 270 km. Mai đã dùng nhầm quy tắc của chuyển động cùng chiều."
+    },
+    {
+      "lesson": 75,
+      "number": 21,
+      "type": "Bài toán nhiều bước",
+      "question": "Hai xe khởi hành từ hai thành phố cách nhau 246 km và đi về phía nhau. Xe thứ nhất chạy 54 km/h. Sau 2 giờ, hai xe còn cách nhau 26 km. Tính vận tốc xe thứ hai.",
+      "response": "Trình bày lời giải đầy đủ.",
+      "answer": "56 km/h",
+      "explanation": "Trong 2 giờ, tổng quãng đường hai xe đã đi là 246 - 26 = 220 km. Tổng vận tốc là 220 : 2 = 110 km/h. Vận tốc xe thứ hai là 110 - 54 = 56 km/h."
+    },
+    {
+      "lesson": 75,
+      "number": 22,
+      "type": "Tình huống vận dụng",
+      "question": "An và Bình đi xe đạp từ hai đầu một con đường dài 38 km về phía nhau. An khởi hành lúc 7 giờ với vận tốc 10 km/h; Bình khởi hành lúc 7 giờ 30 phút với vận tốc 12 km/h. Hai bạn gặp nhau lúc mấy giờ?",
+      "response": "Tính thời điểm gặp nhau.",
+      "answer": "9 giờ",
+      "explanation": "Trong 30 phút đi trước, An đi được 10 × 0,5 = 5 km, nên lúc 7 giờ 30 phút hai bạn còn cách 38 - 5 = 33 km. Từ lúc đó, khoảng cách giảm với vận tốc 10 + 12 = 22 km/h; thời gian gặp là 33 : 22 = 1,5 giờ, tức 1 giờ 30 phút. Vì vậy hai bạn gặp nhau lúc 9 giờ."
+    },
+
+    {
+      "lesson": 76,
+      "number": 1,
+      "type": "Quan sát bảng thành tích",
+      "question": "Năm bạn cùng chạy cự li 100 m với thành tích: Hòa 15 giây, Long 14 giây, Hùng 13 giây, Tùng 17 giây, Bảo 16 giây. Bạn nào chạy nhanh nhất và bạn nào chạy chậm nhất?",
+      "image": "b76-q01.png",
+      "response": "Ghi tên hai bạn và giải thích.",
+      "answer": "Hùng nhanh nhất; Tùng chậm nhất",
+      "explanation": "Cùng chạy một quãng đường 100 m, bạn dùng ít thời gian hơn sẽ chạy nhanh hơn. Hùng chỉ mất 13 giây, ít nhất trong năm bạn, còn Tùng mất 17 giây, nhiều nhất. Vì vậy Hùng nhanh nhất và Tùng chậm nhất."
+    },
+    {
+      "lesson": 76,
+      "number": 2,
+      "type": "Điền số - quan sát hình",
+      "question": "Một con đà điểu chạy với vận tốc 17 m/s trên quãng đường 3 060 m. Nó chạy hết quãng đường trong bao nhiêu phút?",
+      "image": "b76-q02.png",
+      "response": "Tính thời gian rồi đổi ra phút.",
+      "answer": "3 phút",
+      "explanation": "Thời gian chạy là 3 060 : 17 = 180 giây. Vì 1 phút = 60 giây nên 180 giây = 180 : 60 = 3 phút. Vậy đà điểu chạy hết quãng đường trong 3 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 3,
+      "type": "Bài toán hai bước - quan sát hình",
+      "question": "Một thuyền đua đi 100 m hết 40 giây và giữ nguyên vận tốc. Thuyền đi quãng đường 1 200 m hết bao nhiêu phút?",
+      "image": "b76-q03.png",
+      "response": "Tính vận tốc rồi tính thời gian.",
+      "answer": "8 phút",
+      "explanation": "Vận tốc của thuyền là 100 : 40 = 2,5 m/s. Thời gian đi 1 200 m là 1 200 : 2,5 = 480 giây. Đổi 480 giây = 8 phút, nên đáp số là 8 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 4,
+      "type": "Vận dụng đơn vị - quan sát hình",
+      "question": "Một tàu vũ trụ bay với vận tốc 10 km/s. Khoảng cách từ Trái Đất đến Mặt Trăng là 378 000 km. Nếu bay đều và bỏ qua thời gian tăng tốc, tàu cần bao lâu để đến Mặt Trăng?",
+      "image": "b76-q04.png",
+      "response": "Ghi kết quả theo giờ và phút.",
+      "answer": "10 giờ 30 phút",
+      "explanation": "Thời gian bay là 378 000 : 10 = 37 800 giây. Đổi ra giờ: 37 800 : 3 600 = 10 giờ và còn 1 800 giây; 1 800 giây = 30 phút. Vậy tàu cần 10 giờ 30 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 5,
+      "type": "Tình huống thực tế - quan sát hình",
+      "question": "Một thửa ruộng hình chữ nhật dài 300 m, rộng 70 m. Máy cày đi dọc theo chiều dài với vận tốc 6 km/h và mỗi lượt cày được một dải rộng 0,5 m. Hỏi máy cần bao nhiêu lượt để cày kín ruộng và mỗi lượt kéo dài bao nhiêu phút?",
+      "image": "b76-q05.png",
+      "response": "Tính số lượt và thời gian của một lượt.",
+      "answer": "140 lượt; 3 phút mỗi lượt",
+      "explanation": "Số dải cày là 70 : 0,5 = 140 lượt. Đổi 6 km/h = 6 000 m trong 60 phút = 100 m/phút. Thời gian đi hết chiều dài 300 m là 300 : 100 = 3 phút, nên cần 140 lượt và mỗi lượt kéo dài 3 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 6,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Một ô tô đi 420 km trong 6 giờ. Vận tốc trung bình của ô tô là:",
+      "image": "b76-q06.png",
+      "choices": ["A. 60 km/h", "B. 65 km/h", "C. 70 km/h", "D. 72 km/h"],
+      "answer": "C. 70 km/h",
+      "explanation": "Vận tốc bằng quãng đường chia cho thời gian. Ta có 420 : 6 = 70 km/h. Do đó đáp án đúng là C."
+    },
+    {
+      "lesson": 76,
+      "number": 7,
+      "type": "Đổi đơn vị - quan sát hình",
+      "question": "Một bạn bơi 150 m trong 2 phút 30 giây. Tính vận tốc của bạn theo mét trên giây.",
+      "image": "b76-q07.png",
+      "response": "Đổi thời gian ra giây rồi tính vận tốc.",
+      "answer": "1 m/s",
+      "explanation": "Đổi 2 phút 30 giây = 2 × 60 + 30 = 150 giây. Vận tốc là 150 : 150 = 1 m/s. Vậy bạn bơi với vận tốc 1 m/s."
+    },
+    {
+      "lesson": 76,
+      "number": 8,
+      "type": "Trắc nghiệm ABCD - quan sát hình",
+      "question": "Một máy bay bay quãng đường 900 km với vận tốc 600 km/h. Thời gian bay là:",
+      "image": "b76-q08.png",
+      "choices": ["A. 1 giờ 15 phút", "B. 1 giờ 30 phút", "C. 1 giờ 45 phút", "D. 2 giờ"],
+      "answer": "B. 1 giờ 30 phút",
+      "explanation": "Thời gian bay là 900 : 600 = 1,5 giờ. Phần 0,5 giờ bằng 30 phút, nên 1,5 giờ = 1 giờ 30 phút. Chọn B."
+    },
+    {
+      "lesson": 76,
+      "number": 9,
+      "type": "Điền số - quan sát hình",
+      "question": "Một thuyền buồm đi 18 km trong 1 giờ 12 phút. Tính vận tốc của thuyền theo ki-lô-mét trên giờ.",
+      "image": "b76-q09.png",
+      "response": "Đổi thời gian ra giờ rồi tính.",
+      "answer": "15 km/h",
+      "explanation": "Mười hai phút bằng 12 : 60 = 0,2 giờ, nên 1 giờ 12 phút = 1,2 giờ. Vận tốc của thuyền là 18 : 1,2 = 15 km/h."
+    },
+    {
+      "lesson": 76,
+      "number": 10,
+      "type": "Tính thời gian - quan sát hình",
+      "question": "Một đoàn tàu đi quãng đường 240 km với vận tốc 120 km/h. Tàu đi hết quãng đường trong bao lâu?",
+      "image": "b76-q10.png",
+      "response": "Điền số giờ thích hợp.",
+      "answer": "2 giờ",
+      "explanation": "Thời gian bằng quãng đường chia cho vận tốc. Ta tính 240 : 120 = 2 giờ. Vậy tàu đi hết quãng đường trong 2 giờ."
+    },
+    {
+      "lesson": 76,
+      "number": 11,
+      "type": "Tình huống thực tế - quan sát hình",
+      "question": "Một rô-bốt giao sách đi 2,4 km trong 30 phút. Tính vận tốc của rô-bốt theo ki-lô-mét trên giờ.",
+      "image": "b76-q11.png",
+      "response": "Đổi thời gian ra giờ rồi tính vận tốc.",
+      "answer": "4,8 km/h",
+      "explanation": "Ba mươi phút bằng 0,5 giờ. Vận tốc của rô-bốt là 2,4 : 0,5 = 4,8 km/h. Vậy rô-bốt di chuyển với vận tốc 4,8 km/h."
+    },
+    {
+      "lesson": 76,
+      "number": 12,
+      "type": "Điền bảng",
+      "question": "Một xe đi đều với vận tốc 45 km/h trong 2,5 giờ. Điền quãng đường xe đã đi.",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "112,5 km",
+      "explanation": "Quãng đường bằng vận tốc nhân với thời gian. Ta tính 45 × 2,5 = 112,5 km. Vậy xe đi được 112,5 km."
+    },
+    {
+      "lesson": 76,
+      "number": 13,
+      "type": "Trắc nghiệm ABCD",
+      "question": "Đổi 72 km/h ra mét trên giây. Kết quả đúng là:",
+      "choices": ["A. 2 m/s", "B. 7,2 m/s", "C. 20 m/s", "D. 25 m/s"],
+      "answer": "C. 20 m/s",
+      "explanation": "Ta có 72 km = 72 000 m và 1 giờ = 3 600 giây. Do đó 72 km/h = 72 000 : 3 600 = 20 m/s. Chọn C."
+    },
+    {
+      "lesson": 76,
+      "number": 14,
+      "type": "Đúng - sai",
+      "question": "Một người đi 12 km trong 2 giờ. Bạn An nói vận tốc của người đó là 24 km/h. An nói đúng hay sai?",
+      "response": "Ghi Đúng hoặc Sai và sửa lại nếu cần.",
+      "answer": "Sai; vận tốc là 6 km/h",
+      "explanation": "Vận tốc phải được tính bằng quãng đường chia cho thời gian, không phải nhân. Ta có 12 : 2 = 6 km/h. Vì thế lời của An sai."
+    },
+    {
+      "lesson": 76,
+      "number": 15,
+      "type": "So sánh vận tốc",
+      "question": "Bạn A chạy 200 m trong 40 giây. Bạn B chạy 150 m trong 25 giây. Bạn nào chạy nhanh hơn?",
+      "response": "Tính vận tốc từng bạn rồi so sánh.",
+      "answer": "Bạn B chạy nhanh hơn",
+      "explanation": "Vận tốc của A là 200 : 40 = 5 m/s. Vận tốc của B là 150 : 25 = 6 m/s. Vì 6 m/s lớn hơn 5 m/s nên bạn B chạy nhanh hơn."
+    },
+    {
+      "lesson": 76,
+      "number": 16,
+      "type": "Tìm quãng đường",
+      "question": "Một xe cứu hộ chạy với vận tốc 54 km/h trong 40 phút. Xe đi được bao nhiêu ki-lô-mét?",
+      "response": "Đổi thời gian ra giờ và tính.",
+      "answer": "36 km",
+      "explanation": "Bốn mươi phút bằng 40/60 = 2/3 giờ. Quãng đường xe đi là 54 × 2/3 = 36 km. Vậy xe cứu hộ đi được 36 km."
+    },
+    {
+      "lesson": 76,
+      "number": 17,
+      "type": "Tìm thời gian",
+      "question": "Một người đi bộ với vận tốc 4,5 km/h trên quãng đường 6,75 km. Người đó đi hết quãng đường trong bao lâu?",
+      "response": "Ghi kết quả theo giờ và phút.",
+      "answer": "1 giờ 30 phút",
+      "explanation": "Thời gian là 6,75 : 4,5 = 1,5 giờ. Phần 0,5 giờ bằng 30 phút. Vì vậy người đó đi hết quãng đường trong 1 giờ 30 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 18,
+      "type": "Sắp xếp",
+      "question": "Sắp xếp các vận tốc sau theo thứ tự từ chậm đến nhanh: 5 m/s; 12 km/h; 18 km/h.",
+      "response": "Đổi về cùng đơn vị rồi sắp xếp.",
+      "answer": "12 km/h; 5 m/s; 18 km/h",
+      "explanation": "Đổi 5 m/s ra ki-lô-mét trên giờ: 5 × 3,6 = 18 km/h. Như vậy ba giá trị là 12 km/h, 18 km/h và 18 km/h. Thứ tự từ chậm đến nhanh là 12 km/h, rồi 5 m/s và 18 km/h bằng nhau."
+    },
+    {
+      "lesson": 76,
+      "number": 19,
+      "type": "Bài toán nhiều chặng",
+      "question": "Một ô tô đi 120 km đầu với vận tốc 60 km/h, sau đó đi tiếp 90 km với vận tốc 45 km/h. Tổng thời gian ô tô đã đi là bao lâu?",
+      "response": "Tính thời gian từng chặng rồi cộng.",
+      "answer": "4 giờ",
+      "explanation": "Thời gian chặng đầu là 120 : 60 = 2 giờ. Thời gian chặng sau là 90 : 45 = 2 giờ. Tổng thời gian là 2 + 2 = 4 giờ."
+    },
+    {
+      "lesson": 76,
+      "number": 20,
+      "type": "Tình huống thực tế",
+      "question": "Một xe máy phải đi 75 km và muốn đến nơi trong 1 giờ 30 phút. Xe cần chạy với vận tốc trung bình bao nhiêu ki-lô-mét trên giờ?",
+      "response": "Đổi thời gian ra giờ và tính vận tốc.",
+      "answer": "50 km/h",
+      "explanation": "Một giờ 30 phút bằng 1,5 giờ. Vận tốc trung bình cần có là 75 : 1,5 = 50 km/h. Nếu giữ vận tốc trung bình này, xe sẽ đi đủ 75 km trong 1 giờ 30 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 21,
+      "type": "Bài toán có thời gian nghỉ",
+      "question": "Một người đi xe đạp 36 km với vận tốc 12 km/h. Giữa đường người đó nghỉ 25 phút. Tính tổng thời gian từ lúc bắt đầu đi đến lúc đến nơi.",
+      "response": "Tính thời gian di chuyển rồi cộng thời gian nghỉ.",
+      "answer": "3 giờ 25 phút",
+      "explanation": "Thời gian thực sự đạp xe là 36 : 12 = 3 giờ. Người đó còn nghỉ 25 phút nên tổng thời gian là 3 giờ + 25 phút = 3 giờ 25 phút."
+    },
+    {
+      "lesson": 76,
+      "number": 22,
+      "type": "Vận dụng tổng hợp",
+      "question": "Một ca nô khởi hành lúc 8 giờ 15 phút, đi 42 km với vận tốc 28 km/h rồi nghỉ 20 phút. Ca nô kết thúc hành trình lúc mấy giờ?",
+      "response": "Tính thời điểm kết thúc hành trình.",
+      "answer": "10 giờ 05 phút",
+      "explanation": "Thời gian ca nô chạy là 42 : 28 = 1,5 giờ, tức 1 giờ 30 phút. Cộng thêm 20 phút nghỉ, toàn hành trình kéo dài 1 giờ 50 phút. Từ 8 giờ 15 phút cộng 1 giờ 50 phút được 10 giờ 05 phút."
+    },
+
+    {
+      "lesson": 77,
+      "number": 1,
+      "type": "Nhận dạng hình - quan sát hình",
+      "question": "Quan sát bảy hình được đánh số. Hãy ghi số của các hình là tam giác và số của các hình là tứ giác.",
+      "image": "b77-q01.png",
+      "response": "Chia các số hình thành hai nhóm.",
+      "answer": "Tam giác: hình 1, 2, 3, 5; tứ giác: hình 4, 6, 7",
+      "explanation": "Tam giác là hình có ba cạnh, vì thế các hình 1, 2, 3 và 5 thuộc nhóm tam giác. Tứ giác có bốn cạnh, nên các hình 4, 6 và 7 thuộc nhóm tứ giác. Ta nhận dạng bằng số cạnh, không dựa vào việc hình nghiêng hay thẳng."
+    },
+    {
+      "lesson": 77,
+      "number": 2,
+      "type": "So sánh đặc điểm hình học - quan sát hình",
+      "question": "Trong bốn hình minh họa, hình nào chắc chắn có hai cặp cạnh đối song song? Hình nào chỉ chắc chắn có một cặp cạnh đối song song?",
+      "image": "b77-q02.png",
+      "response": "Ghi tên các hình theo hai nhóm.",
+      "answer": "Hai cặp cạnh đối song song: hình thoi, hình bình hành; một cặp cạnh đối song song: hình thang",
+      "explanation": "Hình thoi và hình bình hành đều có hai cặp cạnh đối song song. Hình thang trong hình có một cặp cạnh đối song song là hai đáy. Tam giác chỉ có ba cạnh nên không có cặp cạnh đối nào."
+    },
+    {
+      "lesson": 77,
+      "number": 3,
+      "type": "Tính diện tích - quan sát hình",
+      "question": "Một mảnh đất hình thang có hai đáy dài 12 m và 8 m, chiều cao 6 m. Diện tích mảnh đất là bao nhiêu mét vuông?",
+      "image": "b77-q03.png",
+      "response": "Viết công thức, phép tính và đáp số.",
+      "answer": "60 m²",
+      "explanation": "Diện tích hình thang bằng tổng độ dài hai đáy nhân với chiều cao rồi chia 2. Ta tính (12 + 8) × 6 : 2 = 20 × 6 : 2 = 60 m². Vậy mảnh đất có diện tích 60 m²."
+    },
+    {
+      "lesson": 77,
+      "number": 4,
+      "type": "Diện tích hình ghép - quan sát hình",
+      "question": "Một ô cửa gồm hình chữ nhật rộng 1,2 m, cao 1,2 m và một nửa hình tròn bán kính 0,6 m ở phía trên. Lấy π = 3,14. Tính diện tích ô cửa.",
+      "image": "b77-q04.png",
+      "response": "Tính diện tích từng phần rồi cộng.",
+      "answer": "2,0052 m²",
+      "explanation": "Diện tích phần chữ nhật là 1,2 × 1,2 = 1,44 m². Diện tích nửa hình tròn là 3,14 × 0,6 × 0,6 : 2 = 0,5652 m². Cộng hai phần: 1,44 + 0,5652 = 2,0052 m²."
+    },
+    {
+      "lesson": 77,
+      "number": 5,
+      "type": "Suy luận hình khai triển - quan sát hình",
+      "question": "Khi kiểm tra một hình khai triển để xem có gấp được thành hình hộp chữ nhật hay không, em cần kiểm tra những điều gì?",
+      "image": "b77-q05.png",
+      "response": "Nêu ít nhất hai điều cần kiểm tra.",
+      "answer": "Phải có 6 mặt hình chữ nhật phù hợp; các mặt kề nhau phải nối đúng cạnh và khi gấp không chồng lên nhau hoặc bị thiếu mặt",
+      "explanation": "Hình hộp chữ nhật có đúng 6 mặt, gồm ba cặp mặt đối diện bằng nhau. Trên hình khai triển, các mặt phải nối với nhau theo những cạnh có thể gấp lại; sau khi tưởng tượng gấp, không mặt nào được chồng lên mặt khác và hình phải kín đủ sáu mặt. Chỉ nhìn thấy sáu hình chữ nhật chưa đủ, còn phải kiểm tra cách chúng được sắp xếp."
+    },
+    {
+      "lesson": 77,
+      "number": 6,
+      "type": "Tính diện tích và thể tích - quan sát hình",
+      "question": "Một hình hộp chữ nhật dài 7,5 cm, rộng 5 cm, cao 4 cm. Tính diện tích xung quanh, diện tích toàn phần và thể tích của hình hộp.",
+      "image": "b77-q06.png",
+      "response": "Ghi đủ ba kết quả kèm đơn vị.",
+      "answer": "Diện tích xung quanh 100 cm²; diện tích toàn phần 175 cm²; thể tích 150 cm³",
+      "explanation": "Diện tích xung quanh là (7,5 + 5) × 2 × 4 = 100 cm². Diện tích hai đáy là 7,5 × 5 × 2 = 75 cm², nên diện tích toàn phần là 100 + 75 = 175 cm². Thể tích là 7,5 × 5 × 4 = 150 cm³."
+    },
+    {
+      "lesson": 77,
+      "number": 7,
+      "type": "Tính toán với hình lập phương - quan sát hình",
+      "question": "Một hình lập phương có cạnh 9 dm. Tính diện tích xung quanh, diện tích toàn phần và thể tích của hình.",
+      "image": "b77-q07.png",
+      "response": "Ghi đủ ba kết quả.",
+      "answer": "Diện tích xung quanh 324 dm²; diện tích toàn phần 486 dm²; thể tích 729 dm³",
+      "explanation": "Diện tích một mặt là 9 × 9 = 81 dm². Diện tích xung quanh gồm 4 mặt nên bằng 81 × 4 = 324 dm²; diện tích toàn phần gồm 6 mặt nên bằng 81 × 6 = 486 dm². Thể tích là 9 × 9 × 9 = 729 dm³."
+    },
+    {
+      "lesson": 77,
+      "number": 8,
+      "type": "Thể tích nước dâng - quan sát hình",
+      "question": "Một bể có đáy hình chữ nhật dài 9 dm, rộng 6 dm. Khi thả một vật chìm hoàn toàn vào bể, mực nước dâng thêm 5 cm. Thể tích của vật là bao nhiêu đề-xi-mét khối?",
+      "image": "b77-q08.png",
+      "response": "Đổi đơn vị rồi tính thể tích phần nước dâng.",
+      "answer": "27 dm³",
+      "explanation": "Đổi 5 cm = 0,5 dm. Thể tích phần nước dâng là diện tích đáy nhân độ cao tăng thêm: 9 × 6 × 0,5 = 27 dm³. Vật chìm hoàn toàn chiếm chỗ đúng bằng lượng nước dâng nên thể tích của vật là 27 dm³."
+    },
+    {
+      "lesson": 77,
+      "number": 9,
+      "type": "Lập kế hoạch thời gian - quan sát hình",
+      "question": "Nhà cách sân bay 96 km. Ô tô đi với vận tốc 40 km/h. Gia đình cần có mặt ở sân bay lúc 16 giờ và dự định dừng nghỉ 15 phút trên đường. Muộn nhất gia đình phải rời nhà lúc mấy giờ?",
+      "image": "b77-q09.png",
+      "response": "Tính thời gian đi, cộng thời gian nghỉ rồi tìm giờ khởi hành.",
+      "answer": "13 giờ 21 phút",
+      "explanation": "Thời gian ô tô chạy là 96 : 40 = 2,4 giờ = 2 giờ 24 phút. Cộng thêm 15 phút nghỉ, tổng thời gian cần là 2 giờ 39 phút. Lấy 16 giờ trừ 2 giờ 39 phút, ta được 13 giờ 21 phút."
+    },
+    {
+      "lesson": 77,
+      "number": 10,
+      "type": "Diện tích hình chữ L - quan sát hình",
+      "question": "Một khu vườn hình chữ L được tạo từ hình chữ nhật 18 m × 12 m sau khi bỏ đi một góc hình chữ nhật 6 m × 4 m. Tính diện tích khu vườn.",
+      "image": "b77-q10.png",
+      "response": "Tính diện tích hình lớn rồi trừ phần bị bỏ.",
+      "answer": "192 m²",
+      "explanation": "Diện tích hình chữ nhật lớn là 18 × 12 = 216 m². Diện tích góc bị bỏ là 6 × 4 = 24 m². Diện tích khu vườn còn lại là 216 - 24 = 192 m²."
+    },
+    {
+      "lesson": 77,
+      "number": 11,
+      "type": "Chu vi và chuyển động - quan sát hình",
+      "question": "Một sân chơi gồm hình chữ nhật dài 40 m, rộng 20 m và một nửa hình tròn bán kính 10 m gắn vào một cạnh rộng. Một bạn chạy một vòng theo mép ngoài với vận tốc 5 m/s. Lấy π = 3,14. Bạn chạy hết một vòng trong bao lâu?",
+      "image": "b77-q11.png",
+      "response": "Tính độ dài mép ngoài rồi tính thời gian.",
+      "answer": "26,28 giây",
+      "explanation": "Mép ngoài gồm hai cạnh dài của hình chữ nhật, một cạnh rộng còn lại và cung nửa đường tròn. Độ dài là 40 × 2 + 20 + 3,14 × 10 = 131,4 m. Thời gian chạy là 131,4 : 5 = 26,28 giây."
+    },
+    {
+      "lesson": 77,
+      "number": 12,
+      "type": "Trắc nghiệm ABCD",
+      "question": "Một tam giác có đáy 15 cm và chiều cao 8 cm. Diện tích tam giác là:",
+      "choices": ["A. 46 cm²", "B. 60 cm²", "C. 92 cm²", "D. 120 cm²"],
+      "answer": "B. 60 cm²",
+      "explanation": "Diện tích tam giác bằng đáy nhân chiều cao rồi chia 2. Ta tính 15 × 8 : 2 = 60 cm². Vì vậy chọn B."
+    },
+    {
+      "lesson": 77,
+      "number": 13,
+      "type": "Điền số",
+      "question": "Một hình thang có diện tích 84 cm², hai đáy dài 10 cm và 18 cm. Chiều cao của hình thang là ____ cm.",
+      "response": "Điền một số thích hợp.",
+      "answer": "6 cm",
+      "explanation": "Tổng hai đáy là 10 + 18 = 28 cm. Từ công thức S = (a + b) × h : 2, ta có h = 84 × 2 : 28 = 6 cm. Vậy số cần điền là 6."
+    },
+    {
+      "lesson": 77,
+      "number": 14,
+      "type": "Đúng - sai",
+      "question": "Một hình tròn có bán kính 5 cm. Bạn Nam tính diện tích bằng 5 × 2 × 3,14 = 31,4 cm². Nam làm đúng hay sai?",
+      "response": "Ghi Đúng hoặc Sai và tính lại.",
+      "answer": "Sai; diện tích là 78,5 cm²",
+      "explanation": "Phép tính 5 × 2 × 3,14 dùng để tính chu vi, không phải diện tích. Diện tích hình tròn là 3,14 × 5 × 5 = 78,5 cm². Nam đã nhầm hai công thức."
+    },
+    {
+      "lesson": 77,
+      "number": 15,
+      "type": "Đổi đơn vị diện tích",
+      "question": "Điền số thích hợp: 3,5 m² = ____ dm².",
+      "response": "Điền một số.",
+      "answer": "350 dm²",
+      "explanation": "Vì 1 m = 10 dm nên 1 m² = 100 dm². Do đó 3,5 m² = 3,5 × 100 = 350 dm². Cần nhớ đơn vị diện tích đổi theo 100, không đổi theo 10."
+    },
+    {
+      "lesson": 77,
+      "number": 16,
+      "type": "Tính thể tích",
+      "question": "Một hộp chữ nhật dài 12 cm, rộng 8 cm và cao 5 cm. Hộp có thể tích bao nhiêu xăng-ti-mét khối?",
+      "response": "Viết phép tính và đáp số.",
+      "answer": "480 cm³",
+      "explanation": "Thể tích hình hộp chữ nhật bằng chiều dài nhân chiều rộng rồi nhân chiều cao. Ta có 12 × 8 × 5 = 480 cm³. Vậy thể tích hộp là 480 cm³."
+    },
+    {
+      "lesson": 77,
+      "number": 17,
+      "type": "Tình huống thực tế",
+      "question": "Một bể cá hình hộp chữ nhật dài 80 cm, rộng 40 cm, mực nước cao 30 cm. Trong bể có bao nhiêu lít nước? Biết 1 lít = 1 dm³.",
+      "response": "Đổi về đề-xi-mét rồi tính.",
+      "answer": "96 lít",
+      "explanation": "Đổi 80 cm = 8 dm, 40 cm = 4 dm, 30 cm = 3 dm. Thể tích nước là 8 × 4 × 3 = 96 dm³. Vì 1 dm³ = 1 lít nên bể có 96 lít nước."
+    },
+    {
+      "lesson": 77,
+      "number": 18,
+      "type": "So sánh thể tích",
+      "question": "Hộp A có kích thước 10 cm × 6 cm × 5 cm. Hộp B là hình lập phương cạnh 7 cm. Hộp nào có thể tích lớn hơn và lớn hơn bao nhiêu?",
+      "response": "Tính thể tích từng hộp rồi so sánh.",
+      "answer": "Hộp B lớn hơn 43 cm³",
+      "explanation": "Thể tích hộp A là 10 × 6 × 5 = 300 cm³. Thể tích hộp B là 7 × 7 × 7 = 343 cm³. Hộp B lớn hơn hộp A: 343 - 300 = 43 cm³."
+    },
+    {
+      "lesson": 77,
+      "number": 19,
+      "type": "Tính diện tích vật liệu",
+      "question": "Một chiếc hộp chữ nhật không có nắp dài 10 dm, rộng 6 dm, cao 4 dm. Diện tích vật liệu tối thiểu để làm hộp là bao nhiêu đề-xi-mét vuông?",
+      "response": "Tính diện tích đáy và bốn mặt bên.",
+      "answer": "188 dm²",
+      "explanation": "Diện tích đáy là 10 × 6 = 60 dm². Hai mặt bên dài có diện tích 10 × 4 × 2 = 80 dm²; hai mặt bên rộng có diện tích 6 × 4 × 2 = 48 dm². Tổng vật liệu là 60 + 80 + 48 = 188 dm²."
+    },
+    {
+      "lesson": 77,
+      "number": 20,
+      "type": "Bài toán chuyển động kết hợp",
+      "question": "Một người đi ô tô 150 km với vận tốc 60 km/h, sau đó đi tàu 360 km với vận tốc 120 km/h. Không tính thời gian chờ, tổng thời gian di chuyển là bao lâu?",
+      "response": "Tính thời gian từng chặng rồi cộng.",
+      "answer": "5 giờ 30 phút",
+      "explanation": "Thời gian đi ô tô là 150 : 60 = 2,5 giờ = 2 giờ 30 phút. Thời gian đi tàu là 360 : 120 = 3 giờ. Tổng thời gian là 2 giờ 30 phút + 3 giờ = 5 giờ 30 phút."
+    },
+    {
+      "lesson": 77,
+      "number": 21,
+      "type": "Lập kế hoạch",
+      "question": "Một buổi tham quan bắt đầu lúc 8 giờ 30 phút. Các hoạt động kéo dài lần lượt 1 giờ 20 phút, 45 phút và 1 giờ 35 phút; giữa ba hoạt động có hai lần nghỉ, mỗi lần 15 phút. Buổi tham quan kết thúc lúc mấy giờ?",
+      "response": "Cộng toàn bộ thời gian hoạt động và nghỉ.",
+      "answer": "12 giờ 40 phút",
+      "explanation": "Tổng thời gian hoạt động là 1 giờ 20 phút + 45 phút + 1 giờ 35 phút = 3 giờ 40 phút. Hai lần nghỉ kéo dài 15 × 2 = 30 phút, nên toàn buổi kéo dài 4 giờ 10 phút. Từ 8 giờ 30 phút cộng 4 giờ 10 phút được 12 giờ 40 phút."
+    },
+    {
+      "lesson": 77,
+      "number": 22,
+      "type": "Vận dụng tổng hợp hình học",
+      "question": "Một sân hình chữ nhật dài 25 m, rộng 16 m. Ở giữa sân có một bồn hoa hình tròn bán kính 4 m. Lấy π = 3,14. Diện tích phần sân còn lại là bao nhiêu mét vuông?",
+      "response": "Tính diện tích sân rồi trừ diện tích bồn hoa.",
+      "answer": "349,76 m²",
+      "explanation": "Diện tích sân hình chữ nhật là 25 × 16 = 400 m². Diện tích bồn hoa là 3,14 × 4 × 4 = 50,24 m². Phần sân còn lại có diện tích 400 - 50,24 = 349,76 m²."
+    }
+  ]
+}
