@@ -95,16 +95,23 @@
 
   <% (lesson.theory_cards || []).forEach((card, index) => { %>
     <% const images = Array.isArray(card.images) ? card.images : []; %>
-    <article class="theory-card theory-layout-<%= card.layout || 'text_first' %> math-content math-lazy">
+    <% const hasCardText = Boolean(
+      card.title || card.display_text || bodyValue(card) || card.student_task ||
+      card.example || card.remember || card.grid_layout?.enabled
+    ); %>
+    <% const imageOnly = images.length > 0 && !hasCardText; %>
+    <article class="theory-card <%= imageOnly ? 'theory-card-image-only' : '' %> theory-layout-<%= card.layout || 'text_first' %> math-content math-lazy">
       <div>
-        <span class="card-index">Mục <%= index + 1 %> · <%= typeLabel(card.type) %></span>
-        <h2><%= card.title %></h2>
+        <% if (!imageOnly) { %>
+          <span class="card-index">Mục <%= index + 1 %> · <%= typeLabel(card.type) %></span>
+          <h2><%= card.title %></h2>
 
-        <% if (card.display_text) { %>
-          <p class="theory-display-text"><%= card.display_text %></p>
+          <% if (card.display_text) { %>
+            <p class="theory-display-text"><%= card.display_text %></p>
+          <% } %>
+
+          <%- gridRenderHtml(card.grid_layout) %>
         <% } %>
-
-        <%- gridRenderHtml(card.grid_layout) %>
 
         <% if (images.length > 0) { %>
           <div class="theory-image-row">
@@ -116,23 +123,25 @@
           </div>
         <% } %>
 
-        <% if (bodyValue(card)) { %>
-          <div class="theory-body"><%= bodyValue(card) %></div>
-        <% } %>
+        <% if (!imageOnly) { %>
+          <% if (bodyValue(card)) { %>
+            <div class="theory-body"><%= bodyValue(card) %></div>
+          <% } %>
 
-        <% if (card.student_task) { %>
-          <p class="theory-task"><strong>Em cần làm:</strong> <%= card.student_task %></p>
-        <% } %>
+          <% if (card.student_task) { %>
+            <p class="theory-task"><strong>Em cần làm:</strong> <%= card.student_task %></p>
+          <% } %>
 
-        <% if (card.example) { %>
-          <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
-        <% } %>
+          <% if (card.example) { %>
+            <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
+          <% } %>
 
-        <% if (card.remember) { %>
-          <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
+          <% if (card.remember) { %>
+            <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
+          <% } %>
         <% } %>
       </div>
-      <% if (aiHelpEnabled) { %>
+      <% if (aiHelpEnabled && !imageOnly) { %>
       <button
         class="btn btn-secondary theory-help-button"
         type="button"

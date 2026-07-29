@@ -53,6 +53,22 @@
   max-height: 420px;
 }
 
+.theory-card.theory-card-image-only {
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+
+.theory-card-image-only .theory-image-row {
+  margin: 0;
+}
+
+.theory-card-image-only .question-image img {
+  width: 100%;
+  max-height: none;
+}
+
 .theory-task,
 .theory-remember {
   margin-top: 9px;

@@ -184,6 +184,17 @@ test('thẻ lý thuyết vẫn hiển thị nội dung khi có hình minh họa'
   assert.doesNotMatch(lesson, /bodyValue\(card\) && images\.length === 0/);
 });
 
+test('thẻ lý thuyết chỉ có ảnh không tự sinh nhãn hoặc nút gợi ý', () => {
+  const lesson = read('views/student/lesson.ejs');
+
+  assertContainsAll(lesson, [
+    /const imageOnly = images\.length > 0 && !hasCardText/,
+    /if \(!imageOnly\) \{/,
+    /aiHelpEnabled && !imageOnly/,
+    /theory-card-image-only/
+  ]);
+});
+
 test('session review dùng renderer chung thay vì sao chép logic hiển thị', () => {
   const review = read('views/student/session-review.ejs');
 
