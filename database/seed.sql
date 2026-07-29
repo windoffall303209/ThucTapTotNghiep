@@ -80,6 +80,9 @@ ON DUPLICATE KEY UPDATE
 
 INSERT INTO SystemSettings (setting_key, setting_value)
 VALUES
+  ('practice_duration_5_minutes', '10'),
+  ('practice_duration_15_minutes', '30'),
+  ('practice_duration_20_minutes', '60'),
   ('ai_provider', 'mock'),
   ('ai_automation_enabled', 'true'),
   ('ai_json_timeout_ms', '12000'),

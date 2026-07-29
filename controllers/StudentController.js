@@ -71,6 +71,7 @@ async function lesson(req, res, next) {
       lesson: lessonItem,
       nextLesson: findFollowingLesson(chapters, lessonItem.id),
       reviewQuestionCount: reviewQuestions.length,
+      lessonPracticeMinutes: SystemSetting.getPracticeDurationMinutes(LESSON_PRACTICE_COUNT, settings),
       aiHelpEnabled: isAIEnabledForGrade(req.auth.current_grade, settings)
     });
   } catch (error) {
@@ -290,18 +291,24 @@ async function exams(req, res, next) {
   try {
     // Lọc "đang làm dở" ngay trong SQL. Lấy 20 phiên gần nhất rồi mới lọc thì
     // đề dang dở nào bị 20 phiên đã xong che mất sẽ không còn đường "Tiếp tục".
-    const [sessions, chapters] = await Promise.all([
+    const [sessions, chapters, settings] = await Promise.all([
       PracticeSession.listSessions(req.auth.id, 20, {
         status: 'IN_PROGRESS',
         modes: ['CHAPTER', 'COMPREHENSIVE']
       }),
-      Curriculum.getCurriculumByGrade(req.auth.current_grade)
+      Curriculum.getCurriculumByGrade(req.auth.current_grade),
+      SystemSetting.getSettings()
     ]);
     res.render('student/exams', {
       title: 'Luyện tập',
       limits: PRACTICE_LIMITS,
       chapters,
-      sessions
+      sessions,
+      practiceDurations: {
+        5: SystemSetting.getPracticeDurationMinutes(5, settings),
+        15: SystemSetting.getPracticeDurationMinutes(15, settings),
+        20: SystemSetting.getPracticeDurationMinutes(20, settings)
+      }
     });
   } catch (error) {
     next(error);

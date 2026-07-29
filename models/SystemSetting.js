@@ -4,7 +4,22 @@ const crypto = require('crypto');
 const fs = require('fs/promises');
 const path = require('path');
 
+const PRACTICE_DURATION_DEFAULTS = Object.freeze({
+  5: 10,
+  15: 30,
+  20: 60
+});
+
+const PRACTICE_DURATION_SETTING_KEYS = Object.freeze({
+  5: 'practice_duration_5_minutes',
+  15: 'practice_duration_15_minutes',
+  20: 'practice_duration_20_minutes'
+});
+
 const DEFAULT_SETTINGS = {
+  practice_duration_5_minutes: process.env.PRACTICE_DURATION_5_MINUTES || '10',
+  practice_duration_15_minutes: process.env.PRACTICE_DURATION_15_MINUTES || '30',
+  practice_duration_20_minutes: process.env.PRACTICE_DURATION_20_MINUTES || '60',
   ai_provider: process.env.AI_PROVIDER || 'nvidia',
   ai_automation_enabled: process.env.AI_AUTOMATION_ENABLED || 'true',
   ai_json_timeout_ms: process.env.AI_JSON_TIMEOUT_MS || '45000',
@@ -35,6 +50,9 @@ const DEFAULT_SETTINGS = {
 };
 
 const ENV_KEY_MAP = {
+  practice_duration_5_minutes: 'PRACTICE_DURATION_5_MINUTES',
+  practice_duration_15_minutes: 'PRACTICE_DURATION_15_MINUTES',
+  practice_duration_20_minutes: 'PRACTICE_DURATION_20_MINUTES',
   ai_provider: 'AI_PROVIDER',
   ai_automation_enabled: 'AI_AUTOMATION_ENABLED',
   ai_json_timeout_ms: 'AI_JSON_TIMEOUT_MS',
@@ -87,6 +105,16 @@ async function updateSettings(input) {
   for (const [key, value] of Object.entries(input)) {
     if (typeof value !== 'string') continue;
     const trimmedValue = value.trim();
+    if (Object.values(PRACTICE_DURATION_SETTING_KEYS).includes(key)) {
+      const minutes = Number(trimmedValue);
+      if (!Number.isInteger(minutes) || minutes < 1 || minutes > 240) {
+        const validationError = new Error('Thời gian luyện tập phải là số phút nguyên từ 1 đến 240.');
+        validationError.code = 'INVALID_PRACTICE_DURATION';
+        throw validationError;
+      }
+      nextSettings[key] = String(minutes);
+      continue;
+    }
     if (isSecretKey(key) && trimmedValue === '') continue;
     nextSettings[key] = trimmedValue;
   }
@@ -131,6 +159,23 @@ function publicSettings(settings) {
 
 function isSecretKey(key) {
   return key.includes('api_key') || key.includes('api_secret');
+}
+
+function getPracticeDurationMinutes(questionCount, settings = DEFAULT_SETTINGS) {
+  const count = Number(questionCount);
+  const fallback = PRACTICE_DURATION_DEFAULTS[count];
+  const settingKey = PRACTICE_DURATION_SETTING_KEYS[count];
+  if (!fallback || !settingKey) return null;
+
+  const configured = Number(settings?.[settingKey]);
+  return Number.isInteger(configured) && configured >= 1 && configured <= 240
+    ? configured
+    : fallback;
+}
+
+function getPracticeDurationSeconds(questionCount, settings = DEFAULT_SETTINGS) {
+  const minutes = getPracticeDurationMinutes(questionCount, settings);
+  return minutes ? minutes * 60 : null;
 }
 
 async function syncEnvFile(changedSettings, mergedSettings) {
@@ -212,7 +257,11 @@ function decryptSecret(value) {
 }
 
 module.exports = {
+  PRACTICE_DURATION_DEFAULTS,
+  PRACTICE_DURATION_SETTING_KEYS,
   getSettings,
   updateSettings,
-  publicSettings
+  publicSettings,
+  getPracticeDurationMinutes,
+  getPracticeDurationSeconds
 };

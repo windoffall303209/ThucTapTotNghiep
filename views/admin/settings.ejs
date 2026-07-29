@@ -52,12 +52,78 @@
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Cấu hình hệ thống</p>
-    <h1>Gợi ý học tập & lưu trữ ảnh</h1>
-    <p>Quản lý provider gợi ý, policy sử dụng, timeout xử lý và Cloudinary. Secret đang được mask; để trống nếu muốn giữ giá trị cũ.</p>
+    <h1>Cài đặt hệ thống</h1>
+    <p>Quản lý thời gian luyện tập, provider gợi ý, policy sử dụng và lưu trữ ảnh.</p>
   </div>
 </section>
 
 <section class="settings-page">
+  <form class="settings-panel practice-duration-panel" action="/admin/settings" method="post">
+    <div class="section-title">
+      <i data-lucide="timer" class="lucide-icon"></i>
+      Thời gian luyện tập
+    </div>
+    <p class="form-note">
+      Cấu hình được tính theo phút và áp dụng cho phiên mới. Phiên đang làm giữ nguyên thời hạn đã được cấp khi bắt đầu.
+    </p>
+    <div class="practice-duration-grid">
+      <label>
+        Đề 5 câu
+        <span class="duration-input">
+          <input
+            name="practice_duration_5_minutes"
+            type="number"
+            min="1"
+            max="240"
+            step="1"
+            inputmode="numeric"
+            value="<%= settings.practice_duration_5_minutes || '10' %>"
+            required
+          >
+          <span>phút</span>
+        </span>
+      </label>
+      <label>
+        Đề 15 câu
+        <span class="duration-input">
+          <input
+            name="practice_duration_15_minutes"
+            type="number"
+            min="1"
+            max="240"
+            step="1"
+            inputmode="numeric"
+            value="<%= settings.practice_duration_15_minutes || '30' %>"
+            required
+          >
+          <span>phút</span>
+        </span>
+      </label>
+      <label>
+        Đề 20 câu
+        <span class="duration-input">
+          <input
+            name="practice_duration_20_minutes"
+            type="number"
+            min="1"
+            max="240"
+            step="1"
+            inputmode="numeric"
+            value="<%= settings.practice_duration_20_minutes || '60' %>"
+            required
+          >
+          <span>phút</span>
+        </span>
+      </label>
+    </div>
+    <div class="settings-actions">
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="save" class="lucide-icon"></i>
+        Lưu thời gian luyện tập
+      </button>
+    </div>
+  </form>
+
   <form class="settings-panel settings-global-panel" action="/admin/settings" method="post">
     <div class="section-title">
       <i data-lucide="sliders-horizontal" class="lucide-icon"></i>

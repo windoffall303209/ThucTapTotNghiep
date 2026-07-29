@@ -179,9 +179,11 @@ CREATE TABLE PracticeSessions (
     title VARCHAR(255) NOT NULL,
     question_ids JSON NOT NULL,
     question_count INT NOT NULL DEFAULT 0,
+    duration_seconds INT NULL,
     current_index INT NOT NULL DEFAULT 0,
     status VARCHAR(20) NOT NULL DEFAULT 'IN_PROGRESS' CHECK (status IN ('IN_PROGRESS', 'COMPLETED')),
     started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NULL,
     completed_at TIMESTAMP NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
@@ -192,6 +194,7 @@ CREATE TABLE PracticeSessions (
 CREATE INDEX idx_practice_sessions_student ON PracticeSessions(student_id, status);
 CREATE INDEX idx_practice_sessions_student_started ON PracticeSessions(student_id, started_at, id);
 CREATE INDEX idx_practice_sessions_student_status_started ON PracticeSessions(student_id, status, started_at, id);
+CREATE INDEX idx_practice_sessions_expiry ON PracticeSessions(student_id, status, expires_at);
 
 -- 10.2. Table: PracticeSessionChats
 CREATE TABLE PracticeSessionChats (

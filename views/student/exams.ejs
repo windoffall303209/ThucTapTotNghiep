@@ -8,9 +8,9 @@
 
 <section class="card-list">
   <article class="activity-card">
-    <span class="status-pill status-new">5 câu · 10 phút</span>
+    <span class="status-pill status-new">5 câu · <%= practiceDurations[5] %> phút</span>
     <h2>Luyện theo bài học</h2>
-    <p class="muted">Mỗi lần luyện là 5 câu mới lấy từ bài em chọn, thời gian làm bài là 10 phút.</p>
+    <p class="muted">Mỗi lần luyện là 5 câu mới lấy từ bài em chọn, thời gian làm bài là <%= practiceDurations[5] %> phút.</p>
     <div class="row-actions">
       <a class="btn btn-primary" href="/student/dashboard#chuong-hoc">
         <i data-lucide="book-open" class="lucide-icon"></i>
@@ -42,7 +42,7 @@
         <% limits.forEach((limit) => { %>
           <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
             <i data-lucide="file-question" class="lucide-icon"></i>
-            Tạo đề <%= limit %> câu · <%= limit === 15 ? 30 : 60 %> phút
+            Tạo đề <%= limit %> câu · <%= practiceDurations[limit] %> phút
           </button>
         <% }) %>
       </div>
@@ -67,7 +67,7 @@
         <% limits.forEach((limit) => { %>
           <button class="btn btn-primary" type="submit" name="count" value="<%= limit %>">
             <i data-lucide="shuffle" class="lucide-icon"></i>
-            Tạo đề <%= limit %> câu · <%= limit === 15 ? 30 : 60 %> phút
+            Tạo đề <%= limit %> câu · <%= practiceDurations[limit] %> phút
           </button>
         <% }) %>
       </div>

@@ -121,9 +121,10 @@ test('đề có đồng hồ đếm ngược và tự kết thúc khi hết th�
     /practiceTiming/
   ]);
   assertContainsAll(sessionModel, [
-    /5: 10 \* 60/,
-    /15: 30 \* 60/,
-    /20: 60 \* 60/,
+    /SystemSetting\.PRACTICE_DURATION_DEFAULTS/,
+    /SystemSetting\.getPracticeDurationSeconds/,
+    /duration_seconds/,
+    /expires_at/,
     /completeExpiredSessions/
   ]);
 });
@@ -195,7 +196,35 @@ test('màn cài đặt giữ hook dialog, chọn model và kiểm tra provider',
     /data-check-provider="openai"/,
     /data-check-status role="status" aria-live="polite"/,
     /data-modal-close/,
+    /name="practice_duration_5_minutes"/,
+    /name="practice_duration_15_minutes"/,
+    /name="practice_duration_20_minutes"/,
+    /min="1"/,
+    /max="240"/,
     /\/js\/admin\/settings\.js/
+  ]);
+});
+
+test('schema phiên luyện tập lưu thời lượng và hạn cuối độc lập với cấu hình hiện tại', () => {
+  const schema = read('database/database_schema.sql');
+  const model = read('models/PracticeSession.js');
+  const migration = read('scripts/apply_practice_session_timing.js');
+
+  assertContainsAll(schema, [
+    /duration_seconds INT NULL/,
+    /expires_at TIMESTAMP NULL/,
+    /idx_practice_sessions_expiry/
+  ]);
+  assertContainsAll(model, [
+    /duration_seconds/,
+    /expires_at/,
+    /SystemSetting\.getPracticeDurationSeconds/,
+    /TIMESTAMPADD\(SECOND, duration_seconds, started_at\)/
+  ]);
+  assertContainsAll(migration, [
+    /ALTER TABLE PracticeSessions ADD COLUMN duration_seconds/,
+    /ALTER TABLE PracticeSessions ADD COLUMN expires_at/,
+    /INSERT IGNORE INTO SystemSettings/
   ]);
 });
 

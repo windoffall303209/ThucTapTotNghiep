@@ -3,11 +3,12 @@ const assert = require('node:assert/strict');
 
 const PracticeSession = require('../models/PracticeSession');
 
-function session(questionCount, startedAt, mode = 'COMPREHENSIVE') {
+function session(questionCount, startedAt, mode = 'COMPREHENSIVE', timing = {}) {
   return {
     question_count: questionCount,
     session_mode: mode,
-    started_at: new Date(startedAt)
+    started_at: new Date(startedAt),
+    ...timing
   };
 }
 
@@ -29,6 +30,22 @@ test('thời gian còn lại được tính từ lúc tạo phiên nên tải l�
   assert.equal(timing.remainingSeconds, 18 * 60);
   assert.equal(timing.deadlineAtMs, startedAt + 30 * 60 * 1000);
   assert.equal(timing.isExpired, false);
+});
+
+test('phiên dùng thời lượng và hạn cuối đã lưu thay vì cấu hình mặc định hiện tại', () => {
+  const startedAt = Date.UTC(2026, 6, 30, 8, 0, 0);
+  const expiresAt = startedAt + 45 * 60 * 1000;
+  const timing = PracticeSession.getSessionTiming(
+    session(15, startedAt, 'COMPREHENSIVE', {
+      duration_seconds: 45 * 60,
+      expires_at: new Date(expiresAt)
+    }),
+    startedAt + 5 * 60 * 1000
+  );
+
+  assert.equal(timing.durationSeconds, 45 * 60);
+  assert.equal(timing.deadlineAtMs, expiresAt);
+  assert.equal(timing.remainingSeconds, 40 * 60);
 });
 
 test('phiên được xác định hết hạn đúng tại thời điểm kết thúc', () => {

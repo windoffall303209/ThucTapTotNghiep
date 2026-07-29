@@ -1,24 +1,46 @@
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
+const SystemSetting = require('./SystemSetting');
 
-const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze({
-  5: 10 * 60,
-  15: 30 * 60,
-  20: 60 * 60
-});
+const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze(
+  Object.fromEntries(
+    Object.entries(SystemSetting.PRACTICE_DURATION_DEFAULTS)
+      .map(([count, minutes]) => [count, minutes * 60])
+  )
+);
 
 function getSessionTiming(session, nowMs = Date.now()) {
   const timedMode = ['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(
     String(session?.session_mode || '').toUpperCase()
   );
-  const durationSeconds = timedMode
-    ? DURATION_SECONDS_BY_QUESTION_COUNT[Number(session?.question_count)] || null
-    : null;
   const startedAtMs = session?.started_at instanceof Date
     ? session.started_at.getTime()
     : Date.parse(String(session?.started_at || ''));
-  if (!durationSeconds || !Number.isFinite(startedAtMs)) {
+  const storedDeadlineAtMs = session?.expires_at instanceof Date
+    ? session.expires_at.getTime()
+    : Date.parse(String(session?.expires_at || ''));
+  const storedDurationSeconds = Number(session?.duration_seconds);
+  const legacyDurationSeconds = DURATION_SECONDS_BY_QUESTION_COUNT[Number(session?.question_count)] || null;
+  const durationSeconds = timedMode
+    ? (
+      (Number.isInteger(storedDurationSeconds) && storedDurationSeconds > 0
+        ? storedDurationSeconds
+        : null)
+      || (
+        Number.isFinite(storedDeadlineAtMs) && Number.isFinite(startedAtMs)
+          ? Math.max(1, Math.round((storedDeadlineAtMs - startedAtMs) / 1000))
+          : null
+      )
+      || legacyDurationSeconds
+    )
+    : null;
+  const deadlineAtMs = Number.isFinite(storedDeadlineAtMs)
+    ? storedDeadlineAtMs
+    : Number.isFinite(startedAtMs) && durationSeconds
+      ? startedAtMs + durationSeconds * 1000
+      : Number.NaN;
+  if (!durationSeconds || !Number.isFinite(deadlineAtMs)) {
     return {
       enabled: false,
       durationSeconds: null,
@@ -29,7 +51,6 @@ function getSessionTiming(session, nowMs = Date.now()) {
     };
   }
 
-  const deadlineAtMs = startedAtMs + durationSeconds * 1000;
   const remainingSeconds = Math.max(0, Math.ceil((deadlineAtMs - Number(nowMs)) / 1000));
   return {
     enabled: true,
@@ -59,9 +80,11 @@ async function ensureSchema() {
         title VARCHAR(255) NOT NULL,
         question_ids JSON NOT NULL,
         question_count INT NOT NULL DEFAULT 0,
+        duration_seconds INT NULL,
         current_index INT NOT NULL DEFAULT 0,
         status VARCHAR(20) NOT NULL DEFAULT 'IN_PROGRESS',
         started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        expires_at TIMESTAMP NULL,
         completed_at TIMESTAMP NULL,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
@@ -96,7 +119,22 @@ async function ensureSchema() {
       'scope_semester',
       'ALTER TABLE PracticeSessions ADD COLUMN scope_semester TINYINT NULL AFTER chapter_id'
     );
+    await addColumnIfMissing(
+      'PracticeSessions',
+      'duration_seconds',
+      'ALTER TABLE PracticeSessions ADD COLUMN duration_seconds INT NULL AFTER question_count'
+    );
+    await addColumnIfMissing(
+      'PracticeSessions',
+      'expires_at',
+      'ALTER TABLE PracticeSessions ADD COLUMN expires_at TIMESTAMP NULL AFTER started_at'
+    );
     await addIndexIfMissing('StudentLogs', 'idx_logs_practice_session', 'CREATE INDEX idx_logs_practice_session ON StudentLogs(practice_session_id)');
+    await addIndexIfMissing(
+      'PracticeSessions',
+      'idx_practice_sessions_expiry',
+      'CREATE INDEX idx_practice_sessions_expiry ON PracticeSessions(student_id, status, expires_at)'
+    );
   } catch (error) {
     ensureFallbackStore();
   }
@@ -137,12 +175,20 @@ async function createSession({
 }) {
   await ensureSchema();
   const ids = questionIds.map(Number).filter(Boolean);
+  const timedMode = ['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(String(mode || '').toUpperCase());
+  const settings = timedMode ? await SystemSetting.getSettings() : null;
+  const durationSeconds = timedMode
+    ? SystemSetting.getPracticeDurationSeconds(ids.length, settings)
+    : null;
 
   try {
     const result = await db.query(
       `INSERT INTO PracticeSessions
-        (student_id, lesson_id, chapter_id, scope_semester, session_mode, title, question_ids, question_count, current_index, status)
-       VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, 0, 'IN_PROGRESS')`,
+        (student_id, lesson_id, chapter_id, scope_semester, session_mode, title, question_ids,
+         question_count, duration_seconds, expires_at, current_index, status)
+       VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?,
+         CASE WHEN ? IS NULL THEN NULL ELSE DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND) END,
+         0, 'IN_PROGRESS')`,
       [
         studentId,
         lessonId,
@@ -151,7 +197,10 @@ async function createSession({
         mode,
         title,
         JSON.stringify(ids),
-        ids.length
+        ids.length,
+        durationSeconds,
+        durationSeconds,
+        durationSeconds
       ]
     );
     return getSessionById(studentId, result.insertId);
@@ -167,9 +216,11 @@ async function createSession({
       title,
       question_ids: ids,
       question_count: ids.length,
+      duration_seconds: durationSeconds,
       current_index: 0,
       status: 'IN_PROGRESS',
       started_at: new Date(),
+      expires_at: durationSeconds ? new Date(Date.now() + durationSeconds * 1000) : null,
       completed_at: null
     };
     sampleData.practiceSessions.push(session);
@@ -321,9 +372,21 @@ async function completeExpiredSessions(studentId) {
          AND status = 'IN_PROGRESS'
          AND session_mode IN ('LESSON', 'CHAPTER', 'COMPREHENSIVE')
          AND (
-           (question_count = 5 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE))
-           OR (question_count = 15 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 MINUTE))
-           OR (question_count = 20 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 60 MINUTE))
+           expires_at <= CURRENT_TIMESTAMP
+           OR (
+             expires_at IS NULL
+             AND duration_seconds IS NOT NULL
+             AND TIMESTAMPADD(SECOND, duration_seconds, started_at) <= CURRENT_TIMESTAMP
+           )
+           OR (
+             expires_at IS NULL
+             AND duration_seconds IS NULL
+             AND (
+               (question_count = 5 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE))
+               OR (question_count = 15 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 30 MINUTE))
+               OR (question_count = 20 AND started_at <= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 60 MINUTE))
+             )
+           )
          )`,
       [studentId]
     );
@@ -470,6 +533,7 @@ function normalizeSession(row) {
     answered_count: answeredCount,
     correct_count: Number(row.correct_count || 0),
     chat_count: Number(row.chat_count || 0),
+    duration_seconds: Number(row.duration_seconds) > 0 ? Number(row.duration_seconds) : null,
     question_count: Math.max(Number(row.question_count || 0), questionIds.length, answeredCount)
   };
 }

@@ -1301,6 +1301,9 @@ async function settings(req, res, next) {
 async function updateSettings(req, res, next) {
   try {
     await SystemSetting.updateSettings({
+      practice_duration_5_minutes: req.body.practice_duration_5_minutes,
+      practice_duration_15_minutes: req.body.practice_duration_15_minutes,
+      practice_duration_20_minutes: req.body.practice_duration_20_minutes,
       ai_provider: req.body.ai_provider,
       ai_automation_enabled: req.body.ai_automation_enabled,
       ai_json_timeout_ms: req.body.ai_json_timeout_ms,
@@ -1332,6 +1335,10 @@ async function updateSettings(req, res, next) {
     setFlash(req, 'success', 'Đã cập nhật cấu hình hệ thống.');
     return res.redirect('/admin/settings');
   } catch (error) {
+    if (error.code === 'INVALID_PRACTICE_DURATION') {
+      setFlash(req, 'danger', error.message, { modal: true });
+      return res.redirect('/admin/settings');
+    }
     next(error);
   }
 }
