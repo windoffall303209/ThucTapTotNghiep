@@ -1,0 +1,224 @@
+{
+  "generated_at": "2026-07-29T07:07:11.074Z",
+  "minimum_questions_per_lesson": 20,
+  "summary": [
+    {
+      "grade": 1,
+      "lesson_count": 39,
+      "question_count": 1324,
+      "zero_question_lessons": 0,
+      "under_20_lessons": 0
+    },
+    {
+      "grade": 2,
+      "lesson_count": 51,
+      "question_count": 2123,
+      "zero_question_lessons": 0,
+      "under_20_lessons": 0
+    },
+    {
+      "grade": 3,
+      "lesson_count": 66,
+      "question_count": 1320,
+      "zero_question_lessons": 0,
+      "under_20_lessons": 0
+    },
+    {
+      "grade": 4,
+      "lesson_count": 55,
+      "question_count": 1200,
+      "zero_question_lessons": 0,
+      "under_20_lessons": 0
+    },
+    {
+      "grade": 5,
+      "lesson_count": 91,
+      "question_count": 1693,
+      "zero_question_lessons": 0,
+      "under_20_lessons": 20
+    }
+  ],
+  "shortage_count": 20,
+  "shortages": [
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 371,
+      "lesson_order": 61,
+      "lesson_name": "Bài 61. Luyện tập chung",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 372,
+      "lesson_order": 66,
+      "lesson_name": "Bài 66. Luyện tập",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 373,
+      "lesson_order": 67,
+      "lesson_name": "Bài 67. Luyện tập chung",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 374,
+      "lesson_order": 68,
+      "lesson_name": "Bài 68. Ôn tập về các đơn vị đo thời gian",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 375,
+      "lesson_order": 71,
+      "lesson_name": "Bài 71. Luyện tập",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 376,
+      "lesson_order": 73,
+      "lesson_name": "Bài 73. Luyện tập",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 377,
+      "lesson_order": 75,
+      "lesson_name": "Bài 75. Luyện tập",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 378,
+      "lesson_order": 76,
+      "lesson_name": "Bài 76. Luyện tập chung",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 379,
+      "lesson_order": 77,
+      "lesson_name": "Bài 77. Em ôn lại những gì đã học",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 3,
+      "chapter_name": "Chủ đề 3. Hình học và đo lường",
+      "lesson_id": 380,
+      "lesson_order": 78,
+      "lesson_name": "Bài 78. Em vui học Toán",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 381,
+      "lesson_order": 82,
+      "lesson_name": "Bài 82. Ôn tập về số tự nhiên và các phép tính với số tự nhiên",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 382,
+      "lesson_order": 83,
+      "lesson_name": "Bài 83. Ôn tập về phân số và các phép tính với phân số",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 383,
+      "lesson_order": 84,
+      "lesson_name": "Bài 84. Ôn tập về số thập phân và các phép tính với số thập phân",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 384,
+      "lesson_order": 85,
+      "lesson_name": "Bài 85. Ôn tập về tỉ số, tỉ số phần trăm",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 385,
+      "lesson_order": 86,
+      "lesson_name": "Bài 86. Ôn tập về hình học",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 386,
+      "lesson_order": 87,
+      "lesson_name": "Bài 87. Ôn tập về đo lường",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 387,
+      "lesson_order": 88,
+      "lesson_name": "Bài 88. Ôn tập về một số yếu tố thống kê và xác suất",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 388,
+      "lesson_order": 89,
+      "lesson_name": "Bài 89. Em ôn lại những gì đã học",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 389,
+      "lesson_order": 90,
+      "lesson_name": "Bài 90. Em vui học Toán",
+      "question_count": 3
+    },
+    {
+      "grade": 5,
+      "chapter_order": 4,
+      "chapter_name": "Chủ đề 4. Thống kê và xác suất. Ôn tập cuối năm",
+      "lesson_id": 390,
+      "lesson_order": 91,
+      "lesson_name": "Bài 91. Ôn tập chung",
+      "question_count": 3
+    }
+  ]
+}
