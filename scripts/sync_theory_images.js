@@ -294,6 +294,32 @@ function copyImages(entries) {
   return copied;
 }
 
+function removeStaleImages(entries) {
+  const expected = new Set(
+    entries.flatMap((entry) => entry.images.map((image) => path.resolve(image.target_path)))
+  );
+  const root = path.resolve(PUBLIC_ROOT);
+  const removed = [];
+
+  function visit(directory) {
+    if (!fs.existsSync(directory)) return;
+    for (const item of fs.readdirSync(directory, { withFileTypes: true })) {
+      const fullPath = path.resolve(directory, item.name);
+      if (fullPath !== root && !fullPath.startsWith(`${root}${path.sep}`)) {
+        throw new Error(`Refusing to inspect path outside theory image root: ${fullPath}`);
+      }
+      if (item.isDirectory()) visit(fullPath);
+      else if (IMAGE_EXTENSIONS.has(path.extname(item.name).toLowerCase()) && !expected.has(fullPath)) {
+        fs.unlinkSync(fullPath);
+        removed.push(fullPath);
+      }
+    }
+  }
+
+  visit(root);
+  return removed;
+}
+
 async function importMappedImages(rows, entries) {
   const byLesson = new Map(entries.map((entry) => [entry.lesson_id, entry]));
   const updates = rows
@@ -321,8 +347,10 @@ async function main() {
 
   let copied = 0;
   let imported = 0;
+  let removed = [];
   if (args.has('--commit')) {
     copied = copyImages(manifest.entries);
+    removed = removeStaleImages(manifest.entries);
     imported = await importMappedImages(rows, manifest.entries);
   }
 
@@ -333,6 +361,8 @@ async function main() {
     missing_lesson_count: manifest.missing.length,
     image_count: manifest.entries.reduce((sum, entry) => sum + entry.images.length, 0),
     copied_image_count: copied,
+    removed_stale_image_count: removed.length,
+    removed_stale_images: removed.map((filePath) => path.relative(PUBLIC_ROOT, filePath)),
     imported_lesson_count: imported,
     unused_source_folder_count: manifest.unusedFolders.length,
     unmatched_special_folder_count: source.unmatchedSpecialFolders.length,
