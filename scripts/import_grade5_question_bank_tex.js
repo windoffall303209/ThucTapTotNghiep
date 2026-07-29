@@ -114,7 +114,14 @@ async function main() {
       item.lesson_number < 1 ||
       item.lesson_number > 91 ||
       !Array.isArray(item.choices) ||
-      item.choices.length !== 4
+      !(
+        (item.question_type === 'MULTIPLE_CHOICE' &&
+          item.choices.length === 4 &&
+          ['A', 'B', 'C', 'D'].includes(item.correct_answer)) ||
+        (item.question_type === 'FILL_IN_THE_BLANK' &&
+          item.choices.length === 0 &&
+          String(item.correct_answer || '').trim())
+      )
   );
   if (invalid.length) {
     throw new Error(`Có ${invalid.length} payload không hợp lệ; dừng import.`);
