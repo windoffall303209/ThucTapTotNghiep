@@ -88,6 +88,7 @@ VALUES
   ('ai_max_hints_per_session', '8'),
   ('ai_max_requests_per_student_per_day', '30'),
   ('ai_require_answer_before_help', 'true'),
+  ('ai_log_retention_days', '90'),
   ('openai_api_key', ''),
   ('openai_base_url', 'https://api.openai.com/v1'),
   ('openai_model', 'gpt-4o-mini'),

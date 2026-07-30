@@ -187,6 +187,28 @@
         <input name="ai_max_requests_per_student_per_day" type="number" min="1" max="500" value="<%= settings.ai_max_requests_per_student_per_day || '30' %>" required>
       </label>
     </div>
+    <div class="two-fields">
+      <label>
+        Thời gian lưu nhật ký AI
+        <span class="duration-input">
+          <input
+            name="ai_log_retention_days"
+            type="number"
+            min="1"
+            max="365"
+            step="1"
+            inputmode="numeric"
+            value="<%= settings.ai_log_retention_days || '90' %>"
+            required
+          >
+          <span>ngày</span>
+        </span>
+      </label>
+      <p class="form-note">
+        Job bảo trì chỉ xóa nhật ký cũ hơn thời hạn này khi được chạy rõ ràng với cờ
+        <code>--apply</code>; mở trang nhật ký AI để rà soát trước khi dọn.
+      </p>
+    </div>
     <p class="form-note">Các cấu hình này ảnh hưởng tới gợi ý thêm trong lý thuyết, luyện tập và kiểm tra provider.</p>
     <div class="settings-actions">
       <button class="btn btn-primary" type="submit">

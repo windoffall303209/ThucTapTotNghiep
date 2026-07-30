@@ -293,3 +293,6 @@ CREATE TABLE AIConversationLogs (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_ai_logs_student ON AIConversationLogs(student_id);
+CREATE INDEX idx_ai_logs_created_at ON AIConversationLogs(created_at);
+CREATE INDEX idx_ai_logs_lesson_created_at ON AIConversationLogs(lesson_id, created_at);
+CREATE INDEX idx_ai_logs_question_created_at ON AIConversationLogs(question_id, created_at);

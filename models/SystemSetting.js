@@ -17,6 +17,7 @@ const PRACTICE_DURATION_SETTING_KEYS = Object.freeze({
   15: 'practice_duration_15_minutes',
   20: 'practice_duration_20_minutes'
 });
+const AI_LOG_RETENTION_DEFAULT_DAYS = 90;
 
 const DEFAULT_SETTINGS = {
   practice_duration_5_minutes: process.env.PRACTICE_DURATION_5_MINUTES || '10',
@@ -30,6 +31,8 @@ const DEFAULT_SETTINGS = {
   ai_max_hints_per_session: process.env.AI_MAX_HINTS_PER_SESSION || '8',
   ai_max_requests_per_student_per_day: process.env.AI_MAX_REQUESTS_PER_STUDENT_PER_DAY || '30',
   ai_require_answer_before_help: process.env.AI_REQUIRE_ANSWER_BEFORE_HELP || 'true',
+  ai_log_retention_days:
+    process.env.AI_LOG_RETENTION_DAYS || String(AI_LOG_RETENTION_DEFAULT_DAYS),
   openai_api_key: process.env.OPENAI_API_KEY || '',
   openai_base_url: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
   openai_model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
@@ -70,6 +73,7 @@ const ENV_KEY_MAP = {
   ai_max_hints_per_session: 'AI_MAX_HINTS_PER_SESSION',
   ai_max_requests_per_student_per_day: 'AI_MAX_REQUESTS_PER_STUDENT_PER_DAY',
   ai_require_answer_before_help: 'AI_REQUIRE_ANSWER_BEFORE_HELP',
+  ai_log_retention_days: 'AI_LOG_RETENTION_DAYS',
   openai_api_key: 'OPENAI_API_KEY',
   openai_base_url: 'OPENAI_BASE_URL',
   openai_model: 'OPENAI_MODEL',
@@ -200,7 +204,8 @@ function validateSettingValue(key, value) {
     gemini_cli_timeout_ms: [1000, 300000, 'Timeout Gemini CLI phải từ 1000 đến 300000 ms.'],
     ai_max_hints_per_question: [1, 20, 'Quota AI mỗi câu phải từ 1 đến 20.'],
     ai_max_hints_per_session: [1, 100, 'Quota AI mỗi phiên phải từ 1 đến 100.'],
-    ai_max_requests_per_student_per_day: [1, 500, 'Quota AI mỗi học sinh mỗi ngày phải từ 1 đến 500.']
+    ai_max_requests_per_student_per_day: [1, 500, 'Quota AI mỗi học sinh mỗi ngày phải từ 1 đến 500.'],
+    ai_log_retention_days: [1, 365, 'Thời gian lưu nhật ký AI phải từ 1 đến 365 ngày.']
   };
   if (integerRules[key]) {
     const [min, max, message] = integerRules[key];
@@ -241,6 +246,13 @@ function getPracticeDurationMinutes(questionCount, settings = DEFAULT_SETTINGS) 
 function getPracticeDurationSeconds(questionCount, settings = DEFAULT_SETTINGS) {
   const minutes = getPracticeDurationMinutes(questionCount, settings);
   return minutes ? minutes * 60 : null;
+}
+
+function getAiLogRetentionDays(settings = DEFAULT_SETTINGS) {
+  const configured = Number(settings?.ai_log_retention_days);
+  return Number.isInteger(configured) && configured >= 1 && configured <= 365
+    ? configured
+    : AI_LOG_RETENTION_DEFAULT_DAYS;
 }
 
 async function syncEnvFile(changedSettings, mergedSettings) {
@@ -324,10 +336,12 @@ function decryptSecret(value) {
 module.exports = {
   PRACTICE_DURATION_DEFAULTS,
   PRACTICE_DURATION_SETTING_KEYS,
+  AI_LOG_RETENTION_DEFAULT_DAYS,
   getSettings,
   updateSettings,
   publicSettings,
   validateSettingValue,
   getPracticeDurationMinutes,
-  getPracticeDurationSeconds
+  getPracticeDurationSeconds,
+  getAiLogRetentionDays
 };

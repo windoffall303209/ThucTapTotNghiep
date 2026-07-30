@@ -33,6 +33,7 @@
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",
     "db:runtime-storage": "node scripts/apply_runtime_storage.js",
+    "db:ai-log-retention": "node scripts/apply_ai_log_retention.js",
     "security:rotate-credentials": "node scripts/rotate_security_credentials.js",
     "db:seed-demo": "node scripts/run_sql_file.js seed"
   },

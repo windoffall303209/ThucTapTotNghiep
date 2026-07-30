@@ -1313,25 +1313,27 @@ async function deleteLesson(req, res, next) {
   }
 }
 
-const AI_SESSION_TYPES = ['EXERCISE_HELP', 'THEORY_EXPLAIN'];
-
 // Chức năng AD-08: giám sát nội dung hội thoại giữa học sinh và AI.
 async function aiLogs(req, res, next) {
   try {
-    const sessionType = AI_SESSION_TYPES.includes(req.query.type) ? req.query.type : '';
-    const studentId = Number(req.query.student_id || 0) || null;
-    const onlyFlagged = String(req.query.flagged || '') === '1';
+    const filters = AIConversationLog.normalizeLogFilters({
+      sessionType: req.query.type,
+      studentId: req.query.student_id,
+      lessonId: req.query.lesson_id,
+      from: req.query.from,
+      to: req.query.to,
+      onlyFlagged: req.query.flagged
+    });
 
-    const [result, stats, studentList] = await Promise.all([
+    const [result, stats, studentList, lessons] = await Promise.all([
       AIConversationLog.listLogs({
         page: req.query.page,
         limit: 20,
-        studentId,
-        sessionType,
-        onlyFlagged
+        ...filters
       }),
-      AIConversationLog.getLogStats(),
-      Student.listStudents('')
+      AIConversationLog.getLogStats(filters),
+      Student.listStudents(''),
+      Curriculum.getAllLessons()
     ]);
 
     res.render('admin/ai-logs', {
@@ -1340,9 +1342,14 @@ async function aiLogs(req, res, next) {
       pagination: result.pagination,
       stats,
       students: studentList,
-      filters: { sessionType, studentId, onlyFlagged }
+      lessons,
+      filters
     });
   } catch (error) {
+    if (error.code === 'INVALID_AI_LOG_FILTER') {
+      setFlash(req, 'danger', error.message);
+      return res.redirect('/admin/logs/ai');
+    }
     next(error);
   }
 }
@@ -1396,6 +1403,7 @@ async function updateSettings(req, res, next) {
       ai_max_hints_per_session: req.body.ai_max_hints_per_session,
       ai_max_requests_per_student_per_day: req.body.ai_max_requests_per_student_per_day,
       ai_require_answer_before_help: req.body.ai_require_answer_before_help,
+      ai_log_retention_days: req.body.ai_log_retention_days,
       openai_api_key: req.body.openai_api_key,
       openai_base_url: req.body.openai_base_url,
       openai_model: req.body.openai_model,
