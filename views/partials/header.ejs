@@ -23,38 +23,38 @@
 
   <nav class="admin-nav" aria-label="Điều hướng quản trị">
     <span class="admin-nav-label">Tổng quan</span>
-    <a href="/admin/dashboard" class="<%= currentPath === '/admin/dashboard' ? 'active' : '' %>">
+    <a href="/admin/dashboard" class="<%= currentPath === '/admin/dashboard' ? 'active' : '' %>" <%- currentPath === '/admin/dashboard' ? 'aria-current="page"' : '' %>>
       <i data-lucide="layout-dashboard" class="lucide-icon"></i>
       Dashboard
     </a>
 
     <span class="admin-nav-label">Nội dung</span>
-    <a href="/admin/curriculum" class="<%= currentPath.startsWith('/admin/curriculum') ? 'active' : '' %>">
+    <a href="/admin/curriculum" class="<%= currentPath.startsWith('/admin/curriculum') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/curriculum') ? 'aria-current="page"' : '' %>>
       <i data-lucide="list-tree" class="lucide-icon"></i>
       Khung chương trình
     </a>
-    <a href="/admin/questions" class="<%= currentPath.startsWith('/admin/questions') ? 'active' : '' %>">
+    <a href="/admin/questions" class="<%= currentPath.startsWith('/admin/questions') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/questions') ? 'aria-current="page"' : '' %>>
       <i data-lucide="list-checks" class="lucide-icon"></i>
       Ngân hàng câu hỏi
     </a>
-    <a href="/admin/theory" class="<%= currentPath.startsWith('/admin/theory') ? 'active' : '' %>">
+    <a href="/admin/theory" class="<%= currentPath.startsWith('/admin/theory') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/theory') ? 'aria-current="page"' : '' %>>
       <i data-lucide="book-open" class="lucide-icon"></i>
       Kho lý thuyết
     </a>
 
     <span class="admin-nav-label">Giám sát</span>
-    <a href="/admin/logs/ai" class="<%= currentPath.startsWith('/admin/logs') ? 'active' : '' %>">
+    <a href="/admin/logs/ai" class="<%= currentPath.startsWith('/admin/logs') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/logs') ? 'aria-current="page"' : '' %>>
       <i data-lucide="message-square" class="lucide-icon"></i>
       Nhật ký AI
     </a>
 
     <% if (admin.role === 'SYSADMIN') { %>
       <span class="admin-nav-label">Hệ thống</span>
-      <a href="/admin/students" class="<%= currentPath.startsWith('/admin/students') ? 'active' : '' %>">
+      <a href="/admin/students" class="<%= currentPath.startsWith('/admin/students') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/students') ? 'aria-current="page"' : '' %>>
         <i data-lucide="users" class="lucide-icon"></i>
         Tài khoản học sinh
       </a>
-      <a href="/admin/settings" class="<%= currentPath.startsWith('/admin/settings') ? 'active' : '' %>">
+      <a href="/admin/settings" class="<%= currentPath.startsWith('/admin/settings') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/settings') ? 'aria-current="page"' : '' %>>
         <i data-lucide="settings" class="lucide-icon"></i>
         API & cài đặt
       </a>
@@ -87,19 +87,19 @@
       <%# Nhãn và điều kiện active phải TRÙNG với bottom-nav bên dưới: cùng một
           trang mà thanh trên gọi "Hôm nay", thanh dưới gọi "Học" thì trẻ tưởng
           là hai nơi khác nhau. %>
-      <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
+      <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>" <%- currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'aria-current="page"' : '' %>>
         <i data-lucide="sparkles" class="lucide-icon"></i>
         Học bài
       </a>
-      <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>">
+      <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>" <%- currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'aria-current="page"' : '' %>>
         <i data-lucide="clipboard-list" class="lucide-icon"></i>
         Luyện tập
       </a>
-      <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>">
+      <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>" <%- currentPath.startsWith('/student/history') ? 'aria-current="page"' : '' %>>
         <i data-lucide="history" class="lucide-icon"></i>
         Lịch sử
       </a>
-      <a href="/student/account" class="<%= currentPath.startsWith('/student/account') ? 'active' : '' %>">
+      <a href="/student/account" class="<%= currentPath.startsWith('/student/account') ? 'active' : '' %>" <%- currentPath.startsWith('/student/account') ? 'aria-current="page"' : '' %>>
         <i data-lucide="user-circle" class="lucide-icon"></i>
         Tài khoản
       </a>
@@ -127,19 +127,19 @@
 
 <% if (student) { %>
 <nav class="bottom-nav" aria-label="Điều hướng nhanh">
-  <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>">
+  <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>" <%- currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'aria-current="page"' : '' %>>
     <i data-lucide="sparkles" class="lucide-icon"></i>
     <span>Học bài</span>
   </a>
-  <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>">
+  <a href="/student/exams" class="<%= currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'active' : '' %>" <%- currentPath.startsWith('/student/exams') || currentPath.startsWith('/student/sessions') ? 'aria-current="page"' : '' %>>
     <i data-lucide="clipboard-list" class="lucide-icon"></i>
     <span>Luyện tập</span>
   </a>
-  <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>">
+  <a href="/student/history" class="<%= currentPath.startsWith('/student/history') ? 'active' : '' %>" <%- currentPath.startsWith('/student/history') ? 'aria-current="page"' : '' %>>
     <i data-lucide="history" class="lucide-icon"></i>
     <span>Lịch sử</span>
   </a>
-  <a href="/student/account" class="<%= currentPath.startsWith('/student/account') ? 'active' : '' %>">
+  <a href="/student/account" class="<%= currentPath.startsWith('/student/account') ? 'active' : '' %>" <%- currentPath.startsWith('/student/account') ? 'aria-current="page"' : '' %>>
     <i data-lucide="user-circle" class="lucide-icon"></i>
     <span>Tài khoản</span>
   </a>

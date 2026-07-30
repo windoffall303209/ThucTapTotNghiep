@@ -8,7 +8,11 @@
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         const mode = button.dataset.reviewFilter;
-        buttons.forEach((other) => other.classList.toggle('active', other === button));
+        buttons.forEach((other) => {
+          const isActive = other === button;
+          other.classList.toggle('active', isActive);
+          other.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
         document.querySelectorAll('[data-review-result]').forEach((item) => {
           item.hidden = mode === 'wrong' && item.dataset.reviewResult !== 'wrong';
         });

@@ -5,7 +5,8 @@
     document.querySelectorAll('.theory-help-button').forEach((button) => {
       button.addEventListener('click', async () => {
         const card = button.closest('.theory-card');
-        const replyBox = card.querySelector('.ai-inline-reply');
+        const replyBox = card?.querySelector('.ai-inline-reply');
+        if (!replyBox) return;
         button.disabled = true;
         setButtonBusy(button, 'Đang tạo giải thích...');
   
@@ -18,15 +19,18 @@
               cardIndex: button.dataset.cardIndex
             })
           });
-          const result = await response.json();
+          const result = await response.json().catch(() => null);
+          if (!response.ok || !result) throw new Error('Không tạo được phần gợi ý.');
   
           replyBox.hidden = false;
+          button.setAttribute('aria-expanded', 'true');
           replyBox.innerHTML = renderMarkdownText(
             result.reply || result.message || 'Chưa có phản hồi.'
           );
           renderMath(replyBox);
         } catch (error) {
           replyBox.hidden = false;
+          button.setAttribute('aria-expanded', 'true');
           replyBox.textContent = 'Chưa kết nối được phần gợi ý. Em thử lại sau ít phút nhé.';
         } finally {
           restoreButton(button);
@@ -39,11 +43,13 @@
   function setButtonBusy(button, busyLabel) {
     button.dataset.originalHtml = button.innerHTML;
     button.textContent = busyLabel;
+    button.setAttribute('aria-busy', 'true');
   }
 
   function restoreButton(button) {
     if (button.dataset.originalHtml) button.innerHTML = button.dataset.originalHtml;
     delete button.dataset.originalHtml;
+    button.removeAttribute('aria-busy');
     if (window.lucide) window.lucide.createIcons();
   }
 

@@ -36,6 +36,21 @@
     translateDifficulty,
     translateLayout
   } = window.AppUI;
+  let contentRequestSequence = 0;
+
+  function nextContentRequestId(scope) {
+    contentRequestSequence += 1;
+    return `${scope}:${contentRequestSequence}`;
+  }
+
+  async function confirmDiscard(root, message) {
+    if (typeof window.AdminDirtyForms?.confirmDiscard !== 'function') return true;
+    return window.AdminDirtyForms.confirmDiscard(root, {
+      message,
+      confirmLabel: 'Bỏ thay đổi',
+      cancelLabel: 'Tiếp tục chỉnh sửa'
+    });
+  }
 
   function initAdminPreview(root = document) {
     const previewForms = Array.from(root.querySelectorAll('[data-question-preview-form]:not([data-question-preview-ready])'));
@@ -353,9 +368,14 @@
   function initQuestionDetailsControls(root = document) {
     root.querySelectorAll('[data-close-details]:not([data-close-details-ready])').forEach((button) => {
       button.dataset.closeDetailsReady = 'true';
-      button.addEventListener('click', () => {
+      button.addEventListener('click', async () => {
         const details = button.closest('details');
         const form = button.closest('form');
+        const canClose = await confirmDiscard(
+          form || details,
+          'Biểu mẫu đang có thay đổi chưa lưu. Bạn có chắc muốn hủy và đóng biểu mẫu?'
+        );
+        if (!canClose) return;
         form?.reset();
         if (details) details.open = false;
       });
@@ -811,8 +831,17 @@
 
       const activateLesson = async (button, options = {}) => {
         if (!button || !shell || !workspacePanel) return;
+        const canChangeLesson = await confirmDiscard(
+          shell,
+          'Bài đang mở có thay đổi chưa lưu. Nếu chọn bài khác, các thay đổi này sẽ bị mất.'
+        );
+        if (!canChangeLesson) return;
 
-        lessonButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+        lessonButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
         if (workspaceTitle) workspaceTitle.textContent = button.dataset.lessonTitle || 'Bài học';
         if (workspaceMeta) workspaceMeta.textContent = button.dataset.lessonMeta || '';
         if (emptyWorkspace) emptyWorkspace.hidden = true;
@@ -827,9 +856,9 @@
         if (options.updateUrl !== false) setLessonInUrl(button.dataset.lessonId);
 
         if (kind === 'questions') {
-          await fetchLessonQuestions(shell, 1);
+          await fetchLessonQuestions(shell, 1, { discardConfirmed: true });
         } else {
-          await fetchLessonTheory(shell);
+          await fetchLessonTheory(shell, { discardConfirmed: true });
         }
 
         if (options.scroll !== false && window.matchMedia('(max-width: 920px)').matches) {
@@ -840,7 +869,11 @@
       gradeButtons.forEach((button) => {
         button.addEventListener('click', () => {
           activeGrade = button.dataset.gradeFilter || 'all';
-          gradeButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+          gradeButtons.forEach((item) => {
+            const isActive = item === button;
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          });
           applyFilters();
         });
       });
@@ -850,8 +883,14 @@
         button.addEventListener('click', () => activateLesson(button));
       });
 
-      closeButton?.addEventListener('click', () => {
+      closeButton?.addEventListener('click', async () => {
+        const canClose = await confirmDiscard(
+          shell,
+          'Bài đang mở có thay đổi chưa lưu. Nếu đóng không gian làm việc, các thay đổi này sẽ bị mất.'
+        );
+        if (!canClose) return;
         lessonButtons.forEach((button) => button.classList.remove('is-active'));
+        lessonButtons.forEach((button) => button.setAttribute('aria-pressed', 'false'));
         workspacePanel.hidden = true;
         if (emptyWorkspace) emptyWorkspace.hidden = false;
         shell.innerHTML = '';
@@ -878,10 +917,17 @@
     else delete shell.dataset.loading;
   }
 
-  async function fetchLessonQuestions(shell, page = 1) {
-    if (!shell || shell.dataset.loading === 'true') return;
+  async function fetchLessonQuestions(shell, page = 1, options = {}) {
+    if (!shell) return;
+    if (
+      !options.discardConfirmed
+      && !await confirmDiscard(
+        shell,
+        'Danh sách câu hỏi có thay đổi chưa lưu. Nếu tải nội dung khác, các thay đổi này sẽ bị mất.'
+      )
+    ) return;
     const lessonId = shell.dataset.lessonId;
-    const requestId = `${lessonId}:${page}:${Date.now()}`;
+    const requestId = nextContentRequestId(`${lessonId}:${page}`);
     shell.dataset.requestId = requestId;
     setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải danh sách câu hỏi...</div>';
@@ -935,19 +981,29 @@
     // Thanh lọc trong bài: submit là tải lại partial từ trang 1 với điều kiện
     // mới; "Bỏ lọc" xóa điều kiện rồi tải lại toàn bộ.
     shell.querySelectorAll('[data-question-filter]').forEach((form) => {
-      form.addEventListener('submit', (event) => {
+      form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        const canFilter = await confirmDiscard(
+          shell,
+          'Có biểu mẫu câu hỏi chưa lưu. Nếu áp dụng bộ lọc, các thay đổi này sẽ bị mất.'
+        );
+        if (!canFilter) return;
         shell.dataset.filterDifficulty = String(form.querySelector('[name="difficulty"]')?.value || '');
         shell.dataset.filterKeyword = String(form.querySelector('[name="q"]')?.value || '').trim();
         delete shell.dataset.loadedPage;
-        fetchLessonQuestions(shell, 1);
+        fetchLessonQuestions(shell, 1, { discardConfirmed: true });
       });
 
-      form.querySelector('[data-question-filter-clear]')?.addEventListener('click', () => {
+      form.querySelector('[data-question-filter-clear]')?.addEventListener('click', async () => {
+        const canClearFilter = await confirmDiscard(
+          shell,
+          'Có biểu mẫu câu hỏi chưa lưu. Nếu bỏ bộ lọc, các thay đổi này sẽ bị mất.'
+        );
+        if (!canClearFilter) return;
         delete shell.dataset.filterDifficulty;
         delete shell.dataset.filterKeyword;
         delete shell.dataset.loadedPage;
-        fetchLessonQuestions(shell, 1);
+        fetchLessonQuestions(shell, 1, { discardConfirmed: true });
       });
     });
   }
@@ -965,6 +1021,11 @@
   }
 
   async function loadQuestionEditForm(shell) {
+    const canLoad = await confirmDiscard(
+      shell,
+      'Form sửa câu hỏi có thay đổi chưa lưu. Nếu tải lại, các thay đổi này sẽ bị mất.'
+    );
+    if (!canLoad) return;
     setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải form sửa câu hỏi...</div>';
 
@@ -992,10 +1053,17 @@
     }
   }
 
-  async function fetchLessonTheory(shell) {
-    if (!shell || shell.dataset.loading === 'true') return;
+  async function fetchLessonTheory(shell, options = {}) {
+    if (!shell) return;
+    if (
+      !options.discardConfirmed
+      && !await confirmDiscard(
+        shell,
+        'Nội dung lý thuyết có thay đổi chưa lưu. Nếu tải nội dung khác, các thay đổi này sẽ bị mất.'
+      )
+    ) return;
     const lessonId = shell.dataset.lessonId;
-    const requestId = `${lessonId}:${Date.now()}`;
+    const requestId = nextContentRequestId(lessonId);
     shell.dataset.requestId = requestId;
 
     setShellBusy(shell, true);

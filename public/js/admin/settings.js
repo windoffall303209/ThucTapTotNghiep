@@ -5,6 +5,7 @@
     const cards = Array.from(document.querySelectorAll('[data-settings-target]'));
     const modals = Array.from(document.querySelectorAll('[data-settings-modal]'));
     if (cards.length === 0 || modals.length === 0) return;
+    const returnFocusByModal = new WeakMap();
   
     const activateCard = (card) => {
       const target = card.dataset.settingsTarget;
@@ -16,24 +17,56 @@
         const modal = modals.find((item) => item.dataset.settingsModal === card.dataset.settingsTarget);
         if (!modal) return;
         activateCard(card);
+        returnFocusByModal.set(modal, card);
         if (typeof modal.showModal === 'function') {
           modal.showModal();
         } else {
           modal.setAttribute('open', '');
         }
+        window.setTimeout(() => {
+          modal.querySelector(
+            'input:not([type="hidden"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled])'
+          )?.focus();
+        }, 0);
       });
     });
   
     const activeCard = cards.find((card) => card.classList.contains('active')) || cards[0];
     activateCard(activeCard);
-  
+
     modals.forEach((modal) => {
+      const restoreModalFocus = () => {
+        const returnTarget = returnFocusByModal.get(modal);
+        returnFocusByModal.delete(modal);
+        if (returnTarget?.isConnected) returnTarget.focus();
+      };
+      const closeModal = async () => {
+        const form = modal.querySelector('form');
+        const canClose = typeof window.AdminDirtyForms?.confirmDiscard === 'function'
+          ? await window.AdminDirtyForms.confirmDiscard(form || modal, {
+              message: 'Cửa sổ cài đặt có thay đổi chưa lưu. Bạn có chắc muốn hủy các thay đổi này?'
+            })
+          : true;
+        if (!canClose) return;
+        form?.reset();
+        if (typeof modal.close === 'function') modal.close();
+        else {
+          modal.removeAttribute('open');
+          restoreModalFocus();
+        }
+      };
+
       modal.querySelectorAll('[data-modal-close]').forEach((button) => {
-        button.addEventListener('click', () => modal.close());
+        button.addEventListener('click', closeModal);
       });
       modal.addEventListener('click', (event) => {
-        if (event.target === modal) modal.close();
+        if (event.target === modal) closeModal();
       });
+      modal.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closeModal();
+      });
+      modal.addEventListener('close', restoreModalFocus);
     });
   
     initModelSelectors();

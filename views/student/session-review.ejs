@@ -76,16 +76,16 @@
   </div>
 </section>
 
-<section class="review-list">
+<section id="reviewQuestionList" class="review-list">
   <% if (wrongCount > 0) { %>
     <%# Bài 15-20 câu thì trang xem lại rất dài; nút lọc giúp em nhảy thẳng tới
         các câu cần sửa thay vì cuộn qua cả các câu đã đúng. %>
     <div class="review-filter" role="group" aria-label="Lọc danh sách câu hỏi">
-      <button type="button" class="btn btn-secondary active" data-review-filter="all">
+      <button type="button" class="btn btn-secondary active" data-review-filter="all" aria-pressed="true" aria-controls="reviewQuestionList">
         <i data-lucide="list" class="lucide-icon"></i>
         Tất cả câu (<%= questions.length %>)
       </button>
-      <button type="button" class="btn btn-secondary" data-review-filter="wrong">
+      <button type="button" class="btn btn-secondary" data-review-filter="wrong" aria-pressed="false" aria-controls="reviewQuestionList">
         <i data-lucide="circle-x" class="lucide-icon"></i>
         Chỉ xem câu sai (<%= wrongCount %>)
       </button>

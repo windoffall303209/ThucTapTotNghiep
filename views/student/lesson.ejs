@@ -146,11 +146,19 @@
         class="btn btn-secondary theory-help-button"
         type="button"
         data-lesson-id="<%= lesson.id %>"
-        data-card-index="<%= index %>">
+        data-card-index="<%= index %>"
+        aria-controls="theory-help-reply-<%= index %>"
+        aria-expanded="false">
         <i data-lucide="message-circle" class="lucide-icon"></i>
         Gợi ý thêm dễ hiểu hơn
       </button>
-      <div class="ai-inline-reply" hidden></div>
+      <div
+        id="theory-help-reply-<%= index %>"
+        class="ai-inline-reply"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden></div>
       <% } %>
     </article>
   <% }) %>

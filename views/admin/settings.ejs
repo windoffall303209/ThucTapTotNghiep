@@ -219,27 +219,27 @@
   </form>
 
   <section class="settings-provider-grid" aria-label="Danh sách nguồn API">
-    <button class="provider-card <%= !settings.ai_provider || settings.ai_provider === 'mock' || settings.ai_provider === 'openai' ? 'active' : '' %>" type="button" data-settings-target="openai">
+    <button class="provider-card <%= !settings.ai_provider || settings.ai_provider === 'mock' || settings.ai_provider === 'openai' ? 'active' : '' %>" type="button" data-settings-target="openai" aria-haspopup="dialog" aria-controls="settings-modal-openai">
       <span class="provider-icon"><i data-lucide="bot" class="lucide-icon"></i></span>
       <span><strong>OpenAI</strong><small><%= settings.openai_api_key ? 'Đã cấu hình key' : 'Chưa có API key' %></small></span>
     </button>
-    <button class="provider-card <%= settings.ai_provider === 'gemini' ? 'active' : '' %>" type="button" data-settings-target="gemini">
+    <button class="provider-card <%= settings.ai_provider === 'gemini' ? 'active' : '' %>" type="button" data-settings-target="gemini" aria-haspopup="dialog" aria-controls="settings-modal-gemini">
       <span class="provider-icon"><i data-lucide="sparkles" class="lucide-icon"></i></span>
       <span><strong>Gemini API</strong><small><%= settings.gemini_api_key ? 'Đã cấu hình key' : 'Chưa có API key' %></small></span>
     </button>
-    <button class="provider-card <%= settings.ai_provider === 'gemini_cli' ? 'active' : '' %>" type="button" data-settings-target="gemini-cli">
+    <button class="provider-card <%= settings.ai_provider === 'gemini_cli' ? 'active' : '' %>" type="button" data-settings-target="gemini-cli" aria-haspopup="dialog" aria-controls="settings-modal-gemini-cli">
       <span class="provider-icon"><i data-lucide="terminal" class="lucide-icon"></i></span>
       <span><strong>Gemini CLI</strong><small>OAuth local</small></span>
     </button>
-    <button class="provider-card <%= settings.ai_provider === 'nvidia' ? 'active' : '' %>" type="button" data-settings-target="nvidia">
+    <button class="provider-card <%= settings.ai_provider === 'nvidia' ? 'active' : '' %>" type="button" data-settings-target="nvidia" aria-haspopup="dialog" aria-controls="settings-modal-nvidia">
       <span class="provider-icon"><i data-lucide="cpu" class="lucide-icon"></i></span>
       <span><strong>NVIDIA NIM</strong><small><%= settings.nvidia_nim_api_key ? 'Đã cấu hình key' : 'Chưa có API key' %></small></span>
     </button>
-    <button class="provider-card <%= settings.ai_provider === 'openrouter' ? 'active' : '' %>" type="button" data-settings-target="openrouter">
+    <button class="provider-card <%= settings.ai_provider === 'openrouter' ? 'active' : '' %>" type="button" data-settings-target="openrouter" aria-haspopup="dialog" aria-controls="settings-modal-openrouter">
       <span class="provider-icon"><i data-lucide="route" class="lucide-icon"></i></span>
       <span><strong>OpenRouter</strong><small><%= settings.openrouter_api_key ? 'Đã cấu hình key' : 'Chưa có API key' %></small></span>
     </button>
-    <button class="provider-card" type="button" data-settings-target="cloudinary">
+    <button class="provider-card" type="button" data-settings-target="cloudinary" aria-haspopup="dialog" aria-controls="settings-modal-cloudinary">
       <span class="provider-icon"><i data-lucide="image-up" class="lucide-icon"></i></span>
       <span><strong>Cloudinary</strong><small><%= settings.cloudinary_cloud_name && settings.cloudinary_api_key && settings.cloudinary_api_secret ? 'Đã cấu hình' : 'Đang dùng fallback local nếu thiếu' %></small></span>
     </button>
@@ -248,22 +248,23 @@
 
 <% function modelField(label, name, currentValue, models) { %>
   <div class="model-field">
-    <label><%= label %></label>
-    <select data-model-select="<%= name %>">
+    <label for="<%= name %>-preset"><%= label %></label>
+    <select id="<%= name %>-preset" data-model-select="<%= name %>" aria-label="<%= label %> có sẵn">
       <% models.forEach((model) => { %>
         <option value="<%= model %>" <%= currentValue === model ? 'selected' : '' %>><%= model %></option>
       <% }) %>
       <option value="__custom__" <%= models.includes(currentValue) ? '' : 'selected' %>>Model khác</option>
     </select>
-    <input name="<%= name %>" data-model-input="<%= name %>" value="<%= currentValue %>" placeholder="Nhập model mới">
+    <label class="sr-only" for="<%= name %>-input"><%= label %> tùy chỉnh</label>
+    <input id="<%= name %>-input" name="<%= name %>" data-model-input="<%= name %>" value="<%= currentValue %>" placeholder="Nhập model mới" aria-label="<%= label %> tùy chỉnh">
   </div>
 <% } %>
 
-<dialog class="settings-modal" data-settings-modal="openai">
+<dialog id="settings-modal-openai" class="settings-modal" data-settings-modal="openai" aria-labelledby="settings-modal-openai-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Nguồn AI</p><h2>OpenAI</h2></div>
+      <div><p class="eyebrow">Nguồn AI</p><h2 id="settings-modal-openai-title">OpenAI</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">
@@ -284,11 +285,11 @@
   </form>
 </dialog>
 
-<dialog class="settings-modal" data-settings-modal="gemini">
+<dialog id="settings-modal-gemini" class="settings-modal" data-settings-modal="gemini" aria-labelledby="settings-modal-gemini-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Nguồn AI</p><h2>Gemini API</h2></div>
+      <div><p class="eyebrow">Nguồn AI</p><h2 id="settings-modal-gemini-title">Gemini API</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">
@@ -308,11 +309,11 @@
   </form>
 </dialog>
 
-<dialog class="settings-modal" data-settings-modal="gemini-cli">
+<dialog id="settings-modal-gemini-cli" class="settings-modal" data-settings-modal="gemini-cli" aria-labelledby="settings-modal-gemini-cli-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Nguồn AI local</p><h2>Gemini CLI OAuth</h2></div>
+      <div><p class="eyebrow">Nguồn AI local</p><h2 id="settings-modal-gemini-cli-title">Gemini CLI OAuth</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">
@@ -329,11 +330,11 @@
   </form>
 </dialog>
 
-<dialog class="settings-modal" data-settings-modal="nvidia">
+<dialog id="settings-modal-nvidia" class="settings-modal" data-settings-modal="nvidia" aria-labelledby="settings-modal-nvidia-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Nguồn AI</p><h2>NVIDIA NIM</h2></div>
+      <div><p class="eyebrow">Nguồn AI</p><h2 id="settings-modal-nvidia-title">NVIDIA NIM</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">
@@ -354,11 +355,11 @@
   </form>
 </dialog>
 
-<dialog class="settings-modal" data-settings-modal="openrouter">
+<dialog id="settings-modal-openrouter" class="settings-modal" data-settings-modal="openrouter" aria-labelledby="settings-modal-openrouter-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Nguồn AI</p><h2>OpenRouter</h2></div>
+      <div><p class="eyebrow">Nguồn AI</p><h2 id="settings-modal-openrouter-title">OpenRouter</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">
@@ -379,11 +380,11 @@
   </form>
 </dialog>
 
-<dialog class="settings-modal" data-settings-modal="cloudinary">
+<dialog id="settings-modal-cloudinary" class="settings-modal" data-settings-modal="cloudinary" aria-labelledby="settings-modal-cloudinary-title">
   <form class="settings-modal-card" action="/admin/settings" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
-      <div><p class="eyebrow">Lưu trữ ảnh</p><h2>Cloudinary</h2></div>
+      <div><p class="eyebrow">Lưu trữ ảnh</p><h2 id="settings-modal-cloudinary-title">Cloudinary</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
     </header>
     <div class="settings-modal-body">

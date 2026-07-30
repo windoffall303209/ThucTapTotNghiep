@@ -30,14 +30,15 @@
       <aside class="lesson-browser" aria-label="Danh sách bài học">
         <div class="lesson-browser-head">
           <label class="lesson-search">
+            <span class="sr-only">Tìm bài học hoặc chương</span>
             <i data-lucide="search" class="lucide-icon"></i>
             <input type="search" placeholder="Tìm bài hoặc chương..." data-lesson-search autocomplete="off">
           </label>
 
           <div class="grade-filter" role="group" aria-label="Lọc theo lớp">
-            <button class="is-active" type="button" data-grade-filter="all">Tất cả</button>
+            <button class="is-active" type="button" data-grade-filter="all" aria-pressed="true">Tất cả</button>
             <% grades.forEach((grade) => { %>
-              <button type="button" data-grade-filter="<%= grade %>">Lớp <%= grade %></button>
+              <button type="button" data-grade-filter="<%= grade %>" aria-pressed="false">Lớp <%= grade %></button>
             <% }) %>
           </div>
         </div>
@@ -63,6 +64,7 @@
                       data-lesson-title="<%= lesson.lesson_name %>"
                       data-lesson-meta="<%= book.title %> · <%= chapter.chapter_name %>"
                       data-search-text="<%= `${book.title} ${chapter.chapter_name} ${lesson.lesson_name}`.toLowerCase() %>"
+                      aria-pressed="false"
                     >
                       <span>
                         <strong><%= lesson.lesson_name %></strong>
@@ -80,7 +82,7 @@
         </div>
       </aside>
 
-      <main class="content-workspace" data-content-workspace>
+      <section class="content-workspace" data-content-workspace aria-label="Không gian quản lý câu hỏi">
         <div class="content-workspace-empty" data-workspace-empty>
           <i data-lucide="mouse-pointer-click" class="empty-icon"></i>
           <h2>Chọn bài học để bắt đầu</h2>
@@ -100,7 +102,7 @@
 
           <div class="lesson-question-shell" data-manager-shell data-content-kind="questions" aria-live="polite" aria-busy="false"></div>
         </section>
-      </main>
+      </section>
     </div>
   <% } %>
 </section>

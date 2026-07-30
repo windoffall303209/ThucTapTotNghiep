@@ -174,6 +174,8 @@ test('trình quản lý nội dung giữ contract tải động cho câu hỏi v
       /aria-busy="false"/,
       /\/js\/admin\/content-manager\.js/
     ]);
+    assert.doesNotMatch(source, /<main class="content-workspace"/);
+    assert.match(source, /<section class="content-workspace"[^>]*aria-label=/);
   });
 
   assertContainsAll(routes, [
@@ -181,6 +183,31 @@ test('trình quản lý nội dung giữ contract tải động cho câu hỏi v
     /router\.get\('\/questions\/:id\/edit'/,
     /router\.get\('\/theory\/lesson\/:lessonId'/
   ]);
+});
+
+test('dirty-form admin theo dõi từng form và chặn mọi đường thay shell', () => {
+  const adminCommon = read('public/js/admin/common.js');
+  const manager = read('public/js/admin/content-manager.js');
+
+  assertContainsAll(adminCommon, [
+    /const dirtyForms = new Set\(\)/,
+    /window\.AdminDirtyForms = \{/,
+    /function dirtyFormsWithin\(root = document\)/,
+    /if \(!event\.defaultPrevented\) clearDirty\(event\.target\)/,
+    /if \(confirmed\) forms\.forEach\(clearDirty\)/,
+    /if \(!hasDirty\(\)\) return/
+  ]);
+  assert.doesNotMatch(adminCommon, /let dirty = false/);
+  assertContainsAll(manager, [
+    /const canChangeLesson = await confirmDiscard\(/,
+    /const canClose = await confirmDiscard\(/,
+    /async function fetchLessonQuestions\(shell, page = 1, options = \{\}\)/,
+    /async function fetchLessonTheory\(shell, options = \{\}\)/,
+    /const canFilter = await confirmDiscard\(/,
+    /const canClearFilter = await confirmDiscard\(/,
+    /fetchLessonQuestions\(shell, 1, \{ discardConfirmed: true \}\)/
+  ]);
+  assert.ok((manager.match(/confirmDiscard\(/g) || []).length >= 8);
 });
 
 test('form soạn câu hỏi giữ trường upload và hook canvas hiện tại', () => {
@@ -211,13 +238,18 @@ test('form soạn câu hỏi giữ trường upload và hook canvas hiện tại
 
 test('màn cài đặt giữ hook dialog, chọn model và kiểm tra provider', () => {
   const settings = read('views/admin/settings.ejs');
+  const settingsJs = read('public/js/admin/settings.js');
 
   assertContainsAll(settings, [
     /action="\/admin\/settings" method="post"/,
     /data-settings-target="openai"/,
     /data-settings-modal="openai"/,
+    /aria-controls="settings-modal-openai"/,
+    /aria-labelledby="settings-modal-openai-title"/,
+    /id="settings-modal-openai-title"/,
     /data-model-select=/,
     /data-model-input=/,
+    /class="sr-only" for="<%= name %>-input"/,
     /data-check-provider="openai"/,
     /data-check-status role="status" aria-live="polite"/,
     /data-modal-close/,
@@ -227,6 +259,12 @@ test('màn cài đặt giữ hook dialog, chọn model và kiểm tra provider',
     /min="1"/,
     /max="240"/,
     /\/js\/admin\/settings\.js/
+  ]);
+  assertContainsAll(settingsJs, [
+    /returnFocusByModal/,
+    /AdminDirtyForms\?\.confirmDiscard/,
+    /modal\.addEventListener\('cancel'/,
+    /input:not\(\[type="hidden"\]\):not\(\[disabled\]\)/
   ]);
 });
 
@@ -256,6 +294,7 @@ test('schema phiên luyện tập lưu thời lượng và hạn cuối độc l
 test('shell admin có app bar và drawer truy cập được trên màn hình hẹp', () => {
   const layout = read('views/layouts/main.ejs');
   const header = read('views/partials/header.ejs');
+  const adminCommon = read('public/js/admin/common.js');
 
   assert.match(layout, /<link rel="stylesheet" href="\/css\/admin\/common\.css">/);
   assertContainsAll(header, [
@@ -264,7 +303,13 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /data-admin-menu-toggle/,
     /data-admin-sidebar-backdrop/,
     /id="adminSidebar"/,
-    /aria-label="Menu quản trị"/
+    /aria-label="Menu quản trị"/,
+    /aria-current="page"/
+  ]);
+  assertContainsAll(adminCommon, [
+    /const syncSidebarAccessibility =/,
+    /sidebar\.setAttribute\('aria-hidden'/,
+    /sidebar\.inert = !isOpen/
   ]);
 });
 
@@ -341,11 +386,34 @@ test('thông báo đăng nhập là toast nổi tự tắt sau ba giây', () => 
 
 test('session review dùng renderer chung thay vì sao chép logic hiển thị', () => {
   const review = read('views/student/session-review.ejs');
+  const reviewJs = read('public/js/student/session-review.js');
 
   assertContainsAll(review, [
     /contentRenderer\.renderQuestionContent/,
     /contentRenderer\.renderAnswerArea/,
-    /contentRenderer\.renderExplanationContent/
+    /contentRenderer\.renderExplanationContent/,
+    /data-review-filter="all" aria-pressed="true"/,
+    /data-review-filter="wrong" aria-pressed="false"/,
+    /aria-controls="reviewQuestionList"/
   ]);
+  assert.match(reviewJs, /other\.setAttribute\('aria-pressed', isActive \? 'true' : 'false'\)/);
   assert.doesNotMatch(review, /function questionContentHtml|function imageRowHtml/);
+});
+
+test('phản hồi AI trong bài lý thuyết được công bố cho trình đọc màn hình', () => {
+  const lesson = read('views/student/lesson.ejs');
+  const lessonJs = read('public/js/student/lesson.js');
+
+  assertContainsAll(lesson, [
+    /aria-controls="theory-help-reply-<%= index %>"/,
+    /aria-expanded="false"/,
+    /role="status"/,
+    /aria-live="polite"/,
+    /aria-atomic="true"/
+  ]);
+  assertContainsAll(lessonJs, [
+    /button\.setAttribute\('aria-expanded', 'true'\)/,
+    /button\.setAttribute\('aria-busy', 'true'\)/,
+    /button\.removeAttribute\('aria-busy'\)/
+  ]);
 });
