@@ -12,6 +12,10 @@ const {
   validateUsername
 } = require('../utils/accountValidation');
 
+// Bcrypt must still run when the username does not exist. Returning early makes
+// the timing gap large enough to enumerate accounts despite identical messages.
+const DUMMY_PASSWORD_HASH = '$2b$10$6tzMhutOT6ddxR6sSqLDiuzw409nMyXSAZW1B3GlPXpJ3cAecZiBq';
+
 function showLogin(req, res) {
   res.render('auth/login', {
     title: 'Đăng nhập',
@@ -100,13 +104,11 @@ async function login(req, res, next) {
     }
 
     const student = await Student.findByUsername(username);
-    if (!student) {
-      setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
-      return res.redirect('/auth/login');
-    }
-
-    const isValidPassword = await bcrypt.compare(password, student.password_hash);
-    if (!isValidPassword) {
+    const isValidPassword = await bcrypt.compare(
+      password,
+      student?.password_hash || DUMMY_PASSWORD_HASH
+    );
+    if (!student || !isValidPassword) {
       setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
       return res.redirect('/auth/login');
     }
@@ -172,12 +174,11 @@ async function loginAdmin(req, res, username, password) {
 
 async function verifyAdminCredentials(username, password) {
   const admin = await Admin.findByUsername(username);
-  if (!admin || Number(admin.is_active) !== 1) {
-    return null;
-  }
-
-  const isValidAdminPassword = await bcrypt.compare(password, admin.password_hash);
-  if (!isValidAdminPassword) {
+  const isValidAdminPassword = await bcrypt.compare(
+    password,
+    admin?.password_hash || DUMMY_PASSWORD_HASH
+  );
+  if (!admin || Number(admin.is_active) !== 1 || !isValidAdminPassword) {
     return null;
   }
 
