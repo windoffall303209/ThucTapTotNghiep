@@ -9,6 +9,9 @@ const TEMP_UPLOAD_DIR = path.join(__dirname, '..', 'storage', 'tmp', 'uploads');
 const PUBLIC_IMAGE_DIR = path.join(__dirname, '..', 'public', 'uploads', 'images');
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024;
 const MAX_REQUEST_IMAGE_BYTES = 25 * 1024 * 1024;
+const MAX_MULTIPART_REQUEST_BYTES = 30 * 1024 * 1024;
+const MAX_MULTIPART_FIELDS = 128;
+const MAX_MULTIPART_FIELD_SIZE_BYTES = 512 * 1024;
 
 fs.mkdirSync(TEMP_UPLOAD_DIR, { recursive: true });
 fs.mkdirSync(PUBLIC_IMAGE_DIR, { recursive: true });
@@ -30,16 +33,76 @@ function imageFileFilter(req, file, callback) {
   return callback(null, true);
 }
 
-const questionImageUpload = multer({
+const baseQuestionImageUpload = multer({
   storage: imageStorage,
   fileFilter: imageFileFilter,
   limits: {
     fileSize: MAX_FILE_SIZE_BYTES,
     files: 24,
-    fields: 250,
-    fieldSize: 2 * 1024 * 1024
+    fields: MAX_MULTIPART_FIELDS,
+    fieldSize: MAX_MULTIPART_FIELD_SIZE_BYTES,
+    parts: MAX_MULTIPART_FIELDS + 24
   }
 });
+const questionImageUpload = {
+  any: (...args) => limitMultipartRequest(baseQuestionImageUpload.any(...args)),
+  fields: (...args) => limitMultipartRequest(baseQuestionImageUpload.fields(...args))
+};
+
+function limitMultipartRequest(uploadMiddleware, maxBytes = MAX_MULTIPART_REQUEST_BYTES) {
+  return (req, res, next) => {
+    if (!isMultipartRequest(req)) {
+      return uploadMiddleware(req, res, next);
+    }
+
+    const contentLength = readContentLength(req);
+    if (contentLength !== null && contentLength > maxBytes) {
+      req.resume();
+      return next(uploadRequestTooLargeError());
+    }
+
+    let streamedBytes = 0;
+    let limitExceeded = false;
+    const countChunk = (chunk) => {
+      if (limitExceeded) return;
+      streamedBytes += Buffer.isBuffer(chunk)
+        ? chunk.length
+        : Buffer.byteLength(String(chunk || ''));
+      if (streamedBytes <= maxBytes) return;
+
+      limitExceeded = true;
+      // Multer listens for request errors and uses that path to stop Busboy and
+      // remove every file already written by the current request.
+      req.emit('error', uploadRequestTooLargeError());
+    };
+
+    req.on('data', countChunk);
+    return uploadMiddleware(req, res, (error) => {
+      req.off('data', countChunk);
+      return next(error);
+    });
+  };
+}
+
+function isMultipartRequest(req) {
+  return String(req.get?.('content-type') || req.headers?.['content-type'] || '')
+    .toLowerCase()
+    .startsWith('multipart/form-data');
+}
+
+function readContentLength(req) {
+  const rawValue = String(req.get?.('content-length') || req.headers?.['content-length'] || '').trim();
+  if (!/^\d+$/.test(rawValue)) return null;
+  const value = Number(rawValue);
+  return Number.isSafeInteger(value) ? value : null;
+}
+
+function uploadRequestTooLargeError() {
+  const error = new Error('Tổng dung lượng biểu mẫu và ảnh trong một lần gửi không được vượt quá 30 MB.');
+  error.code = 'UPLOAD_REQUEST_TOO_LARGE';
+  error.status = 413;
+  return error;
+}
 
 async function validateUploadedImages(req, res, next) {
   const files = flattenFiles(req.files);
@@ -167,8 +230,12 @@ function safeDisplayName(value) {
 }
 
 module.exports = {
+  MAX_MULTIPART_FIELDS,
+  MAX_MULTIPART_FIELD_SIZE_BYTES,
+  MAX_MULTIPART_REQUEST_BYTES,
   commitRequestUploads,
   detectImageType,
+  limitMultipartRequest,
   prepareUploadCleanup,
   questionImageUpload,
   validateUploadedImages
