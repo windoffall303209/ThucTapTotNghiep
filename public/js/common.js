@@ -596,10 +596,17 @@
     return value;
   }
 
+  function renderFreeAnswerInput(label = 'Nhập đáp án của em') {
+    return `<input class="free-answer-input" data-free-answer-input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" enterkeyhint="done" aria-label="${escapeAttribute(label)}" placeholder="${escapeAttribute(label)}">`;
+  }
+
   function initRenderedGrids(root = document) {
     root.querySelectorAll('[data-grid-render]:not([data-grid-render-ready])').forEach((node) => {
       node.dataset.gridRenderReady = 'true';
-      node.innerHTML = renderGridLayout(parseGridLayoutValue(node.dataset.gridRender));
+      node.setAttribute('role', 'region');
+      node.setAttribute('aria-label', 'Bảng nội dung, có thể cuộn ngang');
+      node.setAttribute('tabindex', '0');
+      node.innerHTML = renderGridLayout(parseGridLayoutValue(node.dataset.gridRender), { wrap: false });
       renderMath(node);
     });
   }
@@ -607,11 +614,13 @@
   function renderGridLayout(gridLayout, options = {}) {
     const grid = parseGridLayoutValue(gridLayout);
     if (!grid.enabled) return '';
-    return `
+    const layout = `
       <div class="content-grid-layout" style="--grid-rows:${grid.rows}; --grid-columns:${grid.columns};">
         ${grid.cells.map((cell) => renderGridCell(cell, options)).join('')}
       </div>
     `;
+    if (options.wrap === false) return layout;
+    return `<div class="content-grid-render" role="region" aria-label="Bảng nội dung, có thể cuộn ngang" tabindex="0">${layout}</div>`;
   }
 
   function renderGridCell(cell, options = {}) {
@@ -645,7 +654,7 @@
     if (cell.type === 'free_answer_input') {
       return options.preview
         ? '<div class="free-answer-input preview-free-answer">Học sinh sẽ điền đáp án tại đây</div>'
-        : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án">';
+        : renderFreeAnswerInput(`Nhập đáp án ở hàng ${cell.row}, cột ${cell.col}`);
     }
     return escapeHtml(cell.text || '').replace(/\r?\n/g, '<br>');
   }
@@ -702,7 +711,7 @@
     if (question?.question_type === 'FILL_IN_THE_BLANK') {
       const inputHtml = options.preview
         ? '<div class="free-answer-input preview-free-answer">Học sinh sẽ điền đáp án tại đây</div>'
-        : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án của em">';
+        : renderFreeAnswerInput();
       return `<div class="free-answer-area">${inputHtml}</div>`;
     }
 

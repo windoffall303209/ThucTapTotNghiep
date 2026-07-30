@@ -117,6 +117,21 @@ test('responsive học sinh sở hữu bố cục một cột của header và h
   assert.match(dashboardCss, /\.student-body \.lesson-row\s*\{[^}]*grid-template-columns:\s*1fr/s);
 });
 
+test('thanh thao tác luyện tập chừa đúng vùng điều hướng dưới và safe area trên mobile', () => {
+  const studentCss = fs.readFileSync(path.join(publicRoot, 'css', 'student', 'common.css'), 'utf8');
+  const practiceCss = fs.readFileSync(path.join(publicRoot, 'css', 'student', 'practice.css'), 'utf8');
+
+  assert.match(studentCss, /--student-bottom-nav-height:\s*calc\(64px \+ env\(safe-area-inset-bottom\)\)/);
+  assert.match(
+    studentCss,
+    /\.student-body \.page-shell\s*\{[^}]*padding-bottom:\s*calc\(var\(--student-bottom-nav-height\) \+ 12px\)/s
+  );
+  assert.match(
+    practiceCss,
+    /@media \(max-width: 920px\)\s*\{[\s\S]*?\.practice-actions\s*\{[^}]*bottom:\s*calc\(var\(--student-bottom-nav-height, 64px\) \+ 8px\)/s
+  );
+});
+
 test('CSS admin không giữ lại flow và dialog authoring đã bỏ khỏi view', () => {
   const managerCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'content-manager.css'), 'utf8');
   const authoringCss = fs.readFileSync(path.join(publicRoot, 'css', 'admin', 'authoring-forms.css'), 'utf8');
@@ -136,4 +151,14 @@ test('CSS renderer dùng chung sở hữu bố cục grid và đáp án cho mọ
   assert.doesNotMatch(adminManagerCss, /\.content-grid-layout\s*\{/);
   assert.doesNotMatch(adminManagerCss, /\.content-grid-cell\s*\{/);
   assert.doesNotMatch(practiceCss, /\.answer-grid,\s*\.review-answer-grid/);
+});
+
+test('CSS renderer giữ bảng rộng trong vùng cuộn có focus rõ ràng', () => {
+  const rendererCss = fs.readFileSync(path.join(publicRoot, 'css', 'content-renderer.css'), 'utf8');
+
+  assert.match(
+    rendererCss,
+    /\.content-grid-render\s*\{[^}]*max-width:\s*100%;[^}]*overflow-x:\s*auto/s
+  );
+  assert.match(rendererCss, /\.content-grid-render:focus-visible\s*\{[^}]*outline:/s);
 });

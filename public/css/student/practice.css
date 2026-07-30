@@ -249,6 +249,12 @@
   transform: translateY(-2px);
 }
 
+.progress-dot:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
 .progress-dot:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.35);
   outline-offset: 2px;
@@ -577,6 +583,12 @@
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
+}
+
+@media (max-width: 920px) {
+  .practice-actions {
+    bottom: calc(var(--student-bottom-nav-height, 64px) + 8px);
+  }
 }
 
 @media (min-width: 980px) {

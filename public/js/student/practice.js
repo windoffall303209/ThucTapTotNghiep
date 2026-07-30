@@ -162,12 +162,46 @@
     });
   }
 
+  function isAnswerPending() {
+    return state.pendingQuestionId !== null;
+  }
+
+  function syncPracticeControlState() {
+    const app = document.getElementById('practiceApp');
+    const question = state.questions[state.currentIndex];
+    const hasSavedResult = Boolean(question && state.results[question.id]);
+    const locked = isAnswerPending() || state.finishing || state.timeExpired;
+    const submitButton = document.getElementById('submitAnswerButton');
+    const nextButton = document.getElementById('nextQuestionButton');
+    const finishButton = document.getElementById('finishPracticeButton');
+
+    if (app) {
+      app.setAttribute('aria-busy', isAnswerPending() ? 'true' : 'false');
+      app.querySelectorAll('.answer-choice, [data-free-answer-input]').forEach((control) => {
+        control.disabled = locked || hasSavedResult;
+      });
+    }
+    document.querySelectorAll('[data-progress-dot]').forEach((dot) => {
+      dot.disabled = locked;
+    });
+    if (submitButton) submitButton.disabled = locked || hasSavedResult;
+    if (nextButton) nextButton.disabled = locked;
+    if (finishButton) finishButton.disabled = locked;
+  }
+
+  function clearAnswerPending(submitButton) {
+    state.pendingQuestionId = null;
+    restoreButton(submitButton);
+    syncPracticeControlState();
+  }
+
   function initQuestionProgressBar() {
     const bar = document.getElementById('questionProgressBar');
     if (!bar) return;
 
     bar.querySelectorAll('[data-progress-dot]').forEach((dot) => {
       dot.addEventListener('click', () => {
+        if (isAnswerPending() || state.finishing || state.timeExpired) return;
         const index = Number(dot.dataset.index);
         if (!Number.isInteger(index) || index === state.currentIndex) return;
         state.currentIndex = index;
@@ -236,7 +270,7 @@
 
     app.querySelectorAll('.answer-choice').forEach((button) => {
       button.addEventListener('click', () => {
-        if (state.answered) return;
+        if (state.answered || isAnswerPending()) return;
         state.selectedAnswer = button.dataset.answer;
         app.querySelectorAll('.answer-choice').forEach((item) => item.classList.remove('selected'));
         button.classList.add('selected');
@@ -256,6 +290,7 @@
     }
 
     updateQuestionProgressBar();
+    syncPracticeControlState();
     renderMath(app);
     refreshIcons();
   }
@@ -362,9 +397,8 @@
   }
 
   async function submitAnswer() {
-    // Ghi lại câu và vị trí ngay lúc gửi. Học sinh có thể bấm chấm tiến trình
-    // để chuyển câu trong lúc chờ phản hồi, khi đó kết quả trả về thuộc câu cũ
-    // và không được phép áp lên giao diện của câu đang xem.
+    // Chụp câu, vị trí và đáp án ngay lúc gửi. Trong lúc chờ chấm, điều hướng câu hỏi
+    // được khóa để kết quả không thể áp nhầm lên một lựa chọn vừa thay đổi.
     const submittedIndex = state.currentIndex;
     const question = state.questions[submittedIndex];
     const feedback = document.getElementById('answerFeedback');
@@ -373,19 +407,19 @@
     const finishButton = document.getElementById('finishPracticeButton');
 
     if (!question || !feedback) return;
-    if (state.pendingQuestionId) return;
+    if (isAnswerPending() || state.finishing || state.timeExpired) return;
 
     const freeAnswerInput = document.querySelector('[data-free-answer-input]');
-    const selectedAnswer = freeAnswerInput ? freeAnswerInput.value.trim() : state.selectedAnswer;
+    const submittedAnswer = freeAnswerInput ? freeAnswerInput.value.trim() : state.selectedAnswer;
 
-    if (!selectedAnswer) {
+    if (!submittedAnswer) {
       showFeedback('warning', 'Vui lòng chọn một đáp án trước khi nộp.');
       return;
     }
 
     state.pendingQuestionId = question.id;
-    submitButton.disabled = true;
     setButtonBusy(submitButton, 'Đang chấm bài...');
+    syncPracticeControlState();
 
     let result;
     try {
@@ -393,7 +427,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          selectedAnswer,
+          selectedAnswer: submittedAnswer,
           practiceSessionId: state.practiceSessionId,
           questionIndex: submittedIndex,
           timeSpentSeconds: Math.round((Date.now() - state.startedAt) / 1000)
@@ -402,23 +436,18 @@
       result = await response.json().catch(() => null);
 
       if (result && result.code === 'PRACTICE_TIME_EXPIRED') {
-        state.pendingQuestionId = null;
-        restoreButton(submitButton);
+        clearAnswerPending(submitButton);
         await showTimeExpiredDialog(result.redirectUrl);
         return;
       }
       if (isSessionExpired(response, result)) {
-        state.pendingQuestionId = null;
-        restoreButton(submitButton);
-        submitButton.disabled = false;
+        clearAnswerPending(submitButton);
         showSessionExpiredFeedback(result && result.message);
         return;
       }
       if (!result) throw new Error('Phản hồi không phải JSON');
     } catch (error) {
-      state.pendingQuestionId = null;
-      restoreButton(submitButton);
-      submitButton.disabled = false;
+      clearAnswerPending(submitButton);
       showRetryFeedback(
         'Chưa gửi được đáp án. Em kiểm tra lại kết nối mạng rồi bấm "Thử lại" nhé.',
         submitAnswer
@@ -426,12 +455,11 @@
       return;
     }
 
-    state.pendingQuestionId = null;
-    restoreButton(submitButton);
+    clearAnswerPending(submitButton);
 
     if (!result.ok) {
       showFeedback('danger', result.message || 'Không thể nộp đáp án.');
-      submitButton.disabled = false;
+      syncPracticeControlState();
       return;
     }
 
@@ -440,7 +468,7 @@
     // server vừa trả, vì dữ liệu câu hỏi nhúng trong trang không còn chứa chúng;
     // nhờ đó quay lại xem câu cũ vẫn dựng lại được đầy đủ phản hồi.
     state.results[question.id] = {
-      selectedAnswer,
+      selectedAnswer: submittedAnswer,
       isCorrect: Boolean(result.isCorrect),
       correctAnswer: result.correctAnswer || null,
       explanation: result.explanation || null
@@ -456,7 +484,7 @@
     }
 
     state.answered = true;
-    markAnswerState(result);
+    markAnswerState(result, submittedAnswer);
     showResultFeedback(result);
 
     if (submitButton) submitButton.hidden = true;
@@ -467,6 +495,7 @@
       finishButton.hidden = false;
     }
 
+    syncPracticeControlState();
     maybeShowSummary();
   }
 
@@ -580,12 +609,14 @@
     if (!button || button.dataset.originalHtml) return;
     button.dataset.originalHtml = button.innerHTML;
     button.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>${escapeHtml(busyLabel)}`;
+    button.setAttribute('aria-busy', 'true');
   }
 
   function restoreButton(button) {
     if (!button || !button.dataset.originalHtml) return;
     button.innerHTML = button.dataset.originalHtml;
     delete button.dataset.originalHtml;
+    button.removeAttribute('aria-busy');
     refreshIcons();
   }
 
@@ -622,13 +653,13 @@
     return response.status === 401 || (result && result.code === 'SESSION_EXPIRED');
   }
 
-  function markAnswerState(result) {
+  function markAnswerState(result, submittedAnswer) {
     document.querySelectorAll('.answer-choice').forEach((button) => {
       const answer = button.dataset.answer;
       if (answer === result.correctAnswer) {
         button.classList.add('correct');
       }
-      if (answer === state.selectedAnswer && !result.isCorrect) {
+      if (answer === submittedAnswer && !result.isCorrect) {
         button.classList.add('wrong');
       }
       // Class này chỉ gắn ở lượt vừa nộp để chạy animation một lần. Khi học
@@ -694,6 +725,7 @@
   }
 
   function nextQuestion() {
+    if (isAnswerPending() || state.finishing || state.timeExpired) return;
     if (state.currentIndex < state.questions.length - 1) {
       state.currentIndex += 1;
       renderCurrentQuestion();
@@ -703,6 +735,7 @@
   async function finishPractice(options = {}) {
     const timedOut = Boolean(options.timedOut);
     if (state.finishing) return;
+    if (isAnswerPending() && !timedOut) return;
     if (!state.practiceSessionId) {
       window.location.href = '/student/history';
       return;
@@ -728,7 +761,7 @@
     if (timedOut) disablePracticeControls();
     const finishButton = document.getElementById('finishPracticeButton');
     setButtonBusy(finishButton, 'Đang lưu kết quả...');
-    if (finishButton) finishButton.disabled = true;
+    syncPracticeControlState();
 
     try {
       const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
@@ -740,11 +773,13 @@
       if (isSessionExpired(response, result)) {
         state.finishing = false;
         restoreButton(finishButton);
-        if (finishButton) finishButton.disabled = false;
+        syncPracticeControlState();
         showSessionExpiredFeedback(result && result.message);
         return;
       }
-      if (!result) throw new Error('Phản hồi không phải JSON');
+      if (!response.ok || !result || result.ok !== true) {
+        throw new Error(result?.message || 'Không thể kết thúc bài làm');
+      }
 
       if (timedOut) {
         await showTimeExpiredDialog(result.redirectUrl);
@@ -758,7 +793,7 @@
       }
       state.finishing = false;
       restoreButton(finishButton);
-      if (finishButton) finishButton.disabled = false;
+      syncPracticeControlState();
       showRetryFeedback(
         'Chưa lưu được kết quả bài làm. Em kiểm tra kết nối mạng rồi bấm "Thử lại" nhé.',
         finishPractice

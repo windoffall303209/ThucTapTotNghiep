@@ -81,6 +81,31 @@ test('màn luyện tập giữ các điểm nối dữ liệu và điều khiể
   ]);
 });
 
+test('màn luyện tập khóa điều hướng khi đang chấm và dùng đúng đáp án đã gửi', () => {
+  const practiceJs = read('public/js/student/practice.js');
+
+  assertContainsAll(practiceJs, [
+    /function isAnswerPending\(\)/,
+    /app\.setAttribute\('aria-busy', isAnswerPending\(\) \? 'true' : 'false'\)/,
+    /dot\.disabled = locked/,
+    /nextButton\.disabled = locked/,
+    /const submittedAnswer =/,
+    /selectedAnswer: submittedAnswer/,
+    /markAnswerState\(result, submittedAnswer\)/,
+    /answer === submittedAnswer && !result\.isCorrect/,
+    /if \(isAnswerPending\(\) \|\| state\.finishing \|\| state\.timeExpired\) return/
+  ]);
+});
+
+test('kết thúc bài chỉ điều hướng sau phản hồi HTTP thành công', () => {
+  const practiceJs = read('public/js/student/practice.js');
+
+  assert.match(
+    practiceJs,
+    /if \(!response\.ok \|\| !result \|\| result\.ok !== true\) \{\s*throw new Error/
+  );
+});
+
 test('popup trình duyệt được thay bằng dialog dùng chung ở giữa màn hình', () => {
   const layout = read('views/layouts/main.ejs');
   const commonJs = read('public/js/common.js');

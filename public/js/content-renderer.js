@@ -16,6 +16,10 @@
     return escapeHtml(value).replaceAll('`', '&#096;');
   }
 
+  function renderFreeAnswerInput(label = 'Nhập đáp án của em') {
+    return `<input class="free-answer-input" data-free-answer-input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" enterkeyhint="done" aria-label="${escapeAttribute(label)}" placeholder="${escapeAttribute(label)}">`;
+  }
+
   function clamp(value, min, max, fallback) {
     const number = Number(value);
     return Number.isFinite(number) ? Math.min(Math.max(Math.round(number), min), max) : fallback;
@@ -111,9 +115,10 @@
     if (cell.type === 'answer') content = `${cell.answer_key ? `<span>${escapeHtml(cell.answer_key)}</span>` : ''}<strong>${escapeHtml(cell.text || 'Đáp án')}</strong>`;
     if (cell.type === 'free_answer_input') content = options.preview
       ? `<div class="free-answer-input preview-free-answer">${escapeHtml(options.selectedAnswer || 'Học sinh sẽ điền đáp án tại đây')}</div>`
-      : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án">';
+      : renderFreeAnswerInput(`Nhập đáp án ở hàng ${cell.row}, cột ${cell.col}`);
 
     const tag = cell.type === 'answer' && cell.answer_key && !options.preview ? 'button' : 'div';
+    if (tag === 'button') classes.push('answer-choice');
     const type = tag === 'button' ? ' type="button"' : '';
     const answer = tag === 'button' ? ` data-answer="${escapeAttribute(cell.answer_key)}"` : '';
     return `<${tag} class="${classes.join(' ')}"${type}${answer} style="${style}">${content}</${tag}>`;
@@ -122,7 +127,9 @@
   function renderGridLayout(gridLayout, options = {}) {
     const grid = parseGridLayoutValue(gridLayout);
     if (!grid.enabled) return '';
-    return `<div class="content-grid-layout" style="--grid-rows:${grid.rows}; --grid-columns:${grid.columns};">${grid.cells.map((cell) => renderGridCell(cell, options)).join('')}</div>`;
+    const layout = `<div class="content-grid-layout" style="--grid-rows:${grid.rows}; --grid-columns:${grid.columns};">${grid.cells.map((cell) => renderGridCell(cell, options)).join('')}</div>`;
+    if (options.wrap === false) return layout;
+    return `<div class="content-grid-render" role="region" aria-label="Bảng nội dung, có thể cuộn ngang" tabindex="0">${layout}</div>`;
   }
 
   function gridHasInteractiveAnswer(gridLayout) {
@@ -179,7 +186,7 @@
       const value = options.preview && options.selectedAnswer ? escapeHtml(options.selectedAnswer) : 'Học sinh sẽ điền đáp án tại đây';
       const input = options.preview
         ? `<div class="free-answer-input preview-free-answer">${value}</div>`
-        : '<input class="free-answer-input" data-free-answer-input autocomplete="off" inputmode="decimal" placeholder="Nhập đáp án của em">';
+        : renderFreeAnswerInput();
       return `<div class="free-answer-area">${input}</div>`;
     }
     return `<div class="answer-grid ${answerGridClass(question)}">${renderChoices(question, options)}</div>`;

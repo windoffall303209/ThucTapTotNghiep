@@ -91,6 +91,10 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
 }
 
 @media (max-width: 920px) {
+  .student-body {
+    --student-bottom-nav-height: calc(64px + env(safe-area-inset-bottom));
+  }
+
   .bottom-nav {
     position: fixed;
     right: 0;
@@ -142,7 +146,7 @@ body[data-grade="2"] .bottom-nav .lucide-icon {
 
   /* Chừa chỗ cho thanh dưới để nội dung cuối trang không bị che khuất. */
   .student-body .page-shell {
-    padding-bottom: 76px;
+    padding-bottom: calc(var(--student-bottom-nav-height) + 12px);
   }
 }
 

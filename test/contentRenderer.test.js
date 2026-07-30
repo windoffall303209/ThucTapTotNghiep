@@ -95,6 +95,32 @@ test('renderer hiển thị trắc nghiệm và điền đáp án trong chế đ
   assert.match(fill, />12<\/div>/);
 });
 
+test('renderer tạo ô nhập toán học có tên truy cập và bàn phím hỗ trợ phân số', () => {
+  const fill = renderer.renderAnswerArea(question({ question_type: 'FILL_IN_THE_BLANK' }));
+
+  assert.match(fill, /aria-label="Nhập đáp án của em"/);
+  assert.match(fill, /inputmode="text"/);
+  assert.match(fill, /enterkeyhint="done"/);
+  assert.doesNotMatch(fill, /inputmode="decimal"/);
+});
+
+test('renderer bọc bảng rộng trong vùng cuộn và giữ ô đáp án tương tác được', () => {
+  const html = renderer.renderGridLayout({
+    enabled: true,
+    rows: 1,
+    columns: 10,
+    cells: [
+      { id: 'answer', row: 1, col: 1, type: 'answer', answer_key: 'A', text: 'Chọn em' },
+      { id: 'fill', row: 1, col: 10, type: 'free_answer_input' }
+    ]
+  });
+
+  assert.match(html, /class="content-grid-render" role="region"/);
+  assert.match(html, /tabindex="0"/);
+  assert.match(html, /class="content-grid-cell grid-cell-answer answer-choice"/);
+  assert.match(html, /aria-label="Nhập đáp án ở hàng 1, cột 10"/);
+});
+
 test('renderer hiển thị lời giải nhiều dòng, hình và các bước', () => {
   const html = renderer.renderExplanationContent({
     text: 'Bước đầu\n[explain-1]',
