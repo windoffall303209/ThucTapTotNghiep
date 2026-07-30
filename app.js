@@ -185,10 +185,11 @@ app.use((req, res, next) => {
 app.use(csrfProtection);
 app.use(attachAuthUser);
 app.use((req, res, next) => {
-  if (req.auth || req.path.startsWith('/auth/')) {
-    res.set('Cache-Control', 'private, no-store, max-age=0');
-    res.set('Pragma', 'no-cache');
-  }
+  // Every dynamic page carries a session-bound CSRF token in the layout. Static
+  // assets have already been served above, so the remaining responses must never
+  // be shared by browsers or intermediary caches between users.
+  res.set('Cache-Control', 'private, no-store, max-age=0');
+  res.set('Pragma', 'no-cache');
   next();
 });
 

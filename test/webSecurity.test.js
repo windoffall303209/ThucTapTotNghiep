@@ -118,6 +118,10 @@ test('CSRF chặn request thiếu token/cross-site và CSP được bật', asyn
   const { port } = server.address();
   const origin = `http://127.0.0.1:${port}`;
 
+  const publicHome = await fetch(origin);
+  assert.equal(publicHome.status, 200);
+  assert.equal(publicHome.headers.get('cache-control'), 'private, no-store, max-age=0');
+
   const loginPage = await fetch(`${origin}/auth/login`);
   const html = await loginPage.text();
   const csrfToken = html.match(/name="_csrf" value="([^"]+)"/)?.[1];
