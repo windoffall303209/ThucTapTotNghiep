@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test": "node --test",
-    "db:init": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/database_schema.sql",
+    "db:init": "node scripts/run_sql_file.js schema",
     "db:seed-curriculum": "node scripts/seed_curriculum.js",
     "db:seed-questions": "node scripts/generate_and_seed_questions.js",
     "db:crawl-questions": "node scripts/crawl_vietjack_questions.js",
@@ -34,7 +34,7 @@
     "db:session-integrity": "node scripts/apply_session_integrity.js",
     "db:runtime-storage": "node scripts/apply_runtime_storage.js",
     "security:rotate-credentials": "node scripts/rotate_security_credentials.js",
-    "db:seed-demo": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/seed.sql"
+    "db:seed-demo": "node scripts/run_sql_file.js seed"
   },
   "keywords": [
     "express",

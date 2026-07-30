@@ -126,11 +126,14 @@ async function checkGemini(settings) {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
       {
         method: 'POST',
         signal: controller.signal,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': apiKey
+        },
         body: JSON.stringify({
           contents: [{ parts: [{ text: CHECK_PROMPT }] }],
           generationConfig: { temperature: 0 }
@@ -197,8 +200,9 @@ async function checkGeminiModels(apiKey, model) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), MODELS_TIMEOUT_MS);
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(apiKey)}`, {
-      signal: controller.signal
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models', {
+      signal: controller.signal,
+      headers: { 'x-goog-api-key': apiKey }
     });
     if (response.status === 401 || response.status === 403) {
       return { ok: false, hardFailure: true, message: 'Gemini API key bị từ chối hoặc không có quyền truy cập.' };
