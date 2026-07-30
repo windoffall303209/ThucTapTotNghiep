@@ -56,19 +56,46 @@ test('chuyển hướng quay lại chỉ chấp nhận đường dẫn nội b�
   }
 });
 
-test('Base URL AI chỉ gửi khóa tới HTTPS origin đã được máy chủ cho phép', () => {
+test('Base URL AI chỉ gửi khóa tới allowlist riêng của đúng provider', () => {
   assert.equal(
     assertAllowedProviderBaseUrl('https://api.openai.com/v1', 'openai', {}),
     'https://api.openai.com/v1'
   );
   assert.equal(
     assertAllowedProviderBaseUrl(
-      'https://gateway.example/v1',
-      'openai',
-      { AI_ALLOWED_BASE_URL_ORIGINS: 'https://gateway.example' }
+      'https://integrate.api.nvidia.com/v1',
+      'nvidia',
+      {}
     ),
-    'https://gateway.example/v1'
+    'https://integrate.api.nvidia.com/v1'
   );
+
+  const providerAllowlists = {
+    AI_ALLOWED_OPENAI_BASE_URL_ORIGINS: 'https://openai-gateway.example',
+    AI_ALLOWED_NVIDIA_BASE_URL_ORIGINS: 'https://nvidia-gateway.example',
+    AI_ALLOWED_OPENROUTER_BASE_URL_ORIGINS: 'https://router-gateway.example'
+  };
+  assert.equal(
+    assertAllowedProviderBaseUrl(
+      'https://openai-gateway.example/v1',
+      'openai',
+      providerAllowlists
+    ),
+    'https://openai-gateway.example/v1'
+  );
+  assert.doesNotThrow(() => validateAllowedProviderOrigins(providerAllowlists));
+
+  for (const [url, provider] of [
+    ['https://openai-gateway.example/v1', 'nvidia'],
+    ['https://nvidia-gateway.example/v1', 'openai'],
+    ['https://api.openai.com/v1', 'openrouter'],
+    ['https://openrouter.ai/api/v1', 'openai']
+  ]) {
+    assert.throws(
+      () => assertAllowedProviderBaseUrl(url, provider, providerAllowlists),
+      { code: 'OUTBOUND_URL_NOT_ALLOWED' }
+    );
+  }
 
   for (const unsafe of [
     'http://127.0.0.1:8080/v1',
@@ -86,8 +113,27 @@ test('Base URL AI chỉ gửi khóa tới HTTPS origin đã được máy chủ 
 
   assert.throws(
     () => validateAllowedProviderOrigins({
-      AI_ALLOWED_BASE_URL_ORIGINS: 'http://gateway.example,https://valid.example/path'
+      AI_ALLOWED_OPENAI_BASE_URL_ORIGINS:
+        'http://gateway.example,https://valid.example/path'
     }),
+    { code: 'OUTBOUND_URL_NOT_ALLOWED' }
+  );
+});
+
+test('allowlist Base URL dùng chung legacy bị từ chối để tránh rò khóa chéo provider', () => {
+  const legacyEnv = {
+    AI_ALLOWED_BASE_URL_ORIGINS: 'https://shared-gateway.example'
+  };
+  assert.throws(
+    () => assertAllowedProviderBaseUrl(
+      'https://api.openai.com/v1',
+      'openai',
+      legacyEnv
+    ),
+    { code: 'OUTBOUND_URL_NOT_ALLOWED' }
+  );
+  assert.throws(
+    () => validateAllowedProviderOrigins(legacyEnv),
     { code: 'OUTBOUND_URL_NOT_ALLOWED' }
   );
 });

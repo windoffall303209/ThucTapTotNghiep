@@ -3,9 +3,15 @@ const OFFICIAL_PROVIDER_ORIGINS = Object.freeze({
   nvidia: 'https://integrate.api.nvidia.com',
   openrouter: 'https://openrouter.ai'
 });
+const PROVIDER_ALLOWLIST_ENV_KEYS = Object.freeze({
+  openai: 'AI_ALLOWED_OPENAI_BASE_URL_ORIGINS',
+  nvidia: 'AI_ALLOWED_NVIDIA_BASE_URL_ORIGINS',
+  openrouter: 'AI_ALLOWED_OPENROUTER_BASE_URL_ORIGINS'
+});
+const LEGACY_SHARED_ALLOWLIST_KEY = 'AI_ALLOWED_BASE_URL_ORIGINS';
 
 function assertAllowedProviderBaseUrl(value, provider, env = process.env) {
-  const normalizedProvider = String(provider || '').toLowerCase();
+  const normalizedProvider = String(provider || '').trim().toLowerCase();
   const officialOrigin = OFFICIAL_PROVIDER_ORIGINS[normalizedProvider];
   if (!officialOrigin) {
     throw policyError('Provider không hỗ trợ Base URL tùy chỉnh.');
@@ -23,7 +29,7 @@ function assertAllowedProviderBaseUrl(value, provider, env = process.env) {
     || url.username
     || url.password
     || url.hash
-    || !allowedOrigins(env).has(url.origin)
+    || !allowedOrigins(normalizedProvider, env).has(url.origin)
   ) {
     throw policyError(
       'Base URL phải dùng HTTPS và thuộc provider đã được máy chủ cho phép.'
@@ -33,50 +39,61 @@ function assertAllowedProviderBaseUrl(value, provider, env = process.env) {
   return url.href.replace(/\/$/, '');
 }
 
-function allowedOrigins(env = process.env) {
-  const origins = new Set(Object.values(OFFICIAL_PROVIDER_ORIGINS));
-  const configured = String(env.AI_ALLOWED_BASE_URL_ORIGINS || '')
+function configuredOrigins(provider, env = process.env) {
+  rejectLegacySharedAllowlist(env);
+  const envKey = PROVIDER_ALLOWLIST_ENV_KEYS[provider];
+  if (!envKey) {
+    throw policyError('Provider không hỗ trợ Base URL tùy chỉnh.');
+  }
+
+  const values = String(env[envKey] || '')
     .split(',')
     .map((value) => value.trim())
     .filter(Boolean);
+  const origins = [];
 
-  for (const value of configured) {
+  for (const value of values) {
     try {
       const url = new URL(value);
-      if (url.protocol === 'https:' && !url.username && !url.password && !url.hash) {
-        origins.add(url.origin);
+      if (
+        url.protocol !== 'https:'
+        || url.username
+        || url.password
+        || url.hash
+        || url.pathname !== '/'
+        || url.search
+      ) {
+        throw new Error('not_origin');
       }
+      origins.push(url.origin);
     } catch (error) {
-      // Invalid operator entries are ignored. Production config validation below
-      // rejects them before the server starts.
+      throw policyError(
+        `${envKey} chỉ được chứa các HTTPS origin, phân tách bằng dấu phẩy.`
+      );
     }
   }
   return origins;
 }
 
+function allowedOrigins(provider, env = process.env) {
+  return new Set([
+    OFFICIAL_PROVIDER_ORIGINS[provider],
+    ...configuredOrigins(provider, env)
+  ]);
+}
+
 function validateAllowedProviderOrigins(env = process.env) {
-  const invalid = String(env.AI_ALLOWED_BASE_URL_ORIGINS || '')
-    .split(',')
-    .map((value) => value.trim())
-    .filter(Boolean)
-    .filter((value) => {
-      try {
-        const url = new URL(value);
-        return (
-          url.protocol !== 'https:'
-          || Boolean(url.username)
-          || Boolean(url.password)
-          || Boolean(url.hash)
-          || url.pathname !== '/'
-          || Boolean(url.search)
-        );
-      } catch (error) {
-        return true;
-      }
-    });
-  if (invalid.length > 0) {
+  rejectLegacySharedAllowlist(env);
+  for (const provider of Object.keys(OFFICIAL_PROVIDER_ORIGINS)) {
+    configuredOrigins(provider, env);
+  }
+}
+
+function rejectLegacySharedAllowlist(env = process.env) {
+  if (String(env[LEGACY_SHARED_ALLOWLIST_KEY] || '').trim()) {
     throw policyError(
-      'AI_ALLOWED_BASE_URL_ORIGINS chỉ được chứa các HTTPS origin, phân tách bằng dấu phẩy.'
+      `${LEGACY_SHARED_ALLOWLIST_KEY} không còn được hỗ trợ; `
+      + 'hãy cấu hình allowlist riêng cho từng provider để tránh gửi nhầm API key.'
     );
   }
 }
@@ -90,6 +107,8 @@ function policyError(message) {
 
 module.exports = {
   OFFICIAL_PROVIDER_ORIGINS,
+  PROVIDER_ALLOWLIST_ENV_KEYS,
+  LEGACY_SHARED_ALLOWLIST_KEY,
   assertAllowedProviderBaseUrl,
   validateAllowedProviderOrigins
 };
