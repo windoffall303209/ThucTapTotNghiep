@@ -66,13 +66,13 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       baseUri: ["'self'"],
       connectSrc: ["'self'"],
-      fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com', 'https://cdn.jsdelivr.net'],
+      fontSrc: ["'self'", 'data:'],
       formAction: ["'self'"],
       frameAncestors: ["'none'"],
       imgSrc: ["'self'", 'data:', 'https:'],
       objectSrc: ["'none'"],
-      scriptSrc: ["'self'", 'https://cdn.jsdelivr.net'],
-      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com', 'https://cdn.jsdelivr.net'],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
       upgradeInsecureRequests: isProduction ? [] : null
     }
   },
@@ -83,6 +83,23 @@ app.use(express.static(path.join(__dirname, 'public'), {
   etag: true,
   maxAge: isProduction ? '7d' : 0
 }));
+const vendorStaticOptions = {
+  etag: true,
+  immutable: isProduction,
+  maxAge: isProduction ? '30d' : 0
+};
+app.use(
+  '/vendor/katex',
+  express.static(path.join(__dirname, 'node_modules', 'katex', 'dist'), vendorStaticOptions)
+);
+app.use(
+  '/vendor/lucide',
+  express.static(path.join(__dirname, 'node_modules', 'lucide', 'dist', 'umd'), vendorStaticOptions)
+);
+app.use(
+  '/vendor/nunito',
+  express.static(path.join(__dirname, 'node_modules', '@fontsource', 'nunito'), vendorStaticOptions)
+);
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000,

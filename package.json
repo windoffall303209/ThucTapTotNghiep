@@ -49,6 +49,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@fontsource/nunito": "5.3.0",
     "axios": "^1.18.1",
     "bcryptjs": "^3.0.2",
     "cheerio": "^1.2.0",
@@ -63,6 +64,8 @@
     "express-session": "^1.18.2",
     "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
+    "katex": "0.16.47",
+    "lucide": "0.469.0",
     "method-override": "^3.0.0",
     "multer": "^2.0.2",
     "mysql2": "^3.15.3"

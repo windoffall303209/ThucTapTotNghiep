@@ -124,8 +124,20 @@ test('CSRF chặn request thiếu token/cross-site và CSP được bật', asyn
   const sessionCookie = String(loginPage.headers.get('set-cookie') || '').split(';')[0];
   assert.ok(csrfToken);
   assert.ok(sessionCookie);
-  assert.match(loginPage.headers.get('content-security-policy') || '', /script-src 'self' https:\/\/cdn\.jsdelivr\.net/);
+  const contentSecurityPolicy = loginPage.headers.get('content-security-policy') || '';
+  assert.match(contentSecurityPolicy, /script-src 'self'/);
+  assert.match(contentSecurityPolicy, /style-src 'self' 'unsafe-inline'/);
+  assert.doesNotMatch(contentSecurityPolicy, /cdn\.jsdelivr\.net|fonts\.googleapis\.com|fonts\.gstatic\.com/);
   assert.equal(loginPage.headers.get('cache-control'), 'private, no-store, max-age=0');
+
+  for (const assetPath of [
+    '/vendor/katex/katex.min.js',
+    '/vendor/lucide/lucide.min.js',
+    '/vendor/nunito/500.css'
+  ]) {
+    const assetResponse = await fetch(`${origin}${assetPath}`);
+    assert.equal(assetResponse.status, 200, `${assetPath} phải được phục vụ nội bộ`);
+  }
 
   const missingToken = await fetch(`${origin}/auth/login`, {
     method: 'POST',
