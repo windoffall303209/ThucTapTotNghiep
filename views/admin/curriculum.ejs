@@ -22,6 +22,7 @@
     Thêm chương mới cho lớp <%= grade %>
   </div>
   <form class="curriculum-form" action="/admin/curriculum/chapters" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="hidden" name="grade" value="<%= grade %>">
     <label>
       Tên chương
@@ -78,6 +79,7 @@
 
       <div class="curriculum-chapter-body">
         <form class="curriculum-form" action="/admin/curriculum/chapters/<%= chapter.id %>" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <label>
             Tên chương
             <input name="chapter_name" value="<%= chapter.chapter_name %>" required>
@@ -104,6 +106,7 @@
           action="/admin/curriculum/chapters/<%= chapter.id %>/delete"
           method="post"
           data-confirm="Xóa chương &quot;<%= chapter.chapter_name %>&quot;? Thao tác này không thể hoàn tác.">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn btn-danger" type="submit" <%= chapter.lesson_count > 0 ? 'disabled' : '' %>>
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa chương
@@ -125,6 +128,7 @@
         <% lessons.forEach((lesson) => { %>
           <article class="curriculum-lesson-row">
             <form class="curriculum-form" action="/admin/curriculum/lessons/<%= lesson.id %>" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <label>
                 Tên bài học
                 <input name="lesson_name" value="<%= lesson.lesson_name %>" required>
@@ -157,6 +161,7 @@
                 action="/admin/curriculum/lessons/<%= lesson.id %>/delete"
                 method="post"
                 data-confirm="Xóa bài học &quot;<%= lesson.lesson_name %>&quot;? Thao tác này không thể hoàn tác.">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button class="btn btn-danger btn-compact" type="submit" <%= lesson.question_count > 0 ? 'disabled' : '' %>>
                   <i data-lucide="trash-2" class="lucide-icon"></i>
                   Xóa
@@ -167,6 +172,7 @@
         <% }) %>
 
         <form class="curriculum-form curriculum-add-lesson" action="/admin/curriculum/lessons" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="hidden" name="chapter_id" value="<%= chapter.id %>">
           <input type="hidden" name="grade" value="<%= grade %>">
           <label>

@@ -163,6 +163,7 @@
                       action="/admin/students/<%= item.id %>/status"
                       method="post"
                       data-confirm="Cập nhật trạng thái tài khoản <%= item.username %>?">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                       <input type="hidden" name="q" value="<%= query %>">
                       <input type="hidden" name="grade" value="<%= filterGrade || '' %>">
                       <input type="hidden" name="page" value="<%= pagination.page %>">

@@ -8,6 +8,8 @@ const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 const { GRADE_RANGE_LABEL, gradeOptions, isSupportedGrade } = require('../config/grades');
 const { parseGridLayout } = require('../utils/gridLayout');
+const { safeAdminReturnTo } = require('../utils/safeRedirect');
+const { commitRequestUploads } = require('../middleware/upload');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
@@ -172,6 +174,7 @@ async function createTheoryCard(req, res, next) {
 
     cards.push(newCard);
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    commitRequestUploads(req);
 
     setFlash(req, 'success', 'Đã thêm thẻ lý thuyết.');
     return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -203,6 +206,7 @@ async function updateTheoryCard(req, res, next) {
 
     cards[cardIndex] = updatedCard;
     await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    commitRequestUploads(req);
 
     setFlash(req, 'success', 'Đã cập nhật thẻ lý thuyết.');
     return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -380,6 +384,7 @@ async function createQuestion(req, res, next) {
       },
       misconceptions
     });
+    commitRequestUploads(req);
 
     setFlash(req, 'success', 'Đã lưu câu hỏi mới.');
     return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -458,6 +463,7 @@ async function updateQuestion(req, res, next) {
       },
       misconceptions
     });
+    commitRequestUploads(req);
 
     setFlash(req, 'success', 'Đã cập nhật câu hỏi.');
     return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -1280,7 +1286,7 @@ async function flagAiLog(req, res, next) {
       );
     }
 
-    return res.redirect(req.body.return_to || '/admin/logs/ai');
+    return res.redirect(safeAdminReturnTo(req.body.return_to, '/admin/logs/ai'));
   } catch (error) {
     next(error);
   }

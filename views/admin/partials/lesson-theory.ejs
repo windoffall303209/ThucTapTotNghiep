@@ -78,6 +78,7 @@
     Thêm thẻ lý thuyết
   </summary>
   <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards" method="post" enctype="multipart/form-data" data-theory-preview-form>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="hidden" name="authoring_mode" value="fields" data-authoring-mode-input>
     <div class="authoring-mode-switch" data-authoring-mode>
       <label>
@@ -243,6 +244,7 @@
           <h2><%= card.title || `Thẻ lý thuyết ${index + 1}` %></h2>
         </div>
         <form action="/admin/theory/<%= lesson.id %>/cards/<%= index %>/delete" method="post" data-confirm="Xóa thẻ lý thuyết này? Thao tác này không thể hoàn tác.">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn btn-danger btn-compact" type="submit">
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa
@@ -293,6 +295,7 @@
           Sửa thẻ này
         </summary>
         <form class="theory-card-form stack-form" action="/admin/theory/<%= lesson.id %>/cards/<%= index %>" method="post" enctype="multipart/form-data" data-theory-preview-form>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="hidden" name="existing_images" value="<%- escapeAttribute(JSON.stringify(images)) %>" data-theory-existing-images>
           <input type="hidden" name="authoring_mode" value="<%= card.grid_layout?.enabled ? 'canvas' : 'fields' %>" data-authoring-mode-input>
           <div class="authoring-mode-switch" data-authoring-mode>

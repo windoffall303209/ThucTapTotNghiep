@@ -19,6 +19,7 @@
       <p class="eyebrow"><%= role === 'admin' ? 'Đăng nhập admin' : 'Đăng nhập học sinh' %></p>
       <h1>Chào mừng trở lại</h1>
       <form class="stack-form" action="/auth/login" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <input type="hidden" name="role" value="<%= role %>">
         <label>
           Tên đăng nhập

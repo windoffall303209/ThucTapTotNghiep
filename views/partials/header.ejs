@@ -67,6 +67,7 @@
       <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
     </div>
     <form action="/auth/logout" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <button class="nav-button" type="submit">
         <i data-lucide="log-out" class="lucide-icon"></i>
         Đăng xuất
@@ -103,6 +104,7 @@
         Tài khoản
       </a>
       <form action="/auth/logout" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <button class="nav-button" type="submit">
           <i data-lucide="log-out" class="lucide-icon"></i>
           Đăng xuất

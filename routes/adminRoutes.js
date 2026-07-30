@@ -1,7 +1,11 @@
 const express = require('express');
 const AdminController = require('../controllers/AdminController');
 const { requireAdmin, requireRoles } = require('../middleware/auth');
-const { questionImageUpload } = require('../middleware/upload');
+const {
+  prepareUploadCleanup,
+  questionImageUpload,
+  validateUploadedImages
+} = require('../middleware/upload');
 
 const router = express.Router();
 
@@ -9,8 +13,20 @@ router.use(requireAdmin);
 router.get('/dashboard', AdminController.dashboard);
 router.get('/theory', AdminController.theory);
 router.get('/theory/lesson/:lessonId', AdminController.lessonTheory);
-router.post('/theory/:lessonId/cards', questionImageUpload.any(), AdminController.createTheoryCard);
-router.post('/theory/:lessonId/cards/:cardIndex', questionImageUpload.any(), AdminController.updateTheoryCard);
+router.post(
+  '/theory/:lessonId/cards',
+  prepareUploadCleanup,
+  questionImageUpload.any(),
+  validateUploadedImages,
+  AdminController.createTheoryCard
+);
+router.post(
+  '/theory/:lessonId/cards/:cardIndex',
+  prepareUploadCleanup,
+  questionImageUpload.any(),
+  validateUploadedImages,
+  AdminController.updateTheoryCard
+);
 router.post('/theory/:lessonId/cards/:cardIndex/delete', AdminController.deleteTheoryCard);
 router.get('/questions', AdminController.questions);
 router.get('/questions/search', AdminController.questionSearch);
@@ -25,8 +41,18 @@ const questionUploadFields = questionImageUpload.fields([
   { name: 'choice_image_D', maxCount: 3 }
 ]);
 
-router.post('/questions', questionUploadFields, AdminController.createQuestion);
-router.post('/questions/:id', questionUploadFields, AdminController.updateQuestion);
+router.post('/questions',
+  prepareUploadCleanup,
+  questionUploadFields,
+  validateUploadedImages,
+  AdminController.createQuestion
+);
+router.post('/questions/:id',
+  prepareUploadCleanup,
+  questionUploadFields,
+  validateUploadedImages,
+  AdminController.updateQuestion
+);
 router.post('/questions/:id/delete', AdminController.deleteQuestion);
 router.post('/questions/:id/duplicate', AdminController.duplicateQuestion);
 router.get('/students', requireRoles(['SYSADMIN']), AdminController.students);

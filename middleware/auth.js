@@ -12,17 +12,20 @@ function wantsJson(req) {
     req.xhr
     || req.is('application/json')
     || String(req.get('accept') || '').includes('application/json')
+    || ['fetch', 'xmlhttprequest'].includes(String(req.get('x-requested-with') || '').toLowerCase())
   );
 }
 
 async function requireStudent(req, res, next) {
   if (!req.auth || req.auth.role !== 'student') {
     if (wantsJson(req)) {
-      return res.status(401).json({
-        ok: false,
-        code: 'SESSION_EXPIRED',
-        message: 'Phiên học đã hết hạn. Em đăng nhập lại rồi làm tiếp nhé.'
-      });
+      return sendAuthJson(
+        res,
+        401,
+        'SESSION_EXPIRED',
+        'Phiên học đã hết hạn. Em đăng nhập lại rồi làm tiếp nhé.',
+        '/auth/login'
+      );
     }
     req.session.flash = {
       type: 'warning',
@@ -41,11 +44,13 @@ async function requireStudent(req, res, next) {
     ) {
       clearAuthCookie(res);
       if (wantsJson(req)) {
-        return res.status(403).json({
-          ok: false,
-          code: 'ACCOUNT_DISABLED',
-          message: 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên.'
-        });
+        return sendAuthJson(
+          res,
+          403,
+          'ACCOUNT_DISABLED',
+          'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên.',
+          '/auth/login'
+        );
       }
       req.session.flash = {
         type: 'danger',
@@ -72,6 +77,15 @@ async function requireStudent(req, res, next) {
 
 async function requireAdmin(req, res, next) {
   if (!req.auth || req.auth.type !== 'admin' || !['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth.role)) {
+    if (wantsJson(req)) {
+      return sendAuthJson(
+        res,
+        401,
+        'SESSION_EXPIRED',
+        'Phiên quản trị đã hết hạn. Vui lòng đăng nhập lại.',
+        '/auth/login?role=admin'
+      );
+    }
     req.session.flash = {
       type: 'warning',
       message: 'Vui lòng đăng nhập bằng tài khoản quản trị.'
@@ -88,6 +102,15 @@ async function requireAdmin(req, res, next) {
       || req.auth.credential_version !== getCredentialVersion(admin.password_hash)
     ) {
       clearAuthCookie(res);
+      if (wantsJson(req)) {
+        return sendAuthJson(
+          res,
+          401,
+          'SESSION_INVALID',
+          'Phiên quản trị không còn hợp lệ. Vui lòng đăng nhập lại.',
+          '/auth/login?role=admin'
+        );
+      }
       req.session.flash = {
         type: 'warning',
         message: 'Phiên quản trị không còn hợp lệ. Vui lòng đăng nhập lại.'
@@ -107,6 +130,13 @@ async function requireAdmin(req, res, next) {
 function requireRoles(roles) {
   return (req, res, next) => {
     if (!req.auth || !roles.includes(req.auth.role)) {
+      if (wantsJson(req)) {
+        return res.status(403).json({
+          ok: false,
+          code: 'FORBIDDEN',
+          message: 'Tài khoản không có quyền truy cập chức năng này.'
+        });
+      }
       req.session.flash = {
         type: 'danger',
         message: 'Tài khoản của bạn không có quyền truy cập chức năng này.'
@@ -118,8 +148,19 @@ function requireRoles(roles) {
   };
 }
 
+function sendAuthJson(res, status, code, message, redirectTo) {
+  res.set('X-Auth-Redirect', redirectTo);
+  return res.status(status).json({
+    ok: false,
+    code,
+    message,
+    redirectTo
+  });
+}
+
 module.exports = {
   requireStudent,
   requireAdmin,
-  requireRoles
+  requireRoles,
+  wantsJson
 };

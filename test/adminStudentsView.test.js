@@ -20,6 +20,7 @@ function renderStudents(overrides = {}) {
   }));
 
   return ejs.render(viewSource, {
+    csrfToken: 'test-csrf-token',
     students,
     query: 'an',
     filterGrade: 4,

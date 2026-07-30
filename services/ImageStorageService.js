@@ -14,6 +14,7 @@ async function storeQuestionImage(file, options = {}) {
         resource_type: 'image'
       });
       await safeUnlink(file.path);
+      file.cloudinaryPublicId = uploadResult.public_id;
       return {
         url: uploadResult.secure_url,
         storage_provider: 'cloudinary',

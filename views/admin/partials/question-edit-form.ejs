@@ -53,6 +53,7 @@
 %>
 
 <form class="inline-edit-form stack-form" action="/admin/questions/<%= question.id %>" method="post" enctype="multipart/form-data" data-question-preview-form>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
   <div class="form-actions form-actions-top">
     <button class="btn btn-secondary" type="button" data-close-details>Hủy</button>
     <button class="btn btn-primary" type="submit">

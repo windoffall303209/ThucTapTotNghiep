@@ -43,6 +43,7 @@
       Bảo mật tài khoản
     </div>
     <form class="stack-form" action="/student/account/password" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <label>
         Mật khẩu hiện tại
         <span class="password-field">

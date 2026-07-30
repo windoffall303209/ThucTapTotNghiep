@@ -3,6 +3,7 @@ const { execFile } = require('child_process');
 const http = require('http');
 const https = require('https');
 const SystemSetting = require('../models/SystemSetting');
+const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
 
 const CHECK_PROMPT = 'Trả lời đúng một từ: OK';
 const CHECK_TIMEOUT_MS = 45000;
@@ -26,7 +27,7 @@ async function checkProvider(provider, input = {}) {
 function mergeSettings(currentSettings, input) {
   const merged = { ...currentSettings };
   Object.entries(input || {}).forEach(([key, value]) => {
-    if (typeof value !== 'string') return;
+    if (typeof value !== 'string' || !(key in currentSettings)) return;
     const trimmedValue = value.trim();
     if (trimmedValue) merged[key] = trimmedValue;
   });
@@ -35,7 +36,7 @@ function mergeSettings(currentSettings, input) {
 
 async function checkOpenAICompatible(settings, provider) {
   const apiKey = getApiKey(settings, provider);
-  const baseUrl = getBaseUrl(settings, provider).replace(/\/$/, '');
+  const baseUrl = assertAllowedProviderBaseUrl(getBaseUrl(settings, provider), provider);
   const model = getChatModel(settings, provider);
 
   if (!apiKey) return fail('Chưa có API key để kiểm tra.');

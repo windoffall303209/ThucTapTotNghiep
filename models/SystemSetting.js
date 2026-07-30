@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const fs = require('fs/promises');
 const path = require('path');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
+const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
 
 const PRACTICE_DURATION_DEFAULTS = Object.freeze({
   5: 10,
@@ -49,6 +50,12 @@ const DEFAULT_SETTINGS = {
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY || '',
   cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET || ''
 };
+const ALLOWED_SETTING_KEYS = new Set(Object.keys(DEFAULT_SETTINGS));
+const BASE_URL_PROVIDERS = Object.freeze({
+  openai_base_url: 'openai',
+  nvidia_nim_base_url: 'nvidia',
+  openrouter_base_url: 'openrouter'
+});
 
 const ENV_KEY_MAP = {
   practice_duration_5_minutes: 'PRACTICE_DURATION_5_MINUTES',
@@ -105,7 +112,7 @@ async function updateSettings(input) {
   const nextSettings = {};
 
   for (const [key, value] of Object.entries(input)) {
-    if (typeof value !== 'string') continue;
+    if (typeof value !== 'string' || !ALLOWED_SETTING_KEYS.has(key)) continue;
     const trimmedValue = value.trim();
     if (Object.values(PRACTICE_DURATION_SETTING_KEYS).includes(key)) {
       const minutes = Number(trimmedValue);
@@ -115,6 +122,10 @@ async function updateSettings(input) {
         throw validationError;
       }
       nextSettings[key] = String(minutes);
+      continue;
+    }
+    if (BASE_URL_PROVIDERS[key]) {
+      nextSettings[key] = assertAllowedProviderBaseUrl(trimmedValue, BASE_URL_PROVIDERS[key]);
       continue;
     }
     if (isSecretKey(key) && trimmedValue === '') continue;

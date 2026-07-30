@@ -6,6 +6,7 @@ const PLACEHOLDER_SECRETS = new Set([
   'change-this-jwt-secret',
   'change_me_for_admin_saved_api_keys'
 ]);
+const { validateAllowedProviderOrigins } = require('../utils/outboundUrlPolicy');
 
 function validateProductionConfig(env = process.env) {
   if (env.NODE_ENV !== 'production') return;
@@ -37,6 +38,12 @@ function validateProductionConfig(env = process.env) {
   const trustProxyHops = Number(env.TRUST_PROXY);
   if (!Number.isInteger(trustProxyHops) || trustProxyHops < 1 || trustProxyHops > 10) {
     errors.push('TRUST_PROXY must be an integer from 1 to 10 matching the TLS proxy hop count');
+  }
+
+  try {
+    validateAllowedProviderOrigins(env);
+  } catch (error) {
+    errors.push(error.message);
   }
 
   if (errors.length > 0) {

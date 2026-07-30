@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require('crypto');
 const path = require('path');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
@@ -8,6 +9,8 @@ const helmet = require('helmet');
 const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
 const compression = require('compression');
 const { attachAuthUser } = require('./utils/authToken');
+const { csrfProtection } = require('./middleware/csrf');
+const { safeJsonForHtml } = require('./utils/safeJson');
 const { gradeOptions, GRADE_RANGE_LABEL, SHORT_GRADE_RANGE_LABEL } = require('./config/grades');
 const contentRenderer = require('./public/js/content-renderer');
 
@@ -36,7 +39,29 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('layout', 'layouts/main');
 
 app.use(expressLayouts);
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use((req, res, next) => {
+  req.requestId = String(req.get('x-request-id') || '').slice(0, 100) || crypto.randomUUID();
+  res.set('X-Request-Id', req.requestId);
+  next();
+});
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      baseUri: ["'self'"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", 'data:', 'https://fonts.gstatic.com', 'https://cdn.jsdelivr.net'],
+      formAction: ["'self'"],
+      frameAncestors: ["'none'"],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      objectSrc: ["'none'"],
+      scriptSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com', 'https://cdn.jsdelivr.net'],
+      upgradeInsecureRequests: isProduction ? [] : null
+    }
+  },
+  crossOriginEmbedderPolicy: false
+}));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public'), {
   etag: true,
@@ -78,7 +103,12 @@ const aiLimiter = rateLimit({
       ? `student:${req.auth.id}`
       : ipKeyGenerator(req.ip)
   ),
-  message: 'Em đã gửi quá nhiều yêu cầu gợi ý trong thời gian ngắn. Hãy thử lại sau ít phút.'
+  handler: (req, res) => res.status(429).json({
+    ok: false,
+    code: 'AI_RATE_LIMITED',
+    message: 'Em đã gửi quá nhiều yêu cầu gợi ý trong thời gian ngắn. Hãy thử lại sau ít phút.',
+    requestId: req.requestId
+  })
 });
 app.use(express.urlencoded({ extended: true, limit: process.env.BODY_LIMIT || '2mb' }));
 app.use(express.json({ limit: process.env.BODY_LIMIT || '2mb' }));
@@ -100,19 +130,35 @@ app.use(
   })
 );
 
-app.use(attachAuthUser);
-
 app.use((req, res, next) => {
   res.locals.currentPath = req.path;
-  res.locals.student = req.auth?.role === 'student' ? req.auth : null;
-  res.locals.admin = ['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth?.role) ? req.auth : null;
-  res.locals.flash = req.session.flash || null;
+  res.locals.student = null;
+  res.locals.admin = null;
+  res.locals.flash = null;
   res.locals.pageStyles = [];
   res.locals.pageScripts = [];
   res.locals.gradeOptions = gradeOptions();
   res.locals.gradeRangeLabel = GRADE_RANGE_LABEL;
   res.locals.shortGradeRangeLabel = SHORT_GRADE_RANGE_LABEL;
   res.locals.contentRenderer = contentRenderer;
+  res.locals.safeJsonForHtml = safeJsonForHtml;
+  next();
+});
+
+app.use(csrfProtection);
+app.use(attachAuthUser);
+app.use((req, res, next) => {
+  if (req.auth || req.path.startsWith('/auth/')) {
+    res.set('Cache-Control', 'private, no-store, max-age=0');
+    res.set('Pragma', 'no-cache');
+  }
+  next();
+});
+
+app.use((req, res, next) => {
+  res.locals.student = req.auth?.role === 'student' ? req.auth : null;
+  res.locals.admin = ['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth?.role) ? req.auth : null;
+  res.locals.flash = req.session.flash || null;
   delete req.session.flash;
   next();
 });
@@ -128,6 +174,14 @@ app.use('/admin', adminRoutes);
 app.use('/api', apiRoutes);
 
 app.use((req, res) => {
+  if (requestWantsJson(req)) {
+    return res.status(404).json({
+      ok: false,
+      code: 'NOT_FOUND',
+      message: 'Không tìm thấy tài nguyên được yêu cầu.',
+      requestId: req.requestId
+    });
+  }
   res.status(404).render('error', {
     title: 'Không tìm thấy trang',
     message: 'Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.'
@@ -136,10 +190,39 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).render('error', {
+  const status = normalizeErrorStatus(err);
+  if (requestWantsJson(req)) {
+    return res.status(status).json({
+      ok: false,
+      code: err.code || (status === 500 ? 'INTERNAL_ERROR' : 'REQUEST_REJECTED'),
+      message: status === 500
+        ? 'Hệ thống đang gặp lỗi. Vui lòng thử lại sau.'
+        : err.message,
+      requestId: req.requestId
+    });
+  }
+  res.status(status).render('error', {
     title: 'Lỗi hệ thống',
-    message: 'Hệ thống đang gặp lỗi. Vui lòng thử lại sau.'
+    message: status === 500
+      ? 'Hệ thống đang gặp lỗi. Vui lòng thử lại sau.'
+      : err.message
   });
 });
+
+function requestWantsJson(req) {
+  return Boolean(
+    req.path.startsWith('/api/')
+    || req.xhr
+    || req.is('application/json')
+    || String(req.get('accept') || '').includes('application/json')
+    || ['fetch', 'xmlhttprequest'].includes(String(req.get('x-requested-with') || '').toLowerCase())
+  );
+}
+
+function normalizeErrorStatus(error) {
+  if (error?.name === 'MulterError') return 400;
+  const status = Number(error?.status || error?.statusCode || 500);
+  return Number.isInteger(status) && status >= 400 && status <= 599 ? status : 500;
+}
 
 module.exports = app;

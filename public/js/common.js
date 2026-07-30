@@ -1,4 +1,6 @@
 (function () {
+  installSecureFetch();
+
   document.addEventListener('DOMContentLoaded', () => {
     refreshIcons();
     renderInitialMath();
@@ -12,6 +14,41 @@
   });
 
   let appDialogResolver = null;
+
+  function installSecureFetch() {
+    if (typeof window.fetch !== 'function' || window.fetch.__secureWrapper) return;
+    const nativeFetch = window.fetch.bind(window);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+    async function secureFetch(input, init = {}) {
+      const requestUrl = new URL(
+        typeof input === 'string' || input instanceof URL ? input : input.url,
+        window.location.href
+      );
+      const method = String(init.method || input?.method || 'GET').toUpperCase();
+      const options = { ...init };
+
+      if (requestUrl.origin === window.location.origin) {
+        const headers = new Headers(init.headers || input?.headers || {});
+        headers.set('X-Requested-With', 'fetch');
+        headers.set('Accept', headers.get('Accept') || 'application/json');
+        if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && csrfToken) {
+          headers.set('X-CSRF-Token', csrfToken);
+        }
+        options.headers = headers;
+      }
+
+      const response = await nativeFetch(input, options);
+      const authRedirect = response.headers.get('X-Auth-Redirect');
+      if (authRedirect && [401, 403].includes(response.status)) {
+        window.location.assign(authRedirect);
+      }
+      return response;
+    }
+
+    secureFetch.__secureWrapper = true;
+    window.fetch = secureFetch;
+  }
 
   function initAppDialog(root = document) {
     const dialog = root.getElementById?.('appDialog') || document.getElementById('appDialog');

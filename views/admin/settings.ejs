@@ -59,6 +59,7 @@
 
 <section class="settings-page">
   <form class="settings-panel practice-duration-panel" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <div class="section-title">
       <i data-lucide="timer" class="lucide-icon"></i>
       Thời gian luyện tập
@@ -125,6 +126,7 @@
   </form>
 
   <form class="settings-panel settings-global-panel" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <div class="section-title">
       <i data-lucide="sliders-horizontal" class="lucide-icon"></i>
       Điều khiển chung
@@ -234,6 +236,7 @@
 
 <dialog class="settings-modal" data-settings-modal="openai">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Nguồn AI</p><h2>OpenAI</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
@@ -258,6 +261,7 @@
 
 <dialog class="settings-modal" data-settings-modal="gemini">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Nguồn AI</p><h2>Gemini API</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
@@ -281,6 +285,7 @@
 
 <dialog class="settings-modal" data-settings-modal="gemini-cli">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Nguồn AI local</p><h2>Gemini CLI OAuth</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
@@ -301,6 +306,7 @@
 
 <dialog class="settings-modal" data-settings-modal="nvidia">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Nguồn AI</p><h2>NVIDIA NIM</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
@@ -325,6 +331,7 @@
 
 <dialog class="settings-modal" data-settings-modal="openrouter">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Nguồn AI</p><h2>OpenRouter</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>
@@ -349,6 +356,7 @@
 
 <dialog class="settings-modal" data-settings-modal="cloudinary">
   <form class="settings-modal-card" action="/admin/settings" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <header class="settings-modal-head">
       <div><p class="eyebrow">Lưu trữ ảnh</p><h2>Cloudinary</h2></div>
       <button class="icon-button" type="button" data-modal-close aria-label="Đóng"><i data-lucide="x" class="lucide-icon"></i></button>

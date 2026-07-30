@@ -122,8 +122,8 @@
   <% } %>
 </section>
 
-<script id="practice-data" type="application/json"><%- JSON.stringify(questions) %></script>
-<script id="practice-context" type="application/json"><%- JSON.stringify({
+<script id="practice-data" type="application/json"><%- safeJsonForHtml(questions) %></script>
+<script id="practice-context" type="application/json"><%- safeJsonForHtml({
   practiceSessionId: session?.id || null,
   currentIndex: session?.current_index || 0,
   answeredResults: answeredResults || {},

@@ -1,5 +1,6 @@
 const SystemSetting = require('../models/SystemSetting');
 const { execFile } = require('child_process');
+const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
 
 async function explainTheory({ grade, lesson, card, question }) {
   const fallback = buildTheoryFallback({ grade, lesson, card, question });
@@ -167,7 +168,7 @@ function addProviderIfAvailable(providers, settings, provider) {
 }
 
 async function callOpenAICompatible(settings, provider, apiKey, prompt) {
-  const baseUrl = getBaseUrl(settings, provider).replace(/\/$/, '');
+  const baseUrl = assertAllowedProviderBaseUrl(getBaseUrl(settings, provider), provider);
   const model = getChatModel(settings, provider);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), Number(settings.ai_json_timeout_ms || 45000));

@@ -24,6 +24,7 @@
     <h2>Luyện theo chương</h2>
     <p class="muted">Đề có câu hỏi từ tất cả các bài trong chương em chọn.</p>
     <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <input type="hidden" name="mode" value="chapter">
       <label>
         Chương muốn luyện
@@ -54,6 +55,7 @@
     <h2>Luyện tổng hợp</h2>
     <p class="muted">Đề trộn câu hỏi của nhiều chương trong học kỳ 1, học kỳ 2 hoặc cả năm học.</p>
     <form class="stack-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề...">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <input type="hidden" name="mode" value="comprehensive">
       <label>
         Em muốn luyện phần nào?

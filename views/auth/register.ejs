@@ -15,6 +15,7 @@
       <p class="eyebrow">Đăng ký học tập</p>
       <h1>Tạo tài khoản học sinh</h1>
       <form class="stack-form" action="/auth/register" method="post" data-password-match-form>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label>
           Họ và tên học sinh
           <input name="fullname" autocomplete="name" minlength="2" maxlength="100" required>

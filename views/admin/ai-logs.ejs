@@ -189,6 +189,7 @@
         </details>
 
         <form class="inline-flag-form" action="/admin/logs/ai/<%= log.id %>/flag" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="hidden" name="return_to" value="<%= returnTo %>">
           <input type="hidden" name="flagged" value="<%= log.is_flagged_inaccurate ? '0' : '1' %>">
           <button class="btn <%= log.is_flagged_inaccurate ? 'btn-secondary' : 'btn-danger' %>" type="submit">

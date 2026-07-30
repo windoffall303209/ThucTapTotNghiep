@@ -11,14 +11,26 @@ test('giới hạn đăng nhập đếm cả các phản hồi redirect khi sai 
   t.after(() => new Promise((resolve) => server.close(resolve)));
   await new Promise((resolve) => server.once('listening', resolve));
   const { port } = server.address();
+  const loginPage = await fetch(`http://127.0.0.1:${port}/auth/login`);
+  const csrfToken = (await loginPage.text()).match(/name="_csrf" value="([^"]+)"/)?.[1];
+  const sessionCookie = String(loginPage.headers.get('set-cookie') || '').split(';')[0];
+  assert.ok(csrfToken);
+  assert.ok(sessionCookie);
 
   const statuses = [];
   for (let attempt = 0; attempt < 4; attempt += 1) {
     const response = await fetch(`http://127.0.0.1:${port}/auth/login`, {
       method: 'POST',
       redirect: 'manual',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'username=&password='
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Cookie: sessionCookie
+      },
+      body: new URLSearchParams({
+        _csrf: csrfToken,
+        username: '',
+        password: ''
+      })
     });
     statuses.push(response.status);
   }
