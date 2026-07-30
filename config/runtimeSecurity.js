@@ -1,3 +1,6 @@
+const { validateDatabaseSslConfig } = require('./db');
+const { validateAllowedProviderOrigins } = require('../utils/outboundUrlPolicy');
+
 const PLACEHOLDER_SECRETS = new Set([
   'dev-session-secret',
   'dev-jwt-secret-change-me',
@@ -6,7 +9,6 @@ const PLACEHOLDER_SECRETS = new Set([
   'change-this-jwt-secret',
   'change_me_for_admin_saved_api_keys'
 ]);
-const { validateAllowedProviderOrigins } = require('../utils/outboundUrlPolicy');
 
 function validateProductionConfig(env = process.env) {
   if (env.NODE_ENV !== 'production') return;
@@ -20,6 +22,11 @@ function validateProductionConfig(env = process.env) {
     if (!String(env[key] || '').trim()) {
       errors.push(`${key} is required in production`);
     }
+  }
+  try {
+    validateDatabaseSslConfig(env, { production: true });
+  } catch (error) {
+    errors.push(error.message);
   }
 
   if (!String(env.APP_ORIGIN || '').trim()) {
