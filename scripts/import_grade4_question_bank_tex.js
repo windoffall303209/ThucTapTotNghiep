@@ -145,7 +145,7 @@ async function main() {
   );
   if (!args.commit) {
     console.log(
-      'Dry run hoàn tất. Dùng --commit để thêm hoặc --replace để thay dữ liệu của các bài đã map.'
+      'Dry run hoàn tất. Dùng --commit để thêm hoặc --replace để lưu trữ bản cũ rồi nạp dữ liệu mới cho các bài đã map.'
     );
     return;
   }
@@ -162,7 +162,9 @@ async function main() {
     if (args.replace) {
       const placeholders = mappedLessonIds.map(() => '?').join(',');
       await connection.execute(
-        `DELETE FROM QuestionBank WHERE lesson_id IN (${placeholders})`,
+        `UPDATE QuestionBank
+         SET is_active = 0, archived_at = CURRENT_TIMESTAMP
+         WHERE lesson_id IN (${placeholders}) AND is_active = 1`,
         mappedLessonIds
       );
     }
@@ -170,8 +172,8 @@ async function main() {
       const lesson = mapping.get(payload.lesson_number);
       await connection.execute(
         `INSERT INTO QuestionBank
-          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation)
-         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON))`,
+          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
+         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
         [
           lesson.id,
           payload.question_type,
@@ -187,7 +189,7 @@ async function main() {
   });
   console.log(
     `Đã import ${prepared.length} câu hỏi Toán 4` +
-      `${args.replace ? ' (thay các bài có dữ liệu)' : ''}.`
+      `${args.replace ? ' (đã lưu trữ bản cũ của các bài có dữ liệu)' : ''}.`
   );
 }
 

@@ -33,6 +33,13 @@
   </div>
 </section>
 
+<% if (session.completion_reason === 'CONTENT_UNAVAILABLE') { %>
+  <section class="flash flash-warning" role="status">
+    Nội dung của một số câu trong phiên cũ không còn trong ngân hàng nên không thể phục hồi trung thực.
+    Hệ thống đã giữ nguyên phần lịch sử còn lại và không tự thay bằng câu khác.
+  </section>
+<% } %>
+
 <section class="stat-grid">
   <article class="stat-card">
     <span class="status-pill status-completed">Đúng</span>

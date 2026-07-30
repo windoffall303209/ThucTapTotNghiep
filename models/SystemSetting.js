@@ -28,6 +28,7 @@ const DEFAULT_SETTINGS = {
   ai_enabled_grades: process.env.AI_ENABLED_GRADES || '3,4,5',
   ai_max_hints_per_question: process.env.AI_MAX_HINTS_PER_QUESTION || '2',
   ai_max_hints_per_session: process.env.AI_MAX_HINTS_PER_SESSION || '8',
+  ai_max_requests_per_student_per_day: process.env.AI_MAX_REQUESTS_PER_STUDENT_PER_DAY || '30',
   ai_require_answer_before_help: process.env.AI_REQUIRE_ANSWER_BEFORE_HELP || 'true',
   openai_api_key: process.env.OPENAI_API_KEY || '',
   openai_base_url: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
@@ -67,6 +68,7 @@ const ENV_KEY_MAP = {
   ai_enabled_grades: 'AI_ENABLED_GRADES',
   ai_max_hints_per_question: 'AI_MAX_HINTS_PER_QUESTION',
   ai_max_hints_per_session: 'AI_MAX_HINTS_PER_SESSION',
+  ai_max_requests_per_student_per_day: 'AI_MAX_REQUESTS_PER_STUDENT_PER_DAY',
   ai_require_answer_before_help: 'AI_REQUIRE_ANSWER_BEFORE_HELP',
   openai_api_key: 'OPENAI_API_KEY',
   openai_base_url: 'OPENAI_BASE_URL',
@@ -129,21 +131,13 @@ async function updateSettings(input) {
       continue;
     }
     if (isSecretKey(key) && trimmedValue === '') continue;
-    nextSettings[key] = trimmedValue;
+    nextSettings[key] = validateSettingValue(key, trimmedValue);
   }
 
   const mergedSettings = { ...current, ...nextSettings };
 
   try {
     await db.transaction(async (connection) => {
-      await connection.execute(
-        `CREATE TABLE IF NOT EXISTS SystemSettings (
-          setting_key VARCHAR(100) PRIMARY KEY,
-          setting_value TEXT NULL,
-          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
-      );
-
       for (const [key, value] of Object.entries(nextSettings)) {
         const storedValue = isSecretKey(key) ? encryptSecret(value) : value;
         await connection.execute(
@@ -173,6 +167,63 @@ function publicSettings(settings) {
 
 function isSecretKey(key) {
   return key.includes('api_key') || key.includes('api_secret');
+}
+
+function validateSettingValue(key, value) {
+  if (key === 'ai_provider') {
+    if (!['mock', 'openai', 'gemini', 'gemini_cli', 'nvidia', 'openrouter'].includes(value)) {
+      throw invalidSetting('Nguồn AI không hợp lệ.');
+    }
+    return value;
+  }
+  if (['ai_automation_enabled', 'ai_require_answer_before_help'].includes(key)) {
+    if (!['true', 'false'].includes(value)) {
+      throw invalidSetting('Giá trị bật/tắt cấu hình AI không hợp lệ.');
+    }
+    return value;
+  }
+  if (key === 'ai_enabled_grades') {
+    const tokens = value.split(',').map((item) => item.trim());
+    if (tokens.some((item) => !/^[1-5]$/.test(item))) {
+      throw invalidSetting('Khối lớp bật AI phải là danh sách từ 1 đến 5, phân cách bằng dấu phẩy.');
+    }
+    const grades = [...new Set(
+      tokens.map(Number)
+    )].sort((a, b) => a - b);
+    if (grades.length === 0) {
+      throw invalidSetting('Khối lớp bật AI phải là danh sách từ 1 đến 5, phân cách bằng dấu phẩy.');
+    }
+    return grades.join(',');
+  }
+  const integerRules = {
+    ai_json_timeout_ms: [1000, 120000, 'Timeout AI phải từ 1000 đến 120000 ms.'],
+    gemini_cli_timeout_ms: [1000, 300000, 'Timeout Gemini CLI phải từ 1000 đến 300000 ms.'],
+    ai_max_hints_per_question: [1, 20, 'Quota AI mỗi câu phải từ 1 đến 20.'],
+    ai_max_hints_per_session: [1, 100, 'Quota AI mỗi phiên phải từ 1 đến 100.'],
+    ai_max_requests_per_student_per_day: [1, 500, 'Quota AI mỗi học sinh mỗi ngày phải từ 1 đến 500.']
+  };
+  if (integerRules[key]) {
+    const [min, max, message] = integerRules[key];
+    const number = Number(value);
+    if (!Number.isInteger(number) || number < min || number > max) {
+      throw invalidSetting(message);
+    }
+    return String(number);
+  }
+  if (isSecretKey(key)) {
+    if (value.length > 4096) throw invalidSetting('Khóa bí mật quá dài.');
+    return value;
+  }
+  if (value.length > 255) {
+    throw invalidSetting('Giá trị cấu hình không được vượt quá 255 ký tự.');
+  }
+  return value;
+}
+
+function invalidSetting(message) {
+  const error = new Error(message);
+  error.code = 'INVALID_SYSTEM_SETTING';
+  return error;
 }
 
 function getPracticeDurationMinutes(questionCount, settings = DEFAULT_SETTINGS) {
@@ -276,6 +327,7 @@ module.exports = {
   getSettings,
   updateSettings,
   publicSettings,
+  validateSettingValue,
   getPracticeDurationMinutes,
   getPracticeDurationSeconds
 };

@@ -1394,6 +1394,7 @@ async function updateSettings(req, res, next) {
       ai_enabled_grades: req.body.ai_enabled_grades,
       ai_max_hints_per_question: req.body.ai_max_hints_per_question,
       ai_max_hints_per_session: req.body.ai_max_hints_per_session,
+      ai_max_requests_per_student_per_day: req.body.ai_max_requests_per_student_per_day,
       ai_require_answer_before_help: req.body.ai_require_answer_before_help,
       openai_api_key: req.body.openai_api_key,
       openai_base_url: req.body.openai_base_url,
@@ -1419,7 +1420,7 @@ async function updateSettings(req, res, next) {
     setFlash(req, 'success', 'Đã cập nhật cấu hình hệ thống.');
     return res.redirect('/admin/settings');
   } catch (error) {
-    if (error.code === 'INVALID_PRACTICE_DURATION') {
+    if (['INVALID_PRACTICE_DURATION', 'INVALID_SYSTEM_SETTING'].includes(error.code)) {
       setFlash(req, 'danger', error.message, { modal: true });
       return res.redirect('/admin/settings');
     }

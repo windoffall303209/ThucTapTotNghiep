@@ -6,11 +6,17 @@ const Student = require('../models/Student');
 const SocraticAIService = require('../services/SocraticAIService');
 const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
+const PracticeSubmissionService = require('../services/PracticeSubmissionService');
+const AIQuotaService = require('../services/AIQuotaService');
 const { setFlash } = require('../utils/flash');
 const { isSupportedGrade } = require('../config/grades');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
 const { validatePassword } = require('../utils/accountValidation');
 const { clearAuthCookie } = require('../utils/authToken');
+const {
+  normalizeSubmittedAnswer,
+  normalizeTimeSpentSeconds
+} = require('../utils/answerValidation');
 const {
   selectRandomQuestions,
   selectBalancedQuestions
@@ -118,14 +124,17 @@ async function practice(req, res, next) {
       ? await PracticeSession.getActiveLessonSession(student.id, lessonItem.id)
       : null;
     if (session && PracticeSession.getSessionTiming(session).isExpired) {
-      await PracticeSession.completeSession(student.id, session.id);
+      await PracticeSession.completeSession(student.id, session.id, 'EXPIRED');
       session = null;
     }
     let sessionQuestions = session
-      ? await Question.getQuestionsByIds(session.question_ids)
+      ? await PracticeSession.getSessionQuestions(session)
       : [];
 
     if (targetCount > 0 && (!session || sessionQuestions.length !== targetCount)) {
+      if (session) {
+        await PracticeSession.completeSession(student.id, session.id, 'CONTENT_CHANGED');
+      }
       const questions = selectRandomQuestions(pool, targetCount);
       session = await PracticeSession.createSession({
         studentId: student.id,
@@ -135,7 +144,7 @@ async function practice(req, res, next) {
         title: `Luyện theo bài: ${lessonItem.lesson_name}`,
         questionIds: questions.map((question) => question.id)
       });
-      sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
+      sessionQuestions = await PracticeSession.getSessionQuestions(session);
     }
 
     const [lessonAnswers, settings] = await Promise.all([
@@ -184,13 +193,16 @@ async function reviewLesson(req, res, next) {
       'REVIEW'
     );
     let sessionQuestions = session
-      ? await Question.getQuestionsByIds(session.question_ids)
+      ? await PracticeSession.getSessionQuestions(session)
       : [];
     if (
       !session
       || Number(session.question_count) !== questions.length
       || sessionQuestions.length !== questions.length
     ) {
+      if (session) {
+        await PracticeSession.completeSession(student.id, session.id, 'CONTENT_CHANGED');
+      }
       session = await PracticeSession.createSession({
         studentId: student.id,
         lessonId: lessonItem.id,
@@ -199,7 +211,7 @@ async function reviewLesson(req, res, next) {
         title: `Ôn sau lý thuyết: ${lessonItem.lesson_name}`,
         questionIds: questions.map((question) => question.id)
       });
-      sessionQuestions = await Question.getQuestionsByIds(session.question_ids);
+      sessionQuestions = await PracticeSession.getSessionQuestions(session);
     }
 
     const [reviewAnswers, settings] = await Promise.all([
@@ -381,7 +393,8 @@ async function startExam(req, res, next) {
       semester: sessionData.semester,
       mode: sessionData.mode,
       title: sessionData.title.replace(`${count} câu`, `${questions.length} câu`),
-      questionIds: questions.map((question) => question.id)
+      questionIds: questions.map((question) => question.id),
+      replaceActive: true
     });
 
     return res.redirect(`/student/sessions/${session.id}/practice`);
@@ -406,7 +419,7 @@ async function sessionPractice(req, res, next) {
 
     const practiceTiming = PracticeSession.getSessionTiming(session);
     if (practiceTiming.isExpired) {
-      session = await PracticeSession.completeSession(req.auth.id, session.id);
+      session = await PracticeSession.completeSession(req.auth.id, session.id, 'EXPIRED');
       setFlash(req, 'warning', 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc và lưu các câu em đã nộp.', {
         modal: true
       });
@@ -414,7 +427,7 @@ async function sessionPractice(req, res, next) {
     }
 
     const [questions, answers, settings] = await Promise.all([
-      Question.getQuestionsByIds(session.question_ids),
+      PracticeSession.getSessionQuestions(session),
       PracticeSession.listAnswers(session.id),
       SystemSetting.getSettings()
     ]);
@@ -446,11 +459,11 @@ async function reviewSession(req, res, next) {
     }
 
     if (session.status === 'IN_PROGRESS' && PracticeSession.getSessionTiming(session).isExpired) {
-      session = await PracticeSession.completeSession(req.auth.id, session.id);
+      session = await PracticeSession.completeSession(req.auth.id, session.id, 'EXPIRED');
     }
 
     const [questions, answers, chats] = await Promise.all([
-      Question.getQuestionsByIds(session.question_ids),
+      PracticeSession.getSessionQuestions(session),
       PracticeSession.listAnswers(session.id),
       PracticeSession.listChats(session.id)
     ]);
@@ -469,7 +482,11 @@ async function reviewSession(req, res, next) {
 
 async function finishSession(req, res, next) {
   try {
-    const session = await PracticeSession.completeSession(req.auth.id, req.params.id);
+    const session = await PracticeSession.completeSession(
+      req.auth.id,
+      req.params.id,
+      'USER_FINISHED'
+    );
     if (!session) {
       return res.status(404).json({
         ok: false,
@@ -580,23 +597,6 @@ function canAccessLesson(student, lessonItem) {
   );
 }
 
-function answersMatch(question, selectedAnswer) {
-  const expected = String(question?.correct_answer || '').trim();
-  const actual = String(selectedAnswer || '').trim();
-  if (question?.question_type === 'FILL_IN_THE_BLANK') {
-    return normalizeFreeTextAnswer(actual) === normalizeFreeTextAnswer(expected);
-  }
-  return actual === expected;
-}
-
-function normalizeFreeTextAnswer(value) {
-  return String(value || '')
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .replace(/,/g, '.');
-}
-
 function buildLegacyAttemptRows(attempts = []) {
   return attempts
     .filter((attempt) => !attempt.practice_session_id)
@@ -618,107 +618,94 @@ function buildLegacyAttemptRows(attempts = []) {
 async function submitAnswer(req, res, next) {
   try {
     const student = req.auth;
-    const questionItem = await Question.getQuestionById(req.params.questionId);
-
-    if (!questionItem) {
-      return res.status(404).json({
-        ok: false,
-        message: 'Không tìm thấy câu hỏi.'
-      });
-    }
-
-    const selectedAnswer = String(req.body.selectedAnswer || '').trim();
+    const questionId = Number(req.params.questionId);
+    const practiceSessionId = Number(req.body.practiceSessionId);
+    const selectedAnswer = normalizeSubmittedAnswer(req.body.selectedAnswer);
     if (!selectedAnswer) {
       return res.status(400).json({
         ok: false,
-        message: 'Vui lòng chọn một đáp án trước khi nộp.'
+        code: 'INVALID_ANSWER',
+        message: 'Đáp án phải có từ 1 đến 50 ký tự.'
+      });
+    }
+    if (!Number.isInteger(questionId) || questionId <= 0) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_QUESTION',
+        message: 'Mã câu hỏi không hợp lệ.'
+      });
+    }
+    if (!Number.isInteger(practiceSessionId) || practiceSessionId <= 0) {
+      return res.status(400).json({
+        ok: false,
+        code: 'PRACTICE_SESSION_REQUIRED',
+        message: 'Cần một phiên làm bài hợp lệ để nộp đáp án.'
       });
     }
 
-    // practiceSessionId do client gửi lên nên phải xác minh trước khi ghi:
-    // phiên phải tồn tại, thuộc đúng học sinh này, còn đang làm và chứa đúng
-    // câu hỏi đang nộp. Không kiểm thì một request tự chế có thể bơm log vào
-    // phiên của học sinh khác hoặc ghi tiếp vào bài đã kết thúc.
-    const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
-    const questionIndex = Number(req.body.questionIndex || 0);
-    if (practiceSessionId) {
-      const session = await PracticeSession.getSessionById(student.id, practiceSessionId);
-      if (!session) {
-        return res.status(404).json({
-          ok: false,
-          message: 'Không tìm thấy lần làm bài này trong tài khoản của em.'
-        });
-      }
-      if (PracticeSession.getSessionTiming(session).isExpired) {
-        await PracticeSession.completeSession(student.id, session.id);
-        return res.status(409).json({
-          ok: false,
-          code: 'PRACTICE_TIME_EXPIRED',
-          message: 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc bài của em.',
-          redirectUrl: `/student/sessions/${session.id}`
-        });
-      }
-      if (session.status !== 'IN_PROGRESS') {
-        return res.status(409).json({
-          ok: false,
-          message: 'Bài làm này đã kết thúc, không nộp thêm được nữa. Em mở trang xem lại nhé.',
-          redirectUrl: `/student/sessions/${session.id}`
-        });
-      }
-      if (!session.question_ids.map(Number).includes(Number(questionItem.id))) {
-        return res.status(400).json({
-          ok: false,
-          message: 'Câu hỏi này không thuộc bài em đang làm.'
-        });
-      }
-
-      // Chống ghi trùng: mỗi câu trong một phiên chỉ có một dòng log. Nộp lại
-      // (bấm đúp, gửi lại request) thì trả về đúng kết quả đã chấm lần đầu,
-      // không chèn thêm bản ghi làm lệch số câu đúng trong lịch sử.
-      const previousAnswers = await PracticeSession.listAnswers(session.id);
-      const existingAnswer = previousAnswers.find(
-        (answer) => Number(answer.question_id) === Number(questionItem.id)
-      );
-      if (existingAnswer) {
-        return res.json({
-          ok: true,
-          isCorrect: Number(existingAnswer.is_correct) === 1 || existingAnswer.is_correct === true,
-          correctAnswer: questionItem.correct_answer,
-          explanation: questionItem.explanation,
-          misconception: null,
-          nextIndex: questionIndex + 1,
-          message: 'Câu này em đã nộp rồi, kết quả được giữ theo lần nộp đầu tiên.'
-        });
-      }
-    }
-
-    const isCorrect = answersMatch(questionItem, selectedAnswer);
-    const misconception = isCorrect || questionItem.question_type === 'FILL_IN_THE_BLANK'
-      ? null
-      : await Question.getMisconception(questionItem.id, selectedAnswer);
-
-    await Question.recordAnswer({
+    const result = await PracticeSubmissionService.submitAnswer({
       studentId: student.id,
-      practiceSessionId,
-      questionId: questionItem.id,
+      sessionId: practiceSessionId,
+      questionId,
       selectedAnswer,
-      isCorrect,
-      misconceptionId: misconception?.id || null,
-      timeSpentSeconds: Number(req.body.timeSpentSeconds || 0) || null
+      timeSpentSeconds: normalizeTimeSpentSeconds(req.body.timeSpentSeconds)
     });
-
-    if (practiceSessionId) {
-      await PracticeSession.syncSessionProgress(practiceSessionId);
+    if (result.outcome === 'SESSION_NOT_FOUND') {
+      return res.status(404).json({
+        ok: false,
+        code: result.outcome,
+        message: 'Không tìm thấy lần làm bài này trong tài khoản của em.'
+      });
+    }
+    if (result.outcome === 'SESSION_EXPIRED') {
+      return res.status(409).json({
+        ok: false,
+        code: 'PRACTICE_TIME_EXPIRED',
+        message: 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc bài của em.',
+        redirectUrl: `/student/sessions/${practiceSessionId}`
+      });
+    }
+    if (result.outcome === 'SESSION_COMPLETED') {
+      return res.status(409).json({
+        ok: false,
+        code: result.outcome,
+        message: 'Bài làm này đã kết thúc, không nộp thêm được nữa.',
+        redirectUrl: `/student/sessions/${practiceSessionId}`
+      });
+    }
+    if (result.outcome === 'QUESTION_NOT_IN_SESSION') {
+      return res.status(400).json({
+        ok: false,
+        code: result.outcome,
+        message: 'Câu hỏi này không thuộc bài em đang làm.'
+      });
+    }
+    if (result.outcome === 'QUESTION_UNAVAILABLE') {
+      return res.status(409).json({
+        ok: false,
+        code: result.outcome,
+        message: 'Nội dung phiên này không còn đầy đủ nên hệ thống đã đóng phiên để bảo vệ lịch sử.',
+        redirectUrl: `/student/sessions/${practiceSessionId}`
+      });
     }
 
+    const questionIndex = Math.max(
+      0,
+      Math.min(Number(req.body.questionIndex) || 0, result.session.question_ids.length - 1)
+    );
+    const isCorrect = Number(result.answer.is_correct) === 1;
+    const alreadyRecorded = result.outcome === 'ALREADY_RECORDED';
     return res.json({
       ok: true,
       isCorrect,
-      correctAnswer: questionItem.correct_answer,
-      explanation: questionItem.explanation,
-      misconception,
+      selectedAnswer: result.answer.selected_answer,
+      correctAnswer: result.question.correct_answer,
+      explanation: result.question.explanation,
+      misconception: result.misconception,
       nextIndex: questionIndex + 1,
-      message: isCorrect
+      message: alreadyRecorded
+        ? 'Câu này em đã nộp rồi, kết quả được giữ theo lần nộp đầu tiên.'
+        : isCorrect
         ? 'Chính xác. Em đã xử lý đúng câu hỏi này.'
         : 'Chưa đúng. Hãy xem lỗi sai và lời giải để sửa lại cách làm.'
     });
@@ -729,14 +716,11 @@ async function submitAnswer(req, res, next) {
 
 async function theoryHelp(req, res, next) {
   try {
-    // Endpoint này được gọi bằng fetch nên mọi nhánh đều phải trả JSON.
-    // Redirect ở đây làm client nhận về HTML kèm mã 200, response.json() ném
-    // lỗi và học sinh thấy nhầm thông báo "mất kết nối".
     const lessonItem = await Curriculum.getLessonById(req.body.lessonId);
     if (!lessonItem) {
       return res.status(404).json({
         ok: false,
-        message: 'Không tìm thấy bài học cần giải thích. Em tải lại trang rồi thử lại nhé.'
+        message: 'Không tìm thấy bài học cần giải thích.'
       });
     }
 
@@ -744,6 +728,27 @@ async function theoryHelp(req, res, next) {
       return res.status(403).json({
         ok: false,
         message: 'Bài học này không thuộc khối học hiện tại của em.'
+      });
+    }
+
+    const studentQuestion = String(req.body.question || '').trim();
+    if (studentQuestion.length > 1000) {
+      return res.status(400).json({
+        ok: false,
+        code: 'MESSAGE_TOO_LONG',
+        message: 'Câu hỏi gửi AI không được vượt quá 1000 ký tự.'
+      });
+    }
+    const cardIndex = Number(req.body.cardIndex);
+    if (
+      !Number.isInteger(cardIndex)
+      || cardIndex < 0
+      || cardIndex >= lessonItem.theory_cards.length
+    ) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_THEORY_CARD',
+        message: 'Thẻ lý thuyết cần giải thích không hợp lệ.'
       });
     }
 
@@ -755,7 +760,7 @@ async function theoryHelp(req, res, next) {
         referenceId: lessonItem.id,
         lessonId: lessonItem.id,
         blockedReason: 'grade_not_enabled',
-        chatHistory: [{ role: 'student', text: req.body.question || 'Yêu cầu giải thích lý thuyết' }]
+        chatHistory: [{ role: 'student', text: studentQuestion || 'Yêu cầu giải thích lý thuyết' }]
       });
       return res.status(403).json({
         ok: false,
@@ -763,13 +768,32 @@ async function theoryHelp(req, res, next) {
       });
     }
 
-    const cardIndex = Number(req.body.cardIndex || 0);
+    const reservation = await AIQuotaService.reserveTheoryHelp({
+      studentId: req.auth.id,
+      dailyLimit: settings.ai_max_requests_per_student_per_day
+    });
+    if (reservation.outcome !== 'RESERVED') {
+      await AIConversationLog.logAIInteraction({
+        studentId: req.auth.id,
+        sessionType: 'THEORY_EXPLAIN',
+        referenceId: lessonItem.id,
+        lessonId: lessonItem.id,
+        blockedReason: reservation.outcome.toLowerCase(),
+        chatHistory: [{ role: 'student', text: studentQuestion || 'Yêu cầu giải thích lý thuyết' }]
+      });
+      return res.status(429).json({
+        ok: false,
+        code: reservation.outcome,
+        message: 'Em đã dùng hết số lượt hỗ trợ AI trong hôm nay.'
+      });
+    }
+
     const card = lessonItem.theory_cards[cardIndex];
     const aiResult = await SocraticAIService.explainTheory({
       grade: req.auth.current_grade,
       lesson: lessonItem,
       card,
-      question: req.body.question || ''
+      question: studentQuestion
     });
     const reply = aiResult.reply;
 
@@ -783,7 +807,7 @@ async function theoryHelp(req, res, next) {
       model: aiResult.model,
       isFallback: aiResult.isFallback,
       chatHistory: [
-        { role: 'student', text: req.body.question || 'Yêu cầu giải thích lý thuyết' },
+        { role: 'student', text: studentQuestion || 'Yêu cầu giải thích lý thuyết' },
         { role: 'ai', text: reply }
       ]
     });

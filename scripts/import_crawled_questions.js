@@ -26,12 +26,20 @@ function parseArgs(argv) {
     grade: 0,
     commit: false,
     replace: false,
+    reset: false,
+    destroyHistory: false,
+    backupConfirmed: false,
     allowDuplicates: false
   };
 
   for (const arg of argv) {
     if (arg === '--commit') args.commit = true;
-    else if (arg === '--replace') args.replace = true;
+    else if (arg === '--replace') {
+      args.replace = true;
+      args.reset = true;
+    } else if (arg === '--reset') args.reset = true;
+    else if (arg === '--destroy-history') args.destroyHistory = true;
+    else if (arg === '--backup-confirmed') args.backupConfirmed = true;
     else if (arg === '--allow-duplicates') args.allowDuplicates = true;
     else if (arg.startsWith('--input=')) args.input = path.resolve(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--image-dir=')) args.imageDir = path.resolve(arg.split('=').slice(1).join('='));
@@ -43,9 +51,20 @@ function parseArgs(argv) {
     else if (arg.startsWith('--grade=')) args.grade = Number(arg.split('=')[1] || 0);
   }
 
-  if (args.replace) {
+  if (args.reset) {
     args.commit = true;
     args.allowDuplicates = true;
+  }
+
+  if (args.destroyHistory !== args.backupConfirmed) {
+    throw new Error(
+      'Xóa lịch sử bắt buộc phải có đồng thời --destroy-history và --backup-confirmed.'
+    );
+  }
+  if ((args.destroyHistory || args.backupConfirmed) && !args.reset) {
+    throw new Error(
+      'Hai cờ xác nhận xóa lịch sử chỉ hợp lệ khi đi cùng --reset (hoặc --replace).'
+    );
   }
 
   if (!['local', 'remote'].includes(args.imageMode)) {
@@ -275,6 +294,7 @@ async function questionExists(lessonId, questionText) {
     `SELECT id
      FROM QuestionBank
      WHERE lesson_id = ?
+       AND is_active = 1
        AND JSON_UNQUOTE(JSON_EXTRACT(content, '$.text')) = ?
      LIMIT 1`,
     [lessonId, questionText]
@@ -301,12 +321,21 @@ async function writeReport(reportPath, report) {
   await fs.writeFile(reportPath, JSON.stringify(report, null, 2), 'utf8');
 }
 
-async function resetQuestionData() {
+async function archiveQuestionData() {
+  const result = await db.query(
+    `UPDATE QuestionBank
+     SET is_active = 0, archived_at = CURRENT_TIMESTAMP
+     WHERE is_active = 1`
+  );
+  return Number(result.affectedRows || 0);
+}
+
+async function destroyQuestionHistory() {
   await db.transaction(async (connection) => {
     await connection.execute('DELETE FROM PracticeSessionChats');
-    await connection.execute('DELETE FROM PracticeSessions');
     await connection.execute("DELETE FROM AIConversationLogs WHERE session_type = 'EXERCISE_HELP'");
     await connection.execute('DELETE FROM StudentLogs');
+    await connection.execute('DELETE FROM PracticeSessions');
     await connection.execute('DELETE FROM CommonMisconceptions');
     await connection.execute('DELETE FROM QuestionBank');
   });
@@ -350,13 +379,25 @@ async function main() {
       return !options.grade || Number(lesson.grade) === Number(options.grade);
     });
 
-  if (options.replace) {
-    await resetQuestionData();
+  let archivedQuestions = 0;
+  const destructiveHistoryReset =
+    options.reset && options.destroyHistory && options.backupConfirmed;
+  if (destructiveHistoryReset) {
+    await destroyQuestionHistory();
+    console.warn(
+      'Đã xóa vĩnh viễn ngân hàng câu hỏi và lịch sử liên quan sau khi nhận đủ hai cờ xác nhận.'
+    );
+  } else if (options.reset) {
+    archivedQuestions = await archiveQuestionData();
+    console.log(`Đã lưu trữ ${archivedQuestions} câu hỏi đang hoạt động; lịch sử được giữ nguyên.`);
   }
 
   const report = {
     mode: options.commit ? 'commit' : 'dry-run',
     replace: options.replace,
+    reset: options.reset,
+    destructiveHistoryReset,
+    archivedQuestions,
     input: options.input,
     imageMode: options.imageMode,
     minScore: options.minScore,

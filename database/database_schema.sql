@@ -1,10 +1,10 @@
--- Tạo database nếu chưa tồn tại
-CREATE DATABASE IF NOT EXISTS webonluyen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE webonluyen;
+-- Chạy file này trên database đã chọn (DB_NAME); không tự chuyển sang một schema khác.
 -- Disable foreign key checks temporarily to drop tables in any order
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS AIConversationLogs;
+DROP TABLE IF EXISTS AIUsageDaily;
 DROP TABLE IF EXISTS PracticeSessionChats;
+DROP TABLE IF EXISTS PracticeSessionQuestions;
 DROP TABLE IF EXISTS PracticeSessions;
 DROP TABLE IF EXISTS StudentLogs;
 DROP TABLE IF EXISTS CommonMisconceptions;
@@ -14,6 +14,8 @@ DROP TABLE IF EXISTS KnowledgeConcepts;
 DROP TABLE IF EXISTS Lessons;
 DROP TABLE IF EXISTS Chapters;
 DROP TABLE IF EXISTS SystemSettings;
+DROP TABLE IF EXISTS AppSessions;
+DROP TABLE IF EXISTS RequestRateLimits;
 DROP TABLE IF EXISTS Admins;
 DROP TABLE IF EXISTS Students;
 SET FOREIGN_KEY_CHECKS = 1;
@@ -122,7 +124,10 @@ CREATE TABLE QuestionBank (
     choices JSON NULL, -- [{"key": "A", "text": "...", "images": []}, ...]
     correct_answer VARCHAR(50) NOT NULL,
     explanation JSON NOT NULL, -- {"text": "...", "images": []}
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    archived_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE CASCADE,
     FOREIGN KEY (concept_id) REFERENCES KnowledgeConcepts(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -131,6 +136,7 @@ CREATE INDEX idx_questions_lesson ON QuestionBank(lesson_id);
 CREATE INDEX idx_questions_lesson_difficulty_id ON QuestionBank(lesson_id, difficulty, id);
 CREATE INDEX idx_questions_concept ON QuestionBank(concept_id);
 CREATE INDEX idx_questions_difficulty ON QuestionBank(difficulty);
+CREATE INDEX idx_questions_active_lesson ON QuestionBank(is_active, lesson_id, difficulty, id);
 
 -- 9. Table: CommonMisconceptions (Ánh xạ các lỗi sai thường gặp khi làm trắc nghiệm)
 CREATE TABLE CommonMisconceptions (
@@ -140,35 +146,13 @@ CREATE TABLE CommonMisconceptions (
     misconception_name VARCHAR(255) NOT NULL,
     explanation TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_misconceptions_question_distractor (question_id, distractor_key),
     FOREIGN KEY (question_id) REFERENCES QuestionBank(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_misconceptions_question ON CommonMisconceptions(question_id);
 
--- 10. Table: StudentLogs (Lịch sử làm bài tập luyện tập)
-CREATE TABLE StudentLogs (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
-    practice_session_id BIGINT NULL,
-    question_id INT NOT NULL,
-    selected_answer VARCHAR(50) NOT NULL,
-    is_correct TINYINT(1) NOT NULL, -- 0: Sai, 1: Đúng (Thay thế cho BOOLEAN của MySQL)
-    detected_misconception_id INT NULL,
-    time_spent_seconds INT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES QuestionBank(id) ON DELETE CASCADE,
-    FOREIGN KEY (detected_misconception_id) REFERENCES CommonMisconceptions(id) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX idx_logs_student ON StudentLogs(student_id);
-CREATE INDEX idx_logs_student_question ON StudentLogs(student_id, question_id);
-CREATE INDEX idx_logs_practice_session ON StudentLogs(practice_session_id);
-CREATE INDEX idx_logs_session_created ON StudentLogs(practice_session_id, created_at, id);
-CREATE INDEX idx_logs_student_created ON StudentLogs(student_id, created_at, id);
-CREATE INDEX idx_logs_student_correct_question ON StudentLogs(student_id, is_correct, question_id);
-
--- 10.1. Table: PracticeSessions
+-- 10. Table: PracticeSessions
 CREATE TABLE PracticeSessions (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
@@ -182,6 +166,9 @@ CREATE TABLE PracticeSessions (
     duration_seconds INT NULL,
     current_index INT NOT NULL DEFAULT 0,
     status VARCHAR(20) NOT NULL DEFAULT 'IN_PROGRESS' CHECK (status IN ('IN_PROGRESS', 'COMPLETED')),
+    completion_reason VARCHAR(40) NULL,
+    active_key VARCHAR(191) NULL,
+    ai_hint_count INT UNSIGNED NOT NULL DEFAULT 0,
     started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMP NULL,
     completed_at TIMESTAMP NULL,
@@ -195,21 +182,94 @@ CREATE INDEX idx_practice_sessions_student ON PracticeSessions(student_id, statu
 CREATE INDEX idx_practice_sessions_student_started ON PracticeSessions(student_id, started_at, id);
 CREATE INDEX idx_practice_sessions_student_status_started ON PracticeSessions(student_id, status, started_at, id);
 CREATE INDEX idx_practice_sessions_expiry ON PracticeSessions(student_id, status, expires_at);
+CREATE UNIQUE INDEX uq_practice_sessions_active_key ON PracticeSessions(active_key);
 
--- 10.2. Table: PracticeSessionChats
+-- 10.1. Immutable question snapshots for each practice session
+CREATE TABLE PracticeSessionQuestions (
+    practice_session_id BIGINT NOT NULL,
+    question_id INT NOT NULL,
+    position INT UNSIGNED NOT NULL,
+    snapshot JSON NOT NULL,
+    ai_hint_count INT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (practice_session_id, question_id),
+    UNIQUE KEY uq_practice_session_question_position (practice_session_id, position),
+    FOREIGN KEY (practice_session_id) REFERENCES PracticeSessions(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 2.1. Persistent server-side sessions
+CREATE TABLE AppSessions (
+    session_id VARCHAR(128) PRIMARY KEY,
+    session_data JSON NOT NULL,
+    expires_at TIMESTAMP(3) NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_app_sessions_expiry ON AppSessions(expires_at);
+
+-- 2.2. Shared counters for sensitive endpoint rate limits
+CREATE TABLE RequestRateLimits (
+    namespace VARCHAR(32) NOT NULL,
+    key_hash CHAR(64) NOT NULL,
+    hits INT UNSIGNED NOT NULL DEFAULT 0,
+    reset_at TIMESTAMP(3) NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    PRIMARY KEY (namespace, key_hash)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_request_rate_limits_expiry ON RequestRateLimits(reset_at);
+
+CREATE INDEX idx_practice_session_questions_source ON PracticeSessionQuestions(question_id);
+
+-- 10.2. Student answer history
+CREATE TABLE StudentLogs (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    practice_session_id BIGINT NULL,
+    question_id INT NOT NULL,
+    selected_answer VARCHAR(50) NOT NULL,
+    is_correct TINYINT(1) NOT NULL CHECK (is_correct IN (0, 1)),
+    detected_misconception_id INT NULL,
+    time_spent_seconds INT NULL CHECK (time_spent_seconds IS NULL OR time_spent_seconds BETWEEN 0 AND 86400),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_logs_session_question (practice_session_id, question_id),
+    FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES QuestionBank(id) ON DELETE RESTRICT,
+    FOREIGN KEY (detected_misconception_id) REFERENCES CommonMisconceptions(id) ON DELETE SET NULL,
+    FOREIGN KEY (practice_session_id, question_id)
+        REFERENCES PracticeSessionQuestions(practice_session_id, question_id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_logs_student ON StudentLogs(student_id);
+CREATE INDEX idx_logs_student_question ON StudentLogs(student_id, question_id);
+CREATE INDEX idx_logs_practice_session ON StudentLogs(practice_session_id);
+CREATE INDEX idx_logs_session_created ON StudentLogs(practice_session_id, created_at, id);
+CREATE INDEX idx_logs_student_created ON StudentLogs(student_id, created_at, id);
+CREATE INDEX idx_logs_student_correct_question ON StudentLogs(student_id, is_correct, question_id);
+
+-- 10.3. PracticeSessionChats
 CREATE TABLE PracticeSessionChats (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     practice_session_id BIGINT NOT NULL,
-    question_id INT NULL,
+    question_id INT NOT NULL,
     role VARCHAR(20) NOT NULL CHECK (role IN ('student', 'ai')),
     message TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (practice_session_id) REFERENCES PracticeSessions(id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES QuestionBank(id) ON DELETE SET NULL
+    FOREIGN KEY (practice_session_id, question_id)
+        REFERENCES PracticeSessionQuestions(practice_session_id, question_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_practice_chats_session ON PracticeSessionChats(practice_session_id, question_id);
 CREATE INDEX idx_practice_chats_session_role ON PracticeSessionChats(practice_session_id, role, created_at, id);
+
+-- 10.4. Durable per-student daily AI quota
+CREATE TABLE AIUsageDaily (
+    student_id INT NOT NULL,
+    usage_date DATE NOT NULL,
+    request_count INT UNSIGNED NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (student_id, usage_date),
+    FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 11. Table: AIConversationLogs (Nhật ký gợi ý học tập có kiểm soát)
 CREATE TABLE AIConversationLogs (

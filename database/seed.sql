@@ -86,6 +86,7 @@ VALUES
   ('ai_enabled_grades', '3,4,5'),
   ('ai_max_hints_per_question', '2'),
   ('ai_max_hints_per_session', '8'),
+  ('ai_max_requests_per_student_per_day', '30'),
   ('ai_require_answer_before_help', 'true'),
   ('openai_api_key', ''),
   ('openai_base_url', 'https://api.openai.com/v1'),

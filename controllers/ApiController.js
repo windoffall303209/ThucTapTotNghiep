@@ -1,72 +1,81 @@
-const Question = require('../models/Question');
 const PracticeSession = require('../models/PracticeSession');
 const SocraticAIService = require('../services/SocraticAIService');
 const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
+const AIQuotaService = require('../services/AIQuotaService');
+const { findSnapshotMisconception } = require('../services/PracticeSubmissionService');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
+
+const MAX_STUDENT_MESSAGE_LENGTH = 1000;
 
 async function exerciseHelp(req, res, next) {
   try {
-    const question = await Question.getQuestionById(req.body.questionId);
-    if (!question) {
-      return res.status(404).json({
+    const practiceSessionId = parsePositiveInteger(req.body.practiceSessionId);
+    const questionId = parsePositiveInteger(req.body.questionId);
+    const studentMessage = normalizeMessage(req.body.message);
+    if (!practiceSessionId || !questionId) {
+      return res.status(400).json({
         ok: false,
-        message: 'Không tìm thấy câu hỏi cần hỗ trợ.'
+        code: 'INVALID_AI_CONTEXT',
+        message: 'Cần một phiên và câu hỏi hợp lệ để mở gợi ý.'
+      });
+    }
+    if (studentMessage === null) {
+      return res.status(400).json({
+        ok: false,
+        code: 'MESSAGE_TOO_LONG',
+        message: `Câu hỏi gửi AI không được vượt quá ${MAX_STUDENT_MESSAGE_LENGTH} ký tự.`
       });
     }
 
-    // Xác minh phiên trước khi dùng: id do client gửi, không kiểm thì lời chat
-    // có thể bị ghi vào phiên của học sinh khác (hiện lên trang xem lại của em
-    // đó) và quota gợi ý bị tính trên phiên không thuộc về người hỏi.
-    const practiceSessionId = Number(req.body.practiceSessionId || 0) || null;
-    if (practiceSessionId) {
-      const session = await PracticeSession.getSessionById(req.auth.id, practiceSessionId);
-      if (!session) {
-        return res.status(403).json({
-          ok: false,
-          message: 'Lần làm bài này không thuộc tài khoản của em nên chưa gửi được câu hỏi.'
-        });
-      }
-    }
-    const selectedAnswer = String(req.body.selectedAnswer || '').trim();
-    const studentMessage = String(req.body.message || '').trim();
     const settings = await SystemSetting.getSettings();
-    const [sessionChats, sessionAnswers] = practiceSessionId
-      ? await Promise.all([
-        PracticeSession.listChats(practiceSessionId),
-        PracticeSession.listAnswers(practiceSessionId)
-      ])
-      : [[], []];
-    const chatHistory = sessionChats.filter((chat) => Number(chat.question_id || 0) === Number(question.id));
-    const hasAnsweredQuestion = practiceSessionId
-      ? sessionAnswers.some((answer) => Number(answer.question_id) === Number(question.id))
-      : Boolean(selectedAnswer);
-    const policyBlock = evaluateAIPolicy({
-      grade: req.auth?.current_grade,
-      settings,
-      hasAnsweredQuestion,
-      chatHistory,
-      sessionChats
-    });
-
-    if (policyBlock) {
-      await AIConversationLog.logAIInteraction({
-        studentId: req.auth.id,
-        sessionType: 'EXERCISE_HELP',
-        referenceId: question.id,
+    if (!isAIEnabledForGrade(req.auth?.current_grade, settings)) {
+      await logBlockedRequest({
+        req,
         practiceSessionId,
-        questionId: question.id,
-        blockedReason: policyBlock.reason,
-        chatHistory: [{ role: 'student', text: studentMessage || 'Yêu cầu gợi ý thêm' }]
+        questionId,
+        studentMessage,
+        reason: 'grade_not_enabled',
+        attachSession: false,
+        attachQuestion: false
       });
-      return res.status(403).json({ ok: false, message: policyBlock.message });
+      return res.status(403).json({
+        ok: false,
+        code: 'GRADE_NOT_ENABLED',
+        message: 'Tính năng gợi ý thêm hiện chưa bật cho khối lớp của em.'
+      });
     }
 
-    const misconception = selectedAnswer
-      ? await Question.getMisconception(question.id, selectedAnswer)
-      : null;
+    const reservation = await AIQuotaService.reserveExerciseHelp({
+      studentId: req.auth.id,
+      sessionId: practiceSessionId,
+      questionId,
+      dailyLimit: settings.ai_max_requests_per_student_per_day,
+      maxPerQuestion: settings.ai_max_hints_per_question,
+      maxPerSession: settings.ai_max_hints_per_session
+    });
+    if (reservation.outcome !== 'RESERVED') {
+      const block = quotaOutcomeResponse(reservation.outcome, practiceSessionId);
+      await logBlockedRequest({
+        req,
+        practiceSessionId,
+        questionId,
+        studentMessage,
+        reason: reservation.outcome.toLowerCase(),
+        ...verifiedLogContext(reservation.outcome)
+      });
+      return res.status(block.status).json(block.body);
+    }
 
-    if (practiceSessionId && studentMessage) {
+    const question = reservation.question;
+    const selectedAnswer = String(reservation.answer.selected_answer || '');
+    const misconception = findSnapshotMisconception(question, selectedAnswer);
+    const sessionChats = await PracticeSession.listChats(practiceSessionId);
+    const chatHistory = sessionChats.filter(
+      (chat) => Number(chat.question_id) === Number(question.id)
+    );
+
+    if (studentMessage) {
       await PracticeSession.saveChat({
         sessionId: practiceSessionId,
         questionId: question.id,
@@ -76,7 +85,7 @@ async function exerciseHelp(req, res, next) {
     }
 
     const aiResult = await SocraticAIService.explainExercise({
-      grade: req.auth?.current_grade || 4,
+      grade: req.auth?.current_grade || question.grade || 4,
       question,
       selectedAnswer,
       misconception,
@@ -85,23 +94,18 @@ async function exerciseHelp(req, res, next) {
     });
     const reply = aiResult.reply;
 
-    if (practiceSessionId) {
-      await PracticeSession.saveChat({
-        sessionId: practiceSessionId,
-        questionId: question.id,
-        role: 'ai',
-        message: reply
-      });
-    }
-
+    await PracticeSession.saveChat({
+      sessionId: practiceSessionId,
+      questionId: question.id,
+      role: 'ai',
+      message: reply
+    });
     await AIConversationLog.logAIInteraction({
       studentId: req.auth.id,
       sessionType: 'EXERCISE_HELP',
       referenceId: question.id,
       practiceSessionId,
       questionId: question.id,
-      // Ghi provider và model THỰC TẾ đã sinh ra câu trả lời, không phải giá trị
-      // admin đang cấu hình, vì hai thứ này lệch nhau khi phải rơi sang dự phòng.
       provider: aiResult.provider,
       model: aiResult.model,
       isFallback: aiResult.isFallback,
@@ -118,41 +122,134 @@ async function exerciseHelp(req, res, next) {
   }
 }
 
-function evaluateAIPolicy({ grade, settings, hasAnsweredQuestion, chatHistory, sessionChats }) {
-  if (!isAIEnabledForGrade(grade, settings)) {
-    return {
-      reason: 'grade_not_enabled',
-      message: 'Tính năng gợi ý thêm hiện chỉ bật cho một số khối lớp. Em hãy xem lời giải có sẵn trước nhé.'
-    };
-  }
-
-  if (String(settings.ai_require_answer_before_help || 'true') !== 'false' && !hasAnsweredQuestion) {
-    return {
-      reason: 'answer_required',
-      message: 'Em hãy thử chọn và nộp đáp án trước, sau đó hệ thống mới mở phần gợi ý thêm.'
-    };
-  }
-
-  const maxPerQuestion = Math.max(Number(settings.ai_max_hints_per_question || 2), 0);
-  const maxPerSession = Math.max(Number(settings.ai_max_hints_per_session || 8), 0);
-  const aiReplyCountForQuestion = chatHistory.filter((chat) => chat.role === 'ai').length;
-  const aiReplyCountForSession = (sessionChats || []).filter((chat) => chat.role === 'ai').length;
-
-  if (maxPerQuestion > 0 && aiReplyCountForQuestion >= maxPerQuestion) {
-    return {
-      reason: 'question_quota_exceeded',
-      message: 'Câu này đã đủ số lần gợi ý thêm. Em hãy đọc lại lời giải và thử câu tiếp theo nhé.'
-    };
-  }
-
-  if (maxPerSession > 0 && aiReplyCountForSession >= maxPerSession) {
-    return {
-      reason: 'session_quota_exceeded',
-      message: 'Lần luyện tập này đã dùng đủ số lượt gợi ý thêm. Em hãy tiếp tục bằng lời giải có sẵn nhé.'
-    };
-  }
-
-  return null;
+function parsePositiveInteger(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number > 0 ? number : null;
 }
 
-module.exports = { exerciseHelp };
+function normalizeMessage(value) {
+  const message = String(value || '').trim();
+  return message.length <= MAX_STUDENT_MESSAGE_LENGTH ? message : null;
+}
+
+function quotaOutcomeResponse(outcome, sessionId) {
+  const redirectUrl = `/student/sessions/${sessionId}`;
+  const responses = {
+    SESSION_NOT_FOUND: {
+      status: 404,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Không tìm thấy phiên làm bài này trong tài khoản của em.'
+      }
+    },
+    SESSION_EXPIRED: {
+      status: 409,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Phiên đã hết thời gian nên không thể xin thêm gợi ý.',
+        redirectUrl
+      }
+    },
+    SESSION_COMPLETED: {
+      status: 409,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Phiên đã kết thúc nên không thể xin thêm gợi ý.',
+        redirectUrl
+      }
+    },
+    QUESTION_NOT_IN_SESSION: {
+      status: 400,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Câu hỏi này không thuộc phiên em đang làm.'
+      }
+    },
+    ANSWER_REQUIRED: {
+      status: 403,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Em cần nộp đáp án cho đúng câu này trước khi mở gợi ý.'
+      }
+    },
+    QUESTION_QUOTA_EXCEEDED: {
+      status: 429,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Câu này đã dùng hết số lượt gợi ý.'
+      }
+    },
+    SESSION_QUOTA_EXCEEDED: {
+      status: 429,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Phiên này đã dùng hết số lượt gợi ý.'
+      }
+    },
+    DAILY_QUOTA_EXCEEDED: {
+      status: 429,
+      body: {
+        ok: false,
+        code: outcome,
+        message: 'Em đã dùng hết số lượt hỗ trợ AI trong hôm nay.'
+      }
+    }
+  };
+  return responses[outcome] || {
+    status: 409,
+    body: {
+      ok: false,
+      code: outcome || 'AI_HELP_UNAVAILABLE',
+      message: 'Chưa thể mở gợi ý cho câu này.'
+    }
+  };
+}
+
+function verifiedLogContext(outcome) {
+  if (['ANSWER_REQUIRED', 'QUESTION_QUOTA_EXCEEDED', 'SESSION_QUOTA_EXCEEDED'].includes(outcome)) {
+    return { attachSession: true, attachQuestion: true };
+  }
+  if (['SESSION_EXPIRED', 'SESSION_COMPLETED', 'QUESTION_NOT_IN_SESSION'].includes(outcome)) {
+    return { attachSession: true, attachQuestion: false };
+  }
+  return { attachSession: false, attachQuestion: false };
+}
+
+async function logBlockedRequest({
+  req,
+  practiceSessionId,
+  questionId,
+  studentMessage,
+  reason,
+  attachSession = false,
+  attachQuestion = false
+}) {
+  await AIConversationLog.logAIInteraction({
+    studentId: req.auth.id,
+    sessionType: 'EXERCISE_HELP',
+    referenceId: questionId,
+    practiceSessionId: attachSession ? practiceSessionId : null,
+    questionId: attachQuestion ? questionId : null,
+    blockedReason: reason,
+    chatHistory: [{
+      role: 'student',
+      text: studentMessage || 'Yêu cầu gợi ý thêm'
+    }]
+  });
+}
+
+module.exports = {
+  MAX_STUDENT_MESSAGE_LENGTH,
+  exerciseHelp,
+  normalizeMessage,
+  parsePositiveInteger,
+  quotaOutcomeResponse,
+  verifiedLogContext
+};

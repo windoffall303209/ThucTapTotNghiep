@@ -154,7 +154,7 @@ async function main() {
   if (!args.commit) {
     console.log(
       'Dry run hoàn tất. Dùng --commit --create-missing-lessons để nạp đủ 91 bài, ' +
-        'hoặc thêm --replace để thay toàn bộ câu hỏi lớp 5.'
+        'hoặc thêm --replace để lưu trữ toàn bộ câu hỏi lớp 5 cũ rồi nạp bản mới.'
     );
     return;
   }
@@ -197,18 +197,19 @@ async function main() {
 
     if (args.replace) {
       await connection.execute(
-        `DELETE q FROM QuestionBank q
+        `UPDATE QuestionBank q
           JOIN Lessons l ON l.id = q.lesson_id
           JOIN Chapters c ON c.id = l.chapter_id
-         WHERE c.grade = 5`
+         SET q.is_active = 0, q.archived_at = CURRENT_TIMESTAMP
+         WHERE c.grade = 5 AND q.is_active = 1`
       );
     }
     for (const payload of prepared) {
       const lesson = lessonBySourceNumber.get(payload.lesson_number);
       await connection.execute(
         `INSERT INTO QuestionBank
-          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation)
-         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON))`,
+          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
+         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
         [
           lesson.id,
           payload.question_type,
@@ -222,7 +223,9 @@ async function main() {
       );
     }
   });
-  console.log(`Đã import ${prepared.length} câu hỏi Toán 5${args.replace ? ' (chế độ thay thế)' : ''}.`);
+  console.log(
+    `Đã import ${prepared.length} câu hỏi Toán 5${args.replace ? ' (đã lưu trữ bản cũ)' : ''}.`
+  );
 }
 
 main()

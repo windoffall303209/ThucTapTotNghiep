@@ -2,6 +2,7 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 const SystemSetting = require('./SystemSetting');
+const Question = require('./Question');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze(
@@ -68,101 +69,69 @@ function ensureFallbackStore() {
   sampleData.practiceChats = sampleData.practiceChats || [];
 }
 
+let schemaCheckPromise = null;
+
 async function ensureSchema() {
+  if (!schemaCheckPromise) {
+    schemaCheckPromise = verifySchemaReady();
+  }
   try {
-    await db.query(
-      `CREATE TABLE IF NOT EXISTS PracticeSessions (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        student_id INT NOT NULL,
-        lesson_id INT NULL,
-        chapter_id INT NULL,
-        scope_semester TINYINT NULL,
-        session_mode VARCHAR(20) NOT NULL,
-        title VARCHAR(255) NOT NULL,
-        question_ids JSON NOT NULL,
-        question_count INT NOT NULL DEFAULT 0,
-        duration_seconds INT NULL,
-        current_index INT NOT NULL DEFAULT 0,
-        status VARCHAR(20) NOT NULL DEFAULT 'IN_PROGRESS',
-        started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        expires_at TIMESTAMP NULL,
-        completed_at TIMESTAMP NULL,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE,
-        FOREIGN KEY (lesson_id) REFERENCES Lessons(id) ON DELETE SET NULL,
-        FOREIGN KEY (chapter_id) REFERENCES Chapters(id) ON DELETE SET NULL
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
-    );
-    await db.query(
-      `CREATE TABLE IF NOT EXISTS PracticeSessionChats (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        practice_session_id BIGINT NOT NULL,
-        question_id INT NULL,
-        role VARCHAR(20) NOT NULL,
-        message TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (practice_session_id) REFERENCES PracticeSessions(id) ON DELETE CASCADE,
-        FOREIGN KEY (question_id) REFERENCES QuestionBank(id) ON DELETE SET NULL
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
-    );
-    await addColumnIfMissing(
-      'StudentLogs',
-      'practice_session_id',
-      'ALTER TABLE StudentLogs ADD COLUMN practice_session_id BIGINT NULL AFTER student_id'
-    );
-    await addColumnIfMissing(
-      'PracticeSessions',
-      'chapter_id',
-      'ALTER TABLE PracticeSessions ADD COLUMN chapter_id INT NULL AFTER lesson_id'
-    );
-    await addColumnIfMissing(
-      'PracticeSessions',
-      'scope_semester',
-      'ALTER TABLE PracticeSessions ADD COLUMN scope_semester TINYINT NULL AFTER chapter_id'
-    );
-    await addColumnIfMissing(
-      'PracticeSessions',
-      'duration_seconds',
-      'ALTER TABLE PracticeSessions ADD COLUMN duration_seconds INT NULL AFTER question_count'
-    );
-    await addColumnIfMissing(
-      'PracticeSessions',
-      'expires_at',
-      'ALTER TABLE PracticeSessions ADD COLUMN expires_at TIMESTAMP NULL AFTER started_at'
-    );
-    await addIndexIfMissing('StudentLogs', 'idx_logs_practice_session', 'CREATE INDEX idx_logs_practice_session ON StudentLogs(practice_session_id)');
-    await addIndexIfMissing(
-      'PracticeSessions',
-      'idx_practice_sessions_expiry',
-      'CREATE INDEX idx_practice_sessions_expiry ON PracticeSessions(student_id, status, expires_at)'
-    );
+    await schemaCheckPromise;
   } catch (error) {
+    schemaCheckPromise = null;
     fallbackOrThrow(error);
     ensureFallbackStore();
   }
 }
 
-async function addColumnIfMissing(tableName, columnName, alterSql) {
+async function verifySchemaReady() {
+  const requiredColumns = new Map([
+    ['PracticeSessions', [
+      'id',
+      'chapter_id',
+      'scope_semester',
+      'duration_seconds',
+      'expires_at',
+      'completion_reason',
+      'active_key',
+      'ai_hint_count'
+    ]],
+    ['PracticeSessionQuestions', [
+      'practice_session_id',
+      'question_id',
+      'position',
+      'snapshot',
+      'ai_hint_count'
+    ]],
+    ['PracticeSessionChats', ['practice_session_id', 'question_id', 'role', 'message']],
+    ['StudentLogs', ['practice_session_id', 'question_id']]
+  ]);
   const rows = await db.query(
-    `SELECT COUNT(*) AS count
+    `SELECT TABLE_NAME, COLUMN_NAME
      FROM INFORMATION_SCHEMA.COLUMNS
-     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?`,
-    [tableName, columnName]
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME IN ('PracticeSessions', 'PracticeSessionQuestions',
+                          'PracticeSessionChats', 'StudentLogs')`
   );
-  if (Number(rows[0]?.count || 0) === 0) {
-    await db.query(alterSql);
+  const available = new Set(
+    rows.map((row) => `${String(row.TABLE_NAME).toLowerCase()}.${String(row.COLUMN_NAME).toLowerCase()}`)
+  );
+  const missing = [];
+  for (const [tableName, columns] of requiredColumns) {
+    for (const columnName of columns) {
+      if (!available.has(`${tableName.toLowerCase()}.${columnName.toLowerCase()}`)) {
+        missing.push(`${tableName}.${columnName}`);
+      }
+    }
   }
-}
-
-async function addIndexIfMissing(tableName, indexName, createSql) {
-  const rows = await db.query(
-    `SELECT COUNT(*) AS count
-     FROM INFORMATION_SCHEMA.STATISTICS
-     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND INDEX_NAME = ?`,
-    [tableName, indexName]
-  );
-  if (Number(rows[0]?.count || 0) === 0) {
-    await db.query(createSql);
+  if (missing.length > 0) {
+    const error = new Error(
+      `Database chưa được nâng cấp phiên luyện tập (${missing.join(', ')}). `
+      + 'Chạy npm run db:session-integrity -- --apply trước khi khởi động ứng dụng.'
+    );
+    error.code = 'SCHEMA_MIGRATION_REQUIRED';
+    error.status = 503;
+    throw error;
   }
 }
 
@@ -173,39 +142,97 @@ async function createSession({
   semester = null,
   mode,
   title,
-  questionIds
+  questionIds,
+  replaceActive = false
 }) {
   await ensureSchema();
   const ids = questionIds.map(Number).filter(Boolean);
+  const questions = await Question.getQuestionsByIds(ids);
+  if (
+    questions.length !== ids.length
+    || questions.some((question) => Number(question.is_active ?? 1) !== 1)
+  ) {
+    const error = new Error('Không thể tạo phiên vì một hoặc nhiều câu hỏi không còn khả dụng.');
+    error.code = 'SESSION_QUESTIONS_UNAVAILABLE';
+    error.status = 409;
+    throw error;
+  }
+  const misconceptionsByQuestionId = await Question.getMisconceptionsByQuestionIds(ids);
+  const questionSnapshots = questions.map((question) => createQuestionSnapshot({
+    ...question,
+    misconceptions: misconceptionsByQuestionId.get(Number(question.id)) || []
+  }));
   const timedMode = ['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(String(mode || '').toUpperCase());
   const settings = timedMode ? await SystemSetting.getSettings() : null;
   const durationSeconds = timedMode
     ? SystemSetting.getPracticeDurationSeconds(ids.length, settings)
     : null;
+  const normalizedSemester = [1, 2].includes(Number(semester)) ? Number(semester) : null;
+  const activeKey = buildActiveSessionKey({
+    studentId,
+    lessonId,
+    chapterId,
+    semester: normalizedSemester,
+    mode
+  });
 
   try {
-    const result = await db.query(
-      `INSERT INTO PracticeSessions
-        (student_id, lesson_id, chapter_id, scope_semester, session_mode, title, question_ids,
-         question_count, duration_seconds, expires_at, current_index, status)
-       VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?,
-         CASE WHEN ? IS NULL THEN NULL ELSE DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND) END,
-         0, 'IN_PROGRESS')`,
-      [
-        studentId,
-        lessonId,
-        chapterId,
-        [1, 2].includes(Number(semester)) ? Number(semester) : null,
-        mode,
-        title,
-        JSON.stringify(ids),
-        ids.length,
-        durationSeconds,
-        durationSeconds,
-        durationSeconds
-      ]
-    );
-    return getSessionById(studentId, result.insertId);
+    const sessionId = await db.transaction(async (connection) => {
+      const [activeRows] = await connection.execute(
+        `SELECT id
+         FROM PracticeSessions
+         WHERE active_key = ? AND status = 'IN_PROGRESS'
+         LIMIT 1
+         FOR UPDATE`,
+        [activeKey]
+      );
+      if (activeRows[0] && !replaceActive) return Number(activeRows[0].id);
+      if (activeRows[0]) {
+        await connection.execute(
+          `UPDATE PracticeSessions
+           SET status = 'COMPLETED',
+               completion_reason = 'REPLACED',
+               active_key = NULL,
+               completed_at = CURRENT_TIMESTAMP
+           WHERE id = ?`,
+          [activeRows[0].id]
+        );
+      }
+
+      const [result] = await connection.execute(
+        `INSERT INTO PracticeSessions
+          (student_id, lesson_id, chapter_id, scope_semester, session_mode, title,
+           question_ids, question_count, duration_seconds, expires_at,
+           current_index, status, completion_reason, active_key, ai_hint_count)
+         VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?,
+           CASE WHEN ? IS NULL THEN NULL ELSE DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND) END,
+           0, 'IN_PROGRESS', NULL, ?, 0)`,
+        [
+          studentId,
+          lessonId,
+          chapterId,
+          normalizedSemester,
+          mode,
+          title,
+          JSON.stringify(ids),
+          ids.length,
+          durationSeconds,
+          durationSeconds,
+          durationSeconds,
+          activeKey
+        ]
+      );
+      for (const [position, question] of questionSnapshots.entries()) {
+        await connection.execute(
+          `INSERT INTO PracticeSessionQuestions
+            (practice_session_id, question_id, position, snapshot, ai_hint_count)
+           VALUES (?, ?, ?, CAST(? AS JSON), 0)`,
+          [result.insertId, question.id, position, JSON.stringify(question)]
+        );
+      }
+      return Number(result.insertId);
+    });
+    return getSessionById(studentId, sessionId);
   } catch (error) {
     fallbackOrThrow(error);
     ensureFallbackStore();
@@ -218,10 +245,13 @@ async function createSession({
       session_mode: mode,
       title,
       question_ids: ids,
+      question_snapshots: questionSnapshots,
       question_count: ids.length,
       duration_seconds: durationSeconds,
       current_index: 0,
       status: 'IN_PROGRESS',
+      completion_reason: null,
+      active_key: activeKey,
       started_at: new Date(),
       expires_at: durationSeconds ? new Date(Date.now() + durationSeconds * 1000) : null,
       completed_at: null
@@ -233,6 +263,7 @@ async function createSession({
 
 async function getActiveLessonSession(studentId, lessonId, mode = 'LESSON') {
   await ensureSchema();
+  await completeExpiredSessions(studentId);
   const sessionMode = ['REVIEW', 'LESSON'].includes(mode) ? mode : 'LESSON';
   try {
     const rows = await db.query(
@@ -373,7 +404,10 @@ async function completeExpiredSessions(studentId) {
   try {
     await db.query(
       `UPDATE PracticeSessions
-       SET status = 'COMPLETED', completed_at = CURRENT_TIMESTAMP
+       SET status = 'COMPLETED',
+           completion_reason = COALESCE(completion_reason, 'EXPIRED'),
+           active_key = NULL,
+           completed_at = COALESCE(completed_at, CURRENT_TIMESTAMP)
        WHERE student_id = ?
          AND status = 'IN_PROGRESS'
          AND session_mode IN ('LESSON', 'CHAPTER', 'COMPREHENSIVE')
@@ -408,6 +442,8 @@ async function completeExpiredSessions(studentId) {
       )
       .forEach((session) => {
         session.status = 'COMPLETED';
+        session.completion_reason = session.completion_reason || 'EXPIRED';
+        session.active_key = null;
         session.completed_at = new Date(nowMs);
       });
   }
@@ -417,14 +453,8 @@ async function listAnswers(sessionId) {
   await ensureSchema();
   try {
     return await db.query(
-      `SELECT
-          sl.*,
-          q.correct_answer,
-          q.content,
-          q.choices,
-          q.explanation
+      `SELECT sl.*
        FROM StudentLogs sl
-       JOIN QuestionBank q ON q.id = sl.question_id
        WHERE sl.practice_session_id = ?
        ORDER BY sl.created_at, sl.id`,
       [sessionId]
@@ -511,14 +541,18 @@ async function syncSessionProgress(sessionId) {
   }
 }
 
-async function completeSession(studentId, sessionId) {
+async function completeSession(studentId, sessionId, reason = 'USER_FINISHED') {
   await ensureSchema();
+  const completionReason = normalizeCompletionReason(reason);
   try {
     await db.query(
       `UPDATE PracticeSessions
-       SET status = 'COMPLETED', completed_at = CURRENT_TIMESTAMP
+       SET status = 'COMPLETED',
+           completion_reason = COALESCE(completion_reason, ?),
+           active_key = NULL,
+           completed_at = COALESCE(completed_at, CURRENT_TIMESTAMP)
        WHERE id = ? AND student_id = ?`,
-      [sessionId, studentId]
+      [completionReason, sessionId, studentId]
     );
     return getSessionById(studentId, sessionId);
   } catch (error) {
@@ -529,6 +563,8 @@ async function completeSession(studentId, sessionId) {
     );
     if (session) {
       session.status = 'COMPLETED';
+      session.completion_reason = session.completion_reason || completionReason;
+      session.active_key = null;
       session.completed_at = new Date();
     }
     return session || null;
@@ -548,6 +584,107 @@ function normalizeSession(row) {
     duration_seconds: Number(row.duration_seconds) > 0 ? Number(row.duration_seconds) : null,
     question_count: Math.max(Number(row.question_count || 0), questionIds.length, answeredCount)
   };
+}
+
+async function getSessionQuestions(session) {
+  if (!session) return [];
+  await ensureSchema();
+  try {
+    const rows = await db.query(
+      `SELECT snapshot
+       FROM PracticeSessionQuestions
+       WHERE practice_session_id = ?
+       ORDER BY position`,
+      [session.id]
+    );
+    if (rows.length > 0) {
+      return rows.map((row) => createQuestionSnapshot(parseJsonField(row.snapshot, {})));
+    }
+  } catch (error) {
+    fallbackOrThrow(error);
+    const snapshots = Array.isArray(session.question_snapshots)
+      ? session.question_snapshots.map(createQuestionSnapshot)
+      : [];
+    if (snapshots.length > 0) return snapshots;
+  }
+  return Question.getQuestionsByIds(session.question_ids);
+}
+
+async function getSessionQuestion(studentId, sessionId, questionId) {
+  const session = await getSessionById(studentId, sessionId);
+  if (!session || !session.question_ids.map(Number).includes(Number(questionId))) {
+    return { session, question: null };
+  }
+  try {
+    const rows = await db.query(
+      `SELECT snapshot
+       FROM PracticeSessionQuestions
+       WHERE practice_session_id = ? AND question_id = ?
+       LIMIT 1`,
+      [sessionId, questionId]
+    );
+    if (rows[0]) {
+      return {
+        session,
+        question: createQuestionSnapshot(parseJsonField(rows[0].snapshot, {}))
+      };
+    }
+  } catch (error) {
+    fallbackOrThrow(error);
+  }
+  const questions = await getSessionQuestions(session);
+  return {
+    session,
+    question: questions.find((item) => Number(item.id) === Number(questionId)) || null
+  };
+}
+
+function createQuestionSnapshot(question) {
+  return {
+    snapshot_version: 1,
+    id: Number(question?.id),
+    lesson_id: Number(question?.lesson_id) || null,
+    lesson_name: question?.lesson_name || null,
+    grade: Number(question?.grade) || null,
+    question_type: question?.question_type || 'MULTIPLE_CHOICE',
+    difficulty: question?.difficulty || 'EASY',
+    layout_template: question?.layout_template || 'STACK_VERTICAL',
+    content: parseJsonField(question?.content, {}),
+    choices: parseJsonField(question?.choices, []),
+    correct_answer: String(question?.correct_answer || ''),
+    explanation: parseJsonField(question?.explanation, { text: '', images: [] }),
+    misconceptions: parseJsonField(question?.misconceptions, [])
+      .filter((item) => item && String(item.distractor_key || '').trim())
+      .map((item) => ({
+        id: Number(item.id) || null,
+        distractor_key: String(item.distractor_key || '').trim(),
+        misconception_type: String(item.misconception_type || 'OTHER').trim(),
+        explanation: String(item.explanation || '').trim(),
+        corrective_instruction: String(item.corrective_instruction || '').trim()
+      }))
+  };
+}
+
+function buildActiveSessionKey({ studentId, lessonId, chapterId, semester, mode }) {
+  return [
+    Number(studentId),
+    String(mode || '').trim().toUpperCase(),
+    Number(lessonId || 0),
+    Number(chapterId || 0),
+    [1, 2].includes(Number(semester)) ? Number(semester) : 0
+  ].join(':');
+}
+
+function normalizeCompletionReason(value) {
+  const reason = String(value || '').trim().toUpperCase();
+  return [
+    'USER_FINISHED',
+    'EXPIRED',
+    'REPLACED',
+    'CONTENT_CHANGED',
+    'CONTENT_UNAVAILABLE',
+    'ACCOUNT_GRADE_CHANGED'
+  ].includes(reason) ? reason : 'USER_FINISHED';
 }
 
 async function hydrateSessionFromLogs(session) {
@@ -585,6 +722,8 @@ async function hydrateSessionFromLogs(session) {
 
 module.exports = {
   DURATION_SECONDS_BY_QUESTION_COUNT,
+  buildActiveSessionKey,
+  createQuestionSnapshot,
   ensureSchema,
   createSession,
   getActiveLessonSession,
@@ -592,6 +731,8 @@ module.exports = {
   listSessions,
   listAnswers,
   listChats,
+  getSessionQuestion,
+  getSessionQuestions,
   saveChat,
   syncSessionProgress,
   completeSession,

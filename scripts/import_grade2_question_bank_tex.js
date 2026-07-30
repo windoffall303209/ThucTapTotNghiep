@@ -157,7 +157,9 @@ async function main() {
 
   console.log(`Đã kiểm tra ${payloads.length} câu và map đủ ${mapping.size}/51 bài lớp 2.`);
   if (!args.commit) {
-    console.log('Dry run hoàn tất. Dùng --commit để thêm hoặc --replace để thay câu hỏi lớp 2.');
+    console.log(
+      'Dry run hoàn tất. Dùng --commit để thêm hoặc --replace để lưu trữ câu hỏi lớp 2 cũ rồi nạp bản mới.'
+    );
     return;
   }
 
@@ -169,18 +171,19 @@ async function main() {
   await db.transaction(async (connection) => {
     if (args.replace) {
       await connection.execute(
-        `DELETE q FROM QuestionBank q
+        `UPDATE QuestionBank q
           JOIN Lessons l ON l.id = q.lesson_id
           JOIN Chapters c ON c.id = l.chapter_id
-         WHERE c.grade = 2`
+         SET q.is_active = 0, q.archived_at = CURRENT_TIMESTAMP
+         WHERE c.grade = 2 AND q.is_active = 1`
       );
     }
     for (const payload of prepared) {
       const lesson = mapping.get(payload.lesson_number);
       await connection.execute(
         `INSERT INTO QuestionBank
-          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation)
-         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON))`,
+          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
+         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
         [
           lesson.id,
           payload.question_type,
@@ -194,7 +197,9 @@ async function main() {
       );
     }
   });
-  console.log(`Đã import ${prepared.length} câu hỏi Toán 2${args.replace ? ' (thay thế)' : ''}.`);
+  console.log(
+    `Đã import ${prepared.length} câu hỏi Toán 2${args.replace ? ' (đã lưu trữ bản cũ)' : ''}.`
+  );
 }
 
 main()

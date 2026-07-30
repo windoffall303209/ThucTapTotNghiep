@@ -30,6 +30,10 @@ function normalizeQuestion(row) {
   };
 }
 
+function isActiveQuestion(question) {
+  return Number(question?.is_active ?? 1) === 1;
+}
+
 function normalizeLayoutTemplate(value) {
   const layout = String(value || '').trim().toUpperCase();
   return LAYOUT_TEMPLATES.has(layout) ? layout : 'STACK_VERTICAL';
@@ -147,7 +151,7 @@ function normalizeImage(image, index, idPrefix, defaultAlt) {
  * Không lọc ở đây mà lọc sau khi truy vấn thì phân trang sẽ đếm sai tổng số.
  */
 function buildLessonQuestionFilter(options = {}) {
-  const where = ['lesson_id = ?'];
+  const where = ['lesson_id = ?', 'is_active = 1'];
   const params = [];
   const difficulty = String(options.difficulty || '').trim().toUpperCase();
   const keyword = String(options.keyword || '').trim();
@@ -182,7 +186,10 @@ async function getQuestionsByLesson(lessonId, options = {}) {
   } catch (error) {
     fallbackOrThrow(error);
     return sampleData.questions
-      .filter((question) => Number(question.lesson_id) === Number(lessonId))
+      .filter(
+        (question) =>
+          isActiveQuestion(question) && Number(question.lesson_id) === Number(lessonId)
+      )
       .slice(offset, limit > 0 ? offset + limit : undefined)
       .map(normalizeQuestion);
   }
@@ -204,7 +211,7 @@ async function getQuestionCandidates(options = {}) {
   const semester = [1, 2].includes(Number(options.semester))
     ? Number(options.semester)
     : null;
-  const conditions = ['c.grade = ?'];
+  const conditions = ['c.grade = ?', 'q.is_active = 1'];
   const params = [grade];
 
   if (chapterId > 0) {
@@ -250,7 +257,11 @@ async function getQuestionCandidates(options = {}) {
           .filter((lesson) => !lessonId || Number(lesson.id) === lessonId)
           .flatMap((lesson) =>
             sampleData.questions
-              .filter((question) => Number(question.lesson_id) === Number(lesson.id))
+              .filter(
+                (question) =>
+                  isActiveQuestion(question)
+                  && Number(question.lesson_id) === Number(lesson.id)
+              )
               .map((question) => ({
                 id: Number(question.id),
                 lesson_id: Number(lesson.id),
@@ -277,7 +288,10 @@ async function countQuestionsByLesson(lessonId, options = {}) {
     return Number(rows[0]?.total || 0);
   } catch (error) {
     fallbackOrThrow(error);
-    return sampleData.questions.filter((question) => Number(question.lesson_id) === Number(lessonId)).length;
+    return sampleData.questions.filter(
+      (question) =>
+        isActiveQuestion(question) && Number(question.lesson_id) === Number(lessonId)
+    ).length;
   }
 }
 
@@ -313,7 +327,8 @@ async function getDifficultyStats() {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       WHERE q.is_active = 1
+         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        GROUP BY q.difficulty`
     );
     rows.forEach((row) => {
@@ -336,7 +351,7 @@ async function getDifficultyStats() {
  * phải rà bằng script trong đợt rà soát chất lượng ngân hàng.
  */
 async function searchQuestions(filters = {}) {
-  const where = [];
+  const where = ['q.is_active = 1'];
   const params = [];
 
   const grade = Number(filters.grade || 0);
@@ -390,11 +405,18 @@ async function searchQuestions(filters = {}) {
 
 async function getQuestionById(id) {
   try {
-    const rows = await db.query('SELECT * FROM QuestionBank WHERE id = ? LIMIT 1', [id]);
+    const rows = await db.query(
+      'SELECT * FROM QuestionBank WHERE id = ? AND is_active = 1 LIMIT 1',
+      [id]
+    );
     return normalizeQuestion(rows[0]);
   } catch (error) {
     fallbackOrThrow(error);
-    return normalizeQuestion(sampleData.questions.find((question) => Number(question.id) === Number(id)));
+    return normalizeQuestion(
+      sampleData.questions.find(
+        (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
+      )
+    );
   }
 }
 
@@ -471,6 +493,38 @@ async function getMisconceptionsByQuestion(questionId) {
   }
 }
 
+async function getMisconceptionsByQuestionIds(questionIds) {
+  const ids = [...new Set((questionIds || []).map(Number).filter(Boolean))];
+  if (ids.length === 0) return new Map();
+  try {
+    const placeholders = ids.map(() => '?').join(',');
+    const rows = await db.query(
+      `SELECT *
+       FROM CommonMisconceptions
+       WHERE question_id IN (${placeholders})
+       ORDER BY question_id, distractor_key, id`,
+      ids
+    );
+    return rows.reduce((result, row) => {
+      const key = Number(row.question_id);
+      if (!result.has(key)) result.set(key, []);
+      if (!isPlaceholderMisconception(row)) result.get(key).push(row);
+      return result;
+    }, new Map());
+  } catch (error) {
+    fallbackOrThrow(error);
+    return ids.reduce((result, id) => {
+      result.set(
+        id,
+        sampleData.misconceptions.filter(
+          (item) => Number(item.question_id) === id && !isPlaceholderMisconception(item)
+        )
+      );
+      return result;
+    }, new Map());
+  }
+}
+
 async function listQuestions() {
   try {
     const rows = await db.query(
@@ -478,13 +532,14 @@ async function listQuestions() {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       WHERE q.is_active = 1
+         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        ORDER BY q.created_at DESC, q.id DESC`
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
     fallbackOrThrow(error);
-    return sampleData.questions.map((question) => {
+    return sampleData.questions.filter(isActiveQuestion).map((question) => {
       const chapter = sampleData.chapters.find((item) =>
         item.lessons.some((lesson) => Number(lesson.id) === Number(question.lesson_id))
       );
@@ -509,7 +564,8 @@ async function getAdminStats() {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}`
+       WHERE q.is_active = 1
+         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}`
     );
     const stats = rows[0] || {};
     return {
@@ -524,7 +580,10 @@ async function getAdminStats() {
         .filter((chapter) => isSupportedGrade(chapter.grade))
         .flatMap((chapter) => chapter.lessons.map((lesson) => Number(lesson.id)))
     );
-    const supportedQuestions = sampleData.questions.filter((question) => supportedLessonIds.has(Number(question.lesson_id)));
+    const supportedQuestions = sampleData.questions.filter(
+      (question) =>
+        isActiveQuestion(question) && supportedLessonIds.has(Number(question.lesson_id))
+    );
     const lessonIds = new Set(supportedQuestions.map((question) => Number(question.lesson_id)));
     return {
       questionCount: supportedQuestions.length,
@@ -542,7 +601,8 @@ async function getRecentQuestions(limit = 6) {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       WHERE q.is_active = 1
+         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        ORDER BY q.created_at DESC, q.id DESC
        LIMIT ${safeLimit}`
     );
@@ -560,7 +620,8 @@ async function getQuestionCountsByLesson() {
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       WHERE q.is_active = 1
+         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
        GROUP BY q.lesson_id`
     );
   } catch (error) {
@@ -573,7 +634,7 @@ async function getQuestionCountsByLesson() {
     const counts = new Map();
     for (const question of sampleData.questions) {
       const lessonId = Number(question.lesson_id);
-      if (!supportedLessonIds.has(lessonId)) continue;
+      if (!isActiveQuestion(question) || !supportedLessonIds.has(lessonId)) continue;
       counts.set(lessonId, (counts.get(lessonId) || 0) + 1);
     }
     return Array.from(counts.entries()).map(([lesson_id, question_count]) => ({
@@ -586,7 +647,7 @@ async function getQuestionCountsByLesson() {
 async function updateQuestion(id, payload) {
   try {
     return await db.transaction(async (connection) => {
-      await connection.execute(
+      const [result] = await connection.execute(
         `UPDATE QuestionBank
          SET lesson_id = ?,
              question_type = ?,
@@ -596,7 +657,7 @@ async function updateQuestion(id, payload) {
              choices = CAST(? AS JSON),
              correct_answer = ?,
              explanation = CAST(? AS JSON)
-         WHERE id = ?`,
+         WHERE id = ? AND is_active = 1`,
         [
           payload.lesson_id,
           payload.question_type,
@@ -609,6 +670,7 @@ async function updateQuestion(id, payload) {
           id
         ]
       );
+      if (!result.affectedRows) return null;
 
       await connection.execute('DELETE FROM CommonMisconceptions WHERE question_id = ?', [id]);
       for (const misconception of payload.misconceptions || []) {
@@ -629,7 +691,9 @@ async function updateQuestion(id, payload) {
     });
   } catch (error) {
     fallbackOrThrow(error);
-    const index = sampleData.questions.findIndex((question) => Number(question.id) === Number(id));
+    const index = sampleData.questions.findIndex(
+      (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
+    );
     if (index === -1) return null;
 
     sampleData.questions[index] = {
@@ -653,20 +717,25 @@ async function updateQuestion(id, payload) {
 
 async function deleteQuestion(id) {
   try {
-    await db.query('DELETE FROM QuestionBank WHERE id = ?', [id]);
-    return true;
+    const result = await db.query(
+      `UPDATE QuestionBank
+       SET is_active = 0, archived_at = CURRENT_TIMESTAMP
+       WHERE id = ? AND is_active = 1`,
+      [id]
+    );
+    return Number(result.affectedRows || 0) > 0;
   } catch (error) {
     fallbackOrThrow(error);
-    const index = sampleData.questions.findIndex((question) => Number(question.id) === Number(id));
+    const index = sampleData.questions.findIndex(
+      (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
+    );
     if (index === -1) return false;
 
-    sampleData.questions.splice(index, 1);
-    sampleData.misconceptions = sampleData.misconceptions.filter(
-      (item) => Number(item.question_id) !== Number(id)
-    );
-    sampleData.studentLogs = sampleData.studentLogs.filter(
-      (item) => Number(item.question_id) !== Number(id)
-    );
+    sampleData.questions[index] = {
+      ...sampleData.questions[index],
+      is_active: 0,
+      archived_at: new Date().toISOString()
+    };
     return true;
   }
 }
@@ -676,8 +745,8 @@ async function createQuestion(payload) {
     return await db.transaction(async (connection) => {
       const [result] = await connection.execute(
         `INSERT INTO QuestionBank
-          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation)
-         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON))`,
+          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
+         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
         [
           payload.lesson_id,
           payload.question_type,
@@ -705,13 +774,14 @@ async function createQuestion(payload) {
         );
       }
 
-      return { ...payload, id: questionId };
+      return { ...payload, id: questionId, is_active: 1 };
     });
   } catch (error) {
     fallbackOrThrow(error);
     const question = {
       ...payload,
-      id: Math.max(...sampleData.questions.map((item) => item.id), 1000) + 1
+      id: Math.max(...sampleData.questions.map((item) => item.id), 1000) + 1,
+      is_active: 1
     };
     sampleData.questions.push(question);
     for (const misconception of payload.misconceptions || []) {
@@ -767,6 +837,7 @@ module.exports = {
   getQuestionsByIds,
   getMisconception,
   getMisconceptionsByQuestion,
+  getMisconceptionsByQuestionIds,
   listQuestions,
   getAdminStats,
   getRecentQuestions,

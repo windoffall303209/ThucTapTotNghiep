@@ -180,9 +180,12 @@
     <div class="two-fields">
       <label>
         Số gợi ý tối đa / phiên
-        <input name="ai_max_hints_per_session" value="<%= settings.ai_max_hints_per_session || '8' %>" placeholder="8">
+        <input name="ai_max_hints_per_session" type="number" min="1" max="100" value="<%= settings.ai_max_hints_per_session || '8' %>" required>
       </label>
-      <span aria-hidden="true"></span>
+      <label>
+        Số lượt AI / học sinh / ngày
+        <input name="ai_max_requests_per_student_per_day" type="number" min="1" max="500" value="<%= settings.ai_max_requests_per_student_per_day || '30' %>" required>
+      </label>
     </div>
     <p class="form-note">Các cấu hình này ảnh hưởng tới gợi ý thêm trong lý thuyết, luyện tập và kiểm tra provider.</p>
     <div class="settings-actions">
