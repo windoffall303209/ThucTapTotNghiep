@@ -2,51 +2,47 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
-async function ensureSchema() {
-  try {
-    await db.query(
-      `CREATE TABLE IF NOT EXISTS AIConversationLogs (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        student_id INT NOT NULL,
-        session_type VARCHAR(20),
-        reference_id INT NOT NULL DEFAULT 0,
-        practice_session_id BIGINT NULL,
-        question_id INT NULL,
-        lesson_id INT NULL,
-        provider VARCHAR(50) NULL,
-        model VARCHAR(120) NULL,
-        is_fallback TINYINT(1) DEFAULT 0,
-        blocked_reason VARCHAR(120) NULL,
-        chat_history JSON NOT NULL,
-        total_tokens_used INT DEFAULT 0,
-        estimated_cost_usd DECIMAL(10, 6) DEFAULT 0.000000,
-        is_flagged_inaccurate TINYINT(1) DEFAULT 0,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
-    );
+let schemaCheckPromise = null;
 
-    await addColumnIfMissing('practice_session_id', 'ALTER TABLE AIConversationLogs ADD COLUMN practice_session_id BIGINT NULL AFTER reference_id');
-    await addColumnIfMissing('question_id', 'ALTER TABLE AIConversationLogs ADD COLUMN question_id INT NULL AFTER practice_session_id');
-    await addColumnIfMissing('lesson_id', 'ALTER TABLE AIConversationLogs ADD COLUMN lesson_id INT NULL AFTER question_id');
-    await addColumnIfMissing('provider', 'ALTER TABLE AIConversationLogs ADD COLUMN provider VARCHAR(50) NULL AFTER lesson_id');
-    await addColumnIfMissing('model', 'ALTER TABLE AIConversationLogs ADD COLUMN model VARCHAR(120) NULL AFTER provider');
-    await addColumnIfMissing('is_fallback', 'ALTER TABLE AIConversationLogs ADD COLUMN is_fallback TINYINT(1) DEFAULT 0 AFTER model');
-    await addColumnIfMissing('blocked_reason', 'ALTER TABLE AIConversationLogs ADD COLUMN blocked_reason VARCHAR(120) NULL AFTER is_fallback');
+async function ensureSchema() {
+  if (!schemaCheckPromise) {
+    schemaCheckPromise = verifySchemaReady();
+  }
+  try {
+    await schemaCheckPromise;
   } catch (error) {
+    schemaCheckPromise = null;
     fallbackOrThrow(error);
     sampleData.aiLogs = sampleData.aiLogs || [];
   }
 }
 
-async function addColumnIfMissing(columnName, alterSql) {
+async function verifySchemaReady() {
+  const requiredColumns = [
+    'practice_session_id',
+    'question_id',
+    'lesson_id',
+    'provider',
+    'model',
+    'is_fallback',
+    'blocked_reason'
+  ];
   const rows = await db.query(
-    `SELECT COUNT(*) AS count
+    `SELECT COLUMN_NAME
      FROM INFORMATION_SCHEMA.COLUMNS
-     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'AIConversationLogs' AND COLUMN_NAME = ?`,
-    [columnName]
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = 'AIConversationLogs'`
   );
-  if (Number(rows[0]?.count || 0) === 0) {
-    await db.query(alterSql);
+  const columns = new Set(rows.map((row) => String(row.COLUMN_NAME).toLowerCase()));
+  const missing = requiredColumns.filter((column) => !columns.has(column));
+  if (missing.length > 0) {
+    const error = new Error(
+      `Database thiếu schema AIConversationLogs (${missing.join(', ')}). `
+      + 'Hãy chạy migration database trước khi khởi động ứng dụng.'
+    );
+    error.code = 'SCHEMA_MIGRATION_REQUIRED';
+    error.status = 503;
+    throw error;
   }
 }
 
@@ -259,6 +255,7 @@ async function setFlagged(logId, flagged) {
 }
 
 module.exports = {
+  ensureSchema,
   logAIInteraction,
   listLogs,
   getLogStats,

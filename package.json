@@ -31,6 +31,8 @@
     "db:session-report": "node scripts/report_practice_session.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
+    "db:session-integrity": "node scripts/apply_session_integrity.js",
+    "db:runtime-storage": "node scripts/apply_runtime_storage.js",
     "security:rotate-credentials": "node scripts/rotate_security_credentials.js",
     "db:seed-demo": "mysql -u %DB_USER% -p%DB_PASSWORD% %DB_NAME% < database/seed.sql"
   },

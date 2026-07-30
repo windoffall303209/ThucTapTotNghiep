@@ -124,6 +124,10 @@ function isDatabaseConnected() {
   return connected;
 }
 
+function isDatabaseConfigured() {
+  return hasDatabaseConfig;
+}
+
 async function close() {
   if (pool) {
     await pool.end();
@@ -136,6 +140,7 @@ module.exports = {
   query,
   transaction,
   testConnection,
+  isDatabaseConfigured,
   isDatabaseConnected,
   close
 };

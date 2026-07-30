@@ -8,6 +8,9 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
 const compression = require('compression');
+const db = require('./config/db');
+const { MySQLSessionStore } = require('./stores/MySQLSessionStore');
+const { MySQLRateLimitStore } = require('./stores/MySQLRateLimitStore');
 const { attachAuthUser } = require('./utils/authToken');
 const { csrfProtection } = require('./middleware/csrf');
 const { safeJsonForHtml } = require('./utils/safeJson');
@@ -22,6 +25,19 @@ const apiRoutes = require('./routes/apiRoutes');
 
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
+const sessionMaxAgeMs = 1000 * 60 * 60 * 8;
+const sessionStore = db.isDatabaseConfigured()
+  ? new MySQLSessionStore({ ttlMs: sessionMaxAgeMs })
+  : undefined;
+const rateLimitStores = db.isDatabaseConfigured()
+  ? {
+    auth: new MySQLRateLimitStore('auth'),
+    registration: new MySQLRateLimitStore('registration'),
+    ai: new MySQLRateLimitStore('ai')
+  }
+  : {};
+app.locals.sessionStore = sessionStore || null;
+app.locals.rateLimitStores = Object.values(rateLimitStores);
 if (isProduction) {
   const trustProxyHops = Number(process.env.TRUST_PROXY);
   if (Number.isInteger(trustProxyHops) && trustProxyHops > 0) {
@@ -82,6 +98,7 @@ const authLimiter = rateLimit({
   limit: Number(process.env.AUTH_RATE_LIMIT || 30),
   standardHeaders: true,
   legacyHeaders: false,
+  store: rateLimitStores.auth,
   skip: (req) => req.method !== 'POST',
   message: 'Quá nhiều lần thử đăng nhập. Vui lòng thử lại sau.'
 });
@@ -90,6 +107,7 @@ const registrationLimiter = rateLimit({
   limit: Number(process.env.REGISTRATION_RATE_LIMIT || 10),
   standardHeaders: true,
   legacyHeaders: false,
+  store: rateLimitStores.registration,
   skip: (req) => req.method !== 'POST',
   message: 'Quá nhiều tài khoản được tạo từ kết nối này. Vui lòng thử lại sau.'
 });
@@ -98,6 +116,7 @@ const aiLimiter = rateLimit({
   limit: Number(process.env.AI_RATE_LIMIT || 30),
   standardHeaders: true,
   legacyHeaders: false,
+  store: rateLimitStores.ai,
   keyGenerator: (req) => (
     req.auth?.role === 'student'
       ? `student:${req.auth.id}`
@@ -119,13 +138,14 @@ app.use(
   session({
     name: 'math_revision_session',
     secret: process.env.SESSION_SECRET || 'dev-session-secret',
+    store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
       sameSite: 'lax',
       secure: isProduction,
-      maxAge: 1000 * 60 * 60 * 8
+      maxAge: sessionMaxAgeMs
     }
   })
 );

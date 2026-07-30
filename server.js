@@ -4,6 +4,8 @@ const app = require('./app');
 const { testConnection } = require('./config/db');
 const { validateProductionConfig } = require('./config/runtimeSecurity');
 const { assertNoDemoCredentials } = require('./services/SecurityStartupService');
+const PracticeSession = require('./models/PracticeSession');
+const AIConversationLog = require('./models/AIConversationLog');
 
 const port = Number(process.env.PORT || 3000);
 const host = process.env.HOST
@@ -14,6 +16,14 @@ async function start() {
   const dbState = await testConnection();
   if (process.env.NODE_ENV === 'production' && !dbState.connected) {
     throw new Error(`Không thể khởi động production khi MySQL không sẵn sàng: ${dbState.reason || 'unknown'}`);
+  }
+  if (dbState.connected) {
+    await Promise.all([
+      PracticeSession.ensureSchema(),
+      AIConversationLog.ensureSchema(),
+      app.locals.sessionStore?.ensureReady(),
+      ...(app.locals.rateLimitStores || []).map((store) => store.ensureReady())
+    ]);
   }
   await assertNoDemoCredentials();
 
