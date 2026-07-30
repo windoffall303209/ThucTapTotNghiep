@@ -34,6 +34,8 @@ test('production session dùng MySQL store và schema có index dọn phiên h�
 
   assert.match(appSource, /new MySQLSessionStore/);
   assert.match(appSource, /store: sessionStore/);
+  assert.match(appSource, /global: new MySQLRateLimitStore\('global'\)/);
+  assert.match(appSource, /store: rateLimitStores\.global/);
   assert.match(appSource, /new MySQLRateLimitStore\('auth'\)/);
   assert.match(appSource, /new MySQLRateLimitStore\('registration'\)/);
   assert.match(appSource, /new MySQLRateLimitStore\('ai'\)/);

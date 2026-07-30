@@ -31,6 +31,7 @@ const sessionStore = db.isDatabaseConfigured()
   : undefined;
 const rateLimitStores = db.isDatabaseConfigured()
   ? {
+    global: new MySQLRateLimitStore('global'),
     auth: new MySQLRateLimitStore('auth'),
     registration: new MySQLRateLimitStore('registration'),
     ai: new MySQLRateLimitStore('ai')
@@ -106,6 +107,7 @@ app.use(
     limit: Number(process.env.GLOBAL_RATE_LIMIT || 5000),
     standardHeaders: true,
     legacyHeaders: false,
+    store: rateLimitStores.global,
     message: 'Quá nhiều request trong thời gian ngắn. Vui lòng thử lại sau.',
     skip: (req) => !isProduction && isLocalRequest(req)
   })
