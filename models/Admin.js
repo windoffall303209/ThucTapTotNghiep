@@ -1,21 +1,27 @@
 const db = require('../config/db');
-const sampleData = require('../sample-data/sampleData');
-
 async function findByUsername(username) {
-  try {
-    const rows = await db.query(
-      `SELECT id, username, password_hash, fullname, role, is_active
-       FROM Admins
-       WHERE username = ?
-       LIMIT 1`,
-      [username]
-    );
-    return rows[0] || null;
-  } catch (error) {
-    return sampleData.admins.find((admin) => admin.username === username) || null;
-  }
+  const rows = await db.query(
+    `SELECT id, username, password_hash, fullname, role, is_active
+     FROM Admins
+     WHERE username = ?
+     LIMIT 1`,
+    [username]
+  );
+  return rows[0] || null;
+}
+
+async function findById(id) {
+  const rows = await db.query(
+    `SELECT id, username, password_hash, fullname, role, is_active
+     FROM Admins
+     WHERE id = ?
+     LIMIT 1`,
+    [id]
+  );
+  return rows[0] || null;
 }
 
 module.exports = {
-  findByUsername
+  findByUsername,
+  findById
 };

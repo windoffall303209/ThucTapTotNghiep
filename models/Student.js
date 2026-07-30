@@ -1,64 +1,36 @@
 const bcrypt = require('bcryptjs');
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 async function findByUsername(username) {
-  try {
-    const rows = await db.query('SELECT * FROM Students WHERE username = ? LIMIT 1', [username]);
-    return rows[0] || null;
-  } catch (error) {
-    return sampleData.students.find((student) => student.username === username) || null;
-  }
+  const rows = await db.query('SELECT * FROM Students WHERE username = ? LIMIT 1', [username]);
+  return rows[0] || null;
 }
 
 async function findById(id) {
-  try {
-    const rows = await db.query('SELECT * FROM Students WHERE id = ? LIMIT 1', [id]);
-    return rows[0] || null;
-  } catch (error) {
-    return sampleData.students.find((student) => Number(student.id) === Number(id)) || null;
-  }
+  const rows = await db.query('SELECT * FROM Students WHERE id = ? LIMIT 1', [id]);
+  return rows[0] || null;
 }
 
 async function createStudent({ username, password, fullname, grade }) {
   const passwordHash = await bcrypt.hash(password, 10);
 
-  try {
-    const result = await db.query(
-      `INSERT INTO Students (username, password_hash, fullname, registered_grade, current_grade)
-       VALUES (?, ?, ?, ?, ?)`,
-      [username, passwordHash, fullname, grade, grade]
-    );
+  const result = await db.query(
+    `INSERT INTO Students (username, password_hash, fullname, registered_grade, current_grade)
+     VALUES (?, ?, ?, ?, ?)`,
+    [username, passwordHash, fullname, grade, grade]
+  );
 
-    return {
-      id: result.insertId,
-      username,
-      password_hash: passwordHash,
-      fullname,
-      registered_grade: grade,
-      current_grade: grade,
-      is_active: 1
-    };
-  } catch (error) {
-    const duplicate = sampleData.students.some((student) => student.username === username);
-    if (duplicate) {
-      const duplicateError = new Error('DUPLICATE_USERNAME');
-      duplicateError.code = 'DUPLICATE_USERNAME';
-      throw duplicateError;
-    }
-
-    const student = {
-      id: sampleData.students.length + 1,
-      username,
-      password_hash: passwordHash,
-      fullname,
-      registered_grade: grade,
-      current_grade: grade,
-      is_active: 1
-    };
-    sampleData.students.push(student);
-    return student;
-  }
+  return {
+    id: result.insertId,
+    username,
+    password_hash: passwordHash,
+    fullname,
+    registered_grade: grade,
+    current_grade: grade,
+    is_active: 1
+  };
 }
 
 // Đếm tổng số học sinh cho khối thống kê. Dashboard chỉ cần con số, không
@@ -68,6 +40,7 @@ async function countStudents() {
     const rows = await db.query('SELECT COUNT(*) AS total FROM Students');
     return Number(rows[0]?.total || 0);
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.students.length;
   }
 }
@@ -84,6 +57,7 @@ async function listStudents(search = '') {
       [keyword, keyword]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.students.filter((student) => {
       const text = `${student.username} ${student.fullname}`.toLowerCase();
       return text.includes(search.toLowerCase());
@@ -137,6 +111,7 @@ async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 
       }
     };
   } catch (error) {
+    fallbackOrThrow(error);
     const filtered = sampleData.students.filter((student) => {
       const text = `${student.username} ${student.fullname}`.toLowerCase();
       const matchText = text.includes(String(search).toLowerCase());
@@ -158,15 +133,10 @@ async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 
 async function updatePassword(studentId, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
-  try {
-    await db.query(
-      'UPDATE Students SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-      [passwordHash, studentId]
-    );
-  } catch (error) {
-    const student = sampleData.students.find((item) => Number(item.id) === Number(studentId));
-    if (student) student.password_hash = passwordHash;
-  }
+  await db.query(
+    'UPDATE Students SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [passwordHash, studentId]
+  );
 
   return passwordHash;
 }
@@ -174,16 +144,10 @@ async function updatePassword(studentId, password) {
 async function updateActiveStatus(studentId, isActive) {
   const normalizedStatus = isActive ? 1 : 0;
 
-  try {
-    await db.query(
-      'UPDATE Students SET is_active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-      [normalizedStatus, studentId]
-    );
-  } catch (error) {
-    const student = sampleData.students.find((item) => Number(item.id) === Number(studentId));
-    if (!student) throw error;
-    student.is_active = normalizedStatus;
-  }
+  await db.query(
+    'UPDATE Students SET is_active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [normalizedStatus, studentId]
+  );
 
   return normalizedStatus;
 }

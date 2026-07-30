@@ -9,6 +9,8 @@ const AIConversationLog = require('../models/AIConversationLog');
 const { setFlash } = require('../utils/flash');
 const { isSupportedGrade } = require('../config/grades');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
+const { validatePassword } = require('../utils/accountValidation');
+const { clearAuthCookie } = require('../utils/authToken');
 const {
   selectRandomQuestions,
   selectBalancedQuestions
@@ -269,8 +271,9 @@ async function updatePassword(req, res, next) {
       return res.redirect('/student/account');
     }
 
-    if (newPassword.length < 8) {
-      setFlash(req, 'danger', 'Mật khẩu mới cần có ít nhất 8 ký tự.');
+    const passwordError = validatePassword(newPassword);
+    if (passwordError) {
+      setFlash(req, 'danger', passwordError);
       return res.redirect('/student/account');
     }
 
@@ -280,8 +283,9 @@ async function updatePassword(req, res, next) {
     }
 
     await Student.updatePassword(req.auth.id, newPassword);
-    setFlash(req, 'success', 'Đã đổi mật khẩu tài khoản.');
-    return res.redirect('/student/account');
+    clearAuthCookie(res);
+    setFlash(req, 'success', 'Đã đổi mật khẩu. Em đăng nhập lại bằng mật khẩu mới nhé.');
+    return res.redirect('/auth/login');
   } catch (error) {
     next(error);
   }

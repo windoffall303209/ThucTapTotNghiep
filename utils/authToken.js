@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const AUTH_COOKIE_NAME = 'auth_token';
 const DEFAULT_JWT_EXPIRES_IN = '8h';
@@ -13,13 +14,20 @@ function getAuthCookieMaxAge() {
 }
 
 function getJwtSecret() {
-  return process.env.JWT_SECRET || process.env.SESSION_SECRET || 'dev-jwt-secret-change-me';
+  const secret = process.env.JWT_SECRET || process.env.SESSION_SECRET;
+  if (secret) return secret;
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('JWT_SECRET is required in production');
+  }
+  return 'dev-jwt-secret-change-me';
 }
 
 function signAuthToken(payload) {
   return jwt.sign(payload, getJwtSecret(), {
+    algorithm: 'HS256',
     expiresIn: getJwtExpiresIn(),
-    issuer: 'math-revision-ai-tutor'
+    issuer: 'math-revision-ai-tutor',
+    audience: 'math-revision-web'
   });
 }
 
@@ -29,6 +37,7 @@ function setAuthCookie(res, payload) {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
+    path: '/',
     maxAge: getAuthCookieMaxAge()
   });
 }
@@ -37,7 +46,8 @@ function clearAuthCookie(res) {
   res.clearCookie(AUTH_COOKIE_NAME, {
     httpOnly: true,
     sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production'
+    secure: process.env.NODE_ENV === 'production',
+    path: '/'
   });
 }
 
@@ -49,7 +59,9 @@ function attachAuthUser(req, res, next) {
 
   try {
     const payload = jwt.verify(token, getJwtSecret(), {
-      issuer: 'math-revision-ai-tutor'
+      algorithms: ['HS256'],
+      issuer: 'math-revision-ai-tutor',
+      audience: 'math-revision-web'
     });
     req.auth = payload;
   } catch (error) {
@@ -57,6 +69,15 @@ function attachAuthUser(req, res, next) {
   }
 
   return next();
+}
+
+function getCredentialVersion(passwordHash) {
+  if (!passwordHash) return '';
+  return crypto
+    .createHmac('sha256', getJwtSecret())
+    .update(String(passwordHash))
+    .digest('base64url')
+    .slice(0, 24);
 }
 
 function parseDurationToMs(value) {
@@ -87,5 +108,6 @@ module.exports = {
   AUTH_COOKIE_NAME,
   attachAuthUser,
   clearAuthCookie,
+  getCredentialVersion,
   setAuthCookie
 };

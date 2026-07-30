@@ -4,6 +4,7 @@ const { parseJsonField } = require('../utils/json');
 const { normalizeExplanationText, normalizeQuestionText } = require('../utils/textCleanup');
 const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 const { normalizeGridLayout } = require('../utils/gridLayout');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 const LAYOUT_TEMPLATES = new Set([
   'STACK_VERTICAL',
@@ -179,6 +180,7 @@ async function getQuestionsByLesson(lessonId, options = {}) {
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.questions
       .filter((question) => Number(question.lesson_id) === Number(lessonId))
       .slice(offset, limit > 0 ? offset + limit : undefined)
@@ -236,6 +238,7 @@ async function getQuestionCandidates(options = {}) {
       params
     );
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.chapters
       .filter((chapter) =>
         Number(chapter.grade) === grade
@@ -273,6 +276,7 @@ async function countQuestionsByLesson(lessonId, options = {}) {
     );
     return Number(rows[0]?.total || 0);
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.questions.filter((question) => Number(question.lesson_id) === Number(lessonId)).length;
   }
 }
@@ -318,6 +322,7 @@ async function getDifficultyStats() {
     });
     return base;
   } catch (error) {
+    fallbackOrThrow(error);
     return base;
   }
 }
@@ -378,6 +383,7 @@ async function searchQuestions(filters = {}) {
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
+    fallbackOrThrow(error);
     return [];
   }
 }
@@ -387,6 +393,7 @@ async function getQuestionById(id) {
     const rows = await db.query('SELECT * FROM QuestionBank WHERE id = ? LIMIT 1', [id]);
     return normalizeQuestion(rows[0]);
   } catch (error) {
+    fallbackOrThrow(error);
     return normalizeQuestion(sampleData.questions.find((question) => Number(question.id) === Number(id)));
   }
 }
@@ -408,6 +415,7 @@ async function getQuestionsByIds(ids) {
     const byId = new Map(rows.map((row) => [Number(row.id), normalizeQuestion(row)]));
     return questionIds.map((id) => byId.get(Number(id))).filter(Boolean);
   } catch (error) {
+    fallbackOrThrow(error);
     const byId = new Map(sampleData.questions.map((question) => [Number(question.id), normalizeQuestion(question)]));
     return questionIds.map((id) => byId.get(Number(id))).filter(Boolean);
   }
@@ -440,6 +448,7 @@ async function getMisconception(questionId, selectedAnswer) {
     const misconception = rows[0] || null;
     return isPlaceholderMisconception(misconception) ? null : misconception;
   } catch (error) {
+    fallbackOrThrow(error);
     const fallback = sampleData.misconceptions.find(
       (item) => Number(item.question_id) === Number(questionId) && item.distractor_key === selectedAnswer
     ) || null;
@@ -457,6 +466,7 @@ async function getMisconceptionsByQuestion(questionId) {
       [questionId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.misconceptions.filter((item) => Number(item.question_id) === Number(questionId));
   }
 }
@@ -473,6 +483,7 @@ async function listQuestions() {
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.questions.map((question) => {
       const chapter = sampleData.chapters.find((item) =>
         item.lessons.some((lesson) => Number(lesson.id) === Number(question.lesson_id))
@@ -507,6 +518,7 @@ async function getAdminStats() {
       easyCount: Number(stats.easy_count || 0)
     };
   } catch (error) {
+    fallbackOrThrow(error);
     const supportedLessonIds = new Set(
       sampleData.chapters
         .filter((chapter) => isSupportedGrade(chapter.grade))
@@ -536,6 +548,7 @@ async function getRecentQuestions(limit = 6) {
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
+    fallbackOrThrow(error);
     return (await listQuestions()).slice(0, safeLimit);
   }
 }
@@ -551,6 +564,7 @@ async function getQuestionCountsByLesson() {
        GROUP BY q.lesson_id`
     );
   } catch (error) {
+    fallbackOrThrow(error);
     const supportedLessonIds = new Set(
       sampleData.chapters
         .filter((chapter) => isSupportedGrade(chapter.grade))
@@ -614,6 +628,7 @@ async function updateQuestion(id, payload) {
       return { ...payload, id };
     });
   } catch (error) {
+    fallbackOrThrow(error);
     const index = sampleData.questions.findIndex((question) => Number(question.id) === Number(id));
     if (index === -1) return null;
 
@@ -641,6 +656,7 @@ async function deleteQuestion(id) {
     await db.query('DELETE FROM QuestionBank WHERE id = ?', [id]);
     return true;
   } catch (error) {
+    fallbackOrThrow(error);
     const index = sampleData.questions.findIndex((question) => Number(question.id) === Number(id));
     if (index === -1) return false;
 
@@ -692,6 +708,7 @@ async function createQuestion(payload) {
       return { ...payload, id: questionId };
     });
   } catch (error) {
+    fallbackOrThrow(error);
     const question = {
       ...payload,
       id: Math.max(...sampleData.questions.map((item) => item.id), 1000) + 1
@@ -723,6 +740,7 @@ async function recordAnswer({ studentId, practiceSessionId, questionId, selected
       [studentId, practiceSessionId || null, questionId, selectedAnswer, isCorrect ? 1 : 0, misconceptionId || null, timeSpentSeconds || null]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     sampleData.studentLogs.push({
       id: sampleData.studentLogs.length + 1,
       student_id: studentId,

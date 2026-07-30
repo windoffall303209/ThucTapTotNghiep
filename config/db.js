@@ -5,6 +5,19 @@ const hasDatabaseConfig = Boolean(process.env.DB_HOST && process.env.DB_USER && 
 let pool = null;
 let connected = false;
 
+const DATABASE_UNAVAILABLE_CODES = new Set([
+  'ECONNREFUSED',
+  'ECONNRESET',
+  'ENETUNREACH',
+  'EHOSTUNREACH',
+  'ENOTFOUND',
+  'EAI_AGAIN',
+  'ETIMEDOUT',
+  'PROTOCOL_CONNECTION_LOST',
+  'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  'POOL_CLOSED'
+]);
+
 function numberFromEnv(name, fallback, min = 0) {
   const value = Number(process.env[name]);
   if (!Number.isFinite(value)) return fallback;
@@ -58,11 +71,15 @@ async function query(sql, params = []) {
   }
 
   if (!connected) {
-    throw new Error('Database is not available');
+    throw createDatabaseUnavailableError();
   }
 
-  const [rows] = await getPool().execute(sql, params);
-  return rows;
+  try {
+    const [rows] = await getPool().execute(sql, params);
+    return rows;
+  } catch (error) {
+    throw normalizeDatabaseError(error);
+  }
 }
 
 async function transaction(callback) {
@@ -71,7 +88,7 @@ async function transaction(callback) {
   }
 
   if (!connected) {
-    throw new Error('Database is not available');
+    throw createDatabaseUnavailableError();
   }
 
   const connection = await getPool().getConnection();
@@ -82,10 +99,25 @@ async function transaction(callback) {
     return result;
   } catch (error) {
     await connection.rollback();
-    throw error;
+    throw normalizeDatabaseError(error);
   } finally {
     connection.release();
   }
+}
+
+function createDatabaseUnavailableError(cause = null) {
+  const error = new Error('Database is not available', cause ? { cause } : undefined);
+  error.code = 'DB_UNAVAILABLE';
+  error.databaseUnavailable = true;
+  return error;
+}
+
+function normalizeDatabaseError(error) {
+  if (DATABASE_UNAVAILABLE_CODES.has(String(error?.code || '').toUpperCase())) {
+    connected = false;
+    error.databaseUnavailable = true;
+  }
+  return error;
 }
 
 function isDatabaseConnected() {

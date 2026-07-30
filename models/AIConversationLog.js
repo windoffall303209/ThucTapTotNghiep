@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 async function ensureSchema() {
   try {
@@ -32,6 +33,7 @@ async function ensureSchema() {
     await addColumnIfMissing('is_fallback', 'ALTER TABLE AIConversationLogs ADD COLUMN is_fallback TINYINT(1) DEFAULT 0 AFTER model');
     await addColumnIfMissing('blocked_reason', 'ALTER TABLE AIConversationLogs ADD COLUMN blocked_reason VARCHAR(120) NULL AFTER is_fallback');
   } catch (error) {
+    fallbackOrThrow(error);
     sampleData.aiLogs = sampleData.aiLogs || [];
   }
 }
@@ -74,6 +76,7 @@ async function logAIInteraction(input) {
       ]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     sampleData.aiLogs = sampleData.aiLogs || [];
     sampleData.aiLogs.push({
       id: sampleData.aiLogs.length + 1,
@@ -168,6 +171,7 @@ async function listLogs({ page = 1, limit = 20, studentId = null, sessionType = 
       }
     };
   } catch (error) {
+    fallbackOrThrow(error);
     const all = (sampleData.aiLogs || []).map(normalizeLogRow);
     return {
       logs: all.slice(offset, offset + safeLimit),
@@ -221,6 +225,7 @@ async function getLogStats() {
       blockedReasons: blocked.map((row) => ({ reason: row.blocked_reason, count: Number(row.count) }))
     };
   } catch (error) {
+    fallbackOrThrow(error);
     const all = sampleData.aiLogs || [];
     return {
       total: all.length,
@@ -245,6 +250,7 @@ async function setFlagged(logId, flagged) {
     );
     return Number(result?.affectedRows || 0) > 0;
   } catch (error) {
+    fallbackOrThrow(error);
     const log = (sampleData.aiLogs || []).find((item) => Number(item.id) === Number(logId));
     if (!log) return false;
     log.is_flagged_inaccurate = Boolean(flagged);

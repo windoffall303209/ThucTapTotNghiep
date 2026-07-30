@@ -3,6 +3,7 @@ const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 const { normalizeGridLayout } = require('../utils/gridLayout');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 function normalizeLesson(row) {
   return {
@@ -49,6 +50,7 @@ async function getCurriculumByGrade(grade) {
       lessons: lessons.filter((lesson) => lesson.chapter_id === chapter.id).map(normalizeLessonMeta)
     }));
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.chapters.filter((chapter) => Number(chapter.grade) === Number(grade));
   }
 }
@@ -77,6 +79,7 @@ async function getAllLessons(options = {}) {
 
     return rows.map(includeTheoryCards ? normalizeLesson : normalizeLessonMeta);
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.chapters
       .filter((chapter) => isSupportedGrade(chapter.grade))
       .flatMap((chapter) =>
@@ -107,6 +110,7 @@ async function getTheoryCounts() {
       theory_count: Number(row.theory_count || 0)
     }));
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.chapters
       .filter((chapter) => isSupportedGrade(chapter.grade))
       .flatMap((chapter) =>
@@ -127,6 +131,7 @@ async function updateLessonTheoryCards(lessonId, theoryCards) {
       [JSON.stringify(normalizedCards), lessonId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     const lesson = findSampleLesson(lessonId);
     if (lesson) lesson.theory_cards = normalizedCards;
   }
@@ -224,6 +229,7 @@ async function getLessonById(id) {
     );
     return rows[0] ? normalizeLesson(rows[0]) : null;
   } catch (error) {
+    fallbackOrThrow(error);
     for (const chapter of sampleData.chapters) {
       const lesson = chapter.lessons.find((item) => Number(item.id) === Number(id));
       if (lesson) {
@@ -249,6 +255,7 @@ async function getChapterById(id) {
     );
     return rows[0] || null;
   } catch (error) {
+    fallbackOrThrow(error);
     return sampleData.chapters.find(
       (chapter) => Number(chapter.id) === Number(id)
     ) || null;
@@ -278,6 +285,7 @@ async function getProgress(studentId, grade) {
       percent: total > 0 ? Math.round((completed / total) * 100) : 0
     };
   } catch (error) {
+    fallbackOrThrow(error);
     const total = sampleData.chapters
       .filter((chapter) => Number(chapter.grade) === Number(grade))
       .reduce((sum, chapter) => sum + chapter.lessons.length, 0);
@@ -314,6 +322,7 @@ async function getRecommendation(studentId) {
     );
     return rows[0] || null;
   } catch (error) {
+    fallbackOrThrow(error);
     const wrongLogs = sampleData.studentLogs.filter(
       (log) => Number(log.student_id) === Number(studentId) && !log.is_correct
     );
@@ -349,6 +358,7 @@ async function getLessonProgressByGrade(studentId, grade) {
       return result;
     }, {});
   } catch (error) {
+    fallbackOrThrow(error);
     return buildFallbackLessonProgress(studentId);
   }
 }
@@ -361,21 +371,22 @@ async function getRecentAttempts(studentId, limit = 8) {
     try {
       return await queryRecentAttempts(studentId, limit, false);
     } catch (fallbackError) {
-    return sampleData.studentLogs
-      .filter((log) => Number(log.student_id) === Number(studentId))
-      .slice(-limit)
-      .reverse()
-      .map((log) => {
-        const question = sampleData.questions.find((item) => Number(item.id) === Number(log.question_id));
-        const lesson = findSampleLesson(question?.lesson_id);
-        return {
-          ...log,
-          practice_session_id: log.practice_session_id || null,
-          correct_answer: question?.correct_answer || '',
-          lesson_name: lesson?.lesson_name || 'Bài học chưa xác định',
-          grade: lesson?.grade || ''
-        };
-      });
+      fallbackOrThrow(fallbackError);
+      return sampleData.studentLogs
+        .filter((log) => Number(log.student_id) === Number(studentId))
+        .slice(-limit)
+        .reverse()
+        .map((log) => {
+          const question = sampleData.questions.find((item) => Number(item.id) === Number(log.question_id));
+          const lesson = findSampleLesson(question?.lesson_id);
+          return {
+            ...log,
+            practice_session_id: log.practice_session_id || null,
+            correct_answer: question?.correct_answer || '',
+            lesson_name: lesson?.lesson_name || 'Bài học chưa xác định',
+            grade: lesson?.grade || ''
+          };
+        });
     }
   }
 }

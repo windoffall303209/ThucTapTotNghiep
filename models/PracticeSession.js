@@ -2,6 +2,7 @@ const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
 const SystemSetting = require('./SystemSetting');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze(
   Object.fromEntries(
@@ -136,6 +137,7 @@ async function ensureSchema() {
       'CREATE INDEX idx_practice_sessions_expiry ON PracticeSessions(student_id, status, expires_at)'
     );
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
   }
 }
@@ -205,6 +207,7 @@ async function createSession({
     );
     return getSessionById(studentId, result.insertId);
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const session = {
       id: Date.now(),
@@ -242,6 +245,7 @@ async function getActiveLessonSession(studentId, lessonId, mode = 'LESSON') {
     );
     return hydrateSessionFromLogs(normalizeSession(rows[0]));
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     return sampleData.practiceSessions
       .filter((session) =>
@@ -266,6 +270,7 @@ async function getSessionById(studentId, sessionId) {
     );
     return hydrateSessionFromLogs(normalizeSession(rows[0]));
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     return sampleData.practiceSessions.find(
       (session) => Number(session.id) === Number(sessionId) && Number(session.student_id) === Number(studentId)
@@ -348,6 +353,7 @@ async function listSessions(studentId, limit = 50, options = {}) {
 
     return Promise.all(hydratedRows.map((row) => hydrateSessionFromLogs(normalizeSession(row))));
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     return sampleData.practiceSessions
       .filter((session) => Number(session.student_id) === Number(studentId) && matchesFilters(session))
@@ -391,6 +397,7 @@ async function completeExpiredSessions(studentId) {
       [studentId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const nowMs = Date.now();
     sampleData.practiceSessions
@@ -423,6 +430,7 @@ async function listAnswers(sessionId) {
       [sessionId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     return sampleData.studentLogs.filter((log) => Number(log.practice_session_id) === Number(sessionId));
   }
@@ -439,6 +447,7 @@ async function listChats(sessionId) {
       [sessionId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     return sampleData.practiceChats.filter((chat) => Number(chat.practice_session_id) === Number(sessionId));
   }
@@ -456,6 +465,7 @@ async function saveChat({ sessionId, questionId, role, message }) {
     );
     return { id: result.insertId };
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const chat = {
       id: sampleData.practiceChats.length + 1,
@@ -488,6 +498,7 @@ async function syncSessionProgress(sessionId) {
       [sessionId]
     );
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const session = sampleData.practiceSessions.find((item) => Number(item.id) === Number(sessionId));
     if (!session) return;
@@ -511,6 +522,7 @@ async function completeSession(studentId, sessionId) {
     );
     return getSessionById(studentId, sessionId);
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const session = sampleData.practiceSessions.find(
       (item) => Number(item.id) === Number(sessionId) && Number(item.student_id) === Number(studentId)
@@ -556,6 +568,7 @@ async function hydrateSessionFromLogs(session) {
       session.question_count = Math.max(Number(session.question_count || 0), questionIds.length);
     }
   } catch (error) {
+    fallbackOrThrow(error);
     ensureFallbackStore();
     const questionIds = sampleData.studentLogs
       .filter((log) => Number(log.practice_session_id) === Number(session.id))

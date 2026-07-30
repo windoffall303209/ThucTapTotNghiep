@@ -44,10 +44,8 @@ VALUES
     1
   )
 ON DUPLICATE KEY UPDATE
-  password_hash = VALUES(password_hash),
   fullname = VALUES(fullname),
-  role = VALUES(role),
-  is_active = VALUES(is_active);
+  role = VALUES(role);
 
 INSERT INTO Students (username, password_hash, fullname, registered_grade, current_grade)
 VALUES
@@ -73,7 +71,6 @@ VALUES
     2
   )
 ON DUPLICATE KEY UPDATE
-  password_hash = VALUES(password_hash),
   fullname = VALUES(fullname),
   registered_grade = VALUES(registered_grade),
   current_grade = VALUES(current_grade);

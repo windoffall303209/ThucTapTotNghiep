@@ -3,6 +3,7 @@ const sampleData = require('../sample-data/sampleData');
 const crypto = require('crypto');
 const fs = require('fs/promises');
 const path = require('path');
+const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
 const PRACTICE_DURATION_DEFAULTS = Object.freeze({
   5: 10,
@@ -94,6 +95,7 @@ async function getSettings() {
 
     return { ...DEFAULT_SETTINGS, ...dbSettings };
   } catch (error) {
+    fallbackOrThrow(error);
     return { ...DEFAULT_SETTINGS, ...sampleData.systemSettings };
   }
 }
@@ -142,6 +144,7 @@ async function updateSettings(input) {
       }
     });
   } catch (error) {
+    fallbackOrThrow(error);
     sampleData.systemSettings = mergedSettings;
   }
 

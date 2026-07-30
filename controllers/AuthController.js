@@ -2,8 +2,15 @@ const bcrypt = require('bcryptjs');
 const Admin = require('../models/Admin');
 const Student = require('../models/Student');
 const { setFlash } = require('../utils/flash');
-const { clearAuthCookie, setAuthCookie } = require('../utils/authToken');
+const { clearAuthCookie, getCredentialVersion, setAuthCookie } = require('../utils/authToken');
 const { GRADE_RANGE_LABEL, isSupportedGrade, normalizeGrade } = require('../config/grades');
+const {
+  normalizeFullname,
+  normalizeUsername,
+  validateFullname,
+  validatePassword,
+  validateUsername
+} = require('../utils/accountValidation');
 
 function showLogin(req, res) {
   res.render('auth/login', {
@@ -20,7 +27,9 @@ function showRegister(req, res) {
 
 async function register(req, res, next) {
   try {
-    const { username, password, confirmPassword, fullname, grade } = req.body;
+    const { password, confirmPassword, grade } = req.body;
+    const username = normalizeUsername(req.body.username);
+    const fullname = normalizeFullname(req.body.fullname);
 
     if (!username || !password || !confirmPassword || !fullname || !grade) {
       setFlash(req, 'danger', 'Vui lòng điền đầy đủ tất cả các trường.');
@@ -32,8 +41,11 @@ async function register(req, res, next) {
       return res.redirect('/auth/register');
     }
 
-    if (password.length < 8) {
-      setFlash(req, 'danger', 'Mật khẩu phải có ít nhất 8 ký tự.');
+    const usernameError = validateUsername(username);
+    const fullnameError = validateFullname(fullname);
+    const passwordError = validatePassword(password);
+    if (usernameError || fullnameError || passwordError) {
+      setFlash(req, 'danger', usernameError || fullnameError || passwordError);
       return res.redirect('/auth/register');
     }
 
@@ -43,16 +55,16 @@ async function register(req, res, next) {
       return res.redirect('/auth/register');
     }
 
-    const existingStudent = await Student.findByUsername(username.trim());
+    const existingStudent = await Student.findByUsername(username);
     if (existingStudent) {
       setFlash(req, 'danger', 'Tên đăng nhập đã tồn tại, vui lòng chọn tên khác.');
       return res.redirect('/auth/register');
     }
 
     const student = await Student.createStudent({
-      username: username.trim(),
+      username,
       password,
-      fullname: fullname.trim(),
+      fullname,
       grade: normalizedGrade
     });
 
@@ -60,24 +72,34 @@ async function register(req, res, next) {
     setFlash(req, 'success', 'Đăng ký thành công. Em có thể bắt đầu ôn luyện ngay.');
     return res.redirect('/student/dashboard');
   } catch (error) {
+    if (error.code === 'ER_DUP_ENTRY' || error.code === 'DUPLICATE_USERNAME') {
+      setFlash(req, 'danger', 'Tên đăng nhập đã tồn tại, vui lòng chọn tên khác.');
+      return res.redirect('/auth/register');
+    }
     return next(error);
   }
 }
 
 async function login(req, res, next) {
   try {
-    const { username, password, role } = req.body;
+    const { password, role } = req.body;
+    const username = normalizeUsername(req.body.username);
 
-    if (!username || !password) {
+    if (
+      !username
+      || !password
+      || validateUsername(username, { login: true })
+      || Buffer.byteLength(String(password), 'utf8') > 72
+    ) {
       setFlash(req, 'danger', 'Vui lòng nhập tên đăng nhập và mật khẩu.');
       return res.redirect(`/auth/login${role === 'admin' ? '?role=admin' : ''}`);
     }
 
     if (role === 'admin') {
-      return loginAdmin(req, res, username.trim(), password);
+      return loginAdmin(req, res, username, password);
     }
 
-    const student = await Student.findByUsername(username.trim());
+    const student = await Student.findByUsername(username);
     if (!student) {
       setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
       return res.redirect('/auth/login');
@@ -134,7 +156,8 @@ async function loginAdmin(req, res, username, password) {
       username: admin.username,
       fullname: admin.fullname,
       role: admin.role,
-      type: 'admin'
+      type: 'admin',
+      credential_version: getCredentialVersion(admin.password_hash)
     });
     setFlash(req, 'success', 'Đăng nhập quản trị thành công.', {
       transient: true,
@@ -170,7 +193,8 @@ function toStudentTokenPayload(student) {
     current_grade: student.current_grade,
     is_active: Number(student.is_active ?? 1),
     role: 'student',
-    type: 'student'
+    type: 'student',
+    credential_version: getCredentialVersion(student.password_hash)
   };
 }
 
