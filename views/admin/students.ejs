@@ -44,7 +44,7 @@
   <div>
     <p class="eyebrow">Tài khoản người dùng</p>
     <h1>Quản lý tài khoản học sinh</h1>
-    <p>Tra cứu tài khoản đã đăng ký và theo dõi trạng thái sử dụng hệ thống.</p>
+    <p>Tra cứu tài khoản, quản lý trạng thái, sửa khối lớp và hỗ trợ học sinh lấy lại quyền truy cập.</p>
   </div>
   <div class="account-directory-total" aria-label="<%= pagination.total %> tài khoản học sinh">
     <strong><%= pagination.total %></strong>
@@ -116,6 +116,7 @@
             <th scope="col">Khối lớp</th>
             <th scope="col">Hoạt động</th>
             <th scope="col">Trạng thái</th>
+            <th scope="col">Quản trị</th>
           </tr>
         </thead>
         <tbody>
@@ -175,6 +176,77 @@
                         </select>
                       </label>
                       <button class="btn btn-secondary btn-compact" type="submit">Lưu trạng thái</button>
+                    </form>
+                  </details>
+                </div>
+              </td>
+              <td data-label="Quản trị">
+                <div class="account-tools-cell">
+                  <details class="account-tool-editor">
+                    <summary>
+                      <i data-lucide="graduation-cap" class="lucide-icon"></i>
+                      Đổi khối
+                    </summary>
+                    <form
+                      action="/admin/students/<%= item.id %>/grade"
+                      method="post"
+                      data-confirm="Đổi khối của <%= item.username %>? Các bài đang làm sẽ được kết thúc, nhưng lịch sử vẫn được giữ nguyên.">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <input type="hidden" name="q" value="<%= query %>">
+                      <input type="hidden" name="grade" value="<%= filterGrade || '' %>">
+                      <input type="hidden" name="page" value="<%= pagination.page %>">
+                      <label for="student-grade-<%= item.id %>">Khối lớp hiện tại</label>
+                      <select id="student-grade-<%= item.id %>" name="current_grade" required>
+                        <% gradeOptions.forEach((option) => { %>
+                          <option
+                            value="<%= option.value %>"
+                            <%= Number(option.value) === Number(item.current_grade) ? 'selected' : '' %>>
+                            <%= option.label %>
+                          </option>
+                        <% }) %>
+                      </select>
+                      <small class="account-tool-note">
+                        Đổi khối sẽ đóng các bài đang làm của lớp cũ, không xóa lịch sử.
+                      </small>
+                      <button class="btn btn-secondary btn-compact" type="submit">Lưu khối lớp</button>
+                    </form>
+                  </details>
+
+                  <details class="account-tool-editor">
+                    <summary>
+                      <i data-lucide="key-round" class="lucide-icon"></i>
+                      Mật khẩu tạm
+                    </summary>
+                    <form
+                      action="/admin/students/<%= item.id %>/password"
+                      method="post"
+                      data-confirm="Đặt mật khẩu tạm mới cho <%= item.username %>? Phiên đăng nhập cũ của học sinh sẽ mất hiệu lực.">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <input type="hidden" name="q" value="<%= query %>">
+                      <input type="hidden" name="grade" value="<%= filterGrade || '' %>">
+                      <input type="hidden" name="page" value="<%= pagination.page %>">
+                      <label for="student-password-<%= item.id %>">Mật khẩu tạm</label>
+                      <input
+                        id="student-password-<%= item.id %>"
+                        name="temporary_password"
+                        type="password"
+                        minlength="8"
+                        maxlength="72"
+                        autocomplete="new-password"
+                        required>
+                      <label for="student-password-confirm-<%= item.id %>">Nhập lại mật khẩu tạm</label>
+                      <input
+                        id="student-password-confirm-<%= item.id %>"
+                        name="confirm_password"
+                        type="password"
+                        minlength="8"
+                        maxlength="72"
+                        autocomplete="new-password"
+                        required>
+                      <small class="account-tool-note">
+                        Hãy chuyển riêng mật khẩu cho học sinh; không đưa mật khẩu vào ghi chú hoặc tin nhắn công khai.
+                      </small>
+                      <button class="btn btn-secondary btn-compact" type="submit">Đặt mật khẩu tạm</button>
                     </form>
                   </details>
                 </div>

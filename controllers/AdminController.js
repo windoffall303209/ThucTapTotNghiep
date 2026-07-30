@@ -7,6 +7,7 @@ const ImageStorageService = require('../services/ImageStorageService');
 const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 const { GRADE_RANGE_LABEL, gradeOptions, isSupportedGrade } = require('../config/grades');
+const { validatePassword } = require('../utils/accountValidation');
 const { parseGridLayout } = require('../utils/gridLayout');
 const { safeAdminReturnTo } = require('../utils/safeRedirect');
 const { commitRequestUploads } = require('../middleware/upload');
@@ -1028,6 +1029,83 @@ async function updateStudentStatus(req, res, next) {
   }
 }
 
+async function resetStudentPassword(req, res, next) {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+      setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đặt mật khẩu tạm.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const temporaryPassword = String(req.body.temporary_password || '');
+    const confirmPassword = String(req.body.confirm_password || '');
+    const passwordError = validatePassword(temporaryPassword);
+    if (passwordError) {
+      setFlash(req, 'danger', passwordError);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+    if (temporaryPassword !== confirmPassword) {
+      setFlash(req, 'danger', 'Mật khẩu xác nhận không khớp.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    // updatePassword luôn tạo bcrypt hash mới. Middleware xác thực gắn phiên JWT với
+    // credential_version sinh từ hash, vì vậy mọi JWT học sinh đang giữ sẽ mất hiệu lực.
+    await Student.updatePassword(student.id, temporaryPassword);
+    setFlash(
+      req,
+      'success',
+      `Đã đặt mật khẩu tạm cho ${student.username}. Hãy chuyển riêng mật khẩu này cho học sinh.`
+    );
+    return res.redirect(studentsRedirectUrl(req));
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function updateStudentGrade(req, res, next) {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+      setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đổi khối.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const grade = Number(req.body.current_grade);
+    if (!isSupportedGrade(grade)) {
+      setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+    if (Number(student.current_grade) === grade) {
+      setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const updateResult = await Student.updateCurrentGrade(student.id, grade);
+    if (!updateResult) {
+      setFlash(req, 'danger', 'Tài khoản học sinh không còn tồn tại.');
+      return res.redirect(studentsRedirectUrl(req));
+    }
+    if (!updateResult.changed) {
+      setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
+      return res.redirect(studentsRedirectUrl(req));
+    }
+
+    const completedCount = Number(updateResult.completedSessionCount || 0);
+    setFlash(
+      req,
+      'success',
+      `Đã chuyển ${student.username} từ lớp ${updateResult.previousGrade} sang lớp ${grade}. `
+      + (completedCount > 0
+        ? `Đã kết thúc ${completedCount} bài đang làm của lớp cũ; lịch sử học tập vẫn được giữ nguyên.`
+        : 'Lịch sử học tập trước đây vẫn được giữ nguyên.')
+    );
+    return res.redirect(studentsRedirectUrl(req));
+  } catch (error) {
+    return next(error);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Chức năng AD-01: quản lý khung chương trình
    ------------------------------------------------------------------------- */
@@ -1465,6 +1543,8 @@ module.exports = {
   updateQuestion,
   deleteQuestion,
   students,
+  resetStudentPassword,
+  updateStudentGrade,
   updateStudentStatus,
   curriculum,
   createChapter,

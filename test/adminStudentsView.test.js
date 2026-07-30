@@ -46,12 +46,22 @@ test('trang tài khoản hiển thị dạng bảng và giữ bộ lọc khi ph�
   assert.match(html, /page=6/);
 });
 
-test('trang tài khoản không còn thao tác đổi mật khẩu hoặc khối lớp', () => {
+test('SYSADMIN có công cụ đổi khối và đặt mật khẩu tạm với xác nhận an toàn', () => {
   const html = renderStudents();
 
-  assert.doesNotMatch(html, /\/admin\/students\/[^"]+\/password/);
-  assert.doesNotMatch(html, /\/admin\/students\/[^"]+\/grade/);
-  assert.doesNotMatch(html, /Đặt lại mật khẩu|Lưu khối lớp/);
+  assert.match(html, /\/admin\/students\/81\/password/);
+  assert.match(html, /\/admin\/students\/81\/grade/);
+  assert.match(html, /name="current_grade"/);
+  assert.match(html, /name="temporary_password"/);
+  assert.match(html, /name="confirm_password"/);
+  assert.match(html, /type="password"/);
+  assert.match(html, /autocomplete="new-password"/);
+  assert.match(html, /Lưu khối lớp/);
+  assert.match(html, /Đặt mật khẩu tạm/);
+  assert.match(html, /name="q" value="an"/);
+  assert.match(html, /name="grade" value="4"/);
+  assert.match(html, /name="page" value="5"/);
+  assert.doesNotMatch(html, /name="temporary_password"[^>]*\bvalue=/);
 });
 
 test('mỗi tài khoản có thể sửa trạng thái hoạt động và giữ vị trí danh sách', () => {

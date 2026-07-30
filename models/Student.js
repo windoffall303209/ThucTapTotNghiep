@@ -141,6 +141,80 @@ async function updatePassword(studentId, password) {
   return passwordHash;
 }
 
+// Chỉ thay đổi current_grade và giữ nguyên registered_grade/lịch sử. Mọi phiên đang làm
+// thuộc chương trình lớp cũ phải được đóng trong cùng transaction để học sinh không thể
+// tiếp tục một snapshot không còn phù hợp sau khi đăng nhập ở lớp mới.
+async function updateCurrentGrade(studentId, grade) {
+  const normalizedStudentId = Number(studentId);
+  const normalizedGrade = Number(grade);
+  if (
+    !Number.isInteger(normalizedStudentId)
+    || normalizedStudentId <= 0
+    || !Number.isInteger(normalizedGrade)
+    || normalizedGrade < 1
+    || normalizedGrade > 5
+  ) {
+    const error = new Error('INVALID_STUDENT_GRADE');
+    error.code = 'INVALID_STUDENT_GRADE';
+    throw error;
+  }
+
+  return db.transaction(async (connection) => {
+    const [studentRows] = await connection.execute(
+      `SELECT id, current_grade
+       FROM Students
+       WHERE id = ?
+       LIMIT 1
+       FOR UPDATE`,
+      [normalizedStudentId]
+    );
+    const student = studentRows[0] || null;
+    if (!student) return null;
+
+    const previousGrade = Number(student.current_grade);
+    if (previousGrade === normalizedGrade) {
+      return {
+        changed: false,
+        previousGrade,
+        currentGrade: normalizedGrade,
+        completedSessionCount: 0
+      };
+    }
+
+    const [sessionResult] = await connection.execute(
+      `UPDATE PracticeSessions
+       SET status = 'COMPLETED',
+           completion_reason = 'ACCOUNT_GRADE_CHANGED',
+           completed_at = CURRENT_TIMESTAMP,
+           active_key = NULL,
+           updated_at = CURRENT_TIMESTAMP
+       WHERE student_id = ?
+         AND status = 'IN_PROGRESS'`,
+      [normalizedStudentId]
+    );
+
+    const [studentResult] = await connection.execute(
+      `UPDATE Students
+       SET current_grade = ?,
+           updated_at = CURRENT_TIMESTAMP
+       WHERE id = ?`,
+      [normalizedGrade, normalizedStudentId]
+    );
+    if (Number(studentResult.affectedRows) !== 1) {
+      const error = new Error('STUDENT_GRADE_UPDATE_FAILED');
+      error.code = 'STUDENT_GRADE_UPDATE_FAILED';
+      throw error;
+    }
+
+    return {
+      changed: true,
+      previousGrade,
+      currentGrade: normalizedGrade,
+      completedSessionCount: Number(sessionResult.affectedRows || 0)
+    };
+  });
+}
+
 async function updateActiveStatus(studentId, isActive) {
   const normalizedStatus = isActive ? 1 : 0;
 
@@ -160,5 +234,6 @@ module.exports = {
   listStudents,
   listStudentsPaged,
   updatePassword,
+  updateCurrentGrade,
   updateActiveStatus
 };

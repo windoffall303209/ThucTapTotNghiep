@@ -56,6 +56,8 @@ router.post('/questions/:id',
 router.post('/questions/:id/delete', AdminController.deleteQuestion);
 router.post('/questions/:id/duplicate', AdminController.duplicateQuestion);
 router.get('/students', requireRoles(['SYSADMIN']), AdminController.students);
+router.post('/students/:id/password', requireRoles(['SYSADMIN']), AdminController.resetStudentPassword);
+router.post('/students/:id/grade', requireRoles(['SYSADMIN']), AdminController.updateStudentGrade);
 router.post('/students/:id/status', requireRoles(['SYSADMIN']), AdminController.updateStudentStatus);
 router.get('/curriculum', AdminController.curriculum);
 router.post('/curriculum/chapters', AdminController.createChapter);
