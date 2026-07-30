@@ -199,15 +199,23 @@ async function updateTheoryCard(req, res, next) {
       return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
-    const updatedCard = await buildSingleTheoryCard(req.body, req.files || [], cardIndex);
+    const updatedCard = await buildSingleTheoryCard(
+      req.body,
+      req.files || [],
+      cardIndex,
+      cards[cardIndex]
+    );
     if (!hasTheoryCardContent(updatedCard)) {
       setFlash(req, 'danger', 'Thẻ lý thuyết cần có tiêu đề, nội dung, ví dụ hoặc ảnh minh họa.');
       return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
     cards[cardIndex] = updatedCard;
-    await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards);
     commitRequestUploads(req);
+    await ImageStorageService.deleteStoredImagesIfUnreferenced(
+      ImageStorageService.differenceImageDescriptors(lesson.theory_cards, savedCards)
+    );
 
     setFlash(req, 'success', 'Đã cập nhật thẻ lý thuyết.');
     return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -232,7 +240,10 @@ async function deleteTheoryCard(req, res, next) {
     }
 
     cards.splice(cardIndex, 1);
-    await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    await ImageStorageService.deleteStoredImagesIfUnreferenced(
+      ImageStorageService.differenceImageDescriptors(lesson.theory_cards, savedCards)
+    );
 
     setFlash(req, 'success', 'Đã xóa thẻ lý thuyết.');
     return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -347,23 +358,27 @@ async function createQuestion(req, res, next) {
 
     const choices = await buildChoices(req.body, files.choiceImages);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
-    const uploadedQuestionImages = await buildQuestionImages(files.questionImages, req.body, {
-      idPrefix: 'image',
-      widthField: 'image_width_percent',
-      altField: 'image_alt_text',
-      defaultAlt: 'Hình minh họa'
-    });
-    const uploadedExplanationImages = await buildQuestionImages(files.explanationImages, req.body, {
-      idPrefix: 'explanation-image',
-      widthField: 'explanation_image_width_percent',
-      altField: 'explanation_image_alt_text',
-      defaultAlt: 'Hình minh họa lời giải'
-    });
-    const explanationImages = authoringMode === 'canvas' ? [] : uploadedExplanationImages;
+    const uploadedQuestionImages = authoringMode === 'canvas'
+      ? []
+      : await buildQuestionImages(files.questionImages, req.body, {
+          idPrefix: 'image',
+          widthField: 'image_width_percent',
+          altField: 'image_alt_text',
+          defaultAlt: 'Hình minh họa'
+        });
+    const uploadedExplanationImages = authoringMode === 'canvas'
+      ? []
+      : await buildQuestionImages(files.explanationImages, req.body, {
+          idPrefix: 'explanation-image',
+          widthField: 'explanation_image_width_percent',
+          altField: 'explanation_image_alt_text',
+          defaultAlt: 'Hình minh họa lời giải'
+        });
+    const explanationImages = uploadedExplanationImages;
     const contentText = authoringMode === 'canvas'
       ? ''
       : ensureImagePlaceholders(req.body.content_text, uploadedQuestionImages);
-    const questionImages = authoringMode === 'canvas' ? [] : uploadedQuestionImages;
+    const questionImages = uploadedQuestionImages;
 
     await Question.createQuestion({
       lesson_id: Number(req.body.lesson_id),
@@ -420,23 +435,27 @@ async function updateQuestion(req, res, next) {
     const existingImages = Array.isArray(question.content?.images) ? question.content.images : [];
     const removedQuestionImages = getRemovedImages(existingImages, req.body.remove_question_images);
     const keptQuestionImages = filterRemovedImages(existingImages, req.body.remove_question_images);
-    const uploadedImages = await buildQuestionImages(files.questionImages, req.body, {
-      startIndex: maxImageIndex(keptQuestionImages, 'image'),
-      idPrefix: 'image',
-      widthField: 'image_width_percent',
-      altField: 'image_alt_text',
-      defaultAlt: 'Hình minh họa'
-    });
+    const uploadedImages = authoringMode === 'canvas'
+      ? []
+      : await buildQuestionImages(files.questionImages, req.body, {
+          startIndex: maxImageIndex(keptQuestionImages, 'image'),
+          idPrefix: 'image',
+          widthField: 'image_width_percent',
+          altField: 'image_alt_text',
+          defaultAlt: 'Hình minh họa'
+        });
     const questionImages = authoringMode === 'canvas' ? [] : keptQuestionImages.concat(uploadedImages);
     const existingExplanationImages = Array.isArray(question.explanation?.images) ? question.explanation.images : [];
     const keptExplanationImages = filterRemovedImages(existingExplanationImages, req.body.remove_explanation_images);
-    const uploadedExplanationImages = await buildQuestionImages(files.explanationImages, req.body, {
-      startIndex: maxImageIndex(keptExplanationImages, 'explanation-image'),
-      idPrefix: 'explanation-image',
-      widthField: 'explanation_image_width_percent',
-      altField: 'explanation_image_alt_text',
-      defaultAlt: 'Hình minh họa lời giải'
-    });
+    const uploadedExplanationImages = authoringMode === 'canvas'
+      ? []
+      : await buildQuestionImages(files.explanationImages, req.body, {
+          startIndex: maxImageIndex(keptExplanationImages, 'explanation-image'),
+          idPrefix: 'explanation-image',
+          widthField: 'explanation_image_width_percent',
+          altField: 'explanation_image_alt_text',
+          defaultAlt: 'Hình minh họa lời giải'
+        });
     const contentText = authoringMode === 'canvas'
       ? ''
       : ensureImagePlaceholders(
@@ -444,7 +463,7 @@ async function updateQuestion(req, res, next) {
           uploadedImages
         );
 
-    await Question.updateQuestion(Number(req.params.id), {
+    const payload = {
       lesson_id: Number(req.body.lesson_id),
       question_type: normalizeQuestionType(req.body.question_type),
       difficulty: req.body.difficulty || question.difficulty || 'EASY',
@@ -463,8 +482,16 @@ async function updateQuestion(req, res, next) {
         images: authoringMode === 'canvas' ? [] : keptExplanationImages.concat(uploadedExplanationImages)
       },
       misconceptions
-    });
+    };
+    const updatedQuestion = await Question.updateQuestion(Number(req.params.id), payload);
+    if (!updatedQuestion) {
+      setFlash(req, 'danger', 'Câu hỏi đã được thay đổi hoặc lưu trữ ở yêu cầu khác. Vui lòng tải lại.');
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
+    }
     commitRequestUploads(req);
+    await ImageStorageService.deleteStoredImagesIfUnreferenced(
+      ImageStorageService.differenceImageDescriptors(question, payload)
+    );
 
     setFlash(req, 'success', 'Đã cập nhật câu hỏi.');
     return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -896,8 +923,10 @@ async function buildQuestionImages(files, body, options = {}) {
       width_percent: widthPercent,
       alt_text: altTexts[index] || `${defaultAlt} ${imageNumber}`,
       storage_provider: storedImage.storage_provider,
-      public_id: storedImage.public_id
+      public_id: storedImage.public_id,
+      cloud_name: storedImage.cloud_name
     });
+    file.readyToCommit = true;
   }
   return images;
 }
@@ -1306,6 +1335,7 @@ async function deleteLesson(req, res, next) {
     }
 
     await Curriculum.deleteLesson(lesson.id);
+    await ImageStorageService.deleteStoredImagesIfUnreferenced(lesson.theory_cards);
     setFlash(req, 'success', `Đã xóa bài học "${lesson.lesson_name}".`);
     return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
   } catch (error) {
@@ -1445,10 +1475,19 @@ async function checkSettings(req, res, next) {
   }
 }
 
-async function buildSingleTheoryCard(body, files, cardIndex = 0) {
+async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = null) {
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
-  const existingImages = filterRemovedImages(parseExistingImages(body.existing_images), body.remove_theory_images);
-  const uploadedImages = await buildTheoryImages(files || [], cardIndex, maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`));
+  const existingImages = filterRemovedImages(
+    Array.isArray(existingCard?.images) ? existingCard.images : [],
+    body.remove_theory_images
+  );
+  const uploadedImages = authoringMode === 'canvas'
+    ? []
+    : await buildTheoryImages(
+        files || [],
+        cardIndex,
+        maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`)
+      );
   const gridLayout = authoringMode === 'canvas'
     ? parseGridLayout(body.grid_layout)
     : parseGridLayout({ enabled: false });
@@ -1511,29 +1550,12 @@ async function buildTheoryImages(files, cardIndex, startIndex = 0) {
       width_percent: 100,
       alt_text: file.originalname || `Hình minh họa lý thuyết ${imageNumber}`,
       storage_provider: storedImage.storage_provider,
-      public_id: storedImage.public_id
+      public_id: storedImage.public_id,
+      cloud_name: storedImage.cloud_name
     });
+    file.readyToCommit = true;
   }
   return images;
-}
-
-function parseExistingImages(value) {
-  if (!value) return [];
-  try {
-    const parsed = JSON.parse(value);
-    return (Array.isArray(parsed) ? parsed : [])
-      .map((image, index) => ({
-        id: String(image.id || `theory-image-${index + 1}`),
-        url: String(image.url || '').trim(),
-        width_percent: Number(image.width_percent || 100),
-        alt_text: String(image.alt_text || image.alt || 'Hình minh họa lý thuyết'),
-        storage_provider: image.storage_provider || '',
-        public_id: image.public_id || null
-      }))
-      .filter((image) => image.url);
-  } catch (error) {
-    return [];
-  }
 }
 
 module.exports = {

@@ -212,7 +212,8 @@ function normalizeTheoryImages(images) {
       alt_text: String(image.alt_text || image.alt || 'Hình minh họa lý thuyết').trim(),
       width_percent: Number(image.width_percent || 100),
       storage_provider: image.storage_provider || '',
-      public_id: image.public_id || null
+      public_id: image.public_id || null,
+      cloud_name: image.cloud_name || null
     }))
     .filter((image) => image.url);
 }

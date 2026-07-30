@@ -133,7 +133,7 @@ async function validateUploadedImages(req, res, next) {
     }
     return next();
   } catch (error) {
-    await cleanupRequestUploads(req);
+    await cleanupRequestUploads(req).catch(() => {});
     return next(error);
   }
 }
@@ -144,39 +144,117 @@ function prepareUploadCleanup(req, res, next) {
 }
 
 function commitRequestUploads(req) {
-  req.uploadsCommitted = true;
+  for (const file of flattenFiles(req.files)) {
+    if (file?.readyToCommit) {
+      file.uploadCommitted = true;
+    }
+  }
 }
 
 function attachUploadCleanup(req, res) {
   if (req.uploadCleanupAttached) return;
   req.uploadCleanupAttached = true;
-  let cleanupStarted = false;
+  let cleanupPromise = null;
   const cleanup = () => {
-    if (cleanupStarted || req.uploadsCommitted) return;
-    cleanupStarted = true;
-    cleanupRequestUploads(req).catch(() => {});
+    if (cleanupPromise) return;
+    cleanupPromise = cleanupRequestUploadsWithRetry(req).catch(() => {
+      console.warn('Không thể dọn hết ảnh của request sau nhiều lần thử.');
+    });
   };
   res.once('finish', cleanup);
   res.once('close', cleanup);
 }
 
-async function cleanupRequestUploads(req) {
+async function cleanupRequestUploads(
+  req,
+  {
+    destroyCloudinary = (publicId, options) => cloudinary.uploader.destroy(publicId, options),
+    unlink = fsPromises.unlink
+  } = {}
+) {
   const files = flattenFiles(req.files);
+  const failures = [];
   await Promise.all(files.map(async (file) => {
-    if (file?.cloudinaryPublicId) {
-      try {
-        await cloudinary.uploader.destroy(file.cloudinaryPublicId, { resource_type: 'image' });
-      } catch (error) {
-        // Best-effort rollback. The local temporary file is still cleaned below.
-      }
-    }
-    if (!file?.path) return;
     try {
-      await fsPromises.unlink(file.path);
+      if (!file || file.uploadCleanupComplete) return;
+
+      if (file.uploadCommitted) {
+        if (!file.cloudinaryLocalCleanupPending || !file.path) return;
+        try {
+          await unlink(file.path);
+        } catch (error) {
+          if (error.code !== 'ENOENT') throw error;
+        }
+        file.cloudinaryLocalCleanupPending = false;
+        file.localCleanupComplete = true;
+        file.uploadCleanupComplete = true;
+        return;
+      }
+
+      let cleanupError = null;
+      if (file.cloudinaryPublicId && !file.cloudinaryCleanupComplete) {
+        try {
+          await destroyCloudinary(file.cloudinaryPublicId, { resource_type: 'image' });
+          file.cloudinaryCleanupComplete = true;
+        } catch (error) {
+          cleanupError = error;
+        }
+      }
+
+      if (file.path && !file.localCleanupComplete) {
+        try {
+          await unlink(file.path);
+          file.localCleanupComplete = true;
+          file.cloudinaryLocalCleanupPending = false;
+        } catch (error) {
+          if (error.code === 'ENOENT') {
+            file.localCleanupComplete = true;
+            file.cloudinaryLocalCleanupPending = false;
+          } else {
+            cleanupError ||= error;
+          }
+        }
+      }
+
+      const cloudinaryDone = !file.cloudinaryPublicId || file.cloudinaryCleanupComplete;
+      const localDone = !file.path || file.localCleanupComplete;
+      if (cloudinaryDone && localDone) {
+        file.uploadCleanupComplete = true;
+      }
+      if (cleanupError) throw cleanupError;
     } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
+      failures.push(error);
     }
   }));
+  if (failures.length > 0) {
+    throw new AggregateError(failures, 'Không thể dọn hết ảnh chưa commit');
+  }
+}
+
+async function cleanupRequestUploadsWithRetry(
+  req,
+  {
+    attempts = 3,
+    retryDelayMs = 50,
+    ...cleanupOptions
+  } = {}
+) {
+  let lastError = null;
+  const safeAttempts = Math.min(Math.max(Number(attempts) || 1, 1), 5);
+  for (let attempt = 0; attempt < safeAttempts; attempt += 1) {
+    try {
+      await cleanupRequestUploads(req, cleanupOptions);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt + 1 < safeAttempts) {
+        await new Promise((resolve) => {
+          setTimeout(resolve, retryDelayMs * (2 ** attempt));
+        });
+      }
+    }
+  }
+  throw lastError;
 }
 
 async function detectImageType(filePath) {
@@ -233,6 +311,8 @@ module.exports = {
   MAX_MULTIPART_FIELDS,
   MAX_MULTIPART_FIELD_SIZE_BYTES,
   MAX_MULTIPART_REQUEST_BYTES,
+  cleanupRequestUploads,
+  cleanupRequestUploadsWithRetry,
   commitRequestUploads,
   detectImageType,
   limitMultipartRequest,

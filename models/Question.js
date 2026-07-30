@@ -142,7 +142,8 @@ function normalizeImage(image, index, idPrefix, defaultAlt) {
     width_percent: Number.isFinite(width) ? Math.min(Math.max(Math.round(width), 20), 100) : 100,
     alt_text: String(value.alt_text || value.alt || defaultAlt || 'Hình minh họa').trim(),
     storage_provider: value.storage_provider || '',
-    public_id: value.public_id || null
+    public_id: value.public_id || null,
+    cloud_name: value.cloud_name || null
   };
 }
 
