@@ -79,6 +79,13 @@ app.use(helmet({
   },
   crossOriginEmbedderPolicy: false
 }));
+app.use((req, res, next) => {
+  res.set(
+    'Permissions-Policy',
+    'camera=(), geolocation=(), microphone=(), payment=(), usb=()'
+  );
+  next();
+});
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public'), {
   etag: true,

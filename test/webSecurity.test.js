@@ -178,6 +178,10 @@ test('CSRF chặn request thiếu token/cross-site và CSP được bật', asyn
   assert.match(contentSecurityPolicy, /script-src 'self'/);
   assert.match(contentSecurityPolicy, /style-src 'self' 'unsafe-inline'/);
   assert.doesNotMatch(contentSecurityPolicy, /cdn\.jsdelivr\.net|fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.equal(
+    loginPage.headers.get('permissions-policy'),
+    'camera=(), geolocation=(), microphone=(), payment=(), usb=()'
+  );
   assert.equal(loginPage.headers.get('cache-control'), 'private, no-store, max-age=0');
 
   for (const assetPath of [
