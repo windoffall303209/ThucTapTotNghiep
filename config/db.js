@@ -67,9 +67,9 @@ function validateDatabaseSslConfig(
     );
   }
   const host = String(env.DB_HOST || '').trim();
-  if (production && host && !isLoopbackDatabaseHost(host) && mode === 'disabled') {
+  if (production && host && !isLoopbackDatabaseHost(host) && mode !== 'verify-ca') {
     throw createDatabaseSslConfigError(
-      'DB_SSL_MODE cannot be disabled in production when DB_HOST is not loopback'
+      'DB_SSL_MODE must be verify-ca in production when DB_HOST is not loopback'
     );
   }
   return { mode, caFile };

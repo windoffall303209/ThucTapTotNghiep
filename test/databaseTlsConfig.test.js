@@ -127,29 +127,32 @@ test('CA file is read only through the initialization loader and its contents ar
   );
 });
 
-test('production rejects disabled TLS for a non-loopback database host', () => {
+test('production rejects TLS modes that do not authenticate a remote database', () => {
   const remoteDisabled = productionEnv({
     DB_HOST: 'mysql.example.com',
     DB_SSL_MODE: 'disabled'
   });
   assert.throws(
     () => validateDatabaseSslConfig(remoteDisabled),
-    /cannot be disabled in production/
+    /must be verify-ca in production/
   );
   assert.throws(
     () => validateProductionConfig(remoteDisabled),
-    /DB_SSL_MODE cannot be disabled/
+    /DB_SSL_MODE must be verify-ca/
+  );
+  assert.throws(
+    () => validateProductionConfig(productionEnv({
+      DB_HOST: 'mysql.example.com',
+      DB_SSL_MODE: 'required'
+    })),
+    /DB_SSL_MODE must be verify-ca/
   );
 });
 
-test('production permits local disabled mode and remote required or verify-ca modes', () => {
+test('production permits local disabled mode and remote verify-ca mode', () => {
   assert.doesNotThrow(() => validateProductionConfig(productionEnv({
     DB_HOST: '127.0.0.1',
     DB_SSL_MODE: 'disabled'
-  })));
-  assert.doesNotThrow(() => validateProductionConfig(productionEnv({
-    DB_HOST: 'mysql.example.com',
-    DB_SSL_MODE: 'required'
   })));
   assert.doesNotThrow(() => validateProductionConfig(productionEnv({
     DB_HOST: 'mysql.example.com',
