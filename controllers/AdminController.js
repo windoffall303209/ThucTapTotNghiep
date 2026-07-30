@@ -174,7 +174,13 @@ async function createTheoryCard(req, res, next) {
     }
 
     cards.push(newCard);
-    await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
+      expectedTheoryCards: lesson.theory_cards
+    });
+    if (!savedCards) {
+      setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Ảnh tải lên không được lưu.');
+      return res.redirect(contentManagerUrl('theory'));
+    }
     commitRequestUploads(req);
 
     setFlash(req, 'success', 'Đã thêm thẻ lý thuyết.');
@@ -211,7 +217,13 @@ async function updateTheoryCard(req, res, next) {
     }
 
     cards[cardIndex] = updatedCard;
-    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
+      expectedTheoryCards: lesson.theory_cards
+    });
+    if (!savedCards) {
+      setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Ảnh tải lên không được lưu.');
+      return res.redirect(contentManagerUrl('theory'));
+    }
     commitRequestUploads(req);
     await ImageStorageService.deleteStoredImagesIfUnreferenced(
       ImageStorageService.differenceImageDescriptors(lesson.theory_cards, savedCards)
@@ -240,7 +252,13 @@ async function deleteTheoryCard(req, res, next) {
     }
 
     cards.splice(cardIndex, 1);
-    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards);
+    const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
+      expectedTheoryCards: lesson.theory_cards
+    });
+    if (!savedCards) {
+      setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Vui lòng tải lại.');
+      return res.redirect(contentManagerUrl('theory'));
+    }
     await ImageStorageService.deleteStoredImagesIfUnreferenced(
       ImageStorageService.differenceImageDescriptors(lesson.theory_cards, savedCards)
     );
@@ -483,7 +501,9 @@ async function updateQuestion(req, res, next) {
       },
       misconceptions
     };
-    const updatedQuestion = await Question.updateQuestion(Number(req.params.id), payload);
+    const updatedQuestion = await Question.updateQuestion(Number(req.params.id), payload, {
+      expectedQuestion: question
+    });
     if (!updatedQuestion) {
       setFlash(req, 'danger', 'Câu hỏi đã được thay đổi hoặc lưu trữ ở yêu cầu khác. Vui lòng tải lại.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
@@ -524,35 +544,14 @@ async function deleteQuestion(req, res, next) {
  */
 async function duplicateQuestion(req, res, next) {
   try {
-    const question = await Question.getQuestionById(req.params.id);
-    if (!question) {
+    const duplicate = await Question.duplicateQuestion(req.params.id);
+    if (!duplicate) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần nhân bản.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
     }
 
-    const misconceptions = await Question.getMisconceptionsByQuestion(question.id);
-    const content = question.content || {};
-    const newId = await Question.createQuestion({
-      lesson_id: question.lesson_id,
-      question_type: question.question_type,
-      difficulty: question.difficulty,
-      layout_template: question.layout_template,
-      content: {
-        ...content,
-        text: `${String(content.text || '').trim()} (bản sao — cần sửa lại)`.trim()
-      },
-      choices: question.choices || [],
-      correct_answer: question.correct_answer,
-      explanation: question.explanation || {},
-      misconceptions: (misconceptions || []).map((item) => ({
-        distractor_key: item.distractor_key,
-        misconception_name: item.misconception_name,
-        explanation: item.explanation
-      }))
-    });
-
-    setFlash(req, 'success', `Đã nhân bản câu hỏi #${question.id} thành câu #${newId}. Nhớ sửa lại nội dung bản sao.`);
-    return res.redirect(contentManagerUrl('questions', question.lesson_id));
+    setFlash(req, 'success', `Đã nhân bản câu hỏi #${req.params.id} thành câu #${duplicate.id}. Nhớ sửa lại nội dung bản sao.`);
+    return res.redirect(contentManagerUrl('questions', duplicate.lesson_id));
   } catch (error) {
     next(error);
   }
@@ -1244,19 +1243,21 @@ async function deleteChapter(req, res, next) {
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
-    // Ngoại lệ 10a: chương còn bài học thì không cho xóa, vì khóa ngoại khai báo
-    // ON DELETE CASCADE sẽ kéo theo bài học, câu hỏi và lịch sử làm bài.
-    const lessonCount = await Curriculum.countLessonsInChapter(chapter.id);
-    if (lessonCount > 0) {
+    // Một câu lệnh DELETE có điều kiện vừa kiểm tra vừa xóa, nên bài học mới
+    // được tạo đồng thời không thể lọt vào giữa hai thao tác và bị cascade.
+    const deleted = await Curriculum.deleteChapterIfEmpty(chapter.id);
+    if (!deleted) {
+      const lessonCount = await Curriculum.countLessonsInChapter(chapter.id);
       setFlash(
         req,
         'danger',
-        `Không thể xóa chương đang chứa ${lessonCount} bài học. Vui lòng xóa hết bài học con trước.`
+        lessonCount > 0
+          ? `Không thể xóa chương đang chứa ${lessonCount} bài học. Vui lòng xóa hết bài học con trước.`
+          : 'Chương đã được thay đổi hoặc xóa ở yêu cầu khác. Vui lòng tải lại.'
       );
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
 
-    await Curriculum.deleteChapter(chapter.id);
     setFlash(req, 'success', `Đã xóa chương "${chapter.chapter_name}".`);
     return res.redirect(curriculumUrl(chapter.grade));
   } catch (error) {
@@ -1323,19 +1324,22 @@ async function deleteLesson(req, res, next) {
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
-    // Cùng lý do như xóa chương: QuestionBank cascade theo lesson_id.
-    const questionCount = await Curriculum.countQuestionsInLesson(lesson.id);
-    if (questionCount > 0) {
+    // Khóa hàng bài học, kiểm tra câu hỏi và xóa trong cùng transaction. Ảnh
+    // trả về là ảnh thực tế ở thời điểm xóa, không phải snapshot cũ của form.
+    const deletion = await Curriculum.deleteLessonIfEmpty(lesson.id);
+    if (!deletion.deleted) {
+      const questionCount = await Curriculum.countQuestionsInLesson(lesson.id);
       setFlash(
         req,
         'danger',
-        `Không thể xóa bài học đang có ${questionCount} câu hỏi. Vui lòng xóa hết câu hỏi trong ngân hàng trước.`
+        questionCount > 0
+          ? `Không thể xóa bài học vì còn ${questionCount} câu hỏi, kể cả câu hỏi đã lưu trữ. Hệ thống giữ bài học để bảo toàn lịch sử làm bài.`
+          : 'Bài học đã được thay đổi hoặc xóa ở yêu cầu khác. Vui lòng tải lại.'
       );
       return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
     }
 
-    await Curriculum.deleteLesson(lesson.id);
-    await ImageStorageService.deleteStoredImagesIfUnreferenced(lesson.theory_cards);
+    await ImageStorageService.deleteStoredImagesIfUnreferenced(deletion.theoryCards);
     setFlash(req, 'success', `Đã xóa bài học "${lesson.lesson_name}".`);
     return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
   } catch (error) {

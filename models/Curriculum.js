@@ -122,21 +122,61 @@ async function getTheoryCounts() {
   }
 }
 
-async function updateLessonTheoryCards(lessonId, theoryCards) {
+async function updateLessonTheoryCards(
+  lessonId,
+  theoryCards,
+  {
+    expectedTheoryCards,
+    transaction = db.transaction
+  } = {}
+) {
   const normalizedCards = normalizeTheoryCards(theoryCards);
+  const hasExpectedRevision = expectedTheoryCards !== undefined;
+  const expectedCards = hasExpectedRevision
+    ? normalizeTheoryCards(expectedTheoryCards)
+    : null;
 
   try {
-    await db.query(
-      'UPDATE Lessons SET theory_cards = ? WHERE id = ?',
-      [JSON.stringify(normalizedCards), lessonId]
-    );
+    return await transaction(async (connection) => {
+      const [rows] = await connection.execute(
+        `SELECT theory_cards
+         FROM Lessons
+         WHERE id = ?
+         LIMIT 1
+         FOR UPDATE`,
+        [lessonId]
+      );
+      if (!rows[0]) return null;
+      const currentCards = normalizeTheoryCards(
+        parseJsonField(rows[0].theory_cards, [])
+      );
+      if (
+        hasExpectedRevision
+        && JSON.stringify(currentCards) !== JSON.stringify(expectedCards)
+      ) {
+        return null;
+      }
+
+      await connection.execute(
+        'UPDATE Lessons SET theory_cards = ? WHERE id = ?',
+        [JSON.stringify(normalizedCards), lessonId]
+      );
+      return normalizedCards;
+    });
   } catch (error) {
     fallbackOrThrow(error);
     const lesson = findSampleLesson(lessonId);
-    if (lesson) lesson.theory_cards = normalizedCards;
+    if (!lesson) return null;
+    if (
+      hasExpectedRevision
+      && JSON.stringify(normalizeTheoryCards(lesson.theory_cards))
+        !== JSON.stringify(expectedCards)
+    ) {
+      return null;
+    }
+    lesson.theory_cards = normalizedCards;
+    return normalizedCards;
   }
-
-  return normalizedCards;
 }
 
 function normalizeTheoryCards(cards) {
@@ -573,8 +613,15 @@ async function countLessonsInChapter(chapterId) {
   return Number(rows[0]?.total || 0);
 }
 
-async function deleteChapter(chapterId) {
-  await db.query('DELETE FROM Chapters WHERE id = ?', [Number(chapterId)]);
+async function deleteChapterIfEmpty(chapterId, { query = db.query } = {}) {
+  const result = await query(
+    `DELETE c
+     FROM Chapters c
+     LEFT JOIN Lessons l ON l.chapter_id = c.id
+     WHERE c.id = ? AND l.id IS NULL`,
+    [Number(chapterId)]
+  );
+  return Number(result.affectedRows || 0) > 0;
 }
 
 async function createLesson({ chapterId, lessonName, sortOrder }) {
@@ -603,8 +650,46 @@ async function countQuestionsInLesson(lessonId) {
   return Number(rows[0]?.total || 0);
 }
 
-async function deleteLesson(lessonId) {
-  await db.query('DELETE FROM Lessons WHERE id = ?', [Number(lessonId)]);
+async function deleteLessonIfEmpty(
+  lessonId,
+  { transaction = db.transaction } = {}
+) {
+  return transaction(async (connection) => {
+    const [lessonRows] = await connection.execute(
+      `SELECT theory_cards
+       FROM Lessons
+       WHERE id = ?
+       LIMIT 1
+       FOR UPDATE`,
+      [Number(lessonId)]
+    );
+    if (!lessonRows[0]) {
+      return { deleted: false, theoryCards: [] };
+    }
+
+    const [questionRows] = await connection.execute(
+      `SELECT id
+       FROM QuestionBank
+       WHERE lesson_id = ?
+       LIMIT 1
+       FOR SHARE`,
+      [Number(lessonId)]
+    );
+    if (questionRows.length > 0) {
+      return { deleted: false, theoryCards: [] };
+    }
+
+    const [result] = await connection.execute(
+      'DELETE FROM Lessons WHERE id = ?',
+      [Number(lessonId)]
+    );
+    return {
+      deleted: Number(result.affectedRows || 0) > 0,
+      theoryCards: normalizeTheoryCards(
+        parseJsonField(lessonRows[0].theory_cards, [])
+      )
+    };
+  });
 }
 
 module.exports = {
@@ -625,9 +710,9 @@ module.exports = {
   createChapter,
   updateChapter,
   countLessonsInChapter,
-  deleteChapter,
+  deleteChapterIfEmpty,
   createLesson,
   updateLesson,
   countQuestionsInLesson,
-  deleteLesson
+  deleteLessonIfEmpty
 };

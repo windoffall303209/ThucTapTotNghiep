@@ -252,7 +252,7 @@ test('controller dọn ảnh khi thay nội dung nhưng giữ ảnh của câu h
   );
   assert.match(source, /differenceImageDescriptors\(question, payload\)/);
   assert.match(source, /differenceImageDescriptors\(lesson\.theory_cards, savedCards\)/);
-  assert.match(source, /deleteStoredImagesIfUnreferenced\(lesson\.theory_cards\)/);
+  assert.match(source, /deleteStoredImagesIfUnreferenced\(deletion\.theoryCards\)/);
   const theoryBuilder = source.slice(
     source.indexOf('async function buildSingleTheoryCard'),
     source.indexOf('function hasTheoryCardContent')

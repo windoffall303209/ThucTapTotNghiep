@@ -30,6 +30,21 @@ function normalizeQuestion(row) {
   };
 }
 
+function questionRevision(value) {
+  const question = normalizeQuestion(value);
+  if (!question) return '';
+  return JSON.stringify({
+    lesson_id: Number(question.lesson_id),
+    question_type: String(question.question_type || ''),
+    difficulty: String(question.difficulty || ''),
+    layout_template: question.layout_template,
+    content: question.content,
+    choices: question.choices,
+    correct_answer: String(question.correct_answer || ''),
+    explanation: question.explanation
+  });
+}
+
 function isActiveQuestion(question) {
   return Number(question?.is_active ?? 1) === 1;
 }
@@ -645,9 +660,32 @@ async function getQuestionCountsByLesson() {
   }
 }
 
-async function updateQuestion(id, payload) {
+async function updateQuestion(
+  id,
+  payload,
+  {
+    expectedQuestion,
+    transaction = db.transaction
+  } = {}
+) {
   try {
-    return await db.transaction(async (connection) => {
+    return await transaction(async (connection) => {
+      const [currentRows] = await connection.execute(
+        `SELECT *
+         FROM QuestionBank
+         WHERE id = ? AND is_active = 1
+         LIMIT 1
+         FOR UPDATE`,
+        [id]
+      );
+      if (!currentRows[0]) return null;
+      if (
+        expectedQuestion
+        && questionRevision(currentRows[0]) !== questionRevision(expectedQuestion)
+      ) {
+        return null;
+      }
+
       const [result] = await connection.execute(
         `UPDATE QuestionBank
          SET lesson_id = ?,
@@ -696,6 +734,12 @@ async function updateQuestion(id, payload) {
       (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
     );
     if (index === -1) return null;
+    if (
+      expectedQuestion
+      && questionRevision(sampleData.questions[index]) !== questionRevision(expectedQuestion)
+    ) {
+      return null;
+    }
 
     sampleData.questions[index] = {
       ...sampleData.questions[index],
@@ -741,58 +785,146 @@ async function deleteQuestion(id) {
   }
 }
 
+async function insertQuestionWithConnection(connection, payload) {
+  const [result] = await connection.execute(
+    `INSERT INTO QuestionBank
+      (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
+     VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
+    [
+      payload.lesson_id,
+      payload.question_type,
+      payload.difficulty,
+      payload.layout_template,
+      JSON.stringify(payload.content),
+      JSON.stringify(payload.choices),
+      payload.correct_answer,
+      JSON.stringify(payload.explanation)
+    ]
+  );
+
+  const questionId = result.insertId;
+  for (const misconception of payload.misconceptions || []) {
+    await connection.execute(
+      `INSERT INTO CommonMisconceptions
+        (question_id, distractor_key, misconception_name, explanation)
+       VALUES (?, ?, ?, ?)`,
+      [
+        questionId,
+        misconception.distractor_key,
+        misconception.misconception_name,
+        misconception.explanation
+      ]
+    );
+  }
+  return { ...payload, id: questionId, is_active: 1 };
+}
+
+function createFallbackQuestion(payload) {
+  const question = {
+    ...payload,
+    id: Math.max(...sampleData.questions.map((item) => item.id), 1000) + 1,
+    is_active: 1
+  };
+  sampleData.questions.push(question);
+  for (const misconception of payload.misconceptions || []) {
+    sampleData.misconceptions.push({
+      id: sampleData.misconceptions.length + 1,
+      question_id: question.id,
+      ...misconception
+    });
+  }
+  return question;
+}
+
 async function createQuestion(payload) {
   try {
-    return await db.transaction(async (connection) => {
-      const [result] = await connection.execute(
-        `INSERT INTO QuestionBank
-          (lesson_id, concept_id, question_type, difficulty, layout_template, content, choices, correct_answer, explanation, is_active)
-         VALUES (?, NULL, ?, ?, ?, CAST(? AS JSON), CAST(? AS JSON), ?, CAST(? AS JSON), 1)`,
-        [
-          payload.lesson_id,
-          payload.question_type,
-          payload.difficulty,
-          payload.layout_template,
-          JSON.stringify(payload.content),
-          JSON.stringify(payload.choices),
-          payload.correct_answer,
-          JSON.stringify(payload.explanation)
-        ]
+    return await db.transaction(
+      (connection) => insertQuestionWithConnection(connection, payload)
+    );
+  } catch (error) {
+    fallbackOrThrow(error);
+    return createFallbackQuestion(payload);
+  }
+}
+
+async function duplicateQuestion(
+  sourceId,
+  {
+    transaction = db.transaction,
+    copySuffix = ' (bản sao — cần sửa lại)'
+  } = {}
+) {
+  try {
+    return await transaction(async (connection) => {
+      const [sourceRows] = await connection.execute(
+        `SELECT *
+         FROM QuestionBank
+         WHERE id = ? AND is_active = 1
+         LIMIT 1
+         FOR SHARE`,
+        [Number(sourceId)]
       );
+      const source = normalizeQuestion(sourceRows[0]);
+      if (!source) return null;
 
-      const questionId = result.insertId;
-      for (const misconception of payload.misconceptions || []) {
-        await connection.execute(
-          `INSERT INTO CommonMisconceptions
-            (question_id, distractor_key, misconception_name, explanation)
-           VALUES (?, ?, ?, ?)`,
-          [
-            questionId,
-            misconception.distractor_key,
-            misconception.misconception_name,
-            misconception.explanation
-          ]
-        );
-      }
-
-      return { ...payload, id: questionId, is_active: 1 };
+      const [misconceptions] = await connection.execute(
+        `SELECT distractor_key, misconception_name, explanation
+         FROM CommonMisconceptions
+         WHERE question_id = ?
+         ORDER BY id
+         FOR SHARE`,
+        [Number(sourceId)]
+      );
+      const payload = {
+        lesson_id: source.lesson_id,
+        question_type: source.question_type,
+        difficulty: source.difficulty,
+        layout_template: source.layout_template,
+        content: {
+          ...source.content,
+          text: `${String(source.content?.text || '').trim()}${copySuffix}`.trim()
+        },
+        choices: source.choices || [],
+        correct_answer: source.correct_answer,
+        explanation: source.explanation || {},
+        misconceptions: misconceptions.map((item) => ({
+          distractor_key: item.distractor_key,
+          misconception_name: item.misconception_name,
+          explanation: item.explanation
+        }))
+      };
+      return insertQuestionWithConnection(connection, payload);
     });
   } catch (error) {
     fallbackOrThrow(error);
-    const question = {
-      ...payload,
-      id: Math.max(...sampleData.questions.map((item) => item.id), 1000) + 1,
-      is_active: 1
-    };
-    sampleData.questions.push(question);
-    for (const misconception of payload.misconceptions || []) {
-      sampleData.misconceptions.push({
-        id: sampleData.misconceptions.length + 1,
-        question_id: question.id,
-        ...misconception
-      });
-    }
-    return question;
+    const source = normalizeQuestion(
+      sampleData.questions.find(
+        (question) => isActiveQuestion(question)
+          && Number(question.id) === Number(sourceId)
+      )
+    );
+    if (!source) return null;
+    const misconceptions = sampleData.misconceptions
+      .filter((item) => Number(item.question_id) === Number(sourceId))
+      .map((item) => ({
+        distractor_key: item.distractor_key,
+        misconception_name: item.misconception_name,
+        explanation: item.explanation
+      }));
+    return createFallbackQuestion({
+      lesson_id: source.lesson_id,
+      question_type: source.question_type,
+      difficulty: source.difficulty,
+      layout_template: source.layout_template,
+      content: {
+        ...source.content,
+        text: `${String(source.content?.text || '').trim()}${copySuffix}`.trim()
+      },
+      choices: source.choices || [],
+      correct_answer: source.correct_answer,
+      explanation: source.explanation || {},
+      misconceptions
+    });
   }
 }
 
@@ -844,6 +976,8 @@ module.exports = {
   getRecentQuestions,
   getQuestionCountsByLesson,
   createQuestion,
+  duplicateQuestion,
+  questionRevision,
   updateQuestion,
   deleteQuestion,
   recordAnswer
