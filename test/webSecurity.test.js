@@ -216,6 +216,30 @@ test('CSRF chặn request thiếu token/cross-site và CSP được bật', asyn
   });
   assert.equal(crossSite.status, 403);
 
+  const opaqueLoopbackOrigin = await fetch(`${origin}/auth/login`, {
+    method: 'POST',
+    redirect: 'manual',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Cookie: sessionCookie,
+      Origin: 'null'
+    },
+    body: new URLSearchParams({ _csrf: csrfToken, username: '', password: '' })
+  });
+  assert.equal(opaqueLoopbackOrigin.status, 302);
+
+  const opaqueOriginMissingToken = await fetch(`${origin}/auth/login`, {
+    method: 'POST',
+    redirect: 'manual',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Cookie: sessionCookie,
+      Origin: 'null'
+    },
+    body: new URLSearchParams({ username: '', password: '' })
+  });
+  assert.equal(opaqueOriginMissingToken.status, 403);
+
   const valid = await fetch(`${origin}/auth/login`, {
     method: 'POST',
     redirect: 'manual',

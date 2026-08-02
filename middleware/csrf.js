@@ -17,7 +17,11 @@ function csrfProtection(req, res, next) {
 
   const expectedOrigin = requestOrigin(req);
   const suppliedOrigin = req.get('origin');
-  if (suppliedOrigin && suppliedOrigin !== expectedOrigin) {
+  if (
+    suppliedOrigin
+    && suppliedOrigin !== expectedOrigin
+    && !allowsOpaqueLoopbackOrigin(req, suppliedOrigin)
+  ) {
     return rejectCsrf(req, res, 'CROSS_SITE_ORIGIN');
   }
 
@@ -42,6 +46,15 @@ function csrfProtection(req, res, next) {
   }
 
   return rejectCsrf(req, res, 'INVALID_CSRF_TOKEN');
+}
+
+// Trình duyệt nhúng có thể sandbox tài liệu local và gửi Origin: null cho form
+// POST. Chỉ nới kiểm tra origin khi chạy development trên loopback; request vẫn
+// phải mang đúng CSRF token của phiên ở bước tokensMatch bên dưới.
+function allowsOpaqueLoopbackOrigin(req, suppliedOrigin) {
+  if (process.env.NODE_ENV === 'production' || suppliedOrigin !== 'null') return false;
+  const hostname = String(req.hostname || '').toLowerCase();
+  return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1';
 }
 
 function requestOrigin(req) {
@@ -90,6 +103,7 @@ function requestWantsJson(req) {
 
 module.exports = {
   csrfProtection,
+  allowsOpaqueLoopbackOrigin,
   requestOrigin,
   tokensMatch
 };
