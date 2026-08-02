@@ -417,3 +417,30 @@ test('phản hồi AI trong bài lý thuyết được công bố cho trình đ�
     /button\.removeAttribute\('aria-busy'\)/
   ]);
 });
+
+test('ảnh minh họa câu hỏi được thu gọn và có thể mở lớn', () => {
+  const practice = read('views/student/practice.ejs');
+  const review = read('views/student/session-review.ejs');
+  const practiceJs = read('public/js/student/practice.js');
+  const viewerJs = read('public/js/student/question-image-viewer.js');
+  const viewerCss = read('public/css/student/question-image-viewer.css');
+
+  [practice, review].forEach((source) => {
+    assertContainsAll(source, [
+      /\/css\/student\/question-image-viewer\.css/,
+      /\/js\/student\/question-image-viewer\.js/
+    ]);
+  });
+  assert.match(practiceJs, /StudentQuestionImages\?\.enhance\(app\)/);
+  assertContainsAll(viewerJs, [
+    /querySelectorAll\('\.question-content img:not\(\[data-question-image-zoom\]\)'\)/,
+    /setAttribute\('aria-haspopup', 'dialog'\)/,
+    /event\.key !== 'Enter' && event\.key !== ' '/,
+    /dialog\.showModal\(\)/
+  ]);
+  assertContainsAll(viewerCss, [
+    /max-height:\s*min\(34vh, 320px\)/,
+    /\.question-image-viewer::backdrop/,
+    /cursor:\s*zoom-in/
+  ]);
+});

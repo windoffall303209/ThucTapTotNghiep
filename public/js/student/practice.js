@@ -268,6 +268,8 @@
       </article>
     `;
 
+    window.StudentQuestionImages?.enhance(app);
+
     app.querySelectorAll('.answer-choice').forEach((button) => {
       button.addEventListener('click', () => {
         if (state.answered || isAnswerPending()) return;
