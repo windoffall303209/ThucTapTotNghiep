@@ -28,7 +28,7 @@ test('metadata lựa chọn đề chỉ nhận phiên bản, seed và object h�
 
 test('schema và migration có đủ metadata, mặc định migration chỉ preflight', () => {
   const schema = read('database/database_schema.sql');
-  const migration = read('scripts/apply_selection_metadata.js');
+  const migration = read('migrations/20260803_add_practice_selection_metadata.js');
   const packageJson = JSON.parse(read('package.json'));
 
   assert.match(schema, /selection_version VARCHAR\(32\) NULL/);
@@ -38,6 +38,6 @@ test('schema và migration có đủ metadata, mặc định migration chỉ pre
   assert.match(migration, /ALTER TABLE PracticeSessions ADD COLUMN/);
   assert.equal(
     packageJson.scripts['db:selection-metadata'],
-    'node scripts/apply_selection_metadata.js'
+    'node migrations/20260803_add_practice_selection_metadata.js'
   );
 });

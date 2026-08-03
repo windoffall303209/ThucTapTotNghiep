@@ -97,6 +97,11 @@ npm run db:runtime-storage
 npm run db:ai-log-retention
 npm run db:ai-log-retention -- --apply
 npm run db:ai-log-retention
+
+# 4. Metadata kiểm toán cho thuật toán tạo đề
+npm run db:selection-metadata
+npm run db:selection-metadata -- --apply
+npm run db:selection-metadata
 ```
 
 Lần chạy không có `--apply` là preflight read-only. `db:session-integrity -- --apply` tự tạo thêm bản sao JSON của dữ liệu bị tác động trong `tmp/session-integrity-backup-*.json`; file này phục vụ kiểm tra hoặc khôi phục có chọn lọc, không thay thế full database dump.
@@ -105,7 +110,7 @@ Migration session integrity không tự ghép câu mới vào phiên cũ đã m�
 
 `db:ai-log-retention` tạo các index cần thiết, xóa nội dung hội thoại khỏi log đã bị chính sách chặn và xóa log quá hạn theo `ai_log_retention_days` (1–365 ngày, mặc định 90). Sau lần migration đầu, lập lịch chạy `npm run db:ai-log-retention -- --apply` hằng ngày hoặc hằng tuần; luôn giữ full backup và chạy lại preflight để kiểm tra kết quả.
 
-`database/database_schema.sql` đã chứa schema mới cho cài đặt sạch. Dù vậy, vẫn nên chạy cả ba preflight trên để xác nhận database khớp với phiên bản ứng dụng trước khi khởi động.
+`database/database_schema.sql` đã chứa schema mới cho cài đặt sạch. Dù vậy, vẫn nên chạy tất cả preflight trên để xác nhận database khớp với phiên bản ứng dụng trước khi khởi động. Các migration mới được lưu trong thư mục `migrations/`; `scripts/` chỉ giữ các công cụ vận hành và dữ liệu cũ chưa được tái cấu trúc.
 
 ## Cấu hình MySQL TLS
 

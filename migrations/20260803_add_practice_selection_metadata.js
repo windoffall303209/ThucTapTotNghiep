@@ -56,7 +56,9 @@ async function main() {
 
   console.log(JSON.stringify({ mode: 'preflight', ...(await getState()) }, null, 2));
   if (!args.includes(APPLY_FLAG)) {
-    console.log(`Dùng "node scripts/apply_selection_metadata.js ${APPLY_FLAG}" để bổ sung metadata.`);
+    console.log(
+      `Dùng "node migrations/20260803_add_practice_selection_metadata.js ${APPLY_FLAG}" để bổ sung metadata.`
+    );
     return;
   }
 
