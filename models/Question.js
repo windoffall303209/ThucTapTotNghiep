@@ -248,6 +248,8 @@ async function getQuestionCandidates(options = {}) {
       `SELECT
           q.id,
           q.lesson_id,
+          q.concept_id,
+          q.difficulty,
           l.chapter_id,
           l.lesson_name,
           c.chapter_name,
@@ -281,6 +283,8 @@ async function getQuestionCandidates(options = {}) {
               .map((question) => ({
                 id: Number(question.id),
                 lesson_id: Number(lesson.id),
+                concept_id: question.concept_id || null,
+                difficulty: question.difficulty,
                 chapter_id: Number(chapter.id),
                 lesson_name: lesson.lesson_name,
                 chapter_name: chapter.chapter_name,
@@ -289,6 +293,76 @@ async function getQuestionCandidates(options = {}) {
               }))
           )
       );
+  }
+}
+
+async function getRecentQuestionIds(options = {}) {
+  const studentId = Number(options.studentId);
+  const grade = Number(options.grade);
+  if (!studentId || !isSupportedGrade(grade)) return [];
+
+  const lessonId = Number(options.lessonId || 0);
+  const chapterId = Number(options.chapterId || 0);
+  const semester = [1, 2].includes(Number(options.semester))
+    ? Number(options.semester)
+    : null;
+  const limit = Math.min(Math.max(Number(options.limit) || 5, 1), 100);
+  const conditions = ['sl.student_id = ?', 'c.grade = ?'];
+  const params = [studentId, grade];
+  if (lessonId > 0) {
+    conditions.push('l.id = ?');
+    params.push(lessonId);
+  }
+  if (chapterId > 0) {
+    conditions.push('c.id = ?');
+    params.push(chapterId);
+  }
+  if (semester) {
+    conditions.push('c.semester = ?');
+    params.push(semester);
+  }
+
+  try {
+    const rows = await db.query(
+      `SELECT q.id, MAX(sl.created_at) AS last_answered_at
+       FROM StudentLogs sl
+       JOIN QuestionBank q ON q.id = sl.question_id
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE ${conditions.join(' AND ')}
+       GROUP BY q.id
+       ORDER BY last_answered_at DESC, q.id DESC
+       LIMIT ${limit}`,
+      params
+    );
+    return rows.map((row) => Number(row.id)).filter(Boolean);
+  } catch (error) {
+    fallbackOrThrow(error);
+    const allowedQuestionIds = new Set(
+      sampleData.chapters
+        .filter((chapter) => (
+          Number(chapter.grade) === grade
+          && (!chapterId || Number(chapter.id) === chapterId)
+          && (!semester || Number(chapter.semester) === semester)
+        ))
+        .flatMap((chapter) => chapter.lessons)
+        .filter((lesson) => !lessonId || Number(lesson.id) === lessonId)
+        .flatMap((lesson) => sampleData.questions
+          .filter((question) => Number(question.lesson_id) === Number(lesson.id))
+          .map((question) => Number(question.id)))
+    );
+    return sampleData.studentLogs
+      .filter((log) => (
+        Number(log.student_id) === studentId
+        && allowedQuestionIds.has(Number(log.question_id))
+      ))
+      .sort((left, right) => (
+        new Date(right.created_at || 0) - new Date(left.created_at || 0)
+        || Number(right.id || 0) - Number(left.id || 0)
+      ))
+      .map((log) => Number(log.question_id))
+      .filter((id, index, ids) => ids.indexOf(id) === index)
+      .slice(0, limit);
   }
 }
 
@@ -962,6 +1036,7 @@ module.exports = {
   getQuestionsByLesson,
   getTheoryReviewQuestions,
   getQuestionCandidates,
+  getRecentQuestionIds,
   getQuestionPageByLesson,
   searchQuestions,
   getDifficultyStats,
