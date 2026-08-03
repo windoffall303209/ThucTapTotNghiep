@@ -30,6 +30,8 @@
     "db:selection-metadata": "node migrations/20260803_add_practice_selection_metadata.js",
     "db:questions-report": "node scripts/report_question_database.js",
     "db:session-report": "node scripts/report_practice_session.js",
+    "practice:audit-selector": "node scripts/audit_practice_selector.js",
+    "questions:calibrate-report": "node scripts/report_difficulty_calibration.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",

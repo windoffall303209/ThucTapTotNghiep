@@ -112,6 +112,15 @@ Migration session integrity không tự ghép câu mới vào phiên cũ đã m�
 
 `database/database_schema.sql` đã chứa schema mới cho cài đặt sạch. Dù vậy, vẫn nên chạy tất cả preflight trên để xác nhận database khớp với phiên bản ứng dụng trước khi khởi động. Các migration mới được lưu trong thư mục `migrations/`; `scripts/` chỉ giữ các công cụ vận hành và dữ liệu cũ chưa được tái cấu trúc.
 
+Audit thuật toán tạo đề và báo cáo hiệu chỉnh độ khó đều chỉ đọc dữ liệu:
+
+```powershell
+npm run practice:audit-selector -- --runs=25
+npm run questions:calibrate-report
+```
+
+Audit mô phỏng nhiều seed cho lớp 1–5 theo chương, học kỳ và cả năm. Báo cáo độ khó chỉ cảnh báo câu đã có ít nhất 30 lượt làm; hai lệnh không tự sửa nhãn hoặc nội dung câu hỏi.
+
 ## Cấu hình MySQL TLS
 
 Các mode được hỗ trợ:
