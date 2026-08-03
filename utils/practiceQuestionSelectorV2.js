@@ -152,6 +152,9 @@ function attemptSelection(pool, options) {
     eligible = eligible.sort((left, right) => compareCandidates(left, right, {
       chapterCounts,
       lessonCounts,
+      difficultyCounts,
+      targets: options.targets,
+      enforceDifficulty: options.enforceDifficulty,
       weakLessonIds: options.weakLessonIds,
       weakStillNeeded
     }));
@@ -173,6 +176,14 @@ function compareCandidates(left, right, context) {
   const leftWeak = context.weakLessonIds.has(left.lesson_id) ? 0 : 1;
   const rightWeak = context.weakLessonIds.has(right.lesson_id) ? 0 : 1;
   if (context.weakStillNeeded > 0 && leftWeak !== rightWeak) return leftWeak - rightWeak;
+
+  if (context.enforceDifficulty && left.difficulty !== right.difficulty) {
+    const leftRemaining = context.targets[left.difficulty]
+      - context.difficultyCounts[left.difficulty];
+    const rightRemaining = context.targets[right.difficulty]
+      - context.difficultyCounts[right.difficulty];
+    if (leftRemaining !== rightRemaining) return leftRemaining - rightRemaining;
+  }
 
   const chapterDifference = (context.chapterCounts.get(left.chapter_id) || 0)
     - (context.chapterCounts.get(right.chapter_id) || 0);

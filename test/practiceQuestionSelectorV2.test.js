@@ -128,3 +128,21 @@ test('PRNG có seed luôn trả chuỗi số xác định trong khoảng hợp l
   assert.deepEqual(leftValues, rightValues);
   assert.ok(leftValues.every((value) => value >= 0 && value < 1));
 });
+
+test('giữ đúng quota khi mỗi bài chỉ có một câu của từng độ khó', () => {
+  const candidates = buildCandidates({
+    chapters: 1,
+    lessonsPerChapter: 8,
+    questionsPerDifficulty: 1
+  });
+  const result = selectQuestionsV2(candidates, {
+    count: 15,
+    mode: 'CHAPTER',
+    maxPerLesson: 2,
+    seed: '6000000000000001'
+  });
+
+  assert.deepEqual(countBy(result.questions, 'difficulty'), DIFFICULTY_TARGETS[15]);
+  assert.deepEqual(result.selection.metadata.fallbackReasons, []);
+  assert.ok(Math.max(...Object.values(countBy(result.questions, 'lesson_id'))) <= 2);
+});
