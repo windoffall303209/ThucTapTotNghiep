@@ -94,7 +94,10 @@ async function verifySchemaReady() {
       'expires_at',
       'completion_reason',
       'active_key',
-      'ai_hint_count'
+      'ai_hint_count',
+      'selection_version',
+      'selection_seed',
+      'selection_metadata'
     ]],
     ['PracticeSessionQuestions', [
       'practice_session_id',
@@ -143,7 +146,8 @@ async function createSession({
   mode,
   title,
   questionIds,
-  replaceActive = false
+  replaceActive = false,
+  selection = null
 }) {
   await ensureSchema();
   const ids = questionIds.map(Number).filter(Boolean);
@@ -175,6 +179,7 @@ async function createSession({
     semester: normalizedSemester,
     mode
   });
+  const selectionAudit = normalizeSelectionAudit(selection);
 
   try {
     const sessionId = await db.transaction(async (connection) => {
@@ -203,10 +208,11 @@ async function createSession({
         `INSERT INTO PracticeSessions
           (student_id, lesson_id, chapter_id, scope_semester, session_mode, title,
            question_ids, question_count, duration_seconds, expires_at,
-           current_index, status, completion_reason, active_key, ai_hint_count)
+           current_index, status, completion_reason, active_key, ai_hint_count,
+           selection_version, selection_seed, selection_metadata)
          VALUES (?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?,
            CASE WHEN ? IS NULL THEN NULL ELSE DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND) END,
-           0, 'IN_PROGRESS', NULL, ?, 0)`,
+           0, 'IN_PROGRESS', NULL, ?, 0, ?, ?, CAST(? AS JSON))`,
         [
           studentId,
           lessonId,
@@ -219,7 +225,10 @@ async function createSession({
           durationSeconds,
           durationSeconds,
           durationSeconds,
-          activeKey
+          activeKey,
+          selectionAudit.version,
+          selectionAudit.seed,
+          JSON.stringify(selectionAudit.metadata)
         ]
       );
       for (const [position, question] of questionSnapshots.entries()) {
@@ -252,6 +261,9 @@ async function createSession({
       status: 'IN_PROGRESS',
       completion_reason: null,
       active_key: activeKey,
+      selection_version: selectionAudit.version,
+      selection_seed: selectionAudit.seed,
+      selection_metadata: selectionAudit.metadata,
       started_at: new Date(),
       expires_at: durationSeconds ? new Date(Date.now() + durationSeconds * 1000) : null,
       completed_at: null
@@ -581,9 +593,21 @@ function normalizeSession(row) {
     answered_count: answeredCount,
     correct_count: Number(row.correct_count || 0),
     chat_count: Number(row.chat_count || 0),
+    selection_metadata: parseJsonField(row.selection_metadata, {}),
     duration_seconds: Number(row.duration_seconds) > 0 ? Number(row.duration_seconds) : null,
     question_count: Math.max(Number(row.question_count || 0), questionIds.length, answeredCount)
   };
+}
+
+function normalizeSelectionAudit(selection) {
+  const source = selection && typeof selection === 'object' ? selection : {};
+  const version = String(source.version || '').trim().slice(0, 32) || null;
+  const seedValue = String(source.seed || '').trim();
+  const seed = /^[a-f0-9]{16}$/i.test(seedValue) ? seedValue.toLowerCase() : null;
+  const metadata = source.metadata && typeof source.metadata === 'object' && !Array.isArray(source.metadata)
+    ? source.metadata
+    : {};
+  return { version, seed, metadata };
 }
 
 async function getSessionQuestions(session) {
@@ -724,6 +748,7 @@ module.exports = {
   DURATION_SECONDS_BY_QUESTION_COUNT,
   buildActiveSessionKey,
   createQuestionSnapshot,
+  normalizeSelectionAudit,
   ensureSchema,
   createSession,
   getActiveLessonSession,

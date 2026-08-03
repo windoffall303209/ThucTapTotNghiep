@@ -27,6 +27,7 @@
     "questions:validate-all": "node scripts/import_grade1_question_bank_tex.js --validate-only && node scripts/import_grade2_question_bank_tex.js --validate-only && node scripts/import_grade3_question_bank_tex.js --validate-only && node scripts/import_grade4_question_bank_tex.js --validate-only && node scripts/import_grade5_question_bank_tex.js --validate-only",
     "db:chapter-semesters": "node scripts/apply_chapter_semesters.js",
     "db:practice-scopes": "node scripts/apply_practice_session_scopes.js",
+    "db:selection-metadata": "node scripts/apply_selection_metadata.js",
     "db:questions-report": "node scripts/report_question_database.js",
     "db:session-report": "node scripts/report_practice_session.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
