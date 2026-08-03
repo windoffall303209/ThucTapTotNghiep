@@ -4,7 +4,9 @@ const assert = require('node:assert/strict');
 const {
   calculateLessonMastery,
   buildLessonMasteryMap,
-  getWeakLessonIds
+  getWeakLessonIds,
+  buildGradeProgress,
+  findWeakestLesson
 } = require('../services/LearningMasteryService');
 
 function attempts(values, { lessonId = 10, misconceptions = [] } = {}) {
@@ -63,4 +65,27 @@ test('gom năng lực theo bài và xếp bài yếu nhất lên trước trong 
 
 test('bài chưa có lượt làm có trạng thái not_started khi tính trực tiếp', () => {
   assert.equal(calculateLessonMastery([]).status, 'not_started');
+});
+
+test('tiến độ và gợi ý trên bảng học tập dùng đúng điều kiện hoàn thành mới', () => {
+  const chapters = [{
+    chapter_name: 'Chương 1',
+    lessons: [
+      { id: 1, lesson_name: 'Bài 1' },
+      { id: 2, lesson_name: 'Bài 2' },
+      { id: 3, lesson_name: 'Bài 3' }
+    ]
+  }];
+  const mastery = {
+    1: { status: 'completed', weakness_score: 0.1 },
+    2: { status: 'needs_review', weakness_score: 0.4 },
+    3: { status: 'needs_review', weakness_score: 0.8 }
+  };
+
+  assert.deepEqual(buildGradeProgress(chapters, mastery), {
+    total: 3,
+    completed: 1,
+    percent: 33
+  });
+  assert.equal(findWeakestLesson(chapters, mastery).id, 3);
 });

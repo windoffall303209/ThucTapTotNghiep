@@ -8,6 +8,8 @@ const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
 const PracticeSubmissionService = require('../services/PracticeSubmissionService');
 const AIQuotaService = require('../services/AIQuotaService');
+const LearningMasteryService = require('../services/LearningMasteryService');
+const PracticeGenerationService = require('../services/PracticeGenerationService');
 const { setFlash } = require('../utils/flash');
 const { isSupportedGrade } = require('../config/grades');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
@@ -17,11 +19,6 @@ const {
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds
 } = require('../utils/answerValidation');
-const {
-  selectRandomQuestions,
-  selectBalancedQuestions
-} = require('../utils/practiceQuestionSelector');
-
 const PRACTICE_LIMITS = [15, 20];
 const THEORY_REVIEW_COUNT = 8;
 const LESSON_PRACTICE_COUNT = 5;
@@ -29,13 +26,13 @@ const LESSON_PRACTICE_COUNT = 5;
 async function dashboard(req, res, next) {
   try {
     const student = req.auth;
-    const [chapters, progress, recommendation, lessonProgress, recentAttempts] = await Promise.all([
+    const [chapters, lessonProgress, recentAttempts] = await Promise.all([
       Curriculum.getCurriculumByGrade(student.current_grade),
-      Curriculum.getProgress(student.id, student.current_grade),
-      Curriculum.getRecommendation(student.id),
-      Curriculum.getLessonProgressByGrade(student.id, student.current_grade),
+      LearningMasteryService.getMasteryByGrade(student.id, student.current_grade),
       Curriculum.getRecentAttempts(student.id)
     ]);
+    const progress = LearningMasteryService.buildGradeProgress(chapters, lessonProgress);
+    const recommendation = LearningMasteryService.findWeakestLesson(chapters, lessonProgress);
 
     res.render('student/dashboard', {
       title: 'Bảng học tập',
@@ -112,13 +109,7 @@ async function practice(req, res, next) {
       }),
       Question.getTheoryReviewQuestions(lessonItem.id, THEORY_REVIEW_COUNT)
     ]);
-    const reviewIds = reviewQuestions.map((question) => question.id);
-    // Bài nào có ít câu hơn phần ôn nhanh (8 câu) thì loại trừ hết sẽ không còn
-    // gì để luyện. Khi đó dùng lại chính các câu đó, thà cho học sinh làm lại
-    // còn hơn mở ra một trang trống.
-    const outsideReview = candidates.filter((question) => !reviewIds.includes(question.id));
-    const pool = outsideReview.length > 0 ? outsideReview : candidates;
-    const targetCount = Math.min(LESSON_PRACTICE_COUNT, pool.length);
+    const targetCount = Math.min(LESSON_PRACTICE_COUNT, candidates.length);
 
     let session = targetCount > 0
       ? await PracticeSession.getActiveLessonSession(student.id, lessonItem.id)
@@ -135,14 +126,22 @@ async function practice(req, res, next) {
       if (session) {
         await PracticeSession.completeSession(student.id, session.id, 'CONTENT_CHANGED');
       }
-      const questions = selectRandomQuestions(pool, targetCount);
+      const generated = await PracticeGenerationService.generateLessonSelection({
+        studentId: student.id,
+        grade: student.current_grade,
+        lessonId: lessonItem.id,
+        candidates,
+        reviewQuestions,
+        count: targetCount
+      });
       session = await PracticeSession.createSession({
         studentId: student.id,
         lessonId: lessonItem.id,
         chapterId: lessonItem.chapter_id,
         mode: 'LESSON',
         title: `Luyện theo bài: ${lessonItem.lesson_name}`,
-        questionIds: questions.map((question) => question.id)
+        questionIds: generated.questions.map((question) => question.id),
+        selection: generated.selection
       });
       sessionQuestions = await PracticeSession.getSessionQuestions(session);
     }
@@ -183,10 +182,17 @@ async function reviewLesson(req, res, next) {
       });
     }
 
-    const questions = await Question.getTheoryReviewQuestions(
+    const reviewQuestions = await Question.getTheoryReviewQuestions(
       lessonItem.id,
       THEORY_REVIEW_COUNT
     );
+    const generated = PracticeGenerationService.generateReviewSelection({
+      questions: reviewQuestions,
+      lessonId: lessonItem.id,
+      chapterId: lessonItem.chapter_id,
+      count: THEORY_REVIEW_COUNT
+    });
+    const questions = generated.questions;
     let session = await PracticeSession.getActiveLessonSession(
       student.id,
       lessonItem.id,
@@ -209,7 +215,8 @@ async function reviewLesson(req, res, next) {
         chapterId: lessonItem.chapter_id,
         mode: 'REVIEW',
         title: `Ôn sau lý thuyết: ${lessonItem.lesson_name}`,
-        questionIds: questions.map((question) => question.id)
+        questionIds: questions.map((question) => question.id),
+        selection: generated.selection
       });
       sessionQuestions = await PracticeSession.getSessionQuestions(session);
     }
@@ -376,9 +383,17 @@ async function startExam(req, res, next) {
         : `Luyện tập tổng hợp cả năm · ${count} câu`;
     }
 
-    const selectedCandidates = selectBalancedQuestions(candidates, count);
+    const generated = await PracticeGenerationService.generateScopedSelection({
+      studentId: req.auth.id,
+      grade,
+      chapterId: sessionData.chapterId,
+      semester: sessionData.semester,
+      mode: sessionData.mode,
+      count,
+      candidates
+    });
     const questions = await Question.getQuestionsByIds(
-      selectedCandidates.map((question) => question.id)
+      generated.questions.map((question) => question.id)
     );
 
     if (questions.length === 0) {
@@ -394,7 +409,8 @@ async function startExam(req, res, next) {
       mode: sessionData.mode,
       title: sessionData.title.replace(`${count} câu`, `${questions.length} câu`),
       questionIds: questions.map((question) => question.id),
-      replaceActive: true
+      replaceActive: true,
+      selection: generated.selection
     });
 
     return res.redirect(`/student/sessions/${session.id}/practice`);
@@ -513,14 +529,17 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
         id: lesson.id,
         lesson_name: lesson.lesson_name,
         chapter_name: chapter.chapter_name,
-        status: (lessonProgress[lesson.id] || {}).status || 'not_started'
+        status: (lessonProgress[lesson.id] || {}).status || 'not_started',
+        weakness_score: Number((lessonProgress[lesson.id] || {}).weakness_score || 0)
       });
     });
   });
 
   if (allLessons.length === 0) return null;
 
-  const needsReview = allLessons.find((lesson) => lesson.status === 'needs_review');
+  const needsReview = allLessons
+    .filter((lesson) => lesson.status === 'needs_review')
+    .sort((left, right) => right.weakness_score - left.weakness_score)[0];
   if (needsReview) return { ...needsReview, reason: 'needs_review' };
 
   const notStarted = allLessons.find((lesson) => lesson.status === 'not_started');

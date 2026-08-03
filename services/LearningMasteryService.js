@@ -100,6 +100,33 @@ function getWeakLessonIds(masteryByLesson = {}, allowedLessonIds = []) {
     .map(([lessonId]) => Number(lessonId));
 }
 
+function buildGradeProgress(chapters = [], masteryByLesson = {}) {
+  const lessons = (chapters || []).flatMap((chapter) => chapter.lessons || []);
+  const completed = lessons.filter(
+    (lesson) => masteryByLesson[lesson.id]?.status === 'completed'
+  ).length;
+  return {
+    total: lessons.length,
+    completed,
+    percent: lessons.length > 0 ? Math.round((completed / lessons.length) * 100) : 0
+  };
+}
+
+function findWeakestLesson(chapters = [], masteryByLesson = {}) {
+  return (chapters || [])
+    .flatMap((chapter) => (chapter.lessons || []).map((lesson) => ({
+      id: lesson.id,
+      lesson_name: lesson.lesson_name,
+      chapter_name: chapter.chapter_name,
+      ...(masteryByLesson[lesson.id] || emptyMastery())
+    })))
+    .filter((lesson) => lesson.status === 'needs_review')
+    .sort((left, right) => (
+      Number(right.weakness_score || 0) - Number(left.weakness_score || 0)
+      || Number(left.id) - Number(right.id)
+    ))[0] || null;
+}
+
 function emptyMastery() {
   return {
     attempt_count: 0,
@@ -146,5 +173,7 @@ module.exports = {
   buildLessonMasteryMap,
   getMasteryByGrade,
   getWeakLessonIds,
+  buildGradeProgress,
+  findWeakestLesson,
   emptyMastery
 };
