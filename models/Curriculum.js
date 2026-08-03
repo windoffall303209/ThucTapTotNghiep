@@ -404,6 +404,67 @@ async function getLessonProgressByGrade(studentId, grade) {
   }
 }
 
+async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
+  const safeLimit = Math.min(Math.max(Number(limitPerLesson) || 10, 1), 50);
+  try {
+    return await db.query(
+      `SELECT
+          ranked.id,
+          ranked.lesson_id,
+          ranked.is_correct,
+          ranked.detected_misconception_id,
+          ranked.created_at
+       FROM (
+         SELECT
+            sl.id,
+            q.lesson_id,
+            sl.is_correct,
+            sl.detected_misconception_id,
+            sl.created_at,
+            ROW_NUMBER() OVER (
+              PARTITION BY q.lesson_id
+              ORDER BY sl.created_at DESC, sl.id DESC
+            ) AS attempt_rank
+         FROM StudentLogs sl
+         JOIN QuestionBank q ON q.id = sl.question_id
+         JOIN Lessons l ON l.id = q.lesson_id
+         JOIN Chapters c ON c.id = l.chapter_id
+         WHERE sl.student_id = ? AND c.grade = ?
+       ) ranked
+       WHERE ranked.attempt_rank <= ${safeLimit}
+       ORDER BY ranked.lesson_id, ranked.created_at DESC, ranked.id DESC`,
+      [studentId, grade]
+    );
+  } catch (error) {
+    fallbackOrThrow(error);
+    return sampleData.studentLogs
+      .filter((log) => Number(log.student_id) === Number(studentId))
+      .map((log) => {
+        const question = sampleData.questions.find(
+          (item) => Number(item.id) === Number(log.question_id)
+        );
+        const lesson = findSampleLesson(question?.lesson_id);
+        return { ...log, lesson_id: question?.lesson_id, grade: lesson?.grade };
+      })
+      .filter((log) => Number(log.grade) === Number(grade) && log.lesson_id)
+      .sort((left, right) => {
+        if (Number(left.lesson_id) !== Number(right.lesson_id)) {
+          return Number(left.lesson_id) - Number(right.lesson_id);
+        }
+        return new Date(right.created_at || 0) - new Date(left.created_at || 0)
+          || Number(right.id || 0) - Number(left.id || 0);
+      })
+      .reduce((result, log) => {
+        const lessonCount = result.counts.get(Number(log.lesson_id)) || 0;
+        if (lessonCount < safeLimit) {
+          result.rows.push(log);
+          result.counts.set(Number(log.lesson_id), lessonCount + 1);
+        }
+        return result;
+      }, { rows: [], counts: new Map() }).rows;
+  }
+}
+
 async function getRecentAttempts(studentId, limit = 8) {
   try {
     const rows = await queryRecentAttempts(studentId, limit, true);
@@ -702,6 +763,7 @@ module.exports = {
   getProgress,
   getRecommendation,
   getLessonProgressByGrade,
+  getLessonAttemptHistory,
   getRecentAttempts,
   listChaptersForAdmin,
   listLessonsForAdminByGrade,
