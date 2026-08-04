@@ -250,6 +250,9 @@ async function getQuestionCandidates(options = {}) {
           q.lesson_id,
           q.concept_id,
           q.difficulty,
+          q.question_type,
+          q.correct_answer,
+          JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) AS content_text,
           l.chapter_id,
           l.lesson_name,
           c.chapter_name,
@@ -285,6 +288,11 @@ async function getQuestionCandidates(options = {}) {
                 lesson_id: Number(lesson.id),
                 concept_id: question.concept_id || null,
                 difficulty: question.difficulty,
+                question_type: question.question_type,
+                correct_answer: question.correct_answer,
+                content_text: typeof question.content === 'string'
+                  ? question.content
+                  : question.content?.text || '',
                 chapter_id: Number(chapter.id),
                 lesson_name: lesson.lesson_name,
                 chapter_name: chapter.chapter_name,

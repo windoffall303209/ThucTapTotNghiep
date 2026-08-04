@@ -1,6 +1,11 @@
 const crypto = require('node:crypto');
+const {
+  DEFAULT_SIMILARITY_THRESHOLD,
+  areQuestionsNearDuplicate,
+  countNearDuplicatePairs
+} = require('./questionSimilarity');
 
-const SELECTION_VERSION = 'balanced-v2';
+const SELECTION_VERSION = 'balanced-v3';
 const DIFFICULTIES = Object.freeze(['EASY', 'MEDIUM', 'HARD']);
 const DIFFICULTY_TARGETS = Object.freeze({
   5: Object.freeze({ EASY: 2, MEDIUM: 2, HARD: 1 }),
@@ -42,6 +47,7 @@ function selectQuestionsV2(candidates, options = {}) {
     count
   );
   const maxPerLesson = normalizePositiveInteger(options.maxPerLesson, 2);
+  const similarityThreshold = normalizeSimilarityThreshold(options.similarityThreshold);
   const requestedWeakTarget = ['CHAPTER', 'COMPREHENSIVE'].includes(mode)
     ? Math.min(count, Math.round(count * normalizeRatio(options.personalizationRatio, 0.3)))
     : 0;
@@ -57,11 +63,12 @@ function selectQuestionsV2(candidates, options = {}) {
   const basePool = normalizedCandidates.filter((question) => !reviewIds.has(question.id));
   const freshPool = basePool.filter((question) => !recentIds.has(question.id));
   const phases = [
-    { name: 'STRICT', pool: freshPool, enforceDifficulty: true, lessonCap: maxPerLesson },
-    { name: 'RECENT_REUSED', pool: basePool, enforceDifficulty: true, lessonCap: maxPerLesson },
-    { name: 'REVIEW_REUSED', pool: normalizedCandidates, enforceDifficulty: true, lessonCap: maxPerLesson },
-    { name: 'DIFFICULTY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, lessonCap: maxPerLesson },
-    { name: 'LESSON_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, lessonCap: Number.POSITIVE_INFINITY }
+    { name: 'STRICT', pool: freshPool, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson },
+    { name: 'RECENT_REUSED', pool: basePool, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson },
+    { name: 'REVIEW_REUSED', pool: normalizedCandidates, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson },
+    { name: 'DIFFICULTY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: maxPerLesson },
+    { name: 'SIMILARITY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: maxPerLesson },
+    { name: 'LESSON_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: Number.POSITIVE_INFINITY }
   ];
 
   let result = { selected: [], maxLessonCount: 0 };
@@ -76,6 +83,8 @@ function selectQuestionsV2(candidates, options = {}) {
       weakLessonIds,
       weakTarget,
       enforceDifficulty: phase.enforceDifficulty,
+      enforceSimilarity: phase.enforceSimilarity,
+      similarityThreshold,
       lessonCap: phase.lessonCap,
       random
     });
@@ -104,6 +113,8 @@ function selectQuestionsV2(candidates, options = {}) {
         coveredChapters: new Set(selected.map((item) => item.chapter_id)).size,
         coveredLessons: lessonCounts.size,
         maxQuestionsPerLesson: lessonCounts.size > 0 ? Math.max(...lessonCounts.values()) : 0,
+        nearDuplicatePairs: countNearDuplicatePairs(selected, similarityThreshold),
+        similarityThreshold,
         weakTarget,
         weakSelected: selected.filter((item) => weakLessonIds.has(item.lesson_id)).length,
         recentExcluded: normalizedCandidates.filter((item) => recentIds.has(item.id)).length,
@@ -135,6 +146,14 @@ function attemptSelection(pool, options) {
     let eligible = available.filter((question) => {
       if (selectedIds.has(question.id)) return false;
       if ((lessonCounts.get(question.lesson_id) || 0) >= options.lessonCap) return false;
+      if (
+        options.enforceSimilarity
+        && selected.some((selectedQuestion) => areQuestionsNearDuplicate(
+          question,
+          selectedQuestion,
+          options.similarityThreshold
+        ))
+      ) return false;
       if (
         options.enforceDifficulty
         && difficultyCounts[question.difficulty] >= options.targets[question.difficulty]
@@ -247,13 +266,20 @@ function buildRatioTargets(count) {
 
 function fallbackReasonsForPhase(phaseName, { recentIds, reviewIds }) {
   const reasons = [];
-  const order = ['RECENT_REUSED', 'REVIEW_REUSED', 'DIFFICULTY_RELAXED', 'LESSON_CAP_RELAXED'];
+  const order = [
+    'RECENT_REUSED',
+    'REVIEW_REUSED',
+    'DIFFICULTY_RELAXED',
+    'SIMILARITY_RELAXED',
+    'LESSON_CAP_RELAXED'
+  ];
   const phasePosition = order.indexOf(phaseName);
   if (phasePosition < 0) return reasons;
   if (phasePosition >= 0 && recentIds.size > 0) reasons.push('RECENT_REUSED');
   if (phasePosition >= 1 && reviewIds.size > 0) reasons.push('REVIEW_REUSED');
   if (phasePosition >= 2) reasons.push('DIFFICULTY_RELAXED');
-  if (phasePosition >= 3) reasons.push('LESSON_CAP_RELAXED');
+  if (phasePosition >= 3) reasons.push('SIMILARITY_RELAXED');
+  if (phasePosition >= 4) reasons.push('LESSON_CAP_RELAXED');
   return reasons;
 }
 
@@ -307,6 +333,13 @@ function normalizePositiveInteger(value, fallback) {
 function normalizeRatio(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) && number >= 0 && number <= 1 ? number : fallback;
+}
+
+function normalizeSimilarityThreshold(value) {
+  const threshold = Number(value);
+  return Number.isFinite(threshold) && threshold >= 0.75 && threshold <= 1
+    ? threshold
+    : DEFAULT_SIMILARITY_THRESHOLD;
 }
 
 module.exports = {
