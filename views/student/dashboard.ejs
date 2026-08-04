@@ -50,6 +50,8 @@
       <p class="muted">
         <% if (nextLesson.reason === 'needs_review') { %>
           Bài này em còn làm sai nhiều, luyện lại để nắm chắc hơn.
+        <% } else if (nextLesson.reason === 'insufficient_data') { %>
+          Em mới làm một vài câu của bài này. Làm thêm để hệ thống đánh giá chính xác hơn.
         <% } else if (nextLesson.reason === 'not_started') { %>
           Bài tiếp theo em chưa luyện, thuộc <%= nextLesson.chapter_name %>.
         <% } else { %>
@@ -109,6 +111,8 @@
                 <p><span class="status-pill status-completed">Đã luyện</span> Đúng <%= lessonStat.correct_count %>/<%= lessonStat.attempt_count %> lượt làm.</p>
               <% } else if (lessonStat.status === 'needs_review') { %>
                 <p><span class="status-pill status-review">Cần ôn</span> Sai <%= lessonStat.wrong_count %> lượt, nên đọc lại lý thuyết.</p>
+              <% } else if (lessonStat.status === 'insufficient_data') { %>
+                <p><span class="status-pill status-in-progress">Đang đánh giá</span> Đã làm <%= lessonStat.attempt_count %>/5 lượt tối thiểu.</p>
               <% } else { %>
                 <p><span class="status-pill status-new">Chưa luyện</span> Bắt đầu bằng lý thuyết rồi chuyển sang câu hỏi.</p>
               <% } %>

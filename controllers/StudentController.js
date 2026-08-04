@@ -530,7 +530,8 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
         lesson_name: lesson.lesson_name,
         chapter_name: chapter.chapter_name,
         status: (lessonProgress[lesson.id] || {}).status || 'not_started',
-        weakness_score: Number((lessonProgress[lesson.id] || {}).weakness_score || 0)
+        weakness_score: Number((lessonProgress[lesson.id] || {}).weakness_score || 0),
+        confidence_score: Number((lessonProgress[lesson.id] || {}).confidence_score || 0)
       });
     });
   });
@@ -541,6 +542,11 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
     .filter((lesson) => lesson.status === 'needs_review')
     .sort((left, right) => right.weakness_score - left.weakness_score)[0];
   if (needsReview) return { ...needsReview, reason: 'needs_review' };
+
+  const insufficientData = allLessons
+    .filter((lesson) => lesson.status === 'insufficient_data')
+    .sort((left, right) => right.confidence_score - left.confidence_score)[0];
+  if (insufficientData) return { ...insufficientData, reason: 'insufficient_data' };
 
   const notStarted = allLessons.find((lesson) => lesson.status === 'not_started');
   if (notStarted) return { ...notStarted, reason: 'not_started' };

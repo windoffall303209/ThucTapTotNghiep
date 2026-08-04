@@ -5,6 +5,12 @@ const RECENCY_DECAY = 0.85;
 const MIN_ATTEMPTS_TO_COMPLETE = 5;
 const MIN_WEIGHTED_ACCURACY = 0.8;
 const WRONG_STREAK_FULL_SCORE = 3;
+const DIFFICULTY_EVIDENCE_WEIGHTS = Object.freeze({
+  EASY: Object.freeze({ correct: 0.8, wrong: 1.2 }),
+  MEDIUM: Object.freeze({ correct: 1, wrong: 1 }),
+  HARD: Object.freeze({ correct: 1.2, wrong: 0.8 }),
+  EXPERT: Object.freeze({ correct: 1.3, wrong: 0.7 })
+});
 
 function calculateLessonMastery(attempts = []) {
   const recentAttempts = [...attempts]
@@ -20,8 +26,10 @@ function calculateLessonMastery(attempts = []) {
   let wrongCount = 0;
 
   recentAttempts.forEach((attempt, index) => {
-    const weight = RECENCY_DECAY ** index;
     const isCorrect = normalizeCorrect(attempt.is_correct);
+    const difficultyWeights = DIFFICULTY_EVIDENCE_WEIGHTS[normalizeDifficulty(attempt.difficulty)];
+    const evidenceWeight = isCorrect ? difficultyWeights.correct : difficultyWeights.wrong;
+    const weight = (RECENCY_DECAY ** index) * evidenceWeight;
     totalWeight += weight;
     if (isCorrect) {
       correctWeight += weight;
@@ -36,15 +44,21 @@ function calculateLessonMastery(attempts = []) {
   const wrongStreak = countNewestWrongStreak(recentAttempts);
   const wrongStreakScore = Math.min(wrongStreak / WRONG_STREAK_FULL_SCORE, 1);
   const misconceptionRate = wrongCount > 0 ? misconceptionCount / wrongCount : 0;
-  const weaknessScore = (
+  const rawWeaknessScore = (
     0.7 * (1 - weightedAccuracy)
     + 0.2 * wrongStreakScore
     + 0.1 * misconceptionRate
   );
+  const confidenceScore = Math.min(attemptCount / MAX_ATTEMPTS_PER_LESSON, 1);
+  const weaknessScore = rawWeaknessScore * confidenceScore;
   const latestCorrect = normalizeCorrect(recentAttempts[0].is_correct);
   const completed = attemptCount >= MIN_ATTEMPTS_TO_COMPLETE
     && weightedAccuracy >= MIN_WEIGHTED_ACCURACY
     && latestCorrect;
+
+  const status = attemptCount < MIN_ATTEMPTS_TO_COMPLETE
+    ? 'insufficient_data'
+    : completed ? 'completed' : 'needs_review';
 
   return {
     attempt_count: attemptCount,
@@ -55,8 +69,10 @@ function calculateLessonMastery(attempts = []) {
     weighted_accuracy: roundScore(weightedAccuracy),
     wrong_streak: wrongStreak,
     misconception_rate: roundScore(misconceptionRate),
+    confidence_score: roundScore(confidenceScore),
+    raw_weakness_score: roundScore(rawWeaknessScore),
     weakness_score: roundScore(weaknessScore),
-    status: completed ? 'completed' : 'needs_review'
+    status
   };
 }
 
@@ -137,6 +153,8 @@ function emptyMastery() {
     weighted_accuracy: 0,
     wrong_streak: 0,
     misconception_rate: 0,
+    confidence_score: 0,
+    raw_weakness_score: 0,
     weakness_score: 0,
     status: 'not_started'
   };
@@ -160,6 +178,11 @@ function normalizeCorrect(value) {
   return value === true || Number(value) === 1;
 }
 
+function normalizeDifficulty(value) {
+  const difficulty = String(value || 'MEDIUM').trim().toUpperCase();
+  return Object.hasOwn(DIFFICULTY_EVIDENCE_WEIGHTS, difficulty) ? difficulty : 'MEDIUM';
+}
+
 function roundScore(value) {
   return Number(Math.min(Math.max(Number(value) || 0, 0), 1).toFixed(4));
 }
@@ -169,6 +192,7 @@ module.exports = {
   RECENCY_DECAY,
   MIN_ATTEMPTS_TO_COMPLETE,
   MIN_WEIGHTED_ACCURACY,
+  DIFFICULTY_EVIDENCE_WEIGHTS,
   calculateLessonMastery,
   buildLessonMasteryMap,
   getMasteryByGrade,

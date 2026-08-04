@@ -412,6 +412,7 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
           ranked.id,
           ranked.lesson_id,
           ranked.is_correct,
+          ranked.difficulty,
           ranked.detected_misconception_id,
           ranked.created_at
        FROM (
@@ -419,6 +420,7 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
             sl.id,
             q.lesson_id,
             sl.is_correct,
+            q.difficulty,
             sl.detected_misconception_id,
             sl.created_at,
             ROW_NUMBER() OVER (
@@ -444,7 +446,12 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
           (item) => Number(item.id) === Number(log.question_id)
         );
         const lesson = findSampleLesson(question?.lesson_id);
-        return { ...log, lesson_id: question?.lesson_id, grade: lesson?.grade };
+        return {
+          ...log,
+          lesson_id: question?.lesson_id,
+          difficulty: question?.difficulty || 'MEDIUM',
+          grade: lesson?.grade
+        };
       })
       .filter((log) => Number(log.grade) === Number(grade) && log.lesson_id)
       .sort((left, right) => {
