@@ -45,6 +45,7 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     generated: 0,
     incomplete: 0,
     duplicateQuestionIds: 0,
+    nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
     difficulty: { EASY: 0, MEDIUM: 0, HARD: 0 },
     fallbackReasons: {}
@@ -57,6 +58,7 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     totals.generated += 1;
     if (ids.length !== Math.min(count, candidates.length)) totals.incomplete += 1;
     totals.duplicateQuestionIds += ids.length - new Set(ids).size;
+    totals.nearDuplicatePairs += Number(result.selection.metadata.nearDuplicatePairs || 0);
     totals.outOfScopeQuestionIds += ids.filter((id) => !poolIds.has(id)).length;
     ids.forEach((id) => usedIds.add(id));
     for (const difficulty of Object.keys(totals.difficulty)) {
@@ -77,6 +79,7 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     runs: totals.generated,
     incompleteRuns: totals.incomplete,
     duplicateQuestionIds: totals.duplicateQuestionIds,
+    nearDuplicatePairs: totals.nearDuplicatePairs,
     outOfScopeQuestionIds: totals.outOfScopeQuestionIds,
     uniqueQuestionsUsed: usedIds.size,
     poolCoverage: candidates.length > 0
@@ -108,6 +111,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
   const totals = scopes.reduce((summary, scope) => {
     summary.incompleteRuns += Number(scope.incompleteRuns || 0);
     summary.duplicateQuestionIds += Number(scope.duplicateQuestionIds || 0);
+    summary.nearDuplicatePairs += Number(scope.nearDuplicatePairs || 0);
     summary.outOfScopeQuestionIds += Number(scope.outOfScopeQuestionIds || 0);
     for (const [reason, count] of Object.entries(scope.fallbackReasons || {})) {
       summary.fallbackReasons[reason] = (summary.fallbackReasons[reason] || 0) + Number(count || 0);
@@ -116,6 +120,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
   }, {
     incompleteRuns: 0,
     duplicateQuestionIds: 0,
+    nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
     fallbackReasons: {}
   });
@@ -152,6 +157,12 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
         maximumRate: normalizedThresholds[metric]
       });
     }
+  }
+  if (totals.nearDuplicatePairs > 0) {
+    warnings.push({
+      code: 'NEAR_DUPLICATE_PAIRS_SELECTED',
+      count: totals.nearDuplicatePairs
+    });
   }
 
   return {

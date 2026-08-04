@@ -89,6 +89,7 @@ test('audit phát hiện trùng, sai phạm vi và thống kê tỷ lệ độ k
 
   assert.equal(report.runs, 5);
   assert.equal(report.duplicateQuestionIds, 0);
+  assert.equal(report.nearDuplicatePairs, 0);
   assert.equal(report.outOfScopeQuestionIds, 0);
   assert.equal(report.incompleteRuns, 0);
   assert.equal(report.actualDifficultyRatio.EASY, 0.4667);
@@ -99,6 +100,7 @@ test('cổng audit thất bại với vi phạm cứng và cảnh báo khi fallb
     runs: 10,
     incompleteRuns: 1,
     duplicateQuestionIds: 2,
+    nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
     fallbackReasons: {}
   }]);
@@ -112,16 +114,19 @@ test('cổng audit thất bại với vi phạm cứng và cảnh báo khi fallb
     runs: 10,
     incompleteRuns: 0,
     duplicateQuestionIds: 0,
+    nearDuplicatePairs: 2,
     outOfScopeQuestionIds: 0,
     fallbackReasons: { DIFFICULTY_RELAXED: 4 }
   }]);
   assert.equal(warning.status, 'WARN');
   assert.equal(warning.rates.difficultyFallbackRate, 0.4);
+  assert.ok(warning.warnings.some((item) => item.code === 'NEAR_DUPLICATE_PAIRS_SELECTED'));
 
   const passed = evaluateAuditGate([{
     runs: 10,
     incompleteRuns: 0,
     duplicateQuestionIds: 0,
+    nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
     fallbackReasons: {}
   }]);
