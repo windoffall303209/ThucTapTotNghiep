@@ -69,9 +69,9 @@ function selectQuestionsV2(candidates, options = {}) {
     { name: 'RECENT_REUSED', pool: basePool, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
     { name: 'REVIEW_REUSED', pool: normalizedCandidates, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
     { name: 'DIFFICULTY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'SIMILARITY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'CONCEPT_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: maxPerLesson, conceptCap: Number.POSITIVE_INFINITY },
-    { name: 'LESSON_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: Number.POSITIVE_INFINITY, conceptCap: Number.POSITIVE_INFINITY }
+    { name: 'CONCEPT_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: Number.POSITIVE_INFINITY },
+    { name: 'LESSON_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: Number.POSITIVE_INFINITY, conceptCap: Number.POSITIVE_INFINITY },
+    { name: 'SIMILARITY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: Number.POSITIVE_INFINITY, conceptCap: Number.POSITIVE_INFINITY }
   ];
 
   let result = { selected: [], maxLessonCount: 0 };
@@ -106,7 +106,11 @@ function selectQuestionsV2(candidates, options = {}) {
   const conceptCounts = countBy(taggedQuestions, 'concept_id');
   const fallbackReasons = fallbackReasonsForPhase(
     phases[Math.min(phaseIndex, phases.length - 1)]?.name,
-    { recentIds, reviewIds }
+    {
+      recentIds,
+      reviewIds,
+      hasTaggedConcepts: normalizedCandidates.some((question) => question.concept_id)
+    }
   );
 
   return {
@@ -295,24 +299,25 @@ function buildRatioTargets(count) {
   return { EASY: easy, MEDIUM: medium, HARD: Math.max(0, count - easy - medium) };
 }
 
-function fallbackReasonsForPhase(phaseName, { recentIds, reviewIds }) {
+function fallbackReasonsForPhase(phaseName, { recentIds, reviewIds, hasTaggedConcepts }) {
   const reasons = [];
   const order = [
+    'STRICT',
     'RECENT_REUSED',
     'REVIEW_REUSED',
     'DIFFICULTY_RELAXED',
-    'SIMILARITY_RELAXED',
     'CONCEPT_CAP_RELAXED',
-    'LESSON_CAP_RELAXED'
+    'LESSON_CAP_RELAXED',
+    'SIMILARITY_RELAXED'
   ];
   const phasePosition = order.indexOf(phaseName);
-  if (phasePosition < 0) return reasons;
-  if (phasePosition >= 0 && recentIds.size > 0) reasons.push('RECENT_REUSED');
-  if (phasePosition >= 1 && reviewIds.size > 0) reasons.push('REVIEW_REUSED');
-  if (phasePosition >= 2) reasons.push('DIFFICULTY_RELAXED');
-  if (phasePosition >= 3) reasons.push('SIMILARITY_RELAXED');
-  if (phasePosition >= 4) reasons.push('CONCEPT_CAP_RELAXED');
+  if (phasePosition <= 0) return reasons;
+  if (phasePosition >= 1 && recentIds.size > 0) reasons.push('RECENT_REUSED');
+  if (phasePosition >= 2 && reviewIds.size > 0) reasons.push('REVIEW_REUSED');
+  if (phasePosition >= 3) reasons.push('DIFFICULTY_RELAXED');
+  if (phasePosition >= 4 && hasTaggedConcepts) reasons.push('CONCEPT_CAP_RELAXED');
   if (phasePosition >= 5) reasons.push('LESSON_CAP_RELAXED');
+  if (phasePosition >= 6) reasons.push('SIMILARITY_RELAXED');
   return reasons;
 }
 

@@ -191,3 +191,16 @@ test('câu chưa có concept_id không làm phát sinh fallback khái niệm', (
   assert.equal(result.selection.metadata.taggedQuestions, 0);
   assert.ok(!result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
 });
+
+test('không ghi nới khái niệm khi buộc nới giới hạn bài nhưng nguồn không có concept_id', () => {
+  const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 2, questionsPerDifficulty: 5 });
+  const result = selectQuestionsV2(candidates, {
+    count: 15,
+    mode: 'CHAPTER',
+    maxPerLesson: 2,
+    seed: '7600000000000001'
+  });
+  assert.equal(result.questions.length, 15);
+  assert.ok(result.selection.metadata.fallbackReasons.includes('LESSON_CAP_RELAXED'));
+  assert.ok(!result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
+});
