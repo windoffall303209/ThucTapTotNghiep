@@ -117,9 +117,10 @@ Audit thuật toán tạo đề và báo cáo hiệu chỉnh độ khó đều c
 ```powershell
 npm run practice:audit-selector -- --runs=25
 npm run questions:calibrate-report
+npm run questions:readiness-report
 ```
 
-Audit mô phỏng nhiều seed cho lớp 1–5 theo chương, học kỳ và cả năm. Báo cáo độ khó chỉ cảnh báo câu đã có ít nhất 30 lượt làm; hai lệnh không tự sửa nhãn hoặc nội dung câu hỏi.
+Audit mô phỏng nhiều seed cho lớp 1–5 theo chương, học kỳ và cả năm. Báo cáo độ khó chỉ cảnh báo câu đã có ít nhất 30 lượt làm. Báo cáo độ sẵn sàng chỉ ra bài hoặc phạm vi thiếu tổng số câu, thiếu mức độ khó hay không đủ sức chứa khi giới hạn hai câu mỗi bài. Các lệnh này không tự sửa nhãn hoặc nội dung câu hỏi.
 
 ## Cấu hình MySQL TLS
 

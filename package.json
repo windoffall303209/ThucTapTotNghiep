@@ -32,6 +32,7 @@
     "db:session-report": "node scripts/report_practice_session.js",
     "practice:audit-selector": "node scripts/audit_practice_selector.js",
     "questions:calibrate-report": "node scripts/report_difficulty_calibration.js",
+    "questions:readiness-report": "node scripts/report_question_bank_readiness.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",
