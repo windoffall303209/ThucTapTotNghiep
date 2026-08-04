@@ -30,7 +30,11 @@ test('gộp EXPERT vào nhóm khó khi đánh giá nguồn tạo đề', () => {
 });
 
 test('phạm vi đủ 20 câu, đúng độ khó và đủ sức chứa được đánh dấu sẵn sàng', () => {
-  const readiness = evaluateScopeReadiness(candidates({ lessons: 20 }), 20, 2);
+  const evenlyDistributed = candidates().map((question, index) => ({
+    ...question,
+    lesson_id: index + 1
+  }));
+  const readiness = evaluateScopeReadiness(evenlyDistributed, 20, 2);
   assert.equal(readiness.ready, true);
   assert.deepEqual(readiness.issues, []);
   assert.equal(readiness.lessonCapacity, 20);
