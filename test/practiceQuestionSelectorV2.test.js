@@ -146,3 +146,48 @@ test('giữ đúng quota khi mỗi bài chỉ có một câu của từng độ 
   assert.deepEqual(result.selection.metadata.fallbackReasons, []);
   assert.ok(Math.max(...Object.values(countBy(result.questions, 'lesson_id'))) <= 2);
 });
+
+test('ưu tiên phủ khái niệm và tối đa hai câu mỗi khái niệm khi đã gắn concept_id', () => {
+  const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 6, questionsPerDifficulty: 2 })
+    .map((question, index) => ({ ...question, concept_id: (index % 8) + 1 }));
+  const result = selectQuestionsV2(candidates, {
+    count: 15,
+    mode: 'CHAPTER',
+    maxPerLesson: 3,
+    seed: '7300000000000001'
+  });
+  const conceptCounts = countBy(result.questions, 'concept_id');
+
+  assert.equal(result.questions.length, 15);
+  assert.equal(Object.keys(conceptCounts).length, 8);
+  assert.ok(Math.max(...Object.values(conceptCounts)) <= 2);
+  assert.equal(result.selection.metadata.coveredConcepts, 8);
+  assert.equal(result.selection.metadata.taggedQuestions, 15);
+  assert.equal(result.selection.metadata.maxQuestionsPerConcept, 2);
+});
+
+test('chỉ nới giới hạn khái niệm khi nguồn gắn nhãn không đủ đa dạng', () => {
+  const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 5, questionsPerDifficulty: 2 })
+    .map((question) => ({ ...question, concept_id: 99 }));
+  const result = selectQuestionsV2(candidates, {
+    count: 5,
+    mode: 'CHAPTER',
+    maxPerConcept: 2,
+    seed: '7400000000000001'
+  });
+
+  assert.equal(result.questions.length, 5);
+  assert.ok(result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
+  assert.equal(result.selection.metadata.maxQuestionsPerConcept, 5);
+});
+
+test('câu chưa có concept_id không làm phát sinh fallback khái niệm', () => {
+  const result = selectQuestionsV2(buildCandidates(), {
+    count: 15,
+    mode: 'COMPREHENSIVE',
+    seed: '7500000000000001'
+  });
+  assert.equal(result.selection.metadata.coveredConcepts, 0);
+  assert.equal(result.selection.metadata.taggedQuestions, 0);
+  assert.ok(!result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
+});
