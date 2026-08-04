@@ -2,7 +2,8 @@ const crypto = require('node:crypto');
 const {
   DEFAULT_SIMILARITY_THRESHOLD,
   areQuestionsNearDuplicate,
-  countNearDuplicatePairs
+  countNearDuplicatePairs,
+  normalizeQuestionTextForSimilarity
 } = require('./questionSimilarity');
 
 const SELECTION_VERSION = 'balanced-v3';
@@ -91,7 +92,11 @@ function selectQuestionsV2(candidates, options = {}) {
     if (result.selected.length >= Math.min(count, normalizedCandidates.length)) break;
   }
 
-  const selected = result.selected.slice(0, count).map(({ randomOrder, ...question }) => question);
+  const selected = result.selected.slice(0, count).map(({
+    randomOrder,
+    similarity_text: similarityText,
+    ...question
+  }) => question);
   const actualDifficulty = countByDifficulty(selected);
   const lessonCounts = countBy(selected, 'lesson_id');
   const fallbackReasons = fallbackReasonsForPhase(
@@ -147,14 +152,6 @@ function attemptSelection(pool, options) {
       if (selectedIds.has(question.id)) return false;
       if ((lessonCounts.get(question.lesson_id) || 0) >= options.lessonCap) return false;
       if (
-        options.enforceSimilarity
-        && selected.some((selectedQuestion) => areQuestionsNearDuplicate(
-          question,
-          selectedQuestion,
-          options.similarityThreshold
-        ))
-      ) return false;
-      if (
         options.enforceDifficulty
         && difficultyCounts[question.difficulty] >= options.targets[question.difficulty]
       ) return false;
@@ -177,7 +174,12 @@ function attemptSelection(pool, options) {
       weakLessonIds: options.weakLessonIds,
       weakStillNeeded
     }));
-    const chosen = eligible[0];
+    const chosen = options.enforceSimilarity
+      ? eligible.find((question) => !selected.some((selectedQuestion) => (
+        areQuestionsNearDuplicate(question, selectedQuestion, options.similarityThreshold)
+      )))
+      : eligible[0];
+    if (!chosen) break;
     selected.push(chosen);
     selectedIds.add(chosen.id);
     chapterCounts.set(chosen.chapter_id, (chapterCounts.get(chosen.chapter_id) || 0) + 1);
@@ -227,7 +229,10 @@ function normalizeCandidates(candidates) {
       id,
       lesson_id: lessonId,
       chapter_id: chapterId,
-      difficulty: normalizeDifficulty(item.difficulty)
+      difficulty: normalizeDifficulty(item.difficulty),
+      similarity_text: normalizeQuestionTextForSimilarity(
+        item.content_text ?? item.content?.text ?? (typeof item.content === 'string' ? item.content : '')
+      )
     });
     return result;
   }, []);

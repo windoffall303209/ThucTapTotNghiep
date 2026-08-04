@@ -1,4 +1,5 @@
 const DEFAULT_SIMILARITY_THRESHOLD = 0.9;
+const fingerprintCache = new Map();
 
 function normalizeQuestionTextForSimilarity(value) {
   return String(value || '')
@@ -22,7 +23,7 @@ function questionSimilarity(left, right) {
   if (!leftText || !rightText) return 0;
   if (leftText === rightText) return 1;
   if (Math.min(leftText.length, rightText.length) < 12) return 0;
-  return diceCoefficient(characterBigrams(leftText), characterBigrams(rightText));
+  return diceCoefficient(fingerprint(leftText), fingerprint(rightText));
 }
 
 function areQuestionsNearDuplicate(left, right, threshold = DEFAULT_SIMILARITY_THRESHOLD) {
@@ -43,10 +44,22 @@ function countNearDuplicatePairs(questions = [], threshold = DEFAULT_SIMILARITY_
 
 function questionText(question) {
   if (typeof question === 'string') return normalizeQuestionTextForSimilarity(question);
+  if (typeof question?.similarity_text === 'string') return question.similarity_text;
   const content = question?.content_text
     ?? question?.content?.text
     ?? (typeof question?.content === 'string' ? question.content : '');
   return normalizeQuestionTextForSimilarity(content);
+}
+
+function fingerprint(value) {
+  if (!fingerprintCache.has(value)) {
+    fingerprintCache.set(value, characterBigrams(value));
+    if (fingerprintCache.size > 20000) {
+      const oldestKey = fingerprintCache.keys().next().value;
+      fingerprintCache.delete(oldestKey);
+    }
+  }
+  return fingerprintCache.get(value);
 }
 
 function characterBigrams(value) {
