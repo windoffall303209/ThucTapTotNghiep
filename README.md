@@ -116,11 +116,14 @@ Audit thuật toán tạo đề và báo cáo hiệu chỉnh độ khó đều c
 
 ```powershell
 npm run practice:audit-selector -- --runs=25
+npm run practice:verify-selector
 npm run questions:calibrate-report
 npm run questions:readiness-report
 ```
 
 Audit mô phỏng nhiều seed cho lớp 1–5 theo chương, học kỳ và cả năm. Báo cáo độ khó chỉ cảnh báo câu đã có ít nhất 30 lượt làm. Báo cáo độ sẵn sàng chỉ ra bài hoặc phạm vi thiếu tổng số câu, thiếu mức độ khó hay không đủ sức chứa khi giới hạn hai câu mỗi bài. Các lệnh này không tự sửa nhãn hoặc nội dung câu hỏi.
+
+`practice:audit-selector` trả lỗi khi có đề thiếu câu, trùng ID hoặc sai phạm vi; tỷ lệ fallback vượt ngưỡng được ghi là cảnh báo. `practice:verify-selector` nghiêm ngặt hơn và trả mã lỗi cả khi có cảnh báo. Có thể điều chỉnh ngưỡng bằng `--max-difficulty-fallback-rate`, `--max-similarity-fallback-rate` và `--max-lesson-cap-fallback-rate`, mỗi giá trị từ 0 đến 1.
 
 ## Cấu hình MySQL TLS
 

@@ -10,7 +10,8 @@ const {
 const {
   parseArguments,
   auditScope,
-  buildAuditSeed
+  buildAuditSeed,
+  evaluateAuditGate
 } = require('../scripts/audit_practice_selector');
 
 function read(relativePath) {
@@ -52,8 +53,20 @@ test('chỉ cảnh báo lệch nhãn sau ít nhất 30 lượt và không tự s
 });
 
 test('audit nhận số lượt hợp lệ và seed kiểm tra có thể tái hiện', () => {
-  assert.deepEqual(parseArguments(['--runs=40']), { runs: 40 });
+  assert.deepEqual(parseArguments(['--runs=40']), {
+    runs: 40,
+    failOnWarning: false,
+    thresholds: {
+      difficultyFallbackRate: 0.25,
+      similarityFallbackRate: 0.05,
+      lessonCapFallbackRate: 0.05
+    }
+  });
   assert.throws(() => parseArguments(['--runs=0']), /từ 1 đến 500/);
+  assert.throws(
+    () => parseArguments(['--max-difficulty-fallback-rate=2']),
+    /khoảng 0 đến 1/
+  );
   assert.equal(buildAuditSeed(1, 'Cả năm', 15, 0), buildAuditSeed(1, 'Cả năm', 15, 0));
 });
 
@@ -79,4 +92,38 @@ test('audit phát hiện trùng, sai phạm vi và thống kê tỷ lệ độ k
   assert.equal(report.outOfScopeQuestionIds, 0);
   assert.equal(report.incompleteRuns, 0);
   assert.equal(report.actualDifficultyRatio.EASY, 0.4667);
+});
+
+test('cổng audit thất bại với vi phạm cứng và cảnh báo khi fallback vượt ngưỡng', () => {
+  const failed = evaluateAuditGate([{
+    runs: 10,
+    incompleteRuns: 1,
+    duplicateQuestionIds: 2,
+    outOfScopeQuestionIds: 0,
+    fallbackReasons: {}
+  }]);
+  assert.equal(failed.status, 'FAIL');
+  assert.deepEqual(failed.violations.map((item) => item.code), [
+    'INCOMPLETE_EXAMS',
+    'DUPLICATE_QUESTION_IDS'
+  ]);
+
+  const warning = evaluateAuditGate([{
+    runs: 10,
+    incompleteRuns: 0,
+    duplicateQuestionIds: 0,
+    outOfScopeQuestionIds: 0,
+    fallbackReasons: { DIFFICULTY_RELAXED: 4 }
+  }]);
+  assert.equal(warning.status, 'WARN');
+  assert.equal(warning.rates.difficultyFallbackRate, 0.4);
+
+  const passed = evaluateAuditGate([{
+    runs: 10,
+    incompleteRuns: 0,
+    duplicateQuestionIds: 0,
+    outOfScopeQuestionIds: 0,
+    fallbackReasons: {}
+  }]);
+  assert.equal(passed.status, 'PASS');
 });

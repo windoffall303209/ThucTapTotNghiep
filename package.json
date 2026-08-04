@@ -31,6 +31,7 @@
     "db:questions-report": "node scripts/report_question_database.js",
     "db:session-report": "node scripts/report_practice_session.js",
     "practice:audit-selector": "node scripts/audit_practice_selector.js",
+    "practice:verify-selector": "node scripts/audit_practice_selector.js --runs=25 --fail-on-warning",
     "questions:calibrate-report": "node scripts/report_difficulty_calibration.js",
     "questions:readiness-report": "node scripts/report_question_bank_readiness.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",

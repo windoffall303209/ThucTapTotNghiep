@@ -9,13 +9,33 @@ const { selectQuestionsV2 } = require('../utils/practiceQuestionSelectorV2');
 
 function parseArguments(argv = process.argv.slice(2)) {
   const runsFlag = argv.find((arg) => arg.startsWith('--runs='));
-  const unknown = argv.filter((arg) => !arg.startsWith('--runs='));
+  const difficultyFlag = argv.find((arg) => arg.startsWith('--max-difficulty-fallback-rate='));
+  const similarityFlag = argv.find((arg) => arg.startsWith('--max-similarity-fallback-rate='));
+  const lessonCapFlag = argv.find((arg) => arg.startsWith('--max-lesson-cap-fallback-rate='));
+  const supportedPrefixes = [
+    '--runs=',
+    '--max-difficulty-fallback-rate=',
+    '--max-similarity-fallback-rate=',
+    '--max-lesson-cap-fallback-rate='
+  ];
+  const unknown = argv.filter((arg) => (
+    arg !== '--fail-on-warning'
+    && !supportedPrefixes.some((prefix) => arg.startsWith(prefix))
+  ));
   if (unknown.length > 0) throw new Error(`Tham số không được hỗ trợ: ${unknown.join(', ')}`);
   const runs = Number(runsFlag?.slice('--runs='.length) || 25);
   if (!Number.isInteger(runs) || runs < 1 || runs > 500) {
     throw new Error('--runs phải là số nguyên từ 1 đến 500.');
   }
-  return { runs };
+  return {
+    runs,
+    failOnWarning: argv.includes('--fail-on-warning'),
+    thresholds: {
+      difficultyFallbackRate: parseRate(difficultyFlag, '--max-difficulty-fallback-rate=', 0.25),
+      similarityFallbackRate: parseRate(similarityFlag, '--max-similarity-fallback-rate=', 0.05),
+      lessonCapFallbackRate: parseRate(lessonCapFlag, '--max-lesson-cap-fallback-rate=', 0.05)
+    }
+  };
 }
 
 function auditScope({ grade, scope, mode, candidates, count, runs }) {
@@ -83,6 +103,68 @@ function buildAuditSeed(grade, scope, count, run) {
   return first.toString(16).padStart(8, '0') + second.toString(16).padStart(8, '0');
 }
 
+function evaluateAuditGate(scopes = [], thresholds = {}) {
+  const totalRuns = scopes.reduce((sum, scope) => sum + Number(scope.runs || 0), 0);
+  const totals = scopes.reduce((summary, scope) => {
+    summary.incompleteRuns += Number(scope.incompleteRuns || 0);
+    summary.duplicateQuestionIds += Number(scope.duplicateQuestionIds || 0);
+    summary.outOfScopeQuestionIds += Number(scope.outOfScopeQuestionIds || 0);
+    for (const [reason, count] of Object.entries(scope.fallbackReasons || {})) {
+      summary.fallbackReasons[reason] = (summary.fallbackReasons[reason] || 0) + Number(count || 0);
+    }
+    return summary;
+  }, {
+    incompleteRuns: 0,
+    duplicateQuestionIds: 0,
+    outOfScopeQuestionIds: 0,
+    fallbackReasons: {}
+  });
+  const violations = [];
+  if (totals.incompleteRuns > 0) violations.push({ code: 'INCOMPLETE_EXAMS', count: totals.incompleteRuns });
+  if (totals.duplicateQuestionIds > 0) {
+    violations.push({ code: 'DUPLICATE_QUESTION_IDS', count: totals.duplicateQuestionIds });
+  }
+  if (totals.outOfScopeQuestionIds > 0) {
+    violations.push({ code: 'OUT_OF_SCOPE_QUESTION_IDS', count: totals.outOfScopeQuestionIds });
+  }
+
+  const rates = {
+    difficultyFallbackRate: fallbackRate(totals, 'DIFFICULTY_RELAXED', totalRuns),
+    similarityFallbackRate: fallbackRate(totals, 'SIMILARITY_RELAXED', totalRuns),
+    lessonCapFallbackRate: fallbackRate(totals, 'LESSON_CAP_RELAXED', totalRuns)
+  };
+  const normalizedThresholds = {
+    difficultyFallbackRate: validRate(thresholds.difficultyFallbackRate, 0.25),
+    similarityFallbackRate: validRate(thresholds.similarityFallbackRate, 0.05),
+    lessonCapFallbackRate: validRate(thresholds.lessonCapFallbackRate, 0.05)
+  };
+  const warnings = [];
+  const warningCodes = {
+    difficultyFallbackRate: 'HIGH_DIFFICULTY_FALLBACK_RATE',
+    similarityFallbackRate: 'HIGH_SIMILARITY_FALLBACK_RATE',
+    lessonCapFallbackRate: 'HIGH_LESSON_CAP_FALLBACK_RATE'
+  };
+  for (const [metric, rate] of Object.entries(rates)) {
+    if (rate > normalizedThresholds[metric]) {
+      warnings.push({
+        code: warningCodes[metric],
+        actualRate: rate,
+        maximumRate: normalizedThresholds[metric]
+      });
+    }
+  }
+
+  return {
+    status: violations.length > 0 ? 'FAIL' : warnings.length > 0 ? 'WARN' : 'PASS',
+    totalRuns,
+    totals,
+    rates,
+    thresholds: normalizedThresholds,
+    violations,
+    warnings
+  };
+}
+
 async function buildAuditReport(runs) {
   const report = [];
   for (let grade = MIN_GRADE; grade <= MAX_GRADE; grade += 1) {
@@ -123,11 +205,15 @@ async function buildAuditReport(runs) {
 }
 
 async function main() {
-  const { runs } = parseArguments();
+  const { runs, failOnWarning, thresholds } = parseArguments();
   const connection = await db.testConnection();
   if (!connection.connected) throw new Error(`Không kết nối được database: ${connection.reason}`);
   const scopes = await buildAuditReport(runs);
-  console.log(JSON.stringify({ generatedAt: new Date().toISOString(), readOnly: true, scopes }, null, 2));
+  const gate = evaluateAuditGate(scopes, thresholds);
+  console.log(JSON.stringify({ generatedAt: new Date().toISOString(), readOnly: true, gate, scopes }, null, 2));
+  if (gate.status === 'FAIL' || (failOnWarning && gate.status === 'WARN')) {
+    process.exitCode = 1;
+  }
 }
 
 if (require.main === module) {
@@ -139,4 +225,31 @@ if (require.main === module) {
     .finally(() => db.close());
 }
 
-module.exports = { parseArguments, auditScope, buildAuditSeed, buildAuditReport };
+function parseRate(flag, prefix, fallback) {
+  if (!flag) return fallback;
+  const value = Number(flag.slice(prefix.length));
+  if (!Number.isFinite(value) || value < 0 || value > 1) {
+    throw new Error(`${prefix.slice(0, -1)} phải nằm trong khoảng 0 đến 1.`);
+  }
+  return value;
+}
+
+function validRate(value, fallback) {
+  return Number.isFinite(Number(value)) && Number(value) >= 0 && Number(value) <= 1
+    ? Number(value)
+    : fallback;
+}
+
+function fallbackRate(totals, reason, totalRuns) {
+  return totalRuns > 0
+    ? Number((Number(totals.fallbackReasons[reason] || 0) / totalRuns).toFixed(4))
+    : 0;
+}
+
+module.exports = {
+  parseArguments,
+  auditScope,
+  buildAuditSeed,
+  buildAuditReport,
+  evaluateAuditGate
+};
