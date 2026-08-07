@@ -27,6 +27,20 @@ function lessonMap(payload) {
   return result;
 }
 
+async function writeFileWithRetry(target, data, attempts = 12) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      await fs.promises.writeFile(target, data);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) await new Promise((resolve) => setTimeout(resolve, attempt * 100));
+    }
+  }
+  throw lastError;
+}
+
 async function regenerateGrade(grade) {
   const sharp = require('sharp');
   const source = path.join(DATA_DIR, `grade-${grade}.json`);
@@ -41,9 +55,10 @@ async function regenerateGrade(grade) {
     if (!imageUrl) throw new Error(`Câu ${question.source_key} chưa có đường dẫn ảnh.`);
     const target = path.join(ROOT, 'public', ...imageUrl.replace(/^\/+/, '').split('/'));
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    await sharp(Buffer.from(cardSvg(question, grade, lesson)))
+    const imageBuffer = await sharp(Buffer.from(cardSvg(question, grade, lesson)))
       .png({ compressionLevel: 9, palette: true, quality: 90 })
-      .toFile(target);
+      .toBuffer();
+    await writeFileWithRetry(target, imageBuffer);
     const metadata = await sharp(target).metadata();
     if (metadata.width !== 1200 || metadata.height !== 675) {
       throw new Error(`Ảnh ${target} không đúng kích thước 1200x675.`);
@@ -67,4 +82,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { lessonMap, parseGrades, regenerateGrade };
+module.exports = { lessonMap, parseGrades, regenerateGrade, writeFileWithRetry };
