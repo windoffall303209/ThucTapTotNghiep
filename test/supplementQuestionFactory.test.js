@@ -5,6 +5,7 @@ const {
   DIFFICULTY_PATTERN_17,
   buildGrade5ReviewQuestions,
   compositeQuestion,
+  manualQuestion,
   rotateOptions
 } = require('../utils/supplementQuestionFactory');
 const { wrapText, xmlEscape } = require('../scripts/build_all_question_supplements');
@@ -36,6 +37,24 @@ test('bộ tạo câu ôn tập lớp 5 sinh đủ câu, đáp án hợp lệ v�
       assert.ok(question.content.images[0].url.endsWith('.png'));
     }
   }
+});
+
+test('câu tự luận có đáp án dài được đổi thành trắc nghiệm với khóa ngắn', () => {
+  const question = manualQuestion({
+    lessonId: 371,
+    manual: {
+      number: 4,
+      question: 'Chọn nhận xét đúng.',
+      answer: 'Một lời giải thích chính xác nhưng dài hơn năm mươi ký tự để vượt giới hạn lưu trữ hiện tại.',
+      explanation: 'Giải thích.'
+    },
+    difficulty: 'EASY',
+    sourceKey: 'SUP-LONG',
+    imageUrl: '/images/long.png'
+  });
+  assert.equal(question.question_type, 'MULTIPLE_CHOICE');
+  assert.equal(question.correct_answer.length, 1);
+  assert.equal(question.choices.length, 4);
 });
 
 test('câu hai ý ghép đúng hai đáp án và mang nhãn HARD', () => {

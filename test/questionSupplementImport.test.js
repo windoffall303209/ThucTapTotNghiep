@@ -74,3 +74,15 @@ test('validateBatch phát hiện source_key trùng, ảnh thiếu và đáp án 
   assert.ok(errors.some((error) => error.includes('không tìm thấy tệp')));
   assert.ok(errors.some((error) => error.includes('correct_answer không khớp')));
 });
+
+test('validateBatch chặn đáp án vượt giới hạn cột database', () => {
+  const question = validQuestion();
+  question.question_type = 'FILL_IN_THE_BLANK';
+  question.choices = null;
+  question.correct_answer = 'x'.repeat(51);
+  const errors = validateBatch(
+    { batch_id: 'BATCH-01', questions: [question] },
+    { imageExists: () => true }
+  );
+  assert.ok(errors.some((error) => error.includes('vượt quá giới hạn 50 ký tự')));
+});

@@ -42,6 +42,9 @@ function validateQuestion(question, index, options = {}) {
   if (!ALLOWED_LAYOUTS.has(question?.layout_template)) errors.push(`${label}.layout_template không hợp lệ`);
   if (!nonEmpty(question?.content?.text)) errors.push(`${label}.content.text không được để trống`);
   if (!nonEmpty(question?.correct_answer)) errors.push(`${label}.correct_answer không được để trống`);
+  if (String(question?.correct_answer || '').length > 50) {
+    errors.push(`${label}.correct_answer vượt quá giới hạn 50 ký tự của database`);
+  }
   if (!nonEmpty(question?.explanation?.text)) errors.push(`${label}.explanation.text không được để trống`);
 
   const images = Array.isArray(question?.content?.images) ? question.content.images : [];

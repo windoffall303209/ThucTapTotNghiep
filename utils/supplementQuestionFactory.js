@@ -6,6 +6,39 @@ const DIFFICULTY_PATTERN_17 = Object.freeze([
   ...Array(2).fill('HARD')
 ]);
 
+const REVIEW_THEMES = Object.freeze({
+  381: 'Kho số tự nhiên',
+  382: 'Góc phân số',
+  383: 'Quầy số thập phân',
+  384: 'Cửa hàng phần trăm',
+  385: 'Xưởng hình học',
+  386: 'Trạm đo lường',
+  387: 'Phòng thống kê',
+  388: 'Ngày hội ôn tập',
+  389: 'Trò chơi toán học',
+  390: 'Phiếu tổng hợp cuối năm'
+});
+
+const REVIEW_CONTEXTS = Object.freeze([
+  'tấm vé màu xanh',
+  'hộp dụng cụ của Lan',
+  'bảng nhiệm vụ buổi sáng',
+  'thẻ thử thách hình ngôi sao',
+  'góc thực hành của đội A',
+  'phiếu kiểm tra nhanh',
+  'trạm khám phá số một',
+  'sổ ghi chép của Minh',
+  'bảng dữ kiện trung tâm',
+  'nhiệm vụ tiếp sức',
+  'thẻ toán học màu cam',
+  'góc vận dụng thực tế',
+  'phiếu suy luận của Mai',
+  'trạm khám phá số hai',
+  'bảng dữ kiện cuối giờ',
+  'thử thách về đích',
+  'nhiệm vụ tổng kết'
+]);
+
 function hashNumber(value) {
   return Number.parseInt(crypto.createHash('sha256').update(String(value)).digest('hex').slice(0, 8), 16);
 }
@@ -112,12 +145,22 @@ function manualQuestion({ lessonId, manual, difficulty, sourceKey, imageUrl }) {
     const answerText = stripChoicePrefix(manual.answer);
     correctAnswer = choices.find((choice) => choice.text === answerText)?.key
       || String(manual.answer || '').trim().slice(0, 1).toUpperCase();
-  } else {
+  } else if (String(manual.answer || '').trim().length <= 50) {
     choices = null;
     correctAnswer = String(manual.answer || '').trim();
+  } else {
+    const correctText = String(manual.answer || '').trim();
+    const options = rotateOptions(correctText, [
+      'Chỉ cần thực hiện một phần yêu cầu, không cần kiểm tra điều kiện còn lại',
+      'Có thể bỏ qua dữ kiện về kích thước, đơn vị hoặc vị trí trong đề bài',
+      'Mọi cách sắp xếp hoặc tính toán đều đúng nếu dùng đủ các số đã cho'
+    ], sourceKey);
+    choices = options.choices;
+    correctAnswer = options.correctAnswer;
   }
 
   const type = choices ? 'MULTIPLE_CHOICE' : 'FILL_IN_THE_BLANK';
+  const numberedPrompt = `Bài bổ sung số ${manual.number}. ${String(manual.question || '').trim()}`;
   const base = {
     source_key: sourceKey,
     lesson_id: Number(lessonId),
@@ -126,7 +169,7 @@ function manualQuestion({ lessonId, manual, difficulty, sourceKey, imageUrl }) {
     difficulty,
     layout_template: 'STACK_VERTICAL',
     content: {
-      text: String(manual.question || '').trim(),
+      text: numberedPrompt,
       instruction: choices ? 'Chọn một đáp án đúng.' : String(manual.response || 'Điền đáp án phù hợp.'),
       interaction: choices ? 'choose' : 'fill_blank',
       layout_variant: 'VISUAL_TOP',
@@ -144,7 +187,7 @@ function manualQuestion({ lessonId, manual, difficulty, sourceKey, imageUrl }) {
     visual: {
       type: inferVisualType(manual.question),
       title: 'DỮ KIỆN BÀI TOÁN',
-      lines: [String(manual.question || '').trim()]
+      lines: [numberedPrompt]
     }
   };
   return base;
@@ -183,6 +226,7 @@ function generatedQuestion({ lessonId, index, difficulty, prompt, correct, wrong
   const sourceKey = `SUP-20260807-G5-L${String(lessonId).padStart(3, '0')}-Q${String(index + 1).padStart(2, '0')}`;
   const options = rotateOptions(correct, wrongs, sourceKey);
   const imageUrl = `/images/question-supplements/generated/grade-5/lesson-${String(lessonId).padStart(3, '0')}/q-${String(index + 1).padStart(2, '0')}.png`;
+  const contextualPrompt = `${REVIEW_THEMES[lessonId] || 'Ôn tập Toán 5'} - ${REVIEW_CONTEXTS[index % REVIEW_CONTEXTS.length]}: ${prompt}`;
   return {
     source_key: sourceKey,
     lesson_id: Number(lessonId),
@@ -191,11 +235,11 @@ function generatedQuestion({ lessonId, index, difficulty, prompt, correct, wrong
     difficulty,
     layout_template: 'STACK_VERTICAL',
     content: {
-      text: prompt,
+      text: contextualPrompt,
       instruction: 'Các số liệu quan trọng đã được đặt trực tiếp trong hình.',
       interaction: 'choose',
       layout_variant: 'VISUAL_TOP',
-      images: imageDescriptor(sourceKey, imageUrl, `Hình chứa đầy đủ số liệu: ${prompt}`)
+      images: imageDescriptor(sourceKey, imageUrl, `Hình chứa đầy đủ số liệu: ${contextualPrompt}`)
     },
     choices: options.choices,
     correct_answer: options.correctAnswer,
@@ -206,7 +250,7 @@ function generatedQuestion({ lessonId, index, difficulty, prompt, correct, wrong
       images: []
     },
     misconceptions: misconceptionsFor(options.choices, options.correctAnswer),
-    visual: { type: visualType || inferVisualType(prompt), title: 'BÀI TOÁN ÔN TẬP', lines: [prompt] }
+    visual: { type: visualType || inferVisualType(prompt), title: 'BÀI TOÁN ÔN TẬP', lines: [contextualPrompt] }
   };
 }
 
