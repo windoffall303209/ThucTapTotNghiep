@@ -1,0 +1,229 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L006-L010-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-006-010",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L006-E01",
+      "lesson_id": 6,
+      "concept_id": null,
+      "knowledge_tags": ["match_empty_group_to_zero"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [17, 18]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hộp có bao nhiêu chiếc bánh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-003/cau-01-hop-rong-so-0.png",
+            "alt_text": "Một chiếc hộp đang mở và bên trong hoàn toàn trống"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "0 chiếc" },
+        { "key": "B", "text": "1 chiếc" },
+        { "key": "C", "text": "2 chiếc" },
+        { "key": "D", "text": "3 chiếc" }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong hộp không có chiếc bánh nào nên chọn số 0.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm chiếc hộp là một chiếc bánh",
+          "explanation": "Cần đếm bánh ở bên trong hộp. Hộp đang trống nên không có chiếc bánh nào."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L007-E01",
+      "lesson_id": 7,
+      "concept_id": null,
+      "knowledge_tags": ["count_to_10"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [19, 20]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình có bao nhiêu quả bóng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-003/cau-02-muoi-qua-bong.png",
+            "alt_text": "Mười quả bóng nhiều màu được xếp thành hai hàng, mỗi hàng năm quả"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "7 quả" },
+        { "key": "B", "text": "8 quả" },
+        { "key": "C", "text": "9 quả" },
+        { "key": "D", "text": "10 quả" }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Có 5 quả ở hàng trên và 5 quả ở hàng dưới. Đếm tất cả được 10 quả bóng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ sót một quả bóng",
+          "explanation": "Hãy đếm đủ 5 quả ở mỗi hàng để được 10 quả bóng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L008-E01",
+      "lesson_id": 8,
+      "concept_id": null,
+      "knowledge_tags": ["compare_groups_equal", "one_to_one_matching"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [23, 24]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số quả táo như thế nào so với số chiếc giỏ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-003/cau-03-bon-qua-bon-gio.png",
+            "alt_text": "Bốn quả táo ở hàng trên và bốn chiếc giỏ ở hàng dưới, mỗi quả thẳng hàng với một giỏ"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Nhiều hơn" },
+        { "key": "B", "text": "Ít hơn" },
+        { "key": "C", "text": "Bằng nhau" },
+        { "key": "D", "text": "Không biết" }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Mỗi quả táo ghép được với một chiếc giỏ và không thừa vật nào, nên số quả táo bằng số chiếc giỏ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm kích thước với số lượng",
+          "explanation": "Quả táo lớn hơn phần lòng giỏ trong hình không có nghĩa là số quả táo nhiều hơn. Cần ghép từng quả với từng giỏ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một quả táo",
+          "explanation": "Có 4 quả táo và 4 chiếc giỏ nên hai nhóm bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L009-E01",
+      "lesson_id": 9,
+      "concept_id": null,
+      "knowledge_tags": ["compare_numbers_1_5", "write_comparison_signs"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [25, 26]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Bốn chiếc xe đỏ và hai chiếc xe xanh. Cách so sánh nào đúng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-003/cau-04-bon-xe-hai-xe.png",
+            "alt_text": "Bên trái có bốn xe đồ chơi màu đỏ, bên phải có hai xe đồ chơi màu xanh"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "4 > 2" },
+        { "key": "B", "text": "4 < 2" },
+        { "key": "C", "text": "4 = 2" },
+        { "key": "D", "text": "2 > 4" }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Bốn lớn hơn hai nên điền dấu lớn hơn: 4 > 2.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đặt ngược chiều dấu so sánh",
+          "explanation": "Phía có 4 xe nhiều hơn phía có 2 xe, nên đầu mở của dấu hướng về số 4."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cho rằng hai nhóm bằng nhau",
+          "explanation": "Hai nhóm không bằng nhau vì một nhóm có 4 xe và nhóm còn lại có 2 xe."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L010-E01",
+      "lesson_id": 10,
+      "concept_id": null,
+      "knowledge_tags": ["combine_two_groups_to_5", "match_picture_to_addition_to_5"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [35, 36]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Gộp hai quả táo đỏ với ba quả táo xanh, ta được phép cộng nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-003/cau-05-hai-cong-ba-qua-tao.png",
+            "alt_text": "Bên trái có hai quả táo đỏ và bên phải có ba quả táo xanh"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "2 + 3 = 5" },
+        { "key": "B", "text": "2 + 2 = 4" },
+        { "key": "C", "text": "3 + 1 = 4" },
+        { "key": "D", "text": "1 + 3 = 4" }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Có 2 quả táo đỏ gộp với 3 quả táo xanh, tất cả có 5 quả. Phép tính phù hợp là 2 + 3 = 5.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một quả táo xanh",
+          "explanation": "Nhóm táo xanh có 3 quả, không phải 2 quả."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm sai cả hai nhóm",
+          "explanation": "Nhóm bên trái có 2 quả và nhóm bên phải có 3 quả."
+        }
+      ]
+    }
+  ]
+}
