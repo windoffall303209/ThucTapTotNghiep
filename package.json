@@ -34,6 +34,7 @@
     "practice:verify-selector": "node scripts/audit_practice_selector.js --runs=25 --fail-on-warning",
     "questions:calibrate-report": "node scripts/report_difficulty_calibration.js",
     "questions:readiness-report": "node scripts/report_question_bank_readiness.js",
+    "questions:import-supplement": "node scripts/import_question_supplement.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",
