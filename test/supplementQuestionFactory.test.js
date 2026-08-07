@@ -8,7 +8,14 @@ const {
   manualQuestion,
   rotateOptions
 } = require('../utils/supplementQuestionFactory');
-const { wrapText, xmlEscape } = require('../scripts/build_all_question_supplements');
+const {
+  cardSvg,
+  extractDataTokens,
+  inferIllustrationType,
+  illustrationScene,
+  wrapText,
+  xmlEscape
+} = require('../scripts/build_all_question_supplements');
 
 function source(text, correct = 'B') {
   return {
@@ -80,4 +87,41 @@ test('xoay phương án vẫn giữ đúng đáp án và đủ bốn lựa chọ
 test('hàm dựng ảnh bọc dòng và escape ký tự XML', () => {
   assert.ok(wrapText('một hai ba bốn năm sáu', 8).length > 1);
   assert.equal(xmlEscape('2 < 3 & 4 > 1'), '2 &lt; 3 &amp; 4 &gt; 1');
+});
+
+test('ảnh câu hỏi nhận diện chủ đề và đưa số liệu đề vào nhãn trực quan', () => {
+  assert.equal(inferIllustrationType('Bể dài 60 cm, rộng 35 cm, cao 40 cm'), 'geometry');
+  assert.equal(inferIllustrationType('Tính 2/5 của 120 kg'), 'fraction');
+  assert.deepEqual(extractDataTokens('Bể dài 60 cm, rộng 35 cm, cao 40 cm'), ['60 cm', '35 cm', '40 cm']);
+  assert.deepEqual(
+    extractDataTokens('Bài bổ sung số 4. Ngăn kéo dài 30 cm, rộng 20 cm, cao 8 cm'),
+    ['30 cm', '20 cm', '8 cm']
+  );
+  assert.deepEqual(extractDataTokens('Ý 1. Số 406 000 được đọc như thế nào?'), ['406 000']);
+});
+
+test('mỗi nhóm minh họa sinh hình học hoặc sơ đồ thật thay vì chỉ có chữ', () => {
+  for (const [type, prompt] of [
+    ['geometry', 'Hình hộp dài 30 cm, rộng 20 cm, cao 8 cm'],
+    ['measurement', 'Đo đoạn dây dài 25 cm'],
+    ['fraction', 'Tô màu 3/8 hình'],
+    ['chart', 'Biểu đồ có các số liệu 20, 35, 50'],
+    ['clock', 'Đồng hồ chỉ 8 giờ 15 phút'],
+    ['groups', 'Có 4 thùng, mỗi thùng 6 hộp'],
+    ['numbers', 'Tính 406 000 + 12 000']
+  ]) {
+    const scene = illustrationScene(prompt, type, 0, 0, 600, 240);
+    assert.match(scene, /<(?:rect|circle|polygon|path|line)\b/);
+  }
+});
+
+test('thẻ câu hỏi dành phần lớn không gian cho minh họa và không còn bố cục hai ô chữ', () => {
+  const svg = cardSvg({
+    content: { text: 'Bể dài 60 cm, rộng 35 cm, cao 40 cm.' },
+    visual: { type: 'geometry', title: 'DỮ KIỆN BÀI TOÁN', lines: ['Bể dài 60 cm, rộng 35 cm, cao 40 cm.'] }
+  }, 5, { chapter_name: 'Hình học', lesson_name: 'Bài 61' });
+  assert.match(svg, /Hình minh họa dữ kiện/);
+  assert.match(svg, /60 cm/);
+  assert.match(svg, /<polygon\b/);
+  assert.doesNotMatch(svg, /Đọc đủ dữ kiện trong hình trước khi chọn đáp án/);
 });

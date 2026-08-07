@@ -58,23 +58,149 @@ function wrapText(value, maxChars = 68) {
   return lines;
 }
 
-function visualIcon(type, x, y) {
-  if (type === 'geometry') {
-    return `<rect x="${x}" y="${y}" width="118" height="82" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="5"/><circle cx="${x + 168}" cy="${y + 41}" r="40" fill="#FDE68A" stroke="#D97706" stroke-width="5"/>`;
+function inferIllustrationType(text, preferred = '') {
+  const value = String(text || '').toLowerCase();
+  if (/đồng hồ|giờ|phút|giây|thời gian|thế kỉ|ngày|tháng/.test(value)) return 'clock';
+  if (/biểu đồ|số liệu|thống kê|xác suất|phần trăm|%/.test(value)) return 'chart';
+  if (/phân số|hỗn số|\d+\s*\/\s*\d+/.test(value)) return 'fraction';
+  if (/hình|diện tích|chu vi|thể tích|đường kính|bán kính|khối|tam giác|tứ giác|góc|song song|vuông góc|bể|ngăn kéo/.test(value)) return 'geometry';
+  if (/kg|gam|tấn|tạ|yến|mét|cm|mm|lít|độ dài|cân|đo|dây/.test(value)) return 'measurement';
+  if (/nhân|chia|×| : |thùng|mỗi|gấp.*lần/.test(value)) return 'groups';
+  return preferred && preferred !== 'two_panel' ? preferred : 'numbers';
+}
+
+function extractDataTokens(text) {
+  const source = String(text || '')
+    .replace(/bài\s+bổ\s+sung\s+số\s+\d+[.:]?/gi, '')
+    .replace(/ý\s+\d+[.:]?/gi, '');
+  const matches = source.match(/\d+(?:[ .]\d{3})*(?:[,.]\d+)?(?:\s*\/\s*\d+)?\s*(?:km|kg|cm|mm|m²|m³|m|g|lít|%|giờ|phút|giây|đồng|hộp|thùng|quyển)?/gi) || [];
+  return [...new Set(matches.map((value) => value.trim()).filter(Boolean))].slice(0, 5);
+}
+
+function keyWords(text) {
+  const value = String(text || '').toLowerCase();
+  const words = [];
+  for (const [pattern, label] of [
+    [/hình vuông/, 'HÌNH VUÔNG'], [/hình tròn/, 'HÌNH TRÒN'], [/tam giác/, 'TAM GIÁC'],
+    [/chữ nhật/, 'CHỮ NHẬT'], [/lập phương/, 'LẬP PHƯƠNG'], [/phân số/, 'PHÂN SỐ'],
+    [/đồng hồ|thời gian/, 'THỜI GIAN'], [/biểu đồ/, 'BIỂU ĐỒ'], [/đo|mét|cm|mm/, 'ĐO LƯỜNG']
+  ]) if (pattern.test(value)) words.push(label);
+  return words.slice(0, 4);
+}
+
+function dataChips(text, x, y, maxWidth = 470) {
+  const values = extractDataTokens(text);
+  const labels = values.length ? values : keyWords(text);
+  let cursor = x;
+  let markup = '';
+  for (const label of labels) {
+    const width = Math.min(150, Math.max(66, label.length * 13 + 30));
+    if (cursor + width > x + maxWidth) break;
+    markup += `<rect x="${cursor}" y="${y}" width="${width}" height="42" rx="21" fill="#DBEAFE" stroke="#60A5FA" stroke-width="2"/>`;
+    markup += `<text x="${cursor + width / 2}" y="${y + 29}" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1E3A8A">${xmlEscape(label)}</text>`;
+    cursor += width + 12;
   }
-  if (type === 'chart') {
-    return [34, 62, 91, 48].map((height, index) => `<rect x="${x + index * 42}" y="${y + 100 - height}" width="28" height="${height}" rx="5" fill="${['#60A5FA', '#34D399', '#FBBF24', '#F87171'][index]}"/>`).join('');
+  return markup;
+}
+
+function numberScene(text, x, y, width, height) {
+  const tokens = extractDataTokens(text);
+  const values = tokens.length ? tokens : ['1', '2', '3'];
+  const cards = values.slice(0, 4).map((value, index) => {
+    const cardWidth = Math.min(165, Math.max(110, value.length * 17 + 42));
+    const cx = x + 38 + index * Math.min(175, (width - 80) / Math.max(1, values.length));
+    return `<g transform="translate(${cx} ${y + 40 + (index % 2) * 25}) rotate(${index % 2 ? 3 : -3})"><rect width="${cardWidth}" height="94" rx="18" fill="${['#DBEAFE', '#DCFCE7', '#FEF3C7', '#FCE7F3'][index]}" stroke="${['#2563EB', '#16A34A', '#D97706', '#DB2777'][index]}" stroke-width="4"/><text x="${cardWidth / 2}" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#172554">${xmlEscape(value)}</text></g>`;
+  }).join('');
+  const dots = Array.from({ length: 10 }, (_, index) => `<circle cx="${x + 65 + index * 46}" cy="${y + height - 42}" r="13" fill="${['#3B82F6', '#22C55E', '#F59E0B'][index % 3]}"/>`).join('');
+  return `${cards}<path d="M ${x + 45} ${y + height - 80} H ${x + width - 40}" stroke="#93C5FD" stroke-width="5" stroke-linecap="round"/>${dots}`;
+}
+
+function groupScene(text, x, y, width, height) {
+  const numbers = extractDataTokens(text).map((value) => Number(value.replace(/[^0-9]/g, ''))).filter(Number.isFinite);
+  const columns = Math.max(3, Math.min(6, numbers[1] || numbers[0] || 4));
+  const rows = 3;
+  let markup = '';
+  for (let row = 0; row < rows; row += 1) {
+    markup += `<rect x="${x + 28}" y="${y + 24 + row * 82}" width="${width - 56}" height="66" rx="18" fill="${['#EFF6FF', '#F0FDF4', '#FFF7ED'][row]}" stroke="#BFDBFE" stroke-width="2"/>`;
+    for (let col = 0; col < columns; col += 1) {
+      markup += `<circle cx="${x + 72 + col * ((width - 144) / Math.max(1, columns - 1))}" cy="${y + 57 + row * 82}" r="18" fill="${['#3B82F6', '#22C55E', '#F59E0B'][row]}"/>`;
+    }
   }
-  if (type === 'clock') {
-    return `<circle cx="${x + 75}" cy="${y + 58}" r="54" fill="#FFFFFF" stroke="#2563EB" stroke-width="6"/><path d="M ${x + 75} ${y + 58} L ${x + 75} ${y + 25} M ${x + 75} ${y + 58} L ${x + 105} ${y + 76}" stroke="#0F172A" stroke-width="7" stroke-linecap="round"/>`;
+  return markup;
+}
+
+function measurementScene(text, x, y, width, height) {
+  const value = String(text || '').toLowerCase();
+  if (/kg|gam|tấn|tạ|yến|cân/.test(value)) {
+    return `<path d="M ${x + width / 2} ${y + 38} V ${y + height - 62} M ${x + width / 2 - 110} ${y + 70} H ${x + width / 2 + 110}" stroke="#1E3A8A" stroke-width="9" stroke-linecap="round"/><path d="M ${x + 62} ${y + 120} H ${x + 212} L ${x + 187} ${y + 196} H ${x + 87} Z" fill="#DBEAFE" stroke="#2563EB" stroke-width="4"/><path d="M ${x + width - 212} ${y + 120} H ${x + width - 62} L ${x + width - 87} ${y + 196} H ${x + width - 187} Z" fill="#FEF3C7" stroke="#D97706" stroke-width="4"/><rect x="${x + 105}" y="${y + 78}" width="62" height="58" rx="12" fill="#22C55E"/><text x="${x + 136}" y="${y + 115}" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#fff">kg</text>`;
   }
-  if (type === 'fraction') {
-    return `<circle cx="${x + 70}" cy="${y + 58}" r="54" fill="#E0F2FE" stroke="#0369A1" stroke-width="5"/><path d="M ${x + 70} ${y + 58} L ${x + 70} ${y + 4} A 54 54 0 0 1 ${x + 124} ${y + 58} Z" fill="#F97316"/><line x1="${x + 70}" y1="${y + 4}" x2="${x + 70}" y2="${y + 112}" stroke="#0369A1" stroke-width="4"/>`;
+  const ticks = Array.from({ length: 21 }, (_, index) => `<line x1="${x + 35 + index * ((width - 70) / 20)}" y1="${y + 130}" x2="${x + 35 + index * ((width - 70) / 20)}" y2="${y + 130 + (index % 5 === 0 ? 48 : index % 2 === 0 ? 32 : 22)}" stroke="#92400E" stroke-width="3"/>`).join('');
+  return `<rect x="${x + 24}" y="${y + 112}" width="${width - 48}" height="92" rx="14" fill="#FEF3C7" stroke="#D97706" stroke-width="5"/>${ticks}<path d="M ${x + 65} ${y + 75} H ${x + width - 65}" stroke="#2563EB" stroke-width="6" marker-start="url(#arrow)" marker-end="url(#arrow)"/>`;
+}
+
+function clockScene(text, x, y, width, height) {
+  const cx = x + width / 2;
+  const cy = y + height / 2;
+  const r = Math.min(112, height / 2 - 18);
+  const ticks = Array.from({ length: 12 }, (_, index) => {
+    const angle = (index * Math.PI) / 6;
+    const x1 = cx + Math.sin(angle) * (r - 16);
+    const y1 = cy - Math.cos(angle) * (r - 16);
+    const x2 = cx + Math.sin(angle) * r;
+    const y2 = cy - Math.cos(angle) * r;
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"/>`;
+  }).join('');
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFFFFF" stroke="#2563EB" stroke-width="7"/>${ticks}<path d="M ${cx} ${cy} L ${cx} ${cy - r * 0.55} M ${cx} ${cy} L ${cx + r * 0.48} ${cy + r * 0.28}" stroke="#0F172A" stroke-width="9" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="10" fill="#F97316"/>`;
+}
+
+function fractionScene(text, x, y, width, height) {
+  const match = String(text || '').match(/(\d+)\s*\/\s*(\d+)/);
+  const numerator = Math.max(1, Number(match?.[1] || 3));
+  const denominator = Math.max(numerator, Math.min(12, Number(match?.[2] || 8)));
+  const barWidth = width - 80;
+  const cellWidth = barWidth / denominator;
+  let cells = '';
+  for (let index = 0; index < denominator; index += 1) {
+    cells += `<rect x="${x + 40 + index * cellWidth}" y="${y + 105}" width="${cellWidth}" height="92" fill="${index < numerator ? '#F97316' : '#E0F2FE'}" stroke="#0369A1" stroke-width="3"/>`;
   }
-  if (type === 'measurement') {
-    return `<rect x="${x}" y="${y + 30}" width="180" height="52" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="5"/>${Array.from({ length: 10 }, (_, i) => `<line x1="${x + 10 + i * 17}" y1="${y + 30}" x2="${x + 10 + i * 17}" y2="${y + (i % 2 ? 48 : 58)}" stroke="#92400E" stroke-width="3"/>`).join('')}`;
+  return `${cells}<text x="${x + width / 2}" y="${y + 72}" text-anchor="middle" font-family="Arial" font-size="42" font-weight="700" fill="#1E3A8A">${numerator}/${denominator}</text>`;
+}
+
+function chartScene(text, x, y, width, height) {
+  const raw = extractDataTokens(text).map((value) => Number(value.replace(/[^0-9]/g, ''))).filter((value) => Number.isFinite(value) && value > 0);
+  const values = raw.length >= 3 ? raw.slice(0, 5) : [35, 62, 48, 78];
+  const max = Math.max(...values);
+  const barWidth = Math.min(68, (width - 100) / values.length - 18);
+  return values.map((value, index) => {
+    const h = 55 + (value / max) * (height - 130);
+    const bx = x + 58 + index * ((width - 116) / values.length) + 10;
+    const by = y + height - 48 - h;
+    return `<rect x="${bx}" y="${by}" width="${barWidth}" height="${h}" rx="10" fill="${['#3B82F6', '#22C55E', '#F59E0B', '#F97316', '#8B5CF6'][index]}"/><text x="${bx + barWidth / 2}" y="${by - 10}" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#334155">${value}</text>`;
+  }).join('') + `<path d="M ${x + 42} ${y + 25} V ${y + height - 42} H ${x + width - 28}" fill="none" stroke="#64748B" stroke-width="4"/>`;
+}
+
+function geometryScene(text, x, y, width, height) {
+  const value = String(text || '').toLowerCase();
+  const labels = extractDataTokens(text);
+  if (/lập phương|hình hộp|bể|ngăn kéo|khối/.test(value)) {
+    const left = x + 105; const top = y + 70; const w = width - 260; const h = height - 150; const d = 72;
+    return `<polygon points="${left},${top} ${left + w},${top} ${left + w + d},${top - 45} ${left + d},${top - 45}" fill="#DBEAFE" stroke="#2563EB" stroke-width="5"/><polygon points="${left + w},${top} ${left + w + d},${top - 45} ${left + w + d},${top + h - 45} ${left + w},${top + h}" fill="#BFDBFE" stroke="#2563EB" stroke-width="5"/><rect x="${left}" y="${top}" width="${w}" height="${h}" fill="#EFF6FF" stroke="#2563EB" stroke-width="5"/><text x="${left + w / 2}" y="${top + h + 35}" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#1E3A8A">${xmlEscape(labels[0] || 'dài')}</text><text x="${left + w + 42}" y="${top + h / 2}" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#1E3A8A">${xmlEscape(labels[2] || 'cao')}</text><text x="${left + w + 34}" y="${top - 55}" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#1E3A8A">${xmlEscape(labels[1] || 'rộng')}</text>`;
   }
-  return `<circle cx="${x + 42}" cy="${y + 56}" r="38" fill="#DBEAFE"/><circle cx="${x + 103}" cy="${y + 56}" r="38" fill="#DCFCE7"/><circle cx="${x + 164}" cy="${y + 56}" r="38" fill="#FEF3C7"/>`;
+  if (/tam giác|góc/.test(value)) {
+    return `<polygon points="${x + width / 2},${y + 32} ${x + 76},${y + height - 42} ${x + width - 70},${y + height - 42}" fill="#FEF3C7" stroke="#D97706" stroke-width="7"/><path d="M ${x + 92} ${y + height - 42} A 42 42 0 0 1 ${x + 115} ${y + height - 78}" fill="none" stroke="#F97316" stroke-width="5"/>`;
+  }
+  return `<rect x="${x + 44}" y="${y + 54}" width="150" height="150" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="6"/><circle cx="${x + 305}" cy="${y + 129}" r="75" fill="#FDE68A" stroke="#D97706" stroke-width="6"/><polygon points="${x + 455},${y + 204} ${x + 535},${y + 54} ${x + 615},${y + 204}" fill="#DCFCE7" stroke="#16A34A" stroke-width="6"/>`;
+}
+
+function illustrationScene(text, preferred, x, y, width, height) {
+  const type = inferIllustrationType(text, preferred);
+  if (type === 'geometry') return geometryScene(text, x, y, width, height);
+  if (type === 'chart') return chartScene(text, x, y, width, height);
+  if (type === 'clock') return clockScene(text, x, y, width, height);
+  if (type === 'fraction') return fractionScene(text, x, y, width, height);
+  if (type === 'measurement') return measurementScene(text, x, y, width, height);
+  if (type === 'groups') return groupScene(text, x, y, width, height);
+  return numberScene(text, x, y, width, height);
 }
 
 function cardSvg(question, grade, lesson) {
@@ -82,36 +208,36 @@ function cardSvg(question, grade, lesson) {
   const height = 675;
   const visual = question.visual || { type: 'numbers', title: 'BÀI TOÁN', lines: [question.content.text] };
   const panels = visual.type === 'two_panel' ? visual.lines : [visual.lines.join(' ')];
-  const panelHeight = panels.length === 2 ? 205 : 285;
-  const panelStart = panels.length === 2 ? 170 : 205;
-  const panelGap = 20;
   let panelMarkup = '';
   panels.forEach((text, panelIndex) => {
-    const y = panelStart + panelIndex * (panelHeight + panelGap);
-    const lines = wrapText(text, panels.length === 2 ? 55 : 58).slice(0, panels.length === 2 ? 5 : 7);
+    const panelHeight = panels.length === 2 ? 244 : 486;
+    const y = panels.length === 2 ? 118 + panelIndex * 258 : 118;
+    const sceneWidth = panels.length === 2 ? 540 : 680;
+    const textX = 78 + sceneWidth + 34;
+    const lines = wrapText(text, panels.length === 2 ? 42 : 38).slice(0, panels.length === 2 ? 3 : 5);
     panelMarkup += `<rect x="58" y="${y}" width="1084" height="${panelHeight}" rx="24" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="3"/>`;
+    panelMarkup += `<rect x="74" y="${y + 16}" width="${sceneWidth}" height="${panelHeight - 32}" rx="20" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>`;
+    panelMarkup += illustrationScene(text, visual.type, 82, y + 22, sceneWidth - 16, panelHeight - 44);
     if (panels.length === 2) {
-      panelMarkup += `<circle cx="102" cy="${y + 48}" r="27" fill="#2563EB"/><text x="102" y="${y + 58}" text-anchor="middle" font-size="28" font-weight="700" fill="#FFFFFF">${panelIndex + 1}</text>`;
-    } else {
-      panelMarkup += visualIcon(visual.type, 85, y + 50);
+      panelMarkup += `<circle cx="${textX + 24}" cy="${y + 42}" r="24" fill="#2563EB"/><text x="${textX + 24}" y="${y + 51}" text-anchor="middle" font-family="Arial" font-size="25" font-weight="700" fill="#FFFFFF">${panelIndex + 1}</text>`;
     }
-    const textX = panels.length === 2 ? 150 : 315;
-    const textY = y + 54;
+    const textY = y + (panels.length === 2 ? 88 : 82);
     lines.forEach((line, lineIndex) => {
-      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 36}" font-family="Arial, sans-serif" font-size="26" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
+      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 32}" font-family="Arial, sans-serif" font-size="${panels.length === 2 ? 22 : 24}" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
     });
+    panelMarkup += dataChips(text, textX, y + panelHeight - 62, 1080 - sceneWidth);
   });
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M 8 0 L 0 4 L 8 8 Z" fill="#2563EB"/></marker></defs>
     <rect width="1200" height="675" fill="#EFF6FF"/>
-    <rect x="0" y="0" width="1200" height="112" fill="#1D4ED8"/>
-    <text x="58" y="47" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#BFDBFE">TOÁN LỚP ${grade} • ${xmlEscape(lesson.chapter_name)}</text>
-    <text x="58" y="86" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#FFFFFF">${xmlEscape(visual.title)}</text>
-    <text x="1142" y="67" text-anchor="end" font-family="Arial, sans-serif" font-size="21" fill="#DBEAFE">${xmlEscape(lesson.lesson_name)}</text>
+    <rect x="0" y="0" width="1200" height="102" fill="#1D4ED8"/>
+    <text x="58" y="42" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#BFDBFE">TOÁN LỚP ${grade} • ${xmlEscape(lesson.chapter_name)}</text>
+    <text x="58" y="78" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#FFFFFF">${xmlEscape(visual.title)}</text>
+    <text x="1142" y="62" text-anchor="end" font-family="Arial, sans-serif" font-size="20" fill="#DBEAFE">${xmlEscape(lesson.lesson_name)}</text>
     ${panelMarkup}
-    <rect x="58" y="625" width="1084" height="2" fill="#BFDBFE"/>
-    <text x="58" y="653" font-family="Arial, sans-serif" font-size="18" fill="#475569">Đọc đủ dữ kiện trong hình trước khi chọn đáp án.</text>
+    <text x="1142" y="654" text-anchor="end" font-family="Arial, sans-serif" font-size="17" fill="#64748B">Hình minh họa dữ kiện • Không vẽ theo tỉ lệ</text>
   </svg>`;
 }
 
@@ -283,6 +409,9 @@ if (require.main === module) {
 
 module.exports = {
   cardSvg,
+  extractDataTokens,
+  inferIllustrationType,
+  illustrationScene,
   parseGrade,
   wrapText,
   xmlEscape
