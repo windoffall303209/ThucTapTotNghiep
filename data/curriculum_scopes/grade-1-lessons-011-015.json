@@ -1,0 +1,167 @@
+{
+  "scope_id": "grade-1-lessons-011-015",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [37, 38, 39, 40, 41, 42, 45, 46, 49, 50],
+    "verified_book_pages": [36, 37, 38, 39, 40, 41, 44, 45, 48, 49]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1 và đúng cách diễn đạt trong bài.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Không dùng phép cộng với 0 trước bài 13 và không dùng kết quả lớn hơn phạm vi của bài.",
+    "difficulty": "Ưu tiên câu trực quan hoặc một phép tính; không tạo độ khó bằng câu chữ dài hay kiến thức ngoài bài."
+  },
+  "lessons": [
+    {
+      "lesson_id": 11,
+      "lesson_name": "Làm quen với phép cộng - dấu cộng (tiếp theo)",
+      "pdf_pages": [37, 38],
+      "book_pages": [36, 37],
+      "objective": "Tiếp tục nhận biết phép cộng qua thao tác thêm vào hoặc gộp hai nhóm; hoàn thành và chọn phép cộng có hai số hạng dương, kết quả không quá 6.",
+      "allowed_knowledge_tags": [
+        "combine_two_positive_groups_to_6",
+        "complete_addition_to_6_from_picture",
+        "match_picture_to_addition_to_6",
+        "tell_story_from_addition_to_6"
+      ],
+      "allowed_question_forms": [
+        "Đếm hai nhóm trong tranh rồi hoàn thành phép cộng có kết quả không quá 6.",
+        "Chọn phép cộng phù hợp với tranh.",
+        "Kể hoặc nhận biết tình huống thêm vào theo phép cộng đã cho."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu)\\b",
+        "\\b([7-9]|10)\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng với số 0.",
+        "Phép cộng có kết quả lớn hơn 6.",
+        "Phép trừ hoặc tình huống bớt đi.",
+        "Phép tính có từ ba số hạng trở lên."
+      ]
+    },
+    {
+      "lesson_id": 12,
+      "lesson_name": "Phép cộng trong phạm vi 6",
+      "pdf_pages": [39, 40],
+      "book_pages": [38, 39],
+      "objective": "Tính các phép cộng có hai số hạng dương và kết quả không quá 6; lập phép cộng từ hai nhóm đồ vật trong tranh.",
+      "allowed_knowledge_tags": [
+        "calculate_addition_to_6",
+        "complete_addition_to_6",
+        "write_addition_from_two_groups_to_6",
+        "match_addition_to_picture_to_6"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép cộng có kết quả không quá 6.",
+        "Điền kết quả còn thiếu của phép cộng.",
+        "Đếm hai nhóm trong tranh rồi chọn hoặc viết phép cộng phù hợp."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu)\\b",
+        "\\b([7-9]|10)\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng với số 0.",
+        "Phép cộng có kết quả lớn hơn 6.",
+        "Phép trừ hoặc bài toán nhiều bước.",
+        "Dùng tên gọi số hạng, tổng hoặc tính chất giao hoán."
+      ]
+    },
+    {
+      "lesson_id": 13,
+      "lesson_name": "Phép cộng trong phạm vi 6 (tiếp theo)",
+      "pdf_pages": [41, 42],
+      "book_pages": [40, 41],
+      "objective": "Củng cố bảng cộng trong phạm vi 6, nhận biết hai phép cộng đổi chỗ hai số vẫn cho cùng kết quả và thực hiện phép cộng với số 0.",
+      "allowed_knowledge_tags": [
+        "mental_addition_to_6",
+        "complete_addition_table_to_6",
+        "reverse_addends_same_result_to_6",
+        "addition_with_zero_to_6",
+        "write_addition_from_picture_to_6"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm phép cộng trong phạm vi 6.",
+        "Chọn phép cộng còn thiếu trong bảng cộng.",
+        "Nhận biết hai phép cộng đổi chỗ hai số có cùng kết quả.",
+        "Tính phép cộng một số với 0 hoặc 0 với một số.",
+        "Lập phép cộng từ tranh có một nhóm rỗng."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu|giao hoán)\\b",
+        "\\b([7-9]|10)\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Gọi tên chính thức tính chất giao hoán.",
+        "Phép cộng có kết quả lớn hơn 6.",
+        "Phép trừ hoặc bài toán nhiều bước."
+      ]
+    },
+    {
+      "lesson_id": 14,
+      "lesson_name": "Phép cộng trong phạm vi 10",
+      "pdf_pages": [45, 46],
+      "book_pages": [44, 45],
+      "objective": "Mở rộng phép cộng từ phạm vi 6 đến phạm vi 10; tính và lập phép cộng hai số hạng dương có kết quả không quá 10.",
+      "allowed_knowledge_tags": [
+        "calculate_addition_7_to_10",
+        "complete_addition_to_10",
+        "write_addition_from_two_groups_to_10",
+        "match_picture_to_addition_to_10"
+      ],
+      "allowed_question_forms": [
+        "Tính phép cộng hai số hạng dương có kết quả từ 7 đến 10.",
+        "Điền kết quả còn thiếu của phép cộng trong phạm vi 10.",
+        "Đếm hai nhóm trong tranh rồi chọn hoặc viết phép cộng phù hợp."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu)\\b",
+        "\\b(1[1-9]|[2-9][0-9])\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có kết quả lớn hơn 10.",
+        "Phép trừ hoặc bài toán nhiều bước.",
+        "Phép tính có từ ba số hạng trở lên."
+      ]
+    },
+    {
+      "lesson_id": 15,
+      "lesson_name": "Phép cộng trong phạm vi 10 (tiếp theo)",
+      "pdf_pages": [49, 50],
+      "book_pages": [48, 49],
+      "objective": "Hệ thống các phép cộng trong phạm vi 10, tính nhẩm, cộng với 0, nối phép tính với kết quả và lập phép cộng từ tranh.",
+      "allowed_knowledge_tags": [
+        "mental_addition_to_10",
+        "complete_addition_table_to_10",
+        "addition_with_zero_to_10",
+        "match_addition_to_result_to_10",
+        "write_addition_from_picture_to_10"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm phép cộng trong phạm vi 10.",
+        "Chọn kết quả đúng của phép cộng.",
+        "Tính phép cộng với số 0.",
+        "Chọn hoặc lập phép cộng phù hợp với hai nhóm trong tranh."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu)\\b",
+        "\\b(1[1-9]|[2-9][0-9])\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có kết quả lớn hơn 10.",
+        "Phép trừ hoặc bài toán nhiều bước.",
+        "Phép tính có từ ba số hạng trở lên."
+      ]
+    }
+  ]
+}
