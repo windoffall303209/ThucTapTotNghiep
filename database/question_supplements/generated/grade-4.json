@@ -1,0 +1,4709 @@
+{
+  "batch_id": "20260807-GRADE-4-COMPLETE-SUPPLEMENT",
+  "title": "Bổ sung câu hỏi lớp 4",
+  "generated_at": "2026-08-07T03:04:22.415Z",
+  "strategy": "Mỗi bài thiếu HARD được bổ sung một thử thách hai ý thuộc đúng bài học.",
+  "chapters": [
+    {
+      "chapter_id": 13,
+      "chapter_name": "Chủ đề 1. Số tự nhiên",
+      "lessons": [
+        {
+          "lesson_id": 157,
+          "lesson_name": "4. Bài 4: Các số trong phạm vi 1 000 000",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 158,
+          "lesson_name": "5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo)",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 159,
+          "lesson_name": "6. Bài 6: Các số có nhiều chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 160,
+          "lesson_name": "7. Bài 7: Các số có nhiều chữ số (tiếp theo)",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 161,
+          "lesson_name": "9. Bài 9: So sánh các số có nhiều chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 162,
+          "lesson_name": "10. Bài 10: Làm tròn số đến hàng trăm nghìn",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 163,
+          "lesson_name": "12. Bài 12: Số tự nhiên. Dãy số tự nhiên",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 164,
+          "lesson_name": "13. Bài 13: Viết số tự nhiên trong hệ thập phân",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 165,
+          "lesson_name": "14. Bài 14: Yến, tạ, tấn",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 166,
+          "lesson_name": "15. Bài 15: Giây",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 167,
+          "lesson_name": "16. Bài 16: Thế kỉ",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 168,
+          "lesson_name": "17. Bài 17: Bài toán liên quan đến rút về đơn vị",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 169,
+          "lesson_name": "19. Bài 19: Góc nhọn, góc tù, góc bẹt",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 170,
+          "lesson_name": "20. Bài 20. Đơn vị đo góc. Độ",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 171,
+          "lesson_name": "21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 172,
+          "lesson_name": "22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+          "added_questions": 1
+        }
+      ]
+    },
+    {
+      "chapter_id": 14,
+      "chapter_name": "Chủ đề 2. Các phép tính với số tự nhiên",
+      "lessons": [
+        {
+          "lesson_id": 173,
+          "lesson_name": "1. Bài 26: Phép cộng, phép trừ",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 174,
+          "lesson_name": "2. Bài 27: Các tính chất của phép cộng",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 175,
+          "lesson_name": "3. Bài 28: Tìm số trung bình cộng",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 176,
+          "lesson_name": "4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 177,
+          "lesson_name": "6. Bài 31: Nhân với số có một chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 178,
+          "lesson_name": "7. Bài 32: Nhân với số có hai chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 179,
+          "lesson_name": "9. Bài 34: Các tính chất của phép nhân",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 180,
+          "lesson_name": "11. Bài 36: Nhân với 10, 100 , 1 000, ...",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 181,
+          "lesson_name": "13. Bài 38: Chia cho số có một chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 182,
+          "lesson_name": "14. Bài 39: Chia cho 10, 100, 1 000, ...",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 183,
+          "lesson_name": "15. Bài 40: Chia cho số có hai chữ số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 184,
+          "lesson_name": "17. Bài 42: Chia cho số có hai chữ số (tiếp theo)",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 185,
+          "lesson_name": "19. Bài 44: Thương có chữ số 0",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 186,
+          "lesson_name": "22. Bài 47: Ước lượng tính",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 187,
+          "lesson_name": "24. Bài 49: Biểu thức có chứa chữ",
+          "added_questions": 1
+        }
+      ]
+    },
+    {
+      "chapter_id": 15,
+      "chapter_name": "Chủ đề 3. Phân số",
+      "lessons": [
+        {
+          "lesson_id": 188,
+          "lesson_name": "1. Bài 53: Khái niệm phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 189,
+          "lesson_name": "2. Bài 54: Khái niệm phân số (tiếp theo)",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 190,
+          "lesson_name": "3. Bài 55: Phân số và phép chia số tự nhiên",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 191,
+          "lesson_name": "5. Bài 57: Phân số bằng nhau",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 192,
+          "lesson_name": "6. Bài 58: Tính chất cơ bản của phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 193,
+          "lesson_name": "7. Bài 59: Rút gọn phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 194,
+          "lesson_name": "8. Bài 60: Quy đồng mẫu số các phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 195,
+          "lesson_name": "9. Bài 61: So sánh hai phân số cùng mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 196,
+          "lesson_name": "10. Bài 62: So sánh hai phân số khác mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 197,
+          "lesson_name": "13. Bài 65: Hình bình hành",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 198,
+          "lesson_name": "14. Bài 66: Hình thoi",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 199,
+          "lesson_name": "15. Bài 67: Mét vuông",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 200,
+          "lesson_name": "16. Bài 68: Đề-xi-mét vuông",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 201,
+          "lesson_name": "17. Bài 69: Mi-li-mét vuông",
+          "added_questions": 1
+        }
+      ]
+    },
+    {
+      "chapter_id": 16,
+      "chapter_name": "Chủ đề 4. Các phép tính với phân số",
+      "lessons": [
+        {
+          "lesson_id": 202,
+          "lesson_name": "1. Bài 73: Cộng các phân số cùng mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 203,
+          "lesson_name": "2. Bài 74: Trừ các phân số cùng mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 204,
+          "lesson_name": "4. Bài 76: Cộng các phân số khác mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 205,
+          "lesson_name": "5. Bài 77: Trừ hai phân số khác mẫu số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 206,
+          "lesson_name": "8. Bài 80: Phép nhân phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 207,
+          "lesson_name": "10. Bài 82: Tìm phân số của một số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 208,
+          "lesson_name": "12. Bài 84: Phép chia phân số",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 209,
+          "lesson_name": "15. Bài 87: Dãy số liệu thống kê",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 210,
+          "lesson_name": "16. Bài 88: Biểu đồ cột",
+          "added_questions": 1
+        },
+        {
+          "lesson_id": 211,
+          "lesson_name": "17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện",
+          "added_questions": 1
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "source_key": "SUP-20260807-G4-L157-H01",
+      "lesson_id": 157,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 4. Bài 4: Các số trong phạm vi 1 000 000: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L157-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-157/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 4. Bài 4: Các số trong phạm vi 1 000 000, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Bốn trăm linh sáu nghìn; Ý 2: 1 000 000",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Bốn trăm sáu nghìn; Ý 2: 1 000 000",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Bốn trăm linh sáu nghìn; Ý 2: 999 998",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Bốn trăm sáu nghìn; Ý 2: 999 998",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Trước hết, em đọc hoặc tách số theo từng hàng từ hàng trăm nghìn đến hàng đơn vị để xác định đúng giá trị của mỗi chữ số. Số 406 000 gồm 4 trăm nghìn và 6 nghìn, đọc là bốn trăm linh sáu nghìn. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “Bốn trăm linh sáu nghìn”. Ý 2: Trước hết, em đọc hoặc tách số theo từng hàng từ hàng trăm nghìn đến hàng đơn vị để xác định đúng giá trị của mỗi chữ số. 999 999 + 1 = 1 000 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “1 000 000”. Vì vậy cặp kết quả đúng là “Ý 1: Bốn trăm linh sáu nghìn; Ý 2: 1 000 000”.",
+        "short_text": "Ý 1: Bốn trăm linh sáu nghìn; Ý 2: 1 000 000",
+        "steps": [
+          "Giải ý 1 để được Bốn trăm linh sáu nghìn.",
+          "Giải ý 2 để được 1 000 000.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Số 406 000 được đọc như thế nào?",
+          "Ý 2. Số liền sau của 999 999 là số nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L158-H01",
+      "lesson_id": 158,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo): chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L158-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-158/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo), lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 456 789; Ý 2: Bốn trăm mười tám nghìn ba mươi tư",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 456 780; Ý 2: Bốn trăm mười tám nghìn ba mươi tư",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 456 789; Ý 2: Bốn trăm mười tám nghìn ba trăm linh bốn",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 456 780; Ý 2: Bốn trăm mười tám nghìn ba trăm linh bốn",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em dựa vào bảng hàng và lớp, đọc lần lượt từ lớp cao nhất xuống lớp đơn vị rồi ghép các phần của số. Số có chữ số tận cùng là 9 nên 456 789 là số lẻ. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “456 789”. Ý 2: Em dựa vào bảng hàng và lớp, đọc lần lượt từ lớp cao nhất xuống lớp đơn vị rồi ghép các phần của số. Tách số thành 418 nghìn và 304: bốn trăm mười tám nghìn ba trăm linh bốn. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “Bốn trăm mười tám nghìn ba trăm linh bốn”. Vì vậy cặp kết quả đúng là “Ý 1: 456 789; Ý 2: Bốn trăm mười tám nghìn ba trăm linh bốn”.",
+        "short_text": "Ý 1: 456 789; Ý 2: Bốn trăm mười tám nghìn ba trăm linh bốn",
+        "steps": [
+          "Giải ý 1 để được 456 789.",
+          "Giải ý 2 để được Bốn trăm mười tám nghìn ba trăm linh bốn.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Số nào dưới đây là số lẻ?",
+          "Ý 2. Số 418 304 được đọc như thế nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L159-H01",
+      "lesson_id": 159,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 6. Bài 6: Các số có nhiều chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L159-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-159/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 6. Bài 6: Các số có nhiều chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 10 triệu; Ý 2: Mười hai triệu bốn nghìn chín",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 1 000 triệu; Ý 2: Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 10 triệu; Ý 2: Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 1 000 triệu; Ý 2: Mười hai triệu bốn nghìn chín",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Với số có nhiều chữ số, em chia số thành từng lớp ba chữ số và xác định giá trị theo đúng vị trí của chữ số. 1 tỉ = 1 000 000 000 và 1 triệu = 1 000 000 nên 1 tỉ bằng 1 000 triệu. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy đáp số hoặc kết quả cần chọn là 1 000 triệu. Ý 2: Với số có nhiều chữ số, em chia số thành từng lớp ba chữ số và xác định giá trị theo đúng vị trí của chữ số. Tách thành các lớp: 12 triệu, 004 nghìn, 090 đơn vị; đọc là mười hai triệu không trăm linh bốn nghìn không trăm chín mươi. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi”. Vì vậy cặp kết quả đúng là “Ý 1: 1 000 triệu; Ý 2: Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi”.",
+        "short_text": "Ý 1: 1 000 triệu; Ý 2: Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi",
+        "steps": [
+          "Giải ý 1 để được 1 000 triệu.",
+          "Giải ý 2 để được Mười hai triệu không trăm linh bốn nghìn không trăm chín mươi.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Một tỉ bằng bao nhiêu triệu?",
+          "Ý 2. Số 12 004 090 được đọc như thế nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L160-H01",
+      "lesson_id": 160,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 7. Bài 7: Các số có nhiều chữ số (tiếp theo): chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L160-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-160/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 7. Bài 7: Các số có nhiều chữ số (tiếp theo), lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Ba trăm năm mươi triệu hai nghìn sáu; Ý 2: 402 000 017",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu; Ý 2: 402 017 000",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Ba trăm năm mươi triệu hai nghìn sáu; Ý 2: 402 017 000",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu; Ý 2: 402 000 017",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Em đọc số theo từng lớp triệu, nghìn và đơn vị; khi viết số phải giữ đủ các chữ số 0 ở những hàng không có đơn vị. Tách số thành các lớp 305 | 020 | 006 rồi đọc lần lượt từng lớp. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu”. Ý 2: Em đọc số theo từng lớp triệu, nghìn và đơn vị; khi viết số phải giữ đủ các chữ số 0 ở những hàng không có đơn vị. Tách 402 000 017 thành 402 | 000 | 017; lớp nghìn là 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “402 000 017”. Vì vậy cặp kết quả đúng là “Ý 1: Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu; Ý 2: 402 000 017”.",
+        "short_text": "Ý 1: Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu; Ý 2: 402 000 017",
+        "steps": [
+          "Giải ý 1 để được Ba trăm linh năm triệu hai mươi nghìn không trăm linh sáu.",
+          "Giải ý 2 để được 402 000 017.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Số 305 020 006 được đọc như thế nào?",
+          "Ý 2. Số nào có lớp nghìn gồm ba chữ số 0?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L161-H01",
+      "lesson_id": 161,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 9. Bài 9: So sánh các số có nhiều chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L161-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-161/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 9. Bài 9: So sánh các số có nhiều chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 12 500 003; 12 050 300; 12 005 030; 12 000 503; Ý 2: 420 305 018 < 420 305 081",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 12 000 503; 12 005 030; 12 050 300; 12 500 003; Ý 2: 420 305 018 < 420 305 081",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 12 500 003; 12 050 300; 12 005 030; 12 000 503; Ý 2: 420 305 018 > 420 305 081",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 12 000 503; 12 005 030; 12 050 300; 12 500 003; Ý 2: 420 305 018 > 420 305 081",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Muốn so sánh hai số có nhiều chữ số, em so sánh số chữ số trước, sau đó so sánh lần lượt từ hàng cao nhất sang phải. So sánh lần lượt lớp nghìn: 500 > 050 > 005 > 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “12 500 003; 12 050 300; 12 005 030; 12 000 503”. Ý 2: Muốn so sánh hai số có nhiều chữ số, em so sánh số chữ số trước, sau đó so sánh lần lượt từ hàng cao nhất sang phải. Hai số giống nhau đến hàng trăm; so sánh phần 018 và 081 thì 18 < 81. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “420 305 018 < 420 305 081”. Vì vậy cặp kết quả đúng là “Ý 1: 12 500 003; 12 050 300; 12 005 030; 12 000 503; Ý 2: 420 305 018 < 420 305 081”.",
+        "short_text": "Ý 1: 12 500 003; 12 050 300; 12 005 030; 12 000 503; Ý 2: 420 305 018 < 420 305 081",
+        "steps": [
+          "Giải ý 1 để được 12 500 003; 12 050 300; 12 005 030; 12 000 503.",
+          "Giải ý 2 để được 420 305 018 < 420 305 081.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Dãy nào được sắp xếp theo thứ tự từ lớn đến bé?",
+          "Ý 2. So sánh 420 305 018 và 420 305 081, ta có kết quả nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L162-H01",
+      "lesson_id": 162,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 10. Bài 10: Làm tròn số đến hàng trăm nghìn: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L162-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-162/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 10. Bài 10: Làm tròn số đến hàng trăm nghìn, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 300 000; Ý 2: 800 000",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 340 000; Ý 2: 800 000",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 300 000; Ý 2: 900 000",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 340 000; Ý 2: 900 000",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Khi làm tròn đến hàng trăm nghìn, em nhìn chữ số hàng chục nghìn: từ 5 trở lên thì tăng 1, nhỏ hơn 5 thì giữ nguyên. Chữ số hàng chục nghìn là 4 < 5 nên làm tròn xuống 300 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “300 000”. Ý 2: Khi làm tròn đến hàng trăm nghìn, em nhìn chữ số hàng chục nghìn: từ 5 trở lên thì tăng 1, nhỏ hơn 5 thì giữ nguyên. Chữ số hàng chục nghìn là 5 nên làm tròn lên 900 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “900 000”. Vì vậy cặp kết quả đúng là “Ý 1: 300 000; Ý 2: 900 000”.",
+        "short_text": "Ý 1: 300 000; Ý 2: 900 000",
+        "steps": [
+          "Giải ý 1 để được 300 000.",
+          "Giải ý 2 để được 900 000.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Làm tròn số 340 000 đến hàng trăm nghìn được số nào?",
+          "Ý 2. Làm tròn số 850 000 đến hàng trăm nghìn được số nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L163-H01",
+      "lesson_id": 163,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 12. Bài 12: Số tự nhiên. Dãy số tự nhiên: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L163-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-163/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 12. Bài 12: Số tự nhiên. Dãy số tự nhiên, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Mỗi số tự nhiên đều có đúng một số liền sau; Ý 2: 9 000 000",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Có số tự nhiên lớn nhất; Ý 2: 9 000 000",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Mỗi số tự nhiên đều có đúng một số liền sau; Ý 2: 8 999 998",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Có số tự nhiên lớn nhất; Ý 2: 8 999 998",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Em dựa vào quy luật mỗi số tự nhiên liền sau hơn số đứng trước 1 đơn vị để xác định số còn thiếu hoặc vị trí trên tia số. Mỗi số tự nhiên đều có đúng một số liền sau. Riêng 0 không có số tự nhiên liền trước và dãy không có số lớn nhất. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “Mỗi số tự nhiên đều có đúng một số liền sau”. Ý 2: Em dựa vào quy luật mỗi số tự nhiên liền sau hơn số đứng trước 1 đơn vị để xác định số còn thiếu hoặc vị trí trên tia số. Số liền sau hơn số đã cho 1 đơn vị: 8 999 999 + 1 = 9 000 000. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “9 000 000”. Vì vậy cặp kết quả đúng là “Ý 1: Mỗi số tự nhiên đều có đúng một số liền sau; Ý 2: 9 000 000”.",
+        "short_text": "Ý 1: Mỗi số tự nhiên đều có đúng một số liền sau; Ý 2: 9 000 000",
+        "steps": [
+          "Giải ý 1 để được Mỗi số tự nhiên đều có đúng một số liền sau.",
+          "Giải ý 2 để được 9 000 000.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Khẳng định nào đúng?",
+          "Ý 2. Số liền sau của 8 999 999 là số nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L164-H01",
+      "lesson_id": 164,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 13. Bài 13: Viết số tự nhiên trong hệ thập phân: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L164-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-164/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 13. Bài 13: Viết số tự nhiên trong hệ thập phân, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 10 000; Ý 2: 5 000 000 + 400 000 + 30 + 9",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 100 000; Ý 2: 5 000 000 + 40 000 + 300 + 9",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 10 000; Ý 2: 5 000 000 + 40 000 + 300 + 9",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 100 000; Ý 2: 5 000 000 + 400 000 + 30 + 9",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Trong hệ thập phân, mười đơn vị ở một hàng tạo thành một đơn vị ở hàng liền trước; giá trị chữ số phụ thuộc vào vị trí của nó. 10 × 10 000 = 100 000, tức là 1 trăm nghìn. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy đáp số hoặc kết quả cần chọn là 100 000. Ý 2: Trong hệ thập phân, mười đơn vị ở một hàng tạo thành một đơn vị ở hàng liền trước; giá trị chữ số phụ thuộc vào vị trí của nó. Số có 5 triệu, 4 chục nghìn, 3 trăm và 9 đơn vị. Sau khi làm, em đọc lại số theo từng hàng hoặc lớp để kiểm tra rằng không bỏ sót chữ số 0 và không nhầm giá trị hàng. Vậy phương án đúng là “5 000 000 + 40 000 + 300 + 9”. Vì vậy cặp kết quả đúng là “Ý 1: 100 000; Ý 2: 5 000 000 + 40 000 + 300 + 9”.",
+        "short_text": "Ý 1: 100 000; Ý 2: 5 000 000 + 40 000 + 300 + 9",
+        "steps": [
+          "Giải ý 1 để được 100 000.",
+          "Giải ý 2 để được 5 000 000 + 40 000 + 300 + 9.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Mười chục nghìn bằng bao nhiêu?",
+          "Ý 2. Cách phân tích số 5 040 309 nào đúng?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L165-H01",
+      "lesson_id": 165,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 14. Bài 14: Yến, tạ, tấn: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L165-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-165/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 14. Bài 14: Yến, tạ, tấn, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 5 tấn 5 tạ; Ý 2: 100 kg",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 6 tấn 5 tạ; Ý 2: 100 kg",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 5 tấn 5 tạ; Ý 2: 10 kg",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 6 tấn 5 tạ; Ý 2: 10 kg",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em đổi các khối lượng về cùng một đơn vị trước khi tính hoặc so sánh, nhớ rằng 1 tấn = 10 tạ = 100 yến = 1 000 kg. 8 tấn = 80 tạ; 80 tạ − 25 tạ = 55 tạ = 5 tấn 5 tạ. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 5 tấn 5 tạ. Ý 2: Em đổi các khối lượng về cùng một đơn vị trước khi tính hoặc so sánh, nhớ rằng 1 tấn = 10 tạ = 100 yến = 1 000 kg. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 10 kg. Vì vậy cặp kết quả đúng là “Ý 1: 5 tấn 5 tạ; Ý 2: 10 kg”.",
+        "short_text": "Ý 1: 5 tấn 5 tạ; Ý 2: 10 kg",
+        "steps": [
+          "Giải ý 1 để được 5 tấn 5 tạ.",
+          "Giải ý 2 để được 10 kg.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 8 tấn − 25 tạ bằng bao nhiêu?",
+          "Ý 2. 1 yến bằng bao nhiêu ki-lô-gam?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L166-H01",
+      "lesson_id": 166,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 15. Bài 15: Giây: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L166-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-166/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 15. Bài 15: Giây, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 10 giây; Ý 2: 90 giây",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 60 giây; Ý 2: 180 giây",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 10 giây; Ý 2: 180 giây",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 60 giây; Ý 2: 90 giây",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Em đổi thời gian về cùng đơn vị giây trước khi tính, sử dụng 1 phút = 60 giây. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 60 giây. Ý 2: Em đổi thời gian về cùng đơn vị giây trước khi tính, sử dụng 1 phút = 60 giây. 3 × 60 = 180 giây. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 180 giây. Vì vậy cặp kết quả đúng là “Ý 1: 60 giây; Ý 2: 180 giây”.",
+        "short_text": "Ý 1: 60 giây; Ý 2: 180 giây",
+        "steps": [
+          "Giải ý 1 để được 60 giây.",
+          "Giải ý 2 để được 180 giây.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 1 phút bằng bao nhiêu giây?",
+          "Ý 2. 3 phút bằng bao nhiêu giây?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L167-H01",
+      "lesson_id": 167,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 16. Bài 16: Thế kỉ: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L167-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-167/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 16. Bài 16: Thế kỉ, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: II; Ý 2: XVII",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: I; Ý 2: XVIII",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: II; Ý 2: XVIII",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: I; Ý 2: XVII",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Một thế kỉ có 100 năm; các năm từ 1 đến 100 thuộc thế kỉ I, từ 101 đến 200 thuộc thế kỉ II và tiếp tục tương tự. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy phương án đúng là “I”. Ý 2: Một thế kỉ có 100 năm; các năm từ 1 đến 100 thuộc thế kỉ I, từ 101 đến 200 thuộc thế kỉ II và tiếp tục tương tự. Năm 1789 nằm trong khoảng 1701–1800 nên thuộc thế kỉ XVIII. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy phương án đúng là “XVIII”. Vì vậy cặp kết quả đúng là “Ý 1: I; Ý 2: XVIII”.",
+        "short_text": "Ý 1: I; Ý 2: XVIII",
+        "steps": [
+          "Giải ý 1 để được I.",
+          "Giải ý 2 để được XVIII.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Năm 1 thuộc thế kỉ nào?",
+          "Ý 2. Năm 1789 thuộc thế kỉ nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L168-H01",
+      "lesson_id": 168,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 17. Bài 17: Bài toán liên quan đến rút về đơn vị: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L168-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-168/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 17. Bài 17: Bài toán liên quan đến rút về đơn vị, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Tìm giá trị của một đơn vị bằng phép chia; Ý 2: 28 000 đồng",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Nhân hai số đã cho; Ý 2: 28 000 đồng",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Tìm giá trị của một đơn vị bằng phép chia; Ý 2: 21 000 đồng",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Nhân hai số đã cho; Ý 2: 21 000 đồng",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Đây là bài toán rút về đơn vị: em tìm giá trị của một đơn vị trước, sau đó nhân với số đơn vị cần tìm. Ta thường lấy giá trị của nhiều đơn vị chia cho số đơn vị để tìm giá trị một đơn vị. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy phương án đúng là “Tìm giá trị của một đơn vị bằng phép chia”. Ý 2: Đây là bài toán rút về đơn vị: em tìm giá trị của một đơn vị trước, sau đó nhân với số đơn vị cần tìm. Giá 1 m là 63 000 : 9 = 7 000 đồng. Giá 4 m là 7 000 × 4 = 28 000 đồng. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 28 000 đồng. Vì vậy cặp kết quả đúng là “Ý 1: Tìm giá trị của một đơn vị bằng phép chia; Ý 2: 28 000 đồng”.",
+        "short_text": "Ý 1: Tìm giá trị của một đơn vị bằng phép chia; Ý 2: 28 000 đồng",
+        "steps": [
+          "Giải ý 1 để được Tìm giá trị của một đơn vị bằng phép chia.",
+          "Giải ý 2 để được 28 000 đồng.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Trong bài toán rút về đơn vị, bước đầu tiên thường là gì?",
+          "Ý 2. Mua 9 m dây ruy băng hết 63 000 đồng. Mua 4 m hết bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L169-H01",
+      "lesson_id": 169,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 19. Bài 19: Góc nhọn, góc tù, góc bẹt: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L169-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-169/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 19. Bài 19: Góc nhọn, góc tù, góc bẹt, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Nhỏ hơn; Ý 2: Góc tù lớn hơn góc vuông",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Lớn hơn; Ý 2: Góc tù nhỏ hơn góc nhọn",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Nhỏ hơn; Ý 2: Góc tù nhỏ hơn góc nhọn",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Lớn hơn; Ý 2: Góc tù lớn hơn góc vuông",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Em so sánh độ mở của góc với góc vuông và góc bẹt để nhận biết góc nhọn, góc tù hoặc góc bẹt. Mọi góc nhọn đều nhỏ hơn góc vuông, nên góc vuông lớn hơn góc nhọn. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Lớn hơn”. Ý 2: Em so sánh độ mở của góc với góc vuông và góc bẹt để nhận biết góc nhọn, góc tù hoặc góc bẹt. Góc tù luôn lớn hơn góc vuông và nhỏ hơn góc bẹt. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Góc tù lớn hơn góc vuông”. Vì vậy cặp kết quả đúng là “Ý 1: Lớn hơn; Ý 2: Góc tù lớn hơn góc vuông”.",
+        "short_text": "Ý 1: Lớn hơn; Ý 2: Góc tù lớn hơn góc vuông",
+        "steps": [
+          "Giải ý 1 để được Lớn hơn.",
+          "Giải ý 2 để được Góc tù lớn hơn góc vuông.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Góc vuông so với góc nhọn như thế nào?",
+          "Ý 2. Trong các phát biểu sau, phát biểu nào đúng?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L170-H01",
+      "lesson_id": 170,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 20. Bài 20. Đơn vị đo góc. Độ: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L170-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-170/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 20. Bài 20. Đơn vị đo góc. Độ, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 180°; Ý 2: Góc nhọn",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 90°; Ý 2: Góc nhọn",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 180°; Ý 2: Góc vuông",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 90°; Ý 2: Góc vuông",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Em đọc số đo ghi trên hình hoặc cộng, trừ các góc thành phần; đơn vị đo góc là độ, kí hiệu °. Góc bẹt có số đo 180°. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy đáp số hoặc kết quả cần chọn là 180°. Ý 2: Em đọc số đo ghi trên hình hoặc cộng, trừ các góc thành phần; đơn vị đo góc là độ, kí hiệu °. 45° nhỏ hơn 90° nên đó là góc nhọn. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Góc nhọn”. Vì vậy cặp kết quả đúng là “Ý 1: 180°; Ý 2: Góc nhọn”.",
+        "short_text": "Ý 1: 180°; Ý 2: Góc nhọn",
+        "steps": [
+          "Giải ý 1 để được 180°.",
+          "Giải ý 2 để được Góc nhọn.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Góc bẹt có số đo bằng bao nhiêu?",
+          "Ý 2. Góc có số đo 45° là loại góc nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L171-H01",
+      "lesson_id": 171,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L171-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-171/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: d song song với m; Ý 2: BC",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: d vuông góc với m; Ý 2: CD",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: d song song với m; Ý 2: CD",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: d vuông góc với m; Ý 2: BC",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Hai đường thẳng vuông góc cắt nhau và tạo thành bốn góc vuông, vì vậy em tìm dấu góc vuông tại giao điểm. Kí hiệu ⟂ dùng để chỉ quan hệ vuông góc. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “d vuông góc với m”. Ý 2: Hai đường thẳng vuông góc cắt nhau và tạo thành bốn góc vuông, vì vậy em tìm dấu góc vuông tại giao điểm. AB và BC là hai cạnh kề của hình chữ nhật nên vuông góc với nhau. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “BC”. Vì vậy cặp kết quả đúng là “Ý 1: d vuông góc với m; Ý 2: BC”.",
+        "short_text": "Ý 1: d vuông góc với m; Ý 2: BC",
+        "steps": [
+          "Giải ý 1 để được d vuông góc với m.",
+          "Giải ý 2 để được BC.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Kí hiệu “d ⟂ m” được đọc như thế nào?",
+          "Ý 2. Trong hình chữ nhật ABCD, AB vuông góc với cạnh nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L172-H01",
+      "lesson_id": 172,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L172-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-172/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Hai cạnh kề của hình chữ nhật song song; Ý 2: a vuông góc với b",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Hai cạnh đối diện của hình chữ nhật song song; Ý 2: a song song với b",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Hai cạnh kề của hình chữ nhật song song; Ý 2: a song song với b",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Hai cạnh đối diện của hình chữ nhật song song; Ý 2: a vuông góc với b",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Hai đường thẳng song song không cắt nhau dù kéo dài về hai phía và luôn giữ khoảng cách không đổi. Trong hình chữ nhật, mỗi cặp cạnh đối diện song song với nhau. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Hai cạnh đối diện của hình chữ nhật song song”. Ý 2: Hai đường thẳng song song không cắt nhau dù kéo dài về hai phía và luôn giữ khoảng cách không đổi. Kí hiệu // dùng để chỉ hai đường thẳng song song. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “a song song với b”. Vì vậy cặp kết quả đúng là “Ý 1: Hai cạnh đối diện của hình chữ nhật song song; Ý 2: a song song với b”.",
+        "short_text": "Ý 1: Hai cạnh đối diện của hình chữ nhật song song; Ý 2: a song song với b",
+        "steps": [
+          "Giải ý 1 để được Hai cạnh đối diện của hình chữ nhật song song.",
+          "Giải ý 2 để được a song song với b.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Phát biểu nào đúng?",
+          "Ý 2. Kí hiệu “a // b” được đọc như thế nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L173-H01",
+      "lesson_id": 173,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 1. Bài 26: Phép cộng, phép trừ: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L173-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-173/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 1. Bài 26: Phép cộng, phép trừ, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 64 090; Ý 2: 650 560",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 65 090; Ý 2: 660 560",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 64 090; Ý 2: 660 560",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 65 090; Ý 2: 650 560",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Em đặt các chữ số thẳng hàng rồi thực hiện cộng hoặc trừ từ hàng đơn vị sang trái, nhớ hoặc mượn khi cần. 73 402 − 8 312 = 65 090. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 65 090. Ý 2: Em đặt các chữ số thẳng hàng rồi thực hiện cộng hoặc trừ từ hàng đơn vị sang trái, nhớ hoặc mượn khi cần. 729 060 − 68 500 = 660 560. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 660 560. Vì vậy cặp kết quả đúng là “Ý 1: 65 090; Ý 2: 660 560”.",
+        "short_text": "Ý 1: 65 090; Ý 2: 660 560",
+        "steps": [
+          "Giải ý 1 để được 65 090.",
+          "Giải ý 2 để được 660 560.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 73 402 − 8 312.",
+          "Ý 2. Tính 729 060 − 68 500."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L174-H01",
+      "lesson_id": 174,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 2. Bài 27: Các tính chất của phép cộng: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L174-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-174/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 2. Bài 27: Các tính chất của phép cộng, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 49; Ý 2: 81",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 59; Ý 2: 71",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 49; Ý 2: 71",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 59; Ý 2: 81",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Em chọn tính chất giao hoán, kết hợp hoặc cộng với 0 để nhóm các số thuận tiện mà không làm thay đổi tổng. Nhóm 36 + 14 = 50, rồi 50 + 9 = 59. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 59. Ý 2: Em chọn tính chất giao hoán, kết hợp hoặc cộng với 0 để nhóm các số thuận tiện mà không làm thay đổi tổng. Nhóm 12 + 18 = 30, rồi 51 + 30 = 81. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 81. Vì vậy cặp kết quả đúng là “Ý 1: 59; Ý 2: 81”.",
+        "short_text": "Ý 1: 59; Ý 2: 81",
+        "steps": [
+          "Giải ý 1 để được 59.",
+          "Giải ý 2 để được 81.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính thuận tiện: 36 + 14 + 9.",
+          "Ý 2. Tính thuận tiện: 51 + 12 + 18."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L175-H01",
+      "lesson_id": 175,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 3. Bài 28: Tìm số trung bình cộng: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L175-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-175/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 3. Bài 28: Tìm số trung bình cộng, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 50; Ý 2: 30",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 48; Ý 2: 30",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 50; Ý 2: 29",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 48; Ý 2: 29",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Muốn tìm số trung bình cộng, em cộng tất cả các số rồi chia tổng đó cho số lượng các số hạng. (46 + 54) : 2 = 100 : 2 = 50. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 50. Ý 2: Muốn tìm số trung bình cộng, em cộng tất cả các số rồi chia tổng đó cho số lượng các số hạng. (27 + 33 + 30) : 3 = 90 : 3 = 30. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 30. Vì vậy cặp kết quả đúng là “Ý 1: 50; Ý 2: 30”.",
+        "short_text": "Ý 1: 50; Ý 2: 30",
+        "steps": [
+          "Giải ý 1 để được 50.",
+          "Giải ý 2 để được 30.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Trung bình cộng của 46 và 54 là bao nhiêu?",
+          "Ý 2. Trung bình cộng của 27, 33 và 30 là bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L176-H01",
+      "lesson_id": 176,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L176-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-176/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 4. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 50; Ý 2: 52",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 30; Ý 2: 52",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 50; Ý 2: 54",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 30; Ý 2: 54",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Khi biết tổng và hiệu, số lớn bằng (tổng + hiệu) : 2, còn số bé bằng (tổng - hiệu) : 2. Số lớn là (80 + 20) : 2 = 50. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 50. Ý 2: Khi biết tổng và hiệu, số lớn bằng (tổng + hiệu) : 2, còn số bé bằng (tổng - hiệu) : 2. Số bé là (124 − 16) : 2 = 108 : 2 = 54. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 54. Vì vậy cặp kết quả đúng là “Ý 1: 50; Ý 2: 54”.",
+        "short_text": "Ý 1: 50; Ý 2: 54",
+        "steps": [
+          "Giải ý 1 để được 50.",
+          "Giải ý 2 để được 54.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Hai số có tổng là 80 và hiệu là 20. Số lớn là bao nhiêu?",
+          "Ý 2. Hai số có tổng là 124 và hiệu là 16. Số bé là bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L177-H01",
+      "lesson_id": 177,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 6. Bài 31: Nhân với số có một chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L177-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-177/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 6. Bài 31: Nhân với số có một chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 6 418; Ý 2: 27 035",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 6 428; Ý 2: 27 045",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 6 418; Ý 2: 27 045",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 6 428; Ý 2: 27 035",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Em nhân lần lượt số có nhiều chữ số với số có một chữ số từ phải sang trái và nhớ sang hàng tiếp theo khi cần. 3 214 × 2 = 6 428. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 6 428. Ý 2: Em nhân lần lượt số có nhiều chữ số với số có một chữ số từ phải sang trái và nhớ sang hàng tiếp theo khi cần. 9 015 × 3 = 27 045. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 27 045. Vì vậy cặp kết quả đúng là “Ý 1: 6 428; Ý 2: 27 045”.",
+        "short_text": "Ý 1: 6 428; Ý 2: 27 045",
+        "steps": [
+          "Giải ý 1 để được 6 428.",
+          "Giải ý 2 để được 27 045.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 3 214 × 2.",
+          "Ý 2. Tính 9 015 × 3."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L178-H01",
+      "lesson_id": 178,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 7. Bài 32: Nhân với số có hai chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L178-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-178/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 7. Bài 32: Nhân với số có hai chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 918; Ý 2: 756",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 818; Ý 2: 756",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 918; Ý 2: 746",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 818; Ý 2: 746",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Khi nhân với số có hai chữ số, em tính hai tích riêng theo từng hàng rồi cộng các tích riêng đúng cột. 27 × 34 = 27 × 30 + 27 × 4 = 810 + 108 = 918. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 918. Ý 2: Khi nhân với số có hai chữ số, em tính hai tích riêng theo từng hàng rồi cộng các tích riêng đúng cột. 42 × 18 = 42 × 10 + 42 × 8 = 420 + 336 = 756. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 756. Vì vậy cặp kết quả đúng là “Ý 1: 918; Ý 2: 756”.",
+        "short_text": "Ý 1: 918; Ý 2: 756",
+        "steps": [
+          "Giải ý 1 để được 918.",
+          "Giải ý 2 để được 756.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 27 × 34.",
+          "Ý 2. Tính 42 × 18."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L179-H01",
+      "lesson_id": 179,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 9. Bài 34: Các tính chất của phép nhân: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L179-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-179/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 9. Bài 34: Các tính chất của phép nhân, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 600; Ý 2: 460",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 500; Ý 2: 460",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 600; Ý 2: 480",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 500; Ý 2: 480",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em vận dụng tính chất giao hoán, kết hợp, nhân với 0 hoặc nhân với 1 để tính nhanh và chính xác. 6 × 4 × 25 = 6 × (4 × 25) = 6 × 100 = 600. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 600. Ý 2: Em vận dụng tính chất giao hoán, kết hợp, nhân với 0 hoặc nhân với 1 để tính nhanh và chính xác. 48 × 5 × 2 = 48 × (5 × 2) = 48 × 10 = 480. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 480. Vì vậy cặp kết quả đúng là “Ý 1: 600; Ý 2: 480”.",
+        "short_text": "Ý 1: 600; Ý 2: 480",
+        "steps": [
+          "Giải ý 1 để được 600.",
+          "Giải ý 2 để được 480.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính nhanh 6 × 4 × 25.",
+          "Ý 2. Tính nhanh 48 × 5 × 2."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L180-H01",
+      "lesson_id": 180,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 11. Bài 36: Nhân với 10, 100 , 1 000, ...: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L180-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-180/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 11. Bài 36: Nhân với 10, 100 , 1 000, ..., lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 560; Ý 2: 150",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 5 600; Ý 2: 1 500",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 560; Ý 2: 1 500",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 5 600; Ý 2: 150",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Khi nhân số tự nhiên với 10, 100 hoặc 1 000, em viết thêm tương ứng một, hai hoặc ba chữ số 0 vào bên phải. 7 × 800 = 7 × 8 × 100 = 56 × 100 = 5 600. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 5 600. Ý 2: Khi nhân số tự nhiên với 10, 100 hoặc 1 000, em viết thêm tương ứng một, hai hoặc ba chữ số 0 vào bên phải. 30 × 50 = 3 × 5 × 100 = 1 500. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 1 500. Vì vậy cặp kết quả đúng là “Ý 1: 5 600; Ý 2: 1 500”.",
+        "short_text": "Ý 1: 5 600; Ý 2: 1 500",
+        "steps": [
+          "Giải ý 1 để được 5 600.",
+          "Giải ý 2 để được 1 500.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính nhẩm 7 × 800.",
+          "Ý 2. Tính nhẩm 30 × 50."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L181-H01",
+      "lesson_id": 181,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 13. Bài 38: Chia cho số có một chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L181-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-181/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 13. Bài 38: Chia cho số có một chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 12 213; Ý 2: 20 168",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 12 312; Ý 2: 21 168",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 12 213; Ý 2: 21 168",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 12 312; Ý 2: 20 168",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Em chia lần lượt từ trái sang phải; sau mỗi lượt phải kiểm tra số dư luôn nhỏ hơn số chia. 36 936 : 3 = 12 312. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 12 312. Ý 2: Em chia lần lượt từ trái sang phải; sau mỗi lượt phải kiểm tra số dư luôn nhỏ hơn số chia. 84 672 : 4 = 21 168. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 21 168. Vì vậy cặp kết quả đúng là “Ý 1: 12 312; Ý 2: 21 168”.",
+        "short_text": "Ý 1: 12 312; Ý 2: 21 168",
+        "steps": [
+          "Giải ý 1 để được 12 312.",
+          "Giải ý 2 để được 21 168.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 36 936 : 3.",
+          "Ý 2. Tính 84 672 : 4."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L182-H01",
+      "lesson_id": 182,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 14. Bài 39: Chia cho 10, 100, 1 000, ...: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L182-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-182/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 14. Bài 39: Chia cho 10, 100, 1 000, ..., lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 13; Ý 2: 64",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 130; Ý 2: 64",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 13; Ý 2: 640",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 130; Ý 2: 640",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Khi chia số tròn chục, tròn trăm hoặc tròn nghìn cho 10, 100 hay 1 000, em bỏ đi số chữ số 0 tương ứng ở bên phải. 130 : 10 = 13. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 13. Ý 2: Khi chia số tròn chục, tròn trăm hoặc tròn nghìn cho 10, 100 hay 1 000, em bỏ đi số chữ số 0 tương ứng ở bên phải. 6 400 : 10 = 640. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 640. Vì vậy cặp kết quả đúng là “Ý 1: 13; Ý 2: 640”.",
+        "short_text": "Ý 1: 13; Ý 2: 640",
+        "steps": [
+          "Giải ý 1 để được 13.",
+          "Giải ý 2 để được 640.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính nhẩm 130 : 10.",
+          "Ý 2. Tính nhẩm 6 400 : 10."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L183-H01",
+      "lesson_id": 183,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 15. Bài 40: Chia cho số có hai chữ số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L183-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-183/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 15. Bài 40: Chia cho số có hai chữ số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 10; Ý 2: 16",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 12; Ý 2: 14",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 10; Ý 2: 14",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 12; Ý 2: 16",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Khi chia cho số có hai chữ số, em ước lượng chữ số thương, nhân ngược lại rồi trừ để tìm số dư. 144 : 12 = 12. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 12. Ý 2: Khi chia cho số có hai chữ số, em ước lượng chữ số thương, nhân ngược lại rồi trừ để tìm số dư. 224 : 14 = 16. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 16. Vì vậy cặp kết quả đúng là “Ý 1: 12; Ý 2: 16”.",
+        "short_text": "Ý 1: 12; Ý 2: 16",
+        "steps": [
+          "Giải ý 1 để được 12.",
+          "Giải ý 2 để được 16.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 144 : 12.",
+          "Ý 2. Tính 224 : 14."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L184-H01",
+      "lesson_id": 184,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 17. Bài 42: Chia cho số có hai chữ số (tiếp theo): chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L184-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-184/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 17. Bài 42: Chia cho số có hai chữ số (tiếp theo), lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 39; Ý 2: 55",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 29; Ý 2: 55",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 39; Ý 2: 65",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 29; Ý 2: 65",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em tiếp tục thực hiện phép chia theo từng lượt, kiểm tra tích của thương với số chia và số dư sau mỗi bước. 24 × 39 = 936 nên 936 : 24 = 39. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 39. Ý 2: Em tiếp tục thực hiện phép chia theo từng lượt, kiểm tra tích của thương với số chia và số dư sau mỗi bước. 25 × 65 = 1 625 nên 1 625 : 25 = 65. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 65. Vì vậy cặp kết quả đúng là “Ý 1: 39; Ý 2: 65”.",
+        "short_text": "Ý 1: 39; Ý 2: 65",
+        "steps": [
+          "Giải ý 1 để được 39.",
+          "Giải ý 2 để được 65.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 936 : 24 bằng bao nhiêu?",
+          "Ý 2. 1 625 : 25 bằng bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L185-H01",
+      "lesson_id": 185,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 19. Bài 44: Thương có chữ số 0: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L185-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-185/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 19. Bài 44: Thương có chữ số 0, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 19; Ý 2: 22",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 17; Ý 2: 22",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 19; Ý 2: 202",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 17; Ý 2: 202",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Nếu số đang xét nhỏ hơn số chia nhưng vẫn còn chữ số cần hạ xuống, em phải viết 0 vào thương rồi mới tiếp tục chia. 32 × 19 = 608 nên 608 : 32 = 19. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 19. Ý 2: Nếu số đang xét nhỏ hơn số chia nhưng vẫn còn chữ số cần hạ xuống, em phải viết 0 vào thương rồi mới tiếp tục chia. 40 × 202 = 8 080 nên 8 080 : 40 = 202. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 202. Vì vậy cặp kết quả đúng là “Ý 1: 19; Ý 2: 202”.",
+        "short_text": "Ý 1: 19; Ý 2: 202",
+        "steps": [
+          "Giải ý 1 để được 19.",
+          "Giải ý 2 để được 202.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 608 : 32 bằng bao nhiêu?",
+          "Ý 2. 8 080 : 40 bằng bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L186-H01",
+      "lesson_id": 186,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 22. Bài 47: Ước lượng tính: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L186-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-186/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 22. Bài 47: Ước lượng tính, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 420; Ý 2: 130",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 360; Ý 2: 130",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 420; Ý 2: 120",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 360; Ý 2: 120",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Để ước lượng, em làm tròn các số đến hàng thích hợp rồi tính nhẩm để thu được kết quả gần đúng. 64 làm tròn đến hàng chục được 60. Ta có 60 × 7 = 420. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 420. Ý 2: Để ước lượng, em làm tròn các số đến hàng thích hợp rồi tính nhẩm để thu được kết quả gần đúng. 73 ≈ 70 và 56 ≈ 60. Tổng ước lượng là 70 + 60 = 130. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 130. Vì vậy cặp kết quả đúng là “Ý 1: 420; Ý 2: 130”.",
+        "short_text": "Ý 1: 420; Ý 2: 130",
+        "steps": [
+          "Giải ý 1 để được 420.",
+          "Giải ý 2 để được 130.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Làm tròn 64 đến hàng chục rồi ước lượng tích 64 × 7. Kết quả là bao nhiêu?",
+          "Ý 2. Làm tròn mỗi số đến hàng chục rồi ước lượng tổng 73 + 56. Kết quả là bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L187-H01",
+      "lesson_id": 187,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 24. Bài 49: Biểu thức có chứa chữ: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L187-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-187/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 24. Bài 49: Biểu thức có chứa chữ, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 42; Ý 2: 60",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 36; Ý 2: 60",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 42; Ý 2: 75",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 36; Ý 2: 75",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em thay đúng giá trị của từng chữ vào biểu thức, sau đó thực hiện phép tính theo thứ tự đã học. Thay a = 7, ta có a × 6 = 7 × 6 = 42. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 42. Ý 2: Em thay đúng giá trị của từng chữ vào biểu thức, sau đó thực hiện phép tính theo thứ tự đã học. 30 × 2 + 15 = 60 + 15 = 75. Em có thể kiểm tra kết quả bằng phép tính ngược hoặc thay kết quả vào dữ kiện ban đầu để chắc chắn phép tính phù hợp. Vậy đáp số hoặc kết quả cần chọn là 75. Vì vậy cặp kết quả đúng là “Ý 1: 42; Ý 2: 75”.",
+        "short_text": "Ý 1: 42; Ý 2: 75",
+        "steps": [
+          "Giải ý 1 để được 42.",
+          "Giải ý 2 để được 75.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Giá trị của biểu thức a × 6 với a = 7 là bao nhiêu?",
+          "Ý 2. Giá trị của biểu thức a × 2 + 15 với a = 30 là bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L188-H01",
+      "lesson_id": 188,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 1. Bài 53: Khái niệm phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L188-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-188/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 1. Bài 53: Khái niệm phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Chia thành 7 phần bằng nhau, lấy 4 phần; Ý 2: 10/7",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Chia thành 4 phần bằng nhau, lấy 7 phần; Ý 2: 10/7",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Chia thành 7 phần bằng nhau, lấy 4 phần; Ý 2: 7/10",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Chia thành 4 phần bằng nhau, lấy 7 phần; Ý 2: 7/10",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Mẫu số cho biết đơn vị được chia thành bao nhiêu phần bằng nhau, còn tử số cho biết số phần được lấy. Mẫu số 7 chỉ tổng số phần bằng nhau; tử số 4 chỉ số phần được lấy. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “Chia thành 7 phần bằng nhau, lấy 4 phần”. Ý 2: Mẫu số cho biết đơn vị được chia thành bao nhiêu phần bằng nhau, còn tử số cho biết số phần được lấy. “Bảy” là tử số và “mười” là mẫu số, nên viết 7/10. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “7/10”. Vì vậy cặp kết quả đúng là “Ý 1: Chia thành 7 phần bằng nhau, lấy 4 phần; Ý 2: 7/10”.",
+        "short_text": "Ý 1: Chia thành 7 phần bằng nhau, lấy 4 phần; Ý 2: 7/10",
+        "steps": [
+          "Giải ý 1 để được Chia thành 7 phần bằng nhau, lấy 4 phần.",
+          "Giải ý 2 để được 7/10.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Phân số 4/7 cho biết điều gì?",
+          "Ý 2. “Bảy phần mười” được viết là:"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L189-H01",
+      "lesson_id": 189,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 2. Bài 54: Khái niệm phân số (tiếp theo): chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L189-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-189/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 2. Bài 54: Khái niệm phân số (tiếp theo), lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 8/8; Ý 2: 12/9 lớn hơn 1",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 8/7; Ý 2: 12/9 lớn hơn 1",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 8/8; Ý 2: 7/9 lớn hơn 1",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 8/7; Ý 2: 7/9 lớn hơn 1",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Em xác định một đơn vị, đếm tổng số phần bằng nhau rồi đếm số phần được tô màu hoặc được chọn để viết phân số. Phân số có tử số bằng mẫu số thì bằng 1. Vậy 8/8 = 1. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “8/8”. Ý 2: Em xác định một đơn vị, đếm tổng số phần bằng nhau rồi đếm số phần được tô màu hoặc được chọn để viết phân số. Với 12/9, tử số 12 lớn hơn mẫu số 9 nên phân số lớn hơn 1. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “12/9 lớn hơn 1”. Vì vậy cặp kết quả đúng là “Ý 1: 8/8; Ý 2: 12/9 lớn hơn 1”.",
+        "short_text": "Ý 1: 8/8; Ý 2: 12/9 lớn hơn 1",
+        "steps": [
+          "Giải ý 1 để được 8/8.",
+          "Giải ý 2 để được 12/9 lớn hơn 1.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Phân số nào bằng 1?",
+          "Ý 2. Phát biểu nào đúng?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L190-H01",
+      "lesson_id": 190,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 3. Bài 55: Phân số và phép chia số tự nhiên: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L190-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-190/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 3. Bài 55: Phân số và phép chia số tự nhiên, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: a : b = a/b với b khác 0; Ý 2: 2",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Mọi phân số a/b đều biểu thị a + b; Ý 2: 2",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: a : b = a/b với b khác 0; Ý 2: 7",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Mọi phân số a/b đều biểu thị a + b; Ý 2: 7",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Phép chia số tự nhiên a : b với b khác 0 có thể viết thành phân số a/b; tử số là số bị chia và mẫu số là số chia. Với b khác 0, thương của a chia b có thể viết dưới dạng phân số a/b. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “a : b = a/b với b khác 0”. Ý 2: Phép chia số tự nhiên a : b với b khác 0 có thể viết thành phân số a/b; tử số là số bị chia và mẫu số là số chia. Theo quy tắc a : b = a/b, ta có 7 : 9 = 7/9 nên số cần điền là 7. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 7. Vì vậy cặp kết quả đúng là “Ý 1: a : b = a/b với b khác 0; Ý 2: 7”.",
+        "short_text": "Ý 1: a : b = a/b với b khác 0; Ý 2: 7",
+        "steps": [
+          "Giải ý 1 để được a : b = a/b với b khác 0.",
+          "Giải ý 2 để được 7.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Phát biểu nào đúng?",
+          "Ý 2. Điền số thích hợp: 7 : 9 = ?/9."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L191-H01",
+      "lesson_id": 191,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 5. Bài 57: Phân số bằng nhau: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L191-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-191/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 5. Bài 57: Phân số bằng nhau, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 9/12 = 3/4; Ý 2: 5/3",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 9/12 = 2/3; Ý 2: 5/3",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 9/12 = 3/4; Ý 2: 6/10",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 9/12 = 2/3; Ý 2: 6/10",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Hai phân số bằng nhau nếu chúng biểu diễn cùng một phần của đơn vị, dù tử số và mẫu số có thể khác nhau. Chia cả 9 và 12 cho 3 được 3/4, nên 9/12 = 3/4. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “9/12 = 3/4”. Ý 2: Hai phân số bằng nhau nếu chúng biểu diễn cùng một phần của đơn vị, dù tử số và mẫu số có thể khác nhau. Nhân cả tử số và mẫu số của 3/5 với 2 được 6/10. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “6/10”. Vì vậy cặp kết quả đúng là “Ý 1: 9/12 = 3/4; Ý 2: 6/10”.",
+        "short_text": "Ý 1: 9/12 = 3/4; Ý 2: 6/10",
+        "steps": [
+          "Giải ý 1 để được 9/12 = 3/4.",
+          "Giải ý 2 để được 6/10.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Đẳng thức nào đúng?",
+          "Ý 2. Phân số nào bằng 3/5?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L192-H01",
+      "lesson_id": 192,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 6. Bài 58: Tính chất cơ bản của phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L192-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-192/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 6. Bài 58: Tính chất cơ bản của phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho; Ý 2: 10",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Chỉ cần nhân tử số thì giá trị không đổi; Ý 2: 10",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho; Ý 2: 15",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Chỉ cần nhân tử số thì giá trị không đổi; Ý 2: 15",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Khi nhân hoặc chia cả tử số và mẫu số cho cùng một số khác 0, ta được một phân số bằng phân số ban đầu. Đó là nội dung tính chất cơ bản của phân số. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho”. Ý 2: Khi nhân hoặc chia cả tử số và mẫu số cho cùng một số khác 0, ta được một phân số bằng phân số ban đầu. Mẫu số 9 nhân 3 được 27, nên tử số 5 nhân 3 được 15. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 15. Vì vậy cặp kết quả đúng là “Ý 1: Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho; Ý 2: 15”.",
+        "short_text": "Ý 1: Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho; Ý 2: 15",
+        "steps": [
+          "Giải ý 1 để được Nhân cả tử và mẫu với cùng số khác 0 được phân số bằng phân số đã cho.",
+          "Giải ý 2 để được 15.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Phát biểu nào đúng?",
+          "Ý 2. Điền số thích hợp: 5/9 = ?/27."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L193-H01",
+      "lesson_id": 193,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 7. Bài 59: Rút gọn phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L193-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-193/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 7. Bài 59: Rút gọn phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 2/8; Ý 2: 1/4",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 3/8; Ý 2: 1/5",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 2/8; Ý 2: 1/5",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 3/8; Ý 2: 1/4",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Muốn rút gọn phân số, em chia cả tử số và mẫu số cho một ước chung lớn hơn 1 cho đến khi không thể rút tiếp. Chia cả 6 và 16 cho 2 được 3/8; 3/8 là phân số tối giản. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 3/8. Ý 2: Muốn rút gọn phân số, em chia cả tử số và mẫu số cho một ước chung lớn hơn 1 cho đến khi không thể rút tiếp. Chia cả tử số và mẫu số cho 2: 2/10 = 1/5. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 1/5. Vì vậy cặp kết quả đúng là “Ý 1: 3/8; Ý 2: 1/5”.",
+        "short_text": "Ý 1: 3/8; Ý 2: 1/5",
+        "steps": [
+          "Giải ý 1 để được 3/8.",
+          "Giải ý 2 để được 1/5.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Rút gọn 6/16 được:",
+          "Ý 2. Rút gọn phân số 2/10 được:"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L194-H01",
+      "lesson_id": 194,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 8. Bài 60: Quy đồng mẫu số các phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L194-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-194/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 8. Bài 60: Quy đồng mẫu số các phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 3/4 và 1/6 thành 9/12 và 2/12; Ý 2: 8",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 1/2 và 1/3 thành 3/6 và 2/6; Ý 2: 8",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 3/4 và 1/6 thành 9/12 và 2/12; Ý 2: 4",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 1/2 và 1/3 thành 3/6 và 2/6; Ý 2: 4",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Muốn quy đồng mẫu số, em tìm mẫu số chung rồi nhân cả tử và mẫu của từng phân số với thừa số thích hợp. 3/4 không bằng 9/12 và 1/6 không bằng 2/12. Với mẫu chung 24, cặp đúng là 18/24 và 4/24. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “3/4 và 1/6 thành 9/12 và 2/12”. Ý 2: Muốn quy đồng mẫu số, em tìm mẫu số chung rồi nhân cả tử và mẫu của từng phân số với thừa số thích hợp. Mẫu số 3 nhân 4 được 12 nên tử số 2 nhân 4 được 8. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 8. Vì vậy cặp kết quả đúng là “Ý 1: 3/4 và 1/6 thành 9/12 và 2/12; Ý 2: 8”.",
+        "short_text": "Ý 1: 3/4 và 1/6 thành 9/12 và 2/12; Ý 2: 8",
+        "steps": [
+          "Giải ý 1 để được 3/4 và 1/6 thành 9/12 và 2/12.",
+          "Giải ý 2 để được 8.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Cách quy đồng nào sai?",
+          "Ý 2. Điền số thích hợp: 2/3 = ?/12."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L195-H01",
+      "lesson_id": 195,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 9. Bài 61: So sánh hai phân số cùng mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L195-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-195/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 9. Bài 61: So sánh hai phân số cùng mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 6/11 < 2/11; Ý 2: 12/12 = 1",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 2/6 < 5/6; Ý 2: 12/12 = 1",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 6/11 < 2/11; Ý 2: 12/12 < 1",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 2/6 < 5/6; Ý 2: 12/12 < 1",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Hai phân số cùng mẫu số được so sánh bằng tử số: phân số có tử số lớn hơn thì lớn hơn. Cùng mẫu số 11; 6 > 2 nên phải có 6/11 > 2/11. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “6/11 < 2/11”. Ý 2: Hai phân số cùng mẫu số được so sánh bằng tử số: phân số có tử số lớn hơn thì lớn hơn. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “12/12 = 1”. Vì vậy cặp kết quả đúng là “Ý 1: 6/11 < 2/11; Ý 2: 12/12 = 1”.",
+        "short_text": "Ý 1: 6/11 < 2/11; Ý 2: 12/12 = 1",
+        "steps": [
+          "Giải ý 1 để được 6/11 < 2/11.",
+          "Giải ý 2 để được 12/12 = 1.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Khẳng định nào sai?",
+          "Ý 2. Khẳng định nào đúng?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L196-H01",
+      "lesson_id": 196,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 10. Bài 62: So sánh hai phân số khác mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L196-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-196/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 10. Bài 62: So sánh hai phân số khác mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 5/6 < 4/5; Ý 2: <",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 5/6 > 4/5; Ý 2: >",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 5/6 < 4/5; Ý 2: >",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 5/6 > 4/5; Ý 2: <",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Với hai phân số khác mẫu số, em quy đồng về cùng mẫu rồi so sánh các tử số mới. 5/6 = 25/30, 4/5 = 24/30 nên 5/6 > 4/5. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “5/6 > 4/5”. Ý 2: Với hai phân số khác mẫu số, em quy đồng về cùng mẫu rồi so sánh các tử số mới. 2/3 = 10/15, 3/5 = 9/15 nên 2/3 > 3/5. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy dấu thích hợp cần chọn là “>”. Vì vậy cặp kết quả đúng là “Ý 1: 5/6 > 4/5; Ý 2: >”.",
+        "short_text": "Ý 1: 5/6 > 4/5; Ý 2: >",
+        "steps": [
+          "Giải ý 1 để được 5/6 > 4/5.",
+          "Giải ý 2 để được >.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Khẳng định nào đúng?",
+          "Ý 2. Điền dấu thích hợp: 2/3 ... 3/5."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L197-H01",
+      "lesson_id": 197,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 13. Bài 65: Hình bình hành: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L197-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-197/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 13. Bài 65: Hình bình hành, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Hình chữ nhật; Ý 2: Cổng xếp",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Hình thang; Ý 2: Cổng xếp",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Hình chữ nhật; Ý 2: Quả bóng",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Hình thang; Ý 2: Quả bóng",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau; em dựa vào các dấu hiệu này để nhận biết và tính toán. Hình chữ nhật có hai cặp cạnh đối diện song song và bằng nhau nên luôn là hình bình hành. Hình thang chỉ có một cặp cạnh song song, hình tam giác có ba cạnh, hình tròn không có cạnh nào. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Hình chữ nhật”. Ý 2: Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau; em dựa vào các dấu hiệu này để nhận biết và tính toán. Các thanh của cổng xếp thường tạo thành nhiều ô hình bình hành. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “Cổng xếp”. Vì vậy cặp kết quả đúng là “Ý 1: Hình chữ nhật; Ý 2: Cổng xếp”.",
+        "short_text": "Ý 1: Hình chữ nhật; Ý 2: Cổng xếp",
+        "steps": [
+          "Giải ý 1 để được Hình chữ nhật.",
+          "Giải ý 2 để được Cổng xếp.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Trong các hình dưới đây, hình nào luôn là một hình bình hành?",
+          "Ý 2. Trong các vật sau, vật nào thường có bộ phận mang dạng hình bình hành?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L198-H01",
+      "lesson_id": 198,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 14. Bài 66: Hình thoi: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L198-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-198/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 14. Bài 66: Hình thoi, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: MN và QP không bằng nhau; Ý 2: 20 cm",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Bốn cạnh bằng nhau; Ý 2: 20 cm",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: MN và QP không bằng nhau; Ý 2: 30 cm",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Bốn cạnh bằng nhau; Ý 2: 30 cm",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Hình thoi có bốn cạnh bằng nhau và hai cặp cạnh đối diện song song, nên độ dài một cạnh cho biết độ dài các cạnh còn lại. MN và QP là hai cạnh của hình thoi nên bằng nhau; vì vậy phát biểu “không bằng nhau” là sai. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy phương án đúng là “MN và QP không bằng nhau”. Ý 2: Hình thoi có bốn cạnh bằng nhau và hai cặp cạnh đối diện song song, nên độ dài một cạnh cho biết độ dài các cạnh còn lại. ST = TU = RS = 15 cm nên ST + TU = 15 + 15 = 30 cm. Em đối chiếu lại các dấu góc, tên đỉnh và quan hệ giữa các cạnh hoặc đường thẳng trên hình trước khi kết luận. Vậy đáp số hoặc kết quả cần chọn là 30 cm. Vì vậy cặp kết quả đúng là “Ý 1: MN và QP không bằng nhau; Ý 2: 30 cm”.",
+        "short_text": "Ý 1: MN và QP không bằng nhau; Ý 2: 30 cm",
+        "steps": [
+          "Giải ý 1 để được MN và QP không bằng nhau.",
+          "Giải ý 2 để được 30 cm.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Câu nào sau đây sai về hình thoi MNPQ?",
+          "Ý 2. Hình thoi RSTU có RS = 15 cm. Tính ST + TU."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L199-H01",
+      "lesson_id": 199,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 15. Bài 67: Mét vuông: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L199-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-199/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 15. Bài 67: Mét vuông, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Năm trăm sáu mươi mét vuông; Ý 2: Không so sánh được",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Năm nghìn sáu trăm mét vuông; Ý 2: >",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Năm trăm sáu mươi mét vuông; Ý 2: >",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Năm nghìn sáu trăm mét vuông; Ý 2: Không so sánh được",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Mét vuông là diện tích của hình vuông cạnh 1 m; em chọn đơn vị m² cho các bề mặt có kích thước tương ứng. Đọc số 5 600 là “năm nghìn sáu trăm”, rồi đọc đơn vị mét vuông. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy phương án đúng là “Năm nghìn sáu trăm mét vuông”. Ý 2: Mét vuông là diện tích của hình vuông cạnh 1 m; em chọn đơn vị m² cho các bề mặt có kích thước tương ứng. Hai số đo cùng đơn vị m² nên so sánh 45 và 38; 45 > 38. Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy dấu thích hợp cần chọn là “>”. Vì vậy cặp kết quả đúng là “Ý 1: Năm nghìn sáu trăm mét vuông; Ý 2: >”.",
+        "short_text": "Ý 1: Năm nghìn sáu trăm mét vuông; Ý 2: >",
+        "steps": [
+          "Giải ý 1 để được Năm nghìn sáu trăm mét vuông.",
+          "Giải ý 2 để được >.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Số đo 5 600 m² được đọc như thế nào?",
+          "Ý 2. Điền dấu >, < hoặc =: 45 m² … 38 m²."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L200-H01",
+      "lesson_id": 200,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 16. Bài 68: Đề-xi-mét vuông: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L200-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-200/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 16. Bài 68: Đề-xi-mét vuông, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: <; Ý 2: 100 dm²",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: >; Ý 2: 10 dm²",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: <; Ý 2: 10 dm²",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: >; Ý 2: 100 dm²",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Đề-xi-mét vuông là diện tích của hình vuông cạnh 1 dm; em dùng dm² cho các bề mặt nhỏ hơn một mét vuông. 6 m² = 600 dm², mà 600 dm² > 590 dm². Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy dấu thích hợp cần chọn là “>”. Ý 2: Đề-xi-mét vuông là diện tích của hình vuông cạnh 1 dm; em dùng dm² cho các bề mặt nhỏ hơn một mét vuông. 1 m = 10 dm nên 1 m² = 10 × 10 = 100 dm². Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 100 dm². Vì vậy cặp kết quả đúng là “Ý 1: >; Ý 2: 100 dm²”.",
+        "short_text": "Ý 1: >; Ý 2: 100 dm²",
+        "steps": [
+          "Giải ý 1 để được >.",
+          "Giải ý 2 để được 100 dm².",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Điền dấu thích hợp: 6 m² … 590 dm².",
+          "Ý 2. 1 m² bằng bao nhiêu đề-xi-mét vuông?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L201-H01",
+      "lesson_id": 201,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 17. Bài 69: Mi-li-mét vuông: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L201-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-201/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 17. Bài 69: Mi-li-mét vuông, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 200 mm²; Ý 2: <",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 20 mm²; Ý 2: <",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 200 mm²; Ý 2: >",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 20 mm²; Ý 2: >",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Mi-li-mét vuông là diện tích của hình vuông cạnh 1 mm, phù hợp để đo những bề mặt rất nhỏ. 2 cm² = 2 × 100 mm² = 200 mm². Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy đáp số hoặc kết quả cần chọn là 200 mm². Ý 2: Mi-li-mét vuông là diện tích của hình vuông cạnh 1 mm, phù hợp để đo những bề mặt rất nhỏ. 10 cm² = 1 000 mm² nên 900 mm² < 1 000 mm². Em kiểm tra lại đơn vị ở dữ kiện và kết quả, vì chỉ các số đo cùng đơn vị mới có thể tính hoặc so sánh trực tiếp. Vậy dấu thích hợp cần chọn là “<”. Vì vậy cặp kết quả đúng là “Ý 1: 200 mm²; Ý 2: <”.",
+        "short_text": "Ý 1: 200 mm²; Ý 2: <",
+        "steps": [
+          "Giải ý 1 để được 200 mm².",
+          "Giải ý 2 để được <.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 2 cm² bằng bao nhiêu mi-li-mét vuông?",
+          "Ý 2. Điền dấu thích hợp: 900 mm² … 10 cm²."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L202-H01",
+      "lesson_id": 202,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 1. Bài 73: Cộng các phân số cùng mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L202-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-202/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 1. Bài 73: Cộng các phân số cùng mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 5/7; Ý 2: 8/9",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 5/14; Ý 2: 8/9",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 5/7; Ý 2: 8/18",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 5/14; Ý 2: 8/18",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Muốn cộng hai phân số cùng mẫu số, em cộng các tử số và giữ nguyên mẫu số rồi rút gọn nếu có thể. Hai phân số cùng mẫu số 7 nên 2/7 + 3/7 = 5/7. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 5/7. Ý 2: Muốn cộng hai phân số cùng mẫu số, em cộng các tử số và giữ nguyên mẫu số rồi rút gọn nếu có thể. Giữ nguyên mẫu số 9 và cộng 7 + 1 = 8, được 8/9. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 8/9. Vì vậy cặp kết quả đúng là “Ý 1: 5/7; Ý 2: 8/9”.",
+        "short_text": "Ý 1: 5/7; Ý 2: 8/9",
+        "steps": [
+          "Giải ý 1 để được 5/7.",
+          "Giải ý 2 để được 8/9.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 2/7 + 3/7.",
+          "Ý 2. Tính 7/9 + 1/9."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L203-H01",
+      "lesson_id": 203,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 2. Bài 74: Trừ các phân số cùng mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L203-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-203/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 2. Bài 74: Trừ các phân số cùng mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 3/13; Ý 2: 4/7",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 2/13; Ý 2: 4/7",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 3/13; Ý 2: 5/7",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 2/13; Ý 2: 5/7",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Muốn trừ hai phân số cùng mẫu số, em lấy tử số thứ nhất trừ tử số thứ hai và giữ nguyên mẫu số. Hai phân số cùng mẫu số 13 nên hiệu là 3/13. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 3/13. Ý 2: Muốn trừ hai phân số cùng mẫu số, em lấy tử số thứ nhất trừ tử số thứ hai và giữ nguyên mẫu số. 11/14 − 3/14 = 8/14 = 4/7. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 4/7. Vì vậy cặp kết quả đúng là “Ý 1: 3/13; Ý 2: 4/7”.",
+        "short_text": "Ý 1: 3/13; Ý 2: 4/7",
+        "steps": [
+          "Giải ý 1 để được 3/13.",
+          "Giải ý 2 để được 4/7.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 8/13 − 5/13.",
+          "Ý 2. Tính 11/14 − 3/14."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L204-H01",
+      "lesson_id": 204,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 4. Bài 76: Cộng các phân số khác mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L204-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-204/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 4. Bài 76: Cộng các phân số khác mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 5/14; Ý 2: 7/10",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 13/24; Ý 2: 1/2",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 5/14; Ý 2: 1/2",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 13/24; Ý 2: 7/10",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Muốn cộng hai phân số khác mẫu số, em quy đồng mẫu số rồi cộng hai tử số mới và giữ nguyên mẫu chung. 3/8 = 9/24, 1/6 = 4/24. Tổng là 13/24. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 13/24. Ý 2: Muốn cộng hai phân số khác mẫu số, em quy đồng mẫu số rồi cộng hai tử số mới và giữ nguyên mẫu chung. 2/5 = 4/10. Tổng là 4/10 + 3/10 = 7/10. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 7/10. Vì vậy cặp kết quả đúng là “Ý 1: 13/24; Ý 2: 7/10”.",
+        "short_text": "Ý 1: 13/24; Ý 2: 7/10",
+        "steps": [
+          "Giải ý 1 để được 13/24.",
+          "Giải ý 2 để được 7/10.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 3/8 + 1/6.",
+          "Ý 2. Tính rồi rút gọn: 2/5 + 3/10."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L205-H01",
+      "lesson_id": 205,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 5. Bài 77: Trừ hai phân số khác mẫu số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L205-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-205/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 5. Bài 77: Trừ hai phân số khác mẫu số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 3/5; Ý 2: 5/24",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 1/2; Ý 2: 7/24",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 3/5; Ý 2: 7/24",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 1/2; Ý 2: 5/24",
+          "images": []
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ý 1: Muốn trừ hai phân số khác mẫu số, em quy đồng mẫu số rồi trừ các tử số mới và giữ nguyên mẫu chung. 1/5 = 2/10 nên 7/10 − 2/10 = 5/10 = 1/2. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 1/2. Ý 2: Muốn trừ hai phân số khác mẫu số, em quy đồng mẫu số rồi trừ các tử số mới và giữ nguyên mẫu chung. 11/12 = 22/24, 5/8 = 15/24. Hiệu là 7/24. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 7/24. Vì vậy cặp kết quả đúng là “Ý 1: 1/2; Ý 2: 7/24”.",
+        "short_text": "Ý 1: 1/2; Ý 2: 7/24",
+        "steps": [
+          "Giải ý 1 để được 1/2.",
+          "Giải ý 2 để được 7/24.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tính 7/10 − 1/5.",
+          "Ý 2. Tính rồi rút gọn: 11/12 − 5/8."
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L206-H01",
+      "lesson_id": 206,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 8. Bài 80: Phép nhân phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L206-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-206/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 8. Bài 80: Phép nhân phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 2/5; Ý 2: 7/10",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 1/5; Ý 2: 7/10",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 2/5; Ý 2: 10/21",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 1/5; Ý 2: 10/21",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Muốn nhân hai phân số, em nhân tử số với tử số, mẫu số với mẫu số rồi rút gọn kết quả nếu cần. 2/3 của 3/5 là 2/3 × 3/5 = 6/15 = 2/5. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 2/5. Ý 2: Muốn nhân hai phân số, em nhân tử số với tử số, mẫu số với mẫu số rồi rút gọn kết quả nếu cần. Nhân tử với tử, mẫu với mẫu: 2/3 × 5/7 = 10/21. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “10/21”. Vì vậy cặp kết quả đúng là “Ý 1: 2/5; Ý 2: 10/21”.",
+        "short_text": "Ý 1: 2/5; Ý 2: 10/21",
+        "steps": [
+          "Giải ý 1 để được 2/5.",
+          "Giải ý 2 để được 10/21.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tìm 2/3 của 3/5.",
+          "Ý 2. Kết quả của 2/3 × 5/7 là phân số nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L207-H01",
+      "lesson_id": 207,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 10. Bài 82: Tìm phân số của một số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L207-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-207/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 10. Bài 82: Tìm phân số của một số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 4; Ý 2: 30",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 9; Ý 2: 15",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 4; Ý 2: 15",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 9; Ý 2: 30",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Muốn tìm phân số m/n của một số, em lấy số đó chia cho n rồi nhân với m, hoặc nhân trực tiếp với m/n. 36 × 1/4 = 9. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 9. Ý 2: Muốn tìm phân số m/n của một số, em lấy số đó chia cho n rồi nhân với m, hoặc nhân trực tiếp với m/n. 45 × 2/3 = 30. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 30. Vì vậy cặp kết quả đúng là “Ý 1: 9; Ý 2: 30”.",
+        "short_text": "Ý 1: 9; Ý 2: 30",
+        "steps": [
+          "Giải ý 1 để được 9.",
+          "Giải ý 2 để được 30.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. 1/4 của 36 là bao nhiêu?",
+          "Ý 2. 2/3 của 45 là bao nhiêu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L208-H01",
+      "lesson_id": 208,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 12. Bài 84: Phép chia phân số: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L208-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-208/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 12. Bài 84: Phép chia phân số, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 1/2; Ý 2: 4/5",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 1/3; Ý 2: 4/5",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 1/2; Ý 2: 2/7",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 1/3; Ý 2: 2/7",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Muốn chia cho một phân số, em nhân phân số thứ nhất với phân số đảo ngược của phân số thứ hai. Thử x = 1/2: 2/3 : 1/2 = 2/3 × 2 = 4/3. Vậy x = 1/2. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy đáp số hoặc kết quả cần chọn là 1/2. Ý 2: Muốn chia cho một phân số, em nhân phân số thứ nhất với phân số đảo ngược của phân số thứ hai. Viết 2 = 2/1. Ta có 4/7 : 2/1 = 4/7 × 1/2 = 4/14 = 2/7. Cuối cùng, em kiểm tra tử số, mẫu số và rút gọn phân số nếu cả hai còn cùng chia hết cho một số lớn hơn 1. Vậy phương án đúng là “2/7”. Vì vậy cặp kết quả đúng là “Ý 1: 1/2; Ý 2: 2/7”.",
+        "short_text": "Ý 1: 1/2; Ý 2: 2/7",
+        "steps": [
+          "Giải ý 1 để được 1/2.",
+          "Giải ý 2 để được 2/7.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Tìm x, biết 2/3 : x = 4/3.",
+          "Ý 2. Kết quả của 4/7 : 2 là phân số nào?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L209-H01",
+      "lesson_id": 209,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 15. Bài 87: Dãy số liệu thống kê: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L209-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-209/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 15. Bài 87: Dãy số liệu thống kê, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 40; Ý 2: 4",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 30; Ý 2: 4",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 40; Ý 2: 5",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 30; Ý 2: 5",
+          "images": []
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ý 1: Em đọc lần lượt các giá trị trong dãy số liệu, xác định đúng đối tượng cần tìm rồi đếm, cộng hoặc so sánh theo yêu cầu. 6 + 8 + 7 + 9 + 10 = 40. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy đáp số hoặc kết quả cần chọn là 40. Ý 2: Em đọc lần lượt các giá trị trong dãy số liệu, xác định đúng đối tượng cần tìm rồi đếm, cộng hoặc so sánh theo yêu cầu. Dãy gồm năm giá trị: 12, 15, 18, 15 và 20. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy đáp số hoặc kết quả cần chọn là 5. Vì vậy cặp kết quả đúng là “Ý 1: 40; Ý 2: 5”.",
+        "short_text": "Ý 1: 40; Ý 2: 5",
+        "steps": [
+          "Giải ý 1 để được 40.",
+          "Giải ý 2 để được 5.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Dãy 6, 8, 7, 9, 10 có tổng bằng bao nhiêu?",
+          "Ý 2. Dãy số liệu 12, 15, 18, 15, 20 có bao nhiêu số liệu?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L210-H01",
+      "lesson_id": 210,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 16. Bài 88: Biểu đồ cột: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L210-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-210/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 16. Bài 88: Biểu đồ cột, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: Tên của đối tượng; Ý 2: 2 đội",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: Số liệu của đối tượng; Ý 2: 1 đội",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: Tên của đối tượng; Ý 2: 1 đội",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: Số liệu của đối tượng; Ý 2: 2 đội",
+          "images": []
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Ý 1: Em đọc tên cột và giá trị trên trục số, sau đó dùng đúng số liệu của các cột để thực hiện phép tính. Chiều cao của mỗi cột tương ứng với giá trị số liệu của đối tượng trên trục ngang. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy phương án đúng là “Số liệu của đối tượng”. Ý 2: Em đọc tên cột và giá trị trên trục số, sau đó dùng đúng số liệu của các cột để thực hiện phép tính. Điểm cao nhất là 22 và có hai đội cùng đạt 22 điểm. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy đáp số hoặc kết quả cần chọn là 2 đội. Vì vậy cặp kết quả đúng là “Ý 1: Số liệu của đối tượng; Ý 2: 2 đội”.",
+        "short_text": "Ý 1: Số liệu của đối tượng; Ý 2: 2 đội",
+        "steps": [
+          "Giải ý 1 để được Số liệu của đối tượng.",
+          "Giải ý 2 để được 2 đội.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án A chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Trên biểu đồ cột, chiều cao của cột thường biểu diễn điều gì?",
+          "Ý 2. Bốn đội có số điểm 16, 22, 19 và 22. Có bao nhiêu đội cùng đạt điểm cao nhất?"
+        ]
+      }
+    },
+    {
+      "source_key": "SUP-20260807-G4-L211-H01",
+      "lesson_id": 211,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thử thách hai ý của 17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện: chọn cặp kết quả đúng theo thứ tự trong hình.",
+        "instruction": "Giải lần lượt ý 1 và ý 2 rồi chọn một đáp án.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-20260807-G4-L211-H01-IMG-01",
+            "url": "/images/question-supplements/generated/grade-4/lesson-211/hard-01.png",
+            "alt_text": "Hai ý toán học thuộc 17. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện, lớp 4.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ý 1: 5 lần; Ý 2: 7 lần",
+          "images": []
+        },
+        {
+          "key": "B",
+          "text": "Ý 1: 4 lần; Ý 2: 7 lần",
+          "images": []
+        },
+        {
+          "key": "C",
+          "text": "Ý 1: 5 lần; Ý 2: 6 lần",
+          "images": []
+        },
+        {
+          "key": "D",
+          "text": "Ý 1: 4 lần; Ý 2: 6 lần",
+          "images": []
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ý 1: Em đếm số lần kết quả được hỏi xuất hiện trong bảng và đối chiếu lại từng hàng để tránh bỏ sót hoặc đếm lặp. Bốn vạch thẳng và một vạch chéo gộp thành một nhóm 5 lần. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy đáp số hoặc kết quả cần chọn là 5 lần. Ý 2: Em đếm số lần kết quả được hỏi xuất hiện trong bảng và đối chiếu lại từng hàng để tránh bỏ sót hoặc đếm lặp. Số lần trượt là 18 − 11 = 7 lần. Em đọc lại đúng hàng, cột hoặc từng kết quả đã đếm để kiểm tra số liệu dùng trong phép tính. Vậy đáp số hoặc kết quả cần chọn là 7 lần. Vì vậy cặp kết quả đúng là “Ý 1: 5 lần; Ý 2: 7 lần”.",
+        "short_text": "Ý 1: 5 lần; Ý 2: 7 lần",
+        "steps": [
+          "Giải ý 1 để được 5 lần.",
+          "Giải ý 2 để được 7 lần.",
+          "Ghép hai kết quả theo đúng thứ tự."
+        ],
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án B chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án C chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ giải đúng một ý hoặc ghép sai thứ tự",
+          "explanation": "Phương án D chưa thỏa mãn đầy đủ dữ kiện hoặc quy tắc tính của bài."
+        }
+      ],
+      "visual": {
+        "type": "two_panel",
+        "title": "THỬ THÁCH HAI Ý",
+        "lines": [
+          "Ý 1. Trong bảng kiểm đếm, dấu “||||/” thường biểu diễn bao nhiêu lần?",
+          "Ý 2. Trong 18 lần ném bóng, có 11 lần vào rổ. Số lần trượt là bao nhiêu?"
+        ]
+      }
+    }
+  ]
+}
