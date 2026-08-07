@@ -88,7 +88,7 @@ function cardSvg(question, grade, lesson) {
   let panelMarkup = '';
   panels.forEach((text, panelIndex) => {
     const y = panelStart + panelIndex * (panelHeight + panelGap);
-    const lines = wrapText(text, panels.length === 2 ? 76 : 70).slice(0, panels.length === 2 ? 5 : 7);
+    const lines = wrapText(text, panels.length === 2 ? 55 : 58).slice(0, panels.length === 2 ? 5 : 7);
     panelMarkup += `<rect x="58" y="${y}" width="1084" height="${panelHeight}" rx="24" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="3"/>`;
     if (panels.length === 2) {
       panelMarkup += `<circle cx="102" cy="${y + 48}" r="27" fill="#2563EB"/><text x="102" y="${y + 58}" text-anchor="middle" font-size="28" font-weight="700" fill="#FFFFFF">${panelIndex + 1}</text>`;
@@ -98,7 +98,7 @@ function cardSvg(question, grade, lesson) {
     const textX = panels.length === 2 ? 150 : 315;
     const textY = y + 54;
     lines.forEach((line, lineIndex) => {
-      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 39}" font-family="Arial, sans-serif" font-size="29" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
+      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 36}" font-family="Arial, sans-serif" font-size="26" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
     });
   });
 
