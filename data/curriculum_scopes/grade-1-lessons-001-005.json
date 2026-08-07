@@ -33,6 +33,7 @@
         "Xác định vật nằm ở vị trí được yêu cầu.",
         "Dùng đúng từ chỉ vị trí để mô tả tranh."
       ],
+      "forbidden_text_patterns": [],
       "not_yet_allowed": [
         "Đếm hoặc tính toán không phục vụ trực tiếp cho việc nhận biết vị trí.",
         "Chuỗi suy luận vị trí dài hoặc phụ thuộc nhiều góc nhìn không được thể hiện rõ trong ảnh."
@@ -56,6 +57,9 @@
         "Gọi tên hình hoặc đồ vật có dạng hình được yêu cầu.",
         "Chọn hình theo tên hoặc màu sắc.",
         "Nhận biết các hình được dùng để ghép thành một hình quen thuộc."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cạnh|góc)\\b"
       ],
       "not_yet_allowed": [
         "Đếm cạnh hoặc góc.",
@@ -81,6 +85,12 @@
         "Đếm một nhóm có từ 1 đến 3 đồ vật.",
         "Chọn số hoặc cách đọc tương ứng với số lượng.",
         "Chọn nhóm đồ vật tương ứng với số đã cho."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(thêm|bớt|còn lại|tách|gộp|lớn hơn|bé hơn|nhiều hơn|ít hơn|bé nhất|lớn nhất)\\b",
+        "điền dấu",
+        "từ bé đến lớn|từ lớn đến bé",
+        "[<>=]"
       ],
       "not_yet_allowed": [
         "Phép cộng hoặc phép trừ.",
@@ -109,6 +119,12 @@
         "Chọn nhóm đồ vật tương ứng với số đã cho.",
         "Điền số còn thiếu trong dãy từ 1 đến 6."
       ],
+      "forbidden_text_patterns": [
+        "\\b(thêm|bớt|còn lại|tách|gộp|lớn hơn|bé hơn|nhiều hơn|ít hơn|bé nhất|lớn nhất)\\b",
+        "điền dấu",
+        "từ bé đến lớn|từ lớn đến bé",
+        "[<>=]"
+      ],
       "not_yet_allowed": [
         "Phép cộng hoặc phép trừ.",
         "Tách hoặc gộp số theo phép tính.",
@@ -135,6 +151,12 @@
         "Chọn số hoặc cách đọc tương ứng với số lượng.",
         "Chọn nhóm đồ vật tương ứng với số đã cho.",
         "Điền số còn thiếu trong dãy từ 1 đến 9."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(thêm|bớt|còn lại|tách|gộp|lớn hơn|bé hơn|nhiều hơn|ít hơn|bé nhất|lớn nhất)\\b",
+        "điền dấu",
+        "từ bé đến lớn|từ lớn đến bé",
+        "[<>=]"
       ],
       "not_yet_allowed": [
         "Phép cộng hoặc phép trừ.",

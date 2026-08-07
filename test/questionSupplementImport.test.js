@@ -47,7 +47,8 @@ function validScope() {
       {
         lesson_id: 1,
         pdf_pages: [7, 8],
-        allowed_knowledge_tags: ['spatial_between']
+        allowed_knowledge_tags: ['spatial_between'],
+        forbidden_text_patterns: ['\\b(lớn hơn|bé hơn)\\b']
       }
     ]
   };
@@ -137,6 +138,20 @@ test('từ chối câu chưa được rà theo hồ sơ SGK hoặc thiếu bằn
   );
   assert.ok(errors.some((error) => error.includes('VERIFIED_AGAINST_SCOPE')));
   assert.ok(errors.some((error) => error.includes('evidence_pdf_pages')));
+});
+
+test('chặn từ khóa kiến thức chưa được học dù câu khai báo thẻ hợp lệ', () => {
+  const question = validQuestion();
+  question.content.text = 'Vật nào lớn hơn vật còn lại?';
+  const errors = validateBatchAgainstCurriculumScope(
+    {
+      batch_id: 'BATCH-01',
+      curriculum_scope_id: 'grade-1-lessons-001-005',
+      questions: [question]
+    },
+    validScope()
+  );
+  assert.ok(errors.some((error) => error.includes('nội dung chưa được học')));
 });
 
 test('validateBatch chỉ cho phép ghi khi lô có đủ bằng chứng phê duyệt', () => {

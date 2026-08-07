@@ -75,6 +75,20 @@ function validateBatchAgainstCurriculumScope(batch, scope) {
       }
     }
 
+    const questionText = String(question?.content?.text || '').normalize('NFC').toLocaleLowerCase('vi');
+    for (const pattern of lesson.forbidden_text_patterns || []) {
+      let forbiddenPattern;
+      try {
+        forbiddenPattern = new RegExp(pattern, 'iu');
+      } catch {
+        errors.push(`Hồ sơ bài ${lesson.lesson_id} chứa forbidden_text_patterns không hợp lệ: ${pattern}`);
+        continue;
+      }
+      if (forbiddenPattern.test(questionText)) {
+        errors.push(`${label}.content.text chứa nội dung chưa được học ở bài này: ${pattern}`);
+      }
+    }
+
     if (question?.curriculum_review?.status !== VERIFIED_QUESTION_SCOPE_STATUS) {
       errors.push(`${label}.curriculum_review.status phải là ${VERIFIED_QUESTION_SCOPE_STATUS}`);
     }
