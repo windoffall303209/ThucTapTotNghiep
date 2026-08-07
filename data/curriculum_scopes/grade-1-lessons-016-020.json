@@ -1,0 +1,167 @@
+{
+  "scope_id": "grade-1-lessons-016-020",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [53, 54, 55, 56, 57, 58, 61, 62, 65, 66],
+    "verified_book_pages": [52, 53, 54, 55, 56, 57, 60, 61, 64, 65]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1 và đúng cách diễn đạt trong bài.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Không dùng trừ đi 0 trước bài 19 và không dùng số vượt phạm vi của bài.",
+    "difficulty": "Ưu tiên nhận dạng trực quan hoặc phép tính một bước; không tăng độ khó bằng thuật ngữ chưa học."
+  },
+  "lessons": [
+    {
+      "lesson_id": 16,
+      "lesson_name": "Khối hộp chữ nhật, khối lập phương",
+      "pdf_pages": [53, 54],
+      "book_pages": [52, 53],
+      "objective": "Nhận biết, gọi tên, đếm và dùng khối hộp chữ nhật hoặc khối lập phương để ghép hình; liên hệ với đồ vật thực tế.",
+      "allowed_knowledge_tags": [
+        "recognize_rectangular_prism",
+        "recognize_cube",
+        "match_object_to_solid",
+        "count_rectangular_prisms",
+        "count_cubes",
+        "compose_with_basic_solids"
+      ],
+      "allowed_question_forms": [
+        "Gọi tên khối hoặc đồ vật có dạng khối được yêu cầu.",
+        "Phân loại đồ vật theo khối hộp chữ nhật hoặc khối lập phương.",
+        "Đếm số khối hộp chữ nhật hoặc khối lập phương trong một hình ghép.",
+        "Nhận biết hình được ghép từ hai loại khối đã học."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cạnh|mặt|đỉnh|thể tích|diện tích)\\b",
+        "\\b(cộng|trừ|tổng|hiệu)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Đếm hoặc mô tả cạnh, mặt, đỉnh.",
+        "So sánh kích thước, thể tích hoặc diện tích.",
+        "Dùng phép cộng hay phép trừ để giải câu hỏi hình khối."
+      ]
+    },
+    {
+      "lesson_id": 17,
+      "lesson_name": "Làm quen với phép trừ, dấu trừ",
+      "pdf_pages": [55, 56],
+      "book_pages": [54, 55],
+      "objective": "Nhận biết phép trừ là bớt đi hoặc tách một phần; đọc, chọn và hoàn thành phép trừ có số ban đầu không quá 6.",
+      "allowed_knowledge_tags": [
+        "recognize_subtraction_sign",
+        "take_away_within_6",
+        "complete_subtraction_from_picture_to_6",
+        "match_picture_to_subtraction_to_6"
+      ],
+      "allowed_question_forms": [
+        "Quan sát một số đồ vật bớt đi rồi chọn phép trừ phù hợp.",
+        "Hoàn thành phép trừ minh họa bằng tranh.",
+        "Nhận biết dấu trừ trong phép tính."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "\\b([7-9]|10)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ đi 0.",
+        "Phép trừ có số ban đầu lớn hơn 6.",
+        "Phép tính nhiều bước hoặc kết hợp cộng và trừ."
+      ]
+    },
+    {
+      "lesson_id": 18,
+      "lesson_name": "Phép trừ trong phạm vi 6",
+      "pdf_pages": [57, 58],
+      "book_pages": [56, 57],
+      "objective": "Tính các phép trừ trong phạm vi 6, bao gồm trừ một số cho chính nó để được 0; lập phép trừ từ tình huống bớt đi trong tranh.",
+      "allowed_knowledge_tags": [
+        "calculate_subtraction_to_6",
+        "complete_subtraction_to_6",
+        "subtract_same_number_to_zero_to_6",
+        "write_subtraction_from_picture_to_6",
+        "tell_story_from_subtraction_to_6"
+      ],
+      "allowed_question_forms": [
+        "Tính hoặc điền kết quả phép trừ trong phạm vi 6.",
+        "Tính một số trừ chính nó.",
+        "Quan sát tranh rồi chọn hoặc viết phép trừ phù hợp.",
+        "Kể tình huống đơn giản theo phép trừ đã cho."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "\\b([7-9]|10)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ đi 0.",
+        "Phép trừ có số ban đầu lớn hơn 6.",
+        "Phép tính nhiều bước hoặc kết hợp cộng và trừ."
+      ]
+    },
+    {
+      "lesson_id": 19,
+      "lesson_name": "Phép trừ trong phạm vi 6 (tiếp theo)",
+      "pdf_pages": [61, 62],
+      "book_pages": [60, 61],
+      "objective": "Hệ thống bảng trừ trong phạm vi 6, tính nhẩm, tìm phép trừ theo kết quả và thực hiện phép trừ đi 0.",
+      "allowed_knowledge_tags": [
+        "mental_subtraction_to_6",
+        "complete_subtraction_table_to_6",
+        "find_subtraction_by_result_to_6",
+        "subtract_zero_to_6",
+        "write_subtraction_from_picture_to_6"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm phép trừ trong phạm vi 6.",
+        "Chọn phép trừ có kết quả đã cho.",
+        "Chọn phép tính còn thiếu trong bảng trừ.",
+        "Tính một số trừ 0.",
+        "Lập phép trừ từ tranh bớt đi hoặc biến mất."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "\\b([7-9]|10)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ có số ban đầu lớn hơn 6.",
+        "Phép tính nhiều bước hoặc kết hợp cộng và trừ."
+      ]
+    },
+    {
+      "lesson_id": 20,
+      "lesson_name": "Phép trừ trong phạm vi 10",
+      "pdf_pages": [65, 66],
+      "book_pages": [64, 65],
+      "objective": "Mở rộng phép trừ đến phạm vi 10; tính và lập phép trừ một bước với số bị trừ không quá 10.",
+      "allowed_knowledge_tags": [
+        "calculate_subtraction_7_to_10",
+        "complete_subtraction_to_10",
+        "take_away_within_10",
+        "write_subtraction_from_picture_to_10"
+      ],
+      "allowed_question_forms": [
+        "Tính hoặc điền kết quả phép trừ có số bị trừ từ 7 đến 10.",
+        "Quan sát tranh bớt đi rồi chọn hoặc viết phép trừ phù hợp.",
+        "Chọn kết quả đúng của phép trừ trong phạm vi 10."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "\\b(1[1-9]|[2-9][0-9])\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Số bị trừ lớn hơn 10.",
+        "Phép tính nhiều bước hoặc kết hợp cộng và trừ.",
+        "Bài toán lời văn dài cần suy luận ngoài thao tác bớt đi."
+      ]
+    }
+  ]
+}
