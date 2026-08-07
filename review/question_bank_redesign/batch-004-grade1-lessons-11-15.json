@@ -1,0 +1,229 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L011-L015-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-011-015",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L011-E01",
+      "lesson_id": 11,
+      "concept_id": null,
+      "knowledge_tags": ["combine_two_positive_groups_to_6", "match_picture_to_addition_to_6"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [37, 38]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai con bướm vàng bay cùng ba con bướm xanh. Phép tính nào phù hợp?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-004/cau-01-hai-buom-ba-buom.png",
+            "alt_text": "Bên trái có hai con bướm vàng, bên phải có ba con bướm xanh"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "2 + 3 = 5" },
+        { "key": "B", "text": "2 + 2 = 4" },
+        { "key": "C", "text": "3 + 3 = 6" },
+        { "key": "D", "text": "3 + 1 = 4" }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Có 2 con bướm vàng gộp với 3 con bướm xanh, tất cả có 5 con. Phép tính phù hợp là 2 + 3 = 5.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một con bướm xanh",
+          "explanation": "Nhóm bướm xanh có 3 con, không phải 2 con."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số bướm vàng",
+          "explanation": "Nhóm bướm vàng có 2 con, không phải 3 con."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L012-E01",
+      "lesson_id": 12,
+      "concept_id": null,
+      "knowledge_tags": ["calculate_addition_to_6", "write_addition_from_two_groups_to_6"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [39, 40]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có bốn khối lập phương xanh và hai khối lập phương đỏ. Tất cả có bao nhiêu khối lập phương?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-004/cau-02-bon-khoi-hai-khoi.png",
+            "alt_text": "Bên trái có bốn khối lập phương xanh, bên phải có hai khối lập phương đỏ"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "3 khối" },
+        { "key": "B", "text": "4 khối" },
+        { "key": "C", "text": "5 khối" },
+        { "key": "D", "text": "6 khối" }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Có 4 khối xanh và 2 khối đỏ. Tính 4 + 2 = 6 nên có tất cả 6 khối lập phương.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ sót một khối lập phương",
+          "explanation": "Hãy đếm đủ 4 khối xanh và 2 khối đỏ để được 6 khối."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L013-E01",
+      "lesson_id": 13,
+      "concept_id": null,
+      "knowledge_tags": ["addition_with_zero_to_6", "write_addition_from_picture_to_6"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [41, 42]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đĩa có bốn chiếc bánh, đĩa thứ hai không có chiếc bánh nào. Tất cả có bao nhiêu chiếc bánh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-004/cau-03-bon-banh-cong-khong.png",
+            "alt_text": "Đĩa bên trái có bốn chiếc bánh, đĩa bên phải hoàn toàn trống"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "0 chiếc" },
+        { "key": "B", "text": "3 chiếc" },
+        { "key": "C", "text": "4 chiếc" },
+        { "key": "D", "text": "5 chiếc" }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đĩa thứ nhất có 4 chiếc bánh, đĩa thứ hai có 0 chiếc. Tính 4 + 0 = 4 nên có tất cả 4 chiếc bánh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhìn vào đĩa trống",
+          "explanation": "Cần tính cả hai đĩa. Đĩa thứ nhất vẫn có 4 chiếc bánh."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cho rằng cộng 0 làm giảm một đơn vị",
+          "explanation": "Cộng thêm 0 không làm thay đổi số ban đầu nên 4 + 0 vẫn bằng 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L014-E01",
+      "lesson_id": 14,
+      "concept_id": null,
+      "knowledge_tags": ["calculate_addition_7_to_10", "match_picture_to_addition_to_10"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [45, 46]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nhìn hai nhóm vịt, phép cộng nào cho biết có tất cả bao nhiêu chú vịt?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-004/cau-04-bon-vit-ba-vit.png",
+            "alt_text": "Bên trái có bốn chú vịt vàng, bên phải có ba chú vịt xanh"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "4 + 3 = 7" },
+        { "key": "B", "text": "4 + 2 = 6" },
+        { "key": "C", "text": "3 + 3 = 6" },
+        { "key": "D", "text": "4 + 4 = 8" }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Có 4 chú vịt vàng và 3 chú vịt xanh. Tính 4 + 3 = 7 nên có tất cả 7 chú vịt.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một chú vịt xanh",
+          "explanation": "Nhóm vịt xanh có 3 chú, không phải 2 chú."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm hai nhóm có số lượng bằng nhau",
+          "explanation": "Nhóm bên phải có 3 chú vịt, không phải 4 chú."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L015-E01",
+      "lesson_id": 15,
+      "concept_id": null,
+      "knowledge_tags": ["mental_addition_to_10", "write_addition_from_picture_to_10"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [49, 50]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Năm bông hoa đỏ gộp với năm bông hoa xanh. Kết quả phép cộng là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-004/cau-05-nam-hoa-nam-hoa.png",
+            "alt_text": "Bên trái có năm bông hoa đỏ, bên phải có năm bông hoa xanh"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "7" },
+        { "key": "B", "text": "8" },
+        { "key": "C", "text": "9" },
+        { "key": "D", "text": "10" }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Có 5 bông hoa đỏ và 5 bông hoa xanh. Tính 5 + 5 = 10 nên kết quả là 10.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ sót một bông hoa",
+          "explanation": "Mỗi nhóm có 5 bông. Đếm đủ hai nhóm được 10 bông hoa."
+        }
+      ]
+    }
+  ]
+}
