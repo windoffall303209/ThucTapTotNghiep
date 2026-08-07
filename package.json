@@ -35,6 +35,7 @@
     "questions:calibrate-report": "node scripts/report_difficulty_calibration.js",
     "questions:readiness-report": "node scripts/report_question_bank_readiness.js",
     "questions:import-supplement": "node scripts/import_question_supplement.js",
+    "questions:build-supplements": "node scripts/build_all_question_supplements.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",
