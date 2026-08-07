@@ -1,0 +1,47 @@
+{
+  "approval_status": "PENDING_USER_APPROVAL",
+  "database_inserted": false,
+  "scope": {
+    "grade": 1,
+    "chapter_id": 1,
+    "chapter_name": "Chủ đề 1: Các số đến 10"
+  },
+  "questions": [
+    {
+      "draft_id": "MAU-01",
+      "lesson_id": 1,
+      "lesson_name": "Trên - dưới. Phải - trái, trước - sau. Ở giữa",
+      "content": "Con mèo ở đâu so với chiếc hộp?",
+      "choices": ["Ở trên", "Ở dưới", "Bên trái", "Bên phải"],
+      "correct_answer": "Ở trên",
+      "explanation": "Con mèo ngồi trên nắp hộp nên đáp án đúng là “Ở trên”.",
+      "difficulty": "easy",
+      "image_path": "images/mau-01-meo-tren-hop.png",
+      "image_alt": "Một con mèo màu cam đang ngồi trên chiếc hộp đồ chơi màu xanh"
+    },
+    {
+      "draft_id": "MAU-02",
+      "lesson_id": 2,
+      "lesson_name": "Hình vuông - hình tròn, hình tam giác - hình chữ nhật",
+      "content": "Đồ vật nào có dạng hình tam giác?",
+      "choices": ["Lá cờ", "Quả bóng", "Quyển sách", "Hộp quà"],
+      "correct_answer": "Lá cờ",
+      "explanation": "Lá cờ có dạng hình tam giác.",
+      "difficulty": "easy",
+      "image_path": "images/mau-02-nhan-dang-hinh.png",
+      "image_alt": "Một lá cờ tam giác, một quả bóng tròn, một quyển sách và một hộp quà"
+    },
+    {
+      "draft_id": "MAU-03",
+      "lesson_id": 4,
+      "lesson_name": "Các số 4, 5, 6",
+      "content": "Trong hình có bao nhiêu quả cam?",
+      "choices": ["4", "5", "6", "7"],
+      "correct_answer": "5",
+      "explanation": "Đếm lần lượt có tất cả 5 quả cam.",
+      "difficulty": "easy",
+      "image_path": "images/mau-03-dem-nam-qua-cam.png",
+      "image_alt": "Năm quả cam được xếp thành hai hàng"
+    }
+  ]
+}
