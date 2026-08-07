@@ -15,6 +15,8 @@ const ALLOWED_LAYOUTS = new Set([
   'IMAGE_IN_CHOICES'
 ]);
 const APPROVED_STATUS = 'APPROVED';
+const VERIFIED_SCOPE_STATUS = 'VERIFIED_FROM_TEXTBOOK';
+const VERIFIED_QUESTION_SCOPE_STATUS = 'VERIFIED_AGAINST_SCOPE';
 
 function nonEmpty(value) {
   return typeof value === 'string' && value.trim().length > 0;
@@ -26,6 +28,67 @@ function publicPathForUrl(imageUrl, rootDir = path.resolve(__dirname, '..')) {
   const resolved = path.resolve(rootDir, 'public', relativePath);
   const publicRoot = path.resolve(rootDir, 'public');
   return resolved.startsWith(`${publicRoot}${path.sep}`) ? resolved : null;
+}
+
+function curriculumScopePath(scopeId, rootDir = path.resolve(__dirname, '..')) {
+  if (!nonEmpty(scopeId) || !/^[a-z0-9-]+$/.test(scopeId)) return null;
+  const scopeDirectory = path.resolve(rootDir, 'data', 'curriculum_scopes');
+  const resolved = path.resolve(scopeDirectory, `${scopeId}.json`);
+  return resolved.startsWith(`${scopeDirectory}${path.sep}`) ? resolved : null;
+}
+
+function loadCurriculumScope(scopeId, options = {}) {
+  const scopeFile = curriculumScopePath(scopeId, options.rootDir);
+  if (!scopeFile || !(options.fileExists || fs.existsSync)(scopeFile)) {
+    throw new Error(`Không tìm thấy hồ sơ phạm vi kiến thức: ${scopeId || '(trống)'}`);
+  }
+  return JSON.parse((options.readFile || fs.readFileSync)(scopeFile, 'utf8'));
+}
+
+function validateBatchAgainstCurriculumScope(batch, scope) {
+  const errors = [];
+  if (scope?.status !== VERIFIED_SCOPE_STATUS) {
+    errors.push(`Hồ sơ ${batch?.curriculum_scope_id || '(trống)'} chưa được xác minh từ sách giáo khoa`);
+    return errors;
+  }
+  if (scope?.scope_id !== batch?.curriculum_scope_id) {
+    errors.push('curriculum_scope_id không khớp với hồ sơ phạm vi kiến thức');
+  }
+
+  const lessons = new Map((scope?.lessons || []).map((lesson) => [Number(lesson.lesson_id), lesson]));
+  for (const [index, question] of (batch?.questions || []).entries()) {
+    const label = `questions[${index}]`;
+    const lesson = lessons.get(Number(question?.lesson_id));
+    if (!lesson) {
+      errors.push(`${label}.lesson_id chưa có trong hồ sơ phạm vi kiến thức`);
+      continue;
+    }
+
+    const allowedTags = new Set(lesson.allowed_knowledge_tags || []);
+    const knowledgeTags = Array.isArray(question?.knowledge_tags) ? question.knowledge_tags : [];
+    if (knowledgeTags.length === 0) {
+      errors.push(`${label}.knowledge_tags phải chỉ rõ kiến thức được kiểm tra`);
+    }
+    for (const tag of knowledgeTags) {
+      if (!allowedTags.has(tag)) {
+        errors.push(`${label}.knowledge_tags chứa kiến thức ngoài phạm vi: ${tag}`);
+      }
+    }
+
+    if (question?.curriculum_review?.status !== VERIFIED_QUESTION_SCOPE_STATUS) {
+      errors.push(`${label}.curriculum_review.status phải là ${VERIFIED_QUESTION_SCOPE_STATUS}`);
+    }
+    const lessonPages = new Set((lesson.pdf_pages || []).map(Number));
+    const evidencePages = Array.isArray(question?.curriculum_review?.evidence_pdf_pages)
+      ? question.curriculum_review.evidence_pdf_pages.map(Number)
+      : [];
+    if (evidencePages.length === 0) {
+      errors.push(`${label}.curriculum_review.evidence_pdf_pages không được để trống`);
+    } else if (evidencePages.some((page) => !lessonPages.has(page))) {
+      errors.push(`${label}.curriculum_review.evidence_pdf_pages không thuộc trang SGK của bài`);
+    }
+  }
+  return errors;
 }
 
 function validateQuestion(question, index, options = {}) {
@@ -115,6 +178,9 @@ function validateBatch(batch, options = {}) {
   const keys = batch.questions.map((question) => question?.source_key).filter(Boolean);
   if (new Set(keys).size !== keys.length) errors.push('source_key bị trùng trong cùng lô dữ liệu');
   batch.questions.forEach((question, index) => errors.push(...validateQuestion(question, index, options)));
+  if (options.curriculumScope) {
+    errors.push(...validateBatchAgainstCurriculumScope(batch, options.curriculumScope));
+  }
   return errors;
 }
 
@@ -197,7 +263,11 @@ async function runImport(options) {
   if (!options.file) throw new Error('Thiếu đường dẫn tệp JSON bổ sung');
   const absoluteFile = path.resolve(options.file);
   const batch = JSON.parse(fs.readFileSync(absoluteFile, 'utf8'));
-  const errors = validateBatch(batch, { requireApproval: options.apply });
+  const curriculumScope = loadCurriculumScope(batch.curriculum_scope_id);
+  const errors = validateBatch(batch, {
+    requireApproval: options.apply,
+    curriculumScope
+  });
   if (errors.length > 0) throw new Error(`Dữ liệu không hợp lệ:\n- ${errors.join('\n- ')}`);
 
   if (options.apply && options.confirmedApproval !== batch.batch_id) {
@@ -243,9 +313,12 @@ if (require.main === module) {
 }
 
 module.exports = {
+  curriculumScopePath,
+  loadCurriculumScope,
   parseArguments,
   publicPathForUrl,
   runImport,
   validateBatch,
+  validateBatchAgainstCurriculumScope,
   validateQuestion
 };

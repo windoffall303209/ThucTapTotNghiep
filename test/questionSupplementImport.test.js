@@ -2,15 +2,22 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  curriculumScopePath,
   parseArguments,
   publicPathForUrl,
-  validateBatch
+  validateBatch,
+  validateBatchAgainstCurriculumScope
 } = require('../scripts/import_question_supplement');
 
 function validQuestion() {
   return {
     source_key: 'SUP-G1-L001-H01',
     lesson_id: 1,
+    knowledge_tags: ['spatial_between'],
+    curriculum_review: {
+      status: 'VERIFIED_AGAINST_SCOPE',
+      evidence_pdf_pages: [7]
+    },
     question_type: 'MULTIPLE_CHOICE',
     difficulty: 'HARD',
     layout_template: 'STACK_VERTICAL',
@@ -28,6 +35,20 @@ function validQuestion() {
     explanation: { text: 'Lời giải mẫu.', images: [] },
     misconceptions: [
       { distractor_key: 'A', misconception_name: 'Nhầm dữ kiện', explanation: 'Cần đọc lại dữ kiện.' }
+    ]
+  };
+}
+
+function validScope() {
+  return {
+    scope_id: 'grade-1-lessons-001-005',
+    status: 'VERIFIED_FROM_TEXTBOOK',
+    lessons: [
+      {
+        lesson_id: 1,
+        pdf_pages: [7, 8],
+        allowed_knowledge_tags: ['spatial_between']
+      }
     ]
   };
 }
@@ -67,12 +88,55 @@ test('publicPathForUrl chỉ nhận URL nằm trong thư mục public', () => {
   assert.equal(publicPathForUrl('https://example.com/image.png', rootDir), null);
 });
 
+test('curriculumScopePath chỉ nhận mã hồ sơ an toàn trong thư mục quy định', () => {
+  const rootDir = process.cwd();
+  assert.equal(
+    curriculumScopePath('grade-1-lessons-001-005', rootDir),
+    require('node:path').resolve(
+      rootDir,
+      'data/curriculum_scopes/grade-1-lessons-001-005.json'
+    )
+  );
+  assert.equal(curriculumScopePath('../outside', rootDir), null);
+  assert.equal(curriculumScopePath('Grade 1', rootDir), null);
+});
+
 test('validateBatch chấp nhận lô hợp lệ khi ảnh tồn tại', () => {
   const errors = validateBatch(
     { batch_id: 'BATCH-01', questions: [validQuestion()] },
     { imageExists: () => true }
   );
   assert.deepEqual(errors, []);
+});
+
+test('đối chiếu câu hỏi với thẻ kiến thức và đúng trang sách giáo khoa', () => {
+  const batch = {
+    batch_id: 'BATCH-01',
+    curriculum_scope_id: 'grade-1-lessons-001-005',
+    questions: [validQuestion()]
+  };
+  assert.deepEqual(validateBatchAgainstCurriculumScope(batch, validScope()), []);
+
+  batch.questions[0].knowledge_tags = ['shape_properties'];
+  batch.questions[0].curriculum_review.evidence_pdf_pages = [9];
+  const errors = validateBatchAgainstCurriculumScope(batch, validScope());
+  assert.ok(errors.some((error) => error.includes('kiến thức ngoài phạm vi')));
+  assert.ok(errors.some((error) => error.includes('không thuộc trang SGK của bài')));
+});
+
+test('từ chối câu chưa được rà theo hồ sơ SGK hoặc thiếu bằng chứng trang', () => {
+  const question = validQuestion();
+  delete question.curriculum_review;
+  const errors = validateBatchAgainstCurriculumScope(
+    {
+      batch_id: 'BATCH-01',
+      curriculum_scope_id: 'grade-1-lessons-001-005',
+      questions: [question]
+    },
+    validScope()
+  );
+  assert.ok(errors.some((error) => error.includes('VERIFIED_AGAINST_SCOPE')));
+  assert.ok(errors.some((error) => error.includes('evidence_pdf_pages')));
 });
 
 test('validateBatch chỉ cho phép ghi khi lô có đủ bằng chứng phê duyệt', () => {
