@@ -135,7 +135,8 @@ test('câu dài được bọc dòng trong vùng chú thích của ảnh minh h�
   }, 5, { chapter_name: 'Hình học', lesson_name: 'Bài 61' });
   assert.doesNotMatch(svg, new RegExp(xmlEscape(longText)));
   assert.match(svg, /Bể kính mở nắp dài 60 cm,/);
-  assert.match(svg, /Diện tích kính cần dùng là bao/);
+  assert.match(svg, /35 cm, cao 40 cm\. Diện tích/);
+  assert.match(svg, /kính cần dùng là bao nhiêu\?/);
 });
 
 test('lệnh sinh lại ảnh mặc định xử lý đủ các lớp có dữ liệu bổ sung', () => {
