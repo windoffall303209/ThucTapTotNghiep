@@ -14,7 +14,7 @@ const REVIEW_THEMES = Object.freeze({
   385: 'Xưởng hình học',
   386: 'Trạm đo lường',
   387: 'Phòng thống kê',
-  388: 'Ngày hội ôn tập',
+  388: 'Ngày hội ôn tập liên môn với các gian hàng luân phiên',
   389: 'Trò chơi toán học',
   390: 'Phiếu tổng hợp cuối năm'
 });
