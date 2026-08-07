@@ -1,0 +1,147 @@
+{
+  "scope_id": "grade-1-lessons-001-005",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "verified_book_pages": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ đã xuất hiện trong bài hoặc từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Không dùng kiến thức được giới thiệu ở bài sau để làm câu hỏi cho bài trước.",
+    "difficulty": "Không tạo câu HARD chỉ để đủ chỉ tiêu nếu phải dùng kiến thức ngoài phạm vi bài học."
+  },
+  "lessons": [
+    {
+      "lesson_id": 1,
+      "lesson_name": "Trên - dưới. Phải - trái, trước - sau. Ở giữa",
+      "pdf_pages": [7, 8],
+      "book_pages": [6, 7],
+      "objective": "Nhận biết và diễn đạt vị trí tương đối của người hoặc vật.",
+      "allowed_knowledge_tags": [
+        "spatial_above_below",
+        "spatial_left_right",
+        "spatial_front_behind",
+        "spatial_between"
+      ],
+      "allowed_question_forms": [
+        "Xác định vị trí của một vật so với vật khác.",
+        "Xác định vật nằm ở vị trí được yêu cầu.",
+        "Dùng đúng từ chỉ vị trí để mô tả tranh."
+      ],
+      "not_yet_allowed": [
+        "Đếm hoặc tính toán không phục vụ trực tiếp cho việc nhận biết vị trí.",
+        "Chuỗi suy luận vị trí dài hoặc phụ thuộc nhiều góc nhìn không được thể hiện rõ trong ảnh."
+      ]
+    },
+    {
+      "lesson_id": 2,
+      "lesson_name": "Hình vuông - hình tròn, hình tam giác - hình chữ nhật",
+      "pdf_pages": [9, 10],
+      "book_pages": [8, 9],
+      "objective": "Nhận biết, gọi tên và ghép bốn hình phẳng cơ bản bằng quan sát.",
+      "allowed_knowledge_tags": [
+        "recognize_square",
+        "recognize_circle",
+        "recognize_triangle",
+        "recognize_rectangle",
+        "match_object_to_basic_shape",
+        "compose_basic_shapes"
+      ],
+      "allowed_question_forms": [
+        "Gọi tên hình hoặc đồ vật có dạng hình được yêu cầu.",
+        "Chọn hình theo tên hoặc màu sắc.",
+        "Nhận biết các hình được dùng để ghép thành một hình quen thuộc."
+      ],
+      "not_yet_allowed": [
+        "Đếm cạnh hoặc góc.",
+        "Mô tả tính chất cạnh bằng nhau, cạnh dài, cạnh ngắn.",
+        "So sánh hình theo số cạnh hoặc số góc.",
+        "Phân tích hình học vượt quá nhận dạng trực quan."
+      ]
+    },
+    {
+      "lesson_id": 3,
+      "lesson_name": "Các số 1, 2, 3",
+      "pdf_pages": [11, 12],
+      "book_pages": [10, 11],
+      "objective": "Đếm, đọc, viết và biểu diễn các số 1, 2, 3.",
+      "allowed_knowledge_tags": [
+        "count_1_3",
+        "read_numbers_1_3",
+        "write_numbers_1_3",
+        "match_quantity_1_3",
+        "represent_numbers_1_3"
+      ],
+      "allowed_question_forms": [
+        "Đếm một nhóm có từ 1 đến 3 đồ vật.",
+        "Chọn số hoặc cách đọc tương ứng với số lượng.",
+        "Chọn nhóm đồ vật tương ứng với số đã cho."
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ.",
+        "Tách hoặc gộp số theo phép tính.",
+        "So sánh lớn hơn, bé hơn, nhiều hơn hoặc ít hơn.",
+        "Dùng dấu so sánh."
+      ]
+    },
+    {
+      "lesson_id": 4,
+      "lesson_name": "Các số 4, 5, 6",
+      "pdf_pages": [13, 14],
+      "book_pages": [12, 13],
+      "objective": "Đếm, đọc, viết, biểu diễn và hoàn thành thứ tự các số đến 6.",
+      "allowed_knowledge_tags": [
+        "count_4_6",
+        "read_numbers_4_6",
+        "write_numbers_4_6",
+        "match_quantity_4_6",
+        "represent_numbers_4_6",
+        "complete_sequence_1_6"
+      ],
+      "allowed_question_forms": [
+        "Đếm một nhóm có 4, 5 hoặc 6 đồ vật.",
+        "Chọn số hoặc cách đọc tương ứng với số lượng.",
+        "Chọn nhóm đồ vật tương ứng với số đã cho.",
+        "Điền số còn thiếu trong dãy từ 1 đến 6."
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ.",
+        "Tách hoặc gộp số theo phép tính.",
+        "So sánh lớn hơn, bé hơn, nhiều hơn hoặc ít hơn.",
+        "Dùng dấu so sánh."
+      ]
+    },
+    {
+      "lesson_id": 5,
+      "lesson_name": "Các số 7, 8, 9",
+      "pdf_pages": [15, 16],
+      "book_pages": [14, 15],
+      "objective": "Đếm, đọc, viết, biểu diễn và hoàn thành thứ tự các số đến 9.",
+      "allowed_knowledge_tags": [
+        "count_7_9",
+        "read_numbers_7_9",
+        "write_numbers_7_9",
+        "match_quantity_7_9",
+        "represent_numbers_7_9",
+        "complete_sequence_1_9"
+      ],
+      "allowed_question_forms": [
+        "Đếm một nhóm có 7, 8 hoặc 9 đồ vật.",
+        "Chọn số hoặc cách đọc tương ứng với số lượng.",
+        "Chọn nhóm đồ vật tương ứng với số đã cho.",
+        "Điền số còn thiếu trong dãy từ 1 đến 9."
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ.",
+        "Tách hoặc gộp số theo phép tính.",
+        "So sánh lớn hơn, bé hơn, nhiều hơn hoặc ít hơn.",
+        "Dùng dấu so sánh."
+      ]
+    }
+  ]
+}
