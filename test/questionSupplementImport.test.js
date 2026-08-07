@@ -36,11 +36,24 @@ test('parseArguments mặc định chạy preflight và chỉ apply khi có cờ
   assert.deepEqual(parseArguments(['node', 'script', 'batch.json']), {
     file: 'batch.json',
     apply: false,
-    confirmedDatabase: ''
+    confirmedDatabase: '',
+    confirmedApproval: ''
   });
   assert.deepEqual(
-    parseArguments(['node', 'script', 'batch.json', '--apply', '--confirm-database=webonluyen']),
-    { file: 'batch.json', apply: true, confirmedDatabase: 'webonluyen' }
+    parseArguments([
+      'node',
+      'script',
+      'batch.json',
+      '--apply',
+      '--confirm-database=webonluyen',
+      '--confirm-approval=BATCH-01'
+    ]),
+    {
+      file: 'batch.json',
+      apply: true,
+      confirmedDatabase: 'webonluyen',
+      confirmedApproval: 'BATCH-01'
+    }
   );
 });
 
@@ -60,6 +73,30 @@ test('validateBatch chấp nhận lô hợp lệ khi ảnh tồn tại', () => {
     { imageExists: () => true }
   );
   assert.deepEqual(errors, []);
+});
+
+test('validateBatch chỉ cho phép ghi khi lô có đủ bằng chứng phê duyệt', () => {
+  const pending = { batch_id: 'BATCH-01', questions: [validQuestion()] };
+  const pendingErrors = validateBatch(pending, {
+    imageExists: () => true,
+    requireApproval: true
+  });
+  assert.ok(pendingErrors.some((error) => error.includes('approval.status')));
+  assert.ok(pendingErrors.some((error) => error.includes('approval.approved_by')));
+  assert.ok(pendingErrors.some((error) => error.includes('approval.approved_at')));
+
+  const approved = {
+    ...pending,
+    approval: {
+      status: 'APPROVED',
+      approved_by: 'Người dùng',
+      approved_at: '2026-08-07T10:00:00+07:00'
+    }
+  };
+  assert.deepEqual(
+    validateBatch(approved, { imageExists: () => true, requireApproval: true }),
+    []
+  );
 });
 
 test('validateBatch phát hiện source_key trùng, ảnh thiếu và đáp án sai', () => {

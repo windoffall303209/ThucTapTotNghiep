@@ -14,6 +14,7 @@ const ALLOWED_LAYOUTS = new Set([
   'SPLIT_HORIZONTAL_RIGHT_IMAGE',
   'IMAGE_IN_CHOICES'
 ]);
+const APPROVED_STATUS = 'APPROVED';
 
 function nonEmpty(value) {
   return typeof value === 'string' && value.trim().length > 0;
@@ -95,6 +96,17 @@ function validateQuestion(question, index, options = {}) {
 function validateBatch(batch, options = {}) {
   const errors = [];
   if (!nonEmpty(batch?.batch_id)) errors.push('batch_id không hợp lệ');
+  if (options.requireApproval) {
+    if (batch?.approval?.status !== APPROVED_STATUS) {
+      errors.push('approval.status phải là APPROVED trước khi ghi database');
+    }
+    if (!nonEmpty(batch?.approval?.approved_by)) {
+      errors.push('approval.approved_by không được để trống');
+    }
+    if (!nonEmpty(batch?.approval?.approved_at) || Number.isNaN(Date.parse(batch.approval.approved_at))) {
+      errors.push('approval.approved_at phải là thời điểm hợp lệ');
+    }
+  }
   if (!Array.isArray(batch?.questions) || batch.questions.length === 0) {
     errors.push('questions phải là một mảng không rỗng');
     return errors;
@@ -110,10 +122,12 @@ function parseArguments(argv) {
   const args = argv.slice(2);
   const file = args.find((arg) => !arg.startsWith('--'));
   const confirmation = args.find((arg) => arg.startsWith('--confirm-database='));
+  const approvalConfirmation = args.find((arg) => arg.startsWith('--confirm-approval='));
   return {
     file,
     apply: args.includes('--apply'),
-    confirmedDatabase: confirmation?.slice('--confirm-database='.length) || ''
+    confirmedDatabase: confirmation?.slice('--confirm-database='.length) || '',
+    confirmedApproval: approvalConfirmation?.slice('--confirm-approval='.length) || ''
   };
 }
 
@@ -183,8 +197,12 @@ async function runImport(options) {
   if (!options.file) throw new Error('Thiếu đường dẫn tệp JSON bổ sung');
   const absoluteFile = path.resolve(options.file);
   const batch = JSON.parse(fs.readFileSync(absoluteFile, 'utf8'));
-  const errors = validateBatch(batch);
+  const errors = validateBatch(batch, { requireApproval: options.apply });
   if (errors.length > 0) throw new Error(`Dữ liệu không hợp lệ:\n- ${errors.join('\n- ')}`);
+
+  if (options.apply && options.confirmedApproval !== batch.batch_id) {
+    throw new Error('Muốn ghi dữ liệu phải truyền --confirm-approval đúng bằng batch_id đã được duyệt');
+  }
 
   const connection = await db.testConnection();
   if (!connection.connected) throw new Error(`Không kết nối được database: ${connection.reason}`);
