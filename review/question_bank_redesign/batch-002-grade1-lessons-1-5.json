@@ -1,0 +1,219 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L001-L005-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-001-005",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L001-E01",
+      "lesson_id": 1,
+      "concept_id": null,
+      "knowledge_tags": ["spatial_between"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [7, 8]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Bạn thỏ đứng ở đâu so với bạn gấu và bạn mèo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-002/cau-01-tho-o-giua.png",
+            "alt_text": "Bạn gấu đứng bên trái, bạn thỏ đứng ở giữa và bạn mèo đứng bên phải"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Ở bên trái" },
+        { "key": "B", "text": "Ở giữa" },
+        { "key": "C", "text": "Ở bên phải" },
+        { "key": "D", "text": "Ở phía sau" }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Bạn thỏ đứng giữa bạn gấu và bạn mèo.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm vị trí của bạn gấu",
+          "explanation": "Bạn gấu ở bên trái, còn bạn thỏ ở giữa."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm vị trí của bạn mèo",
+          "explanation": "Bạn mèo ở bên phải, còn bạn thỏ ở giữa."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L002-E01",
+      "lesson_id": 2,
+      "concept_id": null,
+      "knowledge_tags": ["recognize_triangle"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [9, 10]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Miếng dưa hấu có dạng hình gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-002/cau-02-dua-hau-tam-giac.png",
+            "alt_text": "Một miếng dưa hấu có dạng hình tam giác"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Hình vuông" },
+        { "key": "B", "text": "Hình tròn" },
+        { "key": "C", "text": "Hình tam giác" },
+        { "key": "D", "text": "Hình chữ nhật" }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Miếng dưa hấu có dạng hình tam giác.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm với quả dưa nguyên",
+          "explanation": "Quả dưa nguyên có thể tròn, nhưng miếng dưa trong hình có dạng tam giác."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L003-E01",
+      "lesson_id": 3,
+      "concept_id": null,
+      "knowledge_tags": ["count_1_3"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [11, 12]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình có bao nhiêu chiếc diều?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-002/cau-03-ba-chiec-dieu.png",
+            "alt_text": "Ba chiếc diều nhiều màu đang bay trên trời"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "1 chiếc" },
+        { "key": "B", "text": "2 chiếc" },
+        { "key": "C", "text": "3 chiếc" },
+        { "key": "D", "text": "4 chiếc" }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đếm lần lượt có 3 chiếc diều.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một chiếc diều",
+          "explanation": "Cần đếm cả chiếc diều ở phía dưới."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L004-E01",
+      "lesson_id": 4,
+      "concept_id": null,
+      "knowledge_tags": ["count_4_6"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [13, 14]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình có bao nhiêu con bọ rùa?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-002/cau-04-sau-con-bo-rua.png",
+            "alt_text": "Sáu con bọ rùa nằm trên sáu chiếc lá"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "4 con" },
+        { "key": "B", "text": "5 con" },
+        { "key": "C", "text": "6 con" },
+        { "key": "D", "text": "7 con" }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 3 con ở hàng trên và 3 con ở hàng dưới. Đếm tất cả được 6 con bọ rùa.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một con bọ rùa",
+          "explanation": "Hãy chỉ vào từng con và đếm đủ hai hàng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L005-E01",
+      "lesson_id": 5,
+      "concept_id": null,
+      "knowledge_tags": ["count_7_9"],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [15, 16]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "EASY",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình có bao nhiêu cây bút chì màu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-002/cau-05-tam-but-chi.png",
+            "alt_text": "Tám cây bút chì màu được xếp thành một hàng"
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "7 cây" },
+        { "key": "B", "text": "8 cây" },
+        { "key": "C", "text": "9 cây" },
+        { "key": "D", "text": "10 cây" }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đếm từ trái sang phải có 8 cây bút chì màu.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ sót một cây bút chì",
+          "explanation": "Hãy chỉ vào từng cây bút và đếm lại từ trái sang phải."
+        }
+      ]
+    }
+  ]
+}
