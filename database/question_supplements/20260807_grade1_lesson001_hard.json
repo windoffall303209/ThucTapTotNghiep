@@ -1,0 +1,226 @@
+{
+  "batch_id": "20260807-G1-L001-HARD",
+  "title": "Câu hỏi khó bổ sung lớp 1 - Bài 1: Quan hệ vị trí",
+  "lesson": {
+    "grade": 1,
+    "lesson_id": 1,
+    "lesson_name": "Trên - dưới; phải - trái; trước - sau; ở giữa"
+  },
+  "authoring_note": "Mức khó đến từ việc kết hợp từ hai quan hệ vị trí trở lên. Câu chữ ngắn và không dùng mẹo đánh đố học sinh lớp 1.",
+  "image_generation": [
+    {
+      "file": "public/images/question-supplements/grade-1/lesson-001/ke-do-choi.png",
+      "prompt_summary": "Kệ hai tầng, sáu đồ chơi xếp chính xác theo ba cột; phong cách minh họa sách giáo khoa, không chữ."
+    },
+    {
+      "file": "public/images/question-supplements/grade-1/lesson-001/xep-hang-xe-buyt.png",
+      "prompt_summary": "Bốn học sinh xếp một hàng hướng về xe buýt ở bên phải; trang phục phân biệt bằng màu, không chữ."
+    },
+    {
+      "file": "public/images/question-supplements/grade-1/lesson-001/tham-vi-tri.png",
+      "prompt_summary": "Tấm thảm lưới 3 x 3 nhìn từ trên xuống, robot ở giữa và bốn vật ở trên, dưới, trái, phải."
+    }
+  ],
+  "questions": [
+    {
+      "source_key": "SUP-20260807-G1-L001-H01",
+      "lesson_id": 1,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Quan sát kệ đồ chơi. Vật nào vừa ở dưới ô tô, vừa ở giữa khối hộp và chiếc thuyền?",
+        "instruction": "Chọn một đáp án đúng.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-G1-L001-H01-IMG-01",
+            "url": "/images/question-supplements/grade-1/lesson-001/ke-do-choi.png",
+            "alt_text": "Kệ hai tầng: tầng trên có ngôi sao, ô tô và quả bóng; tầng dưới có khối hộp, gấu bông và chiếc thuyền.",
+            "width_percent": 72
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Gấu bông", "images": [] },
+        { "key": "B", "text": "Khối hộp", "images": [] },
+        { "key": "C", "text": "Quả bóng", "images": [] },
+        { "key": "D", "text": "Ngôi sao", "images": [] }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Gấu bông nằm ngay dưới ô tô. Ở tầng dưới, gấu bông còn nằm giữa khối hộp và chiếc thuyền. Vì vậy đáp án đúng là gấu bông.",
+        "short_text": "Gấu bông thỏa mãn cả hai quan hệ vị trí.",
+        "steps": ["Tìm vật ở dưới ô tô.", "Kiểm tra vật đó có ở giữa khối hộp và chiếc thuyền hay không."],
+        "images": []
+      },
+      "misconceptions": [
+        { "distractor_key": "B", "misconception_name": "Chỉ xét vị trí ở tầng dưới", "explanation": "Khối hộp ở tầng dưới nhưng không nằm dưới ô tô và không ở giữa hai vật." },
+        { "distractor_key": "C", "misconception_name": "Nhầm quan hệ trên và dưới", "explanation": "Quả bóng ở tầng trên, không nằm dưới ô tô." },
+        { "distractor_key": "D", "misconception_name": "Chỉ nhìn cùng hàng với ô tô", "explanation": "Ngôi sao ở cùng tầng với ô tô, không ở dưới ô tô." }
+      ]
+    },
+    {
+      "source_key": "SUP-20260807-G1-L001-H02",
+      "lesson_id": 1,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Quan sát kệ đồ chơi. Vật nào ở bên phải ô tô và ở trên chiếc thuyền?",
+        "instruction": "Chọn một đáp án đúng.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-G1-L001-H02-IMG-01",
+            "url": "/images/question-supplements/grade-1/lesson-001/ke-do-choi.png",
+            "alt_text": "Kệ hai tầng: tầng trên có ngôi sao, ô tô và quả bóng; tầng dưới có khối hộp, gấu bông và chiếc thuyền.",
+            "width_percent": 72
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Ngôi sao", "images": [] },
+        { "key": "B", "text": "Quả bóng", "images": [] },
+        { "key": "C", "text": "Gấu bông", "images": [] },
+        { "key": "D", "text": "Khối hộp", "images": [] }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Quả bóng nằm bên phải ô tô trên tầng trên. Quả bóng cũng nằm ngay trên chiếc thuyền. Vì vậy đáp án đúng là quả bóng.",
+        "short_text": "Quả bóng vừa ở bên phải ô tô, vừa ở trên chiếc thuyền.",
+        "steps": ["Tìm vật ở bên phải ô tô.", "Kiểm tra vật đó có ở trên chiếc thuyền hay không."],
+        "images": []
+      },
+      "misconceptions": [
+        { "distractor_key": "A", "misconception_name": "Nhầm bên phải thành bên trái", "explanation": "Ngôi sao nằm bên trái ô tô." },
+        { "distractor_key": "C", "misconception_name": "Chỉ xét vị trí gần ô tô", "explanation": "Gấu bông ở dưới ô tô, không ở bên phải ô tô." },
+        { "distractor_key": "D", "misconception_name": "Nhầm cột đồ vật", "explanation": "Khối hộp nằm dưới ngôi sao ở cột bên trái." }
+      ]
+    },
+    {
+      "source_key": "SUP-20260807-G1-L001-H03",
+      "lesson_id": 1,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Các bạn đang xếp hàng lên xe buýt. Bạn nào đứng sau bạn mặc váy xanh nhưng đứng trước bạn mặc váy vàng?",
+        "instruction": "Hàng di chuyển về phía cửa xe buýt. Chọn một đáp án đúng.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-G1-L001-H03-IMG-01",
+            "url": "/images/question-supplements/grade-1/lesson-001/xep-hang-xe-buyt.png",
+            "alt_text": "Từ cuối đến đầu hàng có bạn đội mũ đỏ, bạn mặc váy vàng, bạn mặc áo xanh và bạn mặc váy xanh; xe buýt ở phía trước.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Bạn đội mũ đỏ", "images": [] },
+        { "key": "B", "text": "Bạn mặc váy vàng", "images": [] },
+        { "key": "C", "text": "Bạn mặc áo xanh", "images": [] },
+        { "key": "D", "text": "Không có bạn nào", "images": [] }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Bạn mặc váy xanh đứng gần xe buýt nhất. Ngay sau bạn ấy là bạn mặc áo xanh, rồi mới đến bạn mặc váy vàng. Vì vậy bạn mặc áo xanh đứng sau váy xanh nhưng trước váy vàng.",
+        "short_text": "Bạn mặc áo xanh nằm giữa hai bạn được nêu trong hàng.",
+        "steps": ["Xác định đầu hàng ở phía xe buýt.", "Đi lần lượt từ đầu hàng về phía sau."],
+        "images": []
+      },
+      "misconceptions": [
+        { "distractor_key": "A", "misconception_name": "Nhầm cuối hàng với vị trí ở giữa", "explanation": "Bạn đội mũ đỏ đứng sau cả bạn mặc váy vàng." },
+        { "distractor_key": "B", "misconception_name": "Chỉ xét một quan hệ", "explanation": "Bạn mặc váy vàng đứng sau bạn áo xanh, không đứng trước chính mình." },
+        { "distractor_key": "D", "misconception_name": "Chưa xác định hướng của hàng", "explanation": "Xe buýt cho biết phía trước của hàng nằm ở bên phải bức tranh." }
+      ]
+    },
+    {
+      "source_key": "SUP-20260807-G1-L001-H04",
+      "lesson_id": 1,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nếu bạn mặc váy xanh đã bước lên xe buýt, bạn nào sẽ đứng đầu hàng?",
+        "instruction": "Chọn một đáp án đúng.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-G1-L001-H04-IMG-01",
+            "url": "/images/question-supplements/grade-1/lesson-001/xep-hang-xe-buyt.png",
+            "alt_text": "Từ cuối đến đầu hàng có bạn đội mũ đỏ, bạn mặc váy vàng, bạn mặc áo xanh và bạn mặc váy xanh; xe buýt ở phía trước.",
+            "width_percent": 78
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Bạn mặc áo xanh", "images": [] },
+        { "key": "B", "text": "Bạn mặc váy vàng", "images": [] },
+        { "key": "C", "text": "Bạn đội mũ đỏ", "images": [] },
+        { "key": "D", "text": "Bạn mặc váy xanh", "images": [] }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ban đầu bạn mặc váy xanh đứng đầu hàng. Khi bạn ấy lên xe, người đứng ngay sau là bạn mặc áo xanh sẽ trở thành người đứng đầu hàng.",
+        "short_text": "Bạn áo xanh đứng ngay sau bạn váy xanh.",
+        "steps": ["Tìm bạn đang đứng đầu hàng.", "Bỏ bạn đó khỏi hàng và xác định người kế tiếp."],
+        "images": []
+      },
+      "misconceptions": [
+        { "distractor_key": "B", "misconception_name": "Bỏ qua người đứng kế tiếp", "explanation": "Bạn váy vàng còn đứng sau bạn áo xanh." },
+        { "distractor_key": "C", "misconception_name": "Nhầm đầu hàng và cuối hàng", "explanation": "Bạn đội mũ đỏ đang đứng cuối hàng." },
+        { "distractor_key": "D", "misconception_name": "Chưa cập nhật tình huống", "explanation": "Bạn váy xanh đã bước lên xe nên không còn trong hàng." }
+      ]
+    },
+    {
+      "source_key": "SUP-20260807-G1-L001-H05",
+      "lesson_id": 1,
+      "concept_id": null,
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Quan sát tấm thảm. Vật nào vừa ở dưới quả táo, vừa ở bên trái quả bóng?",
+        "instruction": "Chọn một đáp án đúng.",
+        "interaction": "choose",
+        "layout_variant": "VISUAL_TOP",
+        "images": [
+          {
+            "id": "SUP-G1-L001-H05-IMG-01",
+            "url": "/images/question-supplements/grade-1/lesson-001/tham-vi-tri.png",
+            "alt_text": "Tấm thảm chín ô: táo ở trên, khối hộp ở trái, robot ở giữa, bóng ở phải và hoa ở dưới.",
+            "width_percent": 68
+          }
+        ]
+      },
+      "choices": [
+        { "key": "A", "text": "Bông hoa", "images": [] },
+        { "key": "B", "text": "Khối hộp", "images": [] },
+        { "key": "C", "text": "Robot", "images": [] },
+        { "key": "D", "text": "Quả táo", "images": [] }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Robot nằm ngay dưới quả táo. Robot cũng nằm ngay bên trái quả bóng. Vì vậy robot là vật thỏa mãn cả hai điều kiện.",
+        "short_text": "Robot vừa ở dưới táo, vừa ở bên trái bóng.",
+        "steps": ["Tìm vật ở dưới quả táo.", "Kiểm tra vật đó có ở bên trái quả bóng hay không."],
+        "images": []
+      },
+      "misconceptions": [
+        { "distractor_key": "A", "misconception_name": "Chỉ xét cùng cột với quả táo", "explanation": "Bông hoa ở dưới robot nhưng không nằm bên trái quả bóng theo ô liền kề." },
+        { "distractor_key": "B", "misconception_name": "Chỉ xét quan hệ bên trái", "explanation": "Khối hộp ở bên trái robot, nhưng không nằm ngay dưới quả táo." },
+        { "distractor_key": "D", "misconception_name": "Nhầm trên và dưới", "explanation": "Quả táo ở trên robot, không ở dưới chính nó." }
+      ]
+    }
+  ]
+}
