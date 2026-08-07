@@ -16,6 +16,7 @@ const {
   wrapText,
   xmlEscape
 } = require('../scripts/build_all_question_supplements');
+const { lessonMap, parseGrades } = require('../scripts/regenerate_supplement_illustrations');
 
 function source(text, correct = 'B') {
   return {
@@ -124,4 +125,12 @@ test('thẻ câu hỏi dành phần lớn không gian cho minh họa và không 
   assert.match(svg, /60 cm/);
   assert.match(svg, /<polygon\b/);
   assert.doesNotMatch(svg, /Đọc đủ dữ kiện trong hình trước khi chọn đáp án/);
+});
+
+test('lệnh sinh lại ảnh mặc định xử lý đủ các lớp có dữ liệu bổ sung', () => {
+  assert.deepEqual(parseGrades([]), [1, 3, 4, 5]);
+  assert.deepEqual(parseGrades(['--grades=5,1,5']), [5, 1]);
+  assert.throws(() => parseGrades(['--grades=2']), /chỉ được gồm/);
+  const lessons = lessonMap({ chapters: [{ chapter_name: 'Chương mẫu', lessons: [{ lesson_id: 7 }] }] });
+  assert.equal(lessons.get(7).chapter_name, 'Chương mẫu');
 });

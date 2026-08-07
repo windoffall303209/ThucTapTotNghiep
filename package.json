@@ -36,6 +36,7 @@
     "questions:readiness-report": "node scripts/report_question_bank_readiness.js",
     "questions:import-supplement": "node scripts/import_question_supplement.js",
     "questions:build-supplements": "node scripts/build_all_question_supplements.js",
+    "questions:regenerate-supplement-images": "node scripts/regenerate_supplement_illustrations.js",
     "questions:export-supplement-manifest": "node scripts/export_supplement_manifest.js",
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
