@@ -1,0 +1,170 @@
+{
+  "scope_id": "grade-1-lessons-006-010",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [17, 18, 19, 20, 23, 24, 25, 26, 35, 36],
+    "verified_book_pages": [16, 17, 18, 19, 22, 23, 24, 25, 34, 35]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ đã xuất hiện trong bài hoặc từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Không dùng kiến thức được giới thiệu ở bài sau để làm câu hỏi cho bài trước.",
+    "difficulty": "Không tạo câu HARD chỉ để đủ chỉ tiêu nếu phải dùng kiến thức ngoài phạm vi bài học."
+  },
+  "lessons": [
+    {
+      "lesson_id": 6,
+      "lesson_name": "Số 0",
+      "pdf_pages": [17, 18],
+      "book_pages": [16, 17],
+      "objective": "Nhận biết số 0 biểu thị không có đồ vật nào; đọc, viết, tìm và dùng số 0 trong dãy số từ 0 đến 9.",
+      "allowed_knowledge_tags": [
+        "recognize_zero",
+        "count_zero",
+        "read_write_zero",
+        "match_empty_group_to_zero",
+        "complete_sequence_0_9",
+        "find_digit_zero"
+      ],
+      "allowed_question_forms": [
+        "Chọn số 0 cho nhóm không có đồ vật nào.",
+        "Xác định nhóm hoặc đồ chứa rỗng.",
+        "Điền số còn thiếu trong dãy từ 0 đến 9.",
+        "Nhận biết chữ số 0 trên đồ vật quen thuộc."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(thêm|bớt|còn lại|tách|gộp|cộng|trừ|lớn hơn|bé hơn|nhiều hơn|ít hơn)\\b",
+        "điền dấu",
+        "[+<>=]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ với số 0.",
+        "So sánh số 0 bằng các dấu lớn hơn, bé hơn hoặc bằng nhau.",
+        "Bài toán lời văn có thao tác thêm, bớt, gộp hoặc tách."
+      ]
+    },
+    {
+      "lesson_id": 7,
+      "lesson_name": "Số 10",
+      "pdf_pages": [19, 20],
+      "book_pages": [18, 19],
+      "objective": "Đếm, đọc, viết và biểu diễn số 10; ghép số với nhóm có số lượng phù hợp và hoàn thành dãy số từ 0 đến 10.",
+      "allowed_knowledge_tags": [
+        "count_to_10",
+        "read_write_10",
+        "match_quantity_to_10",
+        "represent_10",
+        "complete_sequence_0_10"
+      ],
+      "allowed_question_forms": [
+        "Đếm một nhóm có không quá 10 đồ vật và chọn số tương ứng.",
+        "Chọn nhóm có đúng 10 đồ vật.",
+        "Điền số còn thiếu trong dãy từ 0 đến 10 hoặc từ 10 về 0.",
+        "Chọn đủ 10 hình hoặc đồ vật theo yêu cầu."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(thêm|bớt|còn lại|tách|gộp|cộng|trừ|lớn hơn|bé hơn|nhiều hơn|ít hơn)\\b",
+        "điền dấu",
+        "[+<>=]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ trong phạm vi 10.",
+        "So sánh hai số hoặc hai nhóm bằng từ hay dấu so sánh.",
+        "Bài toán lời văn có thao tác thêm, bớt, gộp hoặc tách."
+      ]
+    },
+    {
+      "lesson_id": 8,
+      "lesson_name": "Nhiều hơn - ít hơn - bằng nhau",
+      "pdf_pages": [23, 24],
+      "book_pages": [22, 23],
+      "objective": "So sánh hai nhóm bằng ghép tương ứng một-một và diễn đạt kết quả bằng các từ nhiều hơn, ít hơn hoặc bằng nhau.",
+      "allowed_knowledge_tags": [
+        "compare_groups_more",
+        "compare_groups_fewer",
+        "compare_groups_equal",
+        "one_to_one_matching"
+      ],
+      "allowed_question_forms": [
+        "Chọn nhóm có nhiều đồ vật hơn hoặc ít đồ vật hơn.",
+        "Xác định hai nhóm có bằng nhau hay không.",
+        "Hoàn thành câu bằng một trong các từ nhiều hơn, ít hơn, bằng nhau.",
+        "Kiểm tra nhận xét về số lượng hai nhóm là đúng hay sai."
+      ],
+      "forbidden_text_patterns": [
+        "điền dấu|dấu lớn hơn|dấu bé hơn|dấu bằng",
+        "[<>=+]",
+        "\\b(cộng|trừ|thêm|bớt|còn lại)\\b"
+      ],
+      "not_yet_allowed": [
+        "Dùng các dấu >, < hoặc =.",
+        "Yêu cầu viết phép so sánh bằng số.",
+        "Phép cộng, phép trừ hoặc bài toán thêm bớt."
+      ]
+    },
+    {
+      "lesson_id": 9,
+      "lesson_name": "Lớn hơn, dấu >; Bé hơn, dấu <; Bằng nhau, dấu =",
+      "pdf_pages": [25, 26],
+      "book_pages": [24, 25],
+      "objective": "Nhận biết ý nghĩa và cách viết các dấu >, <, =; so sánh hai số hoặc hai nhóm trong phạm vi từ 1 đến 5.",
+      "allowed_knowledge_tags": [
+        "recognize_comparison_signs",
+        "compare_numbers_1_5",
+        "compare_groups_1_5_with_signs",
+        "write_comparison_signs"
+      ],
+      "allowed_question_forms": [
+        "Chọn dấu >, < hoặc = thích hợp giữa hai số từ 1 đến 5.",
+        "Đếm hai nhóm có từ 1 đến 5 đồ vật rồi chọn dấu so sánh.",
+        "Chọn số lớn hơn trong một cặp số từ 1 đến 5.",
+        "Nhận biết hoặc tập viết các dấu >, <, =."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|thêm|bớt|còn lại|tổng|hiệu)\\b",
+        "\\b([6-9]|10)\\b",
+        "[+]"
+      ],
+      "not_yet_allowed": [
+        "So sánh các số từ 6 đến 10 khi nguồn kiểm chứng của bài chỉ minh họa các số từ 1 đến 5.",
+        "Phép cộng, phép trừ hoặc bài toán lời văn có phép tính.",
+        "Chuỗi so sánh có từ ba số trở lên."
+      ]
+    },
+    {
+      "lesson_id": 10,
+      "lesson_name": "Làm quen với phép cộng, dấu cộng",
+      "pdf_pages": [35, 36],
+      "book_pages": [34, 35],
+      "objective": "Nhận biết phép cộng là gộp hai nhóm; đọc, chọn và hoàn thành phép cộng có hai số hạng dương không quá 3 và kết quả không quá 5.",
+      "allowed_knowledge_tags": [
+        "recognize_addition_sign",
+        "combine_two_groups_to_5",
+        "read_addition_to_5",
+        "match_picture_to_addition_to_5",
+        "complete_addition_to_5"
+      ],
+      "allowed_question_forms": [
+        "Đếm hai nhóm trong tranh rồi hoàn thành phép cộng có kết quả không quá 5.",
+        "Chọn phép cộng phù hợp với tranh gộp hai nhóm.",
+        "Kể tình huống đơn giản theo một phép cộng đã cho.",
+        "Nhận biết dấu cộng trong phép tính."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|còn lại|hiệu)\\b",
+        "\\b([6-9]|10)\\b",
+        "[-<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có số 0, số hạng lớn hơn 3 hoặc kết quả lớn hơn 5 trong lô đầu tiên.",
+        "Phép trừ hoặc bài toán bớt đi.",
+        "Phép tính có từ ba số hạng trở lên.",
+        "Bài toán lời văn yêu cầu suy luận nhiều bước."
+      ]
+    }
+  ]
+}
