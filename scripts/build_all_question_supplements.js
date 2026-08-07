@@ -214,7 +214,7 @@ function cardSvg(question, grade, lesson) {
     const y = panels.length === 2 ? 118 + panelIndex * 258 : 118;
     const sceneWidth = panels.length === 2 ? 540 : 680;
     const textX = 78 + sceneWidth + 34;
-    const lines = wrapText(text, panels.length === 2 ? 42 : 38).slice(0, panels.length === 2 ? 3 : 5);
+    const lines = wrapText(text, panels.length === 2 ? 38 : 30).slice(0, panels.length === 2 ? 4 : 8);
     panelMarkup += `<rect x="58" y="${y}" width="1084" height="${panelHeight}" rx="24" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="3"/>`;
     panelMarkup += `<rect x="74" y="${y + 16}" width="${sceneWidth}" height="${panelHeight - 32}" rx="20" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>`;
     panelMarkup += illustrationScene(text, visual.type, 82, y + 22, sceneWidth - 16, panelHeight - 44);
@@ -223,7 +223,7 @@ function cardSvg(question, grade, lesson) {
     }
     const textY = y + (panels.length === 2 ? 88 : 82);
     lines.forEach((line, lineIndex) => {
-      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 32}" font-family="Arial, sans-serif" font-size="${panels.length === 2 ? 22 : 24}" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
+      panelMarkup += `<text x="${textX}" y="${textY + lineIndex * 30}" font-family="Arial, sans-serif" font-size="22" font-weight="${lineIndex === 0 ? 700 : 500}" fill="#172554">${xmlEscape(line)}</text>`;
     });
     panelMarkup += dataChips(text, textX, y + panelHeight - 62, 1080 - sceneWidth);
   });

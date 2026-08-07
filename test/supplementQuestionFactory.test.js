@@ -127,6 +127,17 @@ test('thẻ câu hỏi dành phần lớn không gian cho minh họa và không 
   assert.doesNotMatch(svg, /Đọc đủ dữ kiện trong hình trước khi chọn đáp án/);
 });
 
+test('câu dài được bọc dòng trong vùng chú thích của ảnh minh họa', () => {
+  const longText = 'Bể kính mở nắp dài 60 cm, rộng 35 cm, cao 40 cm. Diện tích kính cần dùng là bao nhiêu?';
+  const svg = cardSvg({
+    content: { text: longText },
+    visual: { type: 'geometry', title: 'DỮ KIỆN BÀI TOÁN', lines: [longText] }
+  }, 5, { chapter_name: 'Hình học', lesson_name: 'Bài 61' });
+  assert.doesNotMatch(svg, new RegExp(xmlEscape(longText)));
+  assert.match(svg, /Bể kính mở nắp dài 60 cm,/);
+  assert.match(svg, /Diện tích kính cần dùng là bao/);
+});
+
 test('lệnh sinh lại ảnh mặc định xử lý đủ các lớp có dữ liệu bổ sung', () => {
   assert.deepEqual(parseGrades([]), [1, 3, 4, 5]);
   assert.deepEqual(parseGrades(['--grades=5,1,5']), [5, 1]);
