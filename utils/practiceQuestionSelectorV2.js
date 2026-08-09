@@ -185,6 +185,12 @@ function selectQuestionsV2(candidates, options = {}) {
   const maxPerLesson = normalizePositiveInteger(options.maxPerLesson, 2);
   const maxPerConcept = normalizePositiveInteger(options.maxPerConcept, 2);
   const similarityThreshold = normalizeSimilarityThreshold(options.similarityThreshold);
+  const chapterQuotas = allocateChapterQuotas(
+    normalizedCandidates,
+    count,
+    options.selectionHistory,
+    random
+  );
   const requestedWeakTarget = ['CHAPTER', 'COMPREHENSIVE'].includes(mode)
     ? Math.min(count, Math.round(count * normalizeRatio(options.personalizationRatio, 0.3)))
     : 0;
@@ -225,6 +231,7 @@ function selectQuestionsV2(candidates, options = {}) {
       similarityThreshold,
       lessonCap: phase.lessonCap,
       conceptCap: phase.conceptCap,
+      chapterQuotas,
       selectionHistory,
       random
     });
@@ -237,6 +244,7 @@ function selectQuestionsV2(candidates, options = {}) {
     ...question
   }) => question);
   const actualDifficulty = countByDifficulty(selected);
+  const chapterCounts = countBy(selected, 'chapter_id');
   const lessonCounts = countBy(selected, 'lesson_id');
   const taggedQuestions = selected.filter((question) => question.concept_id);
   const conceptCounts = countBy(taggedQuestions, 'concept_id');
@@ -260,6 +268,8 @@ function selectQuestionsV2(candidates, options = {}) {
         selectedCount: selected.length,
         difficultyTargets: targets,
         actualDifficulty,
+        chapterTargets: chapterQuotas,
+        actualChapters: Object.fromEntries(chapterCounts),
         coveredChapters: new Set(selected.map((item) => item.chapter_id)).size,
         coveredLessons: lessonCounts.size,
         maxQuestionsPerLesson: lessonCounts.size > 0 ? Math.max(...lessonCounts.values()) : 0,
@@ -299,6 +309,9 @@ function attemptSelection(pool, options) {
 
     let eligible = available.filter((question) => {
       if (selectedIds.has(question.id)) return false;
+      if ((chapterCounts.get(question.chapter_id) || 0) >= (options.chapterQuotas[question.chapter_id] || 0)) {
+        return false;
+      }
       if ((lessonCounts.get(question.lesson_id) || 0) >= options.lessonCap) return false;
       if (
         question.concept_id
@@ -324,6 +337,7 @@ function attemptSelection(pool, options) {
       conceptCounts,
       difficultyCounts,
       targets: options.targets,
+      chapterQuotas: options.chapterQuotas,
       enforceDifficulty: options.enforceDifficulty,
       weakLessonIds: options.weakLessonIds,
       weakStillNeeded,
@@ -373,8 +387,11 @@ function compareCandidates(left, right, context) {
     if (leftRemaining !== rightRemaining) return leftRemaining - rightRemaining;
   }
 
-  const chapterDifference = (context.chapterCounts.get(left.chapter_id) || 0)
-    - (context.chapterCounts.get(right.chapter_id) || 0);
+  const chapterDifference = (
+    context.chapterQuotas[right.chapter_id] - (context.chapterCounts.get(right.chapter_id) || 0)
+  ) - (
+    context.chapterQuotas[left.chapter_id] - (context.chapterCounts.get(left.chapter_id) || 0)
+  );
   if (chapterDifference !== 0) return chapterDifference;
 
   const leftConceptCount = left.concept_id

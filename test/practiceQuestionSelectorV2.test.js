@@ -80,6 +80,22 @@ test('quota chương ưu tiên chương có độ bao phủ lịch sử thấp h
   assert.deepEqual(quotas, { 1: 1, 2: 5 });
 });
 
+test('bộ chọn giữ đúng quota chương đã tính trong đề hoàn chỉnh', () => {
+  const candidates = buildChapterCandidates([15, 14, 18, 3], 3)
+    .map((question, index) => ({
+      ...question,
+      difficulty: ['EASY', 'MEDIUM', 'HARD'][index % 3]
+    }));
+  const result = selectQuestionsV2(candidates, {
+    count: 20,
+    mode: 'COMPREHENSIVE',
+    maxPerLesson: 3,
+    seed: '0101010101010101'
+  });
+  assert.deepEqual(result.selection.metadata.chapterTargets, { 1: 6, 2: 6, 3: 7, 4: 1 });
+  assert.deepEqual(result.selection.metadata.actualChapters, { 1: 6, 2: 6, 3: 7, 4: 1 });
+});
+
 test('chia đều bài liên tiếp từ đầu đến cuối chương', () => {
   const candidates = buildChapterCandidates([18]);
   const groups = buildLessonGroups(candidates, { 1: 6 }, {}, () => 0.5);
@@ -157,7 +173,7 @@ test('đề 15 và 20 câu đúng quota độ khó, phủ chương và không qu
 
 test('tránh câu gần đây và chỉ cho phép lại khi nguồn mới không đủ', () => {
   const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 4, questionsPerDifficulty: 2 });
-  const recentIds = candidates.slice(0, 10).map((item) => item.id);
+  const recentIds = candidates.filter((item) => item.id % 2 === 1).slice(0, 10).map((item) => item.id);
   const enoughFresh = selectQuestionsV2(candidates, {
     count: 5,
     mode: 'LESSON',
