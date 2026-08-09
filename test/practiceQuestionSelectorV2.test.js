@@ -278,6 +278,17 @@ test('đề 15 và 20 câu đúng quota độ khó, phủ chương và không qu
   }
 });
 
+test('xáo trộn cuối đề tránh lặp chương bài và hạn chế lặp độ khó liên tiếp', () => {
+  const result = selectQuestionsV2(buildCandidates(), {
+    count: 20,
+    mode: 'COMPREHENSIVE',
+    seed: '1700000000000001'
+  });
+  assert.equal(result.selection.metadata.sequenceConflicts.chapter, 0);
+  assert.equal(result.selection.metadata.sequenceConflicts.lesson, 0);
+  assert.ok(result.selection.metadata.sequenceConflicts.difficulty <= 1);
+});
+
 test('tránh câu gần đây và chỉ cho phép lại khi nguồn mới không đủ', () => {
   const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 4, questionsPerDifficulty: 2 });
   const recentIds = candidates.filter((item) => item.id % 2 === 1).slice(0, 10).map((item) => item.id);

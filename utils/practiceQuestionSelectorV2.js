@@ -440,7 +440,8 @@ function selectQuestionsV2(candidates, options = {}) {
     similarityThreshold,
     random
   });
-  const selected = improved.map(({
+  const orderedQuestions = orderQuestionsDiversely(improved, random);
+  const selected = orderedQuestions.map(({
     randomOrder,
     selection_order: selectionOrder,
     similarity_text: similarityText,
@@ -488,6 +489,7 @@ function selectQuestionsV2(candidates, options = {}) {
         taggedQuestions: taggedQuestions.length,
         maxQuestionsPerConcept: conceptCounts.size > 0 ? Math.max(...conceptCounts.values()) : 0,
         nearDuplicatePairs: countNearDuplicatePairs(selected, similarityThreshold),
+        sequenceConflicts: countSequenceConflicts(selected),
         similarityThreshold,
         recentExcluded: normalizedCandidates.filter((item) => recentIds.has(item.id)).length,
         reviewExcluded: normalizedCandidates.filter((item) => reviewIds.has(item.id)).length,
@@ -540,6 +542,74 @@ function compareReplacementCandidates(left, right, history) {
     return leftQuestion.lastSelectedAt - rightQuestion.lastSelectedAt;
   }
   return left.selection_order - right.selection_order;
+}
+
+function orderQuestionsDiversely(questions, random) {
+  const remaining = questions.map((question) => ({ ...question, sequence_order: random() }));
+  const ordered = [];
+  while (remaining.length > 0) {
+    const previous = ordered.at(-1);
+    const previousSecond = ordered.at(-2);
+    remaining.sort((left, right) => (
+      sequencePenalty(left, previous, previousSecond)
+      - sequencePenalty(right, previous, previousSecond)
+      || left.sequence_order - right.sequence_order
+    ));
+    ordered.push(remaining.shift());
+  }
+  const optimized = improveSequenceBySwaps(ordered);
+  return optimized.map(({ sequence_order: sequenceOrder, ...question }) => question);
+}
+
+function improveSequenceBySwaps(questions) {
+  const ordered = [...questions];
+  let currentScore = sequenceConflictScore(ordered);
+  let improved = true;
+  while (improved && currentScore > 0) {
+    improved = false;
+    for (let left = 0; left < ordered.length - 1 && !improved; left += 1) {
+      for (let right = left + 1; right < ordered.length; right += 1) {
+        [ordered[left], ordered[right]] = [ordered[right], ordered[left]];
+        const score = sequenceConflictScore(ordered);
+        if (score < currentScore) {
+          currentScore = score;
+          improved = true;
+          break;
+        }
+        [ordered[left], ordered[right]] = [ordered[right], ordered[left]];
+      }
+    }
+  }
+  return ordered;
+}
+
+function sequenceConflictScore(questions) {
+  const conflicts = countSequenceConflicts(questions);
+  return conflicts.chapter + conflicts.lesson + conflicts.difficulty;
+}
+
+function sequencePenalty(question, previous, previousSecond) {
+  if (!previous) return 0;
+  let penalty = 0;
+  if (question.lesson_id === previous.lesson_id) penalty += 8;
+  if (question.chapter_id === previous.chapter_id) penalty += 4;
+  if (question.difficulty === previous.difficulty) penalty += 2;
+  if (previousSecond) {
+    if (question.lesson_id === previousSecond.lesson_id) penalty += 2;
+    if (question.chapter_id === previousSecond.chapter_id) penalty += 1;
+    if (question.difficulty === previousSecond.difficulty) penalty += 0.5;
+  }
+  return penalty;
+}
+
+function countSequenceConflicts(questions) {
+  return questions.slice(1).reduce((result, question, index) => {
+    const previous = questions[index];
+    if (question.chapter_id === previous.chapter_id) result.chapter += 1;
+    if (question.lesson_id === previous.lesson_id) result.lesson += 1;
+    if (question.difficulty === previous.difficulty) result.difficulty += 1;
+    return result;
+  }, { chapter: 0, lesson: 0, difficulty: 0 });
 }
 
 function normalizeCandidates(candidates) {
