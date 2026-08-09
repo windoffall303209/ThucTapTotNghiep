@@ -153,7 +153,7 @@ function compareAdditionalLessonSlot(left, right) {
   const rightCoverage = right.historyCount + right.assignedCount;
   if (leftCoverage !== rightCoverage) return leftCoverage - rightCoverage;
   if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
-  return compareLessonOrder(left, right);
+  return left.randomOrder - right.randomOrder;
 }
 
 function partitionContiguous(items, groupCount) {
