@@ -11,12 +11,10 @@ function parseArguments(argv = process.argv.slice(2)) {
   const runsFlag = argv.find((arg) => arg.startsWith('--runs='));
   const difficultyFlag = argv.find((arg) => arg.startsWith('--max-difficulty-fallback-rate='));
   const similarityFlag = argv.find((arg) => arg.startsWith('--max-similarity-fallback-rate='));
-  const lessonCapFlag = argv.find((arg) => arg.startsWith('--max-lesson-cap-fallback-rate='));
   const supportedPrefixes = [
     '--runs=',
     '--max-difficulty-fallback-rate=',
-    '--max-similarity-fallback-rate=',
-    '--max-lesson-cap-fallback-rate='
+    '--max-similarity-fallback-rate='
   ];
   const unknown = argv.filter((arg) => (
     arg !== '--fail-on-warning'
@@ -32,8 +30,7 @@ function parseArguments(argv = process.argv.slice(2)) {
     failOnWarning: argv.includes('--fail-on-warning'),
     thresholds: {
       difficultyFallbackRate: parseRate(difficultyFlag, '--max-difficulty-fallback-rate=', 0.25),
-      similarityFallbackRate: parseRate(similarityFlag, '--max-similarity-fallback-rate=', 0.05),
-      lessonCapFallbackRate: parseRate(lessonCapFlag, '--max-lesson-cap-fallback-rate=', 0.05)
+      similarityFallbackRate: parseRate(similarityFlag, '--max-similarity-fallback-rate=', 0.05)
     }
   };
 }
@@ -47,6 +44,8 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     duplicateQuestionIds: 0,
     nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
+    chapterQuotaMismatches: 0,
+    sequenceConflicts: { chapter: 0, lesson: 0, difficulty: 0 },
     difficulty: { EASY: 0, MEDIUM: 0, HARD: 0 },
     fallbackReasons: {}
   };
@@ -60,6 +59,15 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     totals.duplicateQuestionIds += ids.length - new Set(ids).size;
     totals.nearDuplicatePairs += Number(result.selection.metadata.nearDuplicatePairs || 0);
     totals.outOfScopeQuestionIds += ids.filter((id) => !poolIds.has(id)).length;
+    if (!sameNumberRecord(
+      result.selection.metadata.chapterTargets,
+      result.selection.metadata.actualChapters
+    )) totals.chapterQuotaMismatches += 1;
+    for (const field of Object.keys(totals.sequenceConflicts)) {
+      totals.sequenceConflicts[field] += Number(
+        result.selection.metadata.sequenceConflicts?.[field] || 0
+      );
+    }
     ids.forEach((id) => usedIds.add(id));
     for (const difficulty of Object.keys(totals.difficulty)) {
       totals.difficulty[difficulty] += Number(result.selection.metadata.actualDifficulty[difficulty] || 0);
@@ -81,6 +89,8 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     duplicateQuestionIds: totals.duplicateQuestionIds,
     nearDuplicatePairs: totals.nearDuplicatePairs,
     outOfScopeQuestionIds: totals.outOfScopeQuestionIds,
+    chapterQuotaMismatches: totals.chapterQuotaMismatches,
+    sequenceConflicts: totals.sequenceConflicts,
     uniqueQuestionsUsed: usedIds.size,
     poolCoverage: candidates.length > 0
       ? Number((usedIds.size / candidates.length).toFixed(4))
@@ -113,6 +123,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
     summary.duplicateQuestionIds += Number(scope.duplicateQuestionIds || 0);
     summary.nearDuplicatePairs += Number(scope.nearDuplicatePairs || 0);
     summary.outOfScopeQuestionIds += Number(scope.outOfScopeQuestionIds || 0);
+    summary.chapterQuotaMismatches += Number(scope.chapterQuotaMismatches || 0);
     for (const [reason, count] of Object.entries(scope.fallbackReasons || {})) {
       summary.fallbackReasons[reason] = (summary.fallbackReasons[reason] || 0) + Number(count || 0);
     }
@@ -122,6 +133,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
     duplicateQuestionIds: 0,
     nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
+    chapterQuotaMismatches: 0,
     fallbackReasons: {}
   });
   const violations = [];
@@ -132,22 +144,22 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
   if (totals.outOfScopeQuestionIds > 0) {
     violations.push({ code: 'OUT_OF_SCOPE_QUESTION_IDS', count: totals.outOfScopeQuestionIds });
   }
+  if (totals.chapterQuotaMismatches > 0) {
+    violations.push({ code: 'CHAPTER_QUOTA_MISMATCHES', count: totals.chapterQuotaMismatches });
+  }
 
   const rates = {
     difficultyFallbackRate: fallbackRate(totals, 'DIFFICULTY_RELAXED', totalRuns),
-    similarityFallbackRate: fallbackRate(totals, 'SIMILARITY_RELAXED', totalRuns),
-    lessonCapFallbackRate: fallbackRate(totals, 'LESSON_CAP_RELAXED', totalRuns)
+    similarityFallbackRate: fallbackRate(totals, 'SIMILARITY_RELAXED', totalRuns)
   };
   const normalizedThresholds = {
     difficultyFallbackRate: validRate(thresholds.difficultyFallbackRate, 0.25),
-    similarityFallbackRate: validRate(thresholds.similarityFallbackRate, 0.05),
-    lessonCapFallbackRate: validRate(thresholds.lessonCapFallbackRate, 0.05)
+    similarityFallbackRate: validRate(thresholds.similarityFallbackRate, 0.05)
   };
   const warnings = [];
   const warningCodes = {
     difficultyFallbackRate: 'HIGH_DIFFICULTY_FALLBACK_RATE',
-    similarityFallbackRate: 'HIGH_SIMILARITY_FALLBACK_RATE',
-    lessonCapFallbackRate: 'HIGH_LESSON_CAP_FALLBACK_RATE'
+    similarityFallbackRate: 'HIGH_SIMILARITY_FALLBACK_RATE'
   };
   for (const [metric, rate] of Object.entries(rates)) {
     if (rate > normalizedThresholds[metric]) {
@@ -255,6 +267,11 @@ function fallbackRate(totals, reason, totalRuns) {
   return totalRuns > 0
     ? Number((Number(totals.fallbackReasons[reason] || 0) / totalRuns).toFixed(4))
     : 0;
+}
+
+function sameNumberRecord(left = {}, right = {}) {
+  const keys = new Set([...Object.keys(left || {}), ...Object.keys(right || {})]);
+  return [...keys].every((key) => Number(left?.[key] || 0) === Number(right?.[key] || 0));
 }
 
 module.exports = {

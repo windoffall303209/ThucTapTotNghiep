@@ -58,8 +58,7 @@ test('audit nhận số lượt hợp lệ và seed kiểm tra có thể tái hi
     failOnWarning: false,
     thresholds: {
       difficultyFallbackRate: 0.25,
-      similarityFallbackRate: 0.05,
-      lessonCapFallbackRate: 0.05
+      similarityFallbackRate: 0.05
     }
   });
   assert.throws(() => parseArguments(['--runs=0']), /từ 1 đến 500/);
@@ -92,6 +91,8 @@ test('audit phát hiện trùng, sai phạm vi và thống kê tỷ lệ độ k
   assert.equal(report.nearDuplicatePairs, 0);
   assert.equal(report.outOfScopeQuestionIds, 0);
   assert.equal(report.incompleteRuns, 0);
+  assert.equal(report.chapterQuotaMismatches, 0);
+  assert.ok(report.sequenceConflicts.lesson >= 0);
   assert.equal(report.actualDifficultyRatio.EASY, 0.4667);
 });
 
@@ -102,12 +103,14 @@ test('cổng audit thất bại với vi phạm cứng và cảnh báo khi fallb
     duplicateQuestionIds: 2,
     nearDuplicatePairs: 0,
     outOfScopeQuestionIds: 0,
+    chapterQuotaMismatches: 1,
     fallbackReasons: {}
   }]);
   assert.equal(failed.status, 'FAIL');
   assert.deepEqual(failed.violations.map((item) => item.code), [
     'INCOMPLETE_EXAMS',
-    'DUPLICATE_QUESTION_IDS'
+    'DUPLICATE_QUESTION_IDS',
+    'CHAPTER_QUOTA_MISMATCHES'
   ]);
 
   const warning = evaluateAuditGate([{
