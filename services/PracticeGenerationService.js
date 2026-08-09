@@ -1,5 +1,4 @@
 const Question = require('../models/Question');
-const LearningMasteryService = require('./LearningMasteryService');
 const {
   createSelectionSeed,
   selectQuestionsV2
@@ -15,18 +14,17 @@ async function generateLessonSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
   const candidates = Array.isArray(options.candidates) ? options.candidates : [];
   const count = Math.min(Math.max(Number(options.count) || 5, 0), candidates.length);
-  const recentIds = await questionModel.getRecentQuestionIds({
+  const selectionHistory = await questionModel.getPracticeSelectionHistory({
     studentId: options.studentId,
-    grade: options.grade,
-    lessonId: options.lessonId,
-    limit: RECENT_LIMITS.LESSON
+    grade: options.grade
   });
 
   return selectQuestionsV2(candidates, {
     count,
     mode: 'LESSON',
     seed: options.seed || createSelectionSeed(),
-    recentIds,
+    selectionHistory,
+    recentLimit: RECENT_LIMITS.LESSON,
     reviewIds: (options.reviewQuestions || []).map((question) => question.id),
     maxPerLesson: Math.max(count, 1)
   });
@@ -49,33 +47,22 @@ function generateReviewSelection(options = {}) {
 
 async function generateScopedSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
-  const masteryService = dependencies.LearningMasteryService || LearningMasteryService;
   const mode = String(options.mode || 'COMPREHENSIVE').toUpperCase() === 'CHAPTER'
     ? 'CHAPTER'
     : 'COMPREHENSIVE';
   const candidates = Array.isArray(options.candidates) ? options.candidates : [];
   const count = Math.min(Math.max(Number(options.count) || 0, 0), candidates.length);
-  const lessonIds = [...new Set(candidates.map((question) => Number(question.lesson_id)).filter(Boolean))];
-  const [recentIds, masteryByLesson] = await Promise.all([
-    questionModel.getRecentQuestionIds({
-      studentId: options.studentId,
-      grade: options.grade,
-      chapterId: mode === 'CHAPTER' ? options.chapterId : null,
-      semester: mode === 'COMPREHENSIVE' ? options.semester : null,
-      limit: RECENT_LIMITS[mode]
-    }),
-    masteryService.getMasteryByGrade(options.studentId, options.grade)
-  ]);
-  const weakLessonIds = masteryService.getWeakLessonIds(masteryByLesson, lessonIds);
+  const selectionHistory = await questionModel.getPracticeSelectionHistory({
+    studentId: options.studentId,
+    grade: options.grade
+  });
 
   return selectQuestionsV2(candidates, {
     count,
     mode,
     seed: options.seed || createSelectionSeed(),
-    recentIds,
-    weakLessonIds,
-    personalizationRatio: 0.3,
-    maxPerLesson: 2
+    selectionHistory,
+    recentLimit: RECENT_LIMITS[mode]
   });
 }
 

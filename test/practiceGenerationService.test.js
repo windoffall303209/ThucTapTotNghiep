@@ -28,11 +28,11 @@ function buildCandidates({ chapters = 3, lessonsPerChapter = 5, eachDifficulty =
   return candidates;
 }
 
-test('luyện theo bài tránh đúng 5 câu gần nhất và tránh nhóm ôn lý thuyết', async () => {
+test('luyện theo bài dùng lịch sử tạo đề và tránh nhóm ôn lý thuyết', async () => {
   const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 1, eachDifficulty: 5 });
   const recentIds = [3, 4, 8, 9, 13];
   const reviewQuestions = [candidates[4], candidates[9], candidates[14]];
-  let recentOptions;
+  let historyOptions;
   const result = await generateLessonSelection({
     studentId: 9,
     grade: 2,
@@ -42,14 +42,20 @@ test('luyện theo bài tránh đúng 5 câu gần nhất và tránh nhóm ôn l
     seed: '1100000000000001'
   }, {
     Question: {
-      getRecentQuestionIds: async (options) => {
-        recentOptions = options;
-        return recentIds;
+      getPracticeSelectionHistory: async (options) => {
+        historyOptions = options;
+        return {
+          questions: Object.fromEntries(recentIds.map((id, index) => [id, {
+            count: 1,
+            lastSelectedAt: `2026-08-0${index + 1}T08:00:00.000Z`
+          }])),
+          lessons: {}
+        };
       }
     }
   });
 
-  assert.equal(recentOptions.limit, RECENT_LIMITS.LESSON);
+  assert.deepEqual(historyOptions, { studentId: 9, grade: 2 });
   assert.equal(result.questions.length, 5);
   assert.ok(result.questions.every((question) => !recentIds.includes(question.id)));
   assert.ok(result.questions.every((question) => !reviewQuestions.some((item) => item.id === question.id)));
@@ -67,14 +73,9 @@ test('ôn lý thuyết giữ đúng nhóm 8 câu và trộn ổn định theo se
   );
 });
 
-test('đề chương dùng 30 câu gần nhất và ưu tiên các bài yếu trong đúng phạm vi', async () => {
+test('đề chương dùng lịch sử bao phủ của học sinh trong khối lớp', async () => {
   const candidates = buildCandidates();
-  let recentOptions;
-  const mastery = {
-    101: { status: 'needs_review', weakness_score: 0.9 },
-    201: { status: 'needs_review', weakness_score: 0.8 },
-    999: { status: 'needs_review', weakness_score: 1 }
-  };
+  let historyOptions;
   const result = await generateScopedSelection({
     studentId: 7,
     grade: 3,
@@ -85,23 +86,17 @@ test('đề chương dùng 30 câu gần nhất và ưu tiên các bài yếu tr
     seed: '3300000000000001'
   }, {
     Question: {
-      getRecentQuestionIds: async (options) => {
-        recentOptions = options;
-        return [];
+      getPracticeSelectionHistory: async (options) => {
+        historyOptions = options;
+        return {
+          questions: {},
+          lessons: { 101: { count: 9, lastSelectedAt: '2026-08-08T08:00:00.000Z' } }
+        };
       }
-    },
-    LearningMasteryService: {
-      getMasteryByGrade: async () => mastery,
-      getWeakLessonIds: (masteryMap, allowed) => Object.keys(masteryMap)
-        .map(Number)
-        .filter((lessonId) => allowed.includes(lessonId) && masteryMap[lessonId].status === 'needs_review')
     }
   });
 
-  assert.equal(recentOptions.limit, RECENT_LIMITS.CHAPTER);
-  assert.equal(recentOptions.chapterId, 1);
+  assert.deepEqual(historyOptions, { studentId: 7, grade: 3 });
   assert.equal(result.questions.length, 15);
-  assert.equal(result.selection.metadata.weakTarget, 4);
-  assert.equal(result.selection.metadata.weakSelected, 4);
-  assert.ok(result.questions.every((question) => question.lesson_id !== 999));
+  assert.ok(result.questions.filter((question) => question.lesson_id === 101).length <= 2);
 });

@@ -170,7 +170,11 @@ function selectQuestionsV2(candidates, options = {}) {
   const mode = normalizeMode(options.mode);
   const seed = normalizeSeed(options.seed || createSelectionSeed());
   const random = options.random || createSeededRandom(seed);
-  const recentIds = toIdSet(options.recentIds);
+  const selectionHistory = normalizeSelectionHistory(options.selectionHistory);
+  const recentIds = new Set([
+    ...toIdSet(options.recentIds),
+    ...recentQuestionIdsFromHistory(selectionHistory, options.recentLimit)
+  ]);
   const reviewIds = toIdSet(options.reviewIds);
   const weakLessonIds = toIdSet(options.weakLessonIds);
   const normalizedCandidates = normalizeCandidates(candidates);
@@ -221,6 +225,7 @@ function selectQuestionsV2(candidates, options = {}) {
       similarityThreshold,
       lessonCap: phase.lessonCap,
       conceptCap: phase.conceptCap,
+      selectionHistory,
       random
     });
     if (result.selected.length >= Math.min(count, normalizedCandidates.length)) break;
@@ -321,7 +326,8 @@ function attemptSelection(pool, options) {
       targets: options.targets,
       enforceDifficulty: options.enforceDifficulty,
       weakLessonIds: options.weakLessonIds,
-      weakStillNeeded
+      weakStillNeeded,
+      selectionHistory: options.selectionHistory
     }));
     const chosen = options.enforceSimilarity
       ? eligible.find((question) => !selected.some((selectedQuestion) => (
@@ -346,6 +352,15 @@ function attemptSelection(pool, options) {
 }
 
 function compareCandidates(left, right, context) {
+  const leftLessonHistory = getHistoryEntry(context.selectionHistory.lessons, left.lesson_id);
+  const rightLessonHistory = getHistoryEntry(context.selectionHistory.lessons, right.lesson_id);
+  if (leftLessonHistory.count !== rightLessonHistory.count) {
+    return leftLessonHistory.count - rightLessonHistory.count;
+  }
+  if (leftLessonHistory.lastSelectedAt !== rightLessonHistory.lastSelectedAt) {
+    return leftLessonHistory.lastSelectedAt - rightLessonHistory.lastSelectedAt;
+  }
+
   const leftWeak = context.weakLessonIds.has(left.lesson_id) ? 0 : 1;
   const rightWeak = context.weakLessonIds.has(right.lesson_id) ? 0 : 1;
   if (context.weakStillNeeded > 0 && leftWeak !== rightWeak) return leftWeak - rightWeak;
@@ -373,6 +388,15 @@ function compareCandidates(left, right, context) {
   const lessonDifference = (context.lessonCounts.get(left.lesson_id) || 0)
     - (context.lessonCounts.get(right.lesson_id) || 0);
   if (lessonDifference !== 0) return lessonDifference;
+
+  const leftQuestionHistory = getHistoryEntry(context.selectionHistory.questions, left.id);
+  const rightQuestionHistory = getHistoryEntry(context.selectionHistory.questions, right.id);
+  if (leftQuestionHistory.count !== rightQuestionHistory.count) {
+    return leftQuestionHistory.count - rightQuestionHistory.count;
+  }
+  if (leftQuestionHistory.lastSelectedAt !== rightQuestionHistory.lastSelectedAt) {
+    return leftQuestionHistory.lastSelectedAt - rightQuestionHistory.lastSelectedAt;
+  }
   return left.randomOrder - right.randomOrder;
 }
 
@@ -495,6 +519,16 @@ function normalizeHistoryEntries(entries) {
 
 function getHistoryEntry(entries, id) {
   return entries.get(Number(id)) || { count: 0, lastSelectedAt: Number.NEGATIVE_INFINITY };
+}
+
+function recentQuestionIdsFromHistory(history, limit) {
+  const safeLimit = Math.max(0, Number(limit) || 0);
+  if (safeLimit === 0) return [];
+  return [...history.questions.entries()]
+    .filter(([, entry]) => Number.isFinite(entry.lastSelectedAt))
+    .sort((left, right) => right[1].lastSelectedAt - left[1].lastSelectedAt)
+    .slice(0, safeLimit)
+    .map(([questionId]) => questionId);
 }
 
 function normalizeTimestamp(value) {
