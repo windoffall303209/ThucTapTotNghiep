@@ -374,6 +374,101 @@ async function getRecentQuestionIds(options = {}) {
   }
 }
 
+async function getPracticeSelectionHistory(options = {}) {
+  const studentId = Number(options.studentId);
+  const grade = Number(options.grade);
+  if (!studentId || !isSupportedGrade(grade)) return emptySelectionHistory();
+
+  try {
+    const rows = await db.query(
+      `SELECT
+          q.id AS question_id,
+          q.lesson_id,
+          l.chapter_id,
+          COUNT(*) AS appearance_count,
+          MAX(ps.started_at) AS last_selected_at
+       FROM PracticeSessionQuestions psq
+       JOIN PracticeSessions ps ON ps.id = psq.practice_session_id
+       JOIN QuestionBank q ON q.id = psq.question_id
+       JOIN Lessons l ON l.id = q.lesson_id
+       JOIN Chapters c ON c.id = l.chapter_id
+       WHERE ps.student_id = ?
+         AND c.grade = ?
+         AND ps.session_mode IN ('LESSON', 'CHAPTER', 'COMPREHENSIVE')
+       GROUP BY q.id, q.lesson_id, l.chapter_id`,
+      [studentId, grade]
+    );
+    return buildSelectionHistory(rows);
+  } catch (error) {
+    fallbackOrThrow(error);
+    const questionById = new Map(sampleData.questions.map((question) => [Number(question.id), question]));
+    const lessonById = new Map(
+      sampleData.chapters.flatMap((chapter) => chapter.lessons.map((lesson) => [
+        Number(lesson.id),
+        { ...lesson, chapter_id: Number(chapter.id), grade: Number(chapter.grade) }
+      ]))
+    );
+    const rows = [];
+    for (const session of sampleData.practiceSessions || []) {
+      if (
+        Number(session.student_id) !== studentId
+        || !['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(String(session.session_mode || '').toUpperCase())
+      ) continue;
+      for (const questionId of session.question_ids || []) {
+        const question = questionById.get(Number(questionId));
+        const lesson = lessonById.get(Number(question?.lesson_id));
+        if (!question || Number(lesson?.grade) !== grade) continue;
+        rows.push({
+          question_id: Number(question.id),
+          lesson_id: Number(question.lesson_id),
+          chapter_id: Number(lesson.chapter_id),
+          appearance_count: 1,
+          last_selected_at: session.started_at || null
+        });
+      }
+    }
+    return buildSelectionHistory(rows);
+  }
+}
+
+function buildSelectionHistory(rows = []) {
+  const history = emptySelectionHistory();
+  for (const row of rows) {
+    const questionId = Number(row.question_id);
+    const lessonId = Number(row.lesson_id);
+    const chapterId = Number(row.chapter_id);
+    const count = Math.max(0, Number(row.appearance_count) || 0);
+    const lastSelectedAt = normalizeHistoryTimestamp(row.last_selected_at);
+    if (!questionId || !lessonId || !chapterId || count === 0) continue;
+    mergeHistoryEntry(history.questions, questionId, count, lastSelectedAt);
+    mergeHistoryEntry(history.lessons, lessonId, count, lastSelectedAt);
+  }
+  return history;
+}
+
+function emptySelectionHistory() {
+  return { questions: {}, lessons: {} };
+}
+
+function mergeHistoryEntry(target, id, count, lastSelectedAt) {
+  const current = target[id] || { count: 0, lastSelectedAt: null };
+  current.count += count;
+  if (timestampValue(lastSelectedAt) > timestampValue(current.lastSelectedAt)) {
+    current.lastSelectedAt = lastSelectedAt;
+  }
+  target[id] = current;
+}
+
+function normalizeHistoryTimestamp(value) {
+  const timestamp = value instanceof Date ? value.getTime() : Date.parse(String(value || ''));
+  return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : null;
+}
+
+function timestampValue(value) {
+  const timestamp = Date.parse(String(value || ''));
+  return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
+}
+
 async function countQuestionsByLesson(lessonId, options = {}) {
   const filter = buildLessonQuestionFilter(options);
   try {
@@ -1045,6 +1140,7 @@ module.exports = {
   getTheoryReviewQuestions,
   getQuestionCandidates,
   getRecentQuestionIds,
+  getPracticeSelectionHistory,
   getQuestionPageByLesson,
   searchQuestions,
   getDifficultyStats,
