@@ -179,7 +179,11 @@ function buildDifficultySelectionPlan(
   const history = normalizeSelectionHistory(selectionHistory);
   const targets = normalizeDifficultyTargets(requestedTargets, lessonGroups.length);
   const targetOptions = enumerateDifficultyTargets(targets, lessonGroups.length);
+  const availableByDifficulty = countByDifficulty(normalizedCandidates);
   for (const targetOption of targetOptions) {
+    if (DIFFICULTIES.some((difficulty) => (
+      targetOption[difficulty] > availableByDifficulty[difficulty]
+    ))) continue;
     const result = matchQuestionsToGroups(
       normalizedCandidates,
       lessonGroups,
@@ -406,30 +410,24 @@ function selectQuestionsV2(candidates, options = {}) {
   );
   const basePool = normalizedCandidates.filter((question) => !reviewIds.has(question.id));
   const freshPool = basePool.filter((question) => !recentIds.has(question.id));
-  const phases = [
-    { name: 'STRICT', pool: freshPool },
-    { name: 'RECENT_REUSED', pool: basePool },
-    { name: 'REVIEW_REUSED', pool: normalizedCandidates }
-  ];
-  let selectedPhase = phases.at(-1);
-  let plan = null;
-  for (const requireExactDifficulty of [true, false]) {
-    for (const phase of phases) {
-      const candidatePlan = buildDifficultySelectionPlan(
+  const phases = [{ name: 'STRICT', pool: freshPool }];
+  if (recentIds.size > 0) phases.push({ name: 'RECENT_REUSED', pool: basePool });
+  if (reviewIds.size > 0) phases.push({ name: 'REVIEW_REUSED', pool: normalizedCandidates });
+  const plannedPhases = phases.map((phase) => ({
+    ...phase,
+    plan: buildDifficultySelectionPlan(
         phase.pool,
         lessonGroups,
         targets,
         options.selectionHistory,
         random
-      );
-      if (candidatePlan.questions.length !== lessonGroups.length) continue;
-      if (requireExactDifficulty && !candidatePlan.exact) continue;
-      plan = candidatePlan;
-      selectedPhase = phase;
-      break;
-    }
-    if (plan) break;
-  }
+      )
+  }));
+  const selectedPlan = plannedPhases.find((phase) => (
+    phase.plan.exact && phase.plan.questions.length === lessonGroups.length
+  )) || plannedPhases.find((phase) => phase.plan.questions.length === lessonGroups.length);
+  const selectedPhase = selectedPlan || plannedPhases.at(-1);
+  const plan = selectedPlan?.plan || null;
 
   const improved = improvePlannedQuestions(plan?.questions || [], {
     assignments: plan?.assignments || {},
