@@ -255,9 +255,11 @@ async function getQuestionCandidates(options = {}) {
           JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) AS content_text,
           l.chapter_id,
           l.lesson_name,
+          l.sort_order AS lesson_sort_order,
           c.chapter_name,
           c.grade,
-          c.semester
+          c.semester,
+          c.sort_order AS chapter_sort_order
        FROM QuestionBank q
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
@@ -295,9 +297,11 @@ async function getQuestionCandidates(options = {}) {
                   : question.content?.text || '',
                 chapter_id: Number(chapter.id),
                 lesson_name: lesson.lesson_name,
+                lesson_sort_order: Number(lesson.sort_order),
                 chapter_name: chapter.chapter_name,
                 grade: Number(chapter.grade),
-                semester: Number(chapter.semester)
+                semester: Number(chapter.semester),
+                chapter_sort_order: Number(chapter.sort_order)
               }))
           )
       );

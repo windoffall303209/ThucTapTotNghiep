@@ -51,3 +51,9 @@ test('lịch sử tạo đề rỗng khi học sinh hoặc khối lớp không h
     { questions: {}, lessons: {} }
   );
 });
+
+test('nguồn ứng viên giữ thứ tự chương và bài để chia nhóm liên tiếp', () => {
+  const source = require('node:fs').readFileSync(require.resolve('../models/Question'), 'utf8');
+  assert.match(source, /l\.sort_order AS lesson_sort_order/);
+  assert.match(source, /c\.sort_order AS chapter_sort_order/);
+});
