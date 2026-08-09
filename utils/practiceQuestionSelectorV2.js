@@ -165,6 +165,214 @@ function partitionContiguous(items, groupCount) {
   }).filter((group) => group.length > 0);
 }
 
+function buildDifficultySelectionPlan(
+  candidates,
+  lessonGroups,
+  requestedTargets,
+  selectionHistory = {},
+  random = Math.random
+) {
+  const normalizedCandidates = normalizeCandidates(candidates).map((question) => ({
+    ...question,
+    selection_order: random()
+  }));
+  const history = normalizeSelectionHistory(selectionHistory);
+  const targets = normalizeDifficultyTargets(requestedTargets, lessonGroups.length);
+  const targetOptions = enumerateDifficultyTargets(targets, lessonGroups.length);
+  for (const targetOption of targetOptions) {
+    const result = matchQuestionsToGroups(
+      normalizedCandidates,
+      lessonGroups,
+      targetOption,
+      history
+    );
+    if (result.questions.length === lessonGroups.length) {
+      return {
+        ...result,
+        difficultyTargets: targetOption,
+        exact: DIFFICULTIES.every((difficulty) => targetOption[difficulty] === targets[difficulty])
+      };
+    }
+  }
+  return {
+    questions: [],
+    assignments: {},
+    difficultyTargets: { EASY: 0, MEDIUM: 0, HARD: 0 },
+    exact: false
+  };
+}
+
+function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
+  const graph = new Map();
+  const source = 'SOURCE';
+  const sink = 'SINK';
+  const groupLessonSets = lessonGroups.map((group) => new Set(group.lessonIds.map(Number)));
+  const hardHistoryByChapter = candidates
+    .filter((question) => question.difficulty === 'HARD')
+    .reduce((result, question) => {
+      const count = getHistoryEntry(history.questions, question.id).count;
+      result.set(question.chapter_id, (result.get(question.chapter_id) || 0) + count);
+      return result;
+    }, new Map());
+
+  for (const difficulty of ['HARD', 'MEDIUM', 'EASY']) {
+    addFlowEdge(graph, source, `DIFFICULTY:${difficulty}`, targets[difficulty]);
+    const difficultyCandidates = orderDifficultyCandidates(
+      candidates.filter((question) => question.difficulty === difficulty),
+      difficulty,
+      history,
+      hardHistoryByChapter
+    );
+    for (const question of difficultyCandidates) {
+      addFlowEdge(graph, `DIFFICULTY:${difficulty}`, `QUESTION:${question.id}`, 1);
+    }
+  }
+  for (const question of candidates) {
+    for (let groupIndex = 0; groupIndex < lessonGroups.length; groupIndex += 1) {
+      if (!groupLessonSets[groupIndex].has(question.lesson_id)) continue;
+      addFlowEdge(graph, `QUESTION:${question.id}`, `GROUP:${groupIndex}`, 1, {
+        type: 'QUESTION_GROUP',
+        questionId: question.id,
+        groupIndex
+      });
+    }
+  }
+  for (let groupIndex = 0; groupIndex < lessonGroups.length; groupIndex += 1) {
+    addFlowEdge(graph, `GROUP:${groupIndex}`, sink, 1);
+  }
+
+  const flow = calculateMaxFlow(graph, source, sink);
+  if (flow !== lessonGroups.length) return { questions: [], assignments: {} };
+  const questionById = new Map(candidates.map((question) => [question.id, question]));
+  const selectedByGroup = {};
+  const assignments = {};
+  for (const edges of graph.values()) {
+    for (const edge of edges) {
+      if (edge.meta?.type !== 'QUESTION_GROUP' || edge.capacity !== 0) continue;
+      const question = questionById.get(edge.meta.questionId);
+      if (!question) continue;
+      selectedByGroup[edge.meta.groupIndex] = question;
+      assignments[edge.meta.groupIndex] = question.difficulty;
+    }
+  }
+  return {
+    questions: Object.keys(selectedByGroup)
+      .map(Number)
+      .sort((left, right) => left - right)
+      .map((groupIndex) => selectedByGroup[groupIndex]),
+    assignments
+  };
+}
+
+function orderDifficultyCandidates(candidates, difficulty, history, hardHistoryByChapter) {
+  const compareHistory = (left, right) => {
+    const leftLesson = getHistoryEntry(history.lessons, left.lesson_id);
+    const rightLesson = getHistoryEntry(history.lessons, right.lesson_id);
+    if (leftLesson.count !== rightLesson.count) return leftLesson.count - rightLesson.count;
+    if (leftLesson.lastSelectedAt !== rightLesson.lastSelectedAt) {
+      return leftLesson.lastSelectedAt - rightLesson.lastSelectedAt;
+    }
+    const leftQuestion = getHistoryEntry(history.questions, left.id);
+    const rightQuestion = getHistoryEntry(history.questions, right.id);
+    if (leftQuestion.count !== rightQuestion.count) return leftQuestion.count - rightQuestion.count;
+    if (leftQuestion.lastSelectedAt !== rightQuestion.lastSelectedAt) {
+      return leftQuestion.lastSelectedAt - rightQuestion.lastSelectedAt;
+    }
+    return left.selection_order - right.selection_order;
+  };
+  if (difficulty !== 'HARD') return [...candidates].sort(compareHistory);
+
+  const chapterQueues = [...groupBy(candidates, 'chapter_id').entries()]
+    .map(([chapterId, questions]) => ({
+      chapterId,
+      historyCount: hardHistoryByChapter.get(chapterId) || 0,
+      sortOrder: Math.min(...questions.map((question) => question.chapter_sort_order)),
+      questions: [...questions].sort(compareHistory)
+    }))
+    .sort((left, right) => (
+      left.historyCount - right.historyCount
+      || left.sortOrder - right.sortOrder
+    ));
+  const ordered = [];
+  while (chapterQueues.some((chapter) => chapter.questions.length > 0)) {
+    for (const chapter of chapterQueues) {
+      const question = chapter.questions.shift();
+      if (question) ordered.push(question);
+    }
+  }
+  return ordered;
+}
+
+function enumerateDifficultyTargets(targets, count) {
+  const options = [];
+  for (let hard = 0; hard <= count; hard += 1) {
+    for (let medium = 0; medium <= count - hard; medium += 1) {
+      const easy = count - hard - medium;
+      const value = { EASY: easy, MEDIUM: medium, HARD: hard };
+      options.push({ value, score: difficultyFallbackScore(value, targets) });
+    }
+  }
+  return options
+    .sort((left, right) => left.score - right.score)
+    .map((option) => option.value);
+}
+
+function difficultyFallbackScore(actual, target) {
+  const shortage = {
+    EASY: Math.max(0, target.EASY - actual.EASY),
+    MEDIUM: Math.max(0, target.MEDIUM - actual.MEDIUM),
+    HARD: Math.max(0, target.HARD - actual.HARD)
+  };
+  const excess = {
+    EASY: Math.max(0, actual.EASY - target.EASY),
+    MEDIUM: Math.max(0, actual.MEDIUM - target.MEDIUM),
+    HARD: Math.max(0, actual.HARD - target.HARD)
+  };
+  return shortage.HARD * 1000
+    + shortage.MEDIUM * 100
+    + shortage.EASY * 10
+    + excess.HARD * 3
+    + excess.EASY * 3
+    + excess.MEDIUM;
+}
+
+function addFlowEdge(graph, from, to, capacity, meta = null) {
+  if (!graph.has(from)) graph.set(from, []);
+  if (!graph.has(to)) graph.set(to, []);
+  const forward = { to, capacity, reverseIndex: graph.get(to).length, meta };
+  const reverse = { to: from, capacity: 0, reverseIndex: graph.get(from).length, meta: null };
+  graph.get(from).push(forward);
+  graph.get(to).push(reverse);
+}
+
+function calculateMaxFlow(graph, source, sink) {
+  let totalFlow = 0;
+  while (true) {
+    const parent = new Map([[source, null]]);
+    const queue = [source];
+    while (queue.length > 0 && !parent.has(sink)) {
+      const node = queue.shift();
+      const edges = graph.get(node) || [];
+      for (let edgeIndex = 0; edgeIndex < edges.length; edgeIndex += 1) {
+        const edge = edges[edgeIndex];
+        if (edge.capacity <= 0 || parent.has(edge.to)) continue;
+        parent.set(edge.to, { node, edgeIndex });
+        queue.push(edge.to);
+      }
+    }
+    if (!parent.has(sink)) return totalFlow;
+    let node = sink;
+    while (node !== source) {
+      const step = parent.get(node);
+      const edge = graph.get(step.node)[step.edgeIndex];
+      edge.capacity -= 1;
+      graph.get(node)[edge.reverseIndex].capacity += 1;
+      node = step.node;
+    }
+    totalFlow += 1;
+  }
+}
+
 function selectQuestionsV2(candidates, options = {}) {
   const count = normalizeCount(options.count);
   const mode = normalizeMode(options.mode);
@@ -633,6 +841,7 @@ module.exports = {
   DIFFICULTY_TARGETS,
   SELECTION_VERSION,
   allocateChapterQuotas,
+  buildDifficultySelectionPlan,
   buildLessonGroups,
   createSeededRandom,
   createSelectionSeed,

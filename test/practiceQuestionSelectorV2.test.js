@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {
   DIFFICULTY_TARGETS,
   allocateChapterQuotas,
+  buildDifficultySelectionPlan,
   buildLessonGroups,
   createSeededRandom,
   selectQuestionsV2
@@ -161,6 +162,53 @@ test('mỗi nhóm bài liên tiếp đóng góp đúng một câu vào đề', (
     assert.equal(selectedLessons.filter((lessonId) => lessonGroup.includes(lessonId)).length, 1);
   }
   assert.equal(result.selection.metadata.lessonGroupCount, 6);
+});
+
+test('hoán đổi nhóm để giữ quota độ khó toàn đề khi cách gán trực tiếp bị kẹt', () => {
+  const candidates = [
+    { id: 1, chapter_id: 1, lesson_id: 101, difficulty: 'EASY' },
+    { id: 2, chapter_id: 1, lesson_id: 101, difficulty: 'MEDIUM' },
+    { id: 3, chapter_id: 1, lesson_id: 102, difficulty: 'HARD' },
+    { id: 4, chapter_id: 1, lesson_id: 103, difficulty: 'EASY' }
+  ];
+  const groups = [
+    { chapterId: 1, lessonIds: [101] },
+    { chapterId: 1, lessonIds: [102] },
+    { chapterId: 1, lessonIds: [103] }
+  ];
+  const plan = buildDifficultySelectionPlan(
+    candidates,
+    groups,
+    { EASY: 1, MEDIUM: 1, HARD: 1 },
+    {},
+    () => 0.5
+  );
+  assert.equal(plan.exact, true);
+  assert.deepEqual(countBy(plan.questions, 'difficulty'), { EASY: 1, MEDIUM: 1, HARD: 1 });
+});
+
+test('thiếu câu khó thì ưu tiên thay bằng câu trung bình trước câu dễ', () => {
+  const candidates = [
+    { id: 1, chapter_id: 1, lesson_id: 101, difficulty: 'EASY' },
+    { id: 2, chapter_id: 1, lesson_id: 101, difficulty: 'MEDIUM' },
+    { id: 3, chapter_id: 1, lesson_id: 102, difficulty: 'MEDIUM' },
+    { id: 4, chapter_id: 1, lesson_id: 103, difficulty: 'EASY' },
+    { id: 5, chapter_id: 1, lesson_id: 103, difficulty: 'MEDIUM' }
+  ];
+  const groups = [
+    { chapterId: 1, lessonIds: [101] },
+    { chapterId: 1, lessonIds: [102] },
+    { chapterId: 1, lessonIds: [103] }
+  ];
+  const plan = buildDifficultySelectionPlan(
+    candidates,
+    groups,
+    { EASY: 1, MEDIUM: 1, HARD: 1 },
+    {},
+    () => 0.5
+  );
+  assert.equal(plan.exact, false);
+  assert.deepEqual(plan.difficultyTargets, { EASY: 1, MEDIUM: 2, HARD: 0 });
 });
 
 test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () => {
