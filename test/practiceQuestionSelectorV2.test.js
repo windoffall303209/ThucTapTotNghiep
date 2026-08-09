@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {
   DIFFICULTY_TARGETS,
   allocateChapterQuotas,
+  buildLessonGroups,
   createSeededRandom,
   selectQuestionsV2
 } = require('../utils/practiceQuestionSelectorV2');
@@ -77,6 +78,54 @@ test('quota chương ưu tiên chương có độ bao phủ lịch sử thấp h
   };
   const quotas = allocateChapterQuotas(candidates, 6, history, () => 0.5);
   assert.deepEqual(quotas, { 1: 1, 2: 5 });
+});
+
+test('chia đều bài liên tiếp từ đầu đến cuối chương', () => {
+  const candidates = buildChapterCandidates([18]);
+  const groups = buildLessonGroups(candidates, { 1: 6 }, {}, () => 0.5);
+  assert.deepEqual(groups.map((group) => group.lessonIds), [
+    [101, 102, 103],
+    [104, 105, 106],
+    [107, 108, 109],
+    [110, 111, 112],
+    [113, 114, 115],
+    [116, 117, 118]
+  ]);
+});
+
+test('chọn hết bài chưa xuất hiện trước rồi mới chia nhóm bài đã xuất hiện', () => {
+  const candidates = buildChapterCandidates([30]);
+  const history = {
+    lessons: Object.fromEntries(Array.from({ length: 15 }, (_, index) => [
+      101 + index,
+      { count: 1, lastSelectedAt: `2026-07-${String(index + 1).padStart(2, '0')}T08:00:00.000Z` }
+    ]))
+  };
+  const groups = buildLessonGroups(candidates, { 1: 20 }, history, () => 0.5);
+  assert.deepEqual(groups.slice(0, 15).map((group) => group.lessonIds), (
+    Array.from({ length: 15 }, (_, index) => [116 + index])
+  ));
+  assert.deepEqual(groups.slice(15).map((group) => group.lessonIds), [
+    [101, 102, 103],
+    [104, 105, 106],
+    [107, 108, 109],
+    [110, 111, 112],
+    [113, 114, 115]
+  ]);
+});
+
+test('phân thêm câu cân bằng khi số bài ít hơn số câu', () => {
+  const candidates = buildChapterCandidates([3], 3);
+  const groups = buildLessonGroups(candidates, { 1: 5 }, {}, () => 0.5);
+  assert.equal(groups.length, 5);
+  assert.deepEqual(
+    groups.reduce((result, group) => {
+      const lessonId = group.lessonIds[0];
+      result[lessonId] = (result[lessonId] || 0) + 1;
+      return result;
+    }, {}),
+    { 101: 2, 102: 2, 103: 1 }
+  );
 });
 
 test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () => {

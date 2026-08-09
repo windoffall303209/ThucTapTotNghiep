@@ -86,6 +86,85 @@ function compareChapterCoverage(left, right) {
   return left.randomOrder - right.randomOrder;
 }
 
+function buildLessonGroups(candidates, chapterQuotas, selectionHistory = {}, random = Math.random) {
+  const normalizedCandidates = normalizeCandidates(candidates);
+  const history = normalizeSelectionHistory(selectionHistory);
+  const groups = [];
+  for (const [chapterId, questions] of groupBy(normalizedCandidates, 'chapter_id')) {
+    let remaining = Math.min(
+      Math.max(0, Number(chapterQuotas?.[chapterId]) || 0),
+      questions.length
+    );
+    const lessons = [...groupBy(questions, 'lesson_id').entries()].map(([lessonId, lessonQuestions]) => {
+      const lessonHistory = getHistoryEntry(history.lessons, lessonId);
+      return {
+        id: lessonId,
+        historyCount: lessonHistory.count,
+        lastSelectedAt: lessonHistory.lastSelectedAt,
+        sortOrder: Math.min(...lessonQuestions.map((question) => question.lesson_sort_order)),
+        availableCount: lessonQuestions.length,
+        assignedCount: 0,
+        randomOrder: random()
+      };
+    });
+    const tiers = [...groupBy(lessons, 'historyCount').entries()]
+      .sort(([left], [right]) => Number(left) - Number(right));
+
+    for (const [, tierLessons] of tiers) {
+      if (remaining <= 0) break;
+      const ordered = [...tierLessons].sort(compareLessonOrder);
+      if (remaining < ordered.length) {
+        for (const lessonGroup of partitionContiguous(ordered, remaining)) {
+          groups.push({ chapterId, lessonIds: lessonGroup.map((lesson) => lesson.id) });
+          for (const lesson of lessonGroup) lesson.assignedCount += 1;
+        }
+        remaining = 0;
+        break;
+      }
+      for (const lesson of ordered) {
+        groups.push({ chapterId, lessonIds: [lesson.id] });
+        lesson.assignedCount += 1;
+        remaining -= 1;
+      }
+    }
+
+    // Khi số câu nhiều hơn số bài, cấp thêm lần lượt cho bài đang ít xuất hiện nhất.
+    while (remaining > 0) {
+      const lesson = lessons
+        .filter((item) => item.assignedCount < item.availableCount)
+        .sort(compareAdditionalLessonSlot)[0];
+      if (!lesson) break;
+      groups.push({ chapterId, lessonIds: [lesson.id] });
+      lesson.assignedCount += 1;
+      remaining -= 1;
+    }
+  }
+  return groups;
+}
+
+function compareLessonOrder(left, right) {
+  if (left.sortOrder !== right.sortOrder) return left.sortOrder - right.sortOrder;
+  if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
+  return left.randomOrder - right.randomOrder;
+}
+
+function compareAdditionalLessonSlot(left, right) {
+  const leftCoverage = left.historyCount + left.assignedCount;
+  const rightCoverage = right.historyCount + right.assignedCount;
+  if (leftCoverage !== rightCoverage) return leftCoverage - rightCoverage;
+  if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
+  return compareLessonOrder(left, right);
+}
+
+function partitionContiguous(items, groupCount) {
+  if (groupCount <= 0) return [];
+  return Array.from({ length: groupCount }, (_, index) => {
+    const start = Math.floor(index * items.length / groupCount);
+    const end = Math.floor((index + 1) * items.length / groupCount);
+    return items.slice(start, end);
+  }).filter((group) => group.length > 0);
+}
+
 function selectQuestionsV2(candidates, options = {}) {
   const count = normalizeCount(options.count);
   const mode = normalizeMode(options.mode);
@@ -310,6 +389,8 @@ function normalizeCandidates(candidates) {
       id,
       lesson_id: lessonId,
       chapter_id: chapterId,
+      chapter_sort_order: normalizeSortOrder(item.chapter_sort_order, chapterId),
+      lesson_sort_order: normalizeSortOrder(item.lesson_sort_order, lessonId),
       concept_id: normalizeOptionalId(item.concept_id),
       difficulty: normalizeDifficulty(item.difficulty),
       similarity_text: normalizeQuestionTextForSimilarity(
@@ -472,10 +553,16 @@ function normalizeOptionalId(value) {
   return Number.isInteger(id) && id > 0 ? id : null;
 }
 
+function normalizeSortOrder(value, fallback) {
+  const order = Number(value);
+  return Number.isFinite(order) ? order : Number(fallback);
+}
+
 module.exports = {
   DIFFICULTY_TARGETS,
   SELECTION_VERSION,
   allocateChapterQuotas,
+  buildLessonGroups,
   createSeededRandom,
   createSelectionSeed,
   selectQuestionsV2
