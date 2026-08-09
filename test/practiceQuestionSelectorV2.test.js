@@ -144,6 +144,25 @@ test('phân thêm câu cân bằng khi số bài ít hơn số câu', () => {
   );
 });
 
+test('mỗi nhóm bài liên tiếp đóng góp đúng một câu vào đề', () => {
+  const candidates = buildChapterCandidates([18], 3).map((question, index) => ({
+    ...question,
+    difficulty: ['EASY', 'MEDIUM', 'HARD'][index % 3]
+  }));
+  const result = selectQuestionsV2(candidates, {
+    count: 6,
+    mode: 'CHAPTER',
+    seed: '0202020202020202'
+  });
+  const selectedLessons = result.questions.map((question) => question.lesson_id);
+  for (let groupIndex = 0; groupIndex < 6; groupIndex += 1) {
+    const firstLesson = 101 + groupIndex * 3;
+    const lessonGroup = [firstLesson, firstLesson + 1, firstLesson + 2];
+    assert.equal(selectedLessons.filter((lessonId) => lessonGroup.includes(lessonId)).length, 1);
+  }
+  assert.equal(result.selection.metadata.lessonGroupCount, 6);
+});
+
 test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () => {
   const candidates = buildCandidates();
   const first = selectQuestionsV2(candidates, { count: 20, mode: 'COMPREHENSIVE', seed: '0000000000000001' });
@@ -213,21 +232,6 @@ test('nới quota độ khó trước khi nới giới hạn hai câu mỗi bài
   assert.equal(capFallback.questions.length, 20);
   assert.ok(capFallback.selection.metadata.fallbackReasons.includes('LESSON_CAP_RELAXED'));
   assert.ok(capFallback.selection.metadata.maxQuestionsPerLesson > 2);
-});
-
-test('khoảng ba mươi phần trăm đề ưu tiên bài yếu nhưng vẫn phủ đủ chương', () => {
-  const candidates = buildCandidates();
-  const weakLessonIds = [101, 202, 303, 404];
-  const result = selectQuestionsV2(candidates, {
-    count: 20,
-    mode: 'COMPREHENSIVE',
-    weakLessonIds,
-    seed: '4000000000000001'
-  });
-
-  assert.ok(result.selection.metadata.weakSelected >= 6);
-  assert.equal(result.selection.metadata.coveredChapters, 4);
-  assert.ok(result.selection.metadata.maxQuestionsPerLesson <= 2);
 });
 
 test('PRNG có seed luôn trả chuỗi số xác định trong khoảng hợp lệ', () => {

@@ -191,6 +191,12 @@ function selectQuestionsV2(candidates, options = {}) {
     options.selectionHistory,
     random
   );
+  const lessonGroups = buildLessonGroups(
+    normalizedCandidates,
+    chapterQuotas,
+    options.selectionHistory,
+    random
+  );
   const requestedWeakTarget = ['CHAPTER', 'COMPREHENSIVE'].includes(mode)
     ? Math.min(count, Math.round(count * normalizeRatio(options.personalizationRatio, 0.3)))
     : 0;
@@ -232,6 +238,7 @@ function selectQuestionsV2(candidates, options = {}) {
       lessonCap: phase.lessonCap,
       conceptCap: phase.conceptCap,
       chapterQuotas,
+      lessonGroups,
       selectionHistory,
       random
     });
@@ -270,6 +277,7 @@ function selectQuestionsV2(candidates, options = {}) {
         actualDifficulty,
         chapterTargets: chapterQuotas,
         actualChapters: Object.fromEntries(chapterCounts),
+        lessonGroupCount: lessonGroups.length,
         coveredChapters: new Set(selected.map((item) => item.chapter_id)).size,
         coveredLessons: lessonCounts.size,
         maxQuestionsPerLesson: lessonCounts.size > 0 ? Math.max(...lessonCounts.values()) : 0,
@@ -296,6 +304,7 @@ function attemptSelection(pool, options) {
   const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
   const selected = [];
   const selectedIds = new Set();
+  const unfilledGroupIndexes = new Set(options.lessonGroups.map((group, index) => index));
   const chapters = new Set(available.map((item) => item.chapter_id));
   const requireChapterCoverage = chapters.size > 1 && options.count >= chapters.size;
 
@@ -307,7 +316,7 @@ function attemptSelection(pool, options) {
     const weakSelected = selected.filter((item) => options.weakLessonIds.has(item.lesson_id)).length;
     const weakStillNeeded = Math.max(0, options.weakTarget - weakSelected);
 
-    let eligible = available.filter((question) => {
+    const eligibleByRule = available.filter((question) => {
       if (selectedIds.has(question.id)) return false;
       if ((chapterCounts.get(question.chapter_id) || 0) >= (options.chapterQuotas[question.chapter_id] || 0)) {
         return false;
@@ -329,7 +338,17 @@ function attemptSelection(pool, options) {
       }
       return true;
     });
-    if (eligible.length === 0) break;
+    const groupOptions = [...unfilledGroupIndexes].map((groupIndex) => {
+      const lessonIds = new Set(options.lessonGroups[groupIndex].lessonIds);
+      const candidates = eligibleByRule.filter((question) => lessonIds.has(question.lesson_id));
+      return { groupIndex, candidates };
+    }).sort((left, right) => (
+      left.candidates.length - right.candidates.length
+      || left.groupIndex - right.groupIndex
+    ));
+    const activeGroup = groupOptions[0];
+    if (!activeGroup || activeGroup.candidates.length === 0) break;
+    let eligible = activeGroup.candidates;
 
     eligible = eligible.sort((left, right) => compareCandidates(left, right, {
       chapterCounts,
@@ -351,6 +370,7 @@ function attemptSelection(pool, options) {
     if (!chosen) break;
     selected.push(chosen);
     selectedIds.add(chosen.id);
+    unfilledGroupIndexes.delete(activeGroup.groupIndex);
     chapterCounts.set(chosen.chapter_id, (chapterCounts.get(chosen.chapter_id) || 0) + 1);
     lessonCounts.set(chosen.lesson_id, (lessonCounts.get(chosen.lesson_id) || 0) + 1);
     if (chosen.concept_id) {
