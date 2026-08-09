@@ -6,7 +6,7 @@ const {
   normalizeQuestionTextForSimilarity
 } = require('./questionSimilarity');
 
-const SELECTION_VERSION = 'balanced-v4';
+const SELECTION_VERSION = 'coverage-v5';
 const DIFFICULTIES = Object.freeze(['EASY', 'MEDIUM', 'HARD']);
 const DIFFICULTY_TARGETS = Object.freeze({
   5: Object.freeze({ EASY: 2, MEDIUM: 2, HARD: 1 }),
@@ -384,18 +384,17 @@ function selectQuestionsV2(candidates, options = {}) {
     ...recentQuestionIdsFromHistory(selectionHistory, options.recentLimit)
   ]);
   const reviewIds = toIdSet(options.reviewIds);
-  const weakLessonIds = toIdSet(options.weakLessonIds);
   const normalizedCandidates = normalizeCandidates(candidates);
+  const targetCount = Math.min(count, normalizedCandidates.length);
   const targets = normalizeDifficultyTargets(
-    options.difficultyTargets || DIFFICULTY_TARGETS[count] || buildRatioTargets(count),
-    count
+    options.difficultyTargets || DIFFICULTY_TARGETS[targetCount] || buildRatioTargets(targetCount),
+    targetCount
   );
-  const maxPerLesson = normalizePositiveInteger(options.maxPerLesson, 2);
   const maxPerConcept = normalizePositiveInteger(options.maxPerConcept, 2);
   const similarityThreshold = normalizeSimilarityThreshold(options.similarityThreshold);
   const chapterQuotas = allocateChapterQuotas(
     normalizedCandidates,
-    count,
+    targetCount,
     options.selectionHistory,
     random
   );
@@ -405,56 +404,45 @@ function selectQuestionsV2(candidates, options = {}) {
     options.selectionHistory,
     random
   );
-  const requestedWeakTarget = ['CHAPTER', 'COMPREHENSIVE'].includes(mode)
-    ? Math.min(count, Math.round(count * normalizeRatio(options.personalizationRatio, 0.3)))
-    : 0;
-  const weakCandidateCount = normalizedCandidates.filter(
-    (question) => weakLessonIds.has(question.lesson_id)
-  ).length;
-  const weakTarget = Math.min(
-    requestedWeakTarget,
-    weakCandidateCount,
-    weakLessonIds.size * maxPerLesson
-  );
-
   const basePool = normalizedCandidates.filter((question) => !reviewIds.has(question.id));
   const freshPool = basePool.filter((question) => !recentIds.has(question.id));
   const phases = [
-    { name: 'STRICT', pool: freshPool, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'RECENT_REUSED', pool: basePool, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'REVIEW_REUSED', pool: normalizedCandidates, enforceDifficulty: true, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'DIFFICULTY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: maxPerConcept },
-    { name: 'CONCEPT_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: maxPerLesson, conceptCap: Number.POSITIVE_INFINITY },
-    { name: 'LESSON_CAP_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: true, lessonCap: Number.POSITIVE_INFINITY, conceptCap: Number.POSITIVE_INFINITY },
-    { name: 'SIMILARITY_RELAXED', pool: normalizedCandidates, enforceDifficulty: false, enforceSimilarity: false, lessonCap: Number.POSITIVE_INFINITY, conceptCap: Number.POSITIVE_INFINITY }
+    { name: 'STRICT', pool: freshPool },
+    { name: 'RECENT_REUSED', pool: basePool },
+    { name: 'REVIEW_REUSED', pool: normalizedCandidates }
   ];
-
-  let result = { selected: [], maxLessonCount: 0 };
-  let phaseIndex = 0;
-  for (; phaseIndex < phases.length; phaseIndex += 1) {
-    const phase = phases[phaseIndex];
-    if (phase.name === 'RECENT_REUSED' && recentIds.size === 0) continue;
-    if (phase.name === 'REVIEW_REUSED' && reviewIds.size === 0) continue;
-    result = attemptSelection(phase.pool, {
-      count,
-      targets,
-      weakLessonIds,
-      weakTarget,
-      enforceDifficulty: phase.enforceDifficulty,
-      enforceSimilarity: phase.enforceSimilarity,
-      similarityThreshold,
-      lessonCap: phase.lessonCap,
-      conceptCap: phase.conceptCap,
-      chapterQuotas,
-      lessonGroups,
-      selectionHistory,
-      random
-    });
-    if (result.selected.length >= Math.min(count, normalizedCandidates.length)) break;
+  let selectedPhase = phases.at(-1);
+  let plan = null;
+  for (const requireExactDifficulty of [true, false]) {
+    for (const phase of phases) {
+      const candidatePlan = buildDifficultySelectionPlan(
+        phase.pool,
+        lessonGroups,
+        targets,
+        options.selectionHistory,
+        random
+      );
+      if (candidatePlan.questions.length !== lessonGroups.length) continue;
+      if (requireExactDifficulty && !candidatePlan.exact) continue;
+      plan = candidatePlan;
+      selectedPhase = phase;
+      break;
+    }
+    if (plan) break;
   }
 
-  const selected = result.selected.slice(0, count).map(({
+  const improved = improvePlannedQuestions(plan?.questions || [], {
+    assignments: plan?.assignments || {},
+    lessonGroups,
+    pool: selectedPhase.pool,
+    selectionHistory,
+    maxPerConcept,
+    similarityThreshold,
+    random
+  });
+  const selected = improved.map(({
     randomOrder,
+    selection_order: selectionOrder,
     similarity_text: similarityText,
     ...question
   }) => question);
@@ -463,14 +451,16 @@ function selectQuestionsV2(candidates, options = {}) {
   const lessonCounts = countBy(selected, 'lesson_id');
   const taggedQuestions = selected.filter((question) => question.concept_id);
   const conceptCounts = countBy(taggedQuestions, 'concept_id');
-  const fallbackReasons = fallbackReasonsForPhase(
-    phases[Math.min(phaseIndex, phases.length - 1)]?.name,
-    {
-      recentIds,
-      reviewIds,
-      hasTaggedConcepts: normalizedCandidates.some((question) => question.concept_id)
-    }
-  );
+  const fallbackReasons = [];
+  if (selected.some((question) => recentIds.has(question.id))) fallbackReasons.push('RECENT_REUSED');
+  if (selected.some((question) => reviewIds.has(question.id))) fallbackReasons.push('REVIEW_REUSED');
+  if (plan && !plan.exact) fallbackReasons.push('DIFFICULTY_RELAXED');
+  if (conceptCounts.size > 0 && Math.max(...conceptCounts.values()) > maxPerConcept) {
+    fallbackReasons.push('CONCEPT_CAP_RELAXED');
+  }
+  if (countNearDuplicatePairs(selected, similarityThreshold) > 0) {
+    fallbackReasons.push('SIMILARITY_RELAXED');
+  }
 
   return {
     questions: selected,
@@ -483,6 +473,7 @@ function selectQuestionsV2(candidates, options = {}) {
         selectedCount: selected.length,
         difficultyTargets: targets,
         actualDifficulty,
+        difficultyQuotaMet: Boolean(plan?.exact),
         chapterTargets: chapterQuotas,
         actualChapters: Object.fromEntries(chapterCounts),
         lessonGroupCount: lessonGroups.length,
@@ -494,8 +485,6 @@ function selectQuestionsV2(candidates, options = {}) {
         maxQuestionsPerConcept: conceptCounts.size > 0 ? Math.max(...conceptCounts.values()) : 0,
         nearDuplicatePairs: countNearDuplicatePairs(selected, similarityThreshold),
         similarityThreshold,
-        weakTarget,
-        weakSelected: selected.filter((item) => weakLessonIds.has(item.lesson_id)).length,
         recentExcluded: normalizedCandidates.filter((item) => recentIds.has(item.id)).length,
         reviewExcluded: normalizedCandidates.filter((item) => reviewIds.has(item.id)).length,
         fallbackReasons
@@ -504,145 +493,49 @@ function selectQuestionsV2(candidates, options = {}) {
   };
 }
 
-function attemptSelection(pool, options) {
-  const available = randomize(pool, options.random);
-  const chapterCounts = new Map();
-  const lessonCounts = new Map();
-  const conceptCounts = new Map();
-  const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
-  const selected = [];
-  const selectedIds = new Set();
-  const unfilledGroupIndexes = new Set(options.lessonGroups.map((group, index) => index));
-  const chapters = new Set(available.map((item) => item.chapter_id));
-  const requireChapterCoverage = chapters.size > 1 && options.count >= chapters.size;
-
-  while (selected.length < options.count) {
-    const remainingSlots = options.count - selected.length;
-    const uncoveredChapters = requireChapterCoverage
-      ? new Set([...chapters].filter((chapterId) => !chapterCounts.has(chapterId)))
-      : new Set();
-    const weakSelected = selected.filter((item) => options.weakLessonIds.has(item.lesson_id)).length;
-    const weakStillNeeded = Math.max(0, options.weakTarget - weakSelected);
-
-    const eligibleByRule = available.filter((question) => {
-      if (selectedIds.has(question.id)) return false;
-      if ((chapterCounts.get(question.chapter_id) || 0) >= (options.chapterQuotas[question.chapter_id] || 0)) {
-        return false;
-      }
-      if ((lessonCounts.get(question.lesson_id) || 0) >= options.lessonCap) return false;
-      if (
-        question.concept_id
-        && (conceptCounts.get(question.concept_id) || 0) >= options.conceptCap
-      ) return false;
-      if (
-        options.enforceDifficulty
-        && difficultyCounts[question.difficulty] >= options.targets[question.difficulty]
-      ) return false;
-      if (uncoveredChapters.size >= remainingSlots && !uncoveredChapters.has(question.chapter_id)) {
-        return false;
-      }
-      if (weakStillNeeded >= remainingSlots && !options.weakLessonIds.has(question.lesson_id)) {
-        return false;
-      }
-      return true;
-    });
-    const groupOptions = [...unfilledGroupIndexes].map((groupIndex) => {
-      const lessonIds = new Set(options.lessonGroups[groupIndex].lessonIds);
-      const candidates = eligibleByRule.filter((question) => lessonIds.has(question.lesson_id));
-      return { groupIndex, candidates };
-    }).sort((left, right) => (
-      left.candidates.length - right.candidates.length
-      || left.groupIndex - right.groupIndex
+function improvePlannedQuestions(plannedQuestions, options) {
+  const selected = [...plannedQuestions];
+  for (let groupIndex = 0; groupIndex < selected.length; groupIndex += 1) {
+    const current = selected[groupIndex];
+    const lessonIds = new Set(options.lessonGroups[groupIndex]?.lessonIds || []);
+    const usedIds = new Set(selected.filter((_, index) => index !== groupIndex).map((question) => question.id));
+    const otherQuestions = selected.filter((_, index) => index !== groupIndex);
+    const conceptCounts = countBy(otherQuestions.filter((question) => question.concept_id), 'concept_id');
+    const alternatives = options.pool
+      .filter((question) => (
+        question.difficulty === options.assignments[groupIndex]
+        && lessonIds.has(question.lesson_id)
+        && !usedIds.has(question.id)
+      ))
+      .map((question) => ({ ...question, selection_order: options.random() }))
+      .sort((left, right) => compareReplacementCandidates(left, right, options.selectionHistory));
+    const replacement = alternatives.find((question) => (
+      (!question.concept_id || (conceptCounts.get(question.concept_id) || 0) < options.maxPerConcept)
+      && !otherQuestions.some((other) => areQuestionsNearDuplicate(
+        question,
+        other,
+        options.similarityThreshold
+      ))
     ));
-    const activeGroup = groupOptions[0];
-    if (!activeGroup || activeGroup.candidates.length === 0) break;
-    let eligible = activeGroup.candidates;
-
-    eligible = eligible.sort((left, right) => compareCandidates(left, right, {
-      chapterCounts,
-      lessonCounts,
-      conceptCounts,
-      difficultyCounts,
-      targets: options.targets,
-      chapterQuotas: options.chapterQuotas,
-      enforceDifficulty: options.enforceDifficulty,
-      weakLessonIds: options.weakLessonIds,
-      weakStillNeeded,
-      selectionHistory: options.selectionHistory
-    }));
-    const chosen = options.enforceSimilarity
-      ? eligible.find((question) => !selected.some((selectedQuestion) => (
-        areQuestionsNearDuplicate(question, selectedQuestion, options.similarityThreshold)
-      )))
-      : eligible[0];
-    if (!chosen) break;
-    selected.push(chosen);
-    selectedIds.add(chosen.id);
-    unfilledGroupIndexes.delete(activeGroup.groupIndex);
-    chapterCounts.set(chosen.chapter_id, (chapterCounts.get(chosen.chapter_id) || 0) + 1);
-    lessonCounts.set(chosen.lesson_id, (lessonCounts.get(chosen.lesson_id) || 0) + 1);
-    if (chosen.concept_id) {
-      conceptCounts.set(chosen.concept_id, (conceptCounts.get(chosen.concept_id) || 0) + 1);
-    }
-    difficultyCounts[chosen.difficulty] += 1;
+    selected[groupIndex] = replacement || current;
   }
-
-  return {
-    selected: randomize(selected, options.random),
-    maxLessonCount: lessonCounts.size > 0 ? Math.max(...lessonCounts.values()) : 0
-  };
+  return selected;
 }
 
-function compareCandidates(left, right, context) {
-  const leftLessonHistory = getHistoryEntry(context.selectionHistory.lessons, left.lesson_id);
-  const rightLessonHistory = getHistoryEntry(context.selectionHistory.lessons, right.lesson_id);
-  if (leftLessonHistory.count !== rightLessonHistory.count) {
-    return leftLessonHistory.count - rightLessonHistory.count;
+function compareReplacementCandidates(left, right, history) {
+  const leftLesson = getHistoryEntry(history.lessons, left.lesson_id);
+  const rightLesson = getHistoryEntry(history.lessons, right.lesson_id);
+  if (leftLesson.count !== rightLesson.count) return leftLesson.count - rightLesson.count;
+  if (leftLesson.lastSelectedAt !== rightLesson.lastSelectedAt) {
+    return leftLesson.lastSelectedAt - rightLesson.lastSelectedAt;
   }
-  if (leftLessonHistory.lastSelectedAt !== rightLessonHistory.lastSelectedAt) {
-    return leftLessonHistory.lastSelectedAt - rightLessonHistory.lastSelectedAt;
+  const leftQuestion = getHistoryEntry(history.questions, left.id);
+  const rightQuestion = getHistoryEntry(history.questions, right.id);
+  if (leftQuestion.count !== rightQuestion.count) return leftQuestion.count - rightQuestion.count;
+  if (leftQuestion.lastSelectedAt !== rightQuestion.lastSelectedAt) {
+    return leftQuestion.lastSelectedAt - rightQuestion.lastSelectedAt;
   }
-
-  const leftWeak = context.weakLessonIds.has(left.lesson_id) ? 0 : 1;
-  const rightWeak = context.weakLessonIds.has(right.lesson_id) ? 0 : 1;
-  if (context.weakStillNeeded > 0 && leftWeak !== rightWeak) return leftWeak - rightWeak;
-
-  if (context.enforceDifficulty && left.difficulty !== right.difficulty) {
-    const leftRemaining = context.targets[left.difficulty]
-      - context.difficultyCounts[left.difficulty];
-    const rightRemaining = context.targets[right.difficulty]
-      - context.difficultyCounts[right.difficulty];
-    if (leftRemaining !== rightRemaining) return leftRemaining - rightRemaining;
-  }
-
-  const chapterDifference = (
-    context.chapterQuotas[right.chapter_id] - (context.chapterCounts.get(right.chapter_id) || 0)
-  ) - (
-    context.chapterQuotas[left.chapter_id] - (context.chapterCounts.get(left.chapter_id) || 0)
-  );
-  if (chapterDifference !== 0) return chapterDifference;
-
-  const leftConceptCount = left.concept_id
-    ? context.conceptCounts.get(left.concept_id) || 0
-    : Number.POSITIVE_INFINITY;
-  const rightConceptCount = right.concept_id
-    ? context.conceptCounts.get(right.concept_id) || 0
-    : Number.POSITIVE_INFINITY;
-  if (leftConceptCount !== rightConceptCount) return leftConceptCount - rightConceptCount;
-
-  const lessonDifference = (context.lessonCounts.get(left.lesson_id) || 0)
-    - (context.lessonCounts.get(right.lesson_id) || 0);
-  if (lessonDifference !== 0) return lessonDifference;
-
-  const leftQuestionHistory = getHistoryEntry(context.selectionHistory.questions, left.id);
-  const rightQuestionHistory = getHistoryEntry(context.selectionHistory.questions, right.id);
-  if (leftQuestionHistory.count !== rightQuestionHistory.count) {
-    return leftQuestionHistory.count - rightQuestionHistory.count;
-  }
-  if (leftQuestionHistory.lastSelectedAt !== rightQuestionHistory.lastSelectedAt) {
-    return leftQuestionHistory.lastSelectedAt - rightQuestionHistory.lastSelectedAt;
-  }
-  return left.randomOrder - right.randomOrder;
+  return left.selection_order - right.selection_order;
 }
 
 function normalizeCandidates(candidates) {
@@ -699,34 +592,6 @@ function buildRatioTargets(count) {
   const easy = Math.round(count * 0.45);
   const medium = Math.round(count * 0.4);
   return { EASY: easy, MEDIUM: medium, HARD: Math.max(0, count - easy - medium) };
-}
-
-function fallbackReasonsForPhase(phaseName, { recentIds, reviewIds, hasTaggedConcepts }) {
-  const reasons = [];
-  const order = [
-    'STRICT',
-    'RECENT_REUSED',
-    'REVIEW_REUSED',
-    'DIFFICULTY_RELAXED',
-    'CONCEPT_CAP_RELAXED',
-    'LESSON_CAP_RELAXED',
-    'SIMILARITY_RELAXED'
-  ];
-  const phasePosition = order.indexOf(phaseName);
-  if (phasePosition <= 0) return reasons;
-  if (phasePosition >= 1 && recentIds.size > 0) reasons.push('RECENT_REUSED');
-  if (phasePosition >= 2 && reviewIds.size > 0) reasons.push('REVIEW_REUSED');
-  if (phasePosition >= 3) reasons.push('DIFFICULTY_RELAXED');
-  if (phasePosition >= 4 && hasTaggedConcepts) reasons.push('CONCEPT_CAP_RELAXED');
-  if (phasePosition >= 5) reasons.push('LESSON_CAP_RELAXED');
-  if (phasePosition >= 6) reasons.push('SIMILARITY_RELAXED');
-  return reasons;
-}
-
-function randomize(items, random) {
-  return items
-    .map((item) => ({ ...item, randomOrder: random() }))
-    .sort((left, right) => left.randomOrder - right.randomOrder);
 }
 
 function countBy(items, field) {
@@ -813,11 +678,6 @@ function normalizeCount(value) {
 function normalizePositiveInteger(value, fallback) {
   const number = Number(value);
   return Number.isInteger(number) && number > 0 ? number : fallback;
-}
-
-function normalizeRatio(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number >= 0 && number <= 1 ? number : fallback;
 }
 
 function normalizeSimilarityThreshold(value) {

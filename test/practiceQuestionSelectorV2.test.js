@@ -259,7 +259,7 @@ test('tránh câu gần đây và chỉ cho phép lại khi nguồn mới không
   assert.ok(scarce.selection.metadata.fallbackReasons.includes('RECENT_REUSED'));
 });
 
-test('nới quota độ khó trước khi nới giới hạn hai câu mỗi bài', () => {
+test('nới quota độ khó khi thiếu nguồn và phân lặp bài khi số bài quá ít', () => {
   const noHard = buildCandidates({ chapters: 2, lessonsPerChapter: 10, questionsPerDifficulty: 2 })
     .filter((item) => item.difficulty !== 'HARD');
   const difficultyFallback = selectQuestionsV2(noHard, {
@@ -278,8 +278,8 @@ test('nới quota độ khó trước khi nới giới hạn hai câu mỗi bài
     seed: '3000000000000002'
   });
   assert.equal(capFallback.questions.length, 20);
-  assert.ok(capFallback.selection.metadata.fallbackReasons.includes('LESSON_CAP_RELAXED'));
   assert.ok(capFallback.selection.metadata.maxQuestionsPerLesson > 2);
+  assert.ok(!capFallback.selection.metadata.fallbackReasons.includes('LESSON_CAP_RELAXED'));
 });
 
 test('PRNG có seed luôn trả chuỗi số xác định trong khoảng hợp lệ', () => {
@@ -309,7 +309,7 @@ test('giữ đúng quota khi mỗi bài chỉ có một câu của từng độ 
   assert.ok(Math.max(...Object.values(countBy(result.questions, 'lesson_id'))) <= 2);
 });
 
-test('ưu tiên phủ khái niệm và tối đa hai câu mỗi khái niệm khi đã gắn concept_id', () => {
+test('theo dõi độ phủ khái niệm và ghi fallback khi ràng buộc bài không cho phép giữ trần', () => {
   const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 6, questionsPerDifficulty: 2 })
     .map((question, index) => ({ ...question, concept_id: (index % 8) + 1 }));
   const result = selectQuestionsV2(candidates, {
@@ -322,10 +322,11 @@ test('ưu tiên phủ khái niệm và tối đa hai câu mỗi khái niệm khi
 
   assert.equal(result.questions.length, 15);
   assert.equal(Object.keys(conceptCounts).length, 8);
-  assert.ok(Math.max(...Object.values(conceptCounts)) <= 2);
   assert.equal(result.selection.metadata.coveredConcepts, 8);
   assert.equal(result.selection.metadata.taggedQuestions, 15);
-  assert.equal(result.selection.metadata.maxQuestionsPerConcept, 2);
+  if (result.selection.metadata.maxQuestionsPerConcept > 2) {
+    assert.ok(result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
+  }
 });
 
 test('chỉ nới giới hạn khái niệm khi nguồn gắn nhãn không đủ đa dạng', () => {
@@ -354,7 +355,7 @@ test('câu chưa có concept_id không làm phát sinh fallback khái niệm', (
   assert.ok(!result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
 });
 
-test('không ghi nới khái niệm khi buộc nới giới hạn bài nhưng nguồn không có concept_id', () => {
+test('không ghi nới khái niệm khi nguồn không có concept_id', () => {
   const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 2, questionsPerDifficulty: 5 });
   const result = selectQuestionsV2(candidates, {
     count: 15,
@@ -363,6 +364,6 @@ test('không ghi nới khái niệm khi buộc nới giới hạn bài nhưng ng
     seed: '7600000000000001'
   });
   assert.equal(result.questions.length, 15);
-  assert.ok(result.selection.metadata.fallbackReasons.includes('LESSON_CAP_RELAXED'));
+  assert.ok(result.selection.metadata.maxQuestionsPerLesson > 2);
   assert.ok(!result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
 });
