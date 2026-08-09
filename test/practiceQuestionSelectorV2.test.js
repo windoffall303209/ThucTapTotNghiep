@@ -3,9 +3,26 @@ const assert = require('node:assert/strict');
 
 const {
   DIFFICULTY_TARGETS,
+  allocateChapterQuotas,
   createSeededRandom,
   selectQuestionsV2
 } = require('../utils/practiceQuestionSelectorV2');
+
+function buildChapterCandidates(lessonCounts, questionsPerLesson = 1) {
+  let id = 1;
+  return lessonCounts.flatMap((lessonCount, chapterIndex) => (
+    Array.from({ length: lessonCount }, (_, lessonIndex) => (
+      Array.from({ length: questionsPerLesson }, () => ({
+        id: id++,
+        chapter_id: chapterIndex + 1,
+        chapter_sort_order: chapterIndex + 1,
+        lesson_id: (chapterIndex + 1) * 100 + lessonIndex + 1,
+        lesson_sort_order: lessonIndex + 1,
+        difficulty: 'EASY'
+      }))
+    )).flat()
+  ));
+}
 
 function buildCandidates({ chapters = 4, lessonsPerChapter = 8, questionsPerDifficulty = 4 } = {}) {
   let id = 1;
@@ -33,6 +50,34 @@ function countBy(items, field) {
     return result;
   }, {});
 }
+
+test('quota chương lớp 5 bám số bài và vẫn giữ tối thiểu một câu mỗi chương', () => {
+  const candidates = buildChapterCandidates([15, 14, 18, 3]);
+  assert.deepEqual(allocateChapterQuotas(candidates, 15, {}, () => 0.5), {
+    1: 5,
+    2: 4,
+    3: 5,
+    4: 1
+  });
+  assert.deepEqual(allocateChapterQuotas(candidates, 20, {}, () => 0.5), {
+    1: 6,
+    2: 6,
+    3: 7,
+    4: 1
+  });
+});
+
+test('quota chương ưu tiên chương có độ bao phủ lịch sử thấp hơn', () => {
+  const candidates = buildChapterCandidates([4, 4], 2);
+  const history = {
+    lessons: Object.fromEntries([101, 102, 103, 104].map((lessonId) => [
+      lessonId,
+      { count: 5, lastSelectedAt: '2026-08-08T08:00:00.000Z' }
+    ]))
+  };
+  const quotas = allocateChapterQuotas(candidates, 6, history, () => 0.5);
+  assert.deepEqual(quotas, { 1: 1, 2: 5 });
+});
 
 test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () => {
   const candidates = buildCandidates();

@@ -34,6 +34,58 @@ function createSeededRandom(seed) {
   };
 }
 
+function allocateChapterQuotas(candidates, count, selectionHistory = {}, random = Math.random) {
+  const normalizedCandidates = normalizeCandidates(candidates);
+  const targetCount = Math.min(normalizeCount(count), normalizedCandidates.length);
+  const history = normalizeSelectionHistory(selectionHistory);
+  const chapters = [...groupBy(normalizedCandidates, 'chapter_id').entries()].map(([chapterId, questions]) => {
+    const lessonIds = [...new Set(questions.map((question) => question.lesson_id))];
+    const lessonHistory = lessonIds.map((lessonId) => getHistoryEntry(history.lessons, lessonId));
+    return {
+      id: chapterId,
+      lessonCount: lessonIds.length,
+      availableCount: questions.length,
+      historyCount: lessonHistory.reduce((sum, entry) => sum + entry.count, 0),
+      lastSelectedAt: Math.max(...lessonHistory.map((entry) => entry.lastSelectedAt)),
+      sortOrder: Math.min(...questions.map((question) => question.chapter_sort_order)),
+      randomOrder: random(),
+      quota: 0
+    };
+  });
+  const totalLessons = chapters.reduce((sum, chapter) => sum + chapter.lessonCount, 0);
+  const totalHistory = chapters.reduce((sum, chapter) => sum + chapter.historyCount, 0);
+  for (const chapter of chapters) {
+    chapter.expectedCount = (totalHistory + targetCount) * chapter.lessonCount / Math.max(totalLessons, 1);
+  }
+
+  if (targetCount >= chapters.length) {
+    for (const chapter of chapters) chapter.quota = 1;
+  }
+
+  // Phân từng câu còn lại cho chương đang thiếu bao phủ nhất so với số bài.
+  let remaining = targetCount - chapters.reduce((sum, chapter) => sum + chapter.quota, 0);
+  while (remaining > 0) {
+    const chapter = chapters
+      .filter((item) => item.quota < item.availableCount)
+      .sort(compareChapterCoverage)[0];
+    if (!chapter) break;
+    chapter.quota += 1;
+    remaining -= 1;
+  }
+
+  return Object.fromEntries(chapters.map((chapter) => [chapter.id, chapter.quota]));
+}
+
+function compareChapterCoverage(left, right) {
+  const leftDeficit = left.expectedCount - left.historyCount - left.quota;
+  const rightDeficit = right.expectedCount - right.historyCount - right.quota;
+  if (leftDeficit !== rightDeficit) return rightDeficit - leftDeficit;
+  if (left.lessonCount !== right.lessonCount) return right.lessonCount - left.lessonCount;
+  if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
+  if (left.sortOrder !== right.sortOrder) return left.sortOrder - right.sortOrder;
+  return left.randomOrder - right.randomOrder;
+}
+
 function selectQuestionsV2(candidates, options = {}) {
   const count = normalizeCount(options.count);
   const mode = normalizeMode(options.mode);
@@ -334,6 +386,41 @@ function countBy(items, field) {
   }, new Map());
 }
 
+function groupBy(items, field) {
+  return items.reduce((result, item) => {
+    const key = item[field];
+    if (!result.has(key)) result.set(key, []);
+    result.get(key).push(item);
+    return result;
+  }, new Map());
+}
+
+function normalizeSelectionHistory(value = {}) {
+  return {
+    questions: normalizeHistoryEntries(value.questions),
+    lessons: normalizeHistoryEntries(value.lessons)
+  };
+}
+
+function normalizeHistoryEntries(entries) {
+  return new Map(Object.entries(entries || {}).map(([id, entry]) => [
+    Number(id),
+    {
+      count: Math.max(0, Number(entry?.count) || 0),
+      lastSelectedAt: normalizeTimestamp(entry?.lastSelectedAt)
+    }
+  ]).filter(([id]) => Number.isInteger(id) && id > 0));
+}
+
+function getHistoryEntry(entries, id) {
+  return entries.get(Number(id)) || { count: 0, lastSelectedAt: Number.NEGATIVE_INFINITY };
+}
+
+function normalizeTimestamp(value) {
+  const timestamp = Date.parse(String(value || ''));
+  return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
+}
+
 function countByDifficulty(items) {
   return items.reduce((result, item) => {
     result[item.difficulty] = (result[item.difficulty] || 0) + 1;
@@ -388,6 +475,7 @@ function normalizeOptionalId(value) {
 module.exports = {
   DIFFICULTY_TARGETS,
   SELECTION_VERSION,
+  allocateChapterQuotas,
   createSeededRandom,
   createSelectionSeed,
   selectQuestionsV2
