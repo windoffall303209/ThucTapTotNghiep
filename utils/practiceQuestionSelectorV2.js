@@ -474,6 +474,10 @@ function selectQuestionsV2(candidates, options = {}) {
         difficultyTargets: targets,
         actualDifficulty,
         difficultyQuotaMet: Boolean(plan?.exact),
+        hardChapterCounts: Object.fromEntries(countBy(
+          selected.filter((question) => question.difficulty === 'HARD'),
+          'chapter_id'
+        )),
         chapterTargets: chapterQuotas,
         actualChapters: Object.fromEntries(chapterCounts),
         lessonGroupCount: lessonGroups.length,

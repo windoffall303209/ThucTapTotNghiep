@@ -211,6 +211,46 @@ test('thiếu câu khó thì ưu tiên thay bằng câu trung bình trước câ
   assert.deepEqual(plan.difficultyTargets, { EASY: 1, MEDIUM: 2, HARD: 0 });
 });
 
+test('luân phiên câu khó sang chương có lịch sử nhận câu khó ít hơn', () => {
+  const candidates = [];
+  let id = 1;
+  for (let chapterId = 1; chapterId <= 4; chapterId += 1) {
+    for (const difficulty of ['EASY', 'MEDIUM', 'HARD']) {
+      candidates.push({
+        id: id++,
+        chapter_id: chapterId,
+        lesson_id: chapterId * 100 + 1,
+        difficulty
+      });
+    }
+  }
+  const hardQuestions = candidates.filter((question) => question.difficulty === 'HARD');
+  const history = {
+    questions: {
+      [hardQuestions[0].id]: { count: 10, lastSelectedAt: '2026-08-08T08:00:00.000Z' },
+      [hardQuestions[1].id]: { count: 8, lastSelectedAt: '2026-08-07T08:00:00.000Z' }
+    }
+  };
+  const groups = Array.from({ length: 4 }, (_, index) => ({
+    chapterId: index + 1,
+    lessonIds: [(index + 1) * 100 + 1]
+  }));
+  const plan = buildDifficultySelectionPlan(
+    candidates,
+    groups,
+    { EASY: 1, MEDIUM: 1, HARD: 2 },
+    history,
+    () => 0.5
+  );
+  assert.deepEqual(
+    plan.questions
+      .filter((question) => question.difficulty === 'HARD')
+      .map((question) => question.chapter_id)
+      .sort(),
+    [3, 4]
+  );
+});
+
 test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () => {
   const candidates = buildCandidates();
   const first = selectQuestionsV2(candidates, { count: 20, mode: 'COMPREHENSIVE', seed: '0000000000000001' });
