@@ -1,0 +1,224 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L371-L373-20260808-R3",
+  "curriculum_scope_id": "grade-5-lessons-371-373",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L371-E03",
+      "lesson_id": 371,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "reverse_measurement",
+        "length_units"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 20 cm, chiều rộng 6 cm và thể tích 720 cm³. Chiều cao của hình hộp là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-075/cau-01-tim-chieu-cao.png",
+            "alt_text": "Hình hộp chữ nhật ghi chiều dài 20 cm, chiều rộng 6 cm và thể tích 720 cm³"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 cm"
+        },
+        {
+          "key": "B",
+          "text": "5 cm"
+        },
+        {
+          "key": "C",
+          "text": "6 cm"
+        },
+        {
+          "key": "D",
+          "text": "8 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích đáy là 20 × 6 = 120 cm². Chiều cao là 720 : 120 = 6 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia thể tích cho chiều dài",
+          "explanation": "Cần chia thể tích cho diện tích đáy, không chỉ chia cho chiều dài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm chiều rộng với chiều cao",
+          "explanation": "Chiều rộng 6 cm đã biết; chiều cao phải được tính từ thể tích."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai diện tích đáy",
+          "explanation": "Diện tích đáy là 20 × 6 = 120 cm² nên 720 : 120 = 6 cm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L372-E03",
+      "lesson_id": 372,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "dm3_to_liter",
+        "division",
+        "decimal_multiplication"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          48,
+          49
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể dạng hình hộp chữ nhật có chiều dài 3 dm, chiều rộng 2 dm và chiều cao 1,5 dm. Nếu rót đầy bể vào các chai 0,5 lít thì rót được bao nhiêu chai?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-075/cau-02-be-va-chai.png",
+            "alt_text": "Bể ghi kích thước 3 dm, 2 dm, 1,5 dm và chai mẫu 0,5 lít"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 chai"
+        },
+        {
+          "key": "B",
+          "text": "15 chai"
+        },
+        {
+          "key": "C",
+          "text": "18 chai"
+        },
+        {
+          "key": "D",
+          "text": "20 chai"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích bể là 3 × 2 × 1,5 = 9 dm³ = 9 lít. Số chai là 9 : 0,5 = 18 chai.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua một kích thước",
+          "explanation": "Phải nhân đủ chiều dài, chiều rộng và chiều cao để tính thể tích bể."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân sai số thập phân",
+          "explanation": "3 × 2 × 1,5 bằng 9 dm³, không phải 7,5 dm³."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia sai dung tích mỗi chai",
+          "explanation": "9 lít chia cho 0,5 lít mỗi chai bằng 18 chai."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L373-E03",
+      "lesson_id": 373,
+      "concept_id": null,
+      "knowledge_tags": [
+        "area",
+        "addition",
+        "subtraction",
+        "mixed_revision",
+        "area_units"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          50,
+          51
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu đất có diện tích 500 m² được chia thành ba phần có diện tích lần lượt 180 m², 125 m² và 95 m². Diện tích phần còn lại là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-075/cau-03-khu-dat-ba-phan.png",
+            "alt_text": "Khu đất tổng 500 m² chia thành các phần 180 m², 125 m² và 95 m²"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "80 m²"
+        },
+        {
+          "key": "B",
+          "text": "90 m²"
+        },
+        {
+          "key": "C",
+          "text": "100 m²"
+        },
+        {
+          "key": "D",
+          "text": "110 m²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Tổng diện tích ba phần là 180 + 125 + 95 = 400 m². Phần còn lại là 500 − 400 = 100 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng thiếu một phần",
+          "explanation": "Cần cộng đủ cả ba phần 180 m², 125 m² và 95 m²."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng sai các diện tích",
+          "explanation": "180 + 125 + 95 bằng 400 m², không phải 410 m²."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Trừ sai tổng diện tích",
+          "explanation": "500 − 400 bằng 100 m², không phải 110 m²."
+        }
+      ]
+    }
+  ]
+}

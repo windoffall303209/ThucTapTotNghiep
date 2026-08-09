@@ -1,0 +1,327 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L173-L177-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-173-177",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L173-E01",
+      "lesson_id": 173,
+      "concept_id": null,
+      "knowledge_tags": [
+        "addition_natural_numbers",
+        "column_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          65,
+          66
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "248 365 + 31 204 bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-039/cau-01-cong-tru.png",
+            "alt_text": "Các khối số được gộp lại để minh họa phép cộng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "269 569"
+        },
+        {
+          "key": "B",
+          "text": "279 569"
+        },
+        {
+          "key": "C",
+          "text": "289 569"
+        },
+        {
+          "key": "D",
+          "text": "280 569"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đặt tính thẳng các hàng rồi cộng: 248 365 + 31 204 = 279 569.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng nhầm ở hàng nghìn",
+          "explanation": "Cần cộng lần lượt từ hàng đơn vị sang trái và nhớ đúng số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm chữ số hàng chục nghìn",
+          "explanation": "31 204 có 3 chục nghìn, không phải 4 chục nghìn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L174-E01",
+      "lesson_id": 174,
+      "concept_id": null,
+      "knowledge_tags": [
+        "addition_commutative"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          68
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Phép tính 125 + 48 = 48 + 125 minh họa tính chất nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-039/cau-02-tinh-chat-cong.png",
+            "alt_text": "Các thẻ số được đổi chỗ trong phép cộng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Tính chất giao hoán"
+        },
+        {
+          "key": "B",
+          "text": "Tính chất kết hợp"
+        },
+        {
+          "key": "C",
+          "text": "Cộng với số 0"
+        },
+        {
+          "key": "D",
+          "text": "Tính chất phân phối"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Đổi chỗ các số hạng mà tổng không thay đổi là tính chất giao hoán của phép cộng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm đổi chỗ với nhóm các số hạng",
+          "explanation": "Tính chất kết hợp là thay đổi cách nhóm ba số hạng, không phải đổi chỗ hai số hạng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ nhớ phép cộng có số 0",
+          "explanation": "Biểu thức không có số 0 nên không phải tính chất cộng với số 0."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L175-E01",
+      "lesson_id": 175,
+      "concept_id": null,
+      "knowledge_tags": [
+        "arithmetic_mean",
+        "sum_and_divide"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số trung bình cộng của 18, 22 và 26 là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-039/cau-03-trung-binh-cong.png",
+            "alt_text": "Ba nhóm đồ vật được chia đều để minh họa số trung bình cộng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "20"
+        },
+        {
+          "key": "B",
+          "text": "21"
+        },
+        {
+          "key": "C",
+          "text": "22"
+        },
+        {
+          "key": "D",
+          "text": "24"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Cộng ba số được 18 + 22 + 26 = 66, rồi chia cho 3: 66 : 3 = 22.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia tổng cho nhầm số lượng số hạng",
+          "explanation": "Có ba số nên phải chia tổng cho 3, không chia cho 2."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ lấy số lớn nhất làm trung bình",
+          "explanation": "Số trung bình cộng phải tính từ tổng của cả ba số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L176-E01",
+      "lesson_id": 176,
+      "concept_id": null,
+      "knowledge_tags": [
+        "sum_difference",
+        "find_two_numbers"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          73,
+          74
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tổng của hai số là 84, hiệu của hai số là 18. Số lớn là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-039/cau-04-tong-hieu.png",
+            "alt_text": "Hai đoạn thẳng biểu diễn tổng và phần chênh lệch"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "33"
+        },
+        {
+          "key": "B",
+          "text": "42"
+        },
+        {
+          "key": "C",
+          "text": "51"
+        },
+        {
+          "key": "D",
+          "text": "66"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Số lớn = (Tổng + Hiệu) : 2 = (84 + 18) : 2 = 51.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Lấy tổng chia đôi mà quên hiệu",
+          "explanation": "Hai số không bằng nhau nên cần cộng thêm hiệu trước khi chia 2."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng tổng với hiệu nhưng quên chia 2",
+          "explanation": "(84 + 18) là tổng của hai lần số lớn, phải chia cho 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L177-E01",
+      "lesson_id": 177,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_one_digit",
+        "column_multiplication"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "347 205 × 3 bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-039/cau-05-nhan-mot-chu-so.png",
+            "alt_text": "Khối hàng chục và hàng đơn vị minh họa phép nhân với một chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 041 615"
+        },
+        {
+          "key": "B",
+          "text": "1 031 615"
+        },
+        {
+          "key": "C",
+          "text": "1 041 605"
+        },
+        {
+          "key": "D",
+          "text": "1 141 615"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Nhân lần lượt từ hàng đơn vị sang trái: 347 205 × 3 = 1 041 615.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên nhớ ở một hàng",
+          "explanation": "Khi nhân từng hàng cần ghi và cộng đúng số nhớ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Sai ở hàng đơn vị",
+          "explanation": "5 × 3 = 15 nên chữ số hàng đơn vị là 5 và phải nhớ 1."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L381-L383-20260808-R2",
+  "curriculum_scope_id": "grade-5-lessons-381-383",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L381-E02",
+      "lesson_id": 381,
+      "concept_id": null,
+      "knowledge_tags": [
+        "natural_number",
+        "number_place_value",
+        "natural_number_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong các số sau, số nào là số chẵn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-078/cau-01-so-chan.png",
+            "alt_text": "Bốn số tự nhiên 2 415, 7 208, 9 135 và 6 401 cần xác định số chẵn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 415"
+        },
+        {
+          "key": "B",
+          "text": "7 208"
+        },
+        {
+          "key": "C",
+          "text": "9 135"
+        },
+        {
+          "key": "D",
+          "text": "6 401"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số chẵn là số có chữ số hàng đơn vị là 0, 2, 4, 6 hoặc 8. Số 7 208 có chữ số hàng đơn vị là 8 nên là số chẵn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhìn chữ số đầu",
+          "explanation": "Muốn nhận biết chẵn lẻ cần nhìn chữ số hàng đơn vị, không nhìn chữ số đầu tiên."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số có chữ số hàng chục lớn",
+          "explanation": "Số 9 135 có hàng đơn vị là 5 nên là số lẻ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ qua chữ số hàng đơn vị",
+          "explanation": "Số 6 401 có hàng đơn vị là 1 nên là số lẻ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L382-E02",
+      "lesson_id": 382,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_addition",
+        "fraction_equivalence",
+        "fraction_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          88,
+          89
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3/5 + 1/6.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-078/cau-02-cong-phan-so.png",
+            "alt_text": "Phép cộng hai phân số 3 phần 5 và 1 phần 6"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4/11"
+        },
+        {
+          "key": "B",
+          "text": "13/30"
+        },
+        {
+          "key": "C",
+          "text": "23/30"
+        },
+        {
+          "key": "D",
+          "text": "1 1/30"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Quy đồng mẫu số 30: 3/5 = 18/30 và 1/6 = 5/30. Do đó 3/5 + 1/6 = 23/30.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng cả tử và mẫu",
+          "explanation": "Không cộng riêng tử với tử và mẫu với mẫu; cần quy đồng mẫu số trước."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quy đồng sai phân số thứ nhất",
+          "explanation": "3/5 phải đổi thành 18/30, không phải 8/30."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi sai phân số lớn hơn một",
+          "explanation": "23/30 nhỏ hơn 1 nên không thể viết thành 1 1/30."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L383-E02",
+      "lesson_id": 383,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_addition",
+        "decimal_place_value",
+        "decimal_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          90,
+          91
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 12,75 + 3,608.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-078/cau-03-cong-thap-phan.png",
+            "alt_text": "Phép cộng hai số thập phân 12,75 và 3,608 được đặt thẳng hàng theo dấu phẩy"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "15,833"
+        },
+        {
+          "key": "B",
+          "text": "16,258"
+        },
+        {
+          "key": "C",
+          "text": "16,358"
+        },
+        {
+          "key": "D",
+          "text": "16,833"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Viết 12,75 thành 12,750 rồi cộng thẳng hàng với 3,608: 12,750 + 3,608 = 16,358.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Không thẳng hàng dấu phẩy",
+          "explanation": "Cần viết thêm chữ số 0 vào 12,75 để các hàng phần thập phân thẳng nhau."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng sai hàng phần trăm",
+          "explanation": "12,750 cộng 3,608 cho hàng phần trăm là 5, không phải 2."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng nhầm hàng phần nghìn",
+          "explanation": "Hàng phần nghìn của tổng là 8, nên kết quả là 16,358."
+        }
+      ]
+    }
+  ]
+}

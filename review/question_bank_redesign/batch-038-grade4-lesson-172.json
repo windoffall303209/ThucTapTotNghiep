@@ -1,0 +1,325 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L172-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-172",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L172-E01",
+      "lesson_id": 172,
+      "concept_id": null,
+      "knowledge_tags": [
+        "parallel_lines",
+        "same_direction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai đường thẳng cùng hướng và luôn cách nhau một khoảng bằng nhau được gọi là hai đường thẳng gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-038/cau-01-song-song.png",
+            "alt_text": "Hai đường thẳng cùng hướng trên lưới ô vuông"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Vuông góc"
+        },
+        {
+          "key": "B",
+          "text": "Song song"
+        },
+        {
+          "key": "C",
+          "text": "Cắt nhau"
+        },
+        {
+          "key": "D",
+          "text": "Cong nhau"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hai đường thẳng song song cùng nằm trên một mặt phẳng, không cắt nhau và luôn cách nhau một khoảng bằng nhau.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm cùng hướng với vuông góc",
+          "explanation": "Hai đường thẳng vuông góc tạo góc 90°, không cùng hướng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ nhìn thấy hai đường trên cùng mặt phẳng",
+          "explanation": "Hai đường cắt nhau có một điểm chung, còn hai đường song song không có điểm chung."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L172-E02",
+      "lesson_id": 172,
+      "concept_id": null,
+      "knowledge_tags": [
+        "parallel_in_real_life"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Khi quan sát hai đường ray thẳng, nhận xét nào đúng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-038/cau-02-duong-ray.png",
+            "alt_text": "Hai đường ray chạy cùng hướng trong phong cảnh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hai đường ray song song"
+        },
+        {
+          "key": "B",
+          "text": "Hai đường ray vuông góc"
+        },
+        {
+          "key": "C",
+          "text": "Hai đường ray cắt nhau"
+        },
+        {
+          "key": "D",
+          "text": "Hai đường ray tạo thành đường cong"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai đường ray thẳng chạy cùng hướng và không gặp nhau nên có thể xem là hai đường thẳng song song.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm hai đường cùng hướng là vuông góc",
+          "explanation": "Vuông góc cần tạo góc 90°, còn hai đường ray cùng hướng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhìn theo phối cảnh rồi cho rằng đường ray gặp nhau",
+          "explanation": "Trong thực tế, hai đường ray giữ khoảng cách và không cắt nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L172-E03",
+      "lesson_id": 172,
+      "concept_id": null,
+      "knowledge_tags": [
+        "opposite_sides_rectangle",
+        "parallel_lines"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          56
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình chữ nhật MNOP, cạnh MN song song với cạnh nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-038/cau-03-hinh-chu-nhat.png",
+            "alt_text": "Hình chữ nhật trên lưới ô vuông với hai cặp cạnh đối diện"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "NO"
+        },
+        {
+          "key": "B",
+          "text": "OP"
+        },
+        {
+          "key": "C",
+          "text": "PM"
+        },
+        {
+          "key": "D",
+          "text": "MN"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Trong hình chữ nhật, hai cạnh đối diện song song. Cạnh MN đối diện với cạnh OP nên MN song song OP.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn cạnh kề với MN",
+          "explanation": "NO có chung đỉnh N với MN nên là cạnh kề, không phải cạnh đối diện."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm cạnh đối diện với cạnh có cùng điểm M",
+          "explanation": "PM cũng kề với MN tại M; cạnh đối diện MN là OP."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L172-E04",
+      "lesson_id": 172,
+      "concept_id": null,
+      "knowledge_tags": [
+        "parallel_lines",
+        "constant_distance"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55,
+          56
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Để nhận biết hai đường thẳng song song trên hình vẽ, dấu hiệu nào phù hợp nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-038/cau-04-khong-cat-nhau.png",
+            "alt_text": "Hai đường thẳng cách nhau đều và không giao nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hai đường có một điểm chung"
+        },
+        {
+          "key": "B",
+          "text": "Hai đường luôn cách nhau một khoảng bằng nhau"
+        },
+        {
+          "key": "C",
+          "text": "Hai đường tạo thành một góc nhọn"
+        },
+        {
+          "key": "D",
+          "text": "Hai đường có độ dài bằng nhau"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hai đường thẳng song song không cắt nhau và khoảng cách giữa chúng luôn không đổi.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm đường cắt nhau với đường song song",
+          "explanation": "Có một điểm chung nghĩa là hai đường cắt nhau."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đồng nhất độ dài với vị trí",
+          "explanation": "Đường thẳng không xét bằng độ dài; song song nói về hướng và khoảng cách giữa hai đường."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L172-E05",
+      "lesson_id": 172,
+      "concept_id": null,
+      "knowledge_tags": [
+        "parallel_lines",
+        "same_direction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          56,
+          57
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai dòng kẻ thẳng trên vở cùng hướng và không gặp nhau. Hai dòng kẻ đó có quan hệ gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-038/cau-05-thuoc-song-song.png",
+            "alt_text": "Học sinh dùng thước đặt theo các dòng kẻ cùng hướng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Song song"
+        },
+        {
+          "key": "B",
+          "text": "Vuông góc"
+        },
+        {
+          "key": "C",
+          "text": "Cắt nhau"
+        },
+        {
+          "key": "D",
+          "text": "Trùng nhau"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai dòng kẻ cùng hướng, không gặp nhau và giữ khoảng cách nên là hai đường thẳng song song.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm hai hướng khác nhau là vuông góc",
+          "explanation": "Hai dòng kẻ cùng hướng không tạo góc vuông."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm cùng hướng với trùng nhau",
+          "explanation": "Hai đường trùng nhau phải nằm đúng trên cùng một vị trí, còn hai dòng kẻ có khoảng cách giữa chúng."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L255-L257-L374-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-255-257-374",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L374-E01",
+      "lesson_id": 374,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_units",
+        "year_month",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          52,
+          53
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "2,5 năm bằng bao nhiêu tháng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-056/cau-01-don-vi-thoi-gian.png",
+            "alt_text": "Lịch và đồng hồ minh họa các đơn vị thời gian"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 tháng"
+        },
+        {
+          "key": "B",
+          "text": "25 tháng"
+        },
+        {
+          "key": "C",
+          "text": "30 tháng"
+        },
+        {
+          "key": "D",
+          "text": "36 tháng"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Một năm có 12 tháng nên 2,5 năm = 12 × 2,5 = 30 tháng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân với 10 thay vì 12",
+          "explanation": "Đổi năm sang tháng phải nhân với 12 vì một năm có 12 tháng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm 12 tháng",
+          "explanation": "2,5 năm không phải 2 năm 5 tháng; cần nhân 2,5 với 12."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L255-E01",
+      "lesson_id": 255,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_addition",
+        "time_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          54,
+          55
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "1 giờ 35 phút + 2 giờ 40 phút bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-056/cau-02-cong-thoi-gian.png",
+            "alt_text": "Hai bạn nhỏ cùng quan sát đồng hồ để minh họa phép cộng thời gian"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 giờ 15 phút"
+        },
+        {
+          "key": "B",
+          "text": "4 giờ 05 phút"
+        },
+        {
+          "key": "C",
+          "text": "4 giờ 15 phút"
+        },
+        {
+          "key": "D",
+          "text": "4 giờ 25 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Cộng số giờ và số phút: 1 giờ 35 phút + 2 giờ 40 phút = 3 giờ 75 phút = 4 giờ 15 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Không đổi 75 phút",
+          "explanation": "75 phút phải đổi thành 1 giờ 15 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng sai số phút",
+          "explanation": "35 phút + 40 phút = 75 phút, không phải 85 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L256-E01",
+      "lesson_id": 256,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_division",
+        "time_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          56,
+          57
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "2 giờ 30 phút chia cho 5 bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-056/cau-03-chia-thoi-gian.png",
+            "alt_text": "Bạn nhỏ chạy bộ cùng đồng hồ bấm giờ minh họa chia thời gian"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "20 phút"
+        },
+        {
+          "key": "B",
+          "text": "25 phút"
+        },
+        {
+          "key": "C",
+          "text": "30 phút"
+        },
+        {
+          "key": "D",
+          "text": "50 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "2 giờ 30 phút = 150 phút; 150 : 5 = 30 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia riêng hai đơn vị không đổi",
+          "explanation": "Nên đổi 2 giờ 30 phút thành 150 phút trước khi chia cho 5."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy 2 giờ chia cho 5 rồi bỏ phần dư",
+          "explanation": "Cần tính cả 30 phút, không chỉ chia riêng 2 giờ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L257-E01",
+      "lesson_id": 257,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          60,
+          61
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một ô tô đi được 180 km trong 3 giờ. Vận tốc trung bình của ô tô là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-056/cau-04-van-toc.png",
+            "alt_text": "Ô tô chạy trên đường cùng tuyến đường và đồng hồ bấm giờ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "45 km/giờ"
+        },
+        {
+          "key": "B",
+          "text": "60 km/giờ"
+        },
+        {
+          "key": "C",
+          "text": "90 km/giờ"
+        },
+        {
+          "key": "D",
+          "text": "540 km/giờ"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vận tốc bằng quãng đường chia cho thời gian: 180 : 3 = 60 km/giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia sai 180 cho 2",
+          "explanation": "Thời gian trong bài là 3 giờ nên phải tính 180 : 3."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân quãng đường với thời gian",
+          "explanation": "Công thức vận tốc là quãng đường chia cho thời gian, không phải nhân."
+        }
+      ]
+    }
+  ]
+}

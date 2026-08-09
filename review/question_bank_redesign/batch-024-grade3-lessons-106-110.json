@@ -1,0 +1,335 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L106-L110-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-106-110",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L106-E01",
+      "lesson_id": 106,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_9",
+        "equal_sharing",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          51,
+          52
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn có 81 cây được chia đều thành 9 hàng. Mỗi hàng có bao nhiêu cây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-024/cau-01-chia-81-cay-thanh-chin-hang.png",
+            "alt_text": "Tám mươi mốt cây và chín hàng cây giống nhau để chia đều"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 cây"
+        },
+        {
+          "key": "B",
+          "text": "8 cây"
+        },
+        {
+          "key": "C",
+          "text": "9 cây"
+        },
+        {
+          "key": "D",
+          "text": "10 cây"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Chia đều 81 cây thành 9 hàng, ta tính 81 : 9 = 9. Mỗi hàng có 9 cây.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhớ nhầm 72 : 9",
+          "explanation": "72 : 9 = 8; số cây trong bài là 81."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhớ nhầm 90 : 9",
+          "explanation": "90 : 9 = 10; phép chia cần tính là 81 : 9."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L107-E01",
+      "lesson_id": 107,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_one_quarter",
+        "equal_parts",
+        "identify_shaded_fraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          57,
+          58,
+          59
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình vuông được chia thành 4 phần bằng nhau và tô màu 1 phần. Phần đã tô màu là phân số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-024/cau-02-mot-phan-tu-hinh-vuong.png",
+            "alt_text": "Một hình vuông chia thành bốn phần bằng nhau, một phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1/2"
+        },
+        {
+          "key": "B",
+          "text": "1/3"
+        },
+        {
+          "key": "C",
+          "text": "1/4"
+        },
+        {
+          "key": "D",
+          "text": "1/5"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Hình được chia thành 4 phần bằng nhau và lấy 1 phần nên phần tô màu là một phần tư, viết là 1/4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm nhầm số phần",
+          "explanation": "Hình có 4 phần bằng nhau, không phải 2 phần."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn mẫu số lớn hơn số phần",
+          "explanation": "Mẫu số phải là số phần bằng nhau của hình, ở đây là 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L108-E01",
+      "lesson_id": 108,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_one_sixth",
+        "equal_parts",
+        "identify_shaded_fraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          60,
+          61
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Chọn phân số chỉ 1 trong 6 phần bằng nhau của hình tròn được minh họa.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-024/cau-03-mot-phan-sau-hinh-tron.png",
+            "alt_text": "Một hình tròn chia thành sáu phần bằng nhau, một phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1/3"
+        },
+        {
+          "key": "B",
+          "text": "1/5"
+        },
+        {
+          "key": "C",
+          "text": "1/6"
+        },
+        {
+          "key": "D",
+          "text": "1/8"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Hình được chia thành 6 phần bằng nhau và lấy 1 phần nên phần tô màu là một phần sáu, viết là 1/6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm một phần ba",
+          "explanation": "Một phần ba ứng với hình chia thành 3 phần bằng nhau, không phải 6 phần."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn mẫu số không theo hình",
+          "explanation": "Mẫu số phải bằng số phần bằng nhau của hình, ở đây là 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L109-E01",
+      "lesson_id": 109,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_one_eighth",
+        "equal_parts",
+        "identify_shaded_fraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          62,
+          63
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một băng giấy được chia thành 8 phần bằng nhau và tô màu 1 phần. Phần đã tô màu là phân số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-024/cau-04-mot-phan-tam-bang-giay.png",
+            "alt_text": "Một băng giấy chia thành tám phần bằng nhau, một phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1/7"
+        },
+        {
+          "key": "B",
+          "text": "1/8"
+        },
+        {
+          "key": "C",
+          "text": "1/9"
+        },
+        {
+          "key": "D",
+          "text": "1/6"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Băng giấy có 8 phần bằng nhau và lấy 1 phần nên phần tô màu là một phần tám, viết là 1/8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một phần",
+          "explanation": "Băng giấy được chia thành 8 phần, không phải 7 phần."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm thừa một phần",
+          "explanation": "Mẫu số phải bằng số phần bằng nhau của băng giấy, là 8."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L110-E01",
+      "lesson_id": 110,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_round_tens",
+        "multiply_by_one_digit",
+        "place_value_tens"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          69,
+          70
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 30 × 4 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-024/cau-05-ba-muoi-nhan-bon.png",
+            "alt_text": "Bốn nhóm, mỗi nhóm gồm ba thanh chục, minh họa phép nhân 30 với 4"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "90"
+        },
+        {
+          "key": "B",
+          "text": "120"
+        },
+        {
+          "key": "C",
+          "text": "130"
+        },
+        {
+          "key": "D",
+          "text": "140"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "30 × 4 = 3 chục × 4 = 12 chục = 120.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 30 × 3",
+          "explanation": "30 × 3 = 90; đề bài yêu cầu nhân 30 với 4."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tính sai hàng chục",
+          "explanation": "3 chục nhân 4 bằng 12 chục, tức 120, không phải 130."
+        }
+      ]
+    }
+  ]
+}

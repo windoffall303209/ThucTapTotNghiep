@@ -1,0 +1,327 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L016-L020-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-016-020",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L016-E01",
+      "lesson_id": 16,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recognize_cube"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          53,
+          54
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Khối màu đỏ trong hình có dạng gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-005/cau-01-khoi-lap-phuong-do.png",
+            "alt_text": "Một khối lập phương màu đỏ được nhìn thấy ba mặt"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Khối lập phương"
+        },
+        {
+          "key": "B",
+          "text": "Khối hộp chữ nhật"
+        },
+        {
+          "key": "C",
+          "text": "Hình vuông"
+        },
+        {
+          "key": "D",
+          "text": "Hình tròn"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Khối màu đỏ có dạng khối lập phương.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm khối lập phương với khối hộp chữ nhật",
+          "explanation": "Đối chiếu với mẫu trong bài, khối màu đỏ có dạng khối lập phương."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm hình phẳng với khối",
+          "explanation": "Hình vuông là hình phẳng, còn vật trong hình là một khối."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L017-E01",
+      "lesson_id": 17,
+      "concept_id": null,
+      "knowledge_tags": [
+        "take_away_within_6",
+        "match_picture_to_subtraction_to_6"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55,
+          56
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có năm chú chim, hai chú bay đi. Phép tính nào phù hợp với hình?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-005/cau-02-nam-chim-hai-bay-di.png",
+            "alt_text": "Ba chú chim vàng còn đậu trên cành và hai chú chim xanh đang bay đi"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 − 2 = 3"
+        },
+        {
+          "key": "B",
+          "text": "5 − 3 = 2"
+        },
+        {
+          "key": "C",
+          "text": "3 − 2 = 1"
+        },
+        {
+          "key": "D",
+          "text": "5 − 1 = 4"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Có 5 chú chim, 2 chú bay đi nên còn 3 chú. Phép tính phù hợp là 5 − 2 = 3.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm số chim bay đi với số chim còn lại",
+          "explanation": "Có 2 chú bay đi và 3 chú còn trên cành, nên phải lấy 5 trừ 2."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thiếu một chú chim bay đi",
+          "explanation": "Có đúng 2 chú chim xanh đang bay đi."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L018-E01",
+      "lesson_id": 18,
+      "concept_id": null,
+      "knowledge_tags": [
+        "calculate_subtraction_to_6",
+        "write_subtraction_from_picture_to_6"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          57,
+          58
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có sáu quả bóng, hai quả bay đi. Còn lại bao nhiêu quả bóng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-005/cau-03-sau-bong-hai-bay-di.png",
+            "alt_text": "Bốn quả bóng đỏ còn buộc vào vật nặng và hai quả bóng xanh đang bay đi"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 quả"
+        },
+        {
+          "key": "B",
+          "text": "3 quả"
+        },
+        {
+          "key": "C",
+          "text": "4 quả"
+        },
+        {
+          "key": "D",
+          "text": "5 quả"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 6 quả bóng, 2 quả bay đi. Tính 6 − 2 = 4 nên còn lại 4 quả bóng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn số bóng bay đi",
+          "explanation": "Hai là số bóng bay đi; câu hỏi yêu cầu số bóng còn lại."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ sót một quả bóng bay đi",
+          "explanation": "Có 2 quả bóng xanh bay đi nên phải lấy 6 trừ 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L019-E01",
+      "lesson_id": 19,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_zero_to_6"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          61,
+          62
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có năm cây bút, không lấy đi cây nào. Còn lại bao nhiêu cây bút?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-005/cau-04-nam-but-tru-khong.png",
+            "alt_text": "Năm cây bút chì màu được xếp thành một hàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "0 cây"
+        },
+        {
+          "key": "B",
+          "text": "4 cây"
+        },
+        {
+          "key": "C",
+          "text": "5 cây"
+        },
+        {
+          "key": "D",
+          "text": "6 cây"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Không lấy đi cây bút nào nghĩa là lấy 5 trừ 0. Tính 5 − 0 = 5 nên còn lại 5 cây bút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm trừ 0 với xóa hết",
+          "explanation": "Trừ 0 nghĩa là không bớt vật nào, nên số cây bút vẫn là 5."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cho rằng phép trừ luôn bớt một đơn vị",
+          "explanation": "Không lấy đi cây nào nên số lượng không giảm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L020-E01",
+      "lesson_id": 20,
+      "concept_id": null,
+      "knowledge_tags": [
+        "calculate_subtraction_7_to_10",
+        "take_away_within_10"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          65,
+          66
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có chín viên bi, bốn viên lăn đi. Còn lại bao nhiêu viên bi?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-005/cau-05-chin-bi-bon-lan-di.png",
+            "alt_text": "Năm viên bi đỏ còn lại và bốn viên bi xanh đang lăn đi"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 viên"
+        },
+        {
+          "key": "B",
+          "text": "4 viên"
+        },
+        {
+          "key": "C",
+          "text": "5 viên"
+        },
+        {
+          "key": "D",
+          "text": "6 viên"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 9 viên bi, 4 viên lăn đi. Tính 9 − 4 = 5 nên còn lại 5 viên bi.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chọn số viên bi lăn đi",
+          "explanation": "Bốn là số viên bi lăn đi; câu hỏi yêu cầu số viên bi còn lại."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thiếu một viên bi lăn đi",
+          "explanation": "Có đủ 4 viên bi xanh đang lăn đi nên 9 − 4 = 5."
+        }
+      ]
+    }
+  ]
+}

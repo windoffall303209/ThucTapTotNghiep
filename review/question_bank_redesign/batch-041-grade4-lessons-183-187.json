@@ -1,0 +1,336 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L183-L187-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-183-187",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L183-E01",
+      "lesson_id": 183,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_two_digit",
+        "long_division",
+        "quotient"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "4 368 : 24 bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-041/cau-01-chia-hai-chu-so.png",
+            "alt_text": "Học sinh chia đều các chồng sách trong lớp học"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "182"
+        },
+        {
+          "key": "B",
+          "text": "172"
+        },
+        {
+          "key": "C",
+          "text": "192"
+        },
+        {
+          "key": "D",
+          "text": "202"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "24 × 182 = 24 × 180 + 24 × 2 = 4 320 + 48 = 4 368, nên 4 368 : 24 = 182.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Trừ hoặc hạ chữ số chưa đúng",
+          "explanation": "Cần thực hiện lần lượt từng hàng của phép chia và kiểm tra lại bằng phép nhân."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Ước lượng thương lớn hơn thực tế",
+          "explanation": "24 × 192 = 4 608, lớn hơn số bị chia nên 192 không thể là thương."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L184-E01",
+      "lesson_id": 184,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_two_digit",
+        "division_application",
+        "quotient"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một kho có 1 260 chai nước, chia đều vào 18 thùng. Mỗi thùng có bao nhiêu chai?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-041/cau-02-chia-deu.png",
+            "alt_text": "Các chai nước được chia đều vào những thùng giống nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "60 chai"
+        },
+        {
+          "key": "B",
+          "text": "70 chai"
+        },
+        {
+          "key": "C",
+          "text": "80 chai"
+        },
+        {
+          "key": "D",
+          "text": "90 chai"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 260 : 18 = 70 vì 18 × 70 = 1 260. Vậy mỗi thùng có 70 chai.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia nhầm khi ước lượng thương",
+          "explanation": "18 × 60 = 1 080, còn thiếu 180 chai so với số đã cho."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân ngược số phần",
+          "explanation": "18 × 80 = 1 440, vượt quá 1 260 chai nên không phù hợp."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L185-E01",
+      "lesson_id": 185,
+      "concept_id": null,
+      "knowledge_tags": [
+        "quotient_zero",
+        "division_two_digit",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "2 184 : 21 bằng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-041/cau-03-thuong-co-so-0.png",
+            "alt_text": "Học sinh thực hiện phép chia dài với các nhóm đồ dùng học tập"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "104"
+        },
+        {
+          "key": "B",
+          "text": "114"
+        },
+        {
+          "key": "C",
+          "text": "94"
+        },
+        {
+          "key": "D",
+          "text": "140"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "21 × 104 = 21 × 100 + 21 × 4 = 2 100 + 84 = 2 184, nên 2 184 : 21 = 104. Chữ số 0 nằm ở giữa thương.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Không ghi chữ số 0 ở giữa thương",
+          "explanation": "Sau khi chia phần hàng trăm, cần ghi 0 ở hàng chục trước khi chia tiếp hàng đơn vị."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi vị trí chữ số trong thương",
+          "explanation": "Thương phải được ghi theo đúng giá trị hàng trăm, hàng chục và hàng đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L186-E01",
+      "lesson_id": 186,
+      "concept_id": null,
+      "knowledge_tags": [
+        "estimation",
+        "rounding_tens",
+        "multiplication_estimate"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105,
+          106
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Làm tròn các thừa số đến hàng chục rồi ước lượng 578 × 54.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-041/cau-04-uoc-luong.png",
+            "alt_text": "Học sinh so sánh các nhóm đồ vật để ước lượng tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "29 000"
+        },
+        {
+          "key": "B",
+          "text": "28 000"
+        },
+        {
+          "key": "C",
+          "text": "30 000"
+        },
+        {
+          "key": "D",
+          "text": "31 000"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "578 làm tròn đến hàng chục được 580, 54 làm tròn đến hàng chục được 50. Tích ước lượng là 580 × 50 = 29 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Làm tròn sai số 54",
+          "explanation": "54 gần 50 hơn 60 nên khi làm tròn đến hàng chục phải chọn 50."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Dùng tích chính xác thay cho tích ước lượng",
+          "explanation": "Câu hỏi yêu cầu làm tròn trước, không dùng ngay tích chính xác 578 × 54."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L187-E01",
+      "lesson_id": 187,
+      "concept_id": null,
+      "knowledge_tags": [
+        "expression_letters",
+        "substitution",
+        "operation_order"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          108,
+          109,
+          110
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Giá trị của biểu thức m + n × 3 với m = 5 và n = 4 là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-041/cau-05-bieu-thuc-chu.png",
+            "alt_text": "Học sinh thay các ô chữ bằng khối số màu trong biểu thức"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "17"
+        },
+        {
+          "key": "C",
+          "text": "27"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thay m = 5 và n = 4, ta có 5 + 4 × 3 = 5 + 12 = 17. Cần thực hiện phép nhân trước phép cộng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng trước rồi mới nhân",
+          "explanation": "Nếu cộng 5 + 4 trước sẽ ra 27, nhưng theo thứ tự thực hiện phải nhân trước."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua giá trị của chữ m",
+          "explanation": "Biểu thức gồm cả m và n × 3 nên phải thay và tính đủ hai phần."
+        }
+      ]
+    }
+  ]
+}

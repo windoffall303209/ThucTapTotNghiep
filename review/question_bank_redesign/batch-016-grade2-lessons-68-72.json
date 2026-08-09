@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L068-L072-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-068-072",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L068-E01",
+      "lesson_id": 68,
+      "concept_id": null,
+      "knowledge_tags": [
+        "represent_equal_sharing_as_division",
+        "identify_division_sign"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          15,
+          16
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 9 chiếc kẹo chia đều vào 3 hộp. Mỗi hộp có bao nhiêu chiếc kẹo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-016/cau-01-chin-keo-ba-hop.png",
+            "alt_text": "Chín chiếc kẹo được chia đều vào ba hộp, mỗi hộp có ba chiếc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 chiếc kẹo"
+        },
+        {
+          "key": "B",
+          "text": "3 chiếc kẹo"
+        },
+        {
+          "key": "C",
+          "text": "4 chiếc kẹo"
+        },
+        {
+          "key": "D",
+          "text": "6 chiếc kẹo"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia 9 chiếc kẹo thành 3 phần bằng nhau: 9 : 3 = 3. Mỗi hộp có 3 chiếc kẹo.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy số hộp làm kết quả",
+          "explanation": "Số hộp là 3; cần tìm số kẹo trong mỗi hộp nên phải chia 9 cho 3."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia nhầm thành bốn",
+          "explanation": "Chín chia ba bằng ba, không phải bốn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L069-E01",
+      "lesson_id": 69,
+      "concept_id": null,
+      "knowledge_tags": [
+        "calculate_basic_division",
+        "solve_equal_sharing_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          17,
+          18
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 8 quả táo xếp đều vào 2 giỏ. Mỗi giỏ có bao nhiêu quả táo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-016/cau-02-tam-qua-tao-hai-gio.png",
+            "alt_text": "Tám quả táo được xếp đều vào hai giỏ, mỗi giỏ có bốn quả"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 quả"
+        },
+        {
+          "key": "B",
+          "text": "3 quả"
+        },
+        {
+          "key": "C",
+          "text": "4 quả"
+        },
+        {
+          "key": "D",
+          "text": "6 quả"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ta tính 8 : 2 = 4. Mỗi giỏ có 4 quả táo.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy số giỏ làm kết quả",
+          "explanation": "Hai là số giỏ; cần tìm số táo trong mỗi giỏ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia chưa đều",
+          "explanation": "Tám quả chia đều vào hai giỏ thì mỗi giỏ có bốn quả."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L070-E01",
+      "lesson_id": 70,
+      "concept_id": null,
+      "knowledge_tags": [
+        "relate_multiplication_and_division",
+        "write_corresponding_division_facts"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          19,
+          20
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Biết 3 × 4 = 12. Phép chia nào dưới đây đúng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-016/cau-03-muoi-hai-chia-ba-bang-bon.png",
+            "alt_text": "Mười hai chấm tròn được chia thành ba nhóm bằng nhau, mỗi nhóm bốn chấm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 : 3 = 4"
+        },
+        {
+          "key": "B",
+          "text": "12 : 4 = 4"
+        },
+        {
+          "key": "C",
+          "text": "3 : 4 = 12"
+        },
+        {
+          "key": "D",
+          "text": "4 : 12 = 3"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Từ 3 × 4 = 12, ta có phép chia tương ứng 12 : 3 = 4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi nhầm số chia",
+          "explanation": "Số chia là 3 khi tìm số lượng trong mỗi nhóm của 3 nhóm bằng nhau."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt sai số bị chia",
+          "explanation": "Trong phép chia tương ứng, 12 là số bị chia và phải đứng trước dấu chia."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L071-E01",
+      "lesson_id": 71,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recall_division_table_2",
+        "calculate_division_by_2"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 16 chiếc bánh, chia đều vào các phần, mỗi phần 2 chiếc. Có mấy phần?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-016/cau-04-muoi-sau-banh-chia-doi.png",
+            "alt_text": "Mười sáu chiếc bánh được sắp thành tám cặp, mỗi cặp có hai chiếc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 phần"
+        },
+        {
+          "key": "B",
+          "text": "8 phần"
+        },
+        {
+          "key": "C",
+          "text": "10 phần"
+        },
+        {
+          "key": "D",
+          "text": "12 phần"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ta tính 16 : 2 = 8. Có 8 phần bánh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia thiếu hai phần",
+          "explanation": "Mười sáu chia đều thành các phần hai chiếc thì được tám phần."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm thừa hai phần",
+          "explanation": "8 × 2 = 16 nên kết quả đúng là 8 phần."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L072-E01",
+      "lesson_id": 72,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recall_division_table_5",
+        "calculate_division_by_5"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          23,
+          24
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 25 chiếc bút xếp đều vào 5 hộp. Mỗi hộp có bao nhiêu chiếc bút?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-016/cau-05-hai-lam-but-nam-hop.png",
+            "alt_text": "Hai mươi lăm chiếc bút được chia đều vào năm hộp, mỗi hộp có năm chiếc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 chiếc bút"
+        },
+        {
+          "key": "B",
+          "text": "4 chiếc bút"
+        },
+        {
+          "key": "C",
+          "text": "5 chiếc bút"
+        },
+        {
+          "key": "D",
+          "text": "6 chiếc bút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ta tính 25 : 5 = 5. Mỗi hộp có 5 chiếc bút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia thiếu hai chiếc bút mỗi hộp",
+          "explanation": "Năm hộp nhận đều 25 chiếc bút thì mỗi hộp nhận năm chiếc."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia nhầm kết quả",
+          "explanation": "Năm hộp nhận đều 25 chiếc bút nên 25 : 5 = 5, không phải 6."
+        }
+      ]
+    }
+  ]
+}

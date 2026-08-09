@@ -1,0 +1,337 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L241-L245-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-241-245",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L241-E01",
+      "lesson_id": 241,
+      "concept_id": null,
+      "knowledge_tags": [
+        "triangle_types",
+        "right_triangle",
+        "acute_obtuse_triangle"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          6,
+          7,
+          8
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một tam giác có một góc vuông. Tam giác đó được gọi là tam giác gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-053/cau-01-hinh-tam-giac.png",
+            "alt_text": "Ba tam giác có hình dạng nhọn, tù và vuông để minh họa phân loại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Tam giác nhọn"
+        },
+        {
+          "key": "B",
+          "text": "Tam giác tù"
+        },
+        {
+          "key": "C",
+          "text": "Tam giác vuông"
+        },
+        {
+          "key": "D",
+          "text": "Tam giác đều"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Tam giác có một góc vuông được gọi là tam giác vuông.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm góc vuông là góc nhọn",
+          "explanation": "Góc vuông có số đo 90 độ, không phải góc nhỏ hơn 90 độ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm theo số cạnh",
+          "explanation": "Tam giác đều được xác định bởi ba cạnh bằng nhau, không phải bởi một góc vuông."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L242-E01",
+      "lesson_id": 242,
+      "concept_id": null,
+      "knowledge_tags": [
+        "triangle_area",
+        "base_height",
+        "area_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          9,
+          10
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình tam giác có độ dài đáy 8 cm và chiều cao tương ứng 6 cm. Diện tích hình tam giác là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-053/cau-02-dien-tich-tam-giac.png",
+            "alt_text": "Tam giác nằm trên lưới với đáy và đường cao vuông góc được tô nổi bật"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "14 cm²"
+        },
+        {
+          "key": "B",
+          "text": "24 cm²"
+        },
+        {
+          "key": "C",
+          "text": "48 cm²"
+        },
+        {
+          "key": "D",
+          "text": "96 cm²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Diện tích hình tam giác là 8 × 6 : 2 = 24 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Quên chia cho 2",
+          "explanation": "Diện tích tam giác bằng một nửa tích của đáy và chiều cao."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng đáy và chiều cao",
+          "explanation": "Không cộng 8 với 6; cần nhân rồi chia cho 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L243-E01",
+      "lesson_id": 243,
+      "concept_id": null,
+      "knowledge_tags": [
+        "trapezoid",
+        "parallel_sides",
+        "trapezoid_height"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          11,
+          12,
+          13
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình thang là tứ giác có đặc điểm nào sau đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-053/cau-03-hinh-thang.png",
+            "alt_text": "Một hình thang được làm nổi bật giữa các hình phẳng và vật dụng quen thuộc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Có bốn cạnh bằng nhau"
+        },
+        {
+          "key": "B",
+          "text": "Có một cặp cạnh đối diện song song"
+        },
+        {
+          "key": "C",
+          "text": "Có hai đường chéo bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Có bốn góc vuông"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình thang là tứ giác có một cặp cạnh đối diện song song; cặp cạnh đó gọi là hai đáy.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm với hình thoi",
+          "explanation": "Bốn cạnh bằng nhau là đặc điểm của hình thoi, không phải điều kiện của hình thang."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm với hình chữ nhật",
+          "explanation": "Bốn góc vuông là đặc điểm của hình chữ nhật; hình thang chỉ cần một cặp cạnh đối diện song song."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L244-E01",
+      "lesson_id": 244,
+      "concept_id": null,
+      "knowledge_tags": [
+        "trapezoid_area",
+        "two_bases",
+        "area_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          14,
+          15
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình thang có hai đáy dài 6 cm và 10 cm, chiều cao 4 cm. Diện tích hình thang là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-053/cau-04-dien-tich-hinh-thang.png",
+            "alt_text": "Hình thang được tách thành hình chữ nhật và tam giác để minh họa công thức diện tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "16 cm²"
+        },
+        {
+          "key": "B",
+          "text": "24 cm²"
+        },
+        {
+          "key": "C",
+          "text": "32 cm²"
+        },
+        {
+          "key": "D",
+          "text": "64 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích hình thang là (6 + 10) × 4 : 2 = 32 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ dùng một đáy",
+          "explanation": "Cần cộng độ dài cả hai đáy trước khi nhân với chiều cao."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Quên chia cho 2",
+          "explanation": "Sau khi nhân tổng hai đáy với chiều cao phải chia kết quả cho 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L245-E01",
+      "lesson_id": 245,
+      "concept_id": null,
+      "knowledge_tags": [
+        "circle",
+        "radius",
+        "diameter"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          16,
+          17,
+          18
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình tròn có bán kính 5 cm. Đường kính của hình tròn đó dài bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-053/cau-05-hinh-tron-duong-tron.png",
+            "alt_text": "Hình tròn có một đoạn từ tâm ra mép và một đoạn đi qua tâm nối hai mép"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2,5 cm"
+        },
+        {
+          "key": "B",
+          "text": "5 cm"
+        },
+        {
+          "key": "C",
+          "text": "10 cm"
+        },
+        {
+          "key": "D",
+          "text": "25 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đường kính dài gấp hai lần bán kính nên 5 × 2 = 10 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đồng nhất bán kính và đường kính",
+          "explanation": "Bán kính chỉ là đoạn từ tâm đến đường tròn; đường kính dài gấp hai lần bán kính."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bình phương bán kính",
+          "explanation": "Tính đường kính bằng cách nhân bán kính với 2, không bình phương bán kính."
+        }
+      ]
+    }
+  ]
+}

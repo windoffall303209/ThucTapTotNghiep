@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L259-L261-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-259-261",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L259-E02",
+      "lesson_id": 259,
+      "concept_id": null,
+      "knowledge_tags": [
+        "pie_chart",
+        "percentage",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một biểu đồ quạt tròn cho biết Toán chiếm 30%, Tiếng Việt 25%, Khoa học 20% và Nghệ thuật 15%. Phần trăm dành cho các hoạt động khác là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-072/cau-01-bieu-do-quat.png",
+            "alt_text": "Biểu đồ quạt tròn gồm Toán 30 phần trăm, Tiếng Việt 25 phần trăm, Khoa học 20 phần trăm và Nghệ thuật 15 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5%"
+        },
+        {
+          "key": "B",
+          "text": "10%"
+        },
+        {
+          "key": "C",
+          "text": "15%"
+        },
+        {
+          "key": "D",
+          "text": "20%"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tổng các phần đã biết là 30% + 25% + 20% + 15% = 90%. Phần còn lại là 100% − 90% = 10%.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng thiếu một nhóm dữ liệu",
+          "explanation": "Cần cộng đủ bốn tỉ lệ 30%, 25%, 20% và 15%."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Lấy nhầm phần nhỏ nhất",
+          "explanation": "15% là tỉ lệ của Nghệ thuật, không phải phần còn lại."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Trừ sai tổng phần đã biết",
+          "explanation": "100% − 90% bằng 10%, không phải 20%."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L260-E02",
+      "lesson_id": 260,
+      "concept_id": null,
+      "knowledge_tags": [
+        "data_series",
+        "data_table",
+        "bar_chart",
+        "data_representation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          80,
+          81
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Bảng số liệu cho biết số quyển sách bốn bạn đọc trong tuần. Bạn nào đọc nhiều sách nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-072/cau-02-bang-so-lieu.png",
+            "alt_text": "Bảng số liệu Lan 5 quyển, Minh 8 quyển, Hoa 6 quyển và Nam 4 quyển"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Lan"
+        },
+        {
+          "key": "B",
+          "text": "Minh"
+        },
+        {
+          "key": "C",
+          "text": "Hoa"
+        },
+        {
+          "key": "D",
+          "text": "Nam"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "So sánh 5, 8, 6 và 4, số lớn nhất là 8. Vì Minh đọc 8 quyển nên Minh đọc nhiều sách nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đọc nhầm hàng đầu tiên",
+          "explanation": "Lan đọc 5 quyển, ít hơn 8 quyển của Minh."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "So sánh chưa hết các số liệu",
+          "explanation": "6 vẫn nhỏ hơn 8 nên Hoa không phải bạn đọc nhiều nhất."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn số nhỏ nhất",
+          "explanation": "Nam đọc 4 quyển, đây là số ít nhất chứ không phải nhiều nhất."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L261-E02",
+      "lesson_id": 261,
+      "concept_id": null,
+      "knowledge_tags": [
+        "repeated_outcome",
+        "simple_games",
+        "frequency"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          82,
+          83
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong 20 lần tung xúc xắc, mặt 1 xuất hiện 4 lần, mặt 2 xuất hiện 3 lần, mặt 3 xuất hiện 5 lần, mặt 4 xuất hiện 2 lần, mặt 5 xuất hiện 3 lần và mặt 6 xuất hiện 3 lần. Mặt nào xuất hiện nhiều nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-072/cau-03-tung-xuc-xac.png",
+            "alt_text": "Bảng kết quả 20 lần tung xúc xắc với số lần xuất hiện của sáu mặt"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Mặt 1"
+        },
+        {
+          "key": "B",
+          "text": "Mặt 2"
+        },
+        {
+          "key": "C",
+          "text": "Mặt 3"
+        },
+        {
+          "key": "D",
+          "text": "Mặt 6"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Các số lần xuất hiện lần lượt là 4, 3, 5, 2, 3 và 3. Số lớn nhất là 5 nên mặt 3 xuất hiện nhiều nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn mặt có số thứ tự nhỏ",
+          "explanation": "Cần so sánh số lần xuất hiện, không dựa vào số ghi trên mặt xúc xắc."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đọc nhầm số lần xuất hiện",
+          "explanation": "Mặt 2 chỉ xuất hiện 3 lần, ít hơn mặt 3 xuất hiện 5 lần."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn mặt cuối bảng",
+          "explanation": "Mặt 6 xuất hiện 3 lần, không phải số lớn nhất."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L246-L250-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-246-250",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L246-E01",
+      "lesson_id": 246,
+      "concept_id": null,
+      "knowledge_tags": [
+        "circle_circumference",
+        "diameter",
+        "pi_3_14"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          19,
+          20,
+          21
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bánh xe có đường kính 12 cm. Lấy 3,14 làm số pi. Chu vi bánh xe khoảng bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-054/cau-01-chu-vi-hinh-tron.png",
+            "alt_text": "Bánh xe hình tròn có đường kính đi qua tâm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "18,84 cm"
+        },
+        {
+          "key": "B",
+          "text": "37,68 cm"
+        },
+        {
+          "key": "C",
+          "text": "75,36 cm"
+        },
+        {
+          "key": "D",
+          "text": "144 cm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chu vi hình tròn bằng đường kính nhân với 3,14: 12 × 3,14 = 37,68 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhân bán kính với 3,14",
+          "explanation": "18,84 cm là kết quả của 6 × 3,14, trong đó 6 cm là bán kính chứ không phải đường kính."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân kết quả thêm hai lần",
+          "explanation": "Đã dùng đường kính 12 cm thì chỉ cần nhân 12 với 3,14 một lần."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L247-E01",
+      "lesson_id": 247,
+      "concept_id": null,
+      "knowledge_tags": [
+        "circle_area",
+        "radius",
+        "area_formula",
+        "pi_3_14"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          22,
+          23
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình tròn có bán kính 4 cm. Lấy 3,14 làm số pi. Diện tích hình tròn là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-054/cau-02-dien-tich-hinh-tron.png",
+            "alt_text": "Hình tròn có tâm, bán kính và phần bên trong được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12,56 cm²"
+        },
+        {
+          "key": "B",
+          "text": "25,12 cm²"
+        },
+        {
+          "key": "C",
+          "text": "50,24 cm²"
+        },
+        {
+          "key": "D",
+          "text": "100,48 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích hình tròn bằng bán kính nhân bán kính rồi nhân với 3,14: 4 × 4 × 3,14 = 50,24 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Dùng công thức chu vi",
+          "explanation": "25,12 cm² là 2 × 4 × 3,14; đó không phải công thức diện tích hình tròn."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân bán kính với bốn lần",
+          "explanation": "Cần lấy 4 × 4 × 3,14, không phải 4 × 4 × 4 × 3,14."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L248-E01",
+      "lesson_id": 248,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cylinder",
+        "solid_properties"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          27,
+          28,
+          29
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình trụ có đặc điểm nào sau đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-054/cau-03-hinh-tru.png",
+            "alt_text": "Hình trụ và hai mặt đáy hình tròn được minh họa riêng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Có sáu mặt đều là hình vuông"
+        },
+        {
+          "key": "B",
+          "text": "Có hai mặt đáy là hai hình tròn bằng nhau"
+        },
+        {
+          "key": "C",
+          "text": "Có một mặt đáy là hình tam giác"
+        },
+        {
+          "key": "D",
+          "text": "Có tám đỉnh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình trụ có hai mặt đáy là hai hình tròn có cùng bán kính.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm hình trụ với hình lập phương",
+          "explanation": "Sáu mặt đều là hình vuông là đặc điểm của hình lập phương."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Gán đỉnh cho hình trụ",
+          "explanation": "Hình trụ không có các đỉnh như hình hộp chữ nhật."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L249-E01",
+      "lesson_id": 249,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cylinder_net",
+        "nets"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          30,
+          31,
+          32
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hình khai triển của hình trụ, hai mặt đáy được biểu diễn bằng bộ phận nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-054/cau-04-hinh-khai-trien-hop.png",
+            "alt_text": "Một hình khai triển phẳng của hình hộp được minh họa bằng các mặt màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hai hình tròn bằng nhau"
+        },
+        {
+          "key": "B",
+          "text": "Hai hình vuông bằng nhau"
+        },
+        {
+          "key": "C",
+          "text": "Hai hình tam giác bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Một hình chữ nhật duy nhất"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hình trụ có hai mặt đáy là hai hình tròn bằng nhau, nên trong hình khai triển hai mặt đáy cũng được vẽ thành hai hình tròn bằng nhau.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm với mặt của hình lập phương",
+          "explanation": "Hình vuông là mặt của hình lập phương, không phải mặt đáy của hình trụ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ sót một mặt đáy",
+          "explanation": "Hình trụ có hai mặt đáy nên hình khai triển phải có hai hình tròn, không phải chỉ một hình chữ nhật."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L250-E01",
+      "lesson_id": 250,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangular_prism_surface_area",
+        "rectangular_prism_lateral_area"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          33,
+          34,
+          35
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 8 cm, chiều rộng 5 cm và chiều cao 3 cm. Diện tích toàn phần là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-054/cau-05-dien-tich-hop-chu-nhat.png",
+            "alt_text": "Hình hộp chữ nhật có sáu mặt được tô bằng các màu nhẹ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "78 cm²"
+        },
+        {
+          "key": "B",
+          "text": "118 cm²"
+        },
+        {
+          "key": "C",
+          "text": "158 cm²"
+        },
+        {
+          "key": "D",
+          "text": "240 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích toàn phần là 2 × (8 × 5 + 8 × 3 + 5 × 3) = 158 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ tính diện tích xung quanh",
+          "explanation": "78 cm² là diện tích xung quanh, còn diện tích toàn phần phải cộng thêm diện tích hai đáy."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên nhân đôi một phần diện tích",
+          "explanation": "Mỗi loại mặt xuất hiện hai lần nên cần nhân tổng ba tích với 2."
+        }
+      ]
+    }
+  ]
+}

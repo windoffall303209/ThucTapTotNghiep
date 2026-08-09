@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L386-L388-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-386-388",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L386-E01",
+      "lesson_id": 386,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_measurement",
+        "elapsed_time",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cuộc họp bắt đầu lúc 8 giờ 15 phút và kết thúc lúc 10 giờ 40 phút. Cuộc họp kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-069/cau-01-thoi-luong-cuoc-hop.png",
+            "alt_text": "Hai đồng hồ chỉ thời điểm bắt đầu 8 giờ 15 phút và kết thúc 10 giờ 40 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 15 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 25 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 35 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ 25 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 8 giờ 15 phút đến 10 giờ 15 phút là 2 giờ; từ 10 giờ 15 phút đến 10 giờ 40 phút là 25 phút. Tổng thời gian là 2 giờ 25 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "40 phút − 15 phút = 25 phút, không phải 15 phút."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm số phút",
+          "explanation": "Cần tính khoảng thời gian giữa hai mốc, không cộng 15 với 40."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi nhầm số giờ",
+          "explanation": "10 giờ 40 phút chưa cách 8 giờ 15 phút đến 3 giờ 25 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L387-E01",
+      "lesson_id": 387,
+      "concept_id": null,
+      "knowledge_tags": [
+        "probability",
+        "frequency",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 5 quả đỏ, 3 quả xanh và 2 quả xanh lá. Lấy ngẫu nhiên một quả. Màu nào có khả năng được lấy ra cao nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-069/cau-02-xac-suat-mau.png",
+            "alt_text": "Hộp có 5 quả đỏ, 3 quả xanh và 2 quả xanh lá"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Màu đỏ"
+        },
+        {
+          "key": "B",
+          "text": "Màu xanh"
+        },
+        {
+          "key": "C",
+          "text": "Màu xanh lá"
+        },
+        {
+          "key": "D",
+          "text": "Ba màu có khả năng như nhau"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong hộp, số quả đỏ là 5, nhiều hơn 3 quả xanh và 2 quả xanh lá. Vì vậy màu đỏ có khả năng được lấy ra cao nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ xét có màu trong hộp",
+          "explanation": "Khả năng cao hơn phụ thuộc vào số lượng quả của mỗi màu."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm màu có số lượng ít hơn",
+          "explanation": "2 quả xanh lá ít hơn 5 quả đỏ nên không có khả năng cao nhất."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ qua sự khác nhau về số lượng",
+          "explanation": "Các màu có số lượng khác nhau nên khả năng được lấy ra không bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L388-E01",
+      "lesson_id": 388,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "area",
+        "percentage",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn hình chữ nhật dài 30 m, rộng 20 m. Người ta trồng hoa trên 25% diện tích khu vườn. Diện tích phần còn lại là bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-069/cau-03-khu-vuon-phan-tram.png",
+            "alt_text": "Khu vườn dài 30 m, rộng 20 m, phần trồng hoa chiếm 25 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "150 m²"
+        },
+        {
+          "key": "B",
+          "text": "300 m²"
+        },
+        {
+          "key": "C",
+          "text": "450 m²"
+        },
+        {
+          "key": "D",
+          "text": "500 m²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích khu vườn là 30 × 20 = 600 m². Phần trồng hoa là 600 × 25 : 100 = 150 m². Phần còn lại là 600 − 150 = 450 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trả lời diện tích phần trồng hoa",
+          "explanation": "150 m² là phần trồng hoa, chưa phải phần diện tích còn lại."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính sai diện tích hình chữ nhật",
+          "explanation": "Diện tích phải là 30 × 20 = 600 m²."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Trừ sai phần trăm",
+          "explanation": "Phần còn lại chiếm 75% của 600 m², bằng 450 m²."
+        }
+      ]
+    }
+  ]
+}

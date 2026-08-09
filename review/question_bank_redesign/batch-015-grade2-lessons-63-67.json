@@ -1,0 +1,330 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L063-L067-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-063-067",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L063-E01",
+      "lesson_id": 63,
+      "concept_id": null,
+      "knowledge_tags": [
+        "represent_equal_groups_as_multiplication",
+        "read_multiplication_expression"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          5,
+          6
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 4 nhóm, mỗi nhóm có 2 quả táo. Phép nhân nào biểu diễn số quả táo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-015/cau-01-bon-nhom-hai-qua-tao.png",
+            "alt_text": "Bốn nhóm riêng biệt, mỗi nhóm có đúng hai quả táo"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 × 2"
+        },
+        {
+          "key": "B",
+          "text": "2 × 4"
+        },
+        {
+          "key": "C",
+          "text": "4 + 4"
+        },
+        {
+          "key": "D",
+          "text": "2 + 2"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Mỗi nhóm có 2 quả và có 4 nhóm nên phép nhân là 2 × 4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi thứ tự số trong mô hình nhóm",
+          "explanation": "Số quả trong mỗi nhóm đứng trước, số nhóm đứng sau: 2 × 4."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ cộng số nhóm",
+          "explanation": "Cần biểu diễn bốn nhóm có hai quả bằng phép nhân, không phải 4 + 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L064-E01",
+      "lesson_id": 64,
+      "concept_id": null,
+      "knowledge_tags": [
+        "calculate_basic_multiplication",
+        "equal_groups_multiplication",
+        "solve_one_step_multiplication_story"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          7,
+          8,
+          9
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 3 đĩa, mỗi đĩa có 4 chiếc bánh. Có tất cả bao nhiêu chiếc bánh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-015/cau-02-ba-dia-bon-chiec-banh.png",
+            "alt_text": "Ba đĩa riêng biệt, mỗi đĩa có đúng bốn chiếc bánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "10 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "12 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "14 chiếc"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 3 nhóm, mỗi nhóm 4 chiếc bánh nên 4 × 3 = 12 chiếc bánh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu hai chiếc bánh",
+          "explanation": "Cần tính đủ ba nhóm bốn chiếc: 4 + 4 + 4 = 12."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa hai chiếc bánh",
+          "explanation": "Ba nhóm bốn chiếc chỉ có 12 chiếc, không phải 14."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L065-E01",
+      "lesson_id": 65,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_factors",
+        "identify_product"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          10
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong phép tính 4 × 6 = 24, tích là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-015/cau-03-bon-nhom-sau-doi-tuong.png",
+            "alt_text": "Bốn nhóm bằng nhau, mỗi nhóm có sáu chấm tròn, biểu diễn một phép nhân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "10"
+        },
+        {
+          "key": "D",
+          "text": "24"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Trong phép nhân, kết quả của phép tính là tích. Vì vậy tích là 24.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm tích với thừa số thứ nhất",
+          "explanation": "Số 4 là thừa số thứ nhất, không phải tích."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm tích với thừa số thứ hai",
+          "explanation": "Số 6 là thừa số thứ hai, còn tích là kết quả 24."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L066-E01",
+      "lesson_id": 66,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recall_multiplication_table_2",
+        "solve_one_step_multiplication_story_by_2"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          11,
+          12
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 7 đôi tất. Mỗi đôi có 2 chiếc tất. Có tất cả bao nhiêu chiếc tất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-015/cau-04-bay-doi-tat.png",
+            "alt_text": "Bảy đôi tất riêng biệt, mỗi đôi gồm đúng hai chiếc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "14 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "16 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "18 chiếc"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Có 7 nhóm, mỗi nhóm 2 chiếc nên 2 × 7 = 14 chiếc tất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một đôi",
+          "explanation": "Bảy đôi tương ứng với bảy nhóm hai chiếc, tổng là 14 chiếc."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm thừa một đôi",
+          "explanation": "Chỉ có 7 đôi, không phải 8 đôi."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L067-E01",
+      "lesson_id": 67,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recall_multiplication_table_5",
+        "solve_one_step_multiplication_story_by_5"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 4 khay, mỗi khay có 5 chiếc bánh. Có tất cả bao nhiêu chiếc bánh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-015/cau-05-bon-khay-nam-chiec-banh.png",
+            "alt_text": "Bốn khay riêng biệt, mỗi khay có đúng năm chiếc bánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "15 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "20 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "25 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "30 chiếc"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Có 4 nhóm, mỗi nhóm 5 chiếc nên 5 × 4 = 20 chiếc bánh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một khay",
+          "explanation": "Cần tính đủ bốn khay, mỗi khay năm chiếc."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thừa một khay",
+          "explanation": "Bốn nhóm năm chiếc bằng 20 chiếc, không phải 25."
+        }
+      ]
+    }
+  ]
+}

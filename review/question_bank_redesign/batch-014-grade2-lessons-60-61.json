@@ -1,0 +1,328 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L060-L061-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-060-061",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L060-E01",
+      "lesson_id": 60,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_polyline",
+        "count_segments_in_polyline"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          87,
+          88
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đường gấp khúc ABCD gồm bao nhiêu đoạn thẳng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-014/cau-01-duong-gap-khuc-abcd-ba-doan.png",
+            "alt_text": "Một đường gấp khúc có bốn điểm nối tiếp và ba đoạn thẳng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 đoạn thẳng"
+        },
+        {
+          "key": "B",
+          "text": "3 đoạn thẳng"
+        },
+        {
+          "key": "C",
+          "text": "4 đoạn thẳng"
+        },
+        {
+          "key": "D",
+          "text": "5 đoạn thẳng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đường gấp khúc ABCD gồm AB, BC và CD, tức là 3 đoạn thẳng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một đoạn",
+          "explanation": "Có bốn điểm liên tiếp nên có ba đoạn nối giữa chúng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm cả điểm thành đoạn",
+          "explanation": "Điểm không phải là đoạn thẳng; chỉ có AB, BC và CD."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L060-E02",
+      "lesson_id": 60,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_straight_line",
+        "identify_collinear_points"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          87,
+          88
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Ba điểm A, B, C cùng nằm trên một đường nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-014/cau-02-ba-diem-tren-duong-thang.png",
+            "alt_text": "Ba điểm A, B, C nằm thẳng hàng trên cùng một đường thẳng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Đường thẳng"
+        },
+        {
+          "key": "B",
+          "text": "Đường cong"
+        },
+        {
+          "key": "C",
+          "text": "Đường gấp khúc"
+        },
+        {
+          "key": "D",
+          "text": "Hình tròn"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Ba điểm cùng nằm trên một đường thẳng nên chúng thẳng hàng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm đường cong với đường thẳng",
+          "explanation": "Đường cong không tạo thành một hàng thẳng của ba điểm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm đường gấp khúc",
+          "explanation": "Đường gấp khúc gồm nhiều đoạn nối đổi hướng, còn hình này là một đường thẳng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L060-E03",
+      "lesson_id": 60,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_curve"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          87,
+          88
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đường trong hình minh họa uốn lượn, không có đoạn gấp khúc. Đó là đường gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-014/cau-03-duong-cong-uon-luon.png",
+            "alt_text": "Một nét vẽ uốn lượn liên tục biểu diễn đường cong"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Đường thẳng"
+        },
+        {
+          "key": "B",
+          "text": "Đường cong"
+        },
+        {
+          "key": "C",
+          "text": "Đường gấp khúc"
+        },
+        {
+          "key": "D",
+          "text": "Đoạn thẳng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Nét uốn lượn liên tục là đường cong.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm nét cong với nét thẳng",
+          "explanation": "Đường thẳng không uốn lượn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm đường cong với đường gấp khúc",
+          "explanation": "Đường gấp khúc gồm các đoạn thẳng nối nhau, còn hình này uốn liên tục."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L061-E01",
+      "lesson_id": 61,
+      "concept_id": null,
+      "knowledge_tags": [
+        "sum_segment_lengths_in_polyline",
+        "calculate_polyline_length"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          89,
+          90
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đoạn AB dài 4 cm, đoạn BC dài 3 cm. Đường gấp khúc ABC dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-014/cau-04-duong-gap-khuc-bon-cm-ba-cm.png",
+            "alt_text": "Đường gấp khúc gồm đoạn thứ nhất dài bốn xăng-ti-mét và đoạn thứ hai dài ba xăng-ti-mét"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 cm"
+        },
+        {
+          "key": "B",
+          "text": "7 cm"
+        },
+        {
+          "key": "C",
+          "text": "8 cm"
+        },
+        {
+          "key": "D",
+          "text": "12 cm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Độ dài đường gấp khúc ABC là 4 + 3 = 7 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy hiệu hai độ dài",
+          "explanation": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn, không phải hiệu."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai hai số đo",
+          "explanation": "Bốn cộng ba bằng bảy xăng-ti-mét."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L061-E02",
+      "lesson_id": 61,
+      "concept_id": null,
+      "knowledge_tags": [
+        "sum_segment_lengths_in_polyline",
+        "read_length_unit_centimeter"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          89,
+          90
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong một đường gấp khúc có các đoạn dài 2 cm, 5 cm và 3 cm, đoạn dài nhất dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-014/cau-05-ba-doan-hai-nam-ba-cm.png",
+            "alt_text": "Một đường gấp khúc gồm ba đoạn liên tiếp có độ dài hai, năm và ba xăng-ti-mét"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 cm"
+        },
+        {
+          "key": "B",
+          "text": "3 cm"
+        },
+        {
+          "key": "C",
+          "text": "5 cm"
+        },
+        {
+          "key": "D",
+          "text": "10 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "So sánh 2 cm, 5 cm và 3 cm, ta thấy 5 cm là độ dài lớn nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn đoạn ngắn nhất",
+          "explanation": "Hai xăng-ti-mét là độ dài nhỏ nhất trong ba đoạn."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng tổng thay vì chọn đoạn",
+          "explanation": "Câu hỏi yêu cầu đoạn dài nhất, không yêu cầu tổng độ dài cả đường gấp khúc."
+        }
+      ]
+    }
+  ]
+}

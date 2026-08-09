@@ -1,0 +1,328 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L121-L125-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-121-125",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L121-E01",
+      "lesson_id": 121,
+      "concept_id": null,
+      "knowledge_tags": [
+        "liter_milliliter_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bình có 1 l nước. Có thể rót đầy bao nhiêu cốc, mỗi cốc 250 ml?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-027/cau-01-doi-1-lit-sang-mi-li-lit.png",
+            "alt_text": "Một chai dung tích lớn và một bình đo dung tích minh họa việc chia dung tích thành các phần bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 cốc"
+        },
+        {
+          "key": "B",
+          "text": "3 cốc"
+        },
+        {
+          "key": "C",
+          "text": "4 cốc"
+        },
+        {
+          "key": "D",
+          "text": "5 cốc"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đổi 1 l = 1 000 ml. Số cốc rót được là 1 000 : 250 = 4 cốc.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia thiếu một cốc",
+          "explanation": "250 × 4 = 1 000 nên bình rót đầy được 4 cốc."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn thương quá lớn",
+          "explanation": "250 × 5 = 1 250 ml, lớn hơn 1 l nên không thể rót 5 cốc đầy."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L122-E01",
+      "lesson_id": 122,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_temperature",
+        "degree_celsius"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nhiệt kế chỉ 35 °C. Nhiệt độ đó đọc là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-027/cau-02-nhiet-ke-35-do-c.png",
+            "alt_text": "Một nhiệt kế có vạch chia độ C và mức chất lỏng ở khoảng 35 độ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ba mươi lăm độ C"
+        },
+        {
+          "key": "B",
+          "text": "Ba mươi độ C"
+        },
+        {
+          "key": "C",
+          "text": "Ba mươi lăm mi-li-lít"
+        },
+        {
+          "key": "D",
+          "text": "Năm mươi ba độ C"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Số chỉ 35 và đơn vị °C được đọc là ba mươi lăm độ C.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua chữ số hàng đơn vị",
+          "explanation": "Số chỉ là 35, không phải 30."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm đơn vị đo",
+          "explanation": "Nhiệt độ dùng đơn vị độ C, không dùng mi-li-lít."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L123-E01",
+      "lesson_id": 123,
+      "concept_id": null,
+      "knowledge_tags": [
+        "right_angle",
+        "use_set_square"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một góc có hai cạnh vuông góc với nhau. Góc đó gọi là gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-027/cau-03-goc-vuong.png",
+            "alt_text": "Một góc dạng chữ L được kiểm tra bằng ê-ke"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Góc vuông"
+        },
+        {
+          "key": "B",
+          "text": "Góc không vuông"
+        },
+        {
+          "key": "C",
+          "text": "Đường thẳng"
+        },
+        {
+          "key": "D",
+          "text": "Đoạn thẳng"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Góc có hai cạnh vuông góc với nhau là góc vuông. Có thể dùng ê-ke để kiểm tra góc vuông.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Không nhận biết định nghĩa",
+          "explanation": "Hai cạnh vuông góc nhau là dấu hiệu của góc vuông."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm góc với đoạn thẳng",
+          "explanation": "Góc được tạo bởi hai tia chung đỉnh, không phải một đoạn thẳng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L124-E01",
+      "lesson_id": 124,
+      "concept_id": null,
+      "knowledge_tags": [
+        "quadrilateral_properties",
+        "count_vertices_sides_angles"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình nào có 4 đỉnh, 4 cạnh và 4 góc?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-027/cau-04-hinh-tu-giac.png",
+            "alt_text": "Một hình tứ giác đơn giản có bốn đỉnh và bốn cạnh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hình tam giác"
+        },
+        {
+          "key": "B",
+          "text": "Hình tứ giác"
+        },
+        {
+          "key": "C",
+          "text": "Hình tròn"
+        },
+        {
+          "key": "D",
+          "text": "Đoạn thẳng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình tứ giác có 4 đỉnh, 4 cạnh và 4 góc.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm số cạnh của hình tam giác",
+          "explanation": "Hình tam giác có 3 đỉnh và 3 cạnh, không phải 4."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn hình không có đỉnh",
+          "explanation": "Hình tròn không có các đỉnh và cạnh thẳng như hình tứ giác."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L125-E01",
+      "lesson_id": 125,
+      "concept_id": null,
+      "knowledge_tags": [
+        "triangle_perimeter",
+        "sum_side_lengths"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          106,
+          107
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình tam giác có độ dài ba cạnh lần lượt là 4 cm, 5 cm và 6 cm. Chu vi hình tam giác là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-027/cau-05-chu-vi-tam-giac.png",
+            "alt_text": "Một hình tam giác có ba cạnh được minh họa để tính tổng độ dài"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "9 cm"
+        },
+        {
+          "key": "B",
+          "text": "10 cm"
+        },
+        {
+          "key": "C",
+          "text": "14 cm"
+        },
+        {
+          "key": "D",
+          "text": "15 cm"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Chu vi hình tam giác bằng tổng độ dài ba cạnh: 4 + 5 + 6 = 15 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thiếu một cạnh",
+          "explanation": "Phải cộng đủ cả ba cạnh: 4 + 5 + 6."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng sai các số đo",
+          "explanation": "4 + 5 + 6 bằng 15, không phải 10."
+        }
+      ]
+    }
+  ]
+}

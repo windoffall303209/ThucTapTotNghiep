@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L380-L382-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-380-382",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L380-E01",
+      "lesson_id": 380,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "volume_conversion",
+        "decimal_multiplication",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          75,
+          76
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật dài 50 cm, rộng 20 cm, cao 30 cm. Thể tích của hình hộp bằng bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-067/cau-01-the-tich-hop-lit.png",
+            "alt_text": "Hình hộp chữ nhật có chiều dài 50 cm, chiều rộng 20 cm và chiều cao 30 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 lít"
+        },
+        {
+          "key": "B",
+          "text": "30 lít"
+        },
+        {
+          "key": "C",
+          "text": "300 lít"
+        },
+        {
+          "key": "D",
+          "text": "3 000 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thể tích là 50 × 20 × 30 = 30 000 cm³. Vì 1 000 cm³ = 1 lít nên 30 000 cm³ = 30 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Quên đổi từ xăng-ti-mét khối sang lít",
+          "explanation": "30 000 cm³ tương ứng với 30 lít, không phải 3 lít."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi đơn vị lớn hơn mười lần",
+          "explanation": "Cần chia 30 000 cho 1 000 để đổi sang lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm thể tích với số đo ban đầu",
+          "explanation": "Sau khi tính thể tích phải đổi theo quan hệ 1 000 cm³ = 1 lít."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L381-E01",
+      "lesson_id": 381,
+      "concept_id": null,
+      "knowledge_tags": [
+        "natural_number",
+        "number_place_value",
+        "natural_number_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị: 348 750 + 26 400 − 15 750.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-067/cau-02-phep-tinh-so-tu-nhien.png",
+            "alt_text": "Biểu thức 348 750 cộng 26 400 trừ 15 750"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "349 400"
+        },
+        {
+          "key": "B",
+          "text": "359 400"
+        },
+        {
+          "key": "C",
+          "text": "369 400"
+        },
+        {
+          "key": "D",
+          "text": "379 400"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "348 750 + 26 400 = 375 150; 375 150 − 15 750 = 359 400.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm hàng nghìn",
+          "explanation": "Cần đặt các chữ số thẳng hàng trước khi thực hiện phép trừ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm số hạng",
+          "explanation": "Tổng trước khi trừ là 375 150, không phải số lớn hơn 400 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thay vì trừ số cuối",
+          "explanation": "Sau phép cộng phải trừ 15 750 theo đúng dấu của biểu thức."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L382-E01",
+      "lesson_id": 382,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_addition",
+        "fraction_equivalence",
+        "fraction_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          88,
+          89
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3/4 + 5/8.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-067/cau-03-cong-phan-so.png",
+            "alt_text": "Hai phân số 3 phần 4 và 5 phần 8 cần cộng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 1/8"
+        },
+        {
+          "key": "B",
+          "text": "1 3/8"
+        },
+        {
+          "key": "C",
+          "text": "1 5/8"
+        },
+        {
+          "key": "D",
+          "text": "13/8"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Quy đồng 3/4 = 6/8. Khi đó 6/8 + 5/8 = 11/8 = 1 3/8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng thiếu phần nguyên",
+          "explanation": "11/8 lớn hơn 1 nên cần đổi thành 1 3/8."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai tử số sau khi quy đồng",
+          "explanation": "Sau khi đổi 3/4 thành 6/8, tử số phải là 6 + 5 = 11."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Không đổi phân số sang hỗn số",
+          "explanation": "13/8 không phải kết quả của phép cộng; tổng đúng là 11/8 = 1 3/8."
+        }
+      ]
+    }
+  ]
+}

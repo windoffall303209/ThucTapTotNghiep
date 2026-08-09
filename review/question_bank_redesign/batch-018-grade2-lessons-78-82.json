@@ -1,0 +1,328 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L078-L082-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-078-082",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L078-E01",
+      "lesson_id": 78,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_hundreds_tens_units",
+        "read_number_to_1000"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          47,
+          48
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số 706, chữ số hàng trăm là chữ số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-018/cau-01-so-706.png",
+            "alt_text": "Thẻ số 706 được trình bày rõ ba hàng trăm, chục và đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7"
+        },
+        {
+          "key": "B",
+          "text": "0"
+        },
+        {
+          "key": "C",
+          "text": "6"
+        },
+        {
+          "key": "D",
+          "text": "70"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong số 706, chữ số đứng ở hàng trăm là 7; chữ số 0 ở hàng chục và chữ số 6 ở hàng đơn vị.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chọn chữ số 0 ở hàng chục",
+          "explanation": "Chữ số 0 đứng ở hàng chục, không phải hàng trăm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn chữ số hàng đơn vị",
+          "explanation": "Chữ số 6 đứng ở hàng đơn vị; hàng trăm là chữ số đầu tiên từ trái sang."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L079-E01",
+      "lesson_id": 79,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_three_digit_number",
+        "write_three_digit_number"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          50
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số tạo bởi 6 trăm, 2 chục và 9 đơn vị là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-018/cau-02-so-629.png",
+            "alt_text": "Thẻ số 629 được tách theo 6 trăm, 2 chục và 9 đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "629"
+        },
+        {
+          "key": "B",
+          "text": "692"
+        },
+        {
+          "key": "C",
+          "text": "269"
+        },
+        {
+          "key": "D",
+          "text": "926"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "6 trăm, 2 chục và 9 đơn vị tạo thành số 629.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi vị trí hàng chục và hàng đơn vị",
+          "explanation": "2 là chữ số hàng chục và 9 là chữ số hàng đơn vị nên không viết thành 692."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt chữ số hàng trăm ở cuối",
+          "explanation": "Chữ số hàng trăm phải đứng đầu số, nên 6 phải đứng trước 2 và 9."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L080-E01",
+      "lesson_id": 80,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decompose_three_digit_number",
+        "read_place_value_table"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          51,
+          52
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 582 gồm những hàng nào dưới đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-018/cau-03-so-582.png",
+            "alt_text": "Thẻ số 582 được tách theo hàng trăm, hàng chục và hàng đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 trăm, 8 chục, 2 đơn vị"
+        },
+        {
+          "key": "B",
+          "text": "5 chục, 8 trăm, 2 đơn vị"
+        },
+        {
+          "key": "C",
+          "text": "5 trăm, 2 chục, 8 đơn vị"
+        },
+        {
+          "key": "D",
+          "text": "8 trăm, 5 chục, 2 đơn vị"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong số 582, 5 đứng ở hàng trăm, 8 đứng ở hàng chục và 2 đứng ở hàng đơn vị.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm hàng trăm và hàng chục",
+          "explanation": "Chữ số đầu tiên từ trái sang là hàng trăm, nên 5 trăm chứ không phải 5 chục."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi chữ số hàng chục và hàng đơn vị",
+          "explanation": "8 ở hàng chục còn 2 ở hàng đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L081-E01",
+      "lesson_id": 81,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_three_digit_numbers",
+        "use_place_value_to_compare"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          53,
+          54
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số nào lớn hơn trong hai số 496 và 469?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-018/cau-04-so-sanh-496-469.png",
+            "alt_text": "Hai thẻ số 496 và 469 đặt cạnh nhau để so sánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "496"
+        },
+        {
+          "key": "B",
+          "text": "469"
+        },
+        {
+          "key": "C",
+          "text": "Hai số bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Không so sánh được"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai số cùng có 4 trăm. So sánh hàng chục: 9 chục lớn hơn 6 chục nên 496 lớn hơn 469.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ nhìn chữ số hàng đơn vị",
+          "explanation": "Cần so sánh từ hàng trăm rồi đến hàng chục; hàng chục của 496 lớn hơn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua hàng chục",
+          "explanation": "Hai số khác nhau ở hàng chục nên không bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L082-E01",
+      "lesson_id": 82,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_without_regrouping_to_1000",
+        "calculate_column_addition"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          59,
+          60
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 243 + 125 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-018/cau-05-phep-cong-243-125.png",
+            "alt_text": "Phép cộng 243 và 125 được đặt theo đúng các hàng trăm, chục, đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "358"
+        },
+        {
+          "key": "B",
+          "text": "368"
+        },
+        {
+          "key": "C",
+          "text": "378"
+        },
+        {
+          "key": "D",
+          "text": "468"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Cộng theo từng hàng: 3 + 5 = 8 đơn vị, 4 + 2 = 6 chục, 2 + 1 = 3 trăm. Vậy 243 + 125 = 368.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng sai hàng chục",
+          "explanation": "Hàng chục là 4 + 2 = 6, không phải 5."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Ghép sai chữ số hàng trăm",
+          "explanation": "Hàng trăm là 2 + 1 = 3 nên kết quả phải bắt đầu bằng 3."
+        }
+      ]
+    }
+  ]
+}

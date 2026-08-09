@@ -1,0 +1,267 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L036-L039-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-036-039",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L036-E01",
+      "lesson_id": 36,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_two_digit_numbers_without_regrouping",
+        "model_two_digit_subtraction_without_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          141,
+          142
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 46 khối, bớt 12 khối. Còn lại bao nhiêu khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-009/cau-01-bon-muoi-sau-bot-muoi-hai.png",
+            "alt_text": "Ba thanh chục và bốn khối xanh còn lại; một thanh chục và hai khối đỏ được tách ra"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 khối"
+        },
+        {
+          "key": "B",
+          "text": "32 khối"
+        },
+        {
+          "key": "C",
+          "text": "34 khối"
+        },
+        {
+          "key": "D",
+          "text": "44 khối"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Sáu đơn vị bớt hai đơn vị còn bốn đơn vị; bốn chục bớt một chục còn ba chục. Vậy 46 − 12 = 34.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Trừ sai hàng đơn vị",
+          "explanation": "Sáu đơn vị bớt hai đơn vị còn bốn, không phải hai."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ trừ hàng đơn vị",
+          "explanation": "Cần bớt cả một chục và hai đơn vị khỏi 46."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L037-E01",
+      "lesson_id": 37,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_round_tens_from_two_digit_without_regrouping",
+        "model_mixed_place_value_subtraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          143,
+          144
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Từ 74, lấy đi 3 chục. Số còn lại là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-009/cau-02-bay-muoi-bon-bot-ba-chuc.png",
+            "alt_text": "Bốn thanh chục và bốn khối xanh còn lại; ba thanh chục đỏ được lấy đi"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "41"
+        },
+        {
+          "key": "B",
+          "text": "44"
+        },
+        {
+          "key": "C",
+          "text": "47"
+        },
+        {
+          "key": "D",
+          "text": "71"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Bảy chục bớt ba chục còn bốn chục; bốn đơn vị giữ nguyên. Vậy 74 − 30 = 44.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ ba ở hàng đơn vị",
+          "explanation": "Ba chục là 30 nên phải bớt ở hàng chục, không phải bớt 3 đơn vị."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ bớt ba đơn vị",
+          "explanation": "Cần lấy đi ba thanh chục, còn bốn thanh chục và bốn đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L038-E01",
+      "lesson_id": 38,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_next_day",
+        "order_days_of_week"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          149,
+          150
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hôm nay là thứ Tư. Ngày mai là thứ mấy?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-009/cau-03-ngay-mai-sau-thu-tu.png",
+            "alt_text": "Bạn nhỏ đang chỉ vào dải lịch một tuần gồm bảy tờ liên tiếp"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Thứ Ba"
+        },
+        {
+          "key": "B",
+          "text": "Thứ Năm"
+        },
+        {
+          "key": "C",
+          "text": "Thứ Sáu"
+        },
+        {
+          "key": "D",
+          "text": "Chủ nhật"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ngày đứng ngay sau thứ Tư là thứ Năm. Vì vậy ngày mai là thứ Năm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm ngày mai với hôm qua",
+          "explanation": "Thứ Ba đứng trước thứ Tư nên là hôm qua, không phải ngày mai."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhảy qua một ngày",
+          "explanation": "Sau thứ Tư là thứ Năm rồi mới đến thứ Sáu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L039-E01",
+      "lesson_id": 39,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_whole_hour",
+        "identify_clock_hands"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          151,
+          152,
+          153
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mai bắt đầu đọc sách vào thời điểm được vẽ trên đồng hồ. Mai bắt đầu đọc sách lúc mấy giờ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-009/cau-04-dong-ho-tam-gio.png",
+            "alt_text": "Bạn Mai đang đọc sách bên cạnh đồng hồ có kim dài chỉ số 12 và kim ngắn chỉ số 8"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 giờ"
+        },
+        {
+          "key": "B",
+          "text": "8 giờ"
+        },
+        {
+          "key": "C",
+          "text": "9 giờ"
+        },
+        {
+          "key": "D",
+          "text": "10 giờ"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Kim dài chỉ số 12 và kim ngắn chỉ số 8 nên đồng hồ chỉ 8 giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đọc lệch kim ngắn",
+          "explanation": "Kim ngắn đang chỉ đúng số 8, không phải số 7."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đọc nhầm kim dài",
+          "explanation": "Kim dài chỉ số 12 báo giờ đúng; cần đọc số mà kim ngắn chỉ vào."
+        }
+      ]
+    }
+  ]
+}

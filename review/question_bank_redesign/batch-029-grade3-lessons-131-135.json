@@ -1,0 +1,337 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L131-L135-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-131-135",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L131-E01",
+      "lesson_id": 131,
+      "concept_id": null,
+      "knowledge_tags": [
+        "roman_numerals",
+        "roman_numerals_to_20",
+        "read_write_roman_numerals"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          11,
+          12
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số XII được đọc là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-029/cau-01-doc-so-xii.png",
+            "alt_text": "Mặt đồng hồ minh họa các chữ số La Mã"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "14"
+        },
+        {
+          "key": "C",
+          "text": "15"
+        },
+        {
+          "key": "D",
+          "text": "20"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "X có giá trị 10, II có giá trị 2 nên XII là 12.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đọc nhầm XII thành XIV",
+          "explanation": "XII chỉ có hai chữ I sau X, không có chữ V."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm giá trị chữ V",
+          "explanation": "Số XV mới có giá trị 15; XII có giá trị 12."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L132-E01",
+      "lesson_id": 132,
+      "concept_id": null,
+      "knowledge_tags": [
+        "numbers_to_100000",
+        "read_five_digit_numbers",
+        "place_value_ten_thousands"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14,
+          15
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số gồm 4 chục nghìn, 2 nghìn, 5 trăm, 0 chục và 8 đơn vị là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-029/cau-02-tao-so-nam-chu-so.png",
+            "alt_text": "Các khối hàng chục nghìn, nghìn, trăm, chục và đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 258"
+        },
+        {
+          "key": "B",
+          "text": "42 508"
+        },
+        {
+          "key": "C",
+          "text": "42 580"
+        },
+        {
+          "key": "D",
+          "text": "45 208"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "4 chục nghìn là 40 000, 2 nghìn là 2 000, 5 trăm là 500, 0 chục và 8 đơn vị là 8. Tổng là 42 508.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt 8 vào hàng chục",
+          "explanation": "8 là chữ số hàng đơn vị nên phải đứng cuối số."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi chỗ hàng nghìn và hàng trăm",
+          "explanation": "2 thuộc hàng nghìn, còn 5 thuộc hàng trăm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L133-E01",
+      "lesson_id": 133,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decompose_five_digit_number",
+        "expanded_form_to_100000",
+        "place_value_table_five_digits"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          16,
+          17,
+          18
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 70 406 được viết thành tổng nào dưới đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-029/cau-03-phan-tich-so-70406.png",
+            "alt_text": "Bảng giá trị các hàng của một số có năm chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "70 000 + 4 000 + 6"
+        },
+        {
+          "key": "B",
+          "text": "7 000 + 400 + 6"
+        },
+        {
+          "key": "C",
+          "text": "70 000 + 400 + 6"
+        },
+        {
+          "key": "D",
+          "text": "70 000 + 40 + 6"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Số 70 406 gồm 7 chục nghìn, 0 nghìn, 4 trăm, 0 chục và 6 đơn vị nên bằng 70 000 + 400 + 6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đặt 4 ở hàng nghìn",
+          "explanation": "4 ở hàng trăm nên có giá trị 400, không phải 4 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đặt 4 ở hàng chục",
+          "explanation": "4 đứng ở hàng trăm trong số 70 406."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L134-E01",
+      "lesson_id": 134,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_numbers_to_100000",
+        "greater_less_equal"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          19,
+          20,
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Dấu thích hợp điền vào chỗ chấm là: 58 309 … 58 390",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-029/cau-04-so-sanh-hai-so.png",
+            "alt_text": "Hai thẻ số trống đặt cạnh nhau để minh họa việc so sánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": ">"
+        },
+        {
+          "key": "B",
+          "text": "<"
+        },
+        {
+          "key": "C",
+          "text": "="
+        },
+        {
+          "key": "D",
+          "text": "Không so sánh được"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hai số có cùng chữ số ở hàng chục nghìn, nghìn và trăm. So sánh hàng chục: 0 bé hơn 9 nên 58 309 < 58 390.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhìn số 309",
+          "explanation": "Cần so sánh từ hàng lớn nhất rồi đến các hàng tiếp theo, không thể kết luận ngược."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua hàng chục",
+          "explanation": "Hai số khác nhau ở hàng chục: 0 và 9."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L135-E01",
+      "lesson_id": 135,
+      "concept_id": null,
+      "knowledge_tags": [
+        "point_between_two_points",
+        "midpoint_of_segment",
+        "equal_segment_lengths"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          23,
+          24
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đoạn thẳng MN dài 10 cm. Điểm O nằm giữa M và N, MO = ON. Điểm O là gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-029/cau-05-trung-diem-doan-thang.png",
+            "alt_text": "Đoạn thẳng có một điểm nằm giữa và chia thành hai phần bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Điểm đầu mút của đoạn thẳng"
+        },
+        {
+          "key": "B",
+          "text": "Trung điểm của đoạn thẳng MN"
+        },
+        {
+          "key": "C",
+          "text": "Điểm nằm ngoài đoạn thẳng MN"
+        },
+        {
+          "key": "D",
+          "text": "Giao điểm của hai đường thẳng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "O nằm giữa M và N và MO bằng ON nên O là trung điểm của đoạn thẳng MN.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm điểm giữa với đầu mút",
+          "explanation": "M và N là hai đầu mút; O nằm ở giữa hai điểm đó."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Không kiểm tra điều kiện bằng nhau",
+          "explanation": "O nằm trên đoạn MN và chia đoạn thành hai phần bằng nhau nên không nằm ngoài đoạn."
+        }
+      ]
+    }
+  ]
+}

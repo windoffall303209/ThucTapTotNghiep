@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L380-L382-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-380-382",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L380-E04",
+      "lesson_id": 380,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "volume_conversion",
+        "decimal_multiplication",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          75,
+          76
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật dài 60 cm, rộng 20 cm, cao 15 cm. Thể tích của hình hộp bằng bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-087/cau-01-the-tich-lit.png",
+            "alt_text": "Hình hộp chữ nhật có chiều dài 60 cm, chiều rộng 20 cm và chiều cao 15 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 lít"
+        },
+        {
+          "key": "B",
+          "text": "18 lít"
+        },
+        {
+          "key": "C",
+          "text": "24 lít"
+        },
+        {
+          "key": "D",
+          "text": "30 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thể tích là 60 × 20 × 15 = 18 000 cm³ = 18 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân thiếu một kích thước",
+          "explanation": "Phải nhân đủ chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi cm³ sang lít sai",
+          "explanation": "18 000 cm³ bằng 18 lít vì 1 000 cm³ bằng 1 lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai phép nhân",
+          "explanation": "60 × 20 × 15 = 18 000 cm³, không phải 30 000 cm³."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L381-E03",
+      "lesson_id": 381,
+      "concept_id": null,
+      "knowledge_tags": [
+        "natural_number",
+        "number_place_value",
+        "natural_number_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị biểu thức: 725 000 − 38 450 + 6 700.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-087/cau-02-bieu-thuc.png",
+            "alt_text": "Biểu thức số tự nhiên 725 000 trừ 38 450 cộng 6 700"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "690 250"
+        },
+        {
+          "key": "B",
+          "text": "693 250"
+        },
+        {
+          "key": "C",
+          "text": "694 250"
+        },
+        {
+          "key": "D",
+          "text": "703 250"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tính từ trái sang phải: 725 000 − 38 450 = 686 550; 686 550 + 6 700 = 693 250.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ sai hàng đơn vị",
+          "explanation": "725 000 − 38 450 bằng 686 550, không phải 683 550."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai số hạng cuối",
+          "explanation": "686 550 + 6 700 = 693 250."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng trước khi trừ không đúng thứ tự",
+          "explanation": "Các phép cộng và trừ cùng thứ tự ưu tiên nên tính từ trái sang phải."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L382-E03",
+      "lesson_id": 382,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_addition",
+        "fraction_equivalence",
+        "fraction_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          88,
+          89
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 5/12 + 7/18.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-087/cau-03-cong-phan-so.png",
+            "alt_text": "Phép cộng hai phân số 5 phần 12 và 7 phần 18"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12/30"
+        },
+        {
+          "key": "B",
+          "text": "29/36"
+        },
+        {
+          "key": "C",
+          "text": "31/36"
+        },
+        {
+          "key": "D",
+          "text": "5/6"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Quy đồng mẫu số 36: 5/12 = 15/36 và 7/18 = 14/36. Tổng là 29/36.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng tử và mẫu trực tiếp",
+          "explanation": "Không cộng tử với tử và mẫu với mẫu; cần quy đồng mẫu số trước."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Quy đồng sai phân số thứ nhất",
+          "explanation": "5/12 = 15/36, không phải 17/36."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Quy đồng sai phân số thứ hai",
+          "explanation": "7/18 = 14/36 nên tổng là 29/36, không phải 5/6."
+        }
+      ]
+    }
+  ]
+}

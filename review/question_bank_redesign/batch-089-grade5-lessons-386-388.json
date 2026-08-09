@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L386-L388-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-386-388",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L386-E04",
+      "lesson_id": 386,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_measurement",
+        "elapsed_time",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chuyến tham quan bắt đầu lúc 9 giờ 25 phút và kết thúc lúc 12 giờ 10 phút. Chuyến tham quan kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-089/cau-01-thoi-gian.png",
+            "alt_text": "Timeline ghi thời điểm bắt đầu 9 giờ 25 phút và kết thúc 12 giờ 10 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 35 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 45 phút"
+        },
+        {
+          "key": "C",
+          "text": "3 giờ 05 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ 15 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 9 giờ 25 phút đến 11 giờ 25 phút là 2 giờ, rồi thêm 45 phút đến 12 giờ 10 phút. Vậy thời gian là 2 giờ 45 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "Cần tính từ 9 giờ 25 phút đến 10 giờ rồi tiếp tục đến 12 giờ 10 phút, không được trừ trực tiếp 25 cho 10."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi mốc giờ chưa đúng",
+          "explanation": "Từ 9 giờ 25 phút đến 12 giờ 25 phút là 3 giờ; kết thúc sớm 15 phút nên còn 2 giờ 45 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm 30 phút",
+          "explanation": "Sau 2 giờ từ 9 giờ 25 phút là 11 giờ 25 phút, còn 45 phút chứ không phải 1 giờ 15 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L387-E04",
+      "lesson_id": 387,
+      "concept_id": null,
+      "knowledge_tags": [
+        "probability",
+        "frequency",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 4 thẻ đỏ, 4 thẻ xanh và 1 thẻ vàng. Lấy ngẫu nhiên một thẻ. Hai màu nào có khả năng xuất hiện như nhau?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-089/cau-02-xac-suat-the.png",
+            "alt_text": "Hộp thẻ gồm 4 thẻ đỏ, 4 thẻ xanh và 1 thẻ vàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Màu đỏ và màu vàng"
+        },
+        {
+          "key": "B",
+          "text": "Màu xanh và màu vàng"
+        },
+        {
+          "key": "C",
+          "text": "Màu đỏ và màu xanh"
+        },
+        {
+          "key": "D",
+          "text": "Cả ba màu"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Màu đỏ và màu xanh đều có 4 thẻ nên khả năng được lấy ra là như nhau. Màu vàng chỉ có 1 thẻ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn màu có số thẻ không bằng nhau",
+          "explanation": "Màu đỏ có 4 thẻ nhưng màu vàng chỉ có 1 thẻ nên hai khả năng không bằng nhau."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm màu có ít thẻ",
+          "explanation": "Màu xanh có 4 thẻ, còn màu vàng có 1 thẻ; số lượng khác nhau."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho rằng mọi màu đều như nhau",
+          "explanation": "Muốn khả năng bằng nhau thì số thẻ của các màu phải bằng nhau; ở đây màu vàng chỉ có 1 thẻ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L388-E04",
+      "lesson_id": 388,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "area",
+        "percentage",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn hình chữ nhật dài 32 m, rộng 25 m. Người ta trồng hoa trên 35% diện tích khu vườn. Diện tích phần còn lại là bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-089/cau-03-dien-tich-phan-tram.png",
+            "alt_text": "Khu vườn hình chữ nhật dài 32 m, rộng 25 m, trồng hoa trên 35 phần trăm diện tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "280 m²"
+        },
+        {
+          "key": "B",
+          "text": "480 m²"
+        },
+        {
+          "key": "C",
+          "text": "520 m²"
+        },
+        {
+          "key": "D",
+          "text": "720 m²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích khu vườn là 32 × 25 = 800 m². Phần còn lại chiếm 100% − 35% = 65%, nên có diện tích 800 × 65 : 100 = 520 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính diện tích phần trồng hoa",
+          "explanation": "800 × 35 : 100 = 280 m² là phần trồng hoa, không phải phần còn lại."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính sai diện tích hình chữ nhật",
+          "explanation": "Diện tích khu vườn phải là 32 × 25 = 800 m² trước khi tính phần trăm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy nhầm 90% diện tích",
+          "explanation": "Phần còn lại là 100% − 35% = 65%, không phải 90%."
+        }
+      ]
+    }
+  ]
+}

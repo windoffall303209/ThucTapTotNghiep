@@ -1,0 +1,223 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L387-L389-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-387-389",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L387-E03",
+      "lesson_id": 387,
+      "concept_id": null,
+      "knowledge_tags": [
+        "probability",
+        "frequency",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 12 thẻ gồm 5 thẻ đỏ, 4 thẻ xanh và 3 thẻ vàng. Khi rút ngẫu nhiên 1 thẻ, màu nào có khả năng xuất hiện nhiều nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-080/cau-01-xac-suat-the-mau.png",
+            "alt_text": "Hộp có 12 thẻ gồm 5 thẻ đỏ, 4 thẻ xanh và 3 thẻ vàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Màu đỏ"
+        },
+        {
+          "key": "B",
+          "text": "Màu xanh"
+        },
+        {
+          "key": "C",
+          "text": "Màu vàng"
+        },
+        {
+          "key": "D",
+          "text": "Ba màu có khả năng như nhau"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Thẻ đỏ có 5 chiếc, nhiều hơn 4 thẻ xanh và 3 thẻ vàng nên màu đỏ có khả năng xuất hiện nhiều nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chọn màu đứng thứ hai về số lượng",
+          "explanation": "Màu xanh có 4 thẻ, ít hơn màu đỏ có 5 thẻ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn màu có số lượng ít nhất",
+          "explanation": "Màu vàng chỉ có 3 thẻ nên khả năng xuất hiện không lớn nhất."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho rằng các màu có khả năng bằng nhau",
+          "explanation": "Số thẻ mỗi màu khác nhau nên khả năng rút được mỗi màu cũng khác nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L388-E04",
+      "lesson_id": 388,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "area",
+        "percentage",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một mảnh vườn hình chữ nhật dài 20 m, rộng 15 m. Người ta trồng rau trên 40% diện tích. Diện tích trồng rau là bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-080/cau-02-phan-tram-vuon-rau.png",
+            "alt_text": "Mảnh vườn hình chữ nhật dài 20 m, rộng 15 m, phần trồng rau chiếm 40 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "80 m²"
+        },
+        {
+          "key": "B",
+          "text": "100 m²"
+        },
+        {
+          "key": "C",
+          "text": "120 m²"
+        },
+        {
+          "key": "D",
+          "text": "140 m²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích mảnh vườn là 20 × 15 = 300 m². Diện tích trồng rau là 300 × 40 : 100 = 120 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính sai 40 phần trăm",
+          "explanation": "40% của 300 là 120, không phải 80."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân nhầm chiều dài và chiều rộng",
+          "explanation": "20 × 15 = 300 m², sau đó mới tính 40% diện tích."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm phần diện tích còn lại",
+          "explanation": "Câu hỏi chỉ yêu cầu phần trồng rau, không phải toàn bộ hoặc phần còn lại."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E04",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cửa hàng bán 6 quyển vở, mỗi quyển giá 8 000 đồng. Hỏi phải trả bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-080/cau-03-tien-mua-vo.png",
+            "alt_text": "Sáu quyển vở, mỗi quyển có giá 8 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "14 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "40 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "48 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "56 000 đồng"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Số tiền phải trả là 8 000 × 6 = 48 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng nhầm số lượng với đơn giá",
+          "explanation": "Cần nhân đơn giá với số quyển, không cộng 6 với 8 000."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua một phần số lượng",
+          "explanation": "8 000 × 6 bằng 48 000, không phải 40 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân sai đơn giá",
+          "explanation": "Kết quả đúng của 8 000 × 6 là 48 000 đồng."
+        }
+      ]
+    }
+  ]
+}

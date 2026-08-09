@@ -1,0 +1,221 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L383-L385-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-383-385",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L383-E04",
+      "lesson_id": 383,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_subtraction",
+        "decimal_multiplication",
+        "decimal_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          90,
+          91
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị biểu thức: 14,6 − 2,4 × 3,5.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-088/cau-01-bieu-thuc-thap-phan.png",
+            "alt_text": "Biểu thức số thập phân 14,6 trừ 2,4 nhân 3,5"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8,4"
+        },
+        {
+          "key": "B",
+          "text": "6,2"
+        },
+        {
+          "key": "C",
+          "text": "12,2"
+        },
+        {
+          "key": "D",
+          "text": "42,7"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thực hiện phép nhân trước: 2,4 × 3,5 = 8,4. Sau đó 14,6 − 8,4 = 6,2.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ tính phép nhân",
+          "explanation": "8,4 mới là kết quả của phép nhân; cần thực hiện tiếp phép trừ với 14,6."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ tính phép trừ",
+          "explanation": "Cần tính phép nhân trước, không thể bỏ qua phần 2,4 × 3,5."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Không tuân thủ thứ tự phép tính",
+          "explanation": "Phải nhân trước rồi mới trừ, không được lấy 14,6 trừ 2,4 trước."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L384-E04",
+      "lesson_id": 384,
+      "concept_id": null,
+      "knowledge_tags": [
+        "ratio",
+        "percentage",
+        "percentage_of_quantity"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một vườn cây có 320 cây, trong đó 15% là cây cam. Có bao nhiêu cây cam?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-088/cau-02-phan-tram-cay-cam.png",
+            "alt_text": "Vườn có tổng cộng 320 cây, trong đó cây cam chiếm 15 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "32 cây"
+        },
+        {
+          "key": "B",
+          "text": "48 cây"
+        },
+        {
+          "key": "C",
+          "text": "64 cây"
+        },
+        {
+          "key": "D",
+          "text": "80 cây"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số cây cam là 320 × 15 : 100 = 48 cây.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính nhầm 10 phần trăm",
+          "explanation": "10% của 320 là 32; đề bài yêu cầu tính 15%."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tính nhầm 20 phần trăm",
+          "explanation": "20% của 320 là 64, không phải 15% của 320."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi sai phần trăm thành số lượng",
+          "explanation": "15% không đồng nghĩa với 80 cây; cần nhân 320 với 15 rồi chia 100."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L385-E04",
+      "lesson_id": 385,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangular_prism",
+        "volume",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          94,
+          95
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật dài 24 cm, rộng 15 cm và cao 8 cm. Thể tích hình hộp chữ nhật là bao nhiêu xăng-ti-mét khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-088/cau-03-the-tich-hinh-hop.png",
+            "alt_text": "Hình hộp chữ nhật có chiều dài 24 cm, chiều rộng 15 cm và chiều cao 8 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 400 cm³"
+        },
+        {
+          "key": "B",
+          "text": "2 880 cm³"
+        },
+        {
+          "key": "C",
+          "text": "3 200 cm³"
+        },
+        {
+          "key": "D",
+          "text": "3 600 cm³"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thể tích hình hộp chữ nhật là 24 × 15 × 8 = 2 880 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân sai ba kích thước",
+          "explanation": "Cần tính đúng 24 × 15 × 8; kết quả là 2 880 cm³."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua hoặc dùng sai một kích thước",
+          "explanation": "Thể tích phải sử dụng đủ chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính nhầm phép nhân",
+          "explanation": "24 × 15 = 360, sau đó 360 × 8 = 2 880, không phải 3 600."
+        }
+      ]
+    }
+  ]
+}

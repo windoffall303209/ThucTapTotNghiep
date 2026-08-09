@@ -1,0 +1,330 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L162-L166-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-162-166",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L162-E01",
+      "lesson_id": 162,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rounding_to_hundred_thousand",
+        "rounding_large_numbers"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          27,
+          28
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Làm tròn số 649 999 đến hàng trăm nghìn được số:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-036/cau-01-lam-tron.png",
+            "alt_text": "Tia số minh họa làm tròn đến hàng trăm nghìn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "600 000"
+        },
+        {
+          "key": "B",
+          "text": "650 000"
+        },
+        {
+          "key": "C",
+          "text": "700 000"
+        },
+        {
+          "key": "D",
+          "text": "649 000"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Chữ số hàng chục nghìn của 649 999 là 4, nhỏ hơn 5 nên giữ 6 ở hàng trăm nghìn và làm tròn được 600 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Làm tròn lên khi chữ số sau nhỏ hơn 5",
+          "explanation": "Chữ số hàng chục nghìn là 4 nên phải làm tròn xuống."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Làm tròn đến hàng chục nghìn",
+          "explanation": "650 000 không phải số tròn đến hàng trăm nghìn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L163-E01",
+      "lesson_id": 163,
+      "concept_id": null,
+      "knowledge_tags": [
+        "natural_numbers",
+        "successor_predecessor"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          32,
+          33
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Dãy nào dưới đây gồm ba số tự nhiên liên tiếp?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-036/cau-02-so-lien-sau.png",
+            "alt_text": "Tia số tự nhiên với các điểm liên tiếp"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2, 4, 6"
+        },
+        {
+          "key": "B",
+          "text": "18 998, 18 999, 19 000"
+        },
+        {
+          "key": "C",
+          "text": "100, 102, 103"
+        },
+        {
+          "key": "D",
+          "text": "7 050, 7 052, 7 053"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Trong dãy B, mỗi số đứng sau hơn số đứng trước 1 đơn vị: 18 998, 18 999, 19 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm dãy số chẵn với dãy liên tiếp",
+          "explanation": "Các số 2, 4, 6 hơn kém nhau 2 đơn vị."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua một số ở giữa",
+          "explanation": "100 và 102 không phải hai số tự nhiên liên tiếp."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L164-E01",
+      "lesson_id": 164,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_numeration",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          34,
+          35
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số 5 032 014, chữ số 3 có giá trị là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-036/cau-03-he-thap-phan.png",
+            "alt_text": "Bảng giá trị chữ số theo vị trí trong hệ thập phân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 000"
+        },
+        {
+          "key": "B",
+          "text": "30 000"
+        },
+        {
+          "key": "C",
+          "text": "300 000"
+        },
+        {
+          "key": "D",
+          "text": "3 000 000"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chữ số 3 ở hàng chục nghìn nên có giá trị 30 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm hàng nghìn với hàng chục nghìn",
+          "explanation": "Hàng nghìn là chữ số 2; chữ số 3 đứng ở hàng chục nghìn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm hàng trăm nghìn",
+          "explanation": "Hàng trăm nghìn của số là chữ số 0, còn 3 có giá trị 30 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L165-E01",
+      "lesson_id": 165,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mass_units",
+        "yen_ta_tan",
+        "unit_conversion_mass"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một xe chở 1 tấn hàng. Sau khi dỡ 250 kg, xe còn chở bao nhiêu ki-lô-gam hàng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-036/cau-04-doi-ta-kg.png",
+            "alt_text": "Các bao hàng minh họa đổi tấn và ki-lô-gam"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "650 kg"
+        },
+        {
+          "key": "B",
+          "text": "750 kg"
+        },
+        {
+          "key": "C",
+          "text": "850 kg"
+        },
+        {
+          "key": "D",
+          "text": "1 250 kg"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 tấn = 1 000 kg. Số hàng còn lại là 1 000 − 250 = 750 kg.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm 350 kg",
+          "explanation": "Cần đổi đúng 1 tấn thành 1 000 kg trước khi trừ 250 kg."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng số hàng đã dỡ",
+          "explanation": "Muốn tìm số còn lại phải thực hiện phép trừ, không phải phép cộng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L166-E01",
+      "lesson_id": 166,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_seconds",
+        "minute_second_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          38,
+          39
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một trò chơi kéo dài 2 phút 10 giây. Thời gian chơi là bao nhiêu giây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-036/cau-05-doi-phut-giay.png",
+            "alt_text": "Đồng hồ và đồng hồ bấm giây minh họa đổi phút sang giây"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "110 giây"
+        },
+        {
+          "key": "B",
+          "text": "120 giây"
+        },
+        {
+          "key": "C",
+          "text": "130 giây"
+        },
+        {
+          "key": "D",
+          "text": "210 giây"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "2 phút = 2 × 60 = 120 giây; 120 + 10 = 130 giây.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên cộng phần giây",
+          "explanation": "120 giây mới chỉ là 2 phút, cần cộng thêm 10 giây."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Ghép phút và giây như số tự nhiên",
+          "explanation": "Mỗi phút có 60 giây, không thể ghép 2 phút thành 200 giây."
+        }
+      ]
+    }
+  ]
+}

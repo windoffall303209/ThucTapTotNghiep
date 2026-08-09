@@ -1,0 +1,326 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L156-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-156",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L156-E01",
+      "lesson_id": 156,
+      "concept_id": null,
+      "knowledge_tags": [
+        "event_certain",
+        "random_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong hộp chỉ có những quả bóng màu đỏ. Lấy ngẫu nhiên một quả bóng trong hộp, sự kiện nào chắc chắn xảy ra?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-034/cau-01-bong-do.png",
+            "alt_text": "Hộp chứa các quả bóng cùng màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Lấy được bóng màu đỏ"
+        },
+        {
+          "key": "B",
+          "text": "Lấy được bóng màu xanh"
+        },
+        {
+          "key": "C",
+          "text": "Lấy được bóng màu vàng"
+        },
+        {
+          "key": "D",
+          "text": "Không lấy được quả bóng nào"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Vì trong hộp chỉ có bóng đỏ nên lấy một quả bóng chắc chắn được bóng đỏ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đoán màu không có trong hộp",
+          "explanation": "Không có bóng xanh trong hộp nên sự kiện này không thể xảy ra."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm thao tác lấy ngẫu nhiên với không lấy được",
+          "explanation": "Hộp có bóng nên khi lấy một quả chắc chắn lấy được một quả."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L156-E02",
+      "lesson_id": 156,
+      "concept_id": null,
+      "knowledge_tags": [
+        "event_possible",
+        "random_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99,
+          100
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có cả bóng xanh và bóng đỏ. Khi lấy một quả bóng, sự kiện nào có thể xảy ra?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-034/cau-02-bong-xanh-do.png",
+            "alt_text": "Hộp có các quả bóng màu xanh và đỏ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Lấy được bóng xanh"
+        },
+        {
+          "key": "B",
+          "text": "Lấy được bóng đỏ"
+        },
+        {
+          "key": "C",
+          "text": "Cả A và B đều đúng"
+        },
+        {
+          "key": "D",
+          "text": "Lấy được bóng không có màu"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Trong hộp có cả bóng xanh và bóng đỏ nên lấy được màu nào trong hai màu đều là sự kiện có thể xảy ra.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ chọn một khả năng",
+          "explanation": "Cả bóng xanh và bóng đỏ đều có trong hộp, không chỉ một màu là có thể xảy ra."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tạo ra màu không có trong dữ kiện",
+          "explanation": "Quả bóng được lấy phải là một trong các quả bóng có sẵn trong hộp."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L156-E03",
+      "lesson_id": 156,
+      "concept_id": null,
+      "knowledge_tags": [
+        "event_impossible",
+        "random_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp kín có ba thẻ ghi các số 2, 4 và 7. Rút một thẻ, sự kiện nào không thể xảy ra?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-034/cau-03-the-so.png",
+            "alt_text": "Các thẻ số được đặt trong một hộp kín"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Rút được thẻ ghi số 2"
+        },
+        {
+          "key": "B",
+          "text": "Rút được thẻ ghi số 4"
+        },
+        {
+          "key": "C",
+          "text": "Rút được thẻ ghi số 7"
+        },
+        {
+          "key": "D",
+          "text": "Rút được thẻ ghi số 5"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Trong hộp không có thẻ ghi số 5 nên không thể rút được thẻ đó.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua thẻ có sẵn",
+          "explanation": "Thẻ ghi số 2 nằm trong hộp nên rút được là sự kiện có thể xảy ra."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số lớn nhất là không thể rút",
+          "explanation": "Số 7 cũng là một trong ba số được ghi trên thẻ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L156-E04",
+      "lesson_id": 156,
+      "concept_id": null,
+      "knowledge_tags": [
+        "event_possible",
+        "random_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tung một đồng xu có hai mặt N và S một lần. Sự kiện nào có thể xảy ra?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-034/cau-04-tung-dong-xu.png",
+            "alt_text": "Một đồng xu có hai mặt khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Xu xuất hiện mặt N"
+        },
+        {
+          "key": "B",
+          "text": "Xu xuất hiện mặt S"
+        },
+        {
+          "key": "C",
+          "text": "Cả A và B đều có thể xảy ra"
+        },
+        {
+          "key": "D",
+          "text": "Xu xuất hiện đồng thời cả hai mặt"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đồng xu có hai mặt N và S nên sau một lần tung, mặt N hoặc mặt S đều có thể xuất hiện.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhận một mặt là có thể xảy ra",
+          "explanation": "Cả hai mặt của đồng xu đều có khả năng xuất hiện."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho rằng hai mặt cùng xuất hiện",
+          "explanation": "Một lần tung chỉ cho thấy một mặt ở phía trên."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L156-E05",
+      "lesson_id": 156,
+      "concept_id": null,
+      "knowledge_tags": [
+        "event_impossible",
+        "random_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99,
+          100
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một vòng xoay chỉ có ba phần màu đỏ, xanh và vàng. Khi quay một lần, sự kiện nào không thể xảy ra?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-034/cau-05-vong-xoay.png",
+            "alt_text": "Vòng xoay có ba phần màu khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Kim dừng ở phần màu đỏ"
+        },
+        {
+          "key": "B",
+          "text": "Kim dừng ở phần màu xanh"
+        },
+        {
+          "key": "C",
+          "text": "Kim dừng ở phần màu vàng"
+        },
+        {
+          "key": "D",
+          "text": "Kim dừng ở phần màu tím"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Vòng xoay không có phần màu tím nên kim không thể dừng ở màu tím.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua màu đã có trên vòng xoay",
+          "explanation": "Màu đỏ là một trong ba phần của vòng xoay nên có thể xảy ra."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm màu cuối danh sách là không thể xảy ra",
+          "explanation": "Màu vàng vẫn là một phần của vòng xoay nên kim có thể dừng ở đó."
+        }
+      ]
+    }
+  ]
+}

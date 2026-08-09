@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L091-L095-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-091-095",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L091-E01",
+      "lesson_id": 91,
+      "concept_id": null,
+      "knowledge_tags": [
+        "centimeter_to_millimeter",
+        "identify_millimeter"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đoạn dây dài 7 cm. Đoạn dây đó dài bao nhiêu mi-li-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-021/cau-01-doan-day-7cm.png",
+            "alt_text": "Một đoạn dây được đo và ghi độ dài 7 cm trên thước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "17 mm"
+        },
+        {
+          "key": "B",
+          "text": "70 mm"
+        },
+        {
+          "key": "C",
+          "text": "700 mm"
+        },
+        {
+          "key": "D",
+          "text": "7 mm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vì 1 cm = 10 mm nên 7 cm = 7 × 10 mm = 70 mm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Ghép sai số đo",
+          "explanation": "Đổi cm sang mm cần nhân với 10, không ghép thêm số 1."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Thừa một chữ số 0",
+          "explanation": "7 cm chỉ bằng 70 mm, không phải 700 mm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L092-E01",
+      "lesson_id": 92,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_3",
+        "solve_one_step_multiplication"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          17,
+          18
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mỗi hộp có 3 chiếc bút. 6 hộp như vậy có tất cả bao nhiêu chiếc bút?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-021/cau-02-6-hop-but.png",
+            "alt_text": "Sáu hộp bút giống nhau, mỗi hộp có ba chiếc bút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "9 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "12 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "18 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "21 chiếc"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 6 nhóm, mỗi nhóm 3 chiếc bút nên tính 3 × 6 = 18. Vậy có 18 chiếc bút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân nhầm 3 với 4",
+          "explanation": "Có 6 hộp nên phải dùng 3 × 6."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa một nhóm",
+          "explanation": "Sáu hộp tạo thành sáu nhóm, không phải bảy nhóm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L093-E01",
+      "lesson_id": 93,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_4",
+        "multiply_by_4"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          19,
+          20
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 28 là kết quả của phép nhân nào dưới đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-021/cau-03-bang-nhan-4.png",
+            "alt_text": "Bốn nhóm bằng nhau, mỗi nhóm có bảy chấm tròn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 × 7"
+        },
+        {
+          "key": "B",
+          "text": "4 × 6"
+        },
+        {
+          "key": "C",
+          "text": "3 × 9"
+        },
+        {
+          "key": "D",
+          "text": "5 × 5"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong bảng nhân 4, 4 × 7 = 28. Các phép tính còn lại có kết quả lần lượt là 24, 27 và 25.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm 4 × 6 với 4 × 7",
+          "explanation": "4 × 6 = 24, còn 4 × 7 mới bằng 28."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn phép nhân có tích gần đúng",
+          "explanation": "3 × 9 = 27, chưa bằng 28."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L094-E01",
+      "lesson_id": 94,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_6",
+        "multiply_by_6"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 6 × 8 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-021/cau-04-phep-nhan-6-8.png",
+            "alt_text": "Tám nhóm, mỗi nhóm có sáu chấm tròn, minh họa phép nhân 6 × 8"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "42"
+        },
+        {
+          "key": "B",
+          "text": "48"
+        },
+        {
+          "key": "C",
+          "text": "54"
+        },
+        {
+          "key": "D",
+          "text": "56"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Theo bảng nhân 6, 6 × 8 = 48.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 6 × 7",
+          "explanation": "6 × 7 = 42; tăng thêm một nhóm 6 thì 6 × 8 = 48."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhớ nhầm 6 × 9",
+          "explanation": "6 × 9 = 54, không phải tích cần tìm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L095-E01",
+      "lesson_id": 95,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_to_increase_by_factor",
+        "solve_one_step_multiplication"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          23,
+          24
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một sợi dây dài 5 cm. Sợi dây thứ hai dài gấp 3 lần sợi dây thứ nhất. Sợi dây thứ hai dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-021/cau-05-day-gap-3-lan.png",
+            "alt_text": "Một đoạn dây ngắn dài 5 cm và đoạn dây thứ hai dài gấp ba lần"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 cm"
+        },
+        {
+          "key": "B",
+          "text": "10 cm"
+        },
+        {
+          "key": "C",
+          "text": "15 cm"
+        },
+        {
+          "key": "D",
+          "text": "20 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Muốn gấp một số lên 3 lần, ta lấy số đó nhân với 3: 5 × 3 = 15 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng thêm 3",
+          "explanation": "Gấp 3 lần là nhân với 3, không phải cộng thêm 3."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân nhầm với 4",
+          "explanation": "Đề bài yêu cầu gấp 3 lần nên phép tính là 5 × 3."
+        }
+      ]
+    }
+  ]
+}

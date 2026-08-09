@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L198-L202-20260808-R1",
+  "curriculum_scope_id": "grade-4-lessons-198-202",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L198-E01",
+      "lesson_id": 198,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rhombus",
+        "equal_sides",
+        "quadrilateral"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          32,
+          33
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình thoi luôn có mấy cạnh dài bằng nhau?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-044/cau-01-hinh-thoi.png",
+            "alt_text": "Các hình thoi nhiều màu với bốn cạnh được thể hiện rõ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 cạnh"
+        },
+        {
+          "key": "B",
+          "text": "4 cạnh"
+        },
+        {
+          "key": "C",
+          "text": "3 cạnh"
+        },
+        {
+          "key": "D",
+          "text": "1 cạnh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình thoi là tứ giác có bốn cạnh bằng nhau.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm với hai cặp cạnh đối diện",
+          "explanation": "Hình thoi có bốn cạnh bằng nhau, không chỉ hai cạnh."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số cạnh của tứ giác",
+          "explanation": "Tứ giác luôn có bốn cạnh."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L199-E01",
+      "lesson_id": 199,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_meter",
+        "area_unit",
+        "unit_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          34,
+          35
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "1 m² bằng bao nhiêu dm²?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-044/cau-02-met-vuong.png",
+            "alt_text": "Một hình vuông lớn được chia thành các ô vuông nhỏ đều nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "10 dm²"
+        },
+        {
+          "key": "B",
+          "text": "100 dm²"
+        },
+        {
+          "key": "C",
+          "text": "1 000 dm²"
+        },
+        {
+          "key": "D",
+          "text": "10 000 dm²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vì 1 m = 10 dm nên 1 m² = 10 × 10 = 100 dm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi đơn vị độ dài thay vì diện tích",
+          "explanation": "Với đơn vị diện tích, hệ số đổi được nhân hai lần: 10 × 10."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thêm một chữ số 0",
+          "explanation": "Chỉ cần tính 10 × 10, kết quả là 100."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L200-E01",
+      "lesson_id": 200,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_decimeter",
+        "area_unit",
+        "unit_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một tấm bìa có diện tích 3 dm². Diện tích tấm bìa đó bằng bao nhiêu cm²?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-044/cau-03-de-xi-met-vuong.png",
+            "alt_text": "Một hình vuông đề-xi-mét được phóng to với các ô vuông xăng-ti-mét"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30 cm²"
+        },
+        {
+          "key": "B",
+          "text": "300 cm²"
+        },
+        {
+          "key": "C",
+          "text": "3 000 cm²"
+        },
+        {
+          "key": "D",
+          "text": "3 cm²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 dm² = 100 cm² nên 3 dm² = 3 × 100 = 300 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi diện tích như đơn vị độ dài",
+          "explanation": "Mỗi dm² bằng 100 cm², không phải 10 cm²."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thừa một chữ số 0",
+          "explanation": "3 × 100 bằng 300, không phải 3 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L201-E01",
+      "lesson_id": 201,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_millimeter",
+        "area_unit",
+        "unit_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          38,
+          39
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một ô vuông có diện tích 4 cm². Diện tích ô vuông đó bằng bao nhiêu mm²?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-044/cau-04-mi-li-met-vuong.png",
+            "alt_text": "Một hình vuông xăng-ti-mét được phóng to thành lưới các ô vuông mi-li-mét"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "40 mm²"
+        },
+        {
+          "key": "B",
+          "text": "400 mm²"
+        },
+        {
+          "key": "C",
+          "text": "4 000 mm²"
+        },
+        {
+          "key": "D",
+          "text": "4 mm²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 cm² = 100 mm² nên 4 cm² = 4 × 100 = 400 mm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi diện tích như đơn vị độ dài",
+          "explanation": "Mỗi cm² bằng 100 mm², không phải 10 mm²."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thừa một chữ số 0",
+          "explanation": "4 × 100 bằng 400, không phải 4 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L202-E01",
+      "lesson_id": 202,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_same_denominator_fractions",
+        "fraction_addition",
+        "same_denominator"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          48,
+          49
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 2/7 + 3/7 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-044/cau-05-cong-cung-mau.png",
+            "alt_text": "Hai dải giấy được chia thành các phần bằng nhau và ghép lại để minh họa phép cộng phân số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5/7"
+        },
+        {
+          "key": "B",
+          "text": "5/14"
+        },
+        {
+          "key": "C",
+          "text": "6/7"
+        },
+        {
+          "key": "D",
+          "text": "1"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai phân số cùng mẫu số nên cộng các tử số và giữ nguyên mẫu số: 2/7 + 3/7 = (2 + 3)/7 = 5/7.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng cả tử số và mẫu số",
+          "explanation": "Khi cộng phân số cùng mẫu số, giữ nguyên mẫu số và chỉ cộng các tử số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm tử số",
+          "explanation": "2 + 3 = 5, không phải 6."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L141-L145-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-141-145",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L141-E01",
+      "lesson_id": 141,
+      "concept_id": null,
+      "knowledge_tags": [
+        "addition_to_100000",
+        "column_addition",
+        "addition_with_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          53,
+          54
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 36 425 + 12 318 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-031/cau-01-phep-cong.png",
+            "alt_text": "Phép cộng đặt tính theo cột"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "48 643"
+        },
+        {
+          "key": "B",
+          "text": "48 743"
+        },
+        {
+          "key": "C",
+          "text": "49 743"
+        },
+        {
+          "key": "D",
+          "text": "47 743"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Cộng theo từng hàng: 36 425 + 12 318 = 48 743.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng sai hàng chục",
+          "explanation": "5 chục cộng 1 chục bằng 6 chục, không làm thay đổi hàng trăm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thừa một nghìn",
+          "explanation": "Tổng hàng nghìn là 8 nghìn sau khi cộng đúng các hàng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L142-E01",
+      "lesson_id": 142,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtraction_to_100000",
+        "column_subtraction",
+        "subtraction_with_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55,
+          56
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 52 000 − 18 745 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-031/cau-02-phep-tru.png",
+            "alt_text": "Phép trừ đặt tính theo cột có thao tác nhớ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "33 155"
+        },
+        {
+          "key": "B",
+          "text": "33 255"
+        },
+        {
+          "key": "C",
+          "text": "34 255"
+        },
+        {
+          "key": "D",
+          "text": "34 155"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đặt tính rồi trừ theo từng hàng: 52 000 − 18 745 = 33 255.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ sai hàng đơn vị",
+          "explanation": "Khi mượn ở các hàng liên tiếp, hàng đơn vị phải tính 10 − 5 = 5."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Quên giảm hàng chục nghìn",
+          "explanation": "Sau khi mượn, cần thực hiện đúng các bước ở hàng nghìn và hàng trăm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L143-E01",
+      "lesson_id": 143,
+      "concept_id": null,
+      "knowledge_tags": [
+        "vietnamese_currency",
+        "money_total",
+        "money_change"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          57,
+          58
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Lan có 100 000 đồng. Lan mua một quyển vở giá 24 000 đồng và một hộp bút giá 18 000 đồng. Lan còn lại bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-031/cau-03-tien-con-lai.png",
+            "alt_text": "Các tờ tiền Việt Nam và đồ dùng học tập"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "58 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "76 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "42 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "82 000 đồng"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Số tiền đã mua là 24 000 + 18 000 = 42 000 đồng. Số tiền còn lại là 100 000 − 42 000 = 58 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tính tiền đã chi thay vì tiền còn lại",
+          "explanation": "42 000 đồng là số tiền đã mua, cần trừ khỏi 100 000 đồng để tìm tiền còn lại."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ trừ một món hàng",
+          "explanation": "Phải trừ cả giá quyển vở và hộp bút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L144-E01",
+      "lesson_id": 144,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_by_one_digit_no_carry",
+        "column_multiplication",
+        "multiplication_to_100000"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          59,
+          60
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3 214 × 2 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-031/cau-04-nhan-khong-nho.png",
+            "alt_text": "Phép nhân số có nhiều chữ số với một chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 218"
+        },
+        {
+          "key": "B",
+          "text": "6 428"
+        },
+        {
+          "key": "C",
+          "text": "6 438"
+        },
+        {
+          "key": "D",
+          "text": "6 628"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Nhân lần lượt từng hàng với 2: 3 214 × 2 = 6 428.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân sai hàng chục",
+          "explanation": "1 chục nhân 2 bằng 2 chục, không phải 1 chục."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi chỗ chữ số",
+          "explanation": "Giữ nguyên thứ tự các hàng nghìn, trăm, chục và đơn vị sau khi nhân."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L145-E01",
+      "lesson_id": 145,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_by_one_digit_with_carry",
+        "column_multiplication_carry",
+        "multiplication_to_100000"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          61,
+          62,
+          63,
+          64
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 1 326 × 3 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-031/cau-05-nhan-co-nho.png",
+            "alt_text": "Phép nhân có nhớ với số có một chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 878"
+        },
+        {
+          "key": "B",
+          "text": "3 978"
+        },
+        {
+          "key": "C",
+          "text": "3 988"
+        },
+        {
+          "key": "D",
+          "text": "4 078"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "6 × 3 = 18 viết 8 nhớ 1; 2 × 3 + 1 = 7; 3 × 3 = 9; 1 × 3 = 3. Kết quả là 3 978.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Quên nhớ 1",
+          "explanation": "Khi nhân 6 với 3 được 18, phải nhớ 1 sang hàng chục."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhớ sai sang hàng nghìn",
+          "explanation": "Chỉ nhớ 1 từ hàng đơn vị sang hàng chục, không cộng thêm vào hàng nghìn."
+        }
+      ]
+    }
+  ]
+}

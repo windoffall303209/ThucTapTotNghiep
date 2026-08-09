@@ -1,0 +1,221 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L384-L386-20260808-R2",
+  "curriculum_scope_id": "grade-5-lessons-384-386",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L384-E02",
+      "lesson_id": 384,
+      "concept_id": null,
+      "knowledge_tags": [
+        "ratio",
+        "percentage",
+        "percentage_of_quantity"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một thư viện có 240 quyển sách, trong đó 25% là truyện tranh. Có bao nhiêu quyển sách truyện tranh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-079/cau-01-phan-tram-sach.png",
+            "alt_text": "Thư viện có tổng số 240 quyển sách, truyện tranh chiếm 25 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "50 quyển"
+        },
+        {
+          "key": "B",
+          "text": "60 quyển"
+        },
+        {
+          "key": "C",
+          "text": "75 quyển"
+        },
+        {
+          "key": "D",
+          "text": "80 quyển"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số sách truyện tranh là 240 × 25 : 100 = 60 quyển.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính sai 25 phần trăm",
+          "explanation": "25% của 240 là 60, không phải 50."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Lấy nhầm 30 phần trăm",
+          "explanation": "Cần nhân với 25 rồi chia 100, không lấy 75 quyển."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm phần trăm với số lượng",
+          "explanation": "25% không đồng nghĩa với 80 quyển; cần tính 240 × 25 : 100."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L385-E02",
+      "lesson_id": 385,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangular_prism",
+        "volume",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          94,
+          95
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật dài 30 cm, rộng 18 cm, cao 10 cm. Thể tích là bao nhiêu xăng-ti-mét khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-079/cau-02-the-tich-hinh-hop.png",
+            "alt_text": "Hình hộp chữ nhật có chiều dài 30 cm, chiều rộng 18 cm và chiều cao 10 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 800 cm³"
+        },
+        {
+          "key": "B",
+          "text": "3 600 cm³"
+        },
+        {
+          "key": "C",
+          "text": "5 400 cm³"
+        },
+        {
+          "key": "D",
+          "text": "5 800 cm³"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích hình hộp chữ nhật là 30 × 18 × 10 = 5 400 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhân hai kích thước",
+          "explanation": "Thể tích cần nhân đủ chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua chiều cao",
+          "explanation": "30 × 18 = 540 là diện tích đáy; phải nhân tiếp với 10."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai phép nhân",
+          "explanation": "30 × 18 = 540, sau đó 540 × 10 = 5 400."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L386-E03",
+      "lesson_id": 386,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_measurement",
+        "elapsed_time",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cuộc hoạt động bắt đầu lúc 7 giờ 50 phút và kết thúc lúc 11 giờ 05 phút. Hoạt động kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-079/cau-03-thoi-gian-hoat-dong.png",
+            "alt_text": "Timeline ghi thời điểm bắt đầu 7 giờ 50 phút và kết thúc 11 giờ 05 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 45 phút"
+        },
+        {
+          "key": "B",
+          "text": "3 giờ 05 phút"
+        },
+        {
+          "key": "C",
+          "text": "3 giờ 15 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ 25 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Từ 7 giờ 50 phút đến 10 giờ 50 phút là 3 giờ, thêm 15 phút đến 11 giờ 05 phút. Vậy thời gian là 3 giờ 15 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số giờ",
+          "explanation": "Cần đổi qua mốc 10 giờ 50 phút rồi mới cộng 15 phút."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Không bù đủ số phút",
+          "explanation": "Từ 7 giờ 50 phút đến 11 giờ 05 phút gồm 3 giờ và 15 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa 10 phút",
+          "explanation": "Sau 3 giờ từ 7 giờ 50 phút là 10 giờ 50 phút, còn 15 phút nữa."
+        }
+      ]
+    }
+  ]
+}

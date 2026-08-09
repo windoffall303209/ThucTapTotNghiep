@@ -1,0 +1,333 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L101-L105-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-101-105",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L101-E01",
+      "lesson_id": 101,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_4",
+        "equal_sharing",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          41,
+          42
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 32 viên bi chia đều vào 4 hộp. Mỗi hộp có bao nhiêu viên bi?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-023/cau-01-chia-32-vien-bi.png",
+            "alt_text": "Ba mươi hai viên bi và bốn hộp giống nhau dùng để chia đều"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 viên"
+        },
+        {
+          "key": "B",
+          "text": "8 viên"
+        },
+        {
+          "key": "C",
+          "text": "9 viên"
+        },
+        {
+          "key": "D",
+          "text": "12 viên"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia đều 32 viên bi vào 4 hộp, ta tính 32 : 4 = 8. Mỗi hộp có 8 viên bi.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 24 : 4",
+          "explanation": "24 : 4 = 6; số viên bi trong bài là 32."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia nhầm cho số khác",
+          "explanation": "Có 4 hộp nên phải chia 32 cho 4, không phải cho số khác."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L102-E01",
+      "lesson_id": 102,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_6",
+        "solve_one_step_division",
+        "equal_sharing"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          43,
+          44
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cuộn ruy-băng dài 54 cm được cắt thành 6 đoạn bằng nhau. Mỗi đoạn dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-023/cau-02-ruy-bang-54cm.png",
+            "alt_text": "Một cuộn ruy-băng dài và sáu đoạn ruy-băng bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 cm"
+        },
+        {
+          "key": "B",
+          "text": "8 cm"
+        },
+        {
+          "key": "C",
+          "text": "9 cm"
+        },
+        {
+          "key": "D",
+          "text": "10 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Cắt đều 54 cm thành 6 đoạn, ta tính 54 : 6 = 9. Mỗi đoạn dài 9 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 42 : 6",
+          "explanation": "42 : 6 = 7; số đo cần chia trong bài là 54 cm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng nhầm số đo",
+          "explanation": "Cần chia 54 cho 6 vì các đoạn có độ dài bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L103-E01",
+      "lesson_id": 103,
+      "concept_id": null,
+      "knowledge_tags": [
+        "divide_to_decrease_by_factor",
+        "identify_decrease_times",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          45,
+          46
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đoạn dây dài 36 cm. Nếu giảm độ dài đoạn dây đi 6 lần thì đoạn dây còn dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-023/cau-03-day-giam-6-lan-v2.png",
+            "alt_text": "Một thanh dài chia thành sáu phần bằng nhau và một thanh ngắn bằng một phần"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 cm"
+        },
+        {
+          "key": "B",
+          "text": "6 cm"
+        },
+        {
+          "key": "C",
+          "text": "30 cm"
+        },
+        {
+          "key": "D",
+          "text": "42 cm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Giảm 36 đi 6 lần là lấy 36 chia cho 6: 36 : 6 = 6. Đoạn dây còn dài 6 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 30 : 6",
+          "explanation": "30 : 6 = 5; số đo ban đầu trong bài là 36 cm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Trừ đi 6",
+          "explanation": "Giảm đi 6 lần là chia cho 6, không phải lấy 36 trừ 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L104-E01",
+      "lesson_id": 104,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_7",
+        "equal_sharing",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          47,
+          48
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thư viện xếp 42 quyển truyện vào 7 ngăn bằng nhau. Mỗi ngăn có bao nhiêu quyển truyện?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-023/cau-04-chia-truyen-vao-bay-ngan.png",
+            "alt_text": "Bốn mươi hai quyển truyện và bảy ngăn sách giống nhau để chia đều"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 quyển"
+        },
+        {
+          "key": "B",
+          "text": "6 quyển"
+        },
+        {
+          "key": "C",
+          "text": "7 quyển"
+        },
+        {
+          "key": "D",
+          "text": "8 quyển"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia đều 42 quyển truyện vào 7 ngăn, ta tính 42 : 7 = 6. Mỗi ngăn có 6 quyển truyện.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 35 : 7",
+          "explanation": "35 : 7 = 5; số truyện trong bài là 42."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhớ nhầm 49 : 7",
+          "explanation": "49 : 7 = 7; phép chia cần tính là 42 : 7."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L105-E01",
+      "lesson_id": 105,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_8",
+        "divide_by_8"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          49,
+          50
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Điền số thích hợp vào ô trống: □ : 8 = 7",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-023/cau-05-so-bi-chia-bang-8.png",
+            "alt_text": "Tám nhóm bằng nhau, mỗi nhóm có bảy chấm tròn, minh họa số bị chia trong phép chia cho 8"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "48"
+        },
+        {
+          "key": "B",
+          "text": "56"
+        },
+        {
+          "key": "C",
+          "text": "64"
+        },
+        {
+          "key": "D",
+          "text": "72"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số bị chia bằng thương nhân với số chia: 7 × 8 = 56. Số cần điền là 56.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 6 × 8",
+          "explanation": "6 × 8 = 48; thương trong bài là 7."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhớ nhầm 8 × 8",
+          "explanation": "8 × 8 = 64; cần lấy 7 nhân với 8."
+        }
+      ]
+    }
+  ]
+}

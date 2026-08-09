@@ -1,0 +1,272 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L208-L211-20260808-R1",
+  "curriculum_scope_id": "grade-4-lessons-208-211",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L208-E01",
+      "lesson_id": 208,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_division",
+        "reciprocal_fraction",
+        "fraction_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3/4 : 1/8 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-046/cau-01-chia-phan-so.png",
+            "alt_text": "Một chiếc bánh được chia thành các phần bằng nhau để minh họa phép chia phân số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3/32"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "2/3"
+        },
+        {
+          "key": "D",
+          "text": "4"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Lấy phân số thứ nhất nhân với phân số đảo ngược của 1/8 là 8: 3/4 : 1/8 = 3/4 × 8 = 6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân hai mẫu số",
+          "explanation": "Chia phân số không phải là nhân cả hai mẫu số; cần nhân với phân số đảo ngược."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đảo ngược nhầm phân số thứ nhất",
+          "explanation": "Chỉ đảo ngược phân số chia 1/8 thành 8, còn giữ nguyên 3/4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L209-E01",
+      "lesson_id": 209,
+      "concept_id": null,
+      "knowledge_tags": [
+        "statistical_data_sequence",
+        "read_data",
+        "order_data"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          76,
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Dãy số liệu ghi số quyển sách bốn bạn đã đọc là: 6; 9; 4; 7. Số liệu lớn nhất là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-046/cau-02-day-so-lieu.png",
+            "alt_text": "Học sinh sắp xếp các thẻ dữ liệu thành một dãy để quan sát"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "7"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "So sánh các số 6, 9, 4 và 7, số lớn nhất là 9.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn số đứng đầu dãy",
+          "explanation": "Dãy số liệu có thể chưa được sắp xếp nên cần so sánh các số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ sót số 9",
+          "explanation": "9 lớn hơn cả 6, 4 và 7."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L210-E01",
+      "lesson_id": 210,
+      "concept_id": null,
+      "knowledge_tags": [
+        "bar_chart",
+        "read_bar_chart",
+        "statistical_chart"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          79,
+          80,
+          81
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong biểu đồ cột về vật nuôi, cột của mèo cao đến vạch 6. Điều đó cho biết có bao nhiêu học sinh chọn mèo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-046/cau-03-bieu-do-cot.png",
+            "alt_text": "Một biểu đồ cột nhiều màu được một học sinh quan sát"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 học sinh"
+        },
+        {
+          "key": "B",
+          "text": "6 học sinh"
+        },
+        {
+          "key": "C",
+          "text": "8 học sinh"
+        },
+        {
+          "key": "D",
+          "text": "14 học sinh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chiều cao của cột cho biết số liệu tương ứng. Cột của mèo ở vạch 6 nên có 6 học sinh chọn mèo.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đọc thấp hơn một vạch",
+          "explanation": "Cần đọc đúng vạch mà đỉnh cột chạm tới là 6."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng các cột khác",
+          "explanation": "Câu hỏi chỉ yêu cầu số liệu của riêng cột mèo."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L211-E01",
+      "lesson_id": 211,
+      "concept_id": null,
+      "knowledge_tags": [
+        "count_occurrences",
+        "frequency",
+        "simple_experiment"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          83,
+          84
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kết quả quay vòng màu là: xanh, đỏ, xanh, vàng, xanh, đỏ, xanh. Màu xanh xuất hiện mấy lần?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-046/cau-04-dem-lan-xuat-hien.png",
+            "alt_text": "Học sinh dùng vạch kiểm để đếm các kết quả lặp lại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 lần"
+        },
+        {
+          "key": "B",
+          "text": "3 lần"
+        },
+        {
+          "key": "C",
+          "text": "4 lần"
+        },
+        {
+          "key": "D",
+          "text": "5 lần"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Màu xanh xuất hiện ở vị trí thứ nhất, thứ ba, thứ năm và thứ bảy, tức là 4 lần.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một kết quả xanh",
+          "explanation": "Cần kiểm đếm lần lượt cả bốn vị trí có màu xanh."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm cả kết quả khác màu",
+          "explanation": "Chỉ đếm các lần xuất hiện của màu xanh."
+        }
+      ]
+    }
+  ]
+}

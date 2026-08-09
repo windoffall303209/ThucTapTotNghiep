@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L371-L373-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-371-373",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L371-E01",
+      "lesson_id": 371,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "reverse_measurement",
+        "length_units"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 12 cm, chiều rộng 5 cm và thể tích 360 cm³. Chiều cao của hình hộp là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-063/cau-01-the-tich-hinh-hop.png",
+            "alt_text": "Hình hộp chữ nhật ghi chiều dài 12 cm, chiều rộng 5 cm và thể tích 360 cm³"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 cm"
+        },
+        {
+          "key": "B",
+          "text": "5 cm"
+        },
+        {
+          "key": "C",
+          "text": "6 cm"
+        },
+        {
+          "key": "D",
+          "text": "8 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích đáy là 12 × 5 = 60 cm². Chiều cao là 360 : 60 = 6 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia thể tích cho chiều dài",
+          "explanation": "Cần chia thể tích cho diện tích đáy, không chỉ chia cho chiều dài."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm chiều rộng với chiều cao",
+          "explanation": "Chiều rộng 5 cm đã biết; chiều cao phải được tính từ thể tích."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai diện tích đáy",
+          "explanation": "Diện tích đáy phải là 12 × 5 = 60 cm²."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L372-E01",
+      "lesson_id": 372,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "dm3_to_liter",
+        "division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          48,
+          49
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể dạng hình hộp chữ nhật có kích thước như hình vẽ. Nếu rót đầy bể vào các chai 0,4 lít thì rót được bao nhiêu chai?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-063/cau-02-be-nuoc-chai.png",
+            "alt_text": "Bể hình hộp chữ nhật ghi kích thước 2 dm, 1,5 dm, 0,8 dm và một chai mẫu 0,4 lít"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 chai"
+        },
+        {
+          "key": "B",
+          "text": "5 chai"
+        },
+        {
+          "key": "C",
+          "text": "6 chai"
+        },
+        {
+          "key": "D",
+          "text": "8 chai"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích bể là 2 × 1,5 × 0,8 = 2,4 dm³ = 2,4 lít. Số chai là 2,4 : 0,4 = 6 chai.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua chiều cao khi tính thể tích",
+          "explanation": "Thể tích hình hộp phải nhân đủ chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi dm³ sang lít sai",
+          "explanation": "1 dm³ bằng 1 lít nên 2,4 dm³ bằng 2,4 lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia sai cho dung tích mỗi chai",
+          "explanation": "Cần lấy 2,4 chia cho 0,4, không lấy tổng các kích thước chia cho 0,4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L373-E01",
+      "lesson_id": 373,
+      "concept_id": null,
+      "knowledge_tags": [
+        "area",
+        "addition",
+        "subtraction",
+        "mixed_revision"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          50,
+          51
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn có diện tích 250 m² được chia thành bốn mảnh có diện tích lần lượt 100 m², 40 m², 10 m² và 20 m². Diện tích phần còn lại là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-063/cau-03-khu-vuon-bon-phan.png",
+            "alt_text": "Khu vườn tổng diện tích 250 m² chia thành bốn mảnh 100 m², 40 m², 10 m² và 20 m²"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "70 m²"
+        },
+        {
+          "key": "B",
+          "text": "80 m²"
+        },
+        {
+          "key": "C",
+          "text": "90 m²"
+        },
+        {
+          "key": "D",
+          "text": "100 m²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tổng diện tích bốn mảnh là 100 + 40 + 10 + 20 = 170 m². Phần còn lại là 250 − 170 = 80 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng thiếu một mảnh",
+          "explanation": "Cần cộng đủ cả bốn diện tích đã cho."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai các phần diện tích",
+          "explanation": "100 + 40 + 10 + 20 bằng 170 m², không phải 160 m²."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy diện tích một mảnh làm phần còn lại",
+          "explanation": "Phần còn lại phải bằng diện tích cả khu vườn trừ tổng bốn mảnh."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L381-L383-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-381-383",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L381-E01",
+      "lesson_id": 381,
+      "concept_id": null,
+      "knowledge_tags": [
+        "natural_number",
+        "number_place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong các số 7 318 965, 7 318 960, 7 318 907 và 7 318 691, số nào là số chẵn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-059/cau-01-so-tu-nhien.png",
+            "alt_text": "Bốn thẻ số 7 318 965, 7 318 960, 7 318 907 và 7 318 691 để nhận biết số chẵn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 318 965"
+        },
+        {
+          "key": "B",
+          "text": "7 318 960"
+        },
+        {
+          "key": "C",
+          "text": "7 318 907"
+        },
+        {
+          "key": "D",
+          "text": "7 318 691"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số chẵn có chữ số hàng đơn vị là 0, 2, 4, 6 hoặc 8. Số 7 318 960 có chữ số hàng đơn vị là 0 nên là số chẵn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhìn các chữ số đầu",
+          "explanation": "Tính chẵn lẻ được xác định bởi chữ số hàng đơn vị, không phải chữ số đầu tiên."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm chữ số hàng chục với hàng đơn vị",
+          "explanation": "Số 7 318 907 kết thúc bằng 7 nên là số lẻ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ qua chữ số hàng đơn vị",
+          "explanation": "Số 7 318 691 kết thúc bằng 1 nên là số lẻ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L382-E01",
+      "lesson_id": 382,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_addition",
+        "fraction_equivalence",
+        "fraction_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          88,
+          89
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính 2/3 + 1/6.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-059/cau-02-phan-so.png",
+            "alt_text": "Hai phân số 2 phần 3 và 1 phần 6 được minh họa bằng các thanh phân số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1/2"
+        },
+        {
+          "key": "B",
+          "text": "2/3"
+        },
+        {
+          "key": "C",
+          "text": "5/6"
+        },
+        {
+          "key": "D",
+          "text": "7/6"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Quy đồng 2/3 = 4/6. Vì vậy 2/3 + 1/6 = 4/6 + 1/6 = 5/6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ thay vì cộng",
+          "explanation": "Khi cộng hai phân số, sau khi quy đồng cần cộng các tử số: 4 + 1 = 5."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ giữ lại phân số lớn",
+          "explanation": "Không thể bỏ qua số hạng 1/6; cần cộng cả hai phân số."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng cả mẫu số",
+          "explanation": "Mẫu số chung giữ nguyên là 6, không cộng 3 với 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L383-E01",
+      "lesson_id": 383,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_addition",
+        "decimal_place_value",
+        "decimal_operations"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          90,
+          91
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính 2,75 + 1,6.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-059/cau-03-so-thap-phan.png",
+            "alt_text": "Bảng hàng đơn vị, phần mười, phần trăm và phép cộng 2,75 với 1,60"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3,35"
+        },
+        {
+          "key": "B",
+          "text": "4,35"
+        },
+        {
+          "key": "C",
+          "text": "4,25"
+        },
+        {
+          "key": "D",
+          "text": "4,31"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Viết 1,6 thành 1,60 rồi đặt thẳng hàng dấu phẩy: 2,75 + 1,60 = 4,35.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng sai phần nguyên",
+          "explanation": "Phần nguyên phải tính 2 + 1 và còn phải cộng phần thập phân, không chỉ lấy 2,75 - 1,6."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai hàng phần trăm",
+          "explanation": "Cần viết 1,6 thành 1,60 để chữ số cùng hàng được đặt thẳng cột."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Không thẳng hàng dấu phẩy",
+          "explanation": "Dấu phẩy của hai số phải nằm cùng một cột trước khi cộng."
+        }
+      ]
+    }
+  ]
+}

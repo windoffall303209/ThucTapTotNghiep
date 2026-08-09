@@ -1,0 +1,332 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L026-L030-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-026-030",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L026-E01",
+      "lesson_id": 26,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_tens_and_ones",
+        "represent_two_digit_number_with_tens_and_ones"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          105,
+          106,
+          107
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nhìn các khối, hãy chọn cách nói đúng.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-007/cau-01-sau-chuc-bon-don-vi.png",
+            "alt_text": "Sáu thanh dài, mỗi thanh gồm mười khối và bốn khối nhỏ rời"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 chục và 4 đơn vị"
+        },
+        {
+          "key": "B",
+          "text": "4 chục và 6 đơn vị"
+        },
+        {
+          "key": "C",
+          "text": "6 chục và 0 đơn vị"
+        },
+        {
+          "key": "D",
+          "text": "4 chục và 0 đơn vị"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hình có 6 thanh chục và 4 khối đơn vị nên cách nói đúng là 6 chục và 4 đơn vị.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đảo vị trí chục và đơn vị",
+          "explanation": "Thanh dài biểu diễn chục, còn khối nhỏ rời biểu diễn đơn vị."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua các khối đơn vị",
+          "explanation": "Ngoài 6 thanh chục còn có 4 khối nhỏ rời."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L027-E01",
+      "lesson_id": 27,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_visual_quantities_to_100",
+        "compare_numbers_to_100"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          110,
+          111,
+          112
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số ở nhóm bên trái thế nào so với số ở nhóm bên phải?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-007/cau-02-so-sanh-bon-muoi-hai-va-ba-muoi-tam.png",
+            "alt_text": "Nhóm trái có bốn thanh xanh và hai khối xanh; nhóm phải có ba thanh cam và tám khối cam"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Lớn hơn"
+        },
+        {
+          "key": "B",
+          "text": "Bé hơn"
+        },
+        {
+          "key": "C",
+          "text": "Bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Không so sánh được"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Nhóm trái biểu diễn 42, nhóm phải biểu diễn 38. Số 42 lớn hơn số 38.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ so sánh số khối rời",
+          "explanation": "Cần so sánh số thanh chục trước: 4 thanh nhiều hơn 3 thanh."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cho rằng tổng số hình vẽ bằng nhau",
+          "explanation": "Mỗi thanh dài biểu diễn mười, nên hai nhóm lần lượt biểu diễn 42 và 38."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L028-E01",
+      "lesson_id": 28,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_longer_shorter_object",
+        "align_same_start_for_length_comparison"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          114,
+          115
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Dải ruy băng màu nào ngắn hơn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-007/cau-03-ruy-bang-tim-ngan-hon.png",
+            "alt_text": "Dải ruy băng tím và dải ruy băng vàng đặt cùng điểm đầu, dải tím kết thúc sớm hơn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Dải màu tím"
+        },
+        {
+          "key": "B",
+          "text": "Dải màu vàng"
+        },
+        {
+          "key": "C",
+          "text": "Hai dải dài bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Không xác định được"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai dải đặt cùng điểm đầu. Dải tím kết thúc sớm hơn nên dải tím ngắn hơn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm vật dài hơn với vật ngắn hơn",
+          "explanation": "Dải vàng nhô ra xa hơn nên dài hơn, không phải ngắn hơn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Không quan sát điểm kết thúc",
+          "explanation": "Hai đầu bên phải không trùng nhau; dải tím kết thúc trước."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L029-E01",
+      "lesson_id": 29,
+      "concept_id": null,
+      "knowledge_tags": [
+        "measure_with_repeated_objects",
+        "count_nonstandard_length_units",
+        "place_units_end_to_end"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          116,
+          117
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Chiếc lược dài bằng mấy chiếc kẹp giấy?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-007/cau-04-luoc-bay-kep-giay.png",
+            "alt_text": "Một chiếc lược đặt phía trên bảy chiếc kẹp giấy giống nhau xếp nối tiếp"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "6 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "7 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "8 chiếc"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 7 chiếc kẹp giấy giống nhau được xếp nối tiếp từ đầu này đến đầu kia của chiếc lược.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một kẹp giấy",
+          "explanation": "Cần đếm cả chiếc kẹp ở đầu cuối; có đủ 7 chiếc."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thừa một khoảng nối",
+          "explanation": "Đếm các chiếc kẹp giấy, không đếm khoảng tiếp giáp giữa chúng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L030-E01",
+      "lesson_id": 30,
+      "concept_id": null,
+      "knowledge_tags": [
+        "measure_from_zero_in_centimeters",
+        "read_ruler_length_in_centimeters"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          118,
+          119
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Chiếc tẩy dài bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-007/cau-05-tay-dai-nam-xang-ti-met.png",
+            "alt_text": "Chiếc tẩy đặt thẳng trên thước, đầu trái ở vạch 0 và đầu phải ở vạch 5"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 cm"
+        },
+        {
+          "key": "B",
+          "text": "4 cm"
+        },
+        {
+          "key": "C",
+          "text": "5 cm"
+        },
+        {
+          "key": "D",
+          "text": "6 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Đầu trái của chiếc tẩy ở vạch 0 và đầu phải ở vạch 5 nên chiếc tẩy dài 5 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm khoảng bị thiếu một",
+          "explanation": "Từ vạch 0 đến vạch 5 có 5 khoảng xăng-ti-mét."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm số vạch thay vì số khoảng",
+          "explanation": "Số đo được đọc tại vạch cuối là 5 cm, không phải số lượng vạch nhìn thấy."
+        }
+      ]
+    }
+  ]
+}

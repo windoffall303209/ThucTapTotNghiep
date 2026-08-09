@@ -1,0 +1,83 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L371-20260808-R4",
+  "curriculum_scope_id": "grade-5-lessons-371-373",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L371-E04",
+      "lesson_id": 371,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cube_surface_area",
+        "lateral_surface_area",
+        "square_area"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khối lập phương có cạnh 8 cm. Diện tích xung quanh của khối lập phương là bao nhiêu xăng-ti-mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-083/cau-01-lap-phuong-xung-quanh.png",
+            "alt_text": "Khối lập phương có cạnh 8 cm, bốn mặt bên được tô màu để minh họa diện tích xung quanh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "64 cm²"
+        },
+        {
+          "key": "B",
+          "text": "128 cm²"
+        },
+        {
+          "key": "C",
+          "text": "256 cm²"
+        },
+        {
+          "key": "D",
+          "text": "512 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích xung quanh gồm 4 mặt hình vuông: 8 × 8 × 4 = 256 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính diện tích một mặt",
+          "explanation": "8 × 8 = 64 cm² chỉ là diện tích một mặt, chưa phải diện tích xung quanh."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân thiếu số mặt bên",
+          "explanation": "Diện tích xung quanh của hình lập phương gồm 4 mặt bên nên phải nhân 4."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân cả sáu mặt",
+          "explanation": "512 cm² là kết quả nhân 64 với 8, không đúng với diện tích xung quanh gồm 4 mặt."
+        }
+      ]
+    }
+  ]
+}

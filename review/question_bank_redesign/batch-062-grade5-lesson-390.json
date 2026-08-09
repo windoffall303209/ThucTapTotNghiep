@@ -1,0 +1,84 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L390-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-390",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E01",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "percentage",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể chứa 2,4 m³ nước. Người ta đã dùng 35% lượng nước. Bể còn lại bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-062/cau-01-be-nuoc.png",
+            "alt_text": "Bể nước ghi dung tích 2,4 m³, phần đã dùng 35% và phần còn lại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 560 lít"
+        },
+        {
+          "key": "B",
+          "text": "1 440 lít"
+        },
+        {
+          "key": "C",
+          "text": "1 650 lít"
+        },
+        {
+          "key": "D",
+          "text": "840 lít"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "2,4 m³ = 2 400 lít. Lượng nước còn lại chiếm 100% − 35% = 65%, nên có 2 400 × 65 : 100 = 1 560 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi đơn vị hoặc tính phần trăm sai",
+          "explanation": "2,4 m³ bằng 2 400 lít; 65% của 2 400 là 1 560 lít, không phải 1 440 lít."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thay vì tính phần còn lại",
+          "explanation": "Cần lấy 65% lượng nước ban đầu, không tự cộng thêm lượng đã dùng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính lượng đã dùng",
+          "explanation": "2 400 × 35 : 100 = 840 lít là lượng đã dùng, chưa phải lượng còn lại."
+        }
+      ]
+    }
+  ]
+}

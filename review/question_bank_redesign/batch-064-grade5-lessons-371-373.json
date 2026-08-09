@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L371-L373-20260808-R2",
+  "curriculum_scope_id": "grade-5-lessons-371-373",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L371-E02",
+      "lesson_id": 371,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cube_surface_area",
+        "lateral_surface_area",
+        "square_area"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          36,
+          37
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khối lập phương có cạnh 6 cm. Diện tích xung quanh của khối lập phương là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-064/cau-01-hinh-lap-phuong.png",
+            "alt_text": "Khối lập phương có cạnh 6 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "36 cm²"
+        },
+        {
+          "key": "B",
+          "text": "72 cm²"
+        },
+        {
+          "key": "C",
+          "text": "144 cm²"
+        },
+        {
+          "key": "D",
+          "text": "216 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích xung quanh gồm 4 mặt vuông. Mỗi mặt có diện tích 6 × 6 = 36 cm², nên diện tích xung quanh là 36 × 4 = 144 cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính diện tích một mặt",
+          "explanation": "36 cm² mới là diện tích một mặt, chưa phải diện tích xung quanh."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân sai số mặt bên",
+          "explanation": "Diện tích xung quanh của khối lập phương gồm 4 mặt bên, không phải 2 mặt."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính cả sáu mặt",
+          "explanation": "216 cm² là diện tích toàn phần, còn đề bài hỏi diện tích xung quanh."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L372-E02",
+      "lesson_id": 372,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "decimal_multiplication",
+        "volume_units"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          48,
+          49
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 1,5 dm, chiều rộng 1,2 dm và chiều cao 0,8 dm. Thể tích hình hộp là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-064/cau-02-the-tich-dm3.png",
+            "alt_text": "Hình hộp chữ nhật ghi chiều dài 1,5 dm, chiều rộng 1,2 dm và chiều cao 0,8 dm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1,44 dm³"
+        },
+        {
+          "key": "B",
+          "text": "1,52 dm³"
+        },
+        {
+          "key": "C",
+          "text": "2,4 dm³"
+        },
+        {
+          "key": "D",
+          "text": "14,4 dm³"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Thể tích hình hộp là 1,5 × 1,2 × 0,8 = 1,8 × 0,8 = 1,44 dm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng các kích thước",
+          "explanation": "Thể tích được tính bằng phép nhân ba kích thước, không phải phép cộng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua một kích thước",
+          "explanation": "Cần nhân cả chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đặt sai dấu phẩy thập phân",
+          "explanation": "Kết quả 1,44 dm³ có ba kích thước đều nhỏ hơn 2 dm nên không thể là 14,4 dm³."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L373-E02",
+      "lesson_id": 373,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangle_area",
+        "subtraction",
+        "area_units",
+        "real_world_area"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          50,
+          51
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bức tường hình chữ nhật dài 6 m, cao 3 m có một cửa rộng 1,2 m và cao 2,1 m. Diện tích tường cần sơn là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-064/cau-03-dien-tich-tuong.png",
+            "alt_text": "Bức tường dài 6 m, cao 3 m có cửa rộng 1,2 m và cao 2,1 m"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "15,48 m²"
+        },
+        {
+          "key": "B",
+          "text": "16,68 m²"
+        },
+        {
+          "key": "C",
+          "text": "17,48 m²"
+        },
+        {
+          "key": "D",
+          "text": "18 m²"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Diện tích bức tường là 6 × 3 = 18 m². Diện tích cửa là 1,2 × 2,1 = 2,52 m². Diện tích cần sơn là 18 − 2,52 = 15,48 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính sai diện tích cửa",
+          "explanation": "1,2 × 2,1 = 2,52 m², không phải 1,32 m²."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Trừ nhầm diện tích cửa",
+          "explanation": "Cần lấy 18 − 2,52, không phải 18 − 0,52."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chưa trừ phần cửa",
+          "explanation": "18 m² là diện tích toàn bộ bức tường trước khi bỏ phần cửa."
+        }
+      ]
+    }
+  ]
+}

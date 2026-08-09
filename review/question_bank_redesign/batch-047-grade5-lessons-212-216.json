@@ -1,0 +1,339 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L212-L216-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-212-216",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L212-E01",
+      "lesson_id": 212,
+      "concept_id": null,
+      "knowledge_tags": [
+        "ratio",
+        "ratio_notation",
+        "compare_two_quantities"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          17,
+          18,
+          19
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 4 bút xanh và 6 bút đỏ. Tỉ số số bút xanh và số bút đỏ là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-047/cau-01-ti-so.png",
+            "alt_text": "Hai nhóm bút màu được xếp cạnh nhau để so sánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 : 6"
+        },
+        {
+          "key": "B",
+          "text": "6 : 4"
+        },
+        {
+          "key": "C",
+          "text": "4 : 10"
+        },
+        {
+          "key": "D",
+          "text": "10 : 4"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Tỉ số số bút xanh và số bút đỏ được viết theo đúng thứ tự là 4 : 6 hoặc 4/6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đảo thứ tự hai đại lượng",
+          "explanation": "Đề hỏi bút xanh và bút đỏ nên viết số bút xanh trước."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Lấy tổng số bút làm số bị so sánh",
+          "explanation": "Tỉ số cần so sánh riêng số bút xanh với số bút đỏ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L213-E01",
+      "lesson_id": 213,
+      "concept_id": null,
+      "knowledge_tags": [
+        "sum_ratio_word_problem",
+        "parts_method",
+        "ratio_diagram"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          20,
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tổng của hai số là 35. Tỉ số của số bé và số lớn là 2 : 5. Số bé là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-047/cau-02-tong-ti-so.png",
+            "alt_text": "Các quả bóng được chia thành hai nhóm theo một tỉ số cố định"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5"
+        },
+        {
+          "key": "B",
+          "text": "10"
+        },
+        {
+          "key": "C",
+          "text": "14"
+        },
+        {
+          "key": "D",
+          "text": "25"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tổng số phần bằng nhau là 2 + 5 = 7. Mỗi phần là 35 : 7 = 5, nên số bé là 5 × 2 = 10.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ tìm giá trị một phần",
+          "explanation": "5 là giá trị một phần, còn số bé gồm 2 phần nên bằng 10."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy số phần của số lớn làm đáp án",
+          "explanation": "Số lớn gồm 5 phần, nhưng câu hỏi yêu cầu số bé gồm 2 phần."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L214-E01",
+      "lesson_id": 214,
+      "concept_id": null,
+      "knowledge_tags": [
+        "difference_ratio_word_problem",
+        "parts_difference_method",
+        "ratio_diagram"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          23,
+          24,
+          25
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hiệu của hai số là 24. Tỉ số của số lớn và số bé là 5 : 3. Số lớn là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-047/cau-03-hieu-ti-so.png",
+            "alt_text": "Hai chồng khối có số phần bằng nhau nhưng chồng lớn dài hơn chồng bé"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "36"
+        },
+        {
+          "key": "B",
+          "text": "60"
+        },
+        {
+          "key": "C",
+          "text": "72"
+        },
+        {
+          "key": "D",
+          "text": "48"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hiệu số phần bằng nhau là 5 − 3 = 2. Mỗi phần là 24 : 2 = 12, nên số lớn là 12 × 5 = 60.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính số bé thay vì số lớn",
+          "explanation": "12 × 3 = 36 là số bé; số lớn gồm 5 phần nên bằng 60."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Dùng tổng số phần thay cho hiệu số phần",
+          "explanation": "Bài toán biết hiệu nên phải lấy 5 − 3, không lấy 5 + 3."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L215-E01",
+      "lesson_id": 215,
+      "concept_id": null,
+      "knowledge_tags": [
+        "dependent_relationship",
+        "direct_proportion",
+        "unit_rate"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          26,
+          27,
+          28
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "3 quyển vở cùng loại giá 24 000 đồng. Hỏi 9 quyển vở như thế giá bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-047/cau-04-quan-he-phu-thuoc.png",
+            "alt_text": "Các chồng vở tăng lên theo cùng một quan hệ số lượng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "48 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "72 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "96 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "216 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "9 quyển gấp 3 quyển số lần là 9 : 3 = 3. Giá tiền cũng gấp 3 lần: 24 000 × 3 = 72 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ cộng thêm một lần giá",
+          "explanation": "9 quyển gấp 3 lần 3 quyển nên cần nhân giá tiền với 3."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân nhầm với số quyển cần mua",
+          "explanation": "Cần tìm số lần tăng 9 : 3 trước, không lấy 24 000 × 9."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L216-E01",
+      "lesson_id": 216,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_number",
+        "whole_part",
+        "fraction_part",
+        "mixed_to_improper"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          31,
+          32
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hỗn số 2 3/4 viết thành phân số là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-047/cau-05-hon-so.png",
+            "alt_text": "Các phần bánh nguyên và phần bánh lẻ được ghép lại để minh họa hỗn số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5/4"
+        },
+        {
+          "key": "B",
+          "text": "8/4"
+        },
+        {
+          "key": "C",
+          "text": "11/4"
+        },
+        {
+          "key": "D",
+          "text": "11/3"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Lấy phần nguyên nhân mẫu số rồi cộng tử số: (2 × 4 + 3)/4 = 11/4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ nhân phần nguyên với mẫu số",
+          "explanation": "Cần cộng thêm tử số 3 sau khi tính 2 × 4."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi nhầm mẫu số thành tử số",
+          "explanation": "Mẫu số của phân số mới vẫn là 4."
+        }
+      ]
+    }
+  ]
+}

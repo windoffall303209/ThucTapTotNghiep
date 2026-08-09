@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L203-L207-20260808-R1",
+  "curriculum_scope_id": "grade-4-lessons-203-207",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L203-E01",
+      "lesson_id": 203,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_same_denominator_fractions",
+        "fraction_subtraction",
+        "same_denominator"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          50,
+          51
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một dải ruy-băng dài 7/8 m, đã dùng 2/8 m. Hỏi dải ruy-băng còn lại dài bao nhiêu mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-045/cau-01-tru-cung-mau.png",
+            "alt_text": "Dải ruy-băng được chia thành các phần bằng nhau và một phần đã được cắt ra"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5/8 m"
+        },
+        {
+          "key": "B",
+          "text": "9/8 m"
+        },
+        {
+          "key": "C",
+          "text": "5/16 m"
+        },
+        {
+          "key": "D",
+          "text": "2/8 m"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai phân số cùng mẫu số nên trừ các tử số và giữ nguyên mẫu số: 7/8 − 2/8 = 5/8 m.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng thay vì trừ",
+          "explanation": "Bài toán nói đã dùng đi một phần nên cần thực hiện phép trừ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Trừ cả mẫu số",
+          "explanation": "Khi trừ hai phân số cùng mẫu số, giữ nguyên mẫu số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L204-E01",
+      "lesson_id": 204,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_different_denominator_fractions",
+        "common_denominator",
+        "fraction_addition"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          53,
+          54
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 1/4 + 1/6 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-045/cau-02-cong-khac-mau.png",
+            "alt_text": "Hai phần của các dải giấy có cách chia khác nhau được quy về cùng kích thước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2/10"
+        },
+        {
+          "key": "B",
+          "text": "5/12"
+        },
+        {
+          "key": "C",
+          "text": "1/10"
+        },
+        {
+          "key": "D",
+          "text": "2/4"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Quy đồng mẫu số 12: 1/4 = 3/12 và 1/6 = 2/12. Do đó 1/4 + 1/6 = 5/12.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng cả tử số và mẫu số",
+          "explanation": "Không cộng trực tiếp các mẫu số; cần quy đồng mẫu số trước."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Giữ nguyên một mẫu số không phù hợp",
+          "explanation": "Hai phân số khác mẫu số phải được đưa về cùng mẫu số 12."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L205-E01",
+      "lesson_id": 205,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_different_denominator_fractions",
+        "common_denominator",
+        "fraction_subtraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          55,
+          56
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 5/6 − 1/4 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-045/cau-03-tru-khac-mau.png",
+            "alt_text": "Một phần màu được lấy bớt khỏi dải giấy sau khi chia thành các ô bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4/2"
+        },
+        {
+          "key": "B",
+          "text": "7/12"
+        },
+        {
+          "key": "C",
+          "text": "4/10"
+        },
+        {
+          "key": "D",
+          "text": "1/2"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Quy đồng mẫu số 12: 5/6 = 10/12 và 1/4 = 3/12. Vậy 5/6 − 1/4 = 7/12.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Trừ trực tiếp tử và mẫu",
+          "explanation": "Cần quy đồng mẫu số trước, không lấy 5 − 1 và 6 − 4."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Quy đồng sai mẫu số",
+          "explanation": "Mẫu số chung nhỏ nhất của 6 và 4 là 12."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L206-E01",
+      "lesson_id": 206,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_multiplication",
+        "multiply_numerators",
+        "multiply_denominators"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          61,
+          62
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3/4 × 2/5 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-045/cau-04-nhan-phan-so.png",
+            "alt_text": "Một hình chữ nhật được chia theo chiều dài và chiều rộng để tạo phần giao nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5/9"
+        },
+        {
+          "key": "B",
+          "text": "6/20"
+        },
+        {
+          "key": "C",
+          "text": "3/10"
+        },
+        {
+          "key": "D",
+          "text": "6/9"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Nhân tử số với tử số, mẫu số với mẫu số: 3/4 × 2/5 = 6/20 = 3/10.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chưa rút gọn phân số",
+          "explanation": "6/20 cần chia cả tử và mẫu cho 2 để được 3/10."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân chéo không đúng quy tắc",
+          "explanation": "Khi nhân phân số, nhân tử với tử và mẫu với mẫu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G4-L207-E01",
+      "lesson_id": 207,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_of_number",
+        "multiply_whole_by_fraction",
+        "word_problem_fraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          65,
+          66
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "3/5 của 40 là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-045/cau-05-phan-so-cua-so.png",
+            "alt_text": "Một nhóm đồ vật giống nhau được chia thành các nhóm bằng nhau và làm nổi bật một phần"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8"
+        },
+        {
+          "key": "B",
+          "text": "24"
+        },
+        {
+          "key": "C",
+          "text": "35"
+        },
+        {
+          "key": "D",
+          "text": "45"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ta tính 40 × 3/5 = (40 : 5) × 3 = 8 × 3 = 24.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ chia cho mẫu số",
+          "explanation": "Sau khi chia 40 cho 5, cần nhân kết quả với tử số 3."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi nhầm vị trí tử và mẫu",
+          "explanation": "Phân số 3/5 nghĩa là chia cho 5 rồi nhân với 3."
+        }
+      ]
+    }
+  ]
+}

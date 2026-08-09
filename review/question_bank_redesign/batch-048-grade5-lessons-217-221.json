@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L217-L221-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-217-221",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L217-E01",
+      "lesson_id": 217,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_fraction",
+        "denominator_power_of_ten",
+        "fraction_notation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          33,
+          34
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mẫu số nào dưới đây phù hợp với một phân số thập phân?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-048/cau-01-phan-so-thap-phan.png",
+            "alt_text": "Một lưới phần bằng nhau có một phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8"
+        },
+        {
+          "key": "B",
+          "text": "25"
+        },
+        {
+          "key": "C",
+          "text": "1 000"
+        },
+        {
+          "key": "D",
+          "text": "30"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Mẫu số của phân số thập phân là 10, 100, 1 000, ... Trong các lựa chọn, 1 000 phù hợp.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm số tròn chục gần đúng",
+          "explanation": "25 không thuộc dãy 10, 100, 1 000, ..."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn số có chữ số 0",
+          "explanation": "Không phải mọi số có chữ số 0 đều là mẫu số của phân số thập phân."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L218-E01",
+      "lesson_id": 218,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_number",
+        "tenths_place",
+        "decimal_notation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          35,
+          36
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số thập phân 3,407, chữ số 4 thuộc hàng nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-048/cau-02-hang-so-thap-phan.png",
+            "alt_text": "Bảng giá trị hàng của số thập phân với các cột phần nguyên và phần thập phân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hàng phần mười"
+        },
+        {
+          "key": "B",
+          "text": "Hàng phần trăm"
+        },
+        {
+          "key": "C",
+          "text": "Hàng phần nghìn"
+        },
+        {
+          "key": "D",
+          "text": "Hàng đơn vị"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Sau dấu phẩy, chữ số đầu tiên là chữ số hàng phần mười. Vì vậy chữ số 4 thuộc hàng phần mười.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm lệch một hàng",
+          "explanation": "Chữ số 0 mới ở hàng phần trăm; chữ số 4 đứng ngay sau dấu phẩy."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm với phần nguyên",
+          "explanation": "Hàng đơn vị nằm trước dấu phẩy, còn 4 nằm sau dấu phẩy."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L219-E01",
+      "lesson_id": 219,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_number",
+        "convert_decimal_fraction",
+        "decimal_reading"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          37,
+          38
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đoạn dây dài 3/10 m. Viết độ dài đoạn dây đó dưới dạng số thập phân.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-048/cau-03-doi-phan-so.png",
+            "alt_text": "Dải giấy chia thành mười phần bằng nhau với một phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "0,03 m"
+        },
+        {
+          "key": "B",
+          "text": "0,3 m"
+        },
+        {
+          "key": "C",
+          "text": "3,0 m"
+        },
+        {
+          "key": "D",
+          "text": "30 m"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Mẫu số 10 cho biết có một chữ số ở phần thập phân, nên 3/10 = 0,3 m.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Viết thừa một chữ số 0",
+          "explanation": "Mẫu số 10 chỉ cần một chữ số ở phần thập phân."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt dấu phẩy sai vị trí",
+          "explanation": "3/10 nhỏ hơn 1 nên số thập phân phải là 0,3."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L220-E01",
+      "lesson_id": 220,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_parts",
+        "decimal_places",
+        "thousandths_place"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          39,
+          40
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số thập phân 2,305, chữ số 5 thuộc hàng nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-048/cau-04-gia-tri-hang.png",
+            "alt_text": "Bảng phóng to ba hàng phần mười, phần trăm và phần nghìn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hàng phần mười"
+        },
+        {
+          "key": "B",
+          "text": "Hàng phần trăm"
+        },
+        {
+          "key": "C",
+          "text": "Hàng đơn vị"
+        },
+        {
+          "key": "D",
+          "text": "Hàng phần nghìn"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Sau dấu phẩy, 3 ở hàng phần mười, 0 ở hàng phần trăm và 5 ở hàng phần nghìn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Dừng lại ở chữ số 0",
+          "explanation": "Cần đếm tiếp đến chữ số thứ ba sau dấu phẩy."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn hàng của chữ số đầu tiên",
+          "explanation": "Chữ số 3 mới ở hàng phần mười; chữ số 5 ở hàng phần nghìn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L221-E01",
+      "lesson_id": 221,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decimal_reading",
+        "decimal_writing",
+        "decimal_place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          41,
+          42
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hỗn số 2 47/100 được viết thành số thập phân là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-048/cau-05-bang-nhau.png",
+            "alt_text": "Hai dải đo có các phần được tô màu bằng nhau dù chia thành số phần khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2,047"
+        },
+        {
+          "key": "B",
+          "text": "2,47"
+        },
+        {
+          "key": "C",
+          "text": "24,7"
+        },
+        {
+          "key": "D",
+          "text": "247,0"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Phân số 47/100 có hai chữ số ở phần thập phân nên 2 47/100 = 2,47.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Viết thêm một chữ số 0",
+          "explanation": "Mẫu số 100 tương ứng với hai chữ số sau dấu phẩy, không phải ba."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt dấu phẩy sai vị trí",
+          "explanation": "Phần nguyên vẫn là 2, nên số thập phân bắt đầu bằng 2,"
+        }
+      ]
+    }
+  ]
+}

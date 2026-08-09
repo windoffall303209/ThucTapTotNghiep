@@ -1,0 +1,326 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L021-L025-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-021-025",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L021-E01",
+      "lesson_id": 21,
+      "concept_id": null,
+      "knowledge_tags": [
+        "write_subtraction_from_picture_to_10",
+        "mental_subtraction_to_10"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          69,
+          70
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có mười con cá, bốn con bơi đi. Còn lại bao nhiêu con cá?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-006/cau-01-muoi-ca-bon-boi-di.png",
+            "alt_text": "Sáu con cá màu cam còn gần cụm san hô và bốn con cá màu xanh đang bơi ra xa"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 con"
+        },
+        {
+          "key": "B",
+          "text": "5 con"
+        },
+        {
+          "key": "C",
+          "text": "6 con"
+        },
+        {
+          "key": "D",
+          "text": "7 con"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Có 10 con cá, 4 con bơi đi. Tính 10 − 4 = 6 nên còn lại 6 con cá.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn số cá bơi đi",
+          "explanation": "Bốn là số cá bơi đi; câu hỏi yêu cầu số cá còn lại."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bớt thiếu một con cá",
+          "explanation": "Có đúng 4 con cá màu xanh đang bơi đi nên 10 − 4 = 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L022-E01",
+      "lesson_id": 22,
+      "concept_id": null,
+      "knowledge_tags": [
+        "count_groups_of_ten_to_90",
+        "recognize_round_tens_10_to_90"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          95,
+          96
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình có tất cả bao nhiêu que tính?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-006/cau-02-ba-bo-que-tinh.png",
+            "alt_text": "Ba bó que tính, mỗi bó có mười que và không có que rời"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "13 que"
+        },
+        {
+          "key": "B",
+          "text": "20 que"
+        },
+        {
+          "key": "C",
+          "text": "30 que"
+        },
+        {
+          "key": "D",
+          "text": "40 que"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Mỗi bó có 10 que. Ba bó có tất cả 30 que tính.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Ghép số bó với số que trong một bó",
+          "explanation": "Hình có 3 bó, mỗi bó 10 que; không phải 13 que."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một bó que",
+          "explanation": "Hình có đủ 3 bó que nên cần đếm cả ba bó."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L023-E01",
+      "lesson_id": 23,
+      "concept_id": null,
+      "knowledge_tags": [
+        "represent_numbers_21_to_40_with_tens_and_ones"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          97,
+          98
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Các thanh và khối nhỏ trong hình biểu diễn số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-006/cau-03-hai-thanh-bay-khoi.png",
+            "alt_text": "Hai thanh dài, mỗi thanh gồm mười khối và bảy khối nhỏ rời"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "25"
+        },
+        {
+          "key": "B",
+          "text": "27"
+        },
+        {
+          "key": "C",
+          "text": "32"
+        },
+        {
+          "key": "D",
+          "text": "37"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hai thanh dài biểu diễn 20 và bảy khối nhỏ biểu diễn 7. Hình biểu diễn số 27.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu hai khối nhỏ",
+          "explanation": "Bên cạnh hai thanh dài có đủ 7 khối nhỏ, không phải 5 khối."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thừa một thanh dài",
+          "explanation": "Hình chỉ có 2 thanh dài và 7 khối nhỏ nên biểu diễn số 27."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L024-E01",
+      "lesson_id": 24,
+      "concept_id": null,
+      "knowledge_tags": [
+        "represent_numbers_41_to_70_with_tens_and_ones"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99,
+          100
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đếm các thanh và khối nhỏ. Em được số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-006/cau-04-nam-thanh-tam-khoi.png",
+            "alt_text": "Năm thanh dài, mỗi thanh gồm mười khối và tám khối nhỏ rời"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "48"
+        },
+        {
+          "key": "B",
+          "text": "50"
+        },
+        {
+          "key": "C",
+          "text": "58"
+        },
+        {
+          "key": "D",
+          "text": "68"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Năm thanh dài biểu diễn 50 và tám khối nhỏ biểu diễn 8. Hình biểu diễn số 58.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một thanh dài",
+          "explanation": "Hình có đủ 5 thanh dài, không phải 4 thanh."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua các khối nhỏ rời",
+          "explanation": "Ngoài 5 thanh dài còn có 8 khối nhỏ cần được tính."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L025-E01",
+      "lesson_id": 25,
+      "concept_id": null,
+      "knowledge_tags": [
+        "represent_numbers_71_to_99_with_tens_and_ones"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          101,
+          102
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Quan sát các nhóm trong hình. Số thích hợp là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-006/cau-05-tam-thanh-bon-khoi.png",
+            "alt_text": "Tám thanh dài, mỗi thanh gồm mười khối và bốn khối nhỏ rời"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "74"
+        },
+        {
+          "key": "B",
+          "text": "80"
+        },
+        {
+          "key": "C",
+          "text": "84"
+        },
+        {
+          "key": "D",
+          "text": "94"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Tám thanh dài biểu diễn 80 và bốn khối nhỏ biểu diễn 4. Hình biểu diễn số 84.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một thanh dài",
+          "explanation": "Hình có 8 thanh dài, không phải 7 thanh."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua các khối nhỏ rời",
+          "explanation": "Ngoài 8 thanh dài còn có 4 khối nhỏ cần được tính."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L167-L171-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-167-171",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L167-E01",
+      "lesson_id": 167,
+      "concept_id": null,
+      "knowledge_tags": [
+        "century",
+        "year_to_century"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          40,
+          41
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Thế kỉ XXI bắt đầu từ năm nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-037/cau-01-the-ki.png",
+            "alt_text": "Lịch và trục thời gian minh họa các thế kỉ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 901"
+        },
+        {
+          "key": "B",
+          "text": "2 000"
+        },
+        {
+          "key": "C",
+          "text": "2 001"
+        },
+        {
+          "key": "D",
+          "text": "2 101"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thế kỉ XXI gồm các năm từ 2 001 đến 2 100, nên thế kỉ XXI bắt đầu từ năm 2 001.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cho rằng thế kỉ bắt đầu ở năm tròn nghìn",
+          "explanation": "Thế kỉ XX kết thúc ở năm 2 000; thế kỉ XXI bắt đầu từ năm 2 001."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm 100 năm vào mốc bắt đầu",
+          "explanation": "Năm 2 101 là năm đầu của thế kỉ XXII, không phải thế kỉ XXI."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L168-E01",
+      "lesson_id": 168,
+      "concept_id": null,
+      "knowledge_tags": [
+        "unit_rate",
+        "division_multiplication",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          42,
+          43
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "8 quyển vở giá 48 000 đồng. 5 quyển vở như thế giá bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-037/cau-02-rut-ve-don-vi.png",
+            "alt_text": "Các nhóm vở và đồ dùng học tập minh họa bài toán rút về đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "28 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "30 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "40 000 đồng"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Giá 1 quyển vở là 48 000 : 8 = 6 000 đồng. Giá 5 quyển là 6 000 × 5 = 30 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia nhầm số quyển cần mua",
+          "explanation": "Cần chia cho 8 để tìm giá 1 quyển, sau đó mới nhân với 5."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân trực tiếp tổng tiền với số quyển",
+          "explanation": "Không thể lấy 48 000 nhân với 5 vì 48 000 đồng là giá của 8 quyển."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L169-E01",
+      "lesson_id": 169,
+      "concept_id": null,
+      "knowledge_tags": [
+        "angle_types",
+        "acute_right_obtuse_straight"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          45,
+          46
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Góc có số đo 120° là góc gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-037/cau-03-loai-goc.png",
+            "alt_text": "Các mô hình góc với độ mở khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Góc nhọn"
+        },
+        {
+          "key": "B",
+          "text": "Góc vuông"
+        },
+        {
+          "key": "C",
+          "text": "Góc tù"
+        },
+        {
+          "key": "D",
+          "text": "Góc bẹt"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Góc tù có số đo lớn hơn 90° và nhỏ hơn 180°. Vì 120° nằm trong khoảng đó nên đây là góc tù.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm góc tù với góc vuông",
+          "explanation": "Góc vuông có số đo đúng bằng 90°; 120° lớn hơn 90° nên không phải góc vuông."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ cần lớn hơn 90° là góc bẹt",
+          "explanation": "Góc bẹt có số đo đúng bằng 180°, còn 120° nhỏ hơn 180°."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L170-E01",
+      "lesson_id": 170,
+      "concept_id": null,
+      "knowledge_tags": [
+        "angle_measure",
+        "degree_unit"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          47,
+          48
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số đo của góc bẹt là bao nhiêu độ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-037/cau-04-do-goc.png",
+            "alt_text": "Thước đo góc minh họa cách đo một góc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "90°"
+        },
+        {
+          "key": "B",
+          "text": "120°"
+        },
+        {
+          "key": "C",
+          "text": "180°"
+        },
+        {
+          "key": "D",
+          "text": "360°"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Góc bẹt tạo thành một đường thẳng và có số đo bằng 180°.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm góc bẹt với góc vuông",
+          "explanation": "Góc vuông có số đo 90°, còn góc bẹt có hai cạnh thẳng hàng và đo 180°."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm một vòng tròn với góc bẹt",
+          "explanation": "360° là một vòng tròn đầy đủ; góc bẹt chỉ bằng nửa vòng tròn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L171-E01",
+      "lesson_id": 171,
+      "concept_id": null,
+      "knowledge_tags": [
+        "perpendicular_lines",
+        "right_angle"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          51,
+          52
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai đường thẳng vuông góc tạo thành mấy góc vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-037/cau-05-vuong-goc.png",
+            "alt_text": "Hai đường thẳng vuông góc minh họa bằng thước và ê ke"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 góc vuông"
+        },
+        {
+          "key": "B",
+          "text": "2 góc vuông"
+        },
+        {
+          "key": "C",
+          "text": "3 góc vuông"
+        },
+        {
+          "key": "D",
+          "text": "4 góc vuông"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Hai đường thẳng vuông góc cắt nhau tạo thành bốn góc, mỗi góc đều là góc vuông.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ đếm một góc tại giao điểm",
+          "explanation": "Tại giao điểm có bốn vùng góc, không chỉ có một góc."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ đếm hai góc đối diện",
+          "explanation": "Cả bốn góc quanh giao điểm đều có số đo 90°."
+        }
+      ]
+    }
+  ]
+}

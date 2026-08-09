@@ -1,0 +1,224 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L388-L390-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-388-390",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L388-E02",
+      "lesson_id": 388,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "area",
+        "percentage",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một mảnh đất hình chữ nhật dài 45 m, rộng 24 m. Người ta dùng 40% diện tích để trồng rau. Diện tích phần còn lại là bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-074/cau-01-khu-dat-phan-tram.png",
+            "alt_text": "Mảnh đất dài 45 m, rộng 24 m, phần trồng rau chiếm 40% diện tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "432 m²"
+        },
+        {
+          "key": "B",
+          "text": "648 m²"
+        },
+        {
+          "key": "C",
+          "text": "720 m²"
+        },
+        {
+          "key": "D",
+          "text": "1 080 m²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Diện tích mảnh đất là 45 × 24 = 1 080 m². Phần trồng rau là 1 080 × 40 : 100 = 432 m². Phần còn lại là 1 080 − 432 = 648 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trả lời diện tích phần trồng rau",
+          "explanation": "432 m² là diện tích phần trồng rau, chưa phải phần còn lại."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tính sai diện tích hình chữ nhật",
+          "explanation": "Diện tích phải là 45 × 24 = 1 080 m²."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chưa trừ phần đã sử dụng",
+          "explanation": "1 080 m² là toàn bộ mảnh đất, cần trừ 40% đã trồng rau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E03",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cửa hàng có 8 quyển sách cùng loại, mỗi quyển giá 15 000 đồng. Mua cả 8 quyển sách đó hết bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-074/cau-02-mua-sach.png",
+            "alt_text": "8 quyển sách, mỗi quyển có giá 15 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "105 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "120 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "125 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "150 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số tiền phải trả là 15 000 × 8 = 120 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân sai số lượng",
+          "explanation": "Cần nhân đơn giá 15 000 đồng với đúng 8 quyển."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thêm một phần không có trong đề",
+          "explanation": "Đề bài không có phí phát sinh; chỉ cần tính 15 000 × 8."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân nhầm với 10",
+          "explanation": "Số lượng sách là 8 quyển, không phải 10 quyển."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E02",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "percentage",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể có dung tích 3,5 m³ nước. Người ta đã dùng 20% lượng nước. Bể còn lại bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-074/cau-03-be-nuoc-phan-tram.png",
+            "alt_text": "Bể có dung tích 3,5 m³ và đã dùng 20% lượng nước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "700 lít"
+        },
+        {
+          "key": "B",
+          "text": "2 100 lít"
+        },
+        {
+          "key": "C",
+          "text": "2 800 lít"
+        },
+        {
+          "key": "D",
+          "text": "3 500 lít"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "3,5 m³ = 3 500 lít. Lượng nước còn lại chiếm 100% − 20% = 80%, nên có 3 500 × 80 : 100 = 2 800 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính lượng nước đã dùng",
+          "explanation": "3 500 × 20 : 100 = 700 lít là lượng đã dùng, không phải lượng còn lại."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi đơn vị hoặc tính phần trăm sai",
+          "explanation": "Phần còn lại là 80% của 3 500 lít, bằng 2 800 lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chưa tính phần trăm đã dùng",
+          "explanation": "3 500 lít là dung tích ban đầu, cần trừ 20% đã dùng."
+        }
+      ]
+    }
+  ]
+}

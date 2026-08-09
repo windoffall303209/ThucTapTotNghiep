@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L193-L197-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-193-197",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L193-E01",
+      "lesson_id": 193,
+      "concept_id": null,
+      "knowledge_tags": [
+        "simplify_fraction",
+        "fraction_reduction",
+        "irreducible_fraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          18,
+          19
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Rút gọn phân số 18/24 về phân số tối giản được phân số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-043/cau-01-rut-gon.png",
+            "alt_text": "Học sinh gom các phần bằng nhau để rút gọn phân số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3/4"
+        },
+        {
+          "key": "B",
+          "text": "2/3"
+        },
+        {
+          "key": "C",
+          "text": "4/5"
+        },
+        {
+          "key": "D",
+          "text": "5/8"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "18 và 24 cùng chia hết cho 6. Ta có 18 : 6 = 3 và 24 : 6 = 4, nên 18/24 = 3/4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia tử và mẫu cho các số khác nhau",
+          "explanation": "Tử số và mẫu số phải cùng chia cho một số tự nhiên lớn hơn 1."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Rút gọn chưa đúng tỉ lệ",
+          "explanation": "Cần kiểm tra lại bằng cách nhân cả tử và mẫu của 3/4 với 6 để được 18/24."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L194-E01",
+      "lesson_id": 194,
+      "concept_id": null,
+      "knowledge_tags": [
+        "common_denominator",
+        "equivalent_fractions",
+        "fraction_denominator"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          20,
+          21
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mẫu số chung nhỏ nhất của 1/6 và 3/8 là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-043/cau-02-quy-dong.png",
+            "alt_text": "Hai băng giấy được chia lại thành cùng số phần bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "18"
+        },
+        {
+          "key": "C",
+          "text": "24"
+        },
+        {
+          "key": "D",
+          "text": "48"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "24 là số nhỏ nhất cùng chia hết cho 6 và 8, nên 24 là mẫu số chung nhỏ nhất của 1/6 và 3/8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn tích chưa đủ lớn",
+          "explanation": "12 chia hết cho 6 nhưng không chia hết cho 8 nên không thể là mẫu số chung."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn bội chung nhưng chưa tối thiểu",
+          "explanation": "48 chia hết cho cả 6 và 8 nhưng lớn hơn 24, nên không phải mẫu số chung nhỏ nhất."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L195-E01",
+      "lesson_id": 195,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_same_denominator",
+        "fraction_order",
+        "fraction_comparison"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          22,
+          23
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Điền dấu thích hợp vào chỗ trống: 5/9 ? 7/9",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-043/cau-03-cung-mau.png",
+            "alt_text": "Hai dải giấy có cùng số phần và số phần tô màu khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "<"
+        },
+        {
+          "key": "B",
+          "text": ">"
+        },
+        {
+          "key": "C",
+          "text": "="
+        },
+        {
+          "key": "D",
+          "text": "không so sánh được"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Hai phân số có cùng mẫu số 9. Vì 5 < 7 nên 5/9 < 7/9.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đọc ngược dấu so sánh",
+          "explanation": "Tử số 5 nhỏ hơn tử số 7 nên phân số bên trái nhỏ hơn phân số bên phải."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ nhìn mẫu số",
+          "explanation": "Khi cùng mẫu số, cần so sánh tử số chứ không kết luận hai phân số bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L196-E01",
+      "lesson_id": 196,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_different_denominator",
+        "common_denominator",
+        "fraction_comparison"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          24,
+          25
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "So sánh hai phân số 2/3 và 3/5.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-043/cau-04-khac-mau.png",
+            "alt_text": "Hai dải giấy có số phần chia khác nhau được đặt cạnh nhau để so sánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2/3 > 3/5"
+        },
+        {
+          "key": "B",
+          "text": "2/3 < 3/5"
+        },
+        {
+          "key": "C",
+          "text": "2/3 = 3/5"
+        },
+        {
+          "key": "D",
+          "text": "Không thể so sánh"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Quy đồng mẫu số 15: 2/3 = 10/15 và 3/5 = 9/15. Vì 10 > 9 nên 2/3 > 3/5.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "So sánh chéo chưa đúng",
+          "explanation": "Cần quy đồng hoặc nhân chéo đúng thứ tự trước khi kết luận."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho rằng khác mẫu số thì không so sánh được",
+          "explanation": "Có thể quy đồng mẫu số để đưa hai phân số về cùng mẫu số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L197-E01",
+      "lesson_id": 197,
+      "concept_id": null,
+      "knowledge_tags": [
+        "parallelogram",
+        "parallel_opposite_sides",
+        "equal_opposite_sides"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          30,
+          31
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đặc điểm nào đúng về hình bình hành?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-043/cau-05-hinh-binh-hanh.png",
+            "alt_text": "Các hình ghép que trong đó có một hình bình hành"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Có bốn cạnh bằng nhau và bốn góc vuông."
+        },
+        {
+          "key": "B",
+          "text": "Có hai cặp cạnh đối diện song song và bằng nhau."
+        },
+        {
+          "key": "C",
+          "text": "Chỉ có một cặp cạnh song song."
+        },
+        {
+          "key": "D",
+          "text": "Có bốn góc nhọn."
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình bình hành có hai cặp cạnh đối diện song song và mỗi cặp cạnh đối diện bằng nhau.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm hình bình hành với hình vuông",
+          "explanation": "Bốn cạnh bằng nhau và bốn góc vuông là đặc điểm của hình vuông, không phải mọi hình bình hành."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhận biết thiếu một cặp cạnh",
+          "explanation": "Hình bình hành có hai cặp cạnh đối diện song song, không chỉ một cặp."
+        }
+      ]
+    }
+  ]
+}

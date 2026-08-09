@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L374-L376-20260808-R3",
+  "curriculum_scope_id": "grade-5-lessons-374-376",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L374-E02",
+      "lesson_id": 374,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_units",
+        "time_subtraction",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          52,
+          53
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chương trình bắt đầu lúc 6 giờ 35 phút và kết thúc lúc 9 giờ 20 phút. Chương trình kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-076/cau-01-khoang-thoi-gian.png",
+            "alt_text": "Trục thời gian từ lúc bắt đầu 6 giờ 35 phút đến lúc kết thúc 9 giờ 20 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 35 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 45 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 55 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ 15 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 6 giờ 35 phút đến 8 giờ 35 phút là 2 giờ; từ 8 giờ 35 phút đến 9 giờ 20 phút là 45 phút. Tổng thời gian là 2 giờ 45 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "20 phút ở mốc kết thúc không thể trừ trực tiếp cho 35 phút; cần tính qua mốc 8 giờ 35 phút."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm phần phút",
+          "explanation": "Khoảng từ 8 giờ 35 phút đến 9 giờ 20 phút là 45 phút, không phải 55 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm mốc giờ kết thúc",
+          "explanation": "Mốc kết thúc là 9 giờ 20 phút nên thời lượng chưa đến 3 giờ 15 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L375-E03",
+      "lesson_id": 375,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_addition",
+        "time_multiplication",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          58,
+          59
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chuyến đi gồm 4 chặng, mỗi chặng kéo dài 25 phút và có 2 lần nghỉ, mỗi lần 15 phút. Tổng thời gian của chuyến đi là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-076/cau-02-bon-chang.png",
+            "alt_text": "Bốn chặng di chuyển 25 phút và hai lần nghỉ 15 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 40 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 10 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 30 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thời gian của 4 chặng là 25 × 4 = 100 phút. Thời gian nghỉ là 15 × 2 = 30 phút. Tổng cộng 130 phút = 2 giờ 10 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ tính thời gian các chặng",
+          "explanation": "100 phút chỉ là thời gian di chuyển, chưa tính 2 lần nghỉ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên hai lần nghỉ",
+          "explanation": "Cần cộng thêm 30 phút nghỉ vào 100 phút di chuyển."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa thời gian nghỉ",
+          "explanation": "Đề bài có 2 lần nghỉ, mỗi lần 15 phút nên tổng thời gian nghỉ là 30 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L376-E03",
+      "lesson_id": 376,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          62,
+          63
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chiếc xe đi quãng đường 72 km trong 2 giờ 24 phút. Vận tốc của xe là bao nhiêu ki-lô-mét trên giờ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-076/cau-03-tinh-van-toc.png",
+            "alt_text": "Xe đi quãng đường 72 km trong thời gian 2 giờ 24 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 km/giờ"
+        },
+        {
+          "key": "B",
+          "text": "30 km/giờ"
+        },
+        {
+          "key": "C",
+          "text": "36 km/giờ"
+        },
+        {
+          "key": "D",
+          "text": "42 km/giờ"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "2 giờ 24 phút = 2,4 giờ. Vận tốc của xe là 72 : 2,4 = 30 km/giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi 24 phút sai",
+          "explanation": "24 phút = 0,4 giờ nên thời gian là 2,4 giờ, không phải 3 giờ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia cho 2 giờ",
+          "explanation": "Phải đổi và dùng đủ 2 giờ 24 phút, không được bỏ qua 24 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân quãng đường với thời gian",
+          "explanation": "Công thức vận tốc là quãng đường chia cho thời gian."
+        }
+      ]
+    }
+  ]
+}

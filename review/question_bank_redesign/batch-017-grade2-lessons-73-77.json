@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L073-L077-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-073-077",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L073-E01",
+      "lesson_id": 73,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_divisor",
+        "read_division_components"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          25,
+          26
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong phép chia 18 : 3 = 6, số 3 được gọi là gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-017/cau-01-muoi-tam-chia-ba.png",
+            "alt_text": "Mười tám khối vuông được chia đều thành ba nhóm bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Số bị chia"
+        },
+        {
+          "key": "B",
+          "text": "Thương"
+        },
+        {
+          "key": "C",
+          "text": "Số chia"
+        },
+        {
+          "key": "D",
+          "text": "Số dư"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Trong phép chia 18 : 3 = 6, số 18 là số bị chia, số 3 là số chia và số 6 là thương.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm số bị chia với số chia",
+          "explanation": "Số bị chia đứng trước dấu chia, nên ở đây là 18."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm thương với số chia",
+          "explanation": "Thương là kết quả của phép chia, ở đây là 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L074-E01",
+      "lesson_id": 74,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_sphere",
+        "relate_solid_shape_to_object"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          29,
+          30
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Quả bóng và lon nước lần lượt có dạng khối nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-017/cau-02-khoi-cau-qua-bong.png",
+            "alt_text": "Một quả bóng tròn bên cạnh một lon nước dạng khối trụ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Khối cầu và khối trụ"
+        },
+        {
+          "key": "B",
+          "text": "Khối trụ và khối cầu"
+        },
+        {
+          "key": "C",
+          "text": "Hai khối cầu"
+        },
+        {
+          "key": "D",
+          "text": "Hai khối trụ"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Quả bóng có dạng khối cầu, còn lon nước có dạng khối trụ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi thứ tự hai đồ vật",
+          "explanation": "Quả bóng được nêu trước nên phải xác định khối cầu trước, sau đó mới xác định khối trụ của lon nước."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho cả hai đồ vật là khối trụ",
+          "explanation": "Quả bóng tròn đều có dạng khối cầu, không phải khối trụ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L075-E01",
+      "lesson_id": 75,
+      "concept_id": null,
+      "knowledge_tags": [
+        "relate_day_to_24_hours",
+        "sequence_daily_time"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          33,
+          34
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "An đi ngủ lúc 21 giờ. 21 giờ thuộc buổi nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-017/cau-03-an-di-ngu-21-gio.png",
+            "alt_text": "Khung cảnh buổi tối có mặt trăng, một chiếc đồng hồ và bạn nhỏ chuẩn bị đi ngủ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Buổi sáng"
+        },
+        {
+          "key": "B",
+          "text": "Buổi trưa"
+        },
+        {
+          "key": "C",
+          "text": "Buổi chiều"
+        },
+        {
+          "key": "D",
+          "text": "Buổi tối"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "21 giờ là 9 giờ tối, nên thuộc buổi tối.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm giờ buổi tối với buổi sáng",
+          "explanation": "21 giờ nằm vào buổi tối, không phải buổi sáng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Xếp 21 giờ vào buổi chiều",
+          "explanation": "Buổi chiều kết thúc trước buổi tối; 21 giờ thuộc buổi tối."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L076-E01",
+      "lesson_id": 76,
+      "concept_id": null,
+      "knowledge_tags": [
+        "relate_hour_to_60_minutes",
+        "convert_hour_to_minutes"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          35,
+          36
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một giờ bằng bao nhiêu phút?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-017/cau-04-mot-gio-60-phut.png",
+            "alt_text": "Chiếc đồng hồ chỉ một giờ và vòng tròn minh họa 60 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30 phút"
+        },
+        {
+          "key": "B",
+          "text": "60 phút"
+        },
+        {
+          "key": "C",
+          "text": "90 phút"
+        },
+        {
+          "key": "D",
+          "text": "100 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Một giờ có 60 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm một nửa giờ với một giờ",
+          "explanation": "30 phút là nửa giờ; một giờ có 60 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Gán 100 phút cho một giờ",
+          "explanation": "Theo mối quan hệ thời gian đã học, 1 giờ bằng 60 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L077-E01",
+      "lesson_id": 77,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_calendar",
+        "identify_month_date"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          37,
+          38
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Ngày 30 tháng 4 được viết như thế nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-017/cau-05-ngay-30-thang-4.png",
+            "alt_text": "Một tờ lịch có ngày 30 thuộc tháng 4 được đánh dấu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30/4"
+        },
+        {
+          "key": "B",
+          "text": "4/30"
+        },
+        {
+          "key": "C",
+          "text": "30/5"
+        },
+        {
+          "key": "D",
+          "text": "4/5"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Khi viết ngày và tháng theo thứ tự đã học, viết ngày trước rồi đến tháng: ngày 30 tháng 4 viết là 30/4.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi vị trí ngày và tháng",
+          "explanation": "Cách viết quen thuộc trong bài học đặt ngày trước, tháng sau."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm tháng 4 với tháng 5",
+          "explanation": "Đề bài nêu tháng 4 nên phần tháng phải là số 4."
+        }
+      ]
+    }
+  ]
+}

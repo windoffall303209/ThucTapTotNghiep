@@ -1,0 +1,336 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L188-L192-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-188-192",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L188-E01",
+      "lesson_id": 188,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_concept",
+        "numerator_denominator",
+        "equal_parts"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          4,
+          5,
+          6
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong 8 ô bằng nhau của một dải giấy, có 3 ô màu xanh. Phân số biểu thị các ô màu xanh là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-042/cau-01-khai-niem-phan-so.png",
+            "alt_text": "Hình được chia thành các phần bằng nhau và có một số phần được tô màu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3/8"
+        },
+        {
+          "key": "B",
+          "text": "8/3"
+        },
+        {
+          "key": "C",
+          "text": "3/5"
+        },
+        {
+          "key": "D",
+          "text": "5/8"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Mẫu số là 8 vì hình được chia thành 8 phần bằng nhau; tử số là 3 vì có 3 phần được tô màu. Phân số cần tìm là 3/8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi vị trí tử số và mẫu số",
+          "explanation": "Số phần bằng nhau là mẫu số, còn số phần đã tô màu là tử số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm sai số phần chưa tô màu",
+          "explanation": "Cần đếm tổng số phần bằng nhau của hình, không chỉ đếm phần chưa tô màu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L189-E01",
+      "lesson_id": 189,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_concept",
+        "fraction_greater_than_one",
+        "fraction_reading"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          7,
+          8
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Phân số nào dưới đây lớn hơn 1?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-042/cau-02-phan-so-lon-hon-mot.png",
+            "alt_text": "Các phần bánh được xếp thành nhiều đơn vị để minh họa phân số lớn hơn một"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3/5"
+        },
+        {
+          "key": "B",
+          "text": "5/5"
+        },
+        {
+          "key": "C",
+          "text": "7/5"
+        },
+        {
+          "key": "D",
+          "text": "4/6"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Phân số có tử số lớn hơn mẫu số thì lớn hơn 1. Vì 7 > 5 nên 7/5 lớn hơn 1.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm phân số bằng 1 với phân số lớn hơn 1",
+          "explanation": "5/5 bằng 1 vì tử số bằng mẫu số, không lớn hơn 1."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ nhìn tử số mà bỏ qua mẫu số",
+          "explanation": "Cần so sánh tử số với mẫu số trong cùng một phân số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L190-E01",
+      "lesson_id": 190,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_as_division",
+        "natural_number_division",
+        "fraction_notation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          9,
+          10
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Phân số 7/3 được viết dưới dạng thương của hai số tự nhiên là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-042/cau-03-phan-so-phep-chia.png",
+            "alt_text": "Các bạn nhỏ chia đều đồ ăn thành những phần bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 : 3"
+        },
+        {
+          "key": "B",
+          "text": "3 : 7"
+        },
+        {
+          "key": "C",
+          "text": "7 + 3"
+        },
+        {
+          "key": "D",
+          "text": "7 × 3"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong phân số a/b, tử số a là số bị chia và mẫu số b là số chia. Vì vậy 7/3 = 7 : 3.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi vị trí số bị chia và số chia",
+          "explanation": "Tử số đứng trước và là số bị chia; mẫu số đứng sau và là số chia."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm phép chia với phép cộng",
+          "explanation": "Dấu gạch ngang của phân số biểu thị phép chia, không biểu thị phép cộng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L191-E01",
+      "lesson_id": 191,
+      "concept_id": null,
+      "knowledge_tags": [
+        "equivalent_fractions",
+        "fraction_models",
+        "fraction_equality"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14,
+          15
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nhân cả tử số và mẫu số của 3/5 với 2, ta được phân số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-042/cau-04-phan-so-bang-nhau.png",
+            "alt_text": "Hai băng giấy được chia khác nhau nhưng có phần tô màu bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6/10"
+        },
+        {
+          "key": "B",
+          "text": "9/20"
+        },
+        {
+          "key": "C",
+          "text": "3/10"
+        },
+        {
+          "key": "D",
+          "text": "5/7"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "3 × 2 = 6 và 5 × 2 = 10, nên nhân cả tử số và mẫu số của 3/5 với 2 ta được 6/10.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân tử và mẫu với hai số khác nhau",
+          "explanation": "Muốn tạo phân số bằng nhau phải nhân cả tử và mẫu với cùng một số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ thay đổi tử số",
+          "explanation": "Mẫu số cũng phải được thay đổi theo cùng một hệ số với tử số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L192-E01",
+      "lesson_id": 192,
+      "concept_id": null,
+      "knowledge_tags": [
+        "fraction_basic_property",
+        "scale_fraction",
+        "equivalent_fractions"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          16,
+          17
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Theo tính chất cơ bản của phân số, 3/4 = ?/20. Số thích hợp điền vào ô trống là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-042/cau-05-tinh-chat-phan-so.png",
+            "alt_text": "Giáo viên và học sinh mở rộng hai băng giấy có phần tô màu tương ứng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "15"
+        },
+        {
+          "key": "C",
+          "text": "3"
+        },
+        {
+          "key": "D",
+          "text": "20"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "4 × 5 = 20 nên nhân cả tử số và mẫu số của 3/4 với 5: 3 × 5 = 15. Do đó 3/4 = 15/20.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân tử số với mẫu số mới",
+          "explanation": "Cần tìm hệ số 5 từ mẫu số rồi nhân tử số 3 với chính hệ số đó."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Điền lại mẫu số",
+          "explanation": "Ô trống là tử số mới, còn mẫu số 20 đã được cho sẵn."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L232-L236-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-232-236",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L232-E01",
+      "lesson_id": 232,
+      "concept_id": null,
+      "knowledge_tags": [
+        "divide_decimal_by_power_of_ten",
+        "decimal_point_shift",
+        "decimal_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          80,
+          81
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chai nước chứa 4,8 lít. Nếu chia đều lượng nước đó thành 10 phần thì mỗi phần có bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-051/cau-01-chia-10-100-1000.png",
+            "alt_text": "Một bình mật ong được chia thành các nhóm bình nhỏ dần để minh họa phép chia"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "0,048 lít"
+        },
+        {
+          "key": "B",
+          "text": "0,48 lít"
+        },
+        {
+          "key": "C",
+          "text": "4,08 lít"
+        },
+        {
+          "key": "D",
+          "text": "48 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia cho 10 chuyển dấu phẩy sang bên trái một chữ số: 4,8 : 10 = 0,48 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chuyển dấu phẩy hai chữ số",
+          "explanation": "Chia cho 10 chỉ chuyển dấu phẩy sang trái một chữ số."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chuyển dấu phẩy sang phải",
+          "explanation": "Chia làm số bé đi nên dấu phẩy phải chuyển sang bên trái."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L233-E01",
+      "lesson_id": 233,
+      "concept_id": null,
+      "knowledge_tags": [
+        "divide_decimal_by_whole",
+        "decimal_calculation",
+        "equal_sharing"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          82,
+          83,
+          84
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bình có 4,2 lít nước cam được rót vào 6 chai có lượng như nhau. Mỗi chai nhận bao nhiêu lít nước cam?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-051/cau-02-chia-so-tu-nhien.png",
+            "alt_text": "Một bát trái cây được chia đều vào bốn bát nhỏ giống nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "0,6 lít"
+        },
+        {
+          "key": "B",
+          "text": "0,7 lít"
+        },
+        {
+          "key": "C",
+          "text": "0,8 lít"
+        },
+        {
+          "key": "D",
+          "text": "7 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thực hiện phép chia 4,2 : 6 = 0,7 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia thiếu phần mười",
+          "explanation": "42 phần mười chia 6 được 7 phần mười, tức là 0,7 lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Quên dấu phẩy",
+          "explanation": "Kết quả phải nhỏ hơn 4,2 nên cần viết 0,7, không phải 7."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L234-E01",
+      "lesson_id": 234,
+      "concept_id": null,
+      "knowledge_tags": [
+        "divide_decimals",
+        "convert_divisor_to_whole",
+        "decimal_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cuộn dây dài 8,4 m được cắt thành các đoạn dài 1,2 m. Có thể cắt được bao nhiêu đoạn như vậy?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-051/cau-03-chia-hai-so-thap-phan.png",
+            "alt_text": "Một thanh gỗ được đánh dấu thành các đoạn bằng nhau bằng dụng cụ đo"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 đoạn"
+        },
+        {
+          "key": "B",
+          "text": "7 đoạn"
+        },
+        {
+          "key": "C",
+          "text": "8 đoạn"
+        },
+        {
+          "key": "D",
+          "text": "10 đoạn"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chuyển phép chia thành 84 : 12 rồi tính: 8,4 : 1,2 = 84 : 12 = 7 đoạn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia trực tiếp chữ số chưa đổi đơn vị",
+          "explanation": "Cần chuyển cả số bị chia và số chia sang cùng dạng số tự nhiên trước khi chia."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Làm tròn số chia",
+          "explanation": "Không được làm tròn 1,2 thành 1; phải giữ nguyên giá trị của số chia."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L235-E01",
+      "lesson_id": 235,
+      "concept_id": null,
+      "knowledge_tags": [
+        "measurement_as_decimal",
+        "unit_conversion",
+        "length_measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đổi 3 m 25 cm thành số đo theo đơn vị mét.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-051/cau-04-do-dai-thap-phan.png",
+            "alt_text": "Thanh đo dài được ghép từ một đoạn lớn và các khối đơn vị nhỏ hơn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3,025 m"
+        },
+        {
+          "key": "B",
+          "text": "3,25 m"
+        },
+        {
+          "key": "C",
+          "text": "3,205 m"
+        },
+        {
+          "key": "D",
+          "text": "32,5 m"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "25 cm = 0,25 m nên 3 m 25 cm = 3,25 m.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm 25 cm thành 25 phần nghìn mét",
+          "explanation": "1 m = 100 cm nên 25 cm = 0,25 m."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi sai chiều đơn vị",
+          "explanation": "Đổi từ xăng-ti-mét sang mét phải chia cho 100, không nhân với 10."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L236-E01",
+      "lesson_id": 236,
+      "concept_id": null,
+      "knowledge_tags": [
+        "percentage_ratio",
+        "fraction_to_percent",
+        "whole_and_part"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97,
+          98
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một lớp có 40 học sinh, trong đó 10 bạn tham gia câu lạc bộ đọc sách. Tỉ số phần trăm số học sinh tham gia câu lạc bộ so với cả lớp là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-051/cau-05-ti-so-phan-tram.png",
+            "alt_text": "Bảng ô vuông có một phần được tô màu để minh họa phần trăm của toàn thể"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "10%"
+        },
+        {
+          "key": "B",
+          "text": "20%"
+        },
+        {
+          "key": "C",
+          "text": "25%"
+        },
+        {
+          "key": "D",
+          "text": "40%"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Tỉ số là 10 : 40 = 0,25 = 25%, nên có 25% học sinh tham gia câu lạc bộ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy số học sinh tham gia làm phần trăm",
+          "explanation": "10 là số học sinh, cần so sánh với tổng 40 học sinh rồi đổi sang phần trăm."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia nhầm 10 cho 50",
+          "explanation": "Mẫu số phải là tổng số học sinh của lớp, bằng 40."
+        }
+      ]
+    }
+  ]
+}

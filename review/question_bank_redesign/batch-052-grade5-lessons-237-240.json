@@ -1,0 +1,274 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L237-L240-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-237-240",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L237-E01",
+      "lesson_id": 237,
+      "concept_id": null,
+      "knowledge_tags": [
+        "percentage_ratio",
+        "ratio_of_two_numbers",
+        "decimal_to_percent"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          99,
+          100
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 15 viên bi xanh và 25 viên bi đỏ. Tỉ số phần trăm số viên bi xanh so với cả hộp là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-052/cau-01-ti-so-phan-tram.png",
+            "alt_text": "Hai nhóm người biểu diễn có số lượng khác nhau và thanh so sánh phần"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30%"
+        },
+        {
+          "key": "B",
+          "text": "37,5%"
+        },
+        {
+          "key": "C",
+          "text": "40%"
+        },
+        {
+          "key": "D",
+          "text": "60%"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Cả hộp có 15 + 25 = 40 viên. Tỉ số phần trăm là 15 : 40 = 0,375 = 37,5%.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy 15% theo số viên xanh",
+          "explanation": "Số viên xanh phải được so sánh với tổng 40 viên, không lấy trực tiếp thành 15%."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia cho số viên đỏ",
+          "explanation": "Mẫu số là tổng số viên trong hộp, không phải chỉ số viên đỏ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L238-E01",
+      "lesson_id": 238,
+      "concept_id": null,
+      "knowledge_tags": [
+        "percentage_of_number",
+        "percent_calculation",
+        "fraction_to_percent"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          101,
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chiếc ba lô giá 320 000 đồng được giảm 25%. Số tiền được giảm là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-052/cau-02-gia-tri-phan-tram.png",
+            "alt_text": "Một phần của đống tiền xu được tách ra để minh họa giá trị phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "80 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "100 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "800 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "25% của 320 000 là 320 000 × 25/100 = 80 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Thiếu một chữ số 0",
+          "explanation": "25% = 25/100 nên 320 000 × 25/100 bằng 80 000."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm 25% với gần một phần ba",
+          "explanation": "Cần tính đúng 1/4 của 320 000, kết quả là 80 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L239-E01",
+      "lesson_id": 239,
+      "concept_id": null,
+      "knowledge_tags": [
+        "calculator_operation",
+        "arithmetic_calculation",
+        "percentage_with_calculator"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          106,
+          107,
+          108
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Sau khi nhập phép tính 1 250 + 378 trên máy tính cầm tay, kết quả hiển thị là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-052/cau-03-may-tinh-cam-tay.png",
+            "alt_text": "Học sinh bấm máy tính cầm tay trên bàn học với giấy trắng bên cạnh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 528"
+        },
+        {
+          "key": "B",
+          "text": "1 628"
+        },
+        {
+          "key": "C",
+          "text": "1 728"
+        },
+        {
+          "key": "D",
+          "text": "16 280"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Máy tính thực hiện phép cộng 1 250 + 378 và cho kết quả 1 628.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng sai hàng đơn vị",
+          "explanation": "0 cộng 8 bằng 8, sau đó cộng lần lượt các hàng còn lại được 1 628."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đọc thừa một chữ số 0",
+          "explanation": "Kết quả trên máy tính là 1 628, không phải 16 280."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L240-E01",
+      "lesson_id": 240,
+      "concept_id": null,
+      "knowledge_tags": [
+        "map_scale",
+        "real_distance",
+        "map_distance"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          109,
+          110,
+          111,
+          112
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bản đồ có tỉ lệ 1 : 100 000. Khoảng cách giữa hai địa điểm trên bản đồ là 3 cm. Khoảng cách thật giữa hai địa điểm là bao nhiêu ki-lô-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-052/cau-04-ti-le-ban-do.png",
+            "alt_text": "Tay dùng thước đo một tuyến đường trên bản đồ và đối chiếu với cảnh thật"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "300 m"
+        },
+        {
+          "key": "B",
+          "text": "3 km"
+        },
+        {
+          "key": "C",
+          "text": "30 km"
+        },
+        {
+          "key": "D",
+          "text": "300 km"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "3 cm trên bản đồ ứng với 3 × 100 000 = 300 000 cm ngoài thực tế, bằng 3 km.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi cm sang m nhưng chưa đổi sang km",
+          "explanation": "300 000 cm = 3 000 m = 3 km."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thêm một lần với 10",
+          "explanation": "100 000 cm bằng 1 km nên 3 cm trên bản đồ ứng với 3 km."
+        }
+      ]
+    }
+  ]
+}

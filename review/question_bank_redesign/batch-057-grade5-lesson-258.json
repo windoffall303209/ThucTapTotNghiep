@@ -1,0 +1,80 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L258-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-258",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L258-E01",
+      "lesson_id": 258,
+      "concept_id": null,
+      "knowledge_tags": [
+        "distance",
+        "speed",
+        "time",
+        "distance_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          64,
+          65,
+          66
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một xe đạp đi với vận tốc 12 km/giờ trong 2,5 giờ. Xe đạp đi được quãng đường bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-057/cau-01-quang-duong.png",
+            "alt_text": "Xe đạp đi trên đường cùng tuyến đường và đồng hồ bấm giờ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4,8 km"
+        },
+        {
+          "key": "B",
+          "text": "24 km"
+        },
+        {
+          "key": "C",
+          "text": "30 km"
+        },
+        {
+          "key": "D",
+          "text": "36 km"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Quãng đường bằng vận tốc nhân thời gian: 12 × 2,5 = 30 km.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân với 2 thay vì 2,5",
+          "explanation": "Thời gian là 2,5 giờ nên phải tính 12 × 2,5."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy thời gian chia vận tốc",
+          "explanation": "Công thức tính quãng đường là vận tốc nhân thời gian, không phải chia."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L050-L054-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-050-054",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L050-E01",
+      "lesson_id": 50,
+      "concept_id": null,
+      "knowledge_tags": [
+        "solve_join_result_unknown",
+        "identify_addition_story_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          43,
+          44
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Vườn trường có một luống gồm 9 cây hoa đỏ và một luống gồm 7 cây hoa vàng. Hai luống có bao nhiêu cây hoa?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-012/cau-01-chin-hoa-do-bay-hoa-vang.png",
+            "alt_text": "Chín cây hoa đỏ và bảy cây hoa vàng được trồng thành hai nhóm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "14 cây"
+        },
+        {
+          "key": "B",
+          "text": "15 cây"
+        },
+        {
+          "key": "C",
+          "text": "16 cây"
+        },
+        {
+          "key": "D",
+          "text": "17 cây"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Muốn tìm tất cả, ta gộp hai nhóm: 9 + 7 = 16. Lớp trồng tất cả 16 cây hoa.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng thiếu một cây",
+          "explanation": "Chín cộng đủ bảy bằng mười sáu, không phải mười lăm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa một cây",
+          "explanation": "Hai nhóm có đúng chín và bảy cây nên tổng là mười sáu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L051-E01",
+      "lesson_id": 51,
+      "concept_id": null,
+      "knowledge_tags": [
+        "solve_more_than_problem",
+        "model_more_than_with_bars"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          47,
+          48,
+          49
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mai gấp được 8 chiếc thuyền giấy. Nam gấp nhiều hơn Mai 5 chiếc. Nam gấp được bao nhiêu chiếc thuyền giấy?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-012/cau-02-nam-nhieu-hon-mai-nam-thuyen.png",
+            "alt_text": "Thanh của Mai có tám ô xanh; thanh của Nam có tám ô xanh và thêm năm ô cam"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "11 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "12 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "13 chiếc"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Nam có số thuyền bằng số thuyền của Mai cộng phần nhiều hơn: 8 + 5 = 13. Nam gấp được 13 chiếc.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Dùng phép trừ thay vì phép cộng",
+          "explanation": "Nam nhiều hơn Mai nên cần lấy tám cộng năm, không lấy tám trừ năm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thiếu một chiếc",
+          "explanation": "Tám cộng đủ năm bằng mười ba."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L052-E01",
+      "lesson_id": 52,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_two_digit_numbers_with_regrouping_to_100",
+        "model_two_digit_addition_with_base_ten_blocks"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          59,
+          60
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hộp xanh có 46 viên bi, hộp vàng có 27 viên bi. Cả hai hộp có bao nhiêu viên bi?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-012/cau-03-bon-muoi-sau-cong-hai-muoi-bay.png",
+            "alt_text": "Nhóm xanh biểu diễn bốn chục sáu đơn vị và nhóm vàng biểu diễn hai chục bảy đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "63 viên"
+        },
+        {
+          "key": "B",
+          "text": "72 viên"
+        },
+        {
+          "key": "C",
+          "text": "73 viên"
+        },
+        {
+          "key": "D",
+          "text": "83 viên"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Sáu cộng bảy bằng mười ba, viết 3 nhớ 1. Bốn cộng hai bằng sáu, thêm một bằng bảy. Vậy 46 + 27 = 73.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Quên nhớ một chục",
+          "explanation": "Mười ba đơn vị tạo thêm một chục nên hàng chục phải là bảy."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng sai hàng đơn vị",
+          "explanation": "Sáu cộng bảy có chữ số hàng đơn vị là ba, không phải hai."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L053-E01",
+      "lesson_id": 53,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_one_digit_to_two_digit_with_regrouping",
+        "model_mixed_addition_with_base_ten_blocks"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          61,
+          62
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một dải có 58 nhãn dán, gắn thêm 6 nhãn dán. Dải đó có tất cả bao nhiêu nhãn dán?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-012/cau-04-nam-muoi-tam-them-sau.png",
+            "alt_text": "Năm thanh chục cùng tám khối xanh và sáu khối cam được thêm vào"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "54 nhãn"
+        },
+        {
+          "key": "B",
+          "text": "63 nhãn"
+        },
+        {
+          "key": "C",
+          "text": "64 nhãn"
+        },
+        {
+          "key": "D",
+          "text": "74 nhãn"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Tám cộng sáu bằng mười bốn, viết 4 nhớ 1. Năm chục thêm một chục bằng sáu chục. Vậy 58 + 6 = 64.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng nhầm thành trừ",
+          "explanation": "Đề bài cho gắn thêm nên số nhãn phải tăng, không giảm."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng thiếu một đơn vị",
+          "explanation": "Tám cộng sáu bằng mười bốn nên chữ số hàng đơn vị là bốn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L054-E01",
+      "lesson_id": 54,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_two_digit_numbers_with_regrouping_to_100",
+        "model_two_digit_subtraction_with_base_ten_blocks"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          67,
+          68
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kho có 63 hộp màu, đã chuyển đi 28 hộp. Trong kho còn lại bao nhiêu hộp màu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-012/cau-05-sau-muoi-ba-bot-hai-muoi-tam.png",
+            "alt_text": "Ba thanh chục và năm khối xanh còn lại; hai thanh chục và tám khối đỏ được chuyển đi"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "25 hộp"
+        },
+        {
+          "key": "B",
+          "text": "35 hộp"
+        },
+        {
+          "key": "C",
+          "text": "45 hộp"
+        },
+        {
+          "key": "D",
+          "text": "91 hộp"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đổi một chục để có 13 đơn vị; 13 trừ 8 bằng 5. Còn 5 chục, lấy 5 trừ 2 bằng 3. Vậy 63 − 28 = 35.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Giảm nhầm hàng chục hai lần",
+          "explanation": "Sau khi đổi một chục, hàng chục còn năm; năm trừ hai bằng ba."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thay vì trừ",
+          "explanation": "Đã chuyển đi nên phải lấy 63 trừ 28, không cộng hai số."
+        }
+      ]
+    }
+  ]
+}

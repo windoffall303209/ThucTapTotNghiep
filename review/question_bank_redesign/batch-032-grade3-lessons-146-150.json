@@ -1,0 +1,332 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L146-L150-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-146-150",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L146-E01",
+      "lesson_id": 146,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_to_100000",
+        "exact_division",
+        "long_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          66,
+          67
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 9 648 : 3 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-032/cau-01-chia-het.png",
+            "alt_text": "Đặt tính phép chia cho số có một chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 216"
+        },
+        {
+          "key": "B",
+          "text": "3 126"
+        },
+        {
+          "key": "C",
+          "text": "2 216"
+        },
+        {
+          "key": "D",
+          "text": "3 261"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Thực hiện phép chia theo từng hàng: 9 648 : 3 = 3 216.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia sai một hàng",
+          "explanation": "Cần chia lần lượt từ hàng nghìn đến hàng đơn vị và giữ đúng giá trị từng chữ số."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ sót chữ số hàng nghìn",
+          "explanation": "Thương phải có phần nghìn vì số bị chia có bốn chữ số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L147-E01",
+      "lesson_id": 147,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_to_100000",
+        "division_with_remainder",
+        "quotient_remainder"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          68,
+          69
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kết quả của phép chia 7 258 : 5 là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-032/cau-02-chia-co-du.png",
+            "alt_text": "Minh họa chia đều đồ vật và còn lại một phần dư"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 451 dư 3"
+        },
+        {
+          "key": "B",
+          "text": "1 450 dư 8"
+        },
+        {
+          "key": "C",
+          "text": "1 452 dư 2"
+        },
+        {
+          "key": "D",
+          "text": "1 451 dư 5"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "5 × 1 451 = 7 255, còn 7 258 − 7 255 = 3 nên 7 258 : 5 = 1 451 dư 3.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tăng thương nhưng không kiểm tra số dư",
+          "explanation": "Nếu tăng thương lên 1 thì tích vượt quá số bị chia, nên thương phải là 1 451."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Số dư bằng số chia",
+          "explanation": "Số dư luôn nhỏ hơn số chia; ở đây số dư 3 nhỏ hơn 5."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L148-E01",
+      "lesson_id": 148,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_to_100000",
+        "long_division",
+        "word_problem_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71,
+          72
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một kho có 6 572 kg gạo, chia đều vào 4 bao. Mỗi bao có bao nhiêu ki-lô-gam gạo?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-032/cau-03-chia-deu-gao.png",
+            "alt_text": "Các bao gạo được chia đều từ một kho"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 543 kg"
+        },
+        {
+          "key": "B",
+          "text": "1 643 kg"
+        },
+        {
+          "key": "C",
+          "text": "1 683 kg"
+        },
+        {
+          "key": "D",
+          "text": "2 643 kg"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia đều số gạo vào 4 bao: 6 572 : 4 = 1 643 (kg).",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia sai hàng trăm",
+          "explanation": "Khi hạ chữ số tiếp theo, cần thực hiện đúng phép chia 57 cho 4 và ghi đủ chữ số của thương."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm số chia",
+          "explanation": "Bài toán chia đều chỉ cần lấy tổng số gạo chia cho 4, không cộng thêm 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L149-E01",
+      "lesson_id": 149,
+      "concept_id": null,
+      "knowledge_tags": [
+        "unknown_addend"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78,
+          79
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tìm x: x + 2 345 = 5 000",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-032/cau-04-tim-so-hang.png",
+            "alt_text": "Sơ đồ các phần tạo thành một tổng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 555"
+        },
+        {
+          "key": "B",
+          "text": "2 655"
+        },
+        {
+          "key": "C",
+          "text": "3 655"
+        },
+        {
+          "key": "D",
+          "text": "7 345"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ số hạng đã biết: x = 5 000 − 2 345 = 2 655.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ sai khi có số 0",
+          "explanation": "Cần thực hiện phép trừ có nhớ qua hàng nghìn và hàng trăm để được 2 655."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thay vì trừ",
+          "explanation": "Muốn tìm một số hạng, phải lấy tổng trừ số hạng kia."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L150-E01",
+      "lesson_id": 150,
+      "concept_id": null,
+      "knowledge_tags": [
+        "unknown_factor"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          80,
+          81
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tìm x: x × 6 = 42",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-032/cau-05-tim-thua-so.png",
+            "alt_text": "Các nhóm đồ vật bằng nhau minh họa phép nhân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6"
+        },
+        {
+          "key": "B",
+          "text": "7"
+        },
+        {
+          "key": "C",
+          "text": "8"
+        },
+        {
+          "key": "D",
+          "text": "36"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Muốn tìm thừa số chưa biết, lấy tích chia cho thừa số đã biết: x = 42 : 6 = 7.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Lấy thừa số đã biết làm đáp án",
+          "explanation": "6 là thừa số đã biết; cần chia tích cho 6 để tìm x."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Trừ hai số thay vì chia",
+          "explanation": "Mối quan hệ giữa tích và thừa số là phép chia, không phải phép trừ."
+        }
+      ]
+    }
+  ]
+}

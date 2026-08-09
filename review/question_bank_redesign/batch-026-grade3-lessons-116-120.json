@@ -1,0 +1,330 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L116-L120-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-116-120",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L116-E01",
+      "lesson_id": 116,
+      "concept_id": null,
+      "knowledge_tags": [
+        "two_step_word_problem",
+        "multiply_then_add"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          85,
+          86,
+          87
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Vườn trường có 3 hàng cây, mỗi hàng 8 cây. Nhà trường trồng thêm 7 cây. Hỏi vườn trường có tất cả bao nhiêu cây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-026/cau-01-vuon-truong-ba-hang-cay.png",
+            "alt_text": "Ba hàng cây, mỗi hàng tám cây và bảy cây được trồng thêm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 cây"
+        },
+        {
+          "key": "B",
+          "text": "31 cây"
+        },
+        {
+          "key": "C",
+          "text": "32 cây"
+        },
+        {
+          "key": "D",
+          "text": "35 cây"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số cây ban đầu là 3 × 8 = 24 cây. Trồng thêm 7 cây nên có tất cả 24 + 7 = 31 cây.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Dừng sau bước nhân",
+          "explanation": "24 cây mới là số cây ban đầu, còn phải cộng thêm 7 cây."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm số cây trồng thêm",
+          "explanation": "Số cây trồng thêm là 7, không phải 8."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L117-E01",
+      "lesson_id": 117,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recognize_numeric_expression",
+        "read_numeric_expression"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          88,
+          89
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Biểu thức nào được đọc là: “Sáu mươi lăm trừ bốn mươi hai cộng mười”?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-026/cau-02-doc-bieu-thuc-65-42-10.png",
+            "alt_text": "Các thẻ số 65, 42, 10 và thẻ dấu trừ, dấu cộng để lập biểu thức"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "65 − 42 + 10"
+        },
+        {
+          "key": "B",
+          "text": "65 + 42 − 10"
+        },
+        {
+          "key": "C",
+          "text": "56 − 24 + 10"
+        },
+        {
+          "key": "D",
+          "text": "65 − 40 + 12"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Cách đọc nêu lần lượt số 65, phép trừ 42 và phép cộng 10 nên biểu thức là 65 − 42 + 10.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi vị trí dấu phép tính",
+          "explanation": "Đề bài đọc là trừ rồi cộng, không phải cộng rồi trừ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đọc nhầm chữ số hàng chục",
+          "explanation": "Số đầu tiên là 65 và số bị trừ tiếp theo là 42."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L118-E01",
+      "lesson_id": 118,
+      "concept_id": null,
+      "knowledge_tags": [
+        "evaluate_multiply_divide_expression",
+        "left_to_right_same_precedence"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          90,
+          91
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị của biểu thức: 72 : 8 × 3.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-026/cau-03-bieu-thuc-72-chia-8-nhan-3.png",
+            "alt_text": "Ba thẻ số 72, 8, 3 cùng các thẻ dấu chia và dấu nhân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "9"
+        },
+        {
+          "key": "C",
+          "text": "27"
+        },
+        {
+          "key": "D",
+          "text": "30"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Các phép chia và nhân được thực hiện từ trái sang phải: 72 : 8 = 9, rồi 9 × 3 = 27.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Dừng sau phép chia",
+          "explanation": "9 chỉ là kết quả của bước đầu, còn phải thực hiện phép nhân với 3."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai phép nhân cuối",
+          "explanation": "9 × 3 = 27, không phải 30."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L119-E01",
+      "lesson_id": 119,
+      "concept_id": null,
+      "knowledge_tags": [
+        "evaluate_mixed_expression",
+        "multiplication_division_before_add_subtract"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị của biểu thức: 7 + 36 : 6.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-026/cau-04-bieu-thuc-7-cong-36-chia-6.png",
+            "alt_text": "Thẻ số 7, 36, 6 và các dấu cộng, chia được xếp thành một biểu thức"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7"
+        },
+        {
+          "key": "B",
+          "text": "13"
+        },
+        {
+          "key": "C",
+          "text": "42"
+        },
+        {
+          "key": "D",
+          "text": "258"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thực hiện phép chia trước: 36 : 6 = 6. Sau đó 7 + 6 = 13.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng trước khi chia",
+          "explanation": "Phép chia phải được thực hiện trước phép cộng trong biểu thức này."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua phần phép chia",
+          "explanation": "Cần tính 36 : 6 = 6 rồi mới cộng với 7."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L120-E01",
+      "lesson_id": 120,
+      "concept_id": null,
+      "knowledge_tags": [
+        "evaluate_parenthesized_expression",
+        "parentheses_first"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          94,
+          95
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính giá trị của biểu thức: (18 + 6) : 4.",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-026/cau-05-bieu-thuc-co-dau-ngoac.png",
+            "alt_text": "Biểu thức gồm ngoặc 18 cộng 6 rồi chia cho 4 trên các thẻ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6"
+        },
+        {
+          "key": "B",
+          "text": "9"
+        },
+        {
+          "key": "C",
+          "text": "12"
+        },
+        {
+          "key": "D",
+          "text": "24"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Tính trong ngoặc trước: 18 + 6 = 24. Sau đó 24 : 4 = 6.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia trước khi tính trong ngoặc",
+          "explanation": "Phải tính 18 + 6 trong ngoặc trước rồi mới chia cho 4."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Quên chia cho 4",
+          "explanation": "24 là kết quả trong ngoặc, chưa phải kết quả cuối cùng."
+        }
+      ]
+    }
+  ]
+}

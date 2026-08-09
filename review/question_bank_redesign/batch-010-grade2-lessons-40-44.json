@@ -1,0 +1,327 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L040-L044-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-040-044",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L040-E01",
+      "lesson_id": 40,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_next_number_to_100",
+        "read_number_line_to_100"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          11,
+          12
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Từ 47 tiến thêm một đơn vị trên tia số, em đến số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-010/cau-01-so-lien-sau-bon-muoi-bay.png",
+            "alt_text": "Bạn nhỏ bước sang vạch kế tiếp về phía bên phải trên một tia số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "46"
+        },
+        {
+          "key": "B",
+          "text": "47"
+        },
+        {
+          "key": "C",
+          "text": "48"
+        },
+        {
+          "key": "D",
+          "text": "49"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Trên tia số, số đứng ngay sau 47 là 48. Vì vậy số liền sau của 47 là 48.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm với số liền trước",
+          "explanation": "46 đứng ngay trước 47, còn câu hỏi yêu cầu số đứng ngay sau."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhảy qua một số",
+          "explanation": "Từ 47 chỉ tiến một đơn vị để đến số liền sau là 48."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L041-E01",
+      "lesson_id": 41,
+      "concept_id": null,
+      "knowledge_tags": [
+        "convert_dm_to_cm_whole_tens",
+        "recognize_decimeter_unit"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đoạn dây dài 2 dm. Độ dài đó bằng bao nhiêu xăng-ti-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-010/cau-02-hai-de-xi-met.png",
+            "alt_text": "Hai đoạn dây nối tiếp, mỗi đoạn được chia thành mười phần bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 cm"
+        },
+        {
+          "key": "B",
+          "text": "10 cm"
+        },
+        {
+          "key": "C",
+          "text": "20 cm"
+        },
+        {
+          "key": "D",
+          "text": "200 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Một đề-xi-mét bằng 10 xăng-ti-mét nên 2 dm bằng 20 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Giữ nguyên số khi đổi đơn vị",
+          "explanation": "Mỗi đề-xi-mét gồm 10 xăng-ti-mét nên không thể giữ nguyên số 2."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ đổi một đề-xi-mét",
+          "explanation": "10 cm mới là độ dài của 1 dm; ở đây có 2 dm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L042-E01",
+      "lesson_id": 42,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_addends",
+        "name_parts_of_addition"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          15
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong phép cộng 26 + 13 = 39, số 13 được gọi là gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-010/cau-03-nhan-biet-so-hang.png",
+            "alt_text": "Hai bạn nhỏ cầm hai thẻ riêng được ghép lại thành một thẻ kết quả"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Số hạng"
+        },
+        {
+          "key": "B",
+          "text": "Tổng"
+        },
+        {
+          "key": "C",
+          "text": "Dấu cộng"
+        },
+        {
+          "key": "D",
+          "text": "Kết quả của phép trừ"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong phép cộng 26 + 13 = 39, hai số 26 và 13 là các số hạng; 39 là tổng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm số hạng với tổng",
+          "explanation": "Tổng là kết quả 39, còn 13 là một số được cộng nên là số hạng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số với kí hiệu phép tính",
+          "explanation": "Dấu cộng là kí hiệu + nằm giữa hai số hạng, không phải số 13."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L043-E01",
+      "lesson_id": 43,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_minuend",
+        "name_parts_of_subtraction"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          16
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong phép trừ 68 − 24 = 44, số 68 được gọi là gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-010/cau-04-nhan-biet-so-bi-tru.png",
+            "alt_text": "Một nhóm khối ban đầu được tách bớt một nhóm nhỏ hơn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Số bị trừ"
+        },
+        {
+          "key": "B",
+          "text": "Số trừ"
+        },
+        {
+          "key": "C",
+          "text": "Hiệu"
+        },
+        {
+          "key": "D",
+          "text": "Tổng"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Trong phép trừ 68 − 24 = 44, số đứng trước dấu trừ là số bị trừ. Vì vậy 68 là số bị trừ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi chỗ số bị trừ và số trừ",
+          "explanation": "24 mới là số trừ; 68 đứng trước dấu trừ nên là số bị trừ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm số bị trừ với hiệu",
+          "explanation": "Hiệu là kết quả 44, không phải số ban đầu 68."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L044-E01",
+      "lesson_id": 44,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_with_regrouping_within_20",
+        "model_addition_with_regrouping_within_20"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          19,
+          20
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khung có 8 hạt xanh, đặt thêm 5 hạt đỏ. Có tất cả bao nhiêu hạt?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-010/cau-05-tam-them-nam.png",
+            "alt_text": "Khung mười có tám hạt xanh và bên ngoài có năm hạt đỏ được thêm vào"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "11 hạt"
+        },
+        {
+          "key": "B",
+          "text": "12 hạt"
+        },
+        {
+          "key": "C",
+          "text": "13 hạt"
+        },
+        {
+          "key": "D",
+          "text": "14 hạt"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Lấy 2 trong 5 hạt đỏ ghép với 8 hạt xanh được 10 hạt; còn 3 hạt đỏ. Vậy 8 + 5 = 13.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một hạt",
+          "explanation": "Tám hạt thêm đủ năm hạt là mười ba, không phải mười hai."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thừa một hạt",
+          "explanation": "Sau khi tạo nhóm 10 chỉ còn 3 hạt, nên tổng là 13."
+        }
+      ]
+    }
+  ]
+}

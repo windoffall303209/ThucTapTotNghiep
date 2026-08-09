@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L374-L376-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-374-376",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L374-E04",
+      "lesson_id": 374,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_units",
+        "time_subtraction",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          52,
+          53
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một buổi học bắt đầu lúc 8 giờ 25 phút và kết thúc lúc 11 giờ 10 phút. Buổi học kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-085/cau-01-thoi-gian.png",
+            "alt_text": "Timeline ghi thời điểm bắt đầu 8 giờ 25 phút và kết thúc 11 giờ 10 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 35 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 45 phút"
+        },
+        {
+          "key": "C",
+          "text": "3 giờ 15 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ 45 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 8 giờ 25 phút đến 10 giờ 25 phút là 2 giờ, thêm 45 phút đến 11 giờ 10 phút. Vậy thời gian là 2 giờ 45 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ sai số phút",
+          "explanation": "Từ 8 giờ 25 phút đến 11 giờ 10 phút có 45 phút sau khi đủ 2 giờ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thừa 30 phút",
+          "explanation": "Sau 2 giờ từ 8 giờ 25 phút là 10 giờ 25 phút, còn 45 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm số giờ kết thúc",
+          "explanation": "Khoảng thời gian không phải 3 giờ 45 phút; cần tính từ 8 giờ 25 phút đến 11 giờ 10 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L375-E04",
+      "lesson_id": 375,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_addition",
+        "time_multiplication",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          58,
+          59
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chuyến đi có 3 chặng, mỗi chặng 40 phút và có 2 lần nghỉ, mỗi lần 15 phút. Tổng thời gian của chuyến đi là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-085/cau-02-cong-thoi-gian.png",
+            "alt_text": "Timeline chuyến đi gồm 3 chặng 40 phút và 2 lần nghỉ 15 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ 10 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 20 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 30 phút"
+        },
+        {
+          "key": "D",
+          "text": "3 giờ"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thời gian đi là 3 × 40 = 120 phút. Thời gian nghỉ là 2 × 15 = 30 phút. Tổng cộng 150 phút = 2 giờ 30 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua một phần thời gian nghỉ",
+          "explanation": "Cần cộng đủ 30 phút nghỉ vào 120 phút di chuyển."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi 150 phút sang giờ sai",
+          "explanation": "150 phút bằng 2 giờ 30 phút, không phải 2 giờ 20 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Làm tròn 150 phút thành 3 giờ",
+          "explanation": "3 giờ là 180 phút; tổng thời gian chỉ là 150 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L376-E04",
+      "lesson_id": 376,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          62,
+          63
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một xe đi quãng đường 96 km trong 1 giờ 36 phút. Vận tốc của xe là bao nhiêu ki-lô-mét trên giờ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-085/cau-03-van-toc.png",
+            "alt_text": "Xe đi quãng đường 96 km trong thời gian 1 giờ 36 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "48 km/giờ"
+        },
+        {
+          "key": "B",
+          "text": "56 km/giờ"
+        },
+        {
+          "key": "C",
+          "text": "60 km/giờ"
+        },
+        {
+          "key": "D",
+          "text": "64 km/giờ"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "1 giờ 36 phút = 1,6 giờ. Vận tốc là 96 : 1,6 = 60 km/giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia quãng đường cho số giờ nguyên",
+          "explanation": "Thời gian là 1,6 giờ, không phải 2 giờ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi 36 phút sang giờ sai",
+          "explanation": "36 phút = 0,6 giờ nên 1 giờ 36 phút = 1,6 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai phép chia số thập phân",
+          "explanation": "96 : 1,6 = 60 km/giờ."
+        }
+      ]
+    }
+  ]
+}

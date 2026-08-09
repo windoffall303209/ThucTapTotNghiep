@@ -1,0 +1,220 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L384-L386-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-384-386",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L384-E01",
+      "lesson_id": 384,
+      "concept_id": null,
+      "knowledge_tags": [
+        "percentage",
+        "percentage_of_quantity"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          92,
+          93
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một thư viện có 600 quyển sách, trong đó sách truyện chiếm 25%. Có bao nhiêu quyển sách truyện?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-060/cau-01-ti-so-phan-tram.png",
+            "alt_text": "Kệ sách có tổng 600 quyển và phần sách truyện chiếm 25%"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "120 quyển"
+        },
+        {
+          "key": "B",
+          "text": "150 quyển"
+        },
+        {
+          "key": "C",
+          "text": "180 quyển"
+        },
+        {
+          "key": "D",
+          "text": "200 quyển"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số sách truyện là 600 × 25 : 100 = 150 quyển.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính thiếu phần trăm",
+          "explanation": "Cần lấy 600 nhân với 25 rồi chia cho 100, không lấy 20% của 600."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân sai số phần trăm",
+          "explanation": "25% của 600 bằng 150, vì 600 : 100 = 6 và 6 × 25 = 150."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm 25% với một phần tư gần đúng",
+          "explanation": "Một phần tư của 600 cũng là 150; kết quả phải được tính theo đúng 25%."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L385-E01",
+      "lesson_id": 385,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangular_prism",
+        "volume",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          94,
+          95
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 8 cm, chiều rộng 5 cm và chiều cao 3 cm. Thể tích hình hộp chữ nhật là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-060/cau-02-hinh-hop-chu-nhat.png",
+            "alt_text": "Hình hộp chữ nhật ghi chiều dài 8 cm, chiều rộng 5 cm và chiều cao 3 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "120 cm³"
+        },
+        {
+          "key": "B",
+          "text": "80 cm³"
+        },
+        {
+          "key": "C",
+          "text": "40 cm³"
+        },
+        {
+          "key": "D",
+          "text": "160 cm³"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Thể tích hình hộp chữ nhật bằng chiều dài × chiều rộng × chiều cao: 8 × 5 × 3 = 120 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua chiều cao",
+          "explanation": "8 × 5 = 40 mới là diện tích đáy; cần nhân tiếp với chiều cao 3 cm."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ tính diện tích đáy",
+          "explanation": "Diện tích đáy là 8 × 5 = 40 cm², chưa phải thể tích."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân sai kích thước",
+          "explanation": "Cần nhân đúng ba kích thước 8, 5 và 3; kết quả là 120."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L386-E01",
+      "lesson_id": 386,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_measurement",
+        "elapsed_time",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chuyến xe khởi hành lúc 7 giờ 35 phút và đến nơi lúc 9 giờ 05 phút. Chuyến xe đi trong bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-060/cau-03-dong-ho-thoi-gian.png",
+            "alt_text": "Hai đồng hồ có đủ 12 số, lần lượt chỉ thời điểm bắt đầu 7 giờ 35 phút và đến nơi 9 giờ 05 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 20 phút"
+        },
+        {
+          "key": "B",
+          "text": "1 giờ 25 phút"
+        },
+        {
+          "key": "C",
+          "text": "1 giờ 30 phút"
+        },
+        {
+          "key": "D",
+          "text": "1 giờ 35 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Từ 7 giờ 35 phút đến 8 giờ là 25 phút; từ 8 giờ đến 9 giờ 05 phút là 1 giờ 05 phút. Tổng thời gian là 1 giờ 30 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "Cần tính 25 phút để đến 8 giờ rồi cộng thêm 1 giờ 05 phút."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên 5 phút cuối",
+          "explanation": "Sau 9 giờ còn thêm 5 phút, không được chỉ tính đến đúng 9 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa 5 phút",
+          "explanation": "25 phút + 65 phút = 90 phút, tương ứng 1 giờ 30 phút."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L222-L226-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-222-226",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L222-E01",
+      "lesson_id": 222,
+      "concept_id": null,
+      "knowledge_tags": [
+        "equal_decimals",
+        "trailing_zero",
+        "decimal_number"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          46,
+          47
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cuộn dây dài 4,50 m. Cách viết nào biểu thị đúng cùng độ dài với 4,50 m?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-049/cau-01-so-thap-phan-bang-nhau.png",
+            "alt_text": "Hai dụng cụ đo có cùng mực đo để minh họa hai cách viết cùng một độ dài"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4,05 m"
+        },
+        {
+          "key": "B",
+          "text": "4,5 m"
+        },
+        {
+          "key": "C",
+          "text": "45 m"
+        },
+        {
+          "key": "D",
+          "text": "0,45 m"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Có thể bỏ chữ số 0 ở tận cùng phần thập phân mà giá trị số không thay đổi, nên 4,50 m = 4,5 m.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi vị trí chữ số 0",
+          "explanation": "4,05 m khác 4,50 m vì chữ số 0 không nằm ở tận cùng phần thập phân."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ dấu phẩy",
+          "explanation": "Bỏ dấu phẩy làm số lớn lên mười lần, không giữ nguyên độ dài."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L223-E01",
+      "lesson_id": 223,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_decimals",
+        "decimal_place_value",
+        "greater_less"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          48,
+          49,
+          50
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai đoạn ruy-băng dài 7,08 m và 7,8 m. Đoạn ruy-băng nào dài hơn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-049/cau-02-so-sanh-so-thap-phan.png",
+            "alt_text": "Cân đĩa trực quan với hai lượng chất lỏng khác nhau để minh họa so sánh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Đoạn dài 7,08 m"
+        },
+        {
+          "key": "B",
+          "text": "Đoạn dài 7,18 m"
+        },
+        {
+          "key": "C",
+          "text": "Đoạn dài 7,8 m"
+        },
+        {
+          "key": "D",
+          "text": "Hai đoạn bằng nhau"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Viết 7,8 thành 7,80. Vì 80 phần trăm lớn hơn 8 phần trăm nên 7,80 > 7,08.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "So sánh số chữ số sau dấu phẩy",
+          "explanation": "Số có nhiều chữ số thập phân hơn chưa chắc lớn hơn; cần so sánh từng hàng tương ứng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ qua hàng phần trăm",
+          "explanation": "Ở hàng phần mười, 8 lớn hơn 0 nên hai số không bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L224-E01",
+      "lesson_id": 224,
+      "concept_id": null,
+      "knowledge_tags": [
+        "round_decimals",
+        "tenths_rounding",
+        "decimal_place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          51,
+          52,
+          53
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bình nước có 12,65 lít nước. Làm tròn số đo này đến hàng phần mười được bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-049/cau-03-lam-tron-so-thap-phan.png",
+            "alt_text": "Thước đo có vạch gần nhau và mũi tên hướng về vạch gần nhất"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12,6 lít"
+        },
+        {
+          "key": "B",
+          "text": "12,65 lít"
+        },
+        {
+          "key": "C",
+          "text": "12,7 lít"
+        },
+        {
+          "key": "D",
+          "text": "13 lít"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Chữ số hàng phần trăm là 5 nên tăng chữ số hàng phần mười từ 6 lên 7. Vì vậy 12,65 làm tròn đến hàng phần mười là 12,7.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Không tăng khi gặp chữ số 5",
+          "explanation": "Khi chữ số liền sau hàng cần làm tròn từ 5 trở lên, phải tăng chữ số ở hàng đó một đơn vị."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Làm tròn đến hàng đơn vị",
+          "explanation": "Yêu cầu là hàng phần mười nên không được làm tròn tiếp đến hàng đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L225-E01",
+      "lesson_id": 225,
+      "concept_id": null,
+      "knowledge_tags": [
+        "hectare",
+        "area_conversion",
+        "square_meter"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          56,
+          57
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn rộng 3 ha. Diện tích khu vườn đó bằng bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-049/cau-04-hec-ta.png",
+            "alt_text": "Cánh đồng xanh được chia thành nhiều ô vuông và có một ô được làm nổi bật"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 000 m²"
+        },
+        {
+          "key": "B",
+          "text": "30 000 m²"
+        },
+        {
+          "key": "C",
+          "text": "300 000 m²"
+        },
+        {
+          "key": "D",
+          "text": "3 000 000 m²"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 ha = 10 000 m² nên 3 ha = 3 × 10 000 = 30 000 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Thiếu một chữ số 0",
+          "explanation": "Một héc-ta bằng 10 000 m², không phải 1 000 m²."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Thừa một chữ số 0",
+          "explanation": "3 × 10 000 chỉ bằng 30 000 m²."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L226-E01",
+      "lesson_id": 226,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_kilometer",
+        "area_conversion",
+        "hectare"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          58,
+          59,
+          60
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu bảo tồn rộng 2 km². Diện tích đó bằng bao nhiêu héc-ta?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-049/cau-05-ki-lo-met-vuong.png",
+            "alt_text": "Khu đô thị nhìn từ trên cao nằm trong một vùng hình vuông được đánh dấu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "20 ha"
+        },
+        {
+          "key": "B",
+          "text": "200 ha"
+        },
+        {
+          "key": "C",
+          "text": "2 000 ha"
+        },
+        {
+          "key": "D",
+          "text": "20 000 ha"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 km² = 100 ha nên 2 km² = 2 × 100 = 200 ha.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm 1 km² bằng 10 ha",
+          "explanation": "Một ki-lô-mét vuông bằng 100 héc-ta."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thêm một chữ số 0",
+          "explanation": "Đổi từ km² sang ha chỉ nhân với 100, vì vậy 2 km² bằng 200 ha."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G1-L031-L035-20260807-R1",
+  "curriculum_scope_id": "grade-1-lessons-031-035",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L031-E01",
+      "lesson_id": 31,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_one_digit_to_teen_without_regrouping",
+        "model_teen_plus_one_digit"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          127,
+          128
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình cho thấy 14 khối xanh và thêm 3 khối vàng. Có tất cả bao nhiêu khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-008/cau-01-muoi-bon-them-ba.png",
+            "alt_text": "Một thanh mười khối xanh cùng bốn khối xanh rời và ba khối vàng được thêm vào"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "15 khối"
+        },
+        {
+          "key": "B",
+          "text": "16 khối"
+        },
+        {
+          "key": "C",
+          "text": "17 khối"
+        },
+        {
+          "key": "D",
+          "text": "18 khối"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Giữ nguyên 1 chục và cộng 4 đơn vị với 3 đơn vị được 7 đơn vị. Vậy 14 + 3 = 17.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ thêm một khối",
+          "explanation": "Hình có đủ 3 khối vàng được thêm vào, không phải chỉ một khối."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thừa một khối",
+          "explanation": "Bốn khối xanh và ba khối vàng tạo thành 7 khối đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L032-E01",
+      "lesson_id": 32,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_one_digit_from_teen_without_regrouping",
+        "model_teen_minus_one_digit"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          129,
+          130
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 17 khối, bớt 2 khối. Còn lại bao nhiêu khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-008/cau-02-muoi-bay-bot-hai.png",
+            "alt_text": "Một thanh mười khối xanh và năm khối xanh còn lại; hai khối đỏ đang được tách ra"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "13 khối"
+        },
+        {
+          "key": "B",
+          "text": "14 khối"
+        },
+        {
+          "key": "C",
+          "text": "15 khối"
+        },
+        {
+          "key": "D",
+          "text": "16 khối"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Giữ nguyên 1 chục và lấy 7 đơn vị bớt 2 đơn vị còn 5 đơn vị. Vậy 17 − 2 = 15.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bớt thừa một khối",
+          "explanation": "Chỉ có 2 khối đỏ được bớt khỏi 17 khối."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chỉ bớt một khối",
+          "explanation": "Cần bớt đủ 2 khối nên phần đơn vị còn lại là 5."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L033-E01",
+      "lesson_id": 33,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_round_tens_to_100",
+        "model_round_tens_operation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          133,
+          134
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hai thanh chục ghép với ba thanh chục được bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-008/cau-03-hai-chuc-them-ba-chuc.png",
+            "alt_text": "Hai thanh chục màu tím ở bên trái và ba thanh chục màu xanh ở bên phải"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30"
+        },
+        {
+          "key": "B",
+          "text": "40"
+        },
+        {
+          "key": "C",
+          "text": "50"
+        },
+        {
+          "key": "D",
+          "text": "60"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Hai chục cộng ba chục bằng năm chục. Vậy 20 + 30 = 50.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ chọn số ở nhóm thứ hai",
+          "explanation": "Cần ghép cả 2 thanh tím và 3 thanh xanh, tổng cộng 5 thanh chục."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một thanh chục",
+          "explanation": "Hình có tất cả 5 thanh chục, không phải 4 thanh."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L034-E01",
+      "lesson_id": 34,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_two_digit_numbers_without_regrouping",
+        "model_two_digit_addition_without_regrouping"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          135,
+          136
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Nhóm bên trái biểu diễn 23, nhóm bên phải biểu diễn 15. Gộp hai nhóm được số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-008/cau-04-hai-muoi-ba-cong-muoi-lam.png",
+            "alt_text": "Nhóm trái có hai thanh xanh và ba khối xanh; nhóm phải có một thanh cam và năm khối cam"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "28"
+        },
+        {
+          "key": "B",
+          "text": "35"
+        },
+        {
+          "key": "C",
+          "text": "38"
+        },
+        {
+          "key": "D",
+          "text": "48"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ba đơn vị cộng năm đơn vị bằng tám đơn vị; hai chục cộng một chục bằng ba chục. Vậy 23 + 15 = 38.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ sót một thanh chục",
+          "explanation": "Cần gộp cả 2 thanh xanh và 1 thanh cam để được 3 chục."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa một chục",
+          "explanation": "Hai chục cộng một chục chỉ bằng ba chục, không phải bốn chục."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G1-L035-E01",
+      "lesson_id": 35,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_round_tens_to_two_digit_without_regrouping",
+        "model_mixed_place_value_addition"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          137,
+          138
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình minh họa 35 thêm 40. Kết quả là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-1/batch-008/cau-05-ba-muoi-lam-them-bon-muoi.png",
+            "alt_text": "Ba thanh xanh cùng năm khối xanh và bốn thanh vàng được thêm vào"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "39"
+        },
+        {
+          "key": "B",
+          "text": "65"
+        },
+        {
+          "key": "C",
+          "text": "75"
+        },
+        {
+          "key": "D",
+          "text": "85"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Ba chục cộng bốn chục bằng bảy chục; năm đơn vị giữ nguyên. Vậy 35 + 40 = 75.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Cộng 4 vào hàng đơn vị",
+          "explanation": "Số được thêm là 40, tức là 4 chục, không phải 4 đơn vị."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đếm thiếu một thanh chục",
+          "explanation": "Ba thanh ban đầu và bốn thanh được thêm tạo thành 7 thanh chục."
+        }
+      ]
+    }
+  ]
+}

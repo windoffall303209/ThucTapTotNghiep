@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L227-L231-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-227-231",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L227-E01",
+      "lesson_id": 227,
+      "concept_id": null,
+      "knowledge_tags": [
+        "add_decimals",
+        "decimal_alignment",
+        "decimal_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          68,
+          69
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bình có 2,75 lít nước, rót thêm 1,48 lít. Trong bình có tất cả bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-050/cau-01-cong-so-thap-phan.png",
+            "alt_text": "Hai ca nước được rót vào một bình lớn để minh họa phép cộng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3,13 lít"
+        },
+        {
+          "key": "B",
+          "text": "4,23 lít"
+        },
+        {
+          "key": "C",
+          "text": "4,13 lít"
+        },
+        {
+          "key": "D",
+          "text": "42,3 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đặt các chữ số cùng hàng thẳng cột rồi cộng: 2,75 + 1,48 = 4,23 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng sai hàng phần mười",
+          "explanation": "5 phần trăm cộng 8 phần trăm bằng 13 phần trăm, cần nhớ 1 sang hàng phần mười."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đặt sai dấu phẩy",
+          "explanation": "Dấu phẩy ở tổng phải thẳng cột với dấu phẩy của các số hạng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L228-E01",
+      "lesson_id": 228,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_decimals",
+        "decimal_alignment",
+        "decimal_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một sợi dây dài 8,2 m, người ta cắt đi 3,75 m. Sợi dây còn lại dài bao nhiêu mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-050/cau-02-tru-so-thap-phan.png",
+            "alt_text": "Một lượng nước được rót bớt sang cốc khác để minh họa phép trừ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4,45 m"
+        },
+        {
+          "key": "B",
+          "text": "5,55 m"
+        },
+        {
+          "key": "C",
+          "text": "4,55 m"
+        },
+        {
+          "key": "D",
+          "text": "5,45 m"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Viết 8,2 thành 8,20 rồi trừ: 8,20 − 3,75 = 4,45 m.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Trừ nhầm hàng phần trăm",
+          "explanation": "Cần thêm 0 vào 8,2 để các chữ số cùng hàng thẳng cột trước khi trừ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đảo số bị trừ và số trừ",
+          "explanation": "Phải lấy độ dài ban đầu trừ phần đã cắt, không thực hiện phép cộng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L229-E01",
+      "lesson_id": 229,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_decimal_by_power_of_ten",
+        "decimal_point_shift",
+        "decimal_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          73,
+          74
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 3,072 × 100 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-050/cau-03-nhan-10-100-1000.png",
+            "alt_text": "Một viên kẹo được mở rộng thành các nhóm lớn dần để minh họa nhân với lũy thừa của mười"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30,72"
+        },
+        {
+          "key": "B",
+          "text": "307,2"
+        },
+        {
+          "key": "C",
+          "text": "3 072"
+        },
+        {
+          "key": "D",
+          "text": "0,3072"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Nhân với 100 chuyển dấu phẩy sang bên phải hai chữ số: 3,072 × 100 = 307,2.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chuyển dấu phẩy một chữ số",
+          "explanation": "Nhân với 100 cần chuyển dấu phẩy hai chữ số, không phải một chữ số."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chuyển dấu phẩy sang trái",
+          "explanation": "Nhân với 100 làm số lớn lên nên dấu phẩy chuyển sang bên phải."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L230-E01",
+      "lesson_id": 230,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_decimal_by_whole",
+        "decimal_calculation",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          75,
+          76
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mỗi giỏ có 2,4 kg trái cây. Có 6 giỏ như vậy. Hỏi tất cả có bao nhiêu ki-lô-gam trái cây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-050/cau-04-nhan-so-tu-nhien.png",
+            "alt_text": "Nhiều giỏ trái cây giống nhau được xếp thành các nhóm lặp lại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8,4 kg"
+        },
+        {
+          "key": "B",
+          "text": "14,4 kg"
+        },
+        {
+          "key": "C",
+          "text": "14 kg"
+        },
+        {
+          "key": "D",
+          "text": "144 kg"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thực hiện phép nhân: 2,4 × 6 = 14,4 kg.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân sai phần nguyên",
+          "explanation": "2 × 6 = 12 và 0,4 × 6 = 2,4 nên tích là 14,4."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đặt sai dấu phẩy",
+          "explanation": "Số 2,4 có một chữ số ở phần thập phân nên tích phải có một chữ số ở phần thập phân."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L231-E01",
+      "lesson_id": 231,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_decimals",
+        "decimal_point_in_product",
+        "area_calculation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một mảnh vườn hình chữ nhật dài 2,4 m và rộng 1,5 m. Diện tích mảnh vườn là bao nhiêu mét vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-050/cau-05-nhan-hai-so-thap-phan.png",
+            "alt_text": "Mảnh vườn hình chữ nhật được tô màu với hai dải đo vuông góc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3,6 m²"
+        },
+        {
+          "key": "B",
+          "text": "3,9 m²"
+        },
+        {
+          "key": "C",
+          "text": "36 m²"
+        },
+        {
+          "key": "D",
+          "text": "0,36 m²"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Diện tích hình chữ nhật là 2,4 × 1,5 = 3,6 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng hai số đo",
+          "explanation": "Tính diện tích hình chữ nhật phải nhân chiều dài với chiều rộng."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt dấu phẩy sai vị trí",
+          "explanation": "Hai thừa số có tổng cộng hai chữ số ở phần thập phân nên tích là 3,6, không phải 36."
+        }
+      ]
+    }
+  ]
+}

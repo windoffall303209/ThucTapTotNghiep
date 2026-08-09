@@ -1,0 +1,334 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L151-L155-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-151-155",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L151-E01",
+      "lesson_id": 151,
+      "concept_id": null,
+      "knowledge_tags": [
+        "area_by_unit_squares",
+        "unit_square"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          84,
+          85
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình được ghép từ 7 ô vuông bằng nhau. Diện tích hình đó gồm bao nhiêu ô vuông?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-033/cau-01-dien-tich-o-vuong.png",
+            "alt_text": "Hình ghép từ các ô vuông bằng nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 ô vuông"
+        },
+        {
+          "key": "B",
+          "text": "6 ô vuông"
+        },
+        {
+          "key": "C",
+          "text": "7 ô vuông"
+        },
+        {
+          "key": "D",
+          "text": "8 ô vuông"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích được đo bằng số ô vuông bằng nhau tạo nên hình, nên diện tích là 7 ô vuông.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ sót một ô ở góc hình",
+          "explanation": "Cần đếm đủ tất cả các ô vuông tạo thành hình."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm thừa một ô",
+          "explanation": "Chỉ những ô nằm trong hình mới được tính vào diện tích."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L152-E01",
+      "lesson_id": 152,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_centimeter",
+        "area_unit",
+        "cm2_notation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          86,
+          87,
+          88
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Đơn vị nào thích hợp để đo diện tích mặt bìa quyển vở?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-033/cau-02-don-vi-cm2.png",
+            "alt_text": "Ô vuông đơn vị dùng để đo diện tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Xăng-ti-mét"
+        },
+        {
+          "key": "B",
+          "text": "Xăng-ti-mét vuông"
+        },
+        {
+          "key": "C",
+          "text": "Ki-lô-gam"
+        },
+        {
+          "key": "D",
+          "text": "Lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Diện tích mặt bìa được đo bằng đơn vị diện tích, phù hợp là xăng-ti-mét vuông, viết là cm².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm đơn vị độ dài với đơn vị diện tích",
+          "explanation": "Xăng-ti-mét đo độ dài, còn xăng-ti-mét vuông đo diện tích."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn đơn vị khối lượng",
+          "explanation": "Ki-lô-gam dùng đo khối lượng, không dùng đo diện tích."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L153-E01",
+      "lesson_id": 153,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangle_area",
+        "area_cm2"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          89,
+          90
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một ô cửa kính hình vuông có cạnh dài 6 cm. Diện tích ô cửa kính là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-033/cau-03-dien-tich-hinh-vuong.png",
+            "alt_text": "Ô cửa kính hình vuông được đo độ dài một cạnh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 cm²"
+        },
+        {
+          "key": "B",
+          "text": "24 cm²"
+        },
+        {
+          "key": "C",
+          "text": "36 cm²"
+        },
+        {
+          "key": "D",
+          "text": "42 cm²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích hình vuông bằng độ dài một cạnh nhân với chính nó: 6 × 6 = 36 (cm²).",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân cạnh với 4",
+          "explanation": "Nhân cạnh với 4 là cách tính chu vi; diện tích hình vuông phải lấy cạnh nhân với chính nó."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thêm 6 vào tích",
+          "explanation": "Chỉ cần tính 6 × 6, không cộng thêm độ dài cạnh."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L154-E01",
+      "lesson_id": 154,
+      "concept_id": null,
+      "knowledge_tags": [
+        "collect_data",
+        "classify_data",
+        "tally_chart"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          93,
+          94,
+          95
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kết quả khảo sát sở thích của một nhóm bạn: bóng đá 5 bạn, cầu lông 3 bạn, bơi 4 bạn. Môn nào được chọn nhiều nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-033/cau-04-phan-loai-so-lieu.png",
+            "alt_text": "Bảng kiểm đếm sở thích của học sinh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Cầu lông"
+        },
+        {
+          "key": "B",
+          "text": "Bơi"
+        },
+        {
+          "key": "C",
+          "text": "Bóng đá"
+        },
+        {
+          "key": "D",
+          "text": "Ba môn bằng nhau"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "So sánh các số liệu 5, 3 và 4; số 5 lớn nhất nên bóng đá được chọn nhiều nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chọn số đứng sau cùng",
+          "explanation": "Cần so sánh số lượng chứ không chọn theo vị trí ghi trong danh sách."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Không so sánh số liệu",
+          "explanation": "Các số lượng khác nhau nên không thể kết luận ba môn bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L155-E01",
+      "lesson_id": 155,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_data_table",
+        "compare_data"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97,
+          98
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Bảng số liệu cho biết số quyển sách bán được trong bốn ngày: ngày thứ nhất 12 quyển, ngày thứ hai 18 quyển, ngày thứ ba 15 quyển, ngày thứ tư 20 quyển. Ngày nào bán được nhiều sách nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-033/cau-05-bang-so-lieu.png",
+            "alt_text": "Bảng số liệu số sách bán được theo từng ngày"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ngày thứ nhất"
+        },
+        {
+          "key": "B",
+          "text": "Ngày thứ hai"
+        },
+        {
+          "key": "C",
+          "text": "Ngày thứ ba"
+        },
+        {
+          "key": "D",
+          "text": "Ngày thứ tư"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Trong các số 12, 18, 15 và 20, số lớn nhất là 20 nên ngày thứ tư bán được nhiều sách nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chọn số gần với số lớn nhất",
+          "explanation": "18 nhỏ hơn 20 nên ngày thứ hai không phải ngày bán nhiều nhất."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đọc nhầm hàng trong bảng",
+          "explanation": "Cần đối chiếu đúng số lượng với tên ngày tương ứng."
+        }
+      ]
+    }
+  ]
+}

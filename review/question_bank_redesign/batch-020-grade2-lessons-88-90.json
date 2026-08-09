@@ -1,0 +1,203 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L088-L090-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-088-090",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L088-E01",
+      "lesson_id": 88,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_tally_marks",
+        "count_objects"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          79,
+          80
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một nhóm gồm 1 vạch gạch chéo và 4 vạch đứng biểu thị số mấy?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-020/cau-01-vach-kiem-dem.png",
+            "alt_text": "Một nhóm vạch kiểm đếm gồm một vạch gạch chéo và bốn vạch đứng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4"
+        },
+        {
+          "key": "B",
+          "text": "5"
+        },
+        {
+          "key": "C",
+          "text": "6"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Một nhóm kiểm đếm có 5 vạch: 4 vạch đứng và 1 vạch gạch chéo. Vì vậy nhóm này biểu thị số 5.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Không tính vạch gạch chéo",
+          "explanation": "Vạch gạch chéo cũng là một vạch trong nhóm năm vạch."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm thừa một vạch",
+          "explanation": "Nhóm chỉ có bốn vạch đứng và một vạch gạch chéo."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L089-E01",
+      "lesson_id": 89,
+      "concept_id": null,
+      "knowledge_tags": [
+        "read_picture_graph",
+        "interpret_one_picture_one_unit"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          81,
+          82
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mỗi hình quả trứng biểu thị 1 quả. Hàng “Gà mái ri” có 6 hình. Gà mái ri đẻ được bao nhiêu quả trứng?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-020/cau-02-bieu-do-trung.png",
+            "alt_text": "Một hàng biểu đồ tranh có sáu hình quả trứng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 quả"
+        },
+        {
+          "key": "B",
+          "text": "6 quả"
+        },
+        {
+          "key": "C",
+          "text": "7 quả"
+        },
+        {
+          "key": "D",
+          "text": "12 quả"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Mỗi hình quả trứng biểu thị 1 quả và hàng Gà mái ri có 6 hình, nên có 6 quả trứng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một hình",
+          "explanation": "Cần đếm đủ sáu hình quả trứng trong hàng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân đôi số hình",
+          "explanation": "Mỗi hình chỉ biểu thị 1 quả, không phải 2 quả."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L090-E01",
+      "lesson_id": 90,
+      "concept_id": null,
+      "knowledge_tags": [
+        "classify_possible_event",
+        "reason_from_simple_context"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          83,
+          84
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một túi có cả viên bi đỏ và viên bi xanh. Lấy ra một viên bi đỏ là sự việc như thế nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-020/cau-03-tui-bi-do-xanh.png",
+            "alt_text": "Một túi trong suốt có cả viên bi đỏ và viên bi xanh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Chắc chắn xảy ra"
+        },
+        {
+          "key": "B",
+          "text": "Có thể xảy ra"
+        },
+        {
+          "key": "C",
+          "text": "Không thể xảy ra"
+        },
+        {
+          "key": "D",
+          "text": "Không có kết quả"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Túi có viên bi đỏ nên có thể lấy ra viên bi đỏ, nhưng không chắc chắn vì trong túi còn có viên bi xanh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm có thể với chắc chắn",
+          "explanation": "Vẫn có khả năng lấy phải viên bi xanh nên không chắc chắn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua viên bi đỏ",
+          "explanation": "Vì trong túi có viên bi đỏ nên việc lấy được bi đỏ không phải là không thể."
+        }
+      ]
+    }
+  ]
+}

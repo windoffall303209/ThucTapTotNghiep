@@ -1,0 +1,331 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L096-L100-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-096-100",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L096-E01",
+      "lesson_id": 96,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_7",
+        "multiply_by_7"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          25,
+          26
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Mỗi bàn có 7 học sinh. 5 bàn như vậy có tất cả bao nhiêu học sinh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-022/cau-01-nam-ban-hoc-sinh-v2.png",
+            "alt_text": "Năm khung tách biệt, mỗi khung có bảy chấm tròn minh họa năm nhóm bảy"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30 học sinh"
+        },
+        {
+          "key": "B",
+          "text": "35 học sinh"
+        },
+        {
+          "key": "C",
+          "text": "42 học sinh"
+        },
+        {
+          "key": "D",
+          "text": "45 học sinh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Có 5 nhóm, mỗi nhóm 7 học sinh nên tính 7 × 5 = 35. Vậy có 35 học sinh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân nhầm 7 × 4",
+          "explanation": "5 bàn tạo thành 5 nhóm nên phải tính 7 × 5."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân nhầm 7 × 6",
+          "explanation": "Đề bài có 5 bàn, không phải 6 bàn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L097-E01",
+      "lesson_id": 97,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_8",
+        "solve_one_step_multiplication",
+        "interpret_equal_groups"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          27,
+          28
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Điền số thích hợp vào ô trống: 8 × □ = 56",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-022/cau-02-bang-nhan-tam.png",
+            "alt_text": "Bảy nhóm bằng nhau, mỗi nhóm có tám chấm tròn, minh họa bảng nhân 8"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6"
+        },
+        {
+          "key": "B",
+          "text": "7"
+        },
+        {
+          "key": "C",
+          "text": "8"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vì 8 × 7 = 56 nên số cần điền là 7.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 8 × 6",
+          "explanation": "8 × 6 = 48, không bằng 56."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm lệch một nhóm",
+          "explanation": "8 × 8 = 64; để được 56 cần chọn 7."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L098-E01",
+      "lesson_id": 98,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiplication_table_9",
+        "multiply_by_9"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          29,
+          30
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính nhẩm: 9 × 4 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-022/cau-03-bon-nhom-chin.png",
+            "alt_text": "Bốn nhóm bằng nhau, mỗi nhóm có chín chấm tròn, minh họa phép nhân 9 × 4"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "27"
+        },
+        {
+          "key": "B",
+          "text": "32"
+        },
+        {
+          "key": "C",
+          "text": "36"
+        },
+        {
+          "key": "D",
+          "text": "45"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Theo bảng nhân 9, 9 × 4 = 36.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 9 × 3",
+          "explanation": "9 × 3 = 27; đề bài yêu cầu nhân 9 với 4."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhớ nhầm 9 × 5",
+          "explanation": "9 × 5 = 45, không phải tích cần tìm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L099-E01",
+      "lesson_id": 99,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_gram",
+        "kilogram_to_gram"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          35,
+          36
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một túi gạo nặng 2 kg. Túi gạo đó nặng bao nhiêu gam?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-022/cau-04-tui-gao-2kg.png",
+            "alt_text": "Một túi gạo được ghi khối lượng 2 kg đặt trên cân"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "200 g"
+        },
+        {
+          "key": "B",
+          "text": "2 000 g"
+        },
+        {
+          "key": "C",
+          "text": "20 g"
+        },
+        {
+          "key": "D",
+          "text": "20 000 g"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vì 1 kg = 1 000 g nên 2 kg = 2 × 1 000 g = 2 000 g.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Thiếu một chữ số 0",
+          "explanation": "Mỗi ki-lô-gam bằng 1 000 gam, không phải 100 gam."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Thừa một chữ số 0",
+          "explanation": "2 kg chỉ bằng 2 000 g, không phải 20 000 g."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L100-E01",
+      "lesson_id": 100,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_table_3",
+        "equal_sharing",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          39,
+          40
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một rổ có 30 quả cam chia đều vào 3 túi. Mỗi túi có bao nhiêu quả cam?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-022/cau-05-chia-cam-vao-ba-tui.png",
+            "alt_text": "Ba túi giống nhau và ba mươi quả cam dùng để chia đều"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 quả"
+        },
+        {
+          "key": "B",
+          "text": "9 quả"
+        },
+        {
+          "key": "C",
+          "text": "10 quả"
+        },
+        {
+          "key": "D",
+          "text": "12 quả"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Chia đều 30 quả cam vào 3 túi, ta tính 30 : 3 = 10. Mỗi túi có 10 quả cam.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhớ nhầm 27 : 3",
+          "explanation": "27 : 3 = 9; số bị chia trong bài này là 30."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chia nhầm cho 2",
+          "explanation": "Có 3 túi nên phải chia 30 cho 3."
+        }
+      ]
+    }
+  ]
+}

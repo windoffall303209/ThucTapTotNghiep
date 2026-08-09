@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L045-L049-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-045-049",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L045-E01",
+      "lesson_id": 45,
+      "concept_id": null,
+      "knowledge_tags": [
+        "make_ten_strategy_for_addition",
+        "decompose_addend_to_make_ten"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Khi tính 9 + 6 bằng cách làm tròn 10, cần lấy mấy đơn vị từ 6 để ghép với 9?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-011/cau-01-chin-cong-sau-lam-tron-muoi.png",
+            "alt_text": "Khung mười có chín hạt xanh và sáu hạt đỏ, một hạt đỏ được chuyển vào ô trống"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 đơn vị"
+        },
+        {
+          "key": "B",
+          "text": "2 đơn vị"
+        },
+        {
+          "key": "C",
+          "text": "3 đơn vị"
+        },
+        {
+          "key": "D",
+          "text": "4 đơn vị"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Số 9 cần thêm 1 đơn vị để đủ 10. Tách 6 thành 1 và 5, ta có 9 + 1 = 10 rồi 10 + 5 = 15.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Lấy nhiều hơn số cần để đủ 10",
+          "explanation": "Chín chỉ thiếu một đơn vị để thành mười, không thiếu hai."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm phần còn lại với phần được chuyển",
+          "explanation": "Sau khi chuyển 1 từ 6 thì còn 5; phần chuyển sang 9 vẫn chỉ là 1."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L046-E01",
+      "lesson_id": 46,
+      "concept_id": null,
+      "knowledge_tags": [
+        "recall_addition_facts_within_20",
+        "complete_addition_table_within_20"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          25,
+          26
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong bảng cộng, phép tính nào có kết quả bằng 16?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-011/cau-02-phep-cong-co-ket-qua-muoi-sau.png",
+            "alt_text": "Hai bạn nhỏ đang sắp xếp các thẻ phép cộng vào một bảng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 + 8"
+        },
+        {
+          "key": "B",
+          "text": "7 + 9"
+        },
+        {
+          "key": "C",
+          "text": "8 + 9"
+        },
+        {
+          "key": "D",
+          "text": "6 + 8"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tính các tổng: 7 + 8 = 15, 7 + 9 = 16, 8 + 9 = 17 và 6 + 8 = 14. Vì vậy chọn 7 + 9.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính thừa một đơn vị",
+          "explanation": "Bảy cộng tám bằng mười lăm, chưa bằng mười sáu."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Tính thiếu một đơn vị",
+          "explanation": "Tám cộng chín bằng mười bảy, lớn hơn mười sáu một đơn vị."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L047-E01",
+      "lesson_id": 47,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_with_regrouping_within_20",
+        "model_subtraction_with_regrouping_within_20"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          31,
+          32
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 13 chiếc huy hiệu, 5 chiếc đã được phát. Còn lại bao nhiêu chiếc huy hiệu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-011/cau-03-muoi-ba-huy-hieu-bot-nam.png",
+            "alt_text": "Tám huy hiệu xanh còn lại và năm huy hiệu đỏ đã được tách ra"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "8 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "9 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "10 chiếc"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đếm lùi 5 bước từ 13: 12, 11, 10, 9, 8. Vậy 13 − 5 = 8, còn lại 8 chiếc huy hiệu.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm lùi thừa một bước",
+          "explanation": "Chỉ đếm lùi đúng năm bước từ 13 thì dừng ở 8."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm lùi thiếu một bước",
+          "explanation": "Dừng ở 9 mới chỉ bớt bốn lần; cần bớt thêm một lần nữa."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L048-E01",
+      "lesson_id": 48,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_to_ten_strategy",
+        "decompose_subtrahend_to_reach_ten"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          33,
+          34
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Để tính 14 − 6 bằng cách đưa về 10, trước hết cần bớt mấy đơn vị khỏi 14?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-011/cau-04-muoi-bon-tru-sau-dua-ve-muoi.png",
+            "alt_text": "Một khung mười đầy và bốn hạt ở ngoài đang được bớt đi trước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 đơn vị"
+        },
+        {
+          "key": "B",
+          "text": "3 đơn vị"
+        },
+        {
+          "key": "C",
+          "text": "4 đơn vị"
+        },
+        {
+          "key": "D",
+          "text": "6 đơn vị"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Mười bốn bớt bốn còn mười. Tách 6 thành 4 và 2, sau đó lấy 10 trừ tiếp 2 được 8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn phần trừ sau",
+          "explanation": "Hai là phần còn lại để trừ sau; bước đầu phải bớt bốn để 14 còn 10."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Trừ toàn bộ ngay ở bước đầu",
+          "explanation": "Cách đưa về 10 cần tách 6 thành 4 và 2, không bớt cả 6 trong bước đầu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L049-E01",
+      "lesson_id": 49,
+      "concept_id": null,
+      "knowledge_tags": [
+        "find_missing_subtrahend_within_20",
+        "complete_subtraction_table_within_20"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          37,
+          38
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số nào cần điền vào ô trống để có 15 − □ = 7?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-011/cau-05-muoi-lam-tru-o-trong-bang-bay.png",
+            "alt_text": "Bảy hạt xanh còn lại và tám hạt đỏ được tách khỏi nhóm ban đầu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6"
+        },
+        {
+          "key": "B",
+          "text": "7"
+        },
+        {
+          "key": "C",
+          "text": "8"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Trong bảng trừ, 15 − 8 = 7. Vì vậy số cần điền vào ô trống là 8.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Điền nhầm hiệu vào ô trống",
+          "explanation": "Bảy là hiệu đã cho; ô trống là số trừ cần tìm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đếm bớt thừa một đơn vị",
+          "explanation": "Mười lăm bớt chín chỉ còn sáu, không còn bảy."
+        }
+      ]
+    }
+  ]
+}

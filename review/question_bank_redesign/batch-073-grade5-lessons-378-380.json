@@ -1,0 +1,226 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L378-L380-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-378-380",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L378-E02",
+      "lesson_id": 378,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula",
+        "time_addition",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          68,
+          69
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một xe đi quãng đường 120 km với vận tốc 60 km/giờ và nghỉ 25 phút dọc đường. Tổng thời gian từ lúc bắt đầu đến lúc kết thúc là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-073/cau-01-tong-thoi-gian.png",
+            "alt_text": "Sơ đồ quãng đường 120 km, vận tốc 60 km/giờ và thời gian nghỉ 25 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 15 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 25 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 50 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thời gian xe chạy là 120 : 60 = 2 giờ. Cộng thêm 25 phút nghỉ, tổng thời gian là 2 giờ 25 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Quên thời gian nghỉ",
+          "explanation": "2 giờ chỉ là thời gian xe chạy, chưa cộng 25 phút nghỉ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng nhầm số phút",
+          "explanation": "Thời gian nghỉ là 25 phút, không phải 15 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa thời gian",
+          "explanation": "Cần cộng 2 giờ với 25 phút, không phải thêm 50 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L379-E02",
+      "lesson_id": 379,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "volume_conversion",
+        "subtraction",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể có dung tích 4 m³ đang chứa 2,6 m³ nước. Phần dung tích còn trống tương ứng với bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-073/cau-02-the-tich-con-trong.png",
+            "alt_text": "Bể nước có dung tích 4 m³ và đang chứa 2,6 m³"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 400 lít"
+        },
+        {
+          "key": "B",
+          "text": "1 600 lít"
+        },
+        {
+          "key": "C",
+          "text": "2 600 lít"
+        },
+        {
+          "key": "D",
+          "text": "4 000 lít"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Phần còn trống là 4 − 2,6 = 1,4 m³. Vì 1 m³ = 1 000 lít nên 1,4 m³ = 1 400 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Trừ sai số thập phân",
+          "explanation": "4 − 2,6 bằng 1,4, không phải 1,6."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi nhầm thể tích đã chứa",
+          "explanation": "2,6 m³ là lượng nước đang có, không phải phần còn trống."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chưa trừ phần đã chứa",
+          "explanation": "4 000 lít là toàn bộ dung tích, chưa tính phần nước đang chiếm chỗ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L380-E02",
+      "lesson_id": 380,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "volume_conversion",
+        "decimal_multiplication",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          75,
+          76
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật dài 40 cm, rộng 25 cm, cao 15 cm. Thể tích là bao nhiêu xăng-ti-mét khối?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-073/cau-03-the-tich-hinh-hop.png",
+            "alt_text": "Hình hộp chữ nhật có chiều dài 40 cm, chiều rộng 25 cm và chiều cao 15 cm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 500 cm³"
+        },
+        {
+          "key": "B",
+          "text": "10 000 cm³"
+        },
+        {
+          "key": "C",
+          "text": "15 000 cm³"
+        },
+        {
+          "key": "D",
+          "text": "20 000 cm³"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích hình hộp chữ nhật là 40 × 25 × 15 = 15 000 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân thiếu một kích thước",
+          "explanation": "Cần nhân đủ chiều dài, chiều rộng và chiều cao."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhân sai 40 với 25",
+          "explanation": "40 × 25 = 1 000, sau đó còn phải nhân với 15."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tính sai tích cuối",
+          "explanation": "1 000 × 15 bằng 15 000, không phải 20 000."
+        }
+      ]
+    }
+  ]
+}

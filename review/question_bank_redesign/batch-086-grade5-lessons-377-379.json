@@ -1,0 +1,226 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L377-L379-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-377-379",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L377-E04",
+      "lesson_id": 377,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          66,
+          67
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một người đi xe đạp với vận tốc 8 km/giờ trong 1 giờ 45 phút. Người đó đi được quãng đường bao nhiêu ki-lô-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-086/cau-01-quang-duong.png",
+            "alt_text": "Xe đạp có vận tốc 8 km trên giờ và thời gian đi 1 giờ 45 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 km"
+        },
+        {
+          "key": "B",
+          "text": "14 km"
+        },
+        {
+          "key": "C",
+          "text": "16 km"
+        },
+        {
+          "key": "D",
+          "text": "18 km"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 giờ 45 phút = 1,75 giờ. Quãng đường là 8 × 1,75 = 14 km.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi 45 phút sang giờ sai",
+          "explanation": "45 phút = 0,75 giờ nên 1 giờ 45 phút = 1,75 giờ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Lấy 2 giờ làm thời gian đi",
+          "explanation": "Thời gian thực tế là 1,75 giờ, không phải 2 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân sai vận tốc với thời gian",
+          "explanation": "8 × 1,75 = 14 km, không phải 18 km."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L378-E04",
+      "lesson_id": 378,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula",
+        "time_addition",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          68,
+          69
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một xe đi quãng đường 150 km với vận tốc 75 km/giờ và nghỉ 20 phút dọc đường. Tổng thời gian từ lúc bắt đầu đến lúc kết thúc là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-086/cau-02-thoi-gian-nghi.png",
+            "alt_text": "Xe đi quãng đường 150 km, vận tốc 75 km trên giờ và nghỉ 20 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 giờ"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 10 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 20 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 30 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thời gian chạy xe là 150 : 75 = 2 giờ. Cộng thêm 20 phút nghỉ, tổng thời gian là 2 giờ 20 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua thời gian nghỉ",
+          "explanation": "2 giờ chỉ là thời gian xe chạy, chưa tính 20 phút nghỉ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng thiếu thời gian nghỉ",
+          "explanation": "Cần cộng đủ 20 phút vào 2 giờ di chuyển."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa thời gian nghỉ",
+          "explanation": "Thời gian nghỉ là 20 phút nên tổng là 2 giờ 20 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L379-E04",
+      "lesson_id": 379,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cuboid_volume",
+        "volume_conversion",
+        "subtraction",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          70,
+          71
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể có dung tích 5 m³ đang chứa 3,2 m³ nước. Phần dung tích còn trống tương ứng với bao nhiêu lít?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-086/cau-03-the-tich-trong.png",
+            "alt_text": "Bể có dung tích 5 m³ và đang chứa 3,2 m³ nước, phần phía trên còn trống"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 200 lít"
+        },
+        {
+          "key": "B",
+          "text": "1 500 lít"
+        },
+        {
+          "key": "C",
+          "text": "1 800 lít"
+        },
+        {
+          "key": "D",
+          "text": "2 000 lít"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích còn trống là 5 − 3,2 = 1,8 m³ = 1 800 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ sai số thập phân",
+          "explanation": "5 − 3,2 = 1,8 m³, không phải 1,2 m³."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi m³ sang lít sai",
+          "explanation": "1,8 m³ bằng 1 800 lít vì 1 m³ bằng 1 000 lít."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy gần đúng thành 2 m³",
+          "explanation": "Phần còn trống chính xác là 1,8 m³, tương ứng 1 800 lít."
+        }
+      ]
+    }
+  ]
+}

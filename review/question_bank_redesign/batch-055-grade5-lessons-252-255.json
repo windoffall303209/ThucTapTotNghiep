@@ -1,0 +1,271 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L251-L254-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-251-254",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L251-E01",
+      "lesson_id": 251,
+      "concept_id": null,
+      "knowledge_tags": [
+        "volume",
+        "unit_cubes",
+        "volume_comparison"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          38,
+          39
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Hình A được ghép từ 6 khối lập phương nhỏ bằng nhau, hình B được ghép từ 9 khối như vậy. Hình nào có thể tích lớn hơn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-055/cau-01-the-tich-hinh.png",
+            "alt_text": "Hai khối hình được tạo bởi nhiều khối lập phương nhỏ để so sánh thể tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hình A"
+        },
+        {
+          "key": "B",
+          "text": "Hình B"
+        },
+        {
+          "key": "C",
+          "text": "Hai hình có thể tích bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Không thể so sánh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Các khối lập phương nhỏ bằng nhau nên hình có 9 khối sẽ có thể tích lớn hơn hình có 6 khối. Vì vậy hình B lớn hơn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm vị trí với thể tích",
+          "explanation": "Thể tích phụ thuộc vào số khối lập phương tạo thành, không phụ thuộc hình nào được đặt trước."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Không đếm số khối",
+          "explanation": "6 khối và 9 khối là hai số lượng khác nhau nên thể tích không bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L252-E01",
+      "lesson_id": 252,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cubic_decimeter",
+        "cubic_centimeter",
+        "volume_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          40,
+          41,
+          42
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "2,5 dm³ bằng bao nhiêu cm³?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-055/cau-02-don-vi-cm-dm.png",
+            "alt_text": "Khối lập phương lớn và các khối lập phương nhỏ minh họa mối quan hệ đơn vị thể tích"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "25 cm³"
+        },
+        {
+          "key": "B",
+          "text": "250 cm³"
+        },
+        {
+          "key": "C",
+          "text": "2 500 cm³"
+        },
+        {
+          "key": "D",
+          "text": "25 000 cm³"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Vì 1 dm³ = 1 000 cm³ nên 2,5 dm³ = 2,5 × 1 000 = 2 500 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi thiếu một chữ số 0",
+          "explanation": "Đổi đơn vị khối phải nhân với 1 000, không phải 100."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân thêm 10 lần",
+          "explanation": "2,5 × 1 000 bằng 2 500, không phải 25 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L253-E01",
+      "lesson_id": 253,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cubic_meter",
+        "cubic_decimeter",
+        "volume_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          43,
+          44,
+          45
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "3 m³ bằng bao nhiêu dm³?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-055/cau-03-met-khoi.png",
+            "alt_text": "Khối hộp lớn trong kho và các khối hộp nhỏ minh họa mét khối"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30 dm³"
+        },
+        {
+          "key": "B",
+          "text": "300 dm³"
+        },
+        {
+          "key": "C",
+          "text": "3 000 dm³"
+        },
+        {
+          "key": "D",
+          "text": "30 000 dm³"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Vì 1 m³ = 1 000 dm³ nên 3 m³ = 3 × 1 000 = 3 000 dm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi theo đơn vị độ dài",
+          "explanation": "Đây là đơn vị khối nên mỗi mét khối bằng 1 000 đề-xi-mét khối, không phải 100."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Thêm thừa một chữ số 0",
+          "explanation": "3 × 1 000 chỉ bằng 3 000."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L254-E01",
+      "lesson_id": 254,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangular_prism_volume",
+        "volume_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          46,
+          47
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình hộp chữ nhật có chiều dài 6 cm, chiều rộng 4 cm và chiều cao 2 cm. Thể tích hình hộp chữ nhật là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-055/cau-04-the-tich-hop-chu-nhat.png",
+            "alt_text": "Hình hộp chữ nhật trong suốt được tạo bởi các khối lập phương nhỏ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "12 cm³"
+        },
+        {
+          "key": "B",
+          "text": "24 cm³"
+        },
+        {
+          "key": "C",
+          "text": "48 cm³"
+        },
+        {
+          "key": "D",
+          "text": "96 cm³"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thể tích hình hộp chữ nhật là 6 × 4 × 2 = 48 cm³.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Quên nhân với chiều cao",
+          "explanation": "6 × 4 = 24 cm² mới là diện tích đáy; cần nhân tiếp với 2 cm để được thể tích."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân đôi kết quả hai lần",
+          "explanation": "Chỉ cần nhân ba kích thước 6, 4 và 2 một lần: 48 cm³."
+        }
+      ]
+    }
+  ]
+}

@@ -14,13 +14,18 @@
       "source_key": "CURATED-MANUAL-20260807-G1-L006-E01",
       "lesson_id": 6,
       "concept_id": null,
-      "knowledge_tags": ["match_empty_group_to_zero"],
+      "knowledge_tags": [
+        "match_empty_group_to_zero"
+      ],
       "curriculum_review": {
         "status": "VERIFIED_AGAINST_SCOPE",
-        "evidence_pdf_pages": [17, 18]
+        "evidence_pdf_pages": [
+          17,
+          18
+        ]
       },
       "question_type": "MULTIPLE_CHOICE",
-      "difficulty": "EASY",
+      "difficulty": "HARD",
       "layout_template": "STACK_VERTICAL",
       "content": {
         "text": "Trong hộp có bao nhiêu chiếc bánh?",
@@ -32,10 +37,22 @@
         ]
       },
       "choices": [
-        { "key": "A", "text": "0 chiếc" },
-        { "key": "B", "text": "1 chiếc" },
-        { "key": "C", "text": "2 chiếc" },
-        { "key": "D", "text": "3 chiếc" }
+        {
+          "key": "A",
+          "text": "0 chiếc"
+        },
+        {
+          "key": "B",
+          "text": "1 chiếc"
+        },
+        {
+          "key": "C",
+          "text": "2 chiếc"
+        },
+        {
+          "key": "D",
+          "text": "3 chiếc"
+        }
       ],
       "correct_answer": "A",
       "explanation": {
@@ -54,13 +71,18 @@
       "source_key": "CURATED-MANUAL-20260807-G1-L007-E01",
       "lesson_id": 7,
       "concept_id": null,
-      "knowledge_tags": ["count_to_10"],
+      "knowledge_tags": [
+        "count_to_10"
+      ],
       "curriculum_review": {
         "status": "VERIFIED_AGAINST_SCOPE",
-        "evidence_pdf_pages": [19, 20]
+        "evidence_pdf_pages": [
+          19,
+          20
+        ]
       },
       "question_type": "MULTIPLE_CHOICE",
-      "difficulty": "EASY",
+      "difficulty": "HARD",
       "layout_template": "STACK_VERTICAL",
       "content": {
         "text": "Trong hình có bao nhiêu quả bóng?",
@@ -72,10 +94,22 @@
         ]
       },
       "choices": [
-        { "key": "A", "text": "7 quả" },
-        { "key": "B", "text": "8 quả" },
-        { "key": "C", "text": "9 quả" },
-        { "key": "D", "text": "10 quả" }
+        {
+          "key": "A",
+          "text": "7 quả"
+        },
+        {
+          "key": "B",
+          "text": "8 quả"
+        },
+        {
+          "key": "C",
+          "text": "9 quả"
+        },
+        {
+          "key": "D",
+          "text": "10 quả"
+        }
       ],
       "correct_answer": "D",
       "explanation": {
@@ -94,13 +128,19 @@
       "source_key": "CURATED-MANUAL-20260807-G1-L008-E01",
       "lesson_id": 8,
       "concept_id": null,
-      "knowledge_tags": ["compare_groups_equal", "one_to_one_matching"],
+      "knowledge_tags": [
+        "compare_groups_equal",
+        "one_to_one_matching"
+      ],
       "curriculum_review": {
         "status": "VERIFIED_AGAINST_SCOPE",
-        "evidence_pdf_pages": [23, 24]
+        "evidence_pdf_pages": [
+          23,
+          24
+        ]
       },
       "question_type": "MULTIPLE_CHOICE",
-      "difficulty": "EASY",
+      "difficulty": "HARD",
       "layout_template": "STACK_VERTICAL",
       "content": {
         "text": "Số quả táo như thế nào so với số chiếc giỏ?",
@@ -112,10 +152,22 @@
         ]
       },
       "choices": [
-        { "key": "A", "text": "Nhiều hơn" },
-        { "key": "B", "text": "Ít hơn" },
-        { "key": "C", "text": "Bằng nhau" },
-        { "key": "D", "text": "Không biết" }
+        {
+          "key": "A",
+          "text": "Nhiều hơn"
+        },
+        {
+          "key": "B",
+          "text": "Ít hơn"
+        },
+        {
+          "key": "C",
+          "text": "Bằng nhau"
+        },
+        {
+          "key": "D",
+          "text": "Không biết"
+        }
       ],
       "correct_answer": "C",
       "explanation": {
@@ -139,13 +191,19 @@
       "source_key": "CURATED-MANUAL-20260807-G1-L009-E01",
       "lesson_id": 9,
       "concept_id": null,
-      "knowledge_tags": ["compare_numbers_1_5", "write_comparison_signs"],
+      "knowledge_tags": [
+        "compare_numbers_1_5",
+        "write_comparison_signs"
+      ],
       "curriculum_review": {
         "status": "VERIFIED_AGAINST_SCOPE",
-        "evidence_pdf_pages": [25, 26]
+        "evidence_pdf_pages": [
+          25,
+          26
+        ]
       },
       "question_type": "MULTIPLE_CHOICE",
-      "difficulty": "EASY",
+      "difficulty": "HARD",
       "layout_template": "STACK_VERTICAL",
       "content": {
         "text": "Bốn chiếc xe đỏ và hai chiếc xe xanh. Cách so sánh nào đúng?",
@@ -157,10 +215,22 @@
         ]
       },
       "choices": [
-        { "key": "A", "text": "4 > 2" },
-        { "key": "B", "text": "4 < 2" },
-        { "key": "C", "text": "4 = 2" },
-        { "key": "D", "text": "2 > 4" }
+        {
+          "key": "A",
+          "text": "4 > 2"
+        },
+        {
+          "key": "B",
+          "text": "4 < 2"
+        },
+        {
+          "key": "C",
+          "text": "4 = 2"
+        },
+        {
+          "key": "D",
+          "text": "2 > 4"
+        }
       ],
       "correct_answer": "A",
       "explanation": {
@@ -184,13 +254,19 @@
       "source_key": "CURATED-MANUAL-20260807-G1-L010-E01",
       "lesson_id": 10,
       "concept_id": null,
-      "knowledge_tags": ["combine_two_groups_to_5", "match_picture_to_addition_to_5"],
+      "knowledge_tags": [
+        "combine_two_groups_to_5",
+        "match_picture_to_addition_to_5"
+      ],
       "curriculum_review": {
         "status": "VERIFIED_AGAINST_SCOPE",
-        "evidence_pdf_pages": [35, 36]
+        "evidence_pdf_pages": [
+          35,
+          36
+        ]
       },
       "question_type": "MULTIPLE_CHOICE",
-      "difficulty": "EASY",
+      "difficulty": "HARD",
       "layout_template": "STACK_VERTICAL",
       "content": {
         "text": "Gộp hai quả táo đỏ với ba quả táo xanh, ta được phép cộng nào?",
@@ -202,10 +278,22 @@
         ]
       },
       "choices": [
-        { "key": "A", "text": "2 + 3 = 5" },
-        { "key": "B", "text": "2 + 2 = 4" },
-        { "key": "C", "text": "3 + 1 = 4" },
-        { "key": "D", "text": "1 + 3 = 4" }
+        {
+          "key": "A",
+          "text": "2 + 3 = 5"
+        },
+        {
+          "key": "B",
+          "text": "2 + 2 = 4"
+        },
+        {
+          "key": "C",
+          "text": "3 + 1 = 4"
+        },
+        {
+          "key": "D",
+          "text": "1 + 3 = 4"
+        }
       ],
       "correct_answer": "A",
       "explanation": {

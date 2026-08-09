@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L386-L389-20260808-R2",
+  "curriculum_scope_id": "grade-5-lessons-386-389-r2",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L386-E02",
+      "lesson_id": 386,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_measurement",
+        "elapsed_time",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          96,
+          97
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hoạt động bắt đầu lúc 13 giờ 45 phút và kết thúc lúc 15 giờ 20 phút. Hoạt động kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-070/cau-01-thoi-luong-hoat-dong.png",
+            "alt_text": "Hai đồng hồ chỉ thời điểm bắt đầu 13 giờ 45 phút và kết thúc 15 giờ 20 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 25 phút"
+        },
+        {
+          "key": "B",
+          "text": "1 giờ 35 phút"
+        },
+        {
+          "key": "C",
+          "text": "1 giờ 45 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 35 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 13 giờ 45 phút đến 14 giờ 45 phút là 1 giờ; từ 14 giờ 45 phút đến 15 giờ 20 phút là 35 phút. Vậy hoạt động kéo dài 1 giờ 35 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "20 phút − 45 phút cần đổi 1 giờ thành 60 phút trước khi trừ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng hai số phút",
+          "explanation": "Cần tính khoảng cách giữa hai thời điểm, không cộng 45 với 20."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Không đổi mốc giờ",
+          "explanation": "15 giờ 20 phút chỉ sau 13 giờ 45 phút 1 giờ 35 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L387-E02",
+      "lesson_id": 387,
+      "concept_id": null,
+      "knowledge_tags": [
+        "probability",
+        "frequency",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một túi có 6 thẻ trắng, 2 thẻ đen và 2 thẻ vàng. Lấy ngẫu nhiên một thẻ. Hai màu nào có khả năng được lấy ra thấp nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-070/cau-02-xac-suat-the.png",
+            "alt_text": "Túi có 6 thẻ trắng, 2 thẻ đen và 2 thẻ vàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Màu trắng"
+        },
+        {
+          "key": "B",
+          "text": "Màu đen"
+        },
+        {
+          "key": "C",
+          "text": "Màu vàng"
+        },
+        {
+          "key": "D",
+          "text": "Màu đen và màu vàng"
+        }
+      ],
+      "correct_answer": "D",
+      "explanation": {
+        "text": "Có 2 thẻ đen và 2 thẻ vàng, cùng ít hơn 6 thẻ trắng. Vì số lượng bằng nhau nên màu đen và màu vàng có khả năng được lấy ra thấp nhất như nhau.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn nhóm có nhiều thẻ nhất",
+          "explanation": "Nhiều thẻ hơn thì khả năng cao hơn, không phải thấp nhất."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chỉ chọn một màu trong hai màu cùng số lượng",
+          "explanation": "Hai màu đều có 2 thẻ nên phải chọn cả hai."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Bỏ qua số lượng thẻ đen",
+          "explanation": "Thẻ đen và thẻ vàng cùng có số lượng 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E02",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một quyển vở giá 18 000 đồng. Mua 7 quyển vở như vậy hết bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-070/cau-03-mua-vo.png",
+            "alt_text": "7 quyển vở, mỗi quyển giá 18 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "108 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "126 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "144 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "180 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số tiền phải trả là 18 000 × 7 = 126 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân thiếu số lượng",
+          "explanation": "18 000 × 6 mới bằng 108 000; đề bài yêu cầu mua 7 quyển."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân 18 000 với 8",
+          "explanation": "Cần dùng đúng số lượng 7 quyển vở."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng sai đơn giá",
+          "explanation": "Tổng tiền được tính bằng phép nhân đơn giá với số lượng."
+        }
+      ]
+    }
+  ]
+}

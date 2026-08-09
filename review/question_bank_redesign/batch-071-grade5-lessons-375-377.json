@@ -1,0 +1,223 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L375-L377-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-375-377",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L375-E02",
+      "lesson_id": 375,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_addition",
+        "time_multiplication",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          58,
+          59
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chuyến xe đi 2 chặng, mỗi chặng 45 phút và nghỉ 15 phút giữa hai chặng. Tổng thời gian từ lúc bắt đầu đến lúc kết thúc là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-071/cau-01-tong-thoi-gian.png",
+            "alt_text": "Hai chặng xe, mỗi chặng 45 phút và một lần nghỉ 15 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 30 phút"
+        },
+        {
+          "key": "B",
+          "text": "1 giờ 45 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 15 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Thời gian đi hai chặng là 45 + 45 = 90 phút. Cộng 15 phút nghỉ được 105 phút = 1 giờ 45 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Bỏ qua thời gian nghỉ",
+          "explanation": "90 phút chỉ là thời gian xe chạy, cần cộng thêm 15 phút nghỉ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi 105 phút thành 2 giờ",
+          "explanation": "105 phút bằng 1 giờ 45 phút, chưa đủ 120 phút để thành 2 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng thừa một lần nghỉ",
+          "explanation": "Đề bài chỉ có một lần nghỉ 15 phút giữa hai chặng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L376-E02",
+      "lesson_id": 376,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          62,
+          63
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một ô tô đi quãng đường 54 km trong 1 giờ 30 phút. Vận tốc của ô tô là bao nhiêu ki-lô-mét trên giờ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-071/cau-02-van-toc.png",
+            "alt_text": "Ô tô đi quãng đường 54 km trong thời gian 1 giờ 30 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "30 km/giờ"
+        },
+        {
+          "key": "B",
+          "text": "36 km/giờ"
+        },
+        {
+          "key": "C",
+          "text": "40 km/giờ"
+        },
+        {
+          "key": "D",
+          "text": "45 km/giờ"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 giờ 30 phút = 1,5 giờ. Vận tốc là 54 : 1,5 = 36 km/giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia cho 1 giờ 48 phút",
+          "explanation": "54 : 1,5 = 36; cần đổi đúng 30 phút thành 0,5 giờ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia quãng đường cho 1,35 giờ",
+          "explanation": "1 giờ 30 phút bằng 1,5 giờ, không phải 1,35 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Dùng 1 giờ làm thời gian",
+          "explanation": "Phải tính cả 30 phút nên thời gian là 1,5 giờ."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L377-E02",
+      "lesson_id": 377,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          66,
+          67
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một người đi bộ với vận tốc 5 km/giờ trong 1 giờ 36 phút. Người đó đi được quãng đường bao nhiêu ki-lô-mét?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-071/cau-03-quang-duong.png",
+            "alt_text": "Người đi bộ với vận tốc 5 km trên giờ trong thời gian 1 giờ 36 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 km"
+        },
+        {
+          "key": "B",
+          "text": "8 km"
+        },
+        {
+          "key": "C",
+          "text": "9 km"
+        },
+        {
+          "key": "D",
+          "text": "10 km"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1 giờ 36 phút = 1,6 giờ. Quãng đường là 5 × 1,6 = 8 km.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi 36 phút thành 0,36 giờ",
+          "explanation": "36 phút = 36 : 60 = 0,6 giờ, nên tổng thời gian là 1,6 giờ."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Dùng 1 giờ 48 phút",
+          "explanation": "1 giờ 36 phút phải đổi thành 1,6 giờ, không phải 1,8 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Làm tròn thời gian lên 2 giờ",
+          "explanation": "Không được làm tròn; cần dùng đúng 1,6 giờ để tính quãng đường."
+        }
+      ]
+    }
+  ]
+}

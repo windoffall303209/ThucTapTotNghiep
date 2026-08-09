@@ -1,0 +1,329 @@
+{
+  "batch_id": "CURATED-MANUAL-G2-L055-L059-20260807-R1",
+  "curriculum_scope_id": "grade-2-lessons-055-059",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L055-E01",
+      "lesson_id": 55,
+      "concept_id": null,
+      "knowledge_tags": [
+        "subtract_two_digit_numbers_with_regrouping_to_100",
+        "solve_one_step_two_digit_subtraction_story"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          69,
+          70
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trên giá có 42 quyển truyện, bạn lấy xuống 5 quyển. Trên giá còn lại bao nhiêu quyển truyện?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-013/cau-01-bon-muoi-hai-bot-nam.png",
+            "alt_text": "Bốn thanh chục và hai khối đơn vị màu xanh; năm khối đơn vị màu cam được lấy xuống"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "35 quyển"
+        },
+        {
+          "key": "B",
+          "text": "37 quyển"
+        },
+        {
+          "key": "C",
+          "text": "47 quyển"
+        },
+        {
+          "key": "D",
+          "text": "57 quyển"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Ta thực hiện phép trừ: 42 − 5 = 37. Trên giá còn lại 37 quyển truyện.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm cả một chục",
+          "explanation": "Chỉ lấy xuống 5 quyển nên không được trừ cả một chục khỏi 42."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thay vì trừ",
+          "explanation": "Số truyện giảm đi nên cần thực hiện phép trừ 42 − 5."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L056-E01",
+      "lesson_id": 56,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_kilogram_unit",
+        "add_masses_in_kilograms"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một quả dưa cân nặng 3 kg, một túi gạo cân nặng 2 kg. Cả hai cân nặng bao nhiêu ki-lô-gam?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-013/cau-02-ba-kg-cong-hai-kg.png",
+            "alt_text": "Ba khối đo khối lượng màu xanh và hai khối đo khối lượng màu vàng được đặt thành hai nhóm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 kg"
+        },
+        {
+          "key": "B",
+          "text": "5 kg"
+        },
+        {
+          "key": "C",
+          "text": "6 kg"
+        },
+        {
+          "key": "D",
+          "text": "7 kg"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Cả hai khối lượng là 3 + 2 = 5 kg.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một ki-lô-gam",
+          "explanation": "Khi gộp hai nhóm, cần tính đủ 3 kg và 2 kg."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thêm một ki-lô-gam",
+          "explanation": "Tổng đúng là 3 + 2, không phải 3 + 3."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L057-E01",
+      "lesson_id": 57,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_liter_unit",
+        "add_capacities_in_liters"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          79,
+          80
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Can thứ nhất có 2 lít nước, can thứ hai có 3 lít nước. Cả hai can có bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-013/cau-03-hai-lit-cong-ba-lit.png",
+            "alt_text": "Hai bình màu xanh và ba bình màu vàng được chia thành hai nhóm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "4 lít"
+        },
+        {
+          "key": "B",
+          "text": "5 lít"
+        },
+        {
+          "key": "C",
+          "text": "6 lít"
+        },
+        {
+          "key": "D",
+          "text": "7 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tổng lượng nước là 2 + 3 = 5 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đếm thiếu một lít",
+          "explanation": "Cần gộp đủ hai lít và ba lít nước."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm thành sáu",
+          "explanation": "Hai cộng ba bằng năm, không phải sáu."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L058-E01",
+      "lesson_id": 58,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_quadrilateral",
+        "count_sides_of_quadrilateral"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          83,
+          84
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình khép kín gồm 4 đoạn thẳng. Hình đó là hình gì?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-013/cau-04-hinh-tu-giac-bon-canh.png",
+            "alt_text": "Một hình tứ giác đơn giản với bốn cạnh và bốn đỉnh rõ ràng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hình tròn"
+        },
+        {
+          "key": "B",
+          "text": "Hình tam giác"
+        },
+        {
+          "key": "C",
+          "text": "Hình tứ giác"
+        },
+        {
+          "key": "D",
+          "text": "Đường cong"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Hình có 4 cạnh là hình tứ giác.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm hình có ba cạnh",
+          "explanation": "Hình tam giác chỉ có 3 cạnh, không phải 4 cạnh."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm hình không có cạnh thẳng",
+          "explanation": "Hình tròn không được tạo bởi 4 đoạn thẳng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G2-L059-E01",
+      "lesson_id": 59,
+      "concept_id": null,
+      "knowledge_tags": [
+        "identify_line_segment",
+        "identify_segment_endpoints"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          85,
+          86
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong tên đoạn thẳng MN, chữ cái đầu tiên chỉ điểm nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-2/batch-013/cau-05-doan-thang-mn-hai-dau-mut.png",
+            "alt_text": "Một đoạn thẳng có điểm M ở đầu bên trái và điểm N ở đầu bên phải"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Điểm M"
+        },
+        {
+          "key": "B",
+          "text": "Điểm N"
+        },
+        {
+          "key": "C",
+          "text": "Điểm P"
+        },
+        {
+          "key": "D",
+          "text": "Điểm Q"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Chữ cái đầu tiên trong tên MN là M nên chỉ điểm M.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đọc nhầm chữ cái thứ hai",
+          "explanation": "N là chữ cái thứ hai trong tên MN, không phải chữ cái đầu tiên."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chọn điểm không có trong tên",
+          "explanation": "Tên MN không chứa chữ P."
+        }
+      ]
+    }
+  ]
+}

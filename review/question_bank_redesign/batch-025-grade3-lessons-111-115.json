@@ -1,0 +1,335 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L111-L115-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-111-115",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L111-E01",
+      "lesson_id": 111,
+      "concept_id": null,
+      "knowledge_tags": [
+        "multiply_by_one_digit_no_carry",
+        "solve_one_step_multiplication"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          71,
+          72,
+          73
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kết quả của phép tính 23 × 4 là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-025/cau-01-bon-hop-but-23-chiec.png",
+            "alt_text": "Bốn nhóm bằng nhau, mỗi nhóm tượng trưng cho hai mươi ba đơn vị"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "82"
+        },
+        {
+          "key": "B",
+          "text": "92"
+        },
+        {
+          "key": "C",
+          "text": "96"
+        },
+        {
+          "key": "D",
+          "text": "102"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Đặt tính rồi tính: 23 × 4 = 92.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính sai hàng đơn vị",
+          "explanation": "3 × 4 = 12, cần viết 2 nhớ 1 rồi cộng với hàng chục."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân nhầm 24 với 4",
+          "explanation": "Phép tính là 23 × 4, không phải 24 × 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L112-E01",
+      "lesson_id": 112,
+      "concept_id": null,
+      "knowledge_tags": [
+        "division_with_remainder",
+        "identify_quotient_remainder",
+        "remainder_less_than_divisor"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          74,
+          75
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Kết quả của phép chia 17 : 3 là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-025/cau-02-phep-chia-17-cho-3.png",
+            "alt_text": "Mười bảy vật được chia thành các nhóm ba và còn lại một phần nhỏ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 (dư 2)"
+        },
+        {
+          "key": "B",
+          "text": "5 (dư 1)"
+        },
+        {
+          "key": "C",
+          "text": "6 (dư 1)"
+        },
+        {
+          "key": "D",
+          "text": "6 (dư 2)"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "17 chia 3 được 5, còn dư 2 vì 3 × 5 = 15 và 17 − 15 = 2. Vậy 17 : 3 = 5 (dư 2).",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính sai số dư",
+          "explanation": "Sau khi lấy 15 khỏi 17 còn lại 2, không phải 1."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn thương quá lớn",
+          "explanation": "3 × 6 = 18 lớn hơn 17 nên thương không thể là 6."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L113-E01",
+      "lesson_id": 113,
+      "concept_id": null,
+      "knowledge_tags": [
+        "divide_round_hundreds",
+        "place_value_division",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          76,
+          77
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Tính: 600 : 3 = ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-025/cau-03-sau-tram-chia-ba.png",
+            "alt_text": "Sáu nhóm một trăm đơn vị được chia đều thành ba nhóm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "20"
+        },
+        {
+          "key": "B",
+          "text": "200"
+        },
+        {
+          "key": "C",
+          "text": "300"
+        },
+        {
+          "key": "D",
+          "text": "600"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "6 trăm chia cho 3 được 2 trăm, nên 600 : 3 = 200.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Thiếu một chữ số 0",
+          "explanation": "6 trăm chia 3 được 2 trăm, không phải 2 chục."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chia nhầm cho 2",
+          "explanation": "600 : 3 = 200; số 300 là kết quả của 600 : 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L114-E01",
+      "lesson_id": 114,
+      "concept_id": null,
+      "knowledge_tags": [
+        "long_division_one_digit_divisor",
+        "division_with_remainder",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          78,
+          79,
+          80
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Có 156 quyển sách chia đều vào 3 kệ. Mỗi kệ có bao nhiêu quyển sách?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-025/cau-04-chia-156-quyen-sach.png",
+            "alt_text": "Một trăm năm mươi sáu quyển sách và ba kệ giống nhau để chia đều"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "42 quyển"
+        },
+        {
+          "key": "B",
+          "text": "52 quyển"
+        },
+        {
+          "key": "C",
+          "text": "62 quyển"
+        },
+        {
+          "key": "D",
+          "text": "72 quyển"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chia đều 156 quyển sách vào 3 kệ, ta tính 156 : 3 = 52. Mỗi kệ có 52 quyển sách.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia nhầm 126 cho 3",
+          "explanation": "126 : 3 = 42; số sách trong bài là 156."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng nhầm một chục",
+          "explanation": "3 × 52 = 156, còn 3 × 62 = 186 nên 62 không đúng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L115-E01",
+      "lesson_id": 115,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_as_many_times",
+        "divide_large_by_small",
+        "solve_one_step_division"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          83,
+          84
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một đoạn dây dài 36 cm, đoạn dây khác dài 6 cm. Đoạn dây dài gấp mấy lần đoạn dây ngắn?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-025/cau-05-so-sanh-hai-doan-day.png",
+            "alt_text": "Hai đoạn dây, một đoạn dài gấp nhiều lần đoạn còn lại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "5 lần"
+        },
+        {
+          "key": "B",
+          "text": "6 lần"
+        },
+        {
+          "key": "C",
+          "text": "7 lần"
+        },
+        {
+          "key": "D",
+          "text": "30 lần"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Muốn biết đoạn dài gấp mấy lần đoạn ngắn, ta lấy 36 chia cho 6: 36 : 6 = 6. Đoạn dài gấp 6 lần.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhớ nhầm 30 : 6",
+          "explanation": "30 : 6 = 5; số đo đoạn dài trong bài là 36 cm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy số lớn trừ số bé",
+          "explanation": "36 − 6 = 30 là hiệu, còn câu hỏi yêu cầu số lần nên phải chia."
+        }
+      ]
+    }
+  ]
+}

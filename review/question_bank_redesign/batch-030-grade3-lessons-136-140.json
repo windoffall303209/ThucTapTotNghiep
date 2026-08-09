@@ -1,0 +1,335 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L136-L140-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-136-140",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L136-E01",
+      "lesson_id": 136,
+      "concept_id": null,
+      "knowledge_tags": [
+        "circle_center",
+        "radius",
+        "diameter_twice_radius"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          25,
+          26,
+          27,
+          28
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hình tròn có đường kính 14 cm. Bán kính của hình tròn đó dài bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-030/cau-01-ban-kinh-hinh-tron.png",
+            "alt_text": "Hình tròn có tâm, bán kính và đường kính được minh họa"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 cm"
+        },
+        {
+          "key": "B",
+          "text": "14 cm"
+        },
+        {
+          "key": "C",
+          "text": "21 cm"
+        },
+        {
+          "key": "D",
+          "text": "28 cm"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Đường kính gấp hai lần bán kính nên bán kính là 14 : 2 = 7 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Lấy đường kính làm bán kính",
+          "explanation": "Đường kính gồm hai bán kính, nên bán kính chỉ bằng một nửa đường kính."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân đôi đường kính",
+          "explanation": "Muốn tìm bán kính từ đường kính phải chia cho 2, không nhân 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L137-E01",
+      "lesson_id": 137,
+      "concept_id": null,
+      "knowledge_tags": [
+        "round_to_tens",
+        "nearest_ten_hundred"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          29,
+          30
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Làm tròn số 368 đến hàng chục được số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-030/cau-02-lam-tron-hang-chuc.png",
+            "alt_text": "Tia số minh họa một số nằm gần các mốc tròn chục"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "360"
+        },
+        {
+          "key": "B",
+          "text": "368"
+        },
+        {
+          "key": "C",
+          "text": "370"
+        },
+        {
+          "key": "D",
+          "text": "380"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Chữ số hàng đơn vị của 368 là 8, lớn hơn 5 nên làm tròn lên: 368 gần 370 hơn 360.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Làm tròn xuống khi hàng đơn vị lớn",
+          "explanation": "Hàng đơn vị là 8 nên phải làm tròn lên hàng chục."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tăng thêm hai chục",
+          "explanation": "Chỉ thay hàng đơn vị bằng 0 và tăng hàng chục một đơn vị, kết quả là 370."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L138-E01",
+      "lesson_id": 138,
+      "concept_id": null,
+      "knowledge_tags": [
+        "round_to_thousands",
+        "nearest_thousand_ten_thousand"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          31,
+          32,
+          33,
+          34
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Làm tròn số 24 600 đến hàng nghìn được số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-030/cau-03-lam-tron-hang-nghin.png",
+            "alt_text": "Tia số minh họa việc làm tròn đến hàng nghìn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 000"
+        },
+        {
+          "key": "B",
+          "text": "24 600"
+        },
+        {
+          "key": "C",
+          "text": "25 000"
+        },
+        {
+          "key": "D",
+          "text": "26 000"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "24 600 gần 25 000 hơn 24 000 nên làm tròn đến hàng nghìn được 25 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn mốc nghìn phía dưới",
+          "explanation": "Khoảng cách từ 24 600 đến 25 000 là 400, nhỏ hơn khoảng cách 600 đến 24 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Tăng hai nghìn",
+          "explanation": "Chỉ chọn mốc nghìn gần nhất, không tăng thêm hai nghìn."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L139-E01",
+      "lesson_id": 139,
+      "concept_id": null,
+      "knowledge_tags": [
+        "cube",
+        "faces_edges_vertices"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          37,
+          38
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khối lập phương có bao nhiêu đỉnh?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-030/cau-04-dinh-khoi-lap-phuong.png",
+            "alt_text": "Khối lập phương được minh họa rõ các đỉnh"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 đỉnh"
+        },
+        {
+          "key": "B",
+          "text": "8 đỉnh"
+        },
+        {
+          "key": "C",
+          "text": "10 đỉnh"
+        },
+        {
+          "key": "D",
+          "text": "12 đỉnh"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Khối lập phương có 8 đỉnh, 6 mặt và 12 cạnh.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm số mặt với số đỉnh",
+          "explanation": "6 là số mặt của khối lập phương, không phải số đỉnh."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm số cạnh với số đỉnh",
+          "explanation": "12 là số cạnh; khối lập phương có 8 đỉnh."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L140-E01",
+      "lesson_id": 140,
+      "concept_id": null,
+      "knowledge_tags": [
+        "months_in_year",
+        "days_in_month"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          45,
+          46,
+          47
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hội chợ bắt đầu ngày 12 tháng 4 và kết thúc hết ngày 15 tháng 4. Hội chợ diễn ra trong bao nhiêu ngày?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-030/cau-05-so-ngay-thang-tu.png",
+            "alt_text": "Tờ lịch minh họa các ngày trong một tháng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 ngày"
+        },
+        {
+          "key": "B",
+          "text": "4 ngày"
+        },
+        {
+          "key": "C",
+          "text": "5 ngày"
+        },
+        {
+          "key": "D",
+          "text": "6 ngày"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tính cả ngày bắt đầu và ngày kết thúc, hội chợ diễn ra vào các ngày 12, 13, 14 và 15, tức là 4 ngày.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ lấy hiệu hai ngày",
+          "explanation": "15 - 12 = 3 là số khoảng cách giữa hai mốc; phải tính cả ngày 12 nên có 4 ngày."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đếm thừa một ngày",
+          "explanation": "Các ngày từ 12 đến 15 chỉ gồm 12, 13, 14 và 15, không có ngày thứ năm."
+        }
+      ]
+    }
+  ]
+}

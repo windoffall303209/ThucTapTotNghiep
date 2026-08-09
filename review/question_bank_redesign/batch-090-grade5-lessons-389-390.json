@@ -1,0 +1,433 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L389-L390-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-388-390",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E04",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cửa hàng bán 9 hộp bút, mỗi hộp giá 12 000 đồng. Hỏi mua cả 9 hộp phải trả bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-01-hop-but.png",
+            "alt_text": "9 hộp bút, mỗi hộp có giá 12 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "96 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "108 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "120 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "180 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số tiền mua cả 9 hộp bút là 12 000 × 9 = 108 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân thiếu số hộp",
+          "explanation": "Cần nhân đúng 12 000 đồng với 9 hộp, không phải với 8 hộp."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Làm tròn số hộp thành 10",
+          "explanation": "Đề bài có 9 hộp nên không được thay bằng 10 hộp."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân sai số lượng và đơn giá",
+          "explanation": "12 000 × 9 bằng 108 000, không phải 180 000 đồng."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E05",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một lớp mua 15 quyển truyện, mỗi quyển giá 23 000 đồng. Cả lớp phải trả bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-02-truyen.png",
+            "alt_text": "15 quyển truyện, mỗi quyển có giá 23 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "230 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "338 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "345 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "360 000 đồng"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Số tiền cả lớp phải trả là 23 000 × 15 = 345 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Quên nhân với số lượng",
+          "explanation": "230 000 đồng chưa phải là kết quả của 23 000 × 15."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đặt tính hoặc tính sai phép nhân",
+          "explanation": "23 000 × 15 = 23 000 × (10 + 5) = 230 000 + 115 000 = 345 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Làm tròn số lượng sách",
+          "explanation": "Số truyện là 15 quyển, không được làm tròn thành số lượng khác."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E06",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một cửa hàng bán 4 chiếc cặp, mỗi chiếc giá 125 000 đồng. Hỏi bán 4 chiếc cặp đó thu được bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-03-cap.png",
+            "alt_text": "4 chiếc cặp, mỗi chiếc có giá 125 000 đồng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "250 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "400 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "500 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "625 000 đồng"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Số tiền bán 4 chiếc cặp là 125 000 × 4 = 500 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân với 2 thay vì 4",
+          "explanation": "Cần nhân đơn giá 125 000 đồng với đủ 4 chiếc cặp."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Bỏ qua một phần đơn giá",
+          "explanation": "125 000 × 4 bằng 500 000, không phải 400 000 đồng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân nhầm với 5",
+          "explanation": "Đề bài có 4 chiếc cặp nên phép tính đúng là 125 000 × 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E04",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "percentage",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bể chứa 1,8 m³ nước. Người ta đã dùng 40% lượng nước. Bể còn lại bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-04-be-nuoc.png",
+            "alt_text": "Bể chứa 1,8 m³ nước và đã dùng 40 phần trăm lượng nước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "720 lít"
+        },
+        {
+          "key": "B",
+          "text": "1 080 lít"
+        },
+        {
+          "key": "C",
+          "text": "1 200 lít"
+        },
+        {
+          "key": "D",
+          "text": "1 440 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "1,8 m³ = 1 800 lít. Lượng nước còn lại chiếm 100% − 40% = 60%, nên còn 1 800 × 60 : 100 = 1 080 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính lượng nước đã dùng",
+          "explanation": "1 800 × 40 : 100 = 720 lít là lượng đã dùng, không phải lượng còn lại."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi phần trăm chưa đúng",
+          "explanation": "Phần còn lại là 60%, không phải 66,67% hoặc một tỷ lệ khác."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi m³ sang lít sai",
+          "explanation": "1,8 m³ bằng 1 800 lít vì 1 m³ = 1 000 lít."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E05",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "percentage",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bồn chứa 2,75 m³ nước. Người ta đã dùng 20% lượng nước. Bồn còn lại bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-05-bon-nuoc.png",
+            "alt_text": "Bồn chứa 2,75 m³ nước và đã dùng 20 phần trăm lượng nước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "550 lít"
+        },
+        {
+          "key": "B",
+          "text": "1 650 lít"
+        },
+        {
+          "key": "C",
+          "text": "2 200 lít"
+        },
+        {
+          "key": "D",
+          "text": "2 750 lít"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "2,75 m³ = 2 750 lít. Lượng nước còn lại chiếm 80%, nên có 2 750 × 80 : 100 = 2 200 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính lượng nước đã dùng",
+          "explanation": "2 750 × 20 : 100 = 550 lít là lượng đã dùng."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đổi sai tỷ lệ còn lại",
+          "explanation": "Sau khi dùng 20%, phần còn lại là 80%, không phải 60%."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chưa trừ phần đã dùng",
+          "explanation": "2 750 lít là lượng ban đầu; cần tính 80% để tìm lượng còn lại."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E06",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một bồn nước chứa 0,65 m³ nước. Bồn chứa bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-090/cau-06-doi-lit.png",
+            "alt_text": "Bồn nước chứa 0,65 m³ nước"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "65 lít"
+        },
+        {
+          "key": "B",
+          "text": "650 lít"
+        },
+        {
+          "key": "C",
+          "text": "6 500 lít"
+        },
+        {
+          "key": "D",
+          "text": "0,65 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Vì 1 m³ = 1 000 lít nên 0,65 m³ = 0,65 × 1 000 = 650 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Dịch dấu phẩy sai một chữ số",
+          "explanation": "Đổi m³ sang lít phải nhân với 1 000, nên 0,65 m³ bằng 650 lít."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân thừa một chữ số 0",
+          "explanation": "0,65 × 1 000 = 650, không phải 6 500."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Giữ nguyên đơn vị m³",
+          "explanation": "Đề bài yêu cầu đổi sang lít nên phải thực hiện phép nhân với 1 000."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L387-L389-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-387-389",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L387-E01",
+      "lesson_id": 387,
+      "concept_id": null,
+      "knowledge_tags": [
+        "probability",
+        "frequency",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          98,
+          99
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 3 thẻ đỏ, 2 thẻ xanh và 1 thẻ vàng. Lấy ngẫu nhiên một thẻ. Màu nào có khả năng được lấy ra ít nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-061/cau-01-the-xac-suat.png",
+            "alt_text": "Một khay có 3 thẻ đỏ, 2 thẻ xanh và 1 thẻ vàng, kèm nhãn số lượng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Đỏ"
+        },
+        {
+          "key": "B",
+          "text": "Xanh"
+        },
+        {
+          "key": "C",
+          "text": "Vàng"
+        },
+        {
+          "key": "D",
+          "text": "Ba màu như nhau"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thẻ vàng chỉ có 1 thẻ, ít hơn 3 thẻ đỏ và 2 thẻ xanh. Vì vậy màu vàng có khả năng được lấy ra ít nhất.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn nhóm có nhiều thẻ nhất",
+          "explanation": "Ba thẻ đỏ làm màu đỏ có khả năng được lấy ra nhiều hơn, không phải ít nhất."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "So sánh chưa đúng số lượng",
+          "explanation": "Hai thẻ xanh vẫn nhiều hơn một thẻ vàng."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cho rằng các màu có cơ hội như nhau",
+          "explanation": "Các màu không có cùng số thẻ nên khả năng xảy ra không bằng nhau."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L388-E01",
+      "lesson_id": 388,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "area",
+        "percentage",
+        "geometry"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          100,
+          101
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khu vườn hình chữ nhật dài 24 m, rộng 15 m. Có 40% diện tích trồng hoa. Diện tích phần còn lại là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-061/cau-02-khu-vuon.png",
+            "alt_text": "Khu vườn dài 24 m, rộng 15 m, phần trồng hoa chiếm 40% và phần còn lại được ghi rõ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "144 m²"
+        },
+        {
+          "key": "B",
+          "text": "200 m²"
+        },
+        {
+          "key": "C",
+          "text": "216 m²"
+        },
+        {
+          "key": "D",
+          "text": "240 m²"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Diện tích khu vườn là 24 × 15 = 360 m². Phần còn lại chiếm 100% − 40% = 60%, nên có diện tích 360 × 60 : 100 = 216 m².",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính diện tích phần trồng hoa",
+          "explanation": "360 × 40 : 100 = 144 m² là diện tích trồng hoa, chưa phải phần còn lại."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính sai diện tích hình chữ nhật",
+          "explanation": "Diện tích phải là 24 × 15 = 360 m²."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Dùng sai tỉ lệ phần trăm",
+          "explanation": "Phần còn lại là 60%, không phải 2/3 hay một tỉ lệ khác."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L389-E01",
+      "lesson_id": 389,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "multiplication",
+        "money",
+        "word_problem"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          102,
+          103
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hộp có 24 chiếc bút, mỗi chiếc giá 7 500 đồng. Mua cả hộp hết bao nhiêu tiền?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-061/cau-03-hop-but.png",
+            "alt_text": "Hộp có 24 chiếc bút và nhãn giá 7 500 đồng cho mỗi chiếc"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "150 000 đồng"
+        },
+        {
+          "key": "B",
+          "text": "180 000 đồng"
+        },
+        {
+          "key": "C",
+          "text": "200 000 đồng"
+        },
+        {
+          "key": "D",
+          "text": "210 000 đồng"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tổng tiền là 24 × 7 500 = 180 000 đồng.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhân thiếu số lượng",
+          "explanation": "Cần nhân đủ 24 chiếc với đơn giá 7 500 đồng, không dùng số lượng nhỏ hơn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Làm tròn đơn giá",
+          "explanation": "Phải dùng đúng đơn giá 7 500 đồng, không tự làm tròn thành số khác."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân sai phép tính",
+          "explanation": "7 500 × 24 = 7 500 × (20 + 4) = 150 000 + 30 000 = 180 000 đồng."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "batch_id": "CURATED-MANUAL-G3-L126-L130-20260807-R1",
+  "curriculum_scope_id": "grade-3-lessons-126-130",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L126-E01",
+      "lesson_id": 126,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangle_properties",
+        "opposite_sides_equal"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          108,
+          109
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một tấm bảng hình chữ nhật có chiều dài 8 dm và chiều rộng 3 dm. Cạnh đối diện với cạnh dài 8 dm cũng dài bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-028/cau-01-canh-doi-dien-hinh-chu-nhat.png",
+            "alt_text": "Một hình chữ nhật có cạnh dài và cạnh ngắn được tô màu khác nhau"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 dm"
+        },
+        {
+          "key": "B",
+          "text": "5 dm"
+        },
+        {
+          "key": "C",
+          "text": "8 dm"
+        },
+        {
+          "key": "D",
+          "text": "11 dm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Trong hình chữ nhật, hai cạnh dài đối diện bằng nhau. Vì một cạnh dài 8 dm nên cạnh đối diện cũng dài 8 dm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chọn cạnh ngắn",
+          "explanation": "3 dm là độ dài cạnh ngắn, không phải cạnh đối diện với cạnh dài."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Cộng hai kích thước",
+          "explanation": "Cạnh đối diện bằng cạnh dài, không bằng tổng 8 + 3."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L127-E01",
+      "lesson_id": 127,
+      "concept_id": null,
+      "knowledge_tags": [
+        "square_properties",
+        "four_equal_sides"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          110,
+          111
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một miếng bìa hình vuông có một cạnh dài 6 cm. Mỗi cạnh còn lại dài bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-028/cau-02-bon-canh-hinh-vuong.png",
+            "alt_text": "Một hình vuông có bốn cạnh bằng nhau được tô màu rõ ràng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "3 cm"
+        },
+        {
+          "key": "B",
+          "text": "6 cm"
+        },
+        {
+          "key": "C",
+          "text": "12 cm"
+        },
+        {
+          "key": "D",
+          "text": "24 cm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hình vuông có bốn cạnh bằng nhau nên mỗi cạnh đều dài 6 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia đôi độ dài cạnh",
+          "explanation": "Các cạnh hình vuông bằng nhau, không chia đôi cạnh đã cho."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhân với 2",
+          "explanation": "12 cm là hai lần cạnh, không phải độ dài một cạnh còn lại."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L128-E01",
+      "lesson_id": 128,
+      "concept_id": null,
+      "knowledge_tags": [
+        "rectangle_perimeter",
+        "sum_side_lengths"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          112,
+          113
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một khung ảnh hình chữ nhật dài 18 cm và rộng 7 cm. Chu vi khung ảnh là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-028/cau-03-chu-vi-khung-anh.png",
+            "alt_text": "Một khung ảnh hình chữ nhật có chiều dài và chiều rộng được minh họa"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "25 cm"
+        },
+        {
+          "key": "B",
+          "text": "36 cm"
+        },
+        {
+          "key": "C",
+          "text": "50 cm"
+        },
+        {
+          "key": "D",
+          "text": "126 cm"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Chu vi hình chữ nhật là (18 + 7) × 2 = 25 × 2 = 50 cm.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính nửa chu vi",
+          "explanation": "18 + 7 = 25 cm mới là tổng chiều dài và chiều rộng, cần nhân 2."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân hai kích thước",
+          "explanation": "Chu vi không tính bằng 18 × 7; phải cộng chiều dài với chiều rộng rồi nhân 2."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L129-E01",
+      "lesson_id": 129,
+      "concept_id": null,
+      "knowledge_tags": [
+        "numbers_to_10000",
+        "place_value_thousands_hundreds_tens_ones"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          5,
+          6,
+          7
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số gồm 6 nghìn, 3 trăm, 0 chục và 5 đơn vị là số nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-028/cau-04-khoi-hang-cua-so-6305.png",
+            "alt_text": "Các khối hàng nghìn, trăm, chục và đơn vị dùng để tạo thành một số có bốn chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "6 035"
+        },
+        {
+          "key": "B",
+          "text": "6 305"
+        },
+        {
+          "key": "C",
+          "text": "6 350"
+        },
+        {
+          "key": "D",
+          "text": "6 530"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "6 nghìn, 3 trăm, 0 chục và 5 đơn vị tạo thành số 6 305.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đổi chỗ hàng trăm và chục",
+          "explanation": "Chữ số 3 ở hàng trăm, còn hàng chục là 0."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đặt 5 ở hàng chục",
+          "explanation": "5 là chữ số hàng đơn vị nên phải đứng cuối số."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G3-L130-E01",
+      "lesson_id": 130,
+      "concept_id": null,
+      "knowledge_tags": [
+        "decompose_four_digit_number",
+        "expanded_form_to_10000"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          8,
+          9,
+          10
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 7 042 được viết thành tổng nào dưới đây?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-3/batch-028/cau-05-phan-tich-so-7042.png",
+            "alt_text": "Bảng giá trị hàng nghìn, trăm, chục và đơn vị của một số có bốn chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "7 000 + 400 + 2"
+        },
+        {
+          "key": "B",
+          "text": "7 000 + 40 + 2"
+        },
+        {
+          "key": "C",
+          "text": "700 + 40 + 2"
+        },
+        {
+          "key": "D",
+          "text": "7 000 + 4 + 2"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số 7 042 gồm 7 nghìn, 0 trăm, 4 chục và 2 đơn vị nên 7 042 = 7 000 + 40 + 2.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đặt 4 ở hàng trăm",
+          "explanation": "4 thuộc hàng chục nên có giá trị 40, không phải 400."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Bỏ qua giá trị hàng chục",
+          "explanation": "Chữ số 4 ở hàng chục phải được viết là 40."
+        }
+      ]
+    }
+  ]
+}

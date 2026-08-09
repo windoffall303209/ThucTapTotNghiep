@@ -1,0 +1,207 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L259-L261-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-259-261",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L259-E01",
+      "lesson_id": 259,
+      "concept_id": null,
+      "knowledge_tags": [
+        "pie_chart",
+        "percentage",
+        "data_interpretation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          77,
+          78
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một biểu đồ quạt tròn cho biết truyện chiếm 35%, sách khoa học chiếm 20%, sách lịch sử chiếm 15%. Phần còn lại là sách tham khảo. Sách tham khảo chiếm bao nhiêu phần trăm?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-058/cau-01-bieu-do-quat.png",
+            "alt_text": "Biểu đồ hình quạt tròn nhiều màu không có nhãn"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "20%"
+        },
+        {
+          "key": "B",
+          "text": "25%"
+        },
+        {
+          "key": "C",
+          "text": "30%"
+        },
+        {
+          "key": "D",
+          "text": "40%"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Phần còn lại là 100% − (35% + 20% + 15%) = 30%.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Cộng thiếu một nhóm",
+          "explanation": "Cần cộng đủ ba tỉ lệ 35%, 20% và 15% trước khi lấy 100% trừ đi."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy sai phần bù",
+          "explanation": "Tổng ba nhóm đã cho là 70%, nên phần còn lại là 30%, không phải 40%."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L260-E01",
+      "lesson_id": 260,
+      "concept_id": null,
+      "knowledge_tags": [
+        "data_series",
+        "data_table",
+        "bar_chart",
+        "data_representation"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          80,
+          81
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một lớp khảo sát số học sinh đi bộ, đi xe đạp và đi xe buýt đến trường. Muốn so sánh nhanh số học sinh ở từng nhóm, cách biểu diễn nào phù hợp nhất?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-058/cau-02-du-lieu-thong-ke.png",
+            "alt_text": "Bảng dữ liệu và biểu đồ cột minh họa việc biểu diễn số liệu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Biểu đồ cột"
+        },
+        {
+          "key": "B",
+          "text": "Một phép tính cộng"
+        },
+        {
+          "key": "C",
+          "text": "Một đoạn văn kể chuyện"
+        },
+        {
+          "key": "D",
+          "text": "Một hình tròn không chia phần"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Biểu đồ cột giúp so sánh trực quan số lượng của từng nhóm dữ liệu.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Nhầm xử lí với biểu diễn dữ liệu",
+          "explanation": "Phép cộng cho biết tổng nhưng không biểu diễn rõ số lượng từng nhóm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Chọn hình không có thông tin",
+          "explanation": "Hình tròn không chia phần không thể hiện được sự khác nhau giữa các nhóm."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L261-E01",
+      "lesson_id": 261,
+      "concept_id": null,
+      "knowledge_tags": [
+        "repeated_outcome",
+        "simple_games",
+        "frequency"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          82,
+          83
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong một trò chơi tung đồng xu 20 lần, mặt ngửa xuất hiện 12 lần. Số lần lặp lại của kết quả mặt ngửa là bao nhiêu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-058/cau-03-lap-lai-ket-qua.png",
+            "alt_text": "Trò chơi tung đồng xu và bảng ghi kết quả lặp lại"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 lần"
+        },
+        {
+          "key": "B",
+          "text": "10 lần"
+        },
+        {
+          "key": "C",
+          "text": "12 lần"
+        },
+        {
+          "key": "D",
+          "text": "20 lần"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Mặt ngửa được ghi nhận 12 lần, nên số lần lặp lại của kết quả mặt ngửa là 12 lần.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính số lần mặt sấp",
+          "explanation": "20 − 12 = 8 là số lần mặt sấp, không phải số lần mặt ngửa."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy tổng số lượt chơi",
+          "explanation": "Số lần lặp lại của mặt ngửa chỉ là số lượt xuất hiện mặt ngửa, bằng 12."
+        }
+      ]
+    }
+  ]
+}

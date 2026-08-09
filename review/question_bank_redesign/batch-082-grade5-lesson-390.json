@@ -1,0 +1,84 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L390-20260808-R3",
+  "curriculum_scope_id": "grade-5-lessons-390",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L390-E03",
+      "lesson_id": 390,
+      "concept_id": null,
+      "knowledge_tags": [
+        "mixed_revision",
+        "volume_conversion",
+        "percentage",
+        "measurement"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          104,
+          105
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một thùng chứa 4,2 m³ nước. Người ta đã dùng 25% lượng nước. Thùng còn lại bao nhiêu lít nước?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-082/cau-01-nuoc-con-lai.png",
+            "alt_text": "Thùng nước có 4,2 m³ nước và đã dùng 25 phần trăm"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 100 lít"
+        },
+        {
+          "key": "B",
+          "text": "3 150 lít"
+        },
+        {
+          "key": "C",
+          "text": "3 250 lít"
+        },
+        {
+          "key": "D",
+          "text": "3 500 lít"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "4,2 m³ = 4 200 lít. Lượng còn lại là 100% − 25% = 75%, nên có 4 200 × 75 : 100 = 3 150 lít.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Tính lượng đã dùng",
+          "explanation": "4 200 × 25 : 100 = 1 050 lít là lượng đã dùng, không phải lượng còn lại."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đổi đơn vị hoặc tính phần trăm sai",
+          "explanation": "4,2 m³ bằng 4 200 lít và phần còn lại chiếm 75%."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Lấy sai tỉ lệ còn lại",
+          "explanation": "Sau khi dùng 25%, lượng còn lại là 75%, không phải 80% hoặc một tỉ lệ khác."
+        }
+      ]
+    }
+  ]
+}

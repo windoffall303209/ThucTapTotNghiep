@@ -1,0 +1,335 @@
+{
+  "batch_id": "CURATED-MANUAL-G4-L157-L161-20260807-R1",
+  "curriculum_scope_id": "grade-4-lessons-157-161",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L157-E01",
+      "lesson_id": 157,
+      "concept_id": null,
+      "knowledge_tags": [
+        "numbers_to_1000000",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          13,
+          14
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số 482 305, chữ số 8 có giá trị là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-035/cau-01-gia-tri-chu-so.png",
+            "alt_text": "Bảng hàng và giá trị chữ số trong số có sáu chữ số"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "8 000"
+        },
+        {
+          "key": "B",
+          "text": "80 000"
+        },
+        {
+          "key": "C",
+          "text": "800"
+        },
+        {
+          "key": "D",
+          "text": "800 000"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Chữ số 8 ở hàng chục nghìn nên có giá trị là 80 000.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhầm hàng nghìn với hàng chục nghìn",
+          "explanation": "Trong số 482 305, chữ số 8 đứng ở hàng chục nghìn, không phải hàng nghìn."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm hàng trăm nghìn",
+          "explanation": "Hàng trăm nghìn của số này là chữ số 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L158-E01",
+      "lesson_id": 158,
+      "concept_id": null,
+      "knowledge_tags": [
+        "numbers_to_1000000",
+        "expanded_form",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          15,
+          16,
+          17
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 708 040 được viết thành tổng là:",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-035/cau-02-phan-tich-so.png",
+            "alt_text": "Sơ đồ phân tích số theo các hàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "700 000 + 8 000 + 40"
+        },
+        {
+          "key": "B",
+          "text": "700 000 + 80 000 + 40"
+        },
+        {
+          "key": "C",
+          "text": "70 000 + 8 000 + 40"
+        },
+        {
+          "key": "D",
+          "text": "700 000 + 8 000 + 400"
+        }
+      ],
+      "correct_answer": "A",
+      "explanation": {
+        "text": "Số 708 040 gồm 7 trăm nghìn, 8 nghìn và 4 chục: 700 000 + 8 000 + 40.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "B",
+          "misconception_name": "Đọc nhầm hàng chục nghìn",
+          "explanation": "Chữ số 8 ở hàng nghìn nên có giá trị 8 000, không phải 80 000."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi hàng chục thành hàng trăm",
+          "explanation": "Chữ số 4 ở hàng chục có giá trị 40."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L159-E01",
+      "lesson_id": 159,
+      "concept_id": null,
+      "knowledge_tags": [
+        "large_numbers",
+        "millions_billions",
+        "read_large_number"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          18,
+          19
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Số 4 000 000 000 gồm bao nhiêu tỉ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-035/cau-03-ti-va-trieu.png",
+            "alt_text": "Mô hình các lớp triệu và tỉ"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "2 tỉ"
+        },
+        {
+          "key": "B",
+          "text": "4 tỉ"
+        },
+        {
+          "key": "C",
+          "text": "40 tỉ"
+        },
+        {
+          "key": "D",
+          "text": "400 tỉ"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Số 4 000 000 000 có 4 ở hàng tỉ và các chữ số còn lại bằng 0, nên số đó gồm 4 tỉ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "C",
+          "misconception_name": "Đọc thừa một chữ số 0",
+          "explanation": "4 000 000 000 là 4 tỉ, không phải 40 tỉ."
+        },
+        {
+          "distractor_key": "A",
+          "misconception_name": "Nhìn nhầm chữ số hàng tỉ",
+          "explanation": "Chữ số đầu tiên là 4 nên số tỉ là 4."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L160-E01",
+      "lesson_id": 160,
+      "concept_id": null,
+      "knowledge_tags": [
+        "large_numbers",
+        "number_classes",
+        "place_value"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          20,
+          21,
+          22
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Trong số 532 187 629, chữ số 8 thuộc hàng nào?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-035/cau-04-hang-chuc-nghin.png",
+            "alt_text": "Bảng chia số có nhiều chữ số thành các lớp"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hàng trăm nghìn"
+        },
+        {
+          "key": "B",
+          "text": "Hàng chục nghìn"
+        },
+        {
+          "key": "C",
+          "text": "Hàng nghìn"
+        },
+        {
+          "key": "D",
+          "text": "Hàng trăm"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Tách số thành 532 | 187 | 629, chữ số 8 ở vị trí hàng chục nghìn của lớp nghìn.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đọc 8 là chữ số đầu của lớp nghìn",
+          "explanation": "Trong lớp nghìn, 1 là hàng trăm nghìn, 8 là hàng chục nghìn và 7 là hàng nghìn."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Nhầm chữ số cuối của lớp nghìn",
+          "explanation": "Hàng nghìn là chữ số 7, không phải chữ số 8."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260807-G4-L161-E01",
+      "lesson_id": 161,
+      "concept_id": null,
+      "knowledge_tags": [
+        "compare_large_numbers",
+        "comparison_symbols"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          24,
+          25,
+          26
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Điền dấu thích hợp: 708 090 … 708 009",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-4/batch-035/cau-05-so-sanh-so.png",
+            "alt_text": "Hai số nhiều chữ số trên bảng so sánh theo từng hàng"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "<"
+        },
+        {
+          "key": "B",
+          "text": ">"
+        },
+        {
+          "key": "C",
+          "text": "="
+        },
+        {
+          "key": "D",
+          "text": "Không so sánh được"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Hai số có cùng sáu chữ số và giống nhau đến hàng trăm. So sánh hàng chục: 9 lớn hơn 0 nên 708 090 > 708 009.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Đọc ngược dấu so sánh",
+          "explanation": "Số lớn hơn nằm ở bên trái nên dấu đúng là >."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Chỉ nhìn các chữ số đầu",
+          "explanation": "Hai số chỉ khác nhau ở hàng chục, vì vậy không thể kết luận bằng nhau."
+        }
+      ]
+    }
+  ]
+}

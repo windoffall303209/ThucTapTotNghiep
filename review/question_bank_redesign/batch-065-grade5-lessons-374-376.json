@@ -1,0 +1,222 @@
+{
+  "batch_id": "CURATED-MANUAL-G5-L374-L376-20260808-R1",
+  "curriculum_scope_id": "grade-5-lessons-374-376",
+  "creation_method": "MANUALLY_AUTHORED_BY_ASSISTANT",
+  "image_generation_method": "BUILT_IN_AI_ONE_IMAGE_PER_QUESTION_WITH_EXPLICIT_NUMERIC_DATA",
+  "approval": {
+    "status": "PENDING_USER_APPROVAL",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "database_inserted": false,
+  "questions": [
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L374-E01",
+      "lesson_id": 374,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_units",
+        "time_subtraction",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          52,
+          53
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chương trình bắt đầu lúc 14 giờ 20 phút và kết thúc lúc 16 giờ 05 phút. Chương trình kéo dài bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-065/cau-01-thoi-luong-dong-ho.png",
+            "alt_text": "Hai đồng hồ có đủ 12 số, mốc bắt đầu 14 giờ 20 phút và kết thúc 16 giờ 05 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 35 phút"
+        },
+        {
+          "key": "B",
+          "text": "1 giờ 45 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 15 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 45 phút"
+        }
+      ],
+      "correct_answer": "B",
+      "explanation": {
+        "text": "Từ 14 giờ 20 phút đến 15 giờ 20 phút là 1 giờ; từ 15 giờ 20 phút đến 16 giờ 05 phút là 45 phút. Tổng thời gian là 1 giờ 45 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Trừ nhầm số phút",
+          "explanation": "05 phút ở mốc kết thúc không thể trừ trực tiếp cho 20 phút mà phải tính qua mốc 15 giờ 20 phút."
+        },
+        {
+          "distractor_key": "C",
+          "misconception_name": "Cộng thay vì tính khoảng thời gian",
+          "explanation": "Cần tìm hiệu giữa hai mốc giờ, không cộng hai thời điểm."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhầm giờ kết thúc",
+          "explanation": "Mốc kết thúc là 16 giờ 05 phút, không phải 17 giờ 05 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L375-E01",
+      "lesson_id": 375,
+      "concept_id": null,
+      "knowledge_tags": [
+        "time_addition",
+        "time_multiplication",
+        "time_conversion"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          58,
+          59
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một hoạt động gồm 3 chặng, mỗi chặng kéo dài 35 phút và có 3 lần nghỉ, mỗi lần 10 phút. Tổng thời gian của hoạt động là bao lâu?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-065/cau-02-ba-chang-tham-quan.png",
+            "alt_text": "Dòng thời gian gồm ba chặng 35 phút và ba lần nghỉ 10 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "1 giờ 45 phút"
+        },
+        {
+          "key": "B",
+          "text": "2 giờ 05 phút"
+        },
+        {
+          "key": "C",
+          "text": "2 giờ 15 phút"
+        },
+        {
+          "key": "D",
+          "text": "2 giờ 30 phút"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "Thời gian của 3 chặng là 35 × 3 = 105 phút. Thời gian nghỉ là 10 × 3 = 30 phút. Tổng cộng 105 + 30 = 135 phút = 2 giờ 15 phút.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chỉ cộng thời gian các chặng",
+          "explanation": "105 phút chỉ là thời gian di chuyển, chưa tính 3 lần nghỉ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Tính thiếu một lần nghỉ",
+          "explanation": "Đề bài cho 3 lần nghỉ, mỗi lần 10 phút nên phải cộng đủ 30 phút."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Đổi 135 phút sai",
+          "explanation": "135 phút gồm 120 phút và 15 phút, tức là 2 giờ 15 phút."
+        }
+      ]
+    },
+    {
+      "source_key": "CURATED-MANUAL-20260808-G5-L376-E01",
+      "lesson_id": 376,
+      "concept_id": null,
+      "knowledge_tags": [
+        "speed",
+        "distance",
+        "time",
+        "speed_formula"
+      ],
+      "curriculum_review": {
+        "status": "VERIFIED_AGAINST_SCOPE",
+        "evidence_pdf_pages": [
+          62,
+          63
+        ]
+      },
+      "question_type": "MULTIPLE_CHOICE",
+      "difficulty": "HARD",
+      "layout_template": "STACK_VERTICAL",
+      "content": {
+        "text": "Một chiếc thuyền đi quãng đường 42 km trong 1 giờ 24 phút. Vận tốc của thuyền là bao nhiêu ki-lô-mét trên giờ?",
+        "images": [
+          {
+            "url": "/images/question-bank/curated/grade-5/batch-065/cau-03-van-toc-thuyen.png",
+            "alt_text": "Sơ đồ thuyền đi từ A đến B, quãng đường 42 km trong 1 giờ 24 phút"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "key": "A",
+          "text": "24 km/giờ"
+        },
+        {
+          "key": "B",
+          "text": "28 km/giờ"
+        },
+        {
+          "key": "C",
+          "text": "30 km/giờ"
+        },
+        {
+          "key": "D",
+          "text": "36 km/giờ"
+        }
+      ],
+      "correct_answer": "C",
+      "explanation": {
+        "text": "1 giờ 24 phút = 1,4 giờ. Vận tốc của thuyền là 42 : 1,4 = 30 km/giờ.",
+        "images": []
+      },
+      "misconceptions": [
+        {
+          "distractor_key": "A",
+          "misconception_name": "Chia cho 1 giờ 45 phút",
+          "explanation": "1 giờ 24 phút phải đổi thành 1,4 giờ, không phải 1,75 giờ."
+        },
+        {
+          "distractor_key": "B",
+          "misconception_name": "Chia quãng đường cho 1,5 giờ",
+          "explanation": "Cần đổi đúng 24 phút = 0,4 giờ."
+        },
+        {
+          "distractor_key": "D",
+          "misconception_name": "Nhân quãng đường với thời gian",
+          "explanation": "Công thức vận tốc là quãng đường chia cho thời gian."
+        }
+      ]
+    }
+  ]
+}
