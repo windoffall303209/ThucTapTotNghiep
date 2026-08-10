@@ -1,4 +1,4 @@
-# Script build grade1 questions ai ch1 h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 questions ai ch1 hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 from pathlib import Path
 
@@ -31,7 +31,7 @@ SHEETS = [
 ]
 
 
-# H?m crop_panels d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm crop_panels dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def crop_panels():
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -59,7 +59,7 @@ def crop_panels():
     return panel_paths
 
 
-# H?m build_contact_sheet d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_contact_sheet dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_contact_sheet(image_paths):
     thumb_w, thumb_h = 220, 220
@@ -91,7 +91,7 @@ def build_contact_sheet(image_paths):
     sheet.save(CONTACT_SHEET_OUT)
 
 
-# H?m set_doc_styles d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_doc_styles dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_doc_styles(doc):
     styles = doc.styles
@@ -102,7 +102,7 @@ def set_doc_styles(doc):
         styles[style_name].font.color.rgb = RGBColor(31, 78, 121)
 
 
-# H?m add_answer_line d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_answer_line dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_answer_line(doc, q):
     answer_text = next(
@@ -118,7 +118,7 @@ def add_answer_line(doc, q):
     exp.add_run(q["explanation"]["text"])
 
 
-# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx(questions, image_paths):
     doc = Document()
@@ -157,7 +157,7 @@ def build_docx(questions, image_paths):
     doc.save(DOCX_OUT)
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     panels = crop_panels()
@@ -195,6 +195,6 @@ def main():
     print(CONTACT_SHEET_OUT)
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

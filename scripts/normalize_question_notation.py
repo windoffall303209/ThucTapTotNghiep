@@ -1,4 +1,4 @@
-# Script normalize question notation h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script normalize question notation hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import argparse
 import copy
 import json
@@ -32,19 +32,19 @@ DEGREE_SYMBOL_PATTERN = re.compile(r"(?<![A-Za-z0-9$])(\d+(?:[,.]\d+)?)\s*°")
 DEGREE_LETTER_PATTERN = re.compile(r"(?<![A-Za-z0-9$])(\d+(?:[,.]\d+)?)\s*o\b")
 
 
-# H?m latex_angle d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm latex_angle dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def latex_angle(value):
     return f"$\\widehat{{{value}}}$"
 
 
-# H?m normalize_prime d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_prime dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_prime(value):
     return "'" if value else ""
 
 
-# H?m normalize_three_point_angle d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_three_point_angle dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_three_point_angle(match):
     a, a_prime, b, b_prime, c, c_prime, trailing_prime = match.groups()
@@ -64,7 +64,7 @@ def normalize_three_point_angle(match):
     return latex_angle(angle)
 
 
-# H?m normalize_single_angle d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_single_angle dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_single_angle(match):
     point, subscript = match.groups()
@@ -73,13 +73,13 @@ def normalize_single_angle(match):
     return latex_angle(point)
 
 
-# H?m normalize_degree d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_degree dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_degree(match):
     return f"${match.group(1)}^\\circ$"
 
 
-# H?m normalize_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_text dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_text(value):
     if not isinstance(value, str) or not value:
@@ -111,7 +111,7 @@ def normalize_text(value):
     return current, changes
 
 
-# H?m normalize_question d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_question dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_question(question, lesson, report):
     field_paths = [
@@ -133,7 +133,7 @@ def normalize_question(question, lesson, report):
             add_report_entry(report, lesson, question, f"choice_{choice.get('key', '')}", value, normalized, changes)
 
 
-# H?m add_report_entry d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_report_entry dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_report_entry(report, lesson, question, field, before, after, changes):
     report["changedFields"] += 1
@@ -154,7 +154,7 @@ def add_report_entry(report, lesson, question, field, before, after, changes):
         })
 
 
-# H?m normalize_payload d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_payload dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_payload(payload):
     normalized = copy.deepcopy(payload)
@@ -175,7 +175,7 @@ def normalize_payload(payload):
     return normalized, report
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     parser = argparse.ArgumentParser(description="Chuẩn hóa ký hiệu hình học trong dữ liệu câu hỏi crawl.")
@@ -200,6 +200,6 @@ def main():
     }, ensure_ascii=False, indent=2))
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

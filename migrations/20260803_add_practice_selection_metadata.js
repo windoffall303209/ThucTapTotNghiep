@@ -1,4 +1,4 @@
-// Migration 20260803 add practice selection metadata c?p nh?t c?u tr?c ho?c d? li?u c? s? d? li?u theo c?ch c? th? ki?m tra v? l?p l?i.
+// Migration 20260803 add practice selection metadata cập nhật cấu trúc hoặc dữ liệu cơ sở dữ liệu theo cách có thể kiểm tra và lặp lại.
 /* eslint-disable no-console */
 require('dotenv').config({ quiet: true });
 
@@ -11,7 +11,7 @@ const REQUIRED_COLUMNS = Object.freeze({
   selection_metadata: 'JSON NULL'
 });
 
-// H?m getState d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getState dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getState() {
   const rows = await db.query(
     `SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
@@ -36,10 +36,10 @@ async function getState() {
   };
 }
 
-// H?m apply d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm apply dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function apply() {
   const state = await getState();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const column of state.missingColumns) {
     await db.query(
       `ALTER TABLE PracticeSessions ADD COLUMN ${column} ${REQUIRED_COLUMNS[column]} AFTER ai_hint_count`
@@ -47,22 +47,22 @@ async function apply() {
   }
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const args = process.argv.slice(2);
   const unknown = args.filter((arg) => arg !== APPLY_FLAG);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (unknown.length > 0) {
     throw new Error(`Tham số không được hỗ trợ: ${unknown.join(', ')}`);
   }
   const connection = await db.testConnection();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!connection.connected) {
     throw new Error(`Không kết nối được database: ${connection.reason || 'unknown'}`);
   }
 
   console.log(JSON.stringify({ mode: 'preflight', ...(await getState()) }, null, 2));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!args.includes(APPLY_FLAG)) {
     console.log(
       `Dùng "node migrations/20260803_add_practice_selection_metadata.js ${APPLY_FLAG}" để bổ sung metadata.`
@@ -74,7 +74,7 @@ async function main() {
   console.log(JSON.stringify({ mode: 'post-apply', ...(await getState()) }, null, 2));
 }
 
-// Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+// Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if (require.main === module) {
   main()
     .catch((error) => {

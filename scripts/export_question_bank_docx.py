@@ -24,7 +24,7 @@ Dùng:
     python scripts/export_question_bank_docx.py            -> xuất cả 5 khối
     python scripts/export_question_bank_docx.py 1 3        -> chỉ xuất lớp 1 và 3
 """
-# Script export question bank docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script export question bank docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import base64
@@ -69,7 +69,7 @@ XANH_VUA = RGBColor(47, 84, 150)
 XANH_LA = RGBColor(0, 112, 60)
 
 
-# H?m doc_payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm doc_payload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 # --------------------------------------------------------------------- đọc .tex
 def doc_payload(grade: int) -> list[dict]:
     """Đọc các dòng % DBJSON trong file .tex, giữ nguyên thứ tự xuất hiện."""
@@ -89,7 +89,7 @@ def doc_payload(grade: int) -> list[dict]:
     return ra
 
 
-# H?m gom_theo_bai d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm gom_theo_bai dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def gom_theo_bai(payloads: list[dict]) -> list[dict]:
     """Gom câu hỏi theo bài, giữ thứ tự bài xuất hiện lần đầu trong file."""
@@ -106,7 +106,7 @@ def gom_theo_bai(payloads: list[dict]) -> list[dict]:
     return list(theo_bai.values())
 
 
-# H?m tai_anh_ngoai d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm tai_anh_ngoai dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 # ---------------------------------------------------------------------- ảnh
 def tai_anh_ngoai(url: str) -> Path | None:
     """Tải ảnh có đường dẫn http về máy để nhúng được vào Word.
@@ -131,7 +131,7 @@ def tai_anh_ngoai(url: str) -> Path | None:
         return None
 
 
-# H?m duong_dan_anh d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm duong_dan_anh dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def duong_dan_anh(url: str) -> Path | None:
     url = str(url or "").strip()
@@ -143,7 +143,7 @@ def duong_dan_anh(url: str) -> Path | None:
     return tep if tep.exists() else None
 
 
-# H?m anh_da_nen d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm anh_da_nen dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
     """Nén ảnh về JPEG cạnh dài tối đa 1400 để file Word không phình quá to.
@@ -173,7 +173,7 @@ def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
         return None
 
 
-# H?m them_muc_luc d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm them_muc_luc dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 # ---------------------------------------------------------------------- docx
 def them_muc_luc(document: Document) -> None:
     p = document.add_paragraph()
@@ -193,14 +193,14 @@ def them_muc_luc(document: Document) -> None:
     run._r.extend([bat_dau, lenh, ngan, cho, ket])
 
 
-# H?m giu_khoi d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm giu_khoi dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def giu_khoi(paragraph, dinh_doan_sau: bool = False) -> None:
     paragraph.paragraph_format.keep_together = True
     paragraph.paragraph_format.keep_with_next = dinh_doan_sau
 
 
-# H?m ep_font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm ep_font dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def ep_font(style, ten_font: str) -> None:
     """Đặt font cho đủ bốn nhóm ký tự của Word.
@@ -224,7 +224,7 @@ def ep_font(style, ten_font: str) -> None:
         rFonts.set(qn(f"w:{thuoc_tinh}"), ten_font)
 
 
-# H?m them_chan_trang d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm them_chan_trang dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def them_chan_trang(section) -> None:
     """Đặt số trang ở chân trang. Tài liệu dài vài nghìn trang mà không có số trang
@@ -245,7 +245,7 @@ def them_chan_trang(section) -> None:
     run._r.extend([bat_dau, lenh, ket])
 
 
-# H?m dat_kieu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm dat_kieu dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def dat_kieu(document: Document) -> None:
     section = document.sections[0]
@@ -279,7 +279,7 @@ ANH_RONG_TOI_DA = 14.5
 ANH_CAO_TOI_DA = 12.0
 
 
-# H?m them_anh d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm them_anh dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
     """Nhúng ảnh vào tài liệu, trả về số ảnh đã nhúng được.
@@ -314,7 +314,7 @@ def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
     return da_nhung
 
 
-# H?m dung_docx d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm dung_docx dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
     document = Document()
@@ -437,7 +437,7 @@ def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
     }
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     khoi = [int(a) for a in sys.argv[1:] if a.isdigit()] or [1, 2, 3, 4, 5]
@@ -466,6 +466,6 @@ def main() -> None:
     shutil.rmtree(ANH_TAM, ignore_errors=True)
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

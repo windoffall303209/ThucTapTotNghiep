@@ -1,4 +1,4 @@
-# Script build grade1 ai theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 ai theory docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 import shutil
 from pathlib import Path
@@ -31,7 +31,7 @@ FALLBACK_OUTPUT_PATH = OUTPUT_DIR / "ly-thuyet-lop-1-codex-ai-fixed.docx"
 GENERATED_ROOT = Path(r"C:\Users\WIND-OF-FALL\.codex\generated_images")
 
 
-# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_run_font dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
@@ -43,7 +43,7 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
         run.font.color.rgb = RGBColor.from_string(color)
 
 
-# H?m set_document_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_document_defaults dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_document_defaults(doc):
     section = doc.sections[0]
@@ -72,7 +72,7 @@ def set_document_defaults(doc):
         style.font.bold = True
 
 
-# H?m add_meta_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_meta_paragraph dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_meta_paragraph(doc, label, value):
     paragraph = doc.add_paragraph()
@@ -82,7 +82,7 @@ def add_meta_paragraph(doc, label, value):
     set_run_font(value_run)
 
 
-# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_bullets dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_bullets(doc, items):
     for item in items:
@@ -91,7 +91,7 @@ def add_bullets(doc, items):
         set_run_font(run)
 
 
-# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_cell_text dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_cell_text(cell, text, bold=False, size=9):
     cell.text = ""
@@ -100,7 +100,7 @@ def set_cell_text(cell, text, bold=False, size=9):
     set_run_font(run, size=size, bold=bold)
 
 
-# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_cell_shading dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
@@ -109,7 +109,7 @@ def set_cell_shading(cell, fill):
     tc_pr.append(shd)
 
 
-# H?m add_overview_table d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_overview_table dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_overview_table(doc, rows):
     table = doc.add_table(rows=1, cols=4)
@@ -126,7 +126,7 @@ def add_overview_table(doc, rows):
             cells[index].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
-# H?m build_card_detail d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_card_detail dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_card_detail(card):
     card_type = card.get("type", "")
@@ -141,7 +141,7 @@ def build_card_detail(card):
     ]
 
 
-# H?m get_latest_sheet_images d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm get_latest_sheet_images dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def get_latest_sheet_images(count=10):
     images = sorted(GENERATED_ROOT.rglob("*.png"), key=lambda path: path.stat().st_mtime, reverse=True)
@@ -149,7 +149,7 @@ def get_latest_sheet_images(count=10):
     return list(reversed(selected))
 
 
-# H?m crop_sheet_panels d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm crop_sheet_panels dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def crop_sheet_panels(sheet_paths, expected_lessons):
     AI_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -182,7 +182,7 @@ def crop_sheet_panels(sheet_paths, expected_lessons):
     return panel_paths[:expected_lessons]
 
 
-# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx():
     data = json.loads(INPUT_PATH.read_text(encoding="utf-8"))
@@ -276,6 +276,6 @@ def build_docx():
         return FALLBACK_OUTPUT_PATH
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     print(build_docx())

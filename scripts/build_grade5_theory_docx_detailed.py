@@ -1,4 +1,4 @@
-# Script build grade5 theory docx detailed h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade5 theory docx detailed hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 import math
 import sys
@@ -97,13 +97,13 @@ CHAPTERS = [
 ]
 
 
-# H?m ntext d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm ntext dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def ntext(text):
     return base.norm(text)
 
 
-# H?m lesson_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm lesson_kind dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def lesson_kind(name):
     n = ntext(name)
@@ -204,7 +204,7 @@ def lesson_kind(name):
     return "decimal_number"
 
 
-# H?m lesson_spec d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm lesson_spec dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def lesson_spec(name):
     k = lesson_kind(name)
@@ -261,7 +261,7 @@ def lesson_spec(name):
     return {"kind": k, "objective": objective, "model": model, "quick": quick, "answer": answer}
 
 
-# H?m header d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm header dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def header(draw, lesson, card_title):
     base.rounded(draw, (34, 34, 1166, 641), "#ffffff", "#cbd5e1", 3, 30)
@@ -271,7 +271,7 @@ def header(draw, lesson, card_title):
     draw.line((78, 145, 1122, 145), fill="#e2e8f0", width=3)
 
 
-# H?m draw_quick_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_quick_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_quick_scene(draw, card):
     base.rounded(draw, (130, 225, 1070, 485), "#f8fafc", "#cbd5e1", 3, 24)
@@ -280,7 +280,7 @@ def draw_quick_scene(draw, card):
     base.label_box(draw, (650, 370, 1010, 445), f"Đáp án: {card['expected_answer']}", "#dcfce7", "#15803d", "#166534", 24)
 
 
-# H?m draw_decimal_place d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_decimal_place dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_decimal_place(draw, text="3,47"):
     digits = [("3", "đơn vị"), (",", ""), ("4", "phần mười"), ("7", "phần trăm")]
@@ -296,7 +296,7 @@ def draw_decimal_place(draw, text="3,47"):
     draw.text((700, 315), text, font=base.font(56, True), fill="#dc2626")
 
 
-# H?m draw_fraction_grid d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_fraction_grid dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_fraction_grid(draw, num=3, den=4, label="3/4"):
     x0, y0 = 250, 250
@@ -307,7 +307,7 @@ def draw_fraction_grid(draw, num=3, den=4, label="3/4"):
     draw.text((650, 305), label, font=base.font(62, True), fill="#dc2626")
 
 
-# H?m draw_vertical_decimal d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_vertical_decimal dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_vertical_decimal(draw, expr, result, note="Thẳng hàng dấu phẩy"):
     draw.text((330, 260), expr, font=base.font(58, True), fill="#0f172a")
@@ -316,7 +316,7 @@ def draw_vertical_decimal(draw, expr, result, note="Thẳng hàng dấu phẩy")
     base.label_box(draw, (330, 475, 850, 535), note, "#fef3c7", "#ca8a04", "#92400e", 24)
 
 
-# H?m draw_geometry d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_geometry dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_geometry(draw, k):
     if k in {"triangle", "triangle_area"}:
@@ -360,7 +360,7 @@ def draw_geometry(draw, k):
         draw.text((310, 520), label, font=base.font(32, True), fill="#1d4ed8")
 
 
-# H?m draw_scene_by_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_scene_by_kind dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_scene_by_kind(draw, name, k):
     if k in {"ratio", "sum_ratio", "diff_ratio"}:
@@ -452,7 +452,7 @@ def draw_scene_by_kind(draw, name, k):
                 draw.text((780, y), f"{count} lần", font=base.font(28, True), fill="#1d4ed8")
 
 
-# H?m build_cards d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_cards dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_cards(lesson_name):
     spec = lesson_spec(lesson_name)
@@ -493,7 +493,7 @@ def build_cards(lesson_name):
     ]
 
 
-# H?m build_blueprint d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_blueprint dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_blueprint():
     chapters = []
@@ -516,7 +516,7 @@ def build_blueprint():
     }
 
 
-# H?m render_card_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm render_card_image dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -534,7 +534,7 @@ def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card
     return out
 
 
-# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx(data):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -594,7 +594,7 @@ def build_docx(data):
         return FALLBACK_OUTPUT_PATH
 
 
-# H?m build_contact_sheets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_contact_sheets dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_contact_sheets():
     paths = sorted(IMAGE_DIR.glob("grade5-*.png"))
@@ -617,7 +617,7 @@ def build_contact_sheets():
     return outs
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     data = build_blueprint()
@@ -634,6 +634,6 @@ def main():
     print(f"images={len(list(IMAGE_DIR.glob('grade5-*.png')))}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

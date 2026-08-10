@@ -1,4 +1,4 @@
-# Script build grade1 questions generated h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 questions generated hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 import math
 import sys
@@ -23,19 +23,19 @@ DOCX_PATH = OUTPUT_DIR / "cau-hoi-lop-1-codex.docx"
 FALLBACK_DOCX_PATH = OUTPUT_DIR / "cau-hoi-lop-1-codex-fixed.docx"
 
 
-# H?m norm d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm norm dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def norm(text):
     return base.norm(text)
 
 
-# H?m question_id d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm question_id dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def question_id(chapter_index, lesson_index, q_index):
     return 100000 + chapter_index * 1000 + lesson_index * 10 + q_index
 
 
-# H?m classify_lesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm classify_lesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def classify_lesson(name):
     n = norm(name)
@@ -82,7 +82,7 @@ def classify_lesson(name):
     return "count_1_3"
 
 
-# H?m choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm choices dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def choices(correct, distractors, offset=0):
     values = [correct] + [d for d in distractors if str(d) != str(correct)]
@@ -95,7 +95,7 @@ def choices(correct, distractors, offset=0):
     return [{"key": k, "text": str(v)} for k, v in zip(keys, values)], correct_key
 
 
-# H?m make_mc d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm make_mc dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def make_mc(chapter, lesson, q_index, qtype, text, correct, distractors, explanation, data, difficulty="EASY"):
     offset = chapter["chapter_index"] + lesson["lesson_index"] + q_index
@@ -121,7 +121,7 @@ def make_mc(chapter, lesson, q_index, qtype, text, correct, distractors, explana
     }
 
 
-# H?m build_questions_for_lesson d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_questions_for_lesson dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_questions_for_lesson(chapter, lesson):
     k = classify_lesson(lesson["lesson"])
@@ -223,7 +223,7 @@ def build_questions_for_lesson(chapter, lesson):
     return qs
 
 
-# H?m draw_item d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_item dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_item(draw, cx, cy, item, scale=1.0):
     if "táo" in item or "quả" in item:
@@ -239,7 +239,7 @@ def draw_item(draw, cx, cy, item, scale=1.0):
         draw.ellipse((cx-18*scale, cy-18*scale, cx+18*scale, cy+18*scale), fill="#60a5fa", outline="#1d4ed8", width=2)
 
 
-# H?m draw_question_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_question_image dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_question_image(q):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -288,7 +288,7 @@ def draw_question_image(q):
             draw.text((110 + a * 45, 392), op, font=base.font(34, True), fill="#0f172a")
             for i in range(b):
                 draw_item(draw, 180 + a * 45 + i * 45, 405, "quả táo", 0.55)
-        # H?m number_blocks d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+        # Hàm number_blocks dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
         else:
             def number_blocks(n, x, y, label):
                 tens, ones = divmod(n, 10)
@@ -353,7 +353,7 @@ def draw_question_image(q):
     return out
 
 
-# H?m load_lessons d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm load_lessons dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def load_lessons():
     data = json.loads(BLUEPRINT_PATH.read_text(encoding="utf-8"))
@@ -366,7 +366,7 @@ def load_lessons():
     return chapters
 
 
-# H?m set_doc_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_doc_defaults dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_doc_defaults(doc):
     base.set_defaults(doc)
@@ -375,7 +375,7 @@ def set_doc_defaults(doc):
         style.font.name = "Arial"
 
 
-# H?m add_run d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_run dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_run(p, text, bold=False, size=10.5, color=None):
     r = p.add_run(text)
@@ -387,7 +387,7 @@ def add_run(p, text, bold=False, size=10.5, color=None):
     return r
 
 
-# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx(chapters, questions):
     doc = Document()
@@ -433,7 +433,7 @@ def build_docx(chapters, questions):
         return FALLBACK_DOCX_PATH
 
 
-# H?m build_contact_sheets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_contact_sheets dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_contact_sheets():
     paths = sorted(IMAGE_DIR.glob("q*.png"))
@@ -455,7 +455,7 @@ def build_contact_sheets():
     return outs
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -478,6 +478,6 @@ def main():
     print(f"images={len(list(IMAGE_DIR.glob('q*.png')))}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

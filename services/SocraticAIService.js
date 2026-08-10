@@ -1,9 +1,9 @@
-// D?ch v? socratic aiservice ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ socratic aiservice đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const SystemSetting = require('../models/SystemSetting');
 const { execFile } = require('child_process');
 const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
 
-// H?m explainTheory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm explainTheory dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function explainTheory({ grade, lesson, card, question }) {
   const fallback = buildTheoryFallback({ grade, lesson, card, question });
   const settings = await SystemSetting.getSettings();
@@ -26,11 +26,11 @@ async function explainTheory({ grade, lesson, card, question }) {
   return callConfiguredAI(settings, prompt, fallback);
 }
 
-// H?m explainExercise d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm explainExercise dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function explainExercise({ grade, question, selectedAnswer, misconception, studentMessage, chatHistory = [] }) {
   const fallback = buildExerciseFallback({ grade, question, selectedAnswer, misconception, studentMessage });
   const deterministicReply = buildKnownExerciseReply({ question, selectedAnswer, studentMessage });
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (deterministicReply) {
     return {
       reply: deterministicReply,
@@ -70,10 +70,10 @@ async function explainExercise({ grade, question, selectedAnswer, misconception,
   return callConfiguredAI(settings, prompt, fallback);
 }
 
-// H?m buildKnownExerciseReply d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildKnownExerciseReply dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildKnownExerciseReply({ question, selectedAnswer, studentMessage }) {
   const text = String(question?.content?.text || '');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!isSetNotationCountQuestion(text)) return '';
 
   const selected = selectedAnswer
@@ -82,7 +82,7 @@ function buildKnownExerciseReply({ question, selectedAnswer, studentMessage }) {
   const direct = /đáp án|dap an|vậy là|vay la|chọn|chon|wtf|sao lại|sao lai|B mới đúng|B moi dung/i
     .test(String(studentMessage || ''));
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (direct || selectedAnswer) {
     return [
       `${selected}Ở đây dễ nhầm giữa tên cách viết trong đề và nhãn đáp án trắc nghiệm.`,
@@ -99,7 +99,7 @@ function buildKnownExerciseReply({ question, selectedAnswer, studentMessage }) {
   ].join(' ');
 }
 
-// H?m isSetNotationCountQuestion d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm isSetNotationCountQuestion dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function isSetNotationCountQuestion(text) {
   return (
     text.includes('A = { a, b, c, d}')
@@ -121,30 +121,30 @@ async function callConfiguredAI(settings, prompt, fallback) {
     isFallback: true
   };
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (String(settings.ai_automation_enabled || 'true') === 'false') {
     return fallbackResult;
   }
 
   const providers = getProviderPriority(settings);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (providers.length === 0) {
     return fallbackResult;
   }
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const provider of providers) {
     const model = getChatModel(settings, provider) || null;
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (provider === 'gemini_cli') {
         const reply = await callGeminiCli(settings, prompt, fallback);
         return { reply, provider, model, isFallback: reply === fallback };
       }
 
       const apiKey = getApiKey(settings, provider);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!apiKey) continue;
 
       const reply = provider === 'gemini'
@@ -159,7 +159,7 @@ async function callConfiguredAI(settings, prompt, fallback) {
   return fallbackResult;
 }
 
-// H?m getProviderPriority d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getProviderPriority dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getProviderPriority(settings) {
   const providers = [];
   // Provider mà quản trị viên chọn ở /admin/settings phải được thử TRƯỚC. Các
@@ -171,29 +171,29 @@ function getProviderPriority(settings) {
   return providers;
 }
 
-// H?m addProviderIfAvailable d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm addProviderIfAvailable dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function addProviderIfAvailable(providers, settings, provider) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!provider || provider === 'mock' || providers.includes(provider)) return;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'gemini_cli') {
     providers.push(provider);
     return;
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (getApiKey(settings, provider)) {
     providers.push(provider);
   }
 }
 
-// H?m callOpenAICompatible d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm callOpenAICompatible dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function callOpenAICompatible(settings, provider, apiKey, prompt) {
   const baseUrl = assertAllowedProviderBaseUrl(getBaseUrl(settings, provider), provider);
   const model = getChatModel(settings, provider);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), Number(settings.ai_json_timeout_ms || 45000));
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const response = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
@@ -222,7 +222,7 @@ async function callOpenAICompatible(settings, provider, apiKey, prompt) {
       })
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!response.ok) {
       throw new Error(`AI trả về HTTP ${response.status}`);
     }
@@ -234,14 +234,14 @@ async function callOpenAICompatible(settings, provider, apiKey, prompt) {
   }
 }
 
-// H?m callGemini d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm callGemini dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function callGemini(settings, apiKey, prompt) {
   const model = settings.gemini_model || 'gemini-1.5-flash';
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), Number(settings.ai_json_timeout_ms || 12000));
 
   let response;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
@@ -268,7 +268,7 @@ async function callGemini(settings, apiKey, prompt) {
     clearTimeout(timeout);
   }
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!response.ok) {
     throw new Error(`Gemini trả về HTTP ${response.status}`);
   }
@@ -278,12 +278,12 @@ async function callGemini(settings, apiKey, prompt) {
     || 'AI chưa trả về nội dung.';
 }
 
-// H?m callGeminiCli d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm callGeminiCli dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function callGeminiCli(settings, prompt, fallback) {
   const timeout = Number(settings.gemini_cli_timeout_ms || 120000);
   const model = settings.gemini_cli_model || 'gemini-2.5-flash-lite';
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const output = await runGeminiCli(model, prompt, timeout);
     return output ? cleanTutorReply(output) : fallback;
@@ -293,13 +293,13 @@ async function callGeminiCli(settings, prompt, fallback) {
   }
 }
 
-// H?m runGeminiCli d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm runGeminiCli dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function runGeminiCli(model, prompt, timeout) {
   return new Promise((resolve, reject) => {
     const child = execFile('gemini', ['-m', model, prompt], { timeout }, (error, stdout, stderr) => {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (error) return reject(error);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (stderr && !stdout) return reject(new Error(stderr));
       return resolve(stdout.trim());
     });
@@ -307,61 +307,61 @@ function runGeminiCli(model, prompt, timeout) {
   });
 }
 
-// H?m getApiKey d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getApiKey dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getApiKey(settings, provider) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openai') return settings.openai_api_key;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'gemini') return settings.gemini_api_key;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'nvidia') return settings.nvidia_nim_api_key;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openrouter') return settings.openrouter_api_key;
   return '';
 }
 
-// H?m getBaseUrl d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getBaseUrl dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getBaseUrl(settings, provider) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openai') return settings.openai_base_url || 'https://api.openai.com/v1';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'nvidia') return settings.nvidia_nim_base_url || 'https://integrate.api.nvidia.com/v1';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openrouter') return settings.openrouter_base_url || 'https://openrouter.ai/api/v1';
   return '';
 }
 
-// H?m getChatModel d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getChatModel dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getChatModel(settings, provider) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openai') return settings.openai_model || 'gpt-4o-mini';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'nvidia') return settings.nvidia_nim_model || 'meta/llama-3.3-70b-instruct';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'openrouter') return settings.openrouter_model || 'openai/gpt-4o-mini';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'gemini') return settings.gemini_model || 'gemini-1.5-flash';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (provider === 'gemini_cli') return settings.gemini_cli_model || 'gemini-2.5-flash-lite';
   return '';
 }
 
-// H?m normalizeProvider d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeProvider dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeProvider(provider) {
   const value = String(provider || 'mock').toLowerCase();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['openai', 'gemini', 'gemini_cli', 'nvidia', 'openrouter', 'mock'].includes(value)) return value;
   return 'mock';
 }
 
-// H?m formatChoices d?ng ?? chuy?n ??i d? li?u sang ??nh d?ng ph? h?p; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm formatChoices dùng để chuyển đổi dữ liệu sang định dạng phù hợp; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function formatChoices(choices = []) {
   return choices
     .map((choice) => `${choice.key}. ${choice.text}`)
     .join(' | ');
 }
 
-// H?m formatChatHistory d?ng ?? chuy?n ??i d? li?u sang ??nh d?ng ph? h?p; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm formatChatHistory dùng để chuyển đổi dữ liệu sang định dạng phù hợp; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function formatChatHistory(chatHistory = []) {
   return chatHistory
     .slice(-8)
@@ -373,7 +373,7 @@ function formatChatHistory(chatHistory = []) {
     .join('\n');
 }
 
-// H?m cleanTutorReply d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm cleanTutorReply dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function cleanTutorReply(value) {
   let text = String(value || '').trim();
   const replacements = [
@@ -391,7 +391,7 @@ function cleanTutorReply(value) {
   return text || 'Em thử đọc lại đề và nói cho mình biết em đang vướng ở chỗ nào nhé.';
 }
 
-// H?m buildTheoryFallback d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildTheoryFallback dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildTheoryFallback({ grade, lesson, card, question }) {
   const title = card?.title || lesson.lesson_name;
   const body = card?.body || 'Em đọc lại từng ý nhỏ trong thẻ lý thuyết này nhé.';
@@ -405,7 +405,7 @@ function buildTheoryFallback({ grade, lesson, card, question }) {
   ].filter(Boolean).join(' ');
 }
 
-// H?m buildExerciseFallback d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildExerciseFallback dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildExerciseFallback({ grade, question, selectedAnswer, misconception, studentMessage }) {
   const selectedText = question.choices.find((choice) => choice.key === selectedAnswer)?.text || 'chưa chọn';
   const correctChoice = question.choices.find((choice) => choice.key === question.correct_answer);

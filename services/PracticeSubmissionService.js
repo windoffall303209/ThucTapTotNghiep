@@ -1,4 +1,4 @@
-// D?ch v? practice submission service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ practice submission service đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const db = require('../config/db');
 const { parseJsonField } = require('../utils/json');
 const { answersMatch } = require('../utils/answerValidation');
@@ -7,7 +7,7 @@ const {
   getSessionTiming
 } = require('../models/PracticeSession');
 
-// H?m submitAnswer d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm submitAnswer dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function submitAnswer({
   studentId,
   sessionId,
@@ -25,25 +25,25 @@ async function submitAnswer({
       [sessionId, studentId]
     );
     const session = normalizeLockedSession(sessionRows[0]);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) return { outcome: 'SESSION_NOT_FOUND' };
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (getSessionTiming(session, session.server_now_ms).isExpired) {
       await finishLockedSession(connection, session.id, 'EXPIRED');
       return { outcome: 'SESSION_EXPIRED', session };
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session.status !== 'IN_PROGRESS') {
       return { outcome: 'SESSION_COMPLETED', session };
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session.question_ids.includes(Number(questionId))) {
       return { outcome: 'QUESTION_NOT_IN_SESSION', session };
     }
 
     const question = await loadSessionQuestion(connection, session, questionId);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) {
       await finishLockedSession(connection, session.id, 'CONTENT_UNAVAILABLE');
       return { outcome: 'QUESTION_UNAVAILABLE', session };
@@ -57,7 +57,7 @@ async function submitAnswer({
        LIMIT 1`,
       [session.id, questionId]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (existingRows[0]) {
       const existingMisconception = Number(existingRows[0].is_correct) === 1
         ? null
@@ -121,9 +121,9 @@ async function submitAnswer({
   });
 }
 
-// H?m normalizeLockedSession d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLockedSession dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLockedSession(row) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!row) return null;
   return {
     ...row,
@@ -132,7 +132,7 @@ function normalizeLockedSession(row) {
   };
 }
 
-// H?m loadSessionQuestion d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm loadSessionQuestion dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function loadSessionQuestion(connection, session, questionId) {
   const [snapshotRows] = await connection.execute(
     `SELECT snapshot
@@ -141,14 +141,14 @@ async function loadSessionQuestion(connection, session, questionId) {
      LIMIT 1`,
     [session.id, questionId]
   );
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (snapshotRows[0]) {
     return createQuestionSnapshot(parseJsonField(snapshotRows[0].snapshot, {}));
   }
   return null;
 }
 
-// H?m findSnapshotMisconception d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm findSnapshotMisconception dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function findSnapshotMisconception(question, selectedAnswer) {
   return (question?.misconceptions || []).find(
     (item) => String(item.distractor_key) === String(selectedAnswer)
@@ -156,7 +156,7 @@ function findSnapshotMisconception(question, selectedAnswer) {
   ) || null;
 }
 
-// H?m finishLockedSession d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm finishLockedSession dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function finishLockedSession(connection, sessionId, reason) {
   await connection.execute(
     `UPDATE PracticeSessions

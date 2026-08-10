@@ -3,7 +3,7 @@
 Script này chỉ đọc dữ liệu có sẵn, áp dụng định dạng và chèn ảnh; không sinh,
 viết lại hoặc biến đổi nội dung câu hỏi, đáp án hay lời giải.
 """
-# Script build manual question batch docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build manual question batch docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 
 import json
 from pathlib import Path
@@ -28,7 +28,7 @@ LESSON_TITLES = {
 }
 
 
-# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_cell_shading dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
@@ -37,7 +37,7 @@ def set_cell_shading(cell, fill):
     tc_pr.append(shd)
 
 
-# H?m set_repeat_table_header d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_repeat_table_header dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_repeat_table_header(row):
     tr_pr = row._tr.get_or_add_trPr()
@@ -46,7 +46,7 @@ def set_repeat_table_header(row):
     tr_pr.append(tbl_header)
 
 
-# H?m add_labeled_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_labeled_paragraph dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_labeled_paragraph(doc, label, text, color="1F4E78", fill=None):
     if fill:
@@ -65,7 +65,7 @@ def add_labeled_paragraph(doc, label, text, color="1F4E78", fill=None):
     return paragraph
 
 
-# H?m configure_document d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm configure_document dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def configure_document(doc):
     section = doc.sections[0]
@@ -91,7 +91,7 @@ def configure_document(doc):
     styles["Heading 2"].font.size = Pt(13)
 
 
-# H?m add_cover d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_cover dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_cover(doc, payload):
     p = doc.add_paragraph()
@@ -132,7 +132,7 @@ def add_cover(doc, payload):
     doc.add_page_break()
 
 
-# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_summary dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_summary(doc, questions):
     doc.add_heading("Thông tin bộ câu hỏi", level=1)
@@ -162,7 +162,7 @@ def add_summary(doc, questions):
     doc.add_page_break()
 
 
-# H?m add_question d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_question dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_question(doc, q):
     heading = doc.add_heading(f"Câu {q['number']}. {q['type']}", level=2)
@@ -198,7 +198,7 @@ def add_question(doc, q):
     divider.runs[0].font.color.rgb = RGBColor(166, 166, 166)
 
 
-# H?m add_footer d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_footer dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_footer(section):
     footer = section.footer
@@ -207,7 +207,7 @@ def add_footer(section):
     p.add_run("Ngân hàng câu hỏi bổ sung Toán 5 Cánh Diều - Bài 61, 66, 67")
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     payload = json.loads(DATA.read_text(encoding="utf-8"))
@@ -241,6 +241,6 @@ def main():
     print(OUTPUT)
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

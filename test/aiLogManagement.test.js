@@ -1,4 +1,4 @@
-// B? ki?m th? ai log management.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử ai log management.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -8,7 +8,7 @@ const AIConversationLog = require('../models/AIConversationLog');
 const SystemSetting = require('../models/SystemSetting');
 const RetentionMigration = require('../scripts/apply_ai_log_retention');
 
-// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm read dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function read(relativePath) {
   return fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 }
@@ -47,7 +47,7 @@ test('bộ lọc nhật ký AI chuẩn hóa ngày và ID trước khi tạo SQL 
 });
 
 test('bộ lọc nhật ký AI từ chối ngày, khoảng ngày và lesson_id không hợp lệ', () => {
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const filters of [
     { from: '2026-02-30' },
     { from: '2026-08-01', to: '2026-07-31' },

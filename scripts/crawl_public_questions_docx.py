@@ -1,4 +1,4 @@
-# Script crawl public questions docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script crawl public questions docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import argparse
 import hashlib
 import json
@@ -64,7 +64,7 @@ INDEX_URLS = {
 }
 
 
-# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm clean_text dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def clean_text(value):
     if not value:
@@ -74,14 +74,14 @@ def clean_text(value):
     return value.strip()
 
 
-# H?m normalize_url d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_url dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_url(url):
     parsed = urlparse(url)
     return parsed._replace(fragment="").geturl()
 
 
-# H?m fetch_soup d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm fetch_soup dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def fetch_soup(session, url, timeout=20):
     response = session.get(url, headers=HEADERS, timeout=timeout)
@@ -89,7 +89,7 @@ def fetch_soup(session, url, timeout=20):
     return BeautifulSoup(response.text, "html.parser")
 
 
-# H?m is_question_link d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm is_question_link dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def is_question_link(base_url, href, title):
     if not href:
@@ -122,7 +122,7 @@ def is_question_link(base_url, href, title):
     return True
 
 
-# H?m discover_links d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm discover_links dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def discover_links(session, grade, index_url):
     soup = fetch_soup(session, index_url)
@@ -156,7 +156,7 @@ def discover_links(session, grade, index_url):
     return links
 
 
-# H?m extract_text_with_math d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm extract_text_with_math dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def extract_text_with_math(tag):
     for node in tag.find_all(["script", "style", "ins"]):
@@ -164,7 +164,7 @@ def extract_text_with_math(tag):
     return clean_text(tag.get_text(" "))
 
 
-# H?m extract_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm extract_images dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def extract_images(tag, base_url):
     images = []
@@ -187,7 +187,7 @@ def extract_images(tag, base_url):
     return images
 
 
-# H?m image_extension d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm image_extension dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def image_extension(url, content_type):
     path_ext = Path(urlparse(url).path).suffix.lower()
@@ -204,7 +204,7 @@ def image_extension(url, content_type):
     return ".img"
 
 
-# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm download_image dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def download_image(session, image_url, assets_dir, cache):
     if image_url in cache:
@@ -226,7 +226,7 @@ def download_image(session, image_url, assets_dir, cache):
     return file_path
 
 
-# H?m parse_answer d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_answer dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_answer(text):
     patterns = [
@@ -241,7 +241,7 @@ def parse_answer(text):
     return ""
 
 
-# H?m has_explanation_context d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm has_explanation_context dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def has_explanation_context(tag):
     if tag is None:
@@ -253,7 +253,7 @@ def has_explanation_context(tag):
     return False
 
 
-# H?m append_unique_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm append_unique_images dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def append_unique_images(target, images):
     existing = {item["url"] for item in target}
@@ -263,7 +263,7 @@ def append_unique_images(target, images):
             existing.add(image["url"])
 
 
-# H?m parse_question_page d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_question_page dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_question_page(session, task, max_questions=None):
     soup = fetch_soup(session, task["url"])
@@ -345,7 +345,7 @@ def parse_question_page(session, task, max_questions=None):
     return questions
 
 
-# H?m add_metadata d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_metadata dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_metadata(document, stats, source_urls):
     document.add_heading("Tổng hợp câu hỏi crawl công khai", 0)
@@ -365,7 +365,7 @@ def add_metadata(document, stats, source_urls):
         document.add_paragraph(url, style="List Bullet")
 
 
-# H?m add_embedded_image d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_embedded_image dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_embedded_image(document, session, image, assets_dir, cache):
     try:
@@ -381,7 +381,7 @@ def add_embedded_image(document, session, image, assets_dir, cache):
         return False
 
 
-# H?m add_questions d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_questions dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_questions(document, grouped, embed_images=True, assets_dir=DEFAULT_IMAGE_DIR):
     image_cache = {}
@@ -434,7 +434,7 @@ def add_questions(document, grouped, embed_images=True, assets_dir=DEFAULT_IMAGE
     return {"embedded_images": embedded_count, "failed_images": failed_count}
 
 
-# H?m style_document d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm style_document dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def style_document(document):
     styles = document.styles
@@ -444,7 +444,7 @@ def style_document(document):
         styles[style_name].font.name = "Arial"
 
 
-# H?m calculate_stats d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm calculate_stats dùng để tính toán kết quả từ các tham số đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def calculate_stats(grouped):
     return {
@@ -466,7 +466,7 @@ def calculate_stats(grouped):
     }
 
 
-# H?m save_docx d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm save_docx dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def save_docx(grouped, source_urls, output_path, embed_images=True, assets_dir=DEFAULT_IMAGE_DIR):
     stats = calculate_stats(grouped)
@@ -480,7 +480,7 @@ def save_docx(grouped, source_urls, output_path, embed_images=True, assets_dir=D
     return stats
 
 
-# H?m make_json_export d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm make_json_export dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def make_json_export(grouped, source_urls, stats):
     lessons = []
@@ -511,7 +511,7 @@ def make_json_export(grouped, source_urls, stats):
     }
 
 
-# H?m save_json_export d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm save_json_export dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def save_json_export(grouped, source_urls, stats, output_path):
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -522,7 +522,7 @@ def save_json_export(grouped, source_urls, stats, output_path):
     )
 
 
-# H?m parse_grades d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_grades dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_grades(value):
     if not value:
@@ -538,7 +538,7 @@ def parse_grades(value):
     return [grade for grade in sorted(set(grades)) if grade in INDEX_URLS]
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     parser = argparse.ArgumentParser(description="Crawl câu hỏi công khai và xuất file Word để duyệt.")
@@ -621,6 +621,6 @@ def main():
     print(f"Số ảnh lỗi: {stats.get('failed_images', 0)}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

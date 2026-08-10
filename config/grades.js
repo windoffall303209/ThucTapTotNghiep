@@ -1,4 +1,4 @@
-// C?u h?nh grades t?p trung c?c h?ng s? v? quy t?c kh?i ch?y d?ng chung c?a ?ng d?ng.
+// Cấu hình grades tập trung các hằng số và quy tắc khởi chạy dùng chung của ứng dụng.
 const MIN_GRADE = 1;
 const MAX_GRADE = 5;
 const PRIMARY_GRADES = Array.from(
@@ -8,19 +8,19 @@ const PRIMARY_GRADES = Array.from(
 const GRADE_RANGE_LABEL = `lớp ${MIN_GRADE} đến lớp ${MAX_GRADE}`;
 const SHORT_GRADE_RANGE_LABEL = `${MIN_GRADE}-${MAX_GRADE}`;
 
-// H?m normalizeGrade d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeGrade dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeGrade(value) {
   const grade = Number(value);
   return Number.isInteger(grade) ? grade : null;
 }
 
-// H?m isSupportedGrade d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm isSupportedGrade dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function isSupportedGrade(value) {
   const grade = normalizeGrade(value);
   return grade !== null && grade >= MIN_GRADE && grade <= MAX_GRADE;
 }
 
-// H?m gradeOptions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm gradeOptions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function gradeOptions() {
   return PRIMARY_GRADES.map((grade) => ({
     value: grade,

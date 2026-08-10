@@ -1,4 +1,4 @@
-// D?ch v? aiquota service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ aiquota service đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const db = require('../config/db');
 const { parseJsonField } = require('../utils/json');
 const {
@@ -6,7 +6,7 @@ const {
   getSessionTiming
 } = require('../models/PracticeSession');
 
-// H?m reserveExerciseHelp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm reserveExerciseHelp dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function reserveExerciseHelp({
   studentId,
   sessionId,
@@ -20,7 +20,7 @@ async function reserveExerciseHelp({
   const safeSessionLimit = normalizeLimit(maxPerSession, 8, 100);
   return db.transaction(async (connection) => {
     const usage = await lockDailyUsage(connection, studentId);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (limitReached(usage.request_count, safeDailyLimit)) {
       return { outcome: 'DAILY_QUOTA_EXCEEDED' };
     }
@@ -34,14 +34,14 @@ async function reserveExerciseHelp({
       [sessionId, studentId]
     );
     const session = normalizeSession(sessionRows[0]);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) return { outcome: 'SESSION_NOT_FOUND' };
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (getSessionTiming(session, session.server_now_ms).isExpired) {
       await completeExpiredSession(connection, session.id);
       return { outcome: 'SESSION_EXPIRED', session };
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session.status !== 'IN_PROGRESS') {
       return { outcome: 'SESSION_COMPLETED', session };
     }
@@ -54,7 +54,7 @@ async function reserveExerciseHelp({
        FOR UPDATE`,
       [sessionId, questionId]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!questionRows[0]) {
       return { outcome: 'QUESTION_NOT_IN_SESSION', session };
     }
@@ -67,16 +67,16 @@ async function reserveExerciseHelp({
        LIMIT 1`,
       [sessionId, questionId]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!answerRows[0]) {
       return { outcome: 'ANSWER_REQUIRED', session };
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (limitReached(questionRows[0].ai_hint_count, safeQuestionLimit)) {
       return { outcome: 'QUESTION_QUOTA_EXCEEDED', session };
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (limitReached(session.ai_hint_count, safeSessionLimit)) {
       return { outcome: 'SESSION_QUOTA_EXCEEDED', session };
     }
@@ -102,12 +102,12 @@ async function reserveExerciseHelp({
   });
 }
 
-// H?m reserveTheoryHelp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm reserveTheoryHelp dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function reserveTheoryHelp({ studentId, dailyLimit }) {
   const safeDailyLimit = normalizeLimit(dailyLimit, 30, 500);
   return db.transaction(async (connection) => {
     const usage = await lockDailyUsage(connection, studentId);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (limitReached(usage.request_count, safeDailyLimit)) {
       return { outcome: 'DAILY_QUOTA_EXCEEDED' };
     }
@@ -116,13 +116,13 @@ async function reserveTheoryHelp({ studentId, dailyLimit }) {
   });
 }
 
-// H?m lockDailyUsage d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm lockDailyUsage dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function lockDailyUsage(connection, studentId) {
   const [studentRows] = await connection.execute(
     'SELECT id FROM Students WHERE id = ? LIMIT 1 FOR UPDATE',
     [studentId]
   );
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!studentRows[0]) {
     const error = new Error('Không tìm thấy tài khoản học sinh để cấp quota AI.');
     error.code = 'STUDENT_NOT_FOUND';
@@ -145,7 +145,7 @@ async function lockDailyUsage(connection, studentId) {
   return { request_count: Number(rows[0]?.request_count || 0) };
 }
 
-// H?m incrementDailyUsage d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm incrementDailyUsage dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function incrementDailyUsage(connection, studentId) {
   await connection.execute(
     `UPDATE AIUsageDaily
@@ -155,9 +155,9 @@ async function incrementDailyUsage(connection, studentId) {
   );
 }
 
-// H?m normalizeSession d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeSession dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSession(row) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!row) return null;
   return {
     ...row,
@@ -167,13 +167,13 @@ function normalizeSession(row) {
   };
 }
 
-// H?m limitReached d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm limitReached dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function limitReached(current, configuredLimit) {
   const limit = Number(configuredLimit);
   return Number.isInteger(limit) && limit > 0 && Number(current || 0) >= limit;
 }
 
-// H?m normalizeLimit d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLimit dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLimit(value, fallback, maximum) {
   const number = Number(value);
   return Number.isInteger(number) && number >= 1 && number <= maximum
@@ -181,7 +181,7 @@ function normalizeLimit(value, fallback, maximum) {
     : fallback;
 }
 
-// H?m completeExpiredSession d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm completeExpiredSession dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function completeExpiredSession(connection, sessionId) {
   await connection.execute(
     `UPDATE PracticeSessions

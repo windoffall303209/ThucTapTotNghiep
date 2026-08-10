@@ -1,4 +1,4 @@
-// T?p m? ngu?n app th?c hi?n m?t ph?n ch?c n?ng c?a ?ng d?ng v? ph?i h?p v?i c?c m?-?un li?n quan.
+// Tệp mã nguồn app thực hiện một phần chức năng của ứng dụng và phối hợp với các mô-đun liên quan.
 const express = require('express');
 const crypto = require('crypto');
 const path = require('path');
@@ -40,16 +40,16 @@ const rateLimitStores = db.isDatabaseConfigured()
   : {};
 app.locals.sessionStore = sessionStore || null;
 app.locals.rateLimitStores = Object.values(rateLimitStores);
-// Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+// Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if (isProduction) {
   const trustProxyHops = Number(process.env.TRUST_PROXY);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (Number.isInteger(trustProxyHops) && trustProxyHops > 0) {
     app.set('trust proxy', trustProxyHops);
   }
 }
 
-// H?m isLocalRequest d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm isLocalRequest dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function isLocalRequest(req) {
   const ip = req.ip || req.socket?.remoteAddress || '';
   return ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(ip);
@@ -225,7 +225,7 @@ app.use('/admin', adminRoutes);
 app.use('/api', apiRoutes);
 
 app.use((req, res) => {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (requestWantsJson(req)) {
     return res.status(404).json({
       ok: false,
@@ -243,7 +243,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err);
   const status = normalizeErrorStatus(err);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (requestWantsJson(req)) {
     return res.status(status).json({
       ok: false,
@@ -262,7 +262,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// H?m requestWantsJson d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm requestWantsJson dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function requestWantsJson(req) {
   return Boolean(
     req.path.startsWith('/api/')
@@ -273,9 +273,9 @@ function requestWantsJson(req) {
   );
 }
 
-// H?m normalizeErrorStatus d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeErrorStatus dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeErrorStatus(error) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (error?.name === 'MulterError') return 400;
   const status = Number(error?.status || error?.statusCode || 500);
   return Number.isInteger(status) && status >= 400 && status <= 599 ? status : 500;

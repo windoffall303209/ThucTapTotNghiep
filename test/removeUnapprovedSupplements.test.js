@@ -1,4 +1,4 @@
-// B? ki?m th? remove unapproved supplements.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử remove unapproved supplements.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const assert = require('node:assert/strict');
 const test = require('node:test');
 

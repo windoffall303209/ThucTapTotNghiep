@@ -1,4 +1,4 @@
-// B? ?i?u khi?n student controller ti?p nh?n y?u c?u, ki?m tra d? li?u v? ?i?u ph?i ph?n h?i cho ng??i d?ng.
+// Bộ điều khiển student controller tiếp nhận yêu cầu, kiểm tra dữ liệu và điều phối phản hồi cho người dùng.
 const bcrypt = require('bcryptjs');
 const Curriculum = require('../models/Curriculum');
 const Question = require('../models/Question');
@@ -24,9 +24,9 @@ const PRACTICE_LIMITS = [15, 20];
 const THEORY_REVIEW_COUNT = 8;
 const LESSON_PRACTICE_COUNT = 5;
 
-// H?m dashboard d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm dashboard dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function dashboard(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
     const [chapters, lessonProgress, recentAttempts] = await Promise.all([
@@ -51,12 +51,12 @@ async function dashboard(req, res, next) {
   }
 }
 
-// H?m lesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm lesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function lesson(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const lessonItem = await Curriculum.getLessonById(req.params.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy bài học',
@@ -64,7 +64,7 @@ async function lesson(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!canAccessLesson(req.auth, lessonItem)) {
       return res.status(403).render('error', {
         title: 'Không thuộc khối học hiện tại',
@@ -91,13 +91,13 @@ async function lesson(req, res, next) {
   }
 }
 
-// H?m practice d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm practice dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function practice(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
     const lessonItem = await Curriculum.getLessonById(req.params.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy bài luyện tập',
@@ -105,7 +105,7 @@ async function practice(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!canAccessLesson(student, lessonItem)) {
       return res.status(403).render('error', {
         title: 'Không thuộc khối học hiện tại',
@@ -125,7 +125,7 @@ async function practice(req, res, next) {
     let session = targetCount > 0
       ? await PracticeSession.getActiveLessonSession(student.id, lessonItem.id)
       : null;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session && PracticeSession.getSessionTiming(session).isExpired) {
       await PracticeSession.completeSession(student.id, session.id, 'EXPIRED');
       session = null;
@@ -134,9 +134,9 @@ async function practice(req, res, next) {
       ? await PracticeSession.getSessionQuestions(session)
       : [];
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (targetCount > 0 && (!session || sessionQuestions.length !== targetCount)) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (session) {
         await PracticeSession.completeSession(student.id, session.id, 'CONTENT_CHANGED');
       }
@@ -178,13 +178,13 @@ async function practice(req, res, next) {
   }
 }
 
-// H?m reviewLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm reviewLesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function reviewLesson(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
     const lessonItem = await Curriculum.getLessonById(req.params.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy bài ôn tập',
@@ -192,7 +192,7 @@ async function reviewLesson(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!canAccessLesson(student, lessonItem)) {
       return res.status(403).render('error', {
         title: 'Không thuộc khối học hiện tại',
@@ -219,13 +219,13 @@ async function reviewLesson(req, res, next) {
     let sessionQuestions = session
       ? await PracticeSession.getSessionQuestions(session)
       : [];
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !session
       || Number(session.question_count) !== questions.length
       || sessionQuestions.length !== questions.length
     ) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (session) {
         await PracticeSession.completeSession(student.id, session.id, 'CONTENT_CHANGED');
       }
@@ -259,9 +259,9 @@ async function reviewLesson(req, res, next) {
   }
 }
 
-// H?m history d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm history dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function history(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const sessions = await PracticeSession.listSessions(req.auth.id, 100);
     const attempts = await Curriculum.getRecentAttempts(req.auth.id, 100);
@@ -277,9 +277,9 @@ async function history(req, res, next) {
   }
 }
 
-// H?m account d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm account dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function account(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = await Student.findById(req.auth.id);
     res.render('student/account', {
@@ -291,42 +291,42 @@ async function account(req, res, next) {
   }
 }
 
-// H?m updatePassword d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updatePassword dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function updatePassword(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = await Student.findById(req.auth.id);
     const currentPassword = String(req.body.current_password || '');
     const newPassword = String(req.body.new_password || '');
     const confirmPassword = String(req.body.confirm_password || '');
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh.');
       return res.redirect('/student/account');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!currentPassword || !newPassword || !confirmPassword) {
       setFlash(req, 'danger', 'Vui lòng nhập đầy đủ mật khẩu hiện tại và mật khẩu mới.');
       return res.redirect('/student/account');
     }
 
     const isCurrentPasswordValid = await bcrypt.compare(currentPassword, student.password_hash);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isCurrentPasswordValid) {
       setFlash(req, 'danger', 'Mật khẩu hiện tại không đúng.');
       return res.redirect('/student/account');
     }
 
     const passwordError = validatePassword(newPassword);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (passwordError) {
       setFlash(req, 'danger', passwordError);
       return res.redirect('/student/account');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (newPassword !== confirmPassword) {
       setFlash(req, 'danger', 'Mật khẩu mới và xác nhận mật khẩu không khớp.');
       return res.redirect('/student/account');
@@ -341,9 +341,9 @@ async function updatePassword(req, res, next) {
   }
 }
 
-// H?m exams d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm exams dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function exams(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     // Lọc "đang làm dở" ngay trong SQL. Lấy 20 phiên gần nhất rồi mới lọc thì
     // đề dang dở nào bị 20 phiên đã xong che mất sẽ không còn đường "Tiếp tục".
@@ -371,9 +371,9 @@ async function exams(req, res, next) {
   }
 }
 
-// H?m startExam d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm startExam dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function startExam(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const grade = Number(req.auth.current_grade);
     const count = PRACTICE_LIMITS.includes(Number(req.body.count))
@@ -388,10 +388,10 @@ async function startExam(req, res, next) {
       title: `Luyện tập tổng hợp cả năm · ${count} câu`
     };
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (requestedMode === 'chapter') {
       const chapter = await Curriculum.getChapterById(req.body.chapter_id);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!chapter || Number(chapter.grade) !== grade) {
         setFlash(req, 'danger', 'Vui lòng chọn một chương thuộc đúng lớp hiện tại.');
         return res.redirect('/student/exams');
@@ -433,7 +433,7 @@ async function startExam(req, res, next) {
       generated.questions.map((question) => question.id)
     );
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (questions.length === 0) {
       setFlash(req, 'danger', 'Ngân hàng câu hỏi chưa có dữ liệu phù hợp với phạm vi đã chọn.');
       return res.redirect('/student/exams');
@@ -457,12 +457,12 @@ async function startExam(req, res, next) {
   }
 }
 
-// H?m sessionPractice d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm sessionPractice dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function sessionPractice(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy lần làm bài',
@@ -470,13 +470,13 @@ async function sessionPractice(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session.status === 'COMPLETED') {
       return res.redirect(`/student/sessions/${session.id}`);
     }
 
     const practiceTiming = PracticeSession.getSessionTiming(session);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (practiceTiming.isExpired) {
       session = await PracticeSession.completeSession(req.auth.id, session.id, 'EXPIRED');
       setFlash(req, 'warning', 'Đã hết thời gian làm bài. Hệ thống đã tự động kết thúc và lưu các câu em đã nộp.', {
@@ -507,12 +507,12 @@ async function sessionPractice(req, res, next) {
   }
 }
 
-// H?m reviewSession d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm reviewSession dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function reviewSession(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) {
       return res.status(404).render('error', {
         title: 'Không tìm thấy lịch sử',
@@ -520,7 +520,7 @@ async function reviewSession(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session.status === 'IN_PROGRESS' && PracticeSession.getSessionTiming(session).isExpired) {
       session = await PracticeSession.completeSession(req.auth.id, session.id, 'EXPIRED');
     }
@@ -543,16 +543,16 @@ async function reviewSession(req, res, next) {
   }
 }
 
-// H?m finishSession d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm finishSession dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function finishSession(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const session = await PracticeSession.completeSession(
       req.auth.id,
       req.params.id,
       'USER_FINISHED'
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) {
       return res.status(404).json({
         ok: false,
@@ -586,29 +586,29 @@ function pickNextLesson(chapters = [], lessonProgress = {}) {
     });
   });
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (allLessons.length === 0) return null;
 
   const needsReview = allLessons
     .filter((lesson) => lesson.status === 'needs_review')
     .sort((left, right) => right.weakness_score - left.weakness_score)[0];
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (needsReview) return { ...needsReview, reason: 'needs_review' };
 
   const insufficientData = allLessons
     .filter((lesson) => lesson.status === 'insufficient_data')
     .sort((left, right) => right.confidence_score - left.confidence_score)[0];
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (insufficientData) return { ...insufficientData, reason: 'insufficient_data' };
 
   const notStarted = allLessons.find((lesson) => lesson.status === 'not_started');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (notStarted) return { ...notStarted, reason: 'not_started' };
 
   return { ...allLessons[0], reason: 'all_done' };
 }
 
-// H?m findFollowingLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm findFollowingLesson dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function findFollowingLesson(chapters = [], currentLessonId) {
   const lessons = (chapters || []).flatMap((chapter) =>
     (chapter.lessons || []).map((lesson) => ({
@@ -657,7 +657,7 @@ function buildAnsweredResults(answers = [], questions = []) {
   const questionById = new Map((questions || []).map((question) => [Number(question.id), question]));
   return (answers || []).reduce((result, answer) => {
     const questionId = Number(answer.question_id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!questionId) return result;
     const question = questionById.get(questionId);
     result[questionId] = {
@@ -670,7 +670,7 @@ function buildAnsweredResults(answers = [], questions = []) {
   }, {});
 }
 
-// H?m canAccessLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm canAccessLesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function canAccessLesson(student, lessonItem) {
   return Boolean(
     lessonItem
@@ -679,7 +679,7 @@ function canAccessLesson(student, lessonItem) {
   );
 }
 
-// H?m buildLegacyAttemptRows d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildLegacyAttemptRows dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildLegacyAttemptRows(attempts = []) {
   return attempts
     .filter((attempt) => !attempt.practice_session_id)
@@ -698,15 +698,15 @@ function buildLegacyAttemptRows(attempts = []) {
     }));
 }
 
-// H?m submitAnswer d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm submitAnswer dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function submitAnswer(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
     const questionId = Number(req.params.questionId);
     const practiceSessionId = Number(req.body.practiceSessionId);
     const selectedAnswer = normalizeSubmittedAnswer(req.body.selectedAnswer);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!selectedAnswer) {
       return res.status(400).json({
         ok: false,
@@ -714,7 +714,7 @@ async function submitAnswer(req, res, next) {
         message: 'Đáp án phải có từ 1 đến 50 ký tự.'
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Number.isInteger(questionId) || questionId <= 0) {
       return res.status(400).json({
         ok: false,
@@ -722,7 +722,7 @@ async function submitAnswer(req, res, next) {
         message: 'Mã câu hỏi không hợp lệ.'
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Number.isInteger(practiceSessionId) || practiceSessionId <= 0) {
       return res.status(400).json({
         ok: false,
@@ -738,7 +738,7 @@ async function submitAnswer(req, res, next) {
       selectedAnswer,
       timeSpentSeconds: normalizeTimeSpentSeconds(req.body.timeSpentSeconds)
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (result.outcome === 'SESSION_NOT_FOUND') {
       return res.status(404).json({
         ok: false,
@@ -746,7 +746,7 @@ async function submitAnswer(req, res, next) {
         message: 'Không tìm thấy lần làm bài này trong tài khoản của em.'
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (result.outcome === 'SESSION_EXPIRED') {
       return res.status(409).json({
         ok: false,
@@ -755,7 +755,7 @@ async function submitAnswer(req, res, next) {
         redirectUrl: `/student/sessions/${practiceSessionId}`
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (result.outcome === 'SESSION_COMPLETED') {
       return res.status(409).json({
         ok: false,
@@ -764,7 +764,7 @@ async function submitAnswer(req, res, next) {
         redirectUrl: `/student/sessions/${practiceSessionId}`
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (result.outcome === 'QUESTION_NOT_IN_SESSION') {
       return res.status(400).json({
         ok: false,
@@ -772,7 +772,7 @@ async function submitAnswer(req, res, next) {
         message: 'Câu hỏi này không thuộc bài em đang làm.'
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (result.outcome === 'QUESTION_UNAVAILABLE') {
       return res.status(409).json({
         ok: false,
@@ -807,12 +807,12 @@ async function submitAnswer(req, res, next) {
   }
 }
 
-// H?m theoryHelp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm theoryHelp dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function theoryHelp(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const lessonItem = await Curriculum.getLessonById(req.body.lessonId);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).json({
         ok: false,
@@ -820,7 +820,7 @@ async function theoryHelp(req, res, next) {
       });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!canAccessLesson(req.auth, lessonItem)) {
       return res.status(403).json({
         ok: false,
@@ -829,7 +829,7 @@ async function theoryHelp(req, res, next) {
     }
 
     const studentQuestion = String(req.body.question || '').trim();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (studentQuestion.length > 1000) {
       return res.status(400).json({
         ok: false,
@@ -838,7 +838,7 @@ async function theoryHelp(req, res, next) {
       });
     }
     const cardIndex = Number(req.body.cardIndex);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !Number.isInteger(cardIndex)
       || cardIndex < 0
@@ -852,7 +852,7 @@ async function theoryHelp(req, res, next) {
     }
 
     const settings = await SystemSetting.getSettings();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isAIEnabledForGrade(req.auth.current_grade, settings)) {
       await AIConversationLog.logAIInteraction({
         studentId: req.auth.id,
@@ -872,7 +872,7 @@ async function theoryHelp(req, res, next) {
       studentId: req.auth.id,
       dailyLimit: settings.ai_max_requests_per_student_per_day
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (reservation.outcome !== 'RESERVED') {
       await AIConversationLog.logAIInteraction({
         studentId: req.auth.id,

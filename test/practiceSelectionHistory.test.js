@@ -1,4 +1,4 @@
-// B? ki?m th? practice selection history.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử practice selection history.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
@@ -19,7 +19,7 @@ test('lịch sử tạo đề cộng dồn số lần xuất hiện và giữ th
     ];
   };
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const history = await Question.getPracticeSelectionHistory({ studentId: 7, grade: 5 });
     assert.deepEqual(capturedParams, [7, 5]);

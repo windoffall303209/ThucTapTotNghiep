@@ -1,7 +1,7 @@
-// Ti?n ?ch practice question selector cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích practice question selector cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 function shuffle(items, random = Math.random) {
   const result = [...items];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let index = result.length - 1; index > 0; index -= 1) {
     const target = Math.floor(random() * (index + 1));
     [result[index], result[target]] = [result[target], result[index]];
@@ -9,7 +9,7 @@ function shuffle(items, random = Math.random) {
   return result;
 }
 
-// H?m selectRandomQuestions d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm selectRandomQuestions dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function selectRandomQuestions(candidates, count, options = {}) {
   const excludedIds = new Set((options.excludeIds || []).map(Number));
   const available = candidates.filter(
@@ -18,10 +18,10 @@ function selectRandomQuestions(candidates, count, options = {}) {
   return shuffle(available, options.random).slice(0, normalizeCount(count));
 }
 
-// H?m selectBalancedQuestions d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm selectBalancedQuestions dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function selectBalancedQuestions(candidates, count, options = {}) {
   const requestedCount = normalizeCount(count);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (requestedCount === 0) return [];
 
   const excludedIds = new Set((options.excludeIds || []).map(Number));
@@ -31,45 +31,45 @@ function selectBalancedQuestions(candidates, count, options = {}) {
   const chapters = buildChapterBuckets(uniqueCandidates, options.random);
   const selected = [];
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   while (selected.length < requestedCount) {
     let addedInRound = false;
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const chapter of chapters) {
       const lesson = nextAvailableLesson(chapter.lessons);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!lesson) continue;
 
       selected.push(lesson.questions.pop());
       lesson.selectedCount += 1;
       addedInRound = true;
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (selected.length >= requestedCount) break;
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!addedInRound) break;
   }
 
   return shuffle(selected, options.random);
 }
 
-// H?m buildChapterBuckets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildChapterBuckets dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildChapterBuckets(candidates, random) {
   const chapterMap = new Map();
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const question of candidates) {
     const chapterKey = Number(question.chapter_id || 0);
     const lessonKey = Number(question.lesson_id || 0);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapterMap.has(chapterKey)) {
       chapterMap.set(chapterKey, new Map());
     }
     const lessonMap = chapterMap.get(chapterKey);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonMap.has(lessonKey)) {
       lessonMap.set(lessonKey, []);
     }
@@ -92,10 +92,10 @@ function buildChapterBuckets(candidates, random) {
   );
 }
 
-// H?m nextAvailableLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm nextAvailableLesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function nextAvailableLesson(lessons) {
   const available = lessons.filter((lesson) => lesson.questions.length > 0);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (available.length === 0) return null;
 
   const minimumSelected = Math.min(
@@ -104,19 +104,19 @@ function nextAvailableLesson(lessons) {
   return available.find((lesson) => lesson.selectedCount === minimumSelected);
 }
 
-// H?m deduplicateById d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm deduplicateById dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function deduplicateById(candidates) {
   const seen = new Set();
   return candidates.filter((question) => {
     const id = Number(question.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!id || seen.has(id)) return false;
     seen.add(id);
     return true;
   });
 }
 
-// H?m normalizeCount d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeCount dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeCount(value) {
   const count = Number(value);
   return Number.isInteger(count) && count > 0 ? count : 0;

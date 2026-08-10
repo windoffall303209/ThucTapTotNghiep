@@ -1,4 +1,4 @@
-// B? ki?m th? practice question selector.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử practice question selector.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
@@ -6,7 +6,7 @@ const {
   selectBalancedQuestions
 } = require('../utils/practiceQuestionSelector');
 
-// H?m buildCandidates d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildCandidates dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildCandidates(chapterLessonCounts, questionsPerLesson = 10) {
   let id = 1;
   return chapterLessonCounts.flatMap((lessonCount, chapterIndex) =>
@@ -20,7 +20,7 @@ function buildCandidates(chapterLessonCounts, questionsPerLesson = 10) {
   );
 }
 
-// H?m countBy d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm countBy dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function countBy(items, field) {
   return items.reduce((counts, item) => {
     const key = item[field];

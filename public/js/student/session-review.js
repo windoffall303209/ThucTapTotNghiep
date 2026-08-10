@@ -1,10 +1,10 @@
-// M? JavaScript ph?a tr?nh duy?t session review ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt session review điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   // Trang xem lại bài: nút "Chỉ xem câu sai" ẩn các câu đã đúng để em nhảy
   // thẳng tới phần cần sửa, không phải cuộn qua 15-20 câu.
   function initReviewFilter() {
     const buttons = document.querySelectorAll('[data-review-filter]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (buttons.length === 0) return;
   
     buttons.forEach((button) => {

@@ -1,4 +1,4 @@
-// Script health check question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script health check question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Kiểm tra sức khoẻ toàn bộ ngân hàng câu hỏi, chạy được nhiều lần.
  *
@@ -32,13 +32,13 @@ const KET_QUA = path.join(ROOT, 'tmp', 'suc_khoe_ngan_hang.json');
 const LOI_GIAI_RONG_TUECH = /^Dựa vào dữ kiện của câu hỏi, đáp án đúng là/i;
 const NHAC_TOI_ANH = /(quan sát|nhìn vào|dựa vào|theo)\s+(tranh|hình|ảnh|bảng|biểu đồ)|trong (tranh|hình|ảnh)|ở (tranh|hình) (trên|dưới|bên)/iu;
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -46,13 +46,13 @@ function parseJson(value, fallback) {
   }
 }
 
-// H?m bang d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm bang dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function bang(tieuDe, theoLop, tong) {
   const cot = [1, 2, 3, 4, 5].map((g) => String(theoLop[g] || 0).padStart(5));
   console.log(`  ${tieuDe.padEnd(46)}${cot.join('')}${String(tong).padStart(7)}`);
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const rows = await db.query(
     `SELECT q.id, ch.grade, l.lesson_name, q.content, q.choices, q.correct_answer, q.explanation
@@ -72,7 +72,7 @@ async function main() {
   const tongTheoLop = {};
   const nhanTheoLop = {};
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const row of rows) {
     const g = row.grade;
     tongTheoLop[g] = (tongTheoLop[g] || 0) + 1;
@@ -86,26 +86,26 @@ async function main() {
 
     const chung = { id: row.id, grade: g, bai_hoc: row.lesson_name, de_bai: de };
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choices.some((c) => c.key === row.correct_answer)) {
       loi.dapAnKhongCo.push({ ...chung, dap_an: row.correct_answer, phuong_an: choices.map((c) => c.key) });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (soAnh === 0 && NHAC_TOI_ANH.test(de)) {
       loi.nhacAnhMaKhongCoAnh.push(chung);
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (choices.length < 4) {
       loi.thieuPhuongAn.push({ ...chung, so_phuong_an: choices.length });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!giai) {
       loi.loiGiaiRong.push(chung);
     } else if (LOI_GIAI_RONG_TUECH.test(giai)) {
       loi.loiGiaiChepDapAn.push({ ...chung, loi_giai: giai });
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!nhanTheoLop[g]) nhanTheoLop[g] = {};
     nhanTheoLop[g][row.correct_answer] = (nhanTheoLop[g][row.correct_answer] || 0) + 1;
   }
@@ -122,7 +122,7 @@ async function main() {
     loiGiaiRong: '4. Lời giải để trống',
     loiGiaiChepDapAn: '5. Lời giải chỉ chép lại đáp án'
   };
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [khoa, ten] of Object.entries(nhan)) {
     const theoLop = {};
     loi[khoa].forEach((x) => { theoLop[x.grade] = (theoLop[x.grade] || 0) + 1; });
@@ -130,7 +130,7 @@ async function main() {
   }
 
   console.log('\nPhân bố nhãn đáp án đúng (tỉ lệ phần trăm trong khối):');
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const g of [1, 2, 3, 4, 5]) {
     const d = nhanTheoLop[g] || {};
     const t = tongTheoLop[g] || 1;
@@ -140,15 +140,15 @@ async function main() {
     console.log(`  lớp ${g} (${String(t).padStart(4)} câu):  ${phan}`);
   }
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [khoa, ten] of Object.entries(nhan)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!loi[khoa].length) continue;
     console.log(`\n${ten} — ${loi[khoa].length} câu, ví dụ:`);
     loi[khoa].slice(0, 5).forEach((x) => {
       console.log(`  lớp ${x.grade} id ${x.id} [${String(x.bai_hoc).slice(0, 34)}] ${String(x.de_bai).slice(0, 58)}`);
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (loi[khoa].length > 5) console.log(`  ... còn ${loi[khoa].length - 5} câu, xem trong tệp báo cáo.`);
   }
 

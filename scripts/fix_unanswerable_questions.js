@@ -1,4 +1,4 @@
-// Script fix unanswerable questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script fix unanswerable questions hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Xử lý các câu hỏi lớp 1 mà học sinh không thể trả lời đúng được.
  *
@@ -128,13 +128,13 @@ const THAY_MOI = new Map([
   }]
 ]);
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -142,7 +142,7 @@ function parseJson(value, fallback) {
   }
 }
 
-// H?m layCau d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm layCau dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function layCau(id) {
   const rows = await db.query(
     'SELECT q.id, q.content, q.choices, q.correct_answer, q.explanation, l.lesson_name '
@@ -152,15 +152,15 @@ async function layCau(id) {
   return rows[0] || null;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const baoCao = [];
   let daSua = 0;
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [id, muc] of VIET_LAI_DE) {
     const row = await layCau(id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) {
       console.log(`  BỎ QUA id ${id}: không còn trong cơ sở dữ liệu`);
       continue;
@@ -170,13 +170,13 @@ async function main() {
     const explanation = parseJson(row.explanation, {}) || {};
 
     const dapAnMoi = muc.dap || row.correct_answer;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (muc.dap && !choices.some((c) => c.key === muc.dap)) {
       throw new Error(`id ${id}: đáp án mới ${muc.dap} không có trong bộ phương án.`);
     }
 
     const contentMoi = { ...content, text: muc.de };
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!muc.giuAnh) contentMoi.images = [];
 
     baoCao.push({
@@ -190,7 +190,7 @@ async function main() {
       loi_giai_moi: muc.giai
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), correct_answer = ?, explanation = CAST(? AS JSON) WHERE id = ?',
@@ -205,10 +205,10 @@ async function main() {
     }
   }
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [id, muc] of THAY_MOI) {
     const row = await layCau(id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) {
       console.log(`  BỎ QUA id ${id}: không còn trong cơ sở dữ liệu`);
       continue;
@@ -217,15 +217,15 @@ async function main() {
     const choicesCu = parseJson(row.choices, []) || [];
     const explanation = parseJson(row.explanation, {}) || {};
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (muc.pa.length !== 4) throw new Error(`id ${id}: cần đúng 4 phương án.`);
     const choicesMoi = muc.pa.map((text, i) => ({ key: NHAN[i], text, images: [] }));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choicesMoi.some((c) => c.key === muc.dap)) {
       throw new Error(`id ${id}: đáp án ${muc.dap} không có trong bộ phương án mới.`);
     }
     const chuan = choicesMoi.map((c) => c.text.trim().toLowerCase());
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (new Set(chuan).size !== chuan.length) {
       throw new Error(`id ${id}: bộ phương án mới còn hai phương án giống nhau.`);
     }
@@ -240,7 +240,7 @@ async function main() {
       loi_giai_moi: muc.giai
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), choices = CAST(? AS JSON), '
@@ -276,7 +276,7 @@ async function main() {
     console.log(`    mới: ${b.de_moi}   ||   ${b.phuong_an_moi.join(' | ')}  -> ${b.dap_an_moi}`);
   });
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${daSua} câu.`);
     console.log('Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');

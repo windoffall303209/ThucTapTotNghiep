@@ -4,7 +4,7 @@ Script chỉ làm công việc trình bày ảnh: thu nhỏ, thêm dải dữ ki
 trong Word. Nội dung câu hỏi, đáp án và lời giải nằm trong tệp JSON riêng và
 không được sinh bởi script.
 """
-# Script prepare grade5 b68 b71 b73 assets h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script prepare grade5 b68 b71 b73 assets hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 
 from pathlib import Path
 
@@ -58,7 +58,7 @@ LABELS = {
 }
 
 
-# H?m load_font d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm load_font dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def load_font(size: int):
     candidates = [
@@ -72,7 +72,7 @@ def load_font(size: int):
     return ImageFont.load_default()
 
 
-# H?m fit_font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm fit_font dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def fit_font(draw, text, max_width, starting_size=36):
     size = starting_size
@@ -85,7 +85,7 @@ def fit_font(draw, text, max_width, starting_size=36):
     return load_font(20)
 
 
-# H?m prepare d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm prepare dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def prepare(source_path: Path, output_path: Path, label: str):
     image = Image.open(source_path).convert("RGB")
@@ -119,7 +119,7 @@ def prepare(source_path: Path, output_path: Path, label: str):
     canvas.save(output_path, "JPEG", quality=91, optimize=True, progressive=True)
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     produced = []
@@ -137,6 +137,6 @@ def main():
     print(f"Prepared {len(produced)} images at {OUTPUT}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

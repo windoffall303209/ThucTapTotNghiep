@@ -1,4 +1,4 @@
-// Script rebalance answer keys h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script rebalance answer keys hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Cân bằng lại vị trí đáp án đúng trong ngân hàng câu hỏi lớp 4 và lớp 5.
  *
@@ -37,12 +37,12 @@ const FILES = {
   5: 'grade5_question_bank.tex'
 };
 
-// H?m decode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm decode dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function decode(b64) {
   return JSON.parse(Buffer.from(b64, 'base64').toString('utf8'));
 }
 
-// H?m encode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm encode dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function encode(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
@@ -62,14 +62,14 @@ function hoanVi(choices, correctKey, targetIndex) {
   return moi.map((choice, index) => ({ ...choice, key: KEYS[index] }));
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function main() {
   return (async () => {
     let tongDoi = 0;
     const thongKeTruoc = {};
     const thongKeSau = {};
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const [grade, fileName] of Object.entries(FILES)) {
       const filePath = path.join(DATA_DIR, fileName);
       const lines = fs.readFileSync(filePath, 'utf8').split('\n');
@@ -80,21 +80,21 @@ function main() {
       let stt = 0;
       let doiTrongFile = 0;
 
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (let i = 0; i < lines.length; i += 1) {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!lines[i].startsWith('% DBJSON ')) continue;
 
         let payload;
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         try {
           payload = decode(lines[i].slice('% DBJSON '.length).trim());
         } catch (error) {
           continue;
         }
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (payload.question_type !== 'MULTIPLE_CHOICE') continue;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!Array.isArray(payload.choices) || payload.choices.length !== 4) continue;
 
         thongKeTruoc[grade][payload.correct_answer] += 1;
@@ -108,7 +108,7 @@ function main() {
         const targetKey = KEYS[targetIndex];
         thongKeSau[grade][targetKey] += 1;
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (payload.correct_answer === targetKey) continue;
 
         const choicesMoi = hoanVi(payload.choices, payload.correct_answer, targetIndex);
@@ -121,7 +121,7 @@ function main() {
 
         // Cập nhật khối LaTeX đi kèm để hai phần không lệch nhau.
         let end = i + 1;
-        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
         while (end < lines.length && !lines[end].includes('\\end{minipage}')) end += 1;
 
         // Các file .tex dùng xuống dòng CRLF nên mỗi phần tử của mảng lines còn
@@ -131,23 +131,23 @@ function main() {
         for (let j = i + 1; j < end; j += 1) {
           const cr = lines[j].endsWith('\r') ? '\r' : '';
           const match = lines[j].replace(/\r$/, '').match(/^\\item ([A-D])\. (.*)$/);
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (!match) continue;
           const viTri = KEYS.indexOf(match[1]);
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (viTri === -1 || !choicesMoi[viTri]) continue;
           lines[j] = `\\item ${KEYS[viTri]}. ${choicesMoi[viTri].text}${cr}`;
         }
-        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
         for (let j = i + 1; j <= end; j += 1) {
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (lines[j].includes('Đáp án đúng:')) {
             lines[j] = lines[j].replace(/(Đáp án đúng:\} )([A-D])/, `$1${targetKey}`);
             break;
           }
         }
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (COMMIT) {
           const rows = await db.query(
             `SELECT q.id FROM QuestionBank q
@@ -156,7 +156,7 @@ function main() {
              WHERE ch.grade = ? AND JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) = ?`,
             [Number(grade), payload.content.text]
           );
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (rows.length === 1) {
             await db.query(
               'UPDATE QuestionBank SET choices = CAST(? AS JSON), correct_answer = ? WHERE id = ?',
@@ -166,7 +166,7 @@ function main() {
         }
       }
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (COMMIT) {
         fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
         console.log(`Đã ghi ${fileName} (${doiTrongFile} câu đổi vị trí)`);
@@ -180,14 +180,14 @@ function main() {
       const t = thongKeTruoc[grade];
       const s = thongKeSau[grade];
       const tong = KEYS.reduce((sum, key) => sum + t[key], 0) || 1;
-      // H?m pct d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm pct dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const pct = (obj) => KEYS.map((key) => `${key}=${(obj[key] / tong * 100).toFixed(1)}%`).join('  ');
       console.log(`  Lớp ${grade} trước: ${pct(t)}`);
       console.log(`  Lớp ${grade} sau:   ${pct(s)}`);
     });
 
     console.log(`\nTổng số câu đổi vị trí: ${tongDoi}`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!COMMIT) console.log('Đây là bản xem trước. Thêm --commit để ghi thật.');
   })();
 }

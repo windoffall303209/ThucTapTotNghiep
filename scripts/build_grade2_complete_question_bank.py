@@ -1,4 +1,4 @@
-# Script build grade2 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade2 complete question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import base64
@@ -36,19 +36,19 @@ builder.OUTPUT_TEX = OUTPUT_TEX
 builder.TEMP_IMAGES = ASSET_DIR / "compressed"
 
 
-# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm clean dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def clean(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip().rstrip()
 
 
-# H?m normalized d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalized dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalized(value: object) -> str:
     return clean(value).casefold().replace("−", "-").replace("×", "x")
 
 
-# H?m ascii_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm ascii_text dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def ascii_text(value: object) -> str:
     text = normalized(value).replace("đ", "d")
@@ -59,7 +59,7 @@ def ascii_text(value: object) -> str:
     )
 
 
-# H?m title_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm title_key dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def title_key(value: object) -> str:
     text = ascii_text(value)
@@ -71,7 +71,7 @@ def title_key(value: object) -> str:
     return clean(text)
 
 
-# H?m semantic_choice_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm semantic_choice_key dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def semantic_choice_key(value: object) -> str:
     text = normalized(value)
@@ -83,7 +83,7 @@ def semantic_choice_key(value: object) -> str:
     return text
 
 
-# H?m parse_current_payloads d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_current_payloads dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_current_payloads() -> list[dict]:
     records = []
@@ -121,7 +121,7 @@ def parse_current_payloads() -> list[dict]:
     return records
 
 
-# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm canonical_titles dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def canonical_titles(records: list[dict]) -> dict[int, str]:
     result = {}
@@ -136,7 +136,7 @@ def canonical_titles(records: list[dict]) -> dict[int, str]:
     return result
 
 
-# H?m selected_data_files d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm selected_data_files dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def selected_data_files() -> tuple[list[Path], list[Path]]:
     selected = []
@@ -152,7 +152,7 @@ def selected_data_files() -> tuple[list[Path], list[Path]]:
     return selected, excluded
 
 
-# H?m is_question_line d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm is_question_line dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def is_question_line(text: str) -> bool:
     return (
@@ -164,7 +164,7 @@ def is_question_line(text: str) -> bool:
     )
 
 
-# H?m strip_question_number d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm strip_question_number dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def strip_question_number(text: str) -> str:
     colon = text.find(":")
@@ -173,7 +173,7 @@ def strip_question_number(text: str) -> str:
     return clean(text[min(positions) + 1 :] if positions else text)
 
 
-# H?m parse_choices d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_choices dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_choices(text: str) -> list[dict]:
     if ":" in text and normalized(text).startswith(("lựa chọn", "lua chon")):
@@ -188,7 +188,7 @@ def parse_choices(text: str) -> list[dict]:
     return choices
 
 
-# H?m parse_answer d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_answer dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_answer(text: str) -> tuple[str, str]:
     answer = clean(text.split(":", 1)[1] if ":" in text else text).rstrip(".")
@@ -198,7 +198,7 @@ def parse_answer(text: str) -> tuple[str, str]:
     return "", answer
 
 
-# H?m lesson_number_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm lesson_number_for_heading dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def lesson_number_for_heading(
     heading: str,
@@ -230,7 +230,7 @@ def lesson_number_for_heading(
     raise ValueError(f"Không map được tiêu đề DataToan: {heading!r} (key={key!r})")
 
 
-# H?m save_paragraph_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm save_paragraph_images dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def save_paragraph_images(paragraph, source: Path, question_number: int) -> list[Path]:
     result = []
@@ -252,7 +252,7 @@ def save_paragraph_images(paragraph, source: Path, question_number: int) -> list
     return result
 
 
-# H?m parse_data_docx d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_data_docx dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_data_docx(
     path: Path,
@@ -265,7 +265,7 @@ def parse_data_docx(
     current = None
     local_question_number = 0
 
-# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm flush dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def flush() -> None:
         nonlocal current
@@ -324,7 +324,7 @@ def parse_data_docx(
     return records
 
 
-# H?m number_distractors d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm number_distractors dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def number_distractors(answer: int) -> list[str]:
     candidates = [
@@ -339,7 +339,7 @@ def number_distractors(answer: int) -> list[str]:
     return [str(item) for item in dict.fromkeys(candidates) if item >= 0 and item != answer]
 
 
-# H?m distractors_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm distractors_for dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def distractors_for(prompt: str, answer: str) -> list[str]:
     if re.fullmatch(r"-?\d+", answer):
@@ -374,7 +374,7 @@ def distractors_for(prompt: str, answer: str) -> list[str]:
     ]
 
 
-# H?m expression_value d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm expression_value dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def expression_value(left: int, operator: str, right: int) -> int | None:
     if operator in {"+", "＋"}:
@@ -388,7 +388,7 @@ def expression_value(left: int, operator: str, right: int) -> int | None:
     return None
 
 
-# H?m math_repair d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm math_repair dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def math_repair(record: dict, corrections: list[dict]) -> None:
     prompt = record["prompt"].replace("−", "-").replace("×", "x")
@@ -434,7 +434,7 @@ def math_repair(record: dict, corrections: list[dict]) -> None:
             }
         )
 
-# H?m finalize_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm finalize_choices dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def finalize_choices(record: dict, conversions: list[dict]) -> None:
     answer_key = clean(record.get("answer_key"))
@@ -499,7 +499,7 @@ def finalize_choices(record: dict, conversions: list[dict]) -> None:
         )
 
 
-# H?m explanation_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm explanation_for dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def explanation_for(record: dict) -> str:
     if record["explanation"]:
@@ -507,7 +507,7 @@ def explanation_for(record: dict) -> str:
     return f"Dựa vào dữ kiện và phép tính phù hợp, đáp án đúng là: {record['answer_text']}."
 
 
-# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm record_signature dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def record_signature(record: dict) -> tuple:
     return (
@@ -518,7 +518,7 @@ def record_signature(record: dict) -> tuple:
     )
 
 
-# H?m audit_record d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm audit_record dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def audit_record(record: dict) -> list[str]:
     issues = []
@@ -561,7 +561,7 @@ def audit_record(record: dict) -> list[str]:
     return issues
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -703,6 +703,6 @@ def main() -> None:
     )
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

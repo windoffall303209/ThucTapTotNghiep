@@ -1,4 +1,4 @@
-// B? ki?m th? practice generation service.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử practice generation service.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
@@ -9,17 +9,17 @@ const {
   generateScopedSelection
 } = require('../services/PracticeGenerationService');
 
-// H?m buildCandidates d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildCandidates dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildCandidates({ chapters = 3, lessonsPerChapter = 5, eachDifficulty = 3 } = {}) {
   let id = 1;
   const candidates = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let chapter = 1; chapter <= chapters; chapter += 1) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (let lesson = 1; lesson <= lessonsPerChapter; lesson += 1) {
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (const difficulty of ['EASY', 'MEDIUM', 'HARD']) {
-        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
         for (let index = 0; index < eachDifficulty; index += 1) {
           candidates.push({
             id: id++,

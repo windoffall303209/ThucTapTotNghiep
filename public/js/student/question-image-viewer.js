@@ -1,13 +1,13 @@
-// M? JavaScript ph?a tr?nh duy?t question image viewer ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt question image viewer điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   let viewer = null;
   let viewerImage = null;
   let viewerCaption = null;
   let returnFocusTo = null;
 
-  // H?m ensureViewer d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm ensureViewer dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function ensureViewer() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (viewer) return viewer;
 
     viewer = document.createElement('dialog');
@@ -37,7 +37,7 @@
     card.append(media, viewerCaption, closeButton);
     viewer.appendChild(card);
     viewer.addEventListener('click', (event) => {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (event.target === viewer) closeViewer();
     });
     viewer.addEventListener('close', () => {
@@ -49,7 +49,7 @@
     return viewer;
   }
 
-  // H?m openViewer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm openViewer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function openViewer(image) {
     const dialog = ensureViewer();
     returnFocusTo = image;
@@ -57,19 +57,19 @@
     viewerImage.alt = image.alt || 'Ảnh minh họa của câu hỏi';
     viewerCaption.textContent = image.alt || 'Ảnh minh họa của câu hỏi';
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof dialog.showModal === 'function') dialog.showModal();
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else dialog.setAttribute('open', '');
   }
 
-  // H?m closeViewer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm closeViewer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function closeViewer() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!viewer) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof viewer.close === 'function') viewer.close();
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else {
       viewer.removeAttribute('open');
       viewerImage.removeAttribute('src');
@@ -78,7 +78,7 @@
     }
   }
 
-  // H?m enhance d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm enhance dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function enhance(root = document) {
     root.querySelectorAll('.question-content img:not([data-question-image-zoom])').forEach((image) => {
       image.dataset.questionImageZoom = 'true';
@@ -91,7 +91,7 @@
       image.closest('.question-image')?.setAttribute('data-image-preview-ready', 'true');
       image.addEventListener('click', () => openViewer(image));
       image.addEventListener('keydown', (event) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (event.key !== 'Enter' && event.key !== ' ') return;
         event.preventDefault();
         openViewer(image);

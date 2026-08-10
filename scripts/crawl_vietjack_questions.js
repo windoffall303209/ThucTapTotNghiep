@@ -1,4 +1,4 @@
-// Script crawl vietjack questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script crawl vietjack questions hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 require('dotenv').config();
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -30,13 +30,13 @@ function normalizeName(name) {
 function extractHtmlWithLatex($, element) {
   let result = '';
   element.contents().each((i, node) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (node.type === 'text') {
       result += node.data;
     } else if (node.type === 'tag') {
       const tagName = node.name.toLowerCase();
       const $node = $(node);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (tagName === 'sup') {
         result += `^{${$node.text()}}`;
       } else if (tagName === 'sub') {
@@ -51,7 +51,7 @@ function extractHtmlWithLatex($, element) {
 
 // AI call to generate misconceptions for distractor choices
 async function generateMisconceptionsWithAI(questionText, choices, correctAnswer, explanation) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!API_KEY) {
     // If no API key, return a generic misconception mapping
     return choices
@@ -91,7 +91,7 @@ Không viết thêm bất kỳ lời dẫn hay giải thích nào khác ngoài J
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 20000);
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const response = await fetch(`${BASE_URL}/chat/completions`, {
       method: 'POST',
@@ -110,7 +110,7 @@ Không viết thêm bất kỳ lời dẫn hay giải thích nào khác ngoài J
       })
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!response.ok) return getDefaultMisconceptions(choices, correctAnswer);
 
     const data = await response.json();

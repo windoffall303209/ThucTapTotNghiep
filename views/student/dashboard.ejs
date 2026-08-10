@@ -1,4 +1,4 @@
-<%# M?u giao di?n dashboard k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện dashboard kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Hôm nay học gì?</p>
@@ -34,7 +34,7 @@
   </article>
   <article class="action-card">
     <span class="status-pill status-review">Cần ôn</span>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (recommendation) { %>
       <strong><%= recommendation.lesson_name %></strong>
       <p class="muted">Hệ thống thấy bài này có lỗi sai nổi bật. Ôn lại lý thuyết trước khi luyện tiếp.</p>
@@ -47,11 +47,11 @@
   </article>
   <article class="action-card next-lesson-card">
     <span class="status-pill status-new">Bước tiếp theo</span>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (nextLesson) { %>
       <strong><%= nextLesson.lesson_name %></strong>
       <p class="muted">
-        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (nextLesson.reason === 'needs_review') { %>
           Bài này em còn làm sai nhiều, luyện lại để nắm chắc hơn.
         <% } else if (nextLesson.reason === 'insufficient_data') { %>
@@ -86,7 +86,7 @@
     Chương học lớp <%= student.current_grade %>
   </div>
 
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (chapters.length === 0) { %>
     <div class="empty-state compact">
       <%# Empty state là màn hình học sinh nhìn thấy, không phải nơi giao việc
@@ -100,7 +100,7 @@
     </div>
   <% } %>
 
-  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% chapters.forEach((chapter, index) => { %>
     <details class="chapter-panel" <%= index === 0 ? 'open' : '' %>>
       <summary>
@@ -109,12 +109,12 @@
       </summary>
       <div class="lesson-list">
         <% chapter.lessons.forEach((lesson) => { %>
-          <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% const lessonStat = lessonProgress[lesson.id] || { status: 'not_started', attempt_count: 0, correct_count: 0, wrong_count: 0 }; %>
           <article class="lesson-row">
             <div>
               <h2><%= lesson.lesson_name %></h2>
-              <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+              <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
               <% if (lessonStat.status === 'completed') { %>
                 <p><span class="status-pill status-completed">Đã luyện</span> Đúng <%= lessonStat.correct_count %>/<%= lessonStat.attempt_count %> lượt làm.</p>
               <% } else if (lessonStat.status === 'needs_review') { %>
@@ -148,7 +148,7 @@
     Hoạt động gần đây
   </div>
 
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (!recentAttempts || recentAttempts.length === 0) { %>
     <div class="empty-state compact">
       <p>Em chưa làm bài nào. Chọn một bài học ở trên và làm thử — kết quả sẽ hiện ở đây.</p>
@@ -166,12 +166,12 @@
           </tr>
         </thead>
         <tbody>
-          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% recentAttempts.forEach((attempt) => { %>
             <tr>
               <td data-label="Bài học"><%= attempt.lesson_name %></td>
               <td data-label="Kết quả">
-                <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+                <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                 <% if (Number(attempt.is_correct) === 1 || attempt.is_correct === true) { %>
                   <span class="status-pill status-completed">Đúng</span>
                 <% } else { %>
@@ -188,5 +188,5 @@
     </div>
   <% } %>
 </section>
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
 <% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/student/dashboard.css'); %>

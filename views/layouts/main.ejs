@@ -1,4 +1,4 @@
-<%# M?u giao di?n main k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện main kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <!doctype html>
 <html lang="vi">
   <head>
@@ -13,36 +13,36 @@
     <link rel="stylesheet" href="/vendor/nunito/700.css">
     <link rel="stylesheet" href="/vendor/nunito/800.css">
     <link rel="stylesheet" href="/vendor/nunito/900.css">
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (student || admin) { %>
       <link rel="stylesheet" href="/vendor/katex/katex.min.css">
     <% } %>
     <link rel="stylesheet" href="/css/common.css">
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (student || admin) { %>
       <link rel="stylesheet" href="/css/content-renderer.css">
     <% } %>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (student) { %>
       <link rel="stylesheet" href="/css/student/common.css">
     <% } %>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (admin) { %>
       <link rel="stylesheet" href="/css/admin/common.css">
     <% } %>
-    <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% for (const stylesheet of (typeof pageStyles !== 'undefined' ? pageStyles : [])) { %>
       <link rel="stylesheet" href="<%= stylesheet %>">
     <% } %>
   </head>
   <body
     class="<%= admin ? 'admin-body' : '' %><%= student ? ' student-body' : '' %>"
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (student) { %>data-grade="<%= student.current_grade %>"<% } %>>
     <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
     <%- include('../partials/header') %>
     <main id="main-content" class="page-shell" tabindex="-1">
-      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (flash && flash.modal) { %>
         <div
           data-flash-modal
@@ -55,7 +55,7 @@
           class="flash flash-<%= flash.type %><%= flash.transient ? ' flash-toast' : '' %>"
           role="status"
           aria-live="polite"
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (flash.transient) { %>
             data-flash-autohide="true"
             data-duration="<%= Number(flash.durationMs || 3000) %>"
@@ -80,7 +80,7 @@
         </div>
       </div>
     </dialog>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (student || admin) { %>
       <script defer src="/vendor/katex/katex.min.js"></script>
       <script defer src="/vendor/katex/contrib/auto-render.min.js"></script>
@@ -88,11 +88,11 @@
     <% } %>
     <script defer src="/vendor/lucide/lucide.min.js"></script>
     <script defer src="/js/common.js"></script>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (admin) { %>
       <script defer src="/js/admin/common.js"></script>
     <% } %>
-    <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% for (const script of (typeof pageScripts !== 'undefined' ? pageScripts : [])) { %>
       <script defer src="<%= script %>"></script>
     <% } %>

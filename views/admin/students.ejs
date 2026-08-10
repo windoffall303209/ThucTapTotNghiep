@@ -1,4 +1,4 @@
-<%# M?u giao di?n students k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện students kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <%
   if (typeof pageStyles !== 'undefined') {
     pageStyles.push('/css/admin/students.css');
@@ -70,7 +70,7 @@
     <span>Khối lớp</span>
     <select name="grade">
       <option value="">Tất cả lớp</option>
-      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% gradeOptions.forEach((option) => { %>
         <option value="<%= option.value %>" <%= Number(filterGrade) === Number(option.value) ? 'selected' : '' %>>
           <%= option.label %>
@@ -84,7 +84,7 @@
       <i data-lucide="filter" class="lucide-icon"></i>
       Lọc danh sách
     </button>
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (query || filterGrade) { %>
       <a class="account-clear-filter" href="/admin/students">Xóa bộ lọc</a>
     <% } %>
@@ -100,13 +100,13 @@
     <span><%= pagination.limit %> tài khoản mỗi trang</span>
   </div>
 
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (students.length === 0) { %>
     <div class="empty-state account-empty-state">
       <i data-lucide="user-search" class="empty-icon"></i>
       <h2>Không tìm thấy tài khoản</h2>
       <p>Thử thay đổi tên tìm kiếm hoặc chọn lại khối lớp.</p>
-      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (query || filterGrade) { %>
         <a class="btn btn-secondary" href="/admin/students">Xem tất cả tài khoản</a>
       <% } %>
@@ -125,7 +125,7 @@
           </tr>
         </thead>
         <tbody>
-          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% students.forEach((item) => { %>
             <%
               const gradeSupported = gradeOptions.some((option) => Number(option.value) === Number(item.current_grade));
@@ -143,11 +143,11 @@
               </td>
               <td data-label="Khối lớp">
                 <strong class="account-grade">Lớp <%= item.current_grade %></strong>
-                <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+                <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                 <% if (Number(item.registered_grade) !== Number(item.current_grade)) { %>
                   <small class="account-secondary">Đăng ký lớp <%= item.registered_grade %></small>
                 <% } %>
-                <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+                <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                 <% if (!gradeSupported) { %>
                   <small class="account-grade-warning">Ngoài phạm vi hỗ trợ</small>
                 <% } %>
@@ -205,7 +205,7 @@
                       <input type="hidden" name="page" value="<%= pagination.page %>">
                       <label for="student-grade-<%= item.id %>">Khối lớp hiện tại</label>
                       <select id="student-grade-<%= item.id %>" name="current_grade" required>
-                        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+                        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                         <% gradeOptions.forEach((option) => { %>
                           <option
                             value="<%= option.value %>"
@@ -267,30 +267,30 @@
     </div>
   <% } %>
 
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (pagination.totalPages > 1) { %>
     <nav class="account-pagination" aria-label="Phân trang tài khoản học sinh">
       <a
         class="account-page-nav <%= pagination.page <= 1 ? 'is-disabled' : '' %>"
         href="<%= pagination.page <= 1 ? '#' : pageUrl(pagination.page - 1) %>"
         aria-label="Trang trước"
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (pagination.page <= 1) { %>aria-disabled="true" tabindex="-1"<% } %>>
         <i data-lucide="chevron-left" class="lucide-icon"></i>
         <span>Trước</span>
       </a>
 
       <div class="account-page-list">
-        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% pages.forEach((item) => { %>
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (typeof item === 'string') { %>
             <span class="account-page-ellipsis" aria-hidden="true">…</span>
           <% } else { %>
             <a
               class="account-page-number <%= item === pagination.page ? 'is-current' : '' %>"
               href="<%= pageUrl(item) %>"
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
               <% if (item === pagination.page) { %>aria-current="page"<% } %>>
               <%= item %>
             </a>
@@ -302,7 +302,7 @@
         class="account-page-nav <%= pagination.page >= pagination.totalPages ? 'is-disabled' : '' %>"
         href="<%= pagination.page >= pagination.totalPages ? '#' : pageUrl(pagination.page + 1) %>"
         aria-label="Trang sau"
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (pagination.page >= pagination.totalPages) { %>aria-disabled="true" tabindex="-1"<% } %>>
         <span>Sau</span>
         <i data-lucide="chevron-right" class="lucide-icon"></i>

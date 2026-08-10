@@ -1,4 +1,4 @@
-# Script rebuild docx with images h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script rebuild docx with images hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import os
 import sys
 import json
@@ -20,7 +20,7 @@ GRADE4_THEORY_JSON = ROOT / "output" / "doc" / "grade4_theory_cards.json"
 IMAGE_DIR = ROOT / "output" / "doc" / "theory_images"
 OUTPUT_DOCX = ROOT / "output" / "doc" / "toan_4_ly_thuyet_canh_dieu_co_hinh_ve.docx"
 
-# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm download_image dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def download_image(session, image_url, cache_dir):
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -44,7 +44,7 @@ def download_image(session, image_url, cache_dir):
         print(f"      [Lỗi tải ảnh] {image_url}: {e}")
     return None
 
-# H?m build_docx_with_images d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx_with_images dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx_with_images(lessons_theory, output_path):
     print(f"Đang xây dựng file Word có hình vẽ tại: {output_path}...")
@@ -175,7 +175,7 @@ def build_docx_with_images(lessons_theory, output_path):
     doc.save(output_path)
     print(f"Đã lưu file Word thành công tại: {output_path}")
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     if not CRAWLED_THEORY_JSON.exists():
@@ -230,6 +230,6 @@ def main():
     # 4. Rebuild Word
     build_docx_with_images(grade4_list, OUTPUT_DOCX)
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

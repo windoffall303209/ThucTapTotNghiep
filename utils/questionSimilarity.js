@@ -1,8 +1,8 @@
-// Ti?n ?ch question similarity cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích question similarity cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 const DEFAULT_SIMILARITY_THRESHOLD = 0.9;
 const fingerprintCache = new Map();
 
-// H?m normalizeQuestionTextForSimilarity d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeQuestionTextForSimilarity dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeQuestionTextForSimilarity(value) {
   return String(value || '')
     .normalize('NFD')
@@ -19,32 +19,32 @@ function normalizeQuestionTextForSimilarity(value) {
     .trim();
 }
 
-// H?m questionSimilarity d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm questionSimilarity dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function questionSimilarity(left, right) {
   const leftText = questionText(left);
   const rightText = questionText(right);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!leftText || !rightText) return 0;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (leftText === rightText) return 1;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (Math.min(leftText.length, rightText.length) < 12) return 0;
   return diceCoefficient(fingerprint(leftText), fingerprint(rightText));
 }
 
-// H?m areQuestionsNearDuplicate d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm areQuestionsNearDuplicate dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function areQuestionsNearDuplicate(left, right, threshold = DEFAULT_SIMILARITY_THRESHOLD) {
   return questionSimilarity(left, right) >= threshold;
 }
 
-// H?m countNearDuplicatePairs d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm countNearDuplicatePairs dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function countNearDuplicatePairs(questions = [], threshold = DEFAULT_SIMILARITY_THRESHOLD) {
   let pairs = 0;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let leftIndex = 0; leftIndex < questions.length; leftIndex += 1) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (let rightIndex = leftIndex + 1; rightIndex < questions.length; rightIndex += 1) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (areQuestionsNearDuplicate(questions[leftIndex], questions[rightIndex], threshold)) {
         pairs += 1;
       }
@@ -53,11 +53,11 @@ function countNearDuplicatePairs(questions = [], threshold = DEFAULT_SIMILARITY_
   return pairs;
 }
 
-// H?m questionText d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm questionText dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function questionText(question) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof question === 'string') return normalizeQuestionTextForSimilarity(question);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof question?.similarity_text === 'string') return question.similarity_text;
   const content = question?.content_text
     ?? question?.content?.text
@@ -65,12 +65,12 @@ function questionText(question) {
   return normalizeQuestionTextForSimilarity(content);
 }
 
-// H?m fingerprint d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm fingerprint dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function fingerprint(value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fingerprintCache.has(value)) {
     fingerprintCache.set(value, characterBigrams(value));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (fingerprintCache.size > 20000) {
       const oldestKey = fingerprintCache.keys().next().value;
       fingerprintCache.delete(oldestKey);
@@ -79,11 +79,11 @@ function fingerprint(value) {
   return fingerprintCache.get(value);
 }
 
-// H?m characterBigrams d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm characterBigrams dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function characterBigrams(value) {
   const compact = ` ${value} `;
   const counts = new Map();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let index = 0; index < compact.length - 1; index += 1) {
     const gram = compact.slice(index, index + 2);
     counts.set(gram, (counts.get(gram) || 0) + 1);
@@ -91,14 +91,14 @@ function characterBigrams(value) {
   return counts;
 }
 
-// H?m diceCoefficient d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm diceCoefficient dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function diceCoefficient(left, right) {
   const leftTotal = [...left.values()].reduce((sum, count) => sum + count, 0);
   const rightTotal = [...right.values()].reduce((sum, count) => sum + count, 0);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (leftTotal === 0 || rightTotal === 0) return 0;
   let overlap = 0;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [gram, leftCount] of left.entries()) {
     overlap += Math.min(leftCount, right.get(gram) || 0);
   }

@@ -1,4 +1,4 @@
-// M? h?nh system setting ??nh ngh?a truy c?p, ki?m tra v? bi?n ??i d? li?u c?a m?t th?c th? trong h? th?ng.
+// Mô hình system setting định nghĩa truy cập, kiểm tra và biến đổi dữ liệu của một thực thể trong hệ thống.
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const crypto = require('crypto');
@@ -97,9 +97,9 @@ const ENV_KEY_MAP = {
   cloudinary_api_secret: 'CLOUDINARY_API_SECRET'
 };
 
-// H?m getSettings d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getSettings dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getSettings() {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query('SELECT setting_key, setting_value FROM SystemSettings');
     const dbSettings = rows.reduce((result, row) => {
@@ -116,20 +116,20 @@ async function getSettings() {
   }
 }
 
-// H?m updateSettings d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateSettings dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function updateSettings(input) {
   const current = await getSettings();
   const nextSettings = {};
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [key, value] of Object.entries(input)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof value !== 'string' || !ALLOWED_SETTING_KEYS.has(key)) continue;
     const trimmedValue = value.trim();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (Object.values(PRACTICE_DURATION_SETTING_KEYS).includes(key)) {
       const minutes = Number(trimmedValue);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!Number.isInteger(minutes) || minutes < 1 || minutes > 240) {
         const validationError = new Error('Thời gian luyện tập phải là số phút nguyên từ 1 đến 240.');
         validationError.code = 'INVALID_PRACTICE_DURATION';
@@ -138,22 +138,22 @@ async function updateSettings(input) {
       nextSettings[key] = String(minutes);
       continue;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (BASE_URL_PROVIDERS[key]) {
       nextSettings[key] = assertAllowedProviderBaseUrl(trimmedValue, BASE_URL_PROVIDERS[key]);
       continue;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isSecretKey(key) && trimmedValue === '') continue;
     nextSettings[key] = validateSettingValue(key, trimmedValue);
   }
 
   const mergedSettings = { ...current, ...nextSettings };
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await db.transaction(async (connection) => {
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (const [key, value] of Object.entries(nextSettings)) {
         const storedValue = isSecretKey(key) ? encryptSecret(value) : value;
         await connection.execute(
@@ -174,7 +174,7 @@ async function updateSettings(input) {
   return mergedSettings;
 }
 
-// H?m publicSettings d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm publicSettings dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function publicSettings(settings) {
   return Object.entries(settings).reduce((result, [key, value]) => {
     result[key] = isSecretKey(key) && value ? '••••••••' : value;
@@ -182,40 +182,40 @@ function publicSettings(settings) {
   }, {});
 }
 
-// H?m isSecretKey d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm isSecretKey dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function isSecretKey(key) {
   return key.includes('api_key') || key.includes('api_secret');
 }
 
-// H?m validateSettingValue d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm validateSettingValue dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function validateSettingValue(key, value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (key === 'ai_provider') {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!['mock', 'openai', 'gemini', 'gemini_cli', 'nvidia', 'openrouter'].includes(value)) {
       throw invalidSetting('Nguồn AI không hợp lệ.');
     }
     return value;
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['ai_automation_enabled', 'ai_require_answer_before_help'].includes(key)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!['true', 'false'].includes(value)) {
       throw invalidSetting('Giá trị bật/tắt cấu hình AI không hợp lệ.');
     }
     return value;
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (key === 'ai_enabled_grades') {
     const tokens = value.split(',').map((item) => item.trim());
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (tokens.some((item) => !/^[1-5]$/.test(item))) {
       throw invalidSetting('Khối lớp bật AI phải là danh sách từ 1 đến 5, phân cách bằng dấu phẩy.');
     }
     const grades = [...new Set(
       tokens.map(Number)
     )].sort((a, b) => a - b);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (grades.length === 0) {
       throw invalidSetting('Khối lớp bật AI phải là danh sách từ 1 đến 5, phân cách bằng dấu phẩy.');
     }
@@ -229,42 +229,42 @@ function validateSettingValue(key, value) {
     ai_max_requests_per_student_per_day: [1, 500, 'Quota AI mỗi học sinh mỗi ngày phải từ 1 đến 500.'],
     ai_log_retention_days: [1, 365, 'Thời gian lưu nhật ký AI phải từ 1 đến 365 ngày.']
   };
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (integerRules[key]) {
     const [min, max, message] = integerRules[key];
     const number = Number(value);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Number.isInteger(number) || number < min || number > max) {
       throw invalidSetting(message);
     }
     return String(number);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (isSecretKey(key)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (value.length > 4096) throw invalidSetting('Khóa bí mật quá dài.');
     return value;
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value.length > 255) {
     throw invalidSetting('Giá trị cấu hình không được vượt quá 255 ký tự.');
   }
   return value;
 }
 
-// H?m invalidSetting d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm invalidSetting dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function invalidSetting(message) {
   const error = new Error(message);
   error.code = 'INVALID_SYSTEM_SETTING';
   return error;
 }
 
-// H?m getPracticeDurationMinutes d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getPracticeDurationMinutes dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getPracticeDurationMinutes(questionCount, settings = DEFAULT_SETTINGS) {
   const count = Number(questionCount);
   const fallback = PRACTICE_DURATION_DEFAULTS[count];
   const settingKey = PRACTICE_DURATION_SETTING_KEYS[count];
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fallback || !settingKey) return null;
 
   const configured = Number(settings?.[settingKey]);
@@ -273,13 +273,13 @@ function getPracticeDurationMinutes(questionCount, settings = DEFAULT_SETTINGS) 
     : fallback;
 }
 
-// H?m getPracticeDurationSeconds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getPracticeDurationSeconds dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getPracticeDurationSeconds(questionCount, settings = DEFAULT_SETTINGS) {
   const minutes = getPracticeDurationMinutes(questionCount, settings);
   return minutes ? minutes * 60 : null;
 }
 
-// H?m getAiLogRetentionDays d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getAiLogRetentionDays dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getAiLogRetentionDays(settings = DEFAULT_SETTINGS) {
   const configured = Number(settings?.ai_log_retention_days);
   return Number.isInteger(configured) && configured >= 1 && configured <= 365
@@ -287,12 +287,12 @@ function getAiLogRetentionDays(settings = DEFAULT_SETTINGS) {
     : AI_LOG_RETENTION_DEFAULT_DAYS;
 }
 
-// H?m syncEnvFile d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm syncEnvFile dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function syncEnvFile(changedSettings, mergedSettings) {
   const envPath = path.join(__dirname, '..', '.env');
   let rawEnv = '';
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     rawEnv = await fs.readFile(envPath, 'utf8');
   } catch (error) {
@@ -303,17 +303,17 @@ async function syncEnvFile(changedSettings, mergedSettings) {
   const lineIndexByKey = new Map();
   lines.forEach((line, index) => {
     const match = line.match(/^([A-Z0-9_]+)=/);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (match) lineIndexByKey.set(match[1], index);
   });
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [settingKey, envKey] of Object.entries(ENV_KEY_MAP)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!(settingKey in changedSettings)) continue;
     const value = mergedSettings[settingKey] || '';
     const nextLine = `${envKey}=${escapeEnvValue(value)}`;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (lineIndexByKey.has(envKey)) {
       lines[lineIndexByKey.get(envKey)] = nextLine;
     } else {
@@ -321,7 +321,7 @@ async function syncEnvFile(changedSettings, mergedSettings) {
     }
   }
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!lineIndexByKey.has('API_KEY_ENCRYPTION_SECRET')) {
     lines.push('API_KEY_ENCRYPTION_SECRET=change_me_for_admin_saved_api_keys');
   }
@@ -329,9 +329,9 @@ async function syncEnvFile(changedSettings, mergedSettings) {
   await fs.writeFile(envPath, `${lines.join('\n').replace(/\n+$/, '')}\n`, 'utf8');
 }
 
-// H?m escapeEnvValue d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm escapeEnvValue dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function escapeEnvValue(value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (/[\s#"'=]/.test(value)) {
     return JSON.stringify(value);
   }

@@ -1,4 +1,4 @@
-// B? ki?m th? image lifecycle.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử image lifecycle.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const fsPromises = require('node:fs/promises');
@@ -81,7 +81,7 @@ test('chỉ ánh xạ URL ảnh local an toàn vào đúng thư mục quản lý
     path.join(root, '1711111111111-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.webp')
   );
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const unsafe of [
     '/uploads/images/../secret.png',
     '/uploads/images/%2e%2e%2fsecret.png',
@@ -129,10 +129,10 @@ test('chỉ xóa ảnh local không còn tham chiếu và giữ lại khi kiểm
 test('chỉ xóa Cloudinary object thuộc đúng folder và đúng cloud account', async () => {
   const destroyed = [];
   const cloudinaryClient = {
-    // H?m config d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm config dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     config() {},
     uploader: {
-      // H?m destroy d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm destroy dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async destroy(publicId) {
         destroyed.push(publicId);
       }
@@ -214,7 +214,7 @@ test('cleanup retry lỗi tạm thời và không xóa Cloudinary đã commit', 
       retryDelayMs: 0,
       unlink: async () => {
         unlinkAttempts += 1;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (unlinkAttempts === 1) {
           const error = new Error('busy');
           error.code = 'EBUSY';

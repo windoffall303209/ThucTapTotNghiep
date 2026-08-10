@@ -1,4 +1,4 @@
-/* Bi?u ??nh ki?u common t? ch?c b? c?c, m?u s?c v? tr?ng th?i hi?n th? c?a giao di?n. */
+/* Biểu định kiểu common tổ chức bố cục, màu sắc và trạng thái hiển thị của giao diện. */
 .auth-shell {
   display: grid;
   min-height: calc(100svh - 110px);

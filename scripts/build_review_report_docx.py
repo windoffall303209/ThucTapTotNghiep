@@ -9,7 +9,7 @@ Nguồn dữ liệu là các tệp báo cáo trong tmp/ do từng script sửa s
 
 Dùng: python scripts/build_review_report_docx.py [duong_dan_dich.docx]
 """
-# Script build review report docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build review report docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import json
@@ -33,7 +33,7 @@ XANH = RGBColor(0x1E, 0x82, 0x49)
 XAM = RGBColor(0x55, 0x55, 0x55)
 
 
-# H?m doc_json d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm doc_json dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def doc_json(ten: str, mac_dinh):
     tep = TMP / ten
@@ -45,7 +45,7 @@ def doc_json(ten: str, mac_dinh):
         return mac_dinh
 
 
-# H?m dong d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm dong dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def dong(doc, nhan: str, noi_dung: str, mau=None) -> None:
     p = doc.add_paragraph()
@@ -57,7 +57,7 @@ def dong(doc, nhan: str, noi_dung: str, mau=None) -> None:
     p.add_run(noi_dung)
 
 
-# H?m bang_so_lieu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm bang_so_lieu dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def bang_so_lieu(doc, tieu_de: str, hang: list[tuple[str, str]]) -> None:
     """Bảng hai cột đơn giản, dùng cho số liệu trước và sau."""
@@ -71,7 +71,7 @@ def bang_so_lieu(doc, tieu_de: str, hang: list[tuple[str, str]]) -> None:
     doc.add_paragraph()
 
 
-# H?m them_vi_du d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm them_vi_du dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def them_vi_du(doc, tieu_de: str, cac_dong: list[str], gioi_han: int = 6) -> None:
     if not cac_dong:
@@ -87,7 +87,7 @@ def them_vi_du(doc, tieu_de: str, cac_dong: list[str], gioi_han: int = 6) -> Non
         r.font.color.rgb = XAM
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     dich = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "outputs" / "bao_cao_ra_soat_ngan_hang_cau_hoi.docx"
@@ -351,6 +351,6 @@ def main() -> None:
     print(f"  Tổng lượt can thiệp: {tong_sua}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

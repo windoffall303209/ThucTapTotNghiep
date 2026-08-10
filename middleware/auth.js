@@ -1,4 +1,4 @@
-// Middleware auth ki?m tra ho?c b? sung ng? c?nh tr??c khi y?u c?u ?i v?o b? x? l? ti?p theo.
+// Middleware auth kiểm tra hoặc bổ sung ngữ cảnh trước khi yêu cầu đi vào bộ xử lý tiếp theo.
 const { GRADE_RANGE_LABEL, isSupportedGrade } = require('../config/grades');
 const Admin = require('../models/Admin');
 const Student = require('../models/Student');
@@ -17,11 +17,11 @@ function wantsJson(req) {
   );
 }
 
-// H?m requireStudent d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm requireStudent dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function requireStudent(req, res, next) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!req.auth || req.auth.role !== 'student') {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (wantsJson(req)) {
       return sendAuthJson(
         res,
@@ -38,10 +38,10 @@ async function requireStudent(req, res, next) {
     return res.redirect('/auth/login');
   }
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = await Student.findById(req.auth.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !student
       || Number(student.is_active ?? 1) !== 1
@@ -49,7 +49,7 @@ async function requireStudent(req, res, next) {
       || req.auth.credential_version !== getCredentialVersion(student.password_hash)
     ) {
       clearAuthCookie(res);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (wantsJson(req)) {
         return sendAuthJson(
           res,
@@ -66,7 +66,7 @@ async function requireStudent(req, res, next) {
       return res.redirect('/auth/login');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isSupportedGrade(student.current_grade)) {
       clearAuthCookie(res);
       req.session.flash = {
@@ -83,11 +83,11 @@ async function requireStudent(req, res, next) {
   }
 }
 
-// H?m requireAdmin d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm requireAdmin dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function requireAdmin(req, res, next) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!req.auth || req.auth.type !== 'admin' || !['SYSADMIN', 'CONTENT_ADMIN'].includes(req.auth.role)) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (wantsJson(req)) {
       return sendAuthJson(
         res,
@@ -104,10 +104,10 @@ async function requireAdmin(req, res, next) {
     return res.redirect('/auth/login?role=admin');
   }
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const admin = await Admin.findById(req.auth.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !admin
       || Number(admin.is_active) !== 1
@@ -115,7 +115,7 @@ async function requireAdmin(req, res, next) {
       || req.auth.credential_version !== getCredentialVersion(admin.password_hash)
     ) {
       clearAuthCookie(res);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (wantsJson(req)) {
         return sendAuthJson(
           res,
@@ -141,12 +141,12 @@ async function requireAdmin(req, res, next) {
   }
 }
 
-// H?m requireRoles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm requireRoles dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function requireRoles(roles) {
   return (req, res, next) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!req.auth || !roles.includes(req.auth.role)) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (wantsJson(req)) {
         return res.status(403).json({
           ok: false,
@@ -165,7 +165,7 @@ function requireRoles(roles) {
   };
 }
 
-// H?m sendAuthJson d?ng ?? x? l? x?c th?c v? c?p nh?t tr?ng th?i phi?n ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm sendAuthJson dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function sendAuthJson(res, status, code, message, redirectTo) {
   res.set('X-Auth-Redirect', redirectTo);
   return res.status(status).json({

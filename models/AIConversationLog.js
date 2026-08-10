@@ -1,4 +1,4 @@
-// M? h?nh aiconversation log ??nh ngh?a truy c?p, ki?m tra v? bi?n ??i d? li?u c?a m?t th?c th? trong h? th?ng.
+// Mô hình aiconversation log định nghĩa truy cập, kiểm tra và biến đổi dữ liệu của một thực thể trong hệ thống.
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
@@ -7,13 +7,13 @@ let schemaCheckPromise = null;
 const AI_SESSION_TYPES = new Set(['EXERCISE_HELP', 'THEORY_EXPLAIN']);
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
-// H?m ensureSchema d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm ensureSchema dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function ensureSchema() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!schemaCheckPromise) {
     schemaCheckPromise = verifySchemaReady();
   }
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await schemaCheckPromise;
   } catch (error) {
@@ -23,7 +23,7 @@ async function ensureSchema() {
   }
 }
 
-// H?m verifySchemaReady d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm verifySchemaReady dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function verifySchemaReady() {
   const requiredColumns = [
     'practice_session_id',
@@ -45,7 +45,7 @@ async function verifySchemaReady() {
   );
   const columns = new Set(rows.map((row) => String(row.COLUMN_NAME).toLowerCase()));
   const missing = requiredColumns.filter((column) => !columns.has(column));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (missing.length > 0) {
     const error = new Error(
       `Database thiếu schema AIConversationLogs (${missing.join(', ')}). `
@@ -57,7 +57,7 @@ async function verifySchemaReady() {
   }
 }
 
-// H?m invalidLogFilter d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm invalidLogFilter dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function invalidLogFilter(message) {
   const error = new Error(message);
   error.code = 'INVALID_AI_LOG_FILTER';
@@ -65,50 +65,50 @@ function invalidLogFilter(message) {
   return error;
 }
 
-// H?m normalizeDateFilter d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeDateFilter dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeDateFilter(value, label) {
   const normalized = String(value || '').trim();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!normalized) return '';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) {
     throw invalidLogFilter(`${label} phải có định dạng YYYY-MM-DD.`);
   }
 
   const date = new Date(`${normalized}T00:00:00.000Z`);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== normalized) {
     throw invalidLogFilter(`${label} không phải ngày hợp lệ.`);
   }
   return normalized;
 }
 
-// H?m normalizePositiveId d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizePositiveId dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizePositiveId(value, label) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined || String(value).trim() === '') return null;
   const normalized = String(value).trim();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!/^[1-9]\d*$/.test(normalized)) {
     throw invalidLogFilter(`${label} không hợp lệ.`);
   }
   const number = Number(normalized);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isSafeInteger(number)) throw invalidLogFilter(`${label} không hợp lệ.`);
   return number;
 }
 
-// H?m normalizeLogFilters d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLogFilters dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLogFilters(filters = {}) {
   const from = normalizeDateFilter(filters.from, 'Ngày bắt đầu');
   const to = normalizeDateFilter(filters.to, 'Ngày kết thúc');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (from && to && from > to) {
     throw invalidLogFilter('Ngày bắt đầu không được sau ngày kết thúc.');
   }
 
   const sessionType = String(filters.sessionType || '').trim().toUpperCase();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (sessionType && !AI_SESSION_TYPES.has(sessionType)) {
     throw invalidLogFilter('Loại hội thoại không hợp lệ.');
   }
@@ -126,27 +126,27 @@ function normalizeLogFilters(filters = {}) {
   };
 }
 
-// H?m buildLogFilter d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildLogFilter dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildLogFilter(filters = {}) {
   const normalized = normalizeLogFilters(filters);
   const conditions = [];
   const params = [];
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.studentId) {
     conditions.push('log.student_id = ?');
     params.push(normalized.studentId);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.sessionType) {
     conditions.push('log.session_type = ?');
     params.push(normalized.sessionType);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.onlyFlagged) {
     conditions.push('log.is_flagged_inaccurate = 1');
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.lessonId) {
     conditions.push(
       `(log.lesson_id = ?
@@ -158,12 +158,12 @@ function buildLogFilter(filters = {}) {
     );
     params.push(normalized.lessonId, normalized.lessonId);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.from) {
     conditions.push('log.created_at >= ?');
     params.push(`${normalized.from} 00:00:00`);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized.to) {
     conditions.push('log.created_at < DATE_ADD(?, INTERVAL 1 DAY)');
     params.push(`${normalized.to} 00:00:00`);
@@ -177,21 +177,21 @@ function buildLogFilter(filters = {}) {
   };
 }
 
-// H?m normalizeStoredChatHistory d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeStoredChatHistory dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeStoredChatHistory(value, blockedReason = null) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (blockedReason) return [];
   return Array.isArray(value) ? value : [];
 }
 
-// H?m logAIInteraction d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm logAIInteraction dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function logAIInteraction(input) {
   const sessionType = input.sessionType || 'EXERCISE_HELP';
   const referenceId = Number(input.referenceId || input.questionId || input.lessonId || 0);
   const blockedReason = String(input.blockedReason || '').trim().slice(0, 120) || null;
   const chatHistory = normalizeStoredChatHistory(input.chatHistory, blockedReason);
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await ensureSchema();
     await db.query(
@@ -233,11 +233,11 @@ async function logAIInteraction(input) {
   }
 }
 
-// H?m parseChatHistory d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseChatHistory dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseChatHistory(value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (Array.isArray(value)) return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const parsed = typeof value === 'string' ? JSON.parse(value) : value;
     return Array.isArray(parsed) ? parsed : [];
@@ -246,7 +246,7 @@ function parseChatHistory(value) {
   }
 }
 
-// H?m normalizeLogRow d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLogRow dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLogRow(row) {
   const blockedReason = String(row.blocked_reason || '').trim() || null;
   return {
@@ -258,7 +258,7 @@ function normalizeLogRow(row) {
   };
 }
 
-// H?m filterSampleLogs d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm filterSampleLogs dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function filterSampleLogs(rows, filters) {
   const fromMs = filters.from ? Date.parse(`${filters.from}T00:00:00.000Z`) : null;
   const toExclusiveMs = filters.to
@@ -266,31 +266,31 @@ function filterSampleLogs(rows, filters) {
     : null;
 
   return rows.filter((item) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (filters.studentId && Number(item.student_id) !== filters.studentId) return false;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (filters.sessionType && String(item.session_type) !== filters.sessionType) return false;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (filters.onlyFlagged && !(Number(item.is_flagged_inaccurate) === 1 || item.is_flagged_inaccurate === true)) {
       return false;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (filters.lessonId) {
       const question = (sampleData.questions || []).find(
         (candidate) => Number(candidate.id) === Number(item.question_id)
       );
       const effectiveLessonId = Number(item.lesson_id || question?.lesson_id);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (effectiveLessonId !== filters.lessonId) return false;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (fromMs !== null || toExclusiveMs !== null) {
       const createdAt = new Date(item.created_at).getTime();
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!Number.isFinite(createdAt)) return false;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (fromMs !== null && createdAt < fromMs) return false;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (toExclusiveMs !== null && createdAt >= toExclusiveMs) return false;
     }
     return true;
@@ -313,7 +313,7 @@ async function listLogs(options = {}) {
     : 1;
   const offset = (safePage - 1) * safeLimit;
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const countRows = await db.query(
       `SELECT COUNT(*) AS total FROM AIConversationLogs log ${filter.whereClause}`,
@@ -374,7 +374,7 @@ async function listLogs(options = {}) {
 async function getLogStats(filters = {}) {
   const filter = buildLogFilter(filters);
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const blockedWhereClause = filter.conditions.length > 0
       ? `WHERE ${filter.conditions.join(' AND ')} AND log.blocked_reason IS NOT NULL`
@@ -427,11 +427,11 @@ async function getLogStats(filters = {}) {
     );
     const providerCounts = new Map();
     const blockedCounts = new Map();
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const item of all) {
       const provider = item.provider || 'chưa ghi nhận';
       providerCounts.set(provider, (providerCounts.get(provider) || 0) + 1);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (item.blocked_reason) {
         blockedCounts.set(
           item.blocked_reason,
@@ -457,7 +457,7 @@ async function getLogStats(filters = {}) {
 // về sau. Trả về true nếu có bản ghi được cập nhật.
 async function setFlagged(logId, flagged) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const result = await db.query(
       'UPDATE AIConversationLogs SET is_flagged_inaccurate = ? WHERE id = ?',
@@ -467,7 +467,7 @@ async function setFlagged(logId, flagged) {
   } catch (error) {
     fallbackOrThrow(error);
     const log = (sampleData.aiLogs || []).find((item) => Number(item.id) === Number(logId));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!log) return false;
     log.is_flagged_inaccurate = Boolean(flagged);
     return true;

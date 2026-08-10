@@ -1,4 +1,4 @@
-// Script backup images local h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script backup images local hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Sao lưu toàn bộ ảnh sang một thư mục nằm NGOÀI repo.
  *
@@ -28,29 +28,29 @@ const DEST = destArg !== -1
   ? path.resolve(process.argv[destArg + 1])
   : path.resolve(ROOT, '..', 'ThucTapTotNghiep_anh_backup');
 
-// H?m liet d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm liet dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function liet(dir, base = dir) {
   const out = [];
   fs.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
     const full = path.join(dir, entry.name);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (entry.isDirectory()) out.push(...liet(full, base));
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else out.push({ rel: path.relative(base, full), size: fs.statSync(full).size });
   });
   return out;
 }
 
-// H?m dinhDang d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm dinhDang dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function dinhDang(bytes) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (bytes > 1024 * 1024 * 1024) return `${(bytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function main() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fs.existsSync(SOURCE)) {
     throw new Error(`Không tìm thấy thư mục nguồn: ${SOURCE}`);
   }
@@ -64,7 +64,7 @@ function main() {
 
   const canChep = files.filter((file) => {
     const target = path.join(DEST, file.rel);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!fs.existsSync(target)) return true;
     // Đã có nhưng khác kích thước thì chép đè, coi như bản nguồn mới hơn.
     return fs.statSync(target).size !== file.size;
@@ -73,7 +73,7 @@ function main() {
   console.log(`Đã có sẵn ở đích: ${files.length - canChep.length}`);
   console.log(`Cần sao chép:     ${canChep.length} — ${dinhDang(canChep.reduce((s, f) => s + f.size, 0))}`);
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!COMMIT) {
     console.log('\nĐây là bản xem trước. Thêm --commit để sao chép thật.');
     return;
@@ -86,7 +86,7 @@ function main() {
     fs.mkdirSync(path.dirname(to), { recursive: true });
     fs.copyFileSync(from, to);
     xong += 1;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (xong % 500 === 0 || index === canChep.length - 1) {
       console.log(`  ${xong}/${canChep.length}`);
     }
@@ -117,7 +117,7 @@ function main() {
   console.log('Kèm tệp DOC-THEM.txt mô tả nội dung và cách khôi phục.');
 }
 
-// Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+// Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 try {
   main();
 } catch (error) {

@@ -1,4 +1,4 @@
-// B? ki?m th? question supplement import.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử question supplement import.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
@@ -10,7 +10,7 @@ const {
   validateBatchAgainstCurriculumScope
 } = require('../scripts/import_question_supplement');
 
-// H?m validQuestion d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm validQuestion dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function validQuestion() {
   return {
     source_key: 'SUP-G1-L001-H01',
@@ -41,7 +41,7 @@ function validQuestion() {
   };
 }
 
-// H?m validScope d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm validScope dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function validScope() {
   return {
     scope_id: 'grade-1-lessons-001-005',

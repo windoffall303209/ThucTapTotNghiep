@@ -1,4 +1,4 @@
-<%# M?u giao di?n settings k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện settings kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <%
   const openaiChatModels = [
     'gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano',
@@ -140,7 +140,7 @@
             cứ lưu key của provider nào là hệ thống tự chuyển sang chạy provider
             đó, dù admin chỉ định cập nhật key dự phòng. %>
         <select name="ai_provider">
-          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% providerOptions.forEach((option) => { %>
             <option value="<%= option.value %>" <%= (settings.ai_provider || 'mock') === option.value ? 'selected' : '' %>>
               <%= option.label %>
@@ -252,7 +252,7 @@
   <div class="model-field">
     <label for="<%= name %>-preset"><%= label %></label>
     <select id="<%= name %>-preset" data-model-select="<%= name %>" aria-label="<%= label %> có sẵn">
-      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% models.forEach((model) => { %>
         <option value="<%= model %>" <%= currentValue === model ? 'selected' : '' %>><%= model %></option>
       <% }) %>

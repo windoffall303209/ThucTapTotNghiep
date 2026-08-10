@@ -1,4 +1,4 @@
-// T?p tin ??nh tuy?n auth routes ?nh x? URL, middleware v? b? ?i?u khi?n cho c?c lu?ng c?a ?ng d?ng.
+// Tập tin định tuyebfn auth routes ánh xạ URL, middleware và bộ điều khiển cho các luồng của ứng dụng.
 const express = require('express');
 const AuthController = require('../controllers/AuthController');
 

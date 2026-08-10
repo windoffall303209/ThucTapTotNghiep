@@ -1,4 +1,4 @@
-# Script crawl theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script crawl theory docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import argparse
 import hashlib
 import json
@@ -57,7 +57,7 @@ SKIP_LINK_KEYWORDS = [
 ]
 
 
-# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm clean_text dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def clean_text(value):
     if not value:
@@ -68,20 +68,20 @@ def clean_text(value):
     return value.strip()
 
 
-# H?m compact_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm compact_text dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def compact_text(value):
     return re.sub(r"\s+", " ", value or "").strip()
 
 
-# H?m strip_accents d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm strip_accents dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def strip_accents(value):
     normalized = unicodedata.normalize("NFD", value or "")
     return "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
 
 
-# H?m normalize_title d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_title dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_title(value):
     text = strip_accents(value).lower()
@@ -93,14 +93,14 @@ def normalize_title(value):
     return re.sub(r"\s+", " ", text).strip()
 
 
-# H?m should_skip_link d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm should_skip_link dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def should_skip_link(title):
     lowered = (title or "").lower()
     return any(keyword in lowered for keyword in SKIP_LINK_KEYWORDS)
 
 
-# H?m fetch_soup d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm fetch_soup dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def fetch_soup(session, url, timeout=25, retries=3):
     last_error = None
@@ -116,14 +116,14 @@ def fetch_soup(session, url, timeout=25, retries=3):
     raise last_error
 
 
-# H?m normalize_url d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm normalize_url dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def normalize_url(url):
     parsed = urlparse(url)
     return parsed._replace(fragment="").geturl()
 
 
-# H?m get_current_lessons d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm get_current_lessons dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def get_current_lessons():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -157,7 +157,7 @@ const Curriculum = require('./models/Curriculum');
     return lessons
 
 
-# H?m discover_lesson_links d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm discover_lesson_links dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def discover_lesson_links(session, grade):
     index_url = INDEX_URLS[grade]
@@ -229,7 +229,7 @@ def discover_lesson_links(session, grade):
     return links
 
 
-# H?m build_link_index d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_link_index dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_link_index(session):
     all_links = []
@@ -242,7 +242,7 @@ def build_link_index(session):
     return all_links
 
 
-# H?m find_best_link d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm find_best_link dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def find_best_link(lesson, links_by_grade):
     grade_links = links_by_grade.get(int(lesson["grade"]), [])
@@ -259,7 +259,7 @@ def find_best_link(lesson, links_by_grade):
     return None
 
 
-# H?m find_theory_url d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm find_theory_url dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def find_theory_url(session, lesson_url):
     soup = fetch_soup(session, lesson_url)
@@ -275,7 +275,7 @@ def find_theory_url(session, lesson_url):
     return None
 
 
-# H?m remove_noise d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm remove_noise dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def remove_noise(container):
     for node in container.find_all(["script", "style", "ins", "iframe", "button", "form"]):
@@ -288,7 +288,7 @@ def remove_noise(container):
             node.decompose()
 
 
-# H?m image_url_from_tag d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm image_url_from_tag dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def image_url_from_tag(img, base_url):
     src = img.get("data-src") or img.get("data-original") or img.get("src")
@@ -301,7 +301,7 @@ def image_url_from_tag(img, base_url):
     return full_url
 
 
-# H?m extract_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm extract_images dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def extract_images(container, base_url):
     seen = set()
@@ -320,7 +320,7 @@ def extract_images(container, base_url):
     return images
 
 
-# H?m text_lines_from_container d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm text_lines_from_container dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def text_lines_from_container(container):
     lines = []
@@ -340,14 +340,14 @@ def text_lines_from_container(container):
     return [line for line in compacted if line != ""]
 
 
-# H?m split_cards_from_theory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm split_cards_from_theory dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def split_cards_from_theory(container, base_url, lesson_title):
     cards = []
     current = {"title": lesson_title, "body_lines": []}
     found_section = False
 
-# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm flush dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def flush():
         body = "\n".join(line for line in current["body_lines"] if line).strip()
@@ -393,7 +393,7 @@ def split_cards_from_theory(container, base_url, lesson_title):
     return cards[:8]
 
 
-# H?m extract_theory_from_page d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm extract_theory_from_page dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def extract_theory_from_page(session, url, lesson_title):
     soup = fetch_soup(session, url)
@@ -403,7 +403,7 @@ def extract_theory_from_page(session, url, lesson_title):
     return cards
 
 
-# H?m extract_fallback_summary d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm extract_fallback_summary dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def extract_fallback_summary(session, url, lesson_title):
     soup = fetch_soup(session, url)
@@ -424,7 +424,7 @@ def extract_fallback_summary(session, url, lesson_title):
     return [{"title": lesson_title, "body": body, "example": "", "images": images}]
 
 
-# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm download_image dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def download_image(session, image_url, cache):
     if image_url in cache:
@@ -445,7 +445,7 @@ def download_image(session, image_url, cache):
     return file_path
 
 
-# H?m add_doc_text_block d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_doc_text_block dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_doc_text_block(document, text):
     for line in (text or "").splitlines():
@@ -458,7 +458,7 @@ def add_doc_text_block(document, text):
             document.add_paragraph(line)
 
 
-# H?m add_images d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_images dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_images(document, session, images, cache):
     for image in images or []:
@@ -473,7 +473,7 @@ def add_images(document, session, images, cache):
             document.add_paragraph(f"[Không tải được ảnh: {image.get('url')} - {error}]")
 
 
-# H?m setup_document_styles d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm setup_document_styles dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def setup_document_styles(document):
     styles = document.styles
@@ -483,7 +483,7 @@ def setup_document_styles(document):
         styles[name].font.name = "Arial"
 
 
-# H?m export_readable_docx d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm export_readable_docx dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def export_readable_docx(items, output_path, session):
     doc = Document()
@@ -520,7 +520,7 @@ def export_readable_docx(items, output_path, session):
     doc.save(output_path)
 
 
-# H?m export_import_docx d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm export_import_docx dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def export_import_docx(items, output_path):
     doc = Document()
@@ -547,7 +547,7 @@ def export_import_docx(items, output_path):
     doc.save(output_path)
 
 
-# H?m crawl d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm crawl dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def crawl(args):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -618,7 +618,7 @@ def crawl(args):
     return items
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     parser = argparse.ArgumentParser(description="Crawl lý thuyết tóm tắt Toán Cánh Diều 1-5 và xuất DOCX.")
@@ -644,6 +644,6 @@ def main():
     }, ensure_ascii=False, indent=2))
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-<%# M?u giao di?n lesson k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện lesson kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <%
   function bodyValue(card) {
     const legacyFormulas = Array.isArray(card.formulas)
@@ -50,7 +50,7 @@
     <p>Em đọc từng thẻ theo thứ tự, xem hình nếu có, rồi làm thử vài câu để nhớ bài lâu hơn nhé.</p>
   </div>
   <div class="row-actions">
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (Number(reviewQuestionCount || 0) > 0) { %>
       <a class="btn btn-secondary" href="/student/lessons/<%= lesson.id %>/review">
         <i data-lucide="clipboard-check" class="lucide-icon"></i>
@@ -85,7 +85,7 @@
 </section>
 
 <section class="theory-grid">
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (!lesson.theory_cards || lesson.theory_cards.length === 0) { %>
     <div class="empty-state compact">
       <p>Bài này chưa có phần lý thuyết. Em vẫn có thể làm thử câu hỏi luyện tập trước nhé!</p>
@@ -97,23 +97,23 @@
   <% } %>
 
   <% (lesson.theory_cards || []).forEach((card, index) => { %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const images = Array.isArray(card.images) ? card.images : []; %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const hasCardText = Boolean(
       card.title || card.display_text || bodyValue(card) || card.student_task ||
       card.example || card.remember || card.grid_layout?.enabled
     ); %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const imageOnly = images.length > 0 && !hasCardText; %>
     <article class="theory-card <%= imageOnly ? 'theory-card-image-only' : '' %> theory-layout-<%= card.layout || 'text_first' %> math-content math-lazy">
       <div>
-        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (!imageOnly) { %>
           <span class="card-index">Mục <%= index + 1 %> · <%= typeLabel(card.type) %></span>
           <h2><%= card.title %></h2>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.display_text) { %>
             <p class="theory-display-text"><%= card.display_text %></p>
           <% } %>
@@ -121,10 +121,10 @@
           <%- gridRenderHtml(card.grid_layout) %>
         <% } %>
 
-        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (images.length > 0) { %>
           <div class="theory-image-row">
-            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+            <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% images.forEach((image) => { %>
               <span class="question-image">
                 <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
@@ -133,30 +133,30 @@
           </div>
         <% } %>
 
-        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (!imageOnly) { %>
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (bodyValue(card)) { %>
             <div class="theory-body"><%= bodyValue(card) %></div>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.student_task) { %>
             <p class="theory-task"><strong>Em cần làm:</strong> <%= card.student_task %></p>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.example) { %>
             <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.remember) { %>
             <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
           <% } %>
         <% } %>
       </div>
-      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (aiHelpEnabled && !imageOnly) { %>
       <button
         class="btn btn-secondary theory-help-button"
@@ -185,7 +185,7 @@
     <i data-lucide="list" class="lucide-icon"></i>
     Danh sách bài học
   </a>
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (nextLesson) { %>
     <a class="btn btn-primary lesson-next-button" href="/student/lessons/<%= nextLesson.id %>">
       <span>

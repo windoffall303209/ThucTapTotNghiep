@@ -1,4 +1,4 @@
-// B? ki?m th? provider credential security.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử provider credential security.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -10,7 +10,7 @@ const { explainTheory } = require('../services/SocraticAIService');
 
 const TEST_API_KEY = 'gemini-secret-that-must-not-appear-in-a-url';
 
-// H?m jsonResponse d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm jsonResponse dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -27,7 +27,7 @@ test('kiểm tra Gemini truyền API key qua header thay vì URL', async (t) => 
 
   global.fetch = async (url, options = {}) => {
     requests.push({ url: String(url), options });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (String(url).endsWith('/models')) {
       return jsonResponse({ models: [{ name: 'models/another-model' }] });
     }
@@ -43,7 +43,7 @@ test('kiểm tra Gemini truyền API key qua header thay vì URL', async (t) => 
 
   assert.equal(result.ok, true);
   assert.equal(requests.length, 2);
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const request of requests) {
     assert.equal(request.url.includes(TEST_API_KEY), false);
     assert.equal(new URL(request.url).search, '');
@@ -88,7 +88,7 @@ test('gia sư Gemini truyền API key qua header thay vì URL', async (t) => {
 });
 
 test('mã nguồn không còn ghép khóa Gemini vào query string', () => {
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const relativePath of [
     'services/SocraticAIService.js',
     'services/ProviderCheckService.js'

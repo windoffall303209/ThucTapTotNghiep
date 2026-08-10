@@ -1,12 +1,12 @@
-// B? l?u tr? my sqlrate limit store k?t n?i tr?ng th?i phi?n ho?c gi?i h?n truy c?p v?i c? s? d? li?u.
+// Bộ lưu trữ my sqlrate limit store kết nối trạng thái phiên hoặc giới hạn truy cập với cơ sở dữ liệu.
 const crypto = require('crypto');
 const db = require('../config/db');
 
 const CLEANUP_INTERVAL_MS = 15 * 60 * 1000;
 
-// L?p MySQLRateLimitStore ??ng g?i tr?ng th?i v? c?c h?nh vi li?n quan th?nh m?t ??n v? c? th? t?i s? d?ng.
+// Lớp MySQLRateLimitStore đóng gói trạng thái và các hành vi liên quan thành một đơn vị có thể tái sử dụng.
 class MySQLRateLimitStore {
-  // H?m constructor d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm constructor dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   constructor(namespace) {
     this.namespace = String(namespace || 'default').slice(0, 32);
     this.prefix = `mysql:${this.namespace}:`;
@@ -16,18 +16,18 @@ class MySQLRateLimitStore {
     this.cleanupTimer = null;
   }
 
-  // H?m init d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm init dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   init(options) {
     this.windowMs = Math.max(Number(options?.windowMs) || 60_000, 1000);
   }
 
-  // H?m ensureReady d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm ensureReady dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async ensureReady() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!this.schemaCheckPromise) {
       this.schemaCheckPromise = this.verifySchema();
     }
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       await this.schemaCheckPromise;
       await this.prune();
@@ -38,7 +38,7 @@ class MySQLRateLimitStore {
     }
   }
 
-  // H?m verifySchema d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm verifySchema dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async verifySchema() {
     const rows = await db.query(
       `SELECT COLUMN_NAME
@@ -48,7 +48,7 @@ class MySQLRateLimitStore {
     const columns = new Set(rows.map((row) => String(row.COLUMN_NAME).toLowerCase()));
     const missing = ['namespace', 'key_hash', 'hits', 'reset_at']
       .filter((column) => !columns.has(column));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (missing.length > 0) {
       const error = new Error(
         `Database thiếu bảng RequestRateLimits (${missing.join(', ')}). `
@@ -59,7 +59,7 @@ class MySQLRateLimitStore {
     }
   }
 
-  // H?m increment d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm increment dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async increment(key) {
     const keyHash = hashKey(key);
     const windowMicroseconds = Math.round(this.windowMs * 1000);
@@ -95,7 +95,7 @@ class MySQLRateLimitStore {
     });
   }
 
-  // H?m decrement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm decrement dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async decrement(key) {
     await db.query(
       `UPDATE RequestRateLimits
@@ -105,7 +105,7 @@ class MySQLRateLimitStore {
     );
   }
 
-  // H?m resetKey d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm resetKey dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async resetKey(key) {
     await db.query(
       'DELETE FROM RequestRateLimits WHERE namespace = ? AND key_hash = ?',
@@ -113,19 +113,19 @@ class MySQLRateLimitStore {
     );
   }
 
-  // H?m resetAll d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm resetAll dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async resetAll() {
     await db.query('DELETE FROM RequestRateLimits WHERE namespace = ?', [this.namespace]);
   }
 
-  // H?m prune d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm prune dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async prune() {
     await db.query('DELETE FROM RequestRateLimits WHERE reset_at <= CURRENT_TIMESTAMP(3)');
   }
 
-  // H?m startCleanupTimer d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm startCleanupTimer dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   startCleanupTimer() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (this.cleanupTimer) return;
     this.cleanupTimer = setInterval(() => {
       this.prune().catch(() => {});
@@ -133,15 +133,15 @@ class MySQLRateLimitStore {
     this.cleanupTimer.unref?.();
   }
 
-  // H?m shutdown d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm shutdown dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   shutdown() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (this.cleanupTimer) clearInterval(this.cleanupTimer);
     this.cleanupTimer = null;
   }
 }
 
-// H?m hashKey d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm hashKey dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function hashKey(key) {
   return crypto.createHash('sha256').update(String(key || '')).digest('hex');
 }

@@ -1,4 +1,4 @@
-// M? h?nh curriculum ??nh ngh?a truy c?p, ki?m tra v? bi?n ??i d? li?u c?a m?t th?c th? trong h? th?ng.
+// Mô hình curriculum định nghĩa truy cập, kiểm tra và biến đổi dữ liệu của một thực thể trong hệ thống.
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
@@ -6,7 +6,7 @@ const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 const { normalizeGridLayout } = require('../utils/gridLayout');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 
-// H?m normalizeLesson d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLesson dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLesson(row) {
   return {
     ...row,
@@ -14,7 +14,7 @@ function normalizeLesson(row) {
   };
 }
 
-// H?m normalizeLessonMeta d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLessonMeta dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLessonMeta(row) {
   return {
     ...row,
@@ -22,12 +22,12 @@ function normalizeLessonMeta(row) {
   };
 }
 
-// H?m getCurriculumByGrade d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getCurriculumByGrade dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getCurriculumByGrade(grade) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!isSupportedGrade(grade)) return [];
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const chapters = await db.query(
       `SELECT id, grade, semester, chapter_name, sort_order
@@ -61,11 +61,11 @@ async function getCurriculumByGrade(grade) {
   }
 }
 
-// H?m getAllLessons d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getAllLessons dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getAllLessons(options = {}) {
   const includeTheoryCards = Boolean(options.includeTheoryCards);
   const theorySelect = includeTheoryCards ? 'l.theory_cards,' : '';
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT
@@ -105,9 +105,9 @@ async function getAllLessons(options = {}) {
   }
 }
 
-// H?m getTheoryCounts d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getTheoryCounts dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getTheoryCounts() {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT l.id AS lesson_id, COALESCE(JSON_LENGTH(l.theory_cards), 0) AS theory_count
@@ -132,7 +132,7 @@ async function getTheoryCounts() {
   }
 }
 
-// H?m updateLessonTheoryCards d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateLessonTheoryCards dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function updateLessonTheoryCards(
   lessonId,
   theoryCards,
@@ -147,7 +147,7 @@ async function updateLessonTheoryCards(
     ? normalizeTheoryCards(expectedTheoryCards)
     : null;
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return await transaction(async (connection) => {
       const [rows] = await connection.execute(
@@ -158,12 +158,12 @@ async function updateLessonTheoryCards(
          FOR UPDATE`,
         [lessonId]
       );
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!rows[0]) return null;
       const currentCards = normalizeTheoryCards(
         parseJsonField(rows[0].theory_cards, [])
       );
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (
         hasExpectedRevision
         && JSON.stringify(currentCards) !== JSON.stringify(expectedCards)
@@ -180,9 +180,9 @@ async function updateLessonTheoryCards(
   } catch (error) {
     fallbackOrThrow(error);
     const lesson = findSampleLesson(lessonId);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) return null;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       hasExpectedRevision
       && JSON.stringify(normalizeTheoryCards(lesson.theory_cards))
@@ -195,7 +195,7 @@ async function updateLessonTheoryCards(
   }
 }
 
-// H?m normalizeTheoryCards d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTheoryCards dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryCards(cards) {
   return (Array.isArray(cards) ? cards : [])
     .map((card, index) => ({
@@ -231,13 +231,13 @@ function normalizeTheoryCards(cards) {
     }));
 }
 
-// H?m normalizeTheoryCardType d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTheoryCardType dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryCardType(value) {
   const type = String(value || '').trim();
   return ['observe', 'concept', 'model', 'quick_try', 'remember'].includes(type) ? type : 'concept';
 }
 
-// H?m normalizeTheoryCardLayout d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTheoryCardLayout dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryCardLayout(value) {
   const layout = String(value || '').trim();
   return ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'].includes(layout)
@@ -245,7 +245,7 @@ function normalizeTheoryCardLayout(value) {
     : 'text_first';
 }
 
-// H?m normalizeTheoryInteraction d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTheoryInteraction dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryInteraction(value) {
   const interaction = String(value || '').trim();
   return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction)
@@ -253,9 +253,9 @@ function normalizeTheoryInteraction(value) {
     : 'none';
 }
 
-// H?m normalizeFormulaList d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeFormulaList dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeFormulaList(value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (Array.isArray(value)) {
     return value.map((item) => String(item || '').trim()).filter(Boolean);
   }
@@ -266,7 +266,7 @@ function normalizeFormulaList(value) {
     .filter(Boolean);
 }
 
-// H?m normalizeTheoryImages d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTheoryImages dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryImages(images) {
   return (Array.isArray(images) ? images : [])
     .map((image, index) => ({
@@ -281,9 +281,9 @@ function normalizeTheoryImages(images) {
     .filter((image) => image.url);
 }
 
-// H?m getLessonById d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getLessonById dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getLessonById(id) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT l.*, c.chapter_name, c.grade
@@ -296,10 +296,10 @@ async function getLessonById(id) {
     return rows[0] ? normalizeLesson(rows[0]) : null;
   } catch (error) {
     fallbackOrThrow(error);
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const chapter of sampleData.chapters) {
       const lesson = chapter.lessons.find((item) => Number(item.id) === Number(id));
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (lesson) {
         return {
           ...lesson,
@@ -312,9 +312,9 @@ async function getLessonById(id) {
   }
 }
 
-// H?m getChapterById d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getChapterById dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getChapterById(id) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT id, grade, semester, chapter_name, sort_order
@@ -332,9 +332,9 @@ async function getChapterById(id) {
   }
 }
 
-// H?m getProgress d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getProgress dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getProgress(studentId, grade) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT
@@ -379,9 +379,9 @@ async function getProgress(studentId, grade) {
   }
 }
 
-// H?m getRecommendation d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getRecommendation dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getRecommendation(studentId) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT l.id, l.lesson_name, COUNT(*) AS wrong_count
@@ -400,20 +400,20 @@ async function getRecommendation(studentId) {
     const wrongLogs = sampleData.studentLogs.filter(
       (log) => Number(log.student_id) === Number(studentId) && !log.is_correct
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (wrongLogs.length === 0) return null;
 
     const question = sampleData.questions.find((item) => item.id === wrongLogs[wrongLogs.length - 1].question_id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) return null;
 
     return getLessonById(question.lesson_id);
   }
 }
 
-// H?m getLessonProgressByGrade d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getLessonProgressByGrade dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getLessonProgressByGrade(studentId, grade) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT
@@ -441,10 +441,10 @@ async function getLessonProgressByGrade(studentId, grade) {
   }
 }
 
-// H?m getLessonAttemptHistory d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getLessonAttemptHistory dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
   const safeLimit = Math.min(Math.max(Number(limitPerLesson) || 10, 1), 50);
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return await db.query(
       `SELECT
@@ -494,7 +494,7 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
       })
       .filter((log) => Number(log.grade) === Number(grade) && log.lesson_id)
       .sort((left, right) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (Number(left.lesson_id) !== Number(right.lesson_id)) {
           return Number(left.lesson_id) - Number(right.lesson_id);
         }
@@ -503,7 +503,7 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
       })
       .reduce((result, log) => {
         const lessonCount = result.counts.get(Number(log.lesson_id)) || 0;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (lessonCount < safeLimit) {
           result.rows.push(log);
           result.counts.set(Number(log.lesson_id), lessonCount + 1);
@@ -513,14 +513,14 @@ async function getLessonAttemptHistory(studentId, grade, limitPerLesson = 10) {
   }
 }
 
-// H?m getRecentAttempts d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getRecentAttempts dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getRecentAttempts(studentId, limit = 8) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await queryRecentAttempts(studentId, limit, true);
     return rows;
   } catch (error) {
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       return await queryRecentAttempts(studentId, limit, false);
     } catch (fallbackError) {
@@ -544,7 +544,7 @@ async function getRecentAttempts(studentId, limit = 8) {
   }
 }
 
-// H?m queryRecentAttempts d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm queryRecentAttempts dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function queryRecentAttempts(studentId, limit, includePracticeSessionId) {
   const practiceSessionColumn = includePracticeSessionId
     ? 'sl.practice_session_id,'
@@ -573,7 +573,7 @@ async function queryRecentAttempts(studentId, limit, includePracticeSessionId) {
   );
 }
 
-// H?m normalizeLessonProgress d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeLessonProgress dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLessonProgress(row) {
   const attemptCount = Number(row.attempt_count || 0);
   const correctCount = Number(row.correct_count || 0);
@@ -587,15 +587,15 @@ function normalizeLessonProgress(row) {
   };
 }
 
-// H?m buildFallbackLessonProgress d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildFallbackLessonProgress dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildFallbackLessonProgress(studentId) {
   const result = {};
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const log of sampleData.studentLogs.filter((item) => Number(item.student_id) === Number(studentId))) {
     const question = sampleData.questions.find((item) => Number(item.id) === Number(log.question_id));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) continue;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!result[question.lesson_id]) {
       result[question.lesson_id] = {
         attempt_count: 0,
@@ -606,9 +606,9 @@ function buildFallbackLessonProgress(studentId) {
       };
     }
     result[question.lesson_id].attempt_count += 1;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (log.is_correct) result[question.lesson_id].correct_count += 1;
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else result[question.lesson_id].wrong_count += 1;
     result[question.lesson_id].last_attempt_at = log.created_at;
     result[question.lesson_id].status = result[question.lesson_id].correct_count > 0 ? 'completed' : 'needs_review';
@@ -616,12 +616,12 @@ function buildFallbackLessonProgress(studentId) {
   return result;
 }
 
-// H?m findSampleLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm findSampleLesson dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function findSampleLesson(lessonId) {
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const chapter of sampleData.chapters) {
     const lesson = chapter.lessons.find((item) => Number(item.id) === Number(lessonId));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (lesson) return { ...lesson, grade: chapter.grade };
   }
   return null;
@@ -696,7 +696,7 @@ async function nextChapterSortOrder(grade) {
   return Number(rows[0]?.next || 1);
 }
 
-// H?m nextLessonSortOrder d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm nextLessonSortOrder dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function nextLessonSortOrder(chapterId) {
   const rows = await db.query(
     'SELECT COALESCE(MAX(sort_order), 0) + 1 AS next FROM Lessons WHERE chapter_id = ?',
@@ -705,7 +705,7 @@ async function nextLessonSortOrder(chapterId) {
   return Number(rows[0]?.next || 1);
 }
 
-// H?m createChapter d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createChapter dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function createChapter({ grade, semester, chapterName, sortOrder }) {
   const order = Number(sortOrder) > 0 ? Number(sortOrder) : await nextChapterSortOrder(grade);
   const result = await db.query(
@@ -715,7 +715,7 @@ async function createChapter({ grade, semester, chapterName, sortOrder }) {
   return result.insertId;
 }
 
-// H?m updateChapter d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateChapter dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function updateChapter(chapterId, { semester, chapterName, sortOrder }) {
   await db.query(
     'UPDATE Chapters SET semester = ?, chapter_name = ?, sort_order = ? WHERE id = ?',
@@ -739,7 +739,7 @@ async function countLessonsInChapter(chapterId) {
   return Number(rows[0]?.total || 0);
 }
 
-// H?m deleteChapterIfEmpty d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm deleteChapterIfEmpty dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function deleteChapterIfEmpty(chapterId, { query = db.query } = {}) {
   const result = await query(
     `DELETE c
@@ -751,7 +751,7 @@ async function deleteChapterIfEmpty(chapterId, { query = db.query } = {}) {
   return Number(result.affectedRows || 0) > 0;
 }
 
-// H?m createLesson d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createLesson dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function createLesson({ chapterId, lessonName, sortOrder }) {
   const order = Number(sortOrder) > 0 ? Number(sortOrder) : await nextLessonSortOrder(chapterId);
   const result = await db.query(
@@ -761,7 +761,7 @@ async function createLesson({ chapterId, lessonName, sortOrder }) {
   return result.insertId;
 }
 
-// H?m updateLesson d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateLesson dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function updateLesson(lessonId, { lessonName, sortOrder }) {
   await db.query(
     'UPDATE Lessons SET lesson_name = ?, sort_order = ? WHERE id = ?',
@@ -779,7 +779,7 @@ async function countQuestionsInLesson(lessonId) {
   return Number(rows[0]?.total || 0);
 }
 
-// H?m deleteLessonIfEmpty d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm deleteLessonIfEmpty dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function deleteLessonIfEmpty(
   lessonId,
   { transaction = db.transaction } = {}
@@ -793,7 +793,7 @@ async function deleteLessonIfEmpty(
        FOR UPDATE`,
       [Number(lessonId)]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonRows[0]) {
       return { deleted: false, theoryCards: [] };
     }
@@ -806,7 +806,7 @@ async function deleteLessonIfEmpty(
        FOR SHARE`,
       [Number(lessonId)]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (questionRows.length > 0) {
       return { deleted: false, theoryCards: [] };
     }

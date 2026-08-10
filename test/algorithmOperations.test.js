@@ -1,4 +1,4 @@
-// B? ki?m th? algorithm operations.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử algorithm operations.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -15,7 +15,7 @@ const {
   evaluateAuditGate
 } = require('../scripts/audit_practice_selector');
 
-// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm read dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function read(relativePath) {
   return fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 }
@@ -49,7 +49,7 @@ test('chỉ cảnh báo lệch nhãn sau ít nhất 30 lượt và không tự s
     actual_accuracy: 0.9
   });
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const file of ['scripts/audit_practice_selector.js', 'scripts/report_difficulty_calibration.js']) {
     assert.doesNotMatch(read(file), /\b(?:INSERT|UPDATE|DELETE|ALTER|CREATE|DROP|REPLACE)\b/i);
   }
@@ -75,9 +75,9 @@ test('audit nhận số lượt hợp lệ và seed kiểm tra có thể tái hi
 test('audit phát hiện trùng, sai phạm vi và thống kê tỷ lệ độ khó', () => {
   const candidates = [];
   let id = 1;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let lesson = 1; lesson <= 8; lesson += 1) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const difficulty of ['EASY', 'MEDIUM', 'HARD']) {
       candidates.push({ id: id++, lesson_id: lesson, chapter_id: 1, difficulty });
     }

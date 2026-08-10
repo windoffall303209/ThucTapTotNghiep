@@ -1,15 +1,15 @@
-// Ti?n ?ch answer validation cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích answer validation cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 function answersMatch(question, selectedAnswer) {
   const expected = String(question?.correct_answer || '').trim();
   const actual = String(selectedAnswer || '').trim();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (question?.question_type === 'FILL_IN_THE_BLANK') {
     return normalizeFreeTextAnswer(actual) === normalizeFreeTextAnswer(expected);
   }
   return actual === expected;
 }
 
-// H?m normalizeFreeTextAnswer d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeFreeTextAnswer dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeFreeTextAnswer(value) {
   return String(value || '')
     .trim()
@@ -18,18 +18,18 @@ function normalizeFreeTextAnswer(value) {
     .replace(/,/g, '.');
 }
 
-// H?m normalizeSubmittedAnswer d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeSubmittedAnswer dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSubmittedAnswer(value) {
   const answer = String(value || '').trim();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!answer || answer.length > 50) return null;
   return answer;
 }
 
-// H?m normalizeTimeSpentSeconds d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeTimeSpentSeconds dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTimeSpentSeconds(value) {
   const seconds = Number(value);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isFinite(seconds) || seconds < 0) return null;
   return Math.min(Math.round(seconds), 24 * 60 * 60);
 }

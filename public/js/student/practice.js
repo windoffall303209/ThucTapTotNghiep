@@ -1,4 +1,4 @@
-// M? JavaScript ph?a tr?nh duy?t practice ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt practice điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   const {
     alert: showAppAlert,
@@ -10,9 +10,9 @@
     renderQuestionContent
   } = window.AppUI;
 
-  // H?m refreshIcons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm refreshIcons dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function refreshIcons() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (window.lucide) window.lucide.createIcons();
   }
 
@@ -33,14 +33,14 @@
     finishing: false
   };
 
-  // H?m initPractice d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initPractice dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initPractice() {
     const dataNode = document.getElementById('practice-data');
     const app = document.getElementById('practiceApp');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!dataNode || !app) return;
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       state.questions = JSON.parse(dataNode.textContent || '[]');
     } catch (error) {
@@ -48,15 +48,15 @@
     }
 
     const contextNode = document.getElementById('practice-context');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (contextNode) {
-      // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       try {
         const context = JSON.parse(contextNode.textContent || '{}');
         state.practiceSessionId = context.practiceSessionId || null;
         state.results = context.answeredResults || {};
         state.currentIndex = firstUnansweredIndex();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (
           context.timing
           && Number.isFinite(Number(context.timing.deadlineAtMs))
@@ -87,7 +87,7 @@
       button.addEventListener('click', () => {
         const form = document.getElementById('aiHelpForm');
         const input = form?.querySelector('[name="message"]');
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!form || !input) return;
         input.value = button.dataset.chatQuick || '';
         form.requestSubmit();
@@ -99,14 +99,14 @@
   // Nhắc học sinh xác nhận trước khi rời khỏi bài còn dang dở, tránh bấm nhầm
   // link "Về lý thuyết" hay nút back rồi mất mạch làm bài.
   function initLeaveGuard() {
-    // H?m hasUnfinishedWork d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm hasUnfinishedWork dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const hasUnfinishedWork = () =>
       state.questions.length > 0
       && state.questions.some((question) => !state.results[question.id]);
 
     document.querySelectorAll('.practice-topline .back-link').forEach((link) => {
       link.addEventListener('click', async (event) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!hasUnfinishedWork()) return;
         event.preventDefault();
         const answeredCount = Object.keys(state.results).length;
@@ -118,28 +118,28 @@
           confirmLabel: 'Rời khỏi bài',
           cancelLabel: 'Ở lại làm tiếp'
         });
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (confirmed) window.location.href = link.href;
       });
     });
   }
 
-  // H?m initCountdown d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initCountdown dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initCountdown() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!state.deadlineAtMs || !document.getElementById('practiceTimer')) return;
     updateCountdown();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!state.timeExpired) {
       state.countdownId = window.setInterval(updateCountdown, 250);
     }
   }
 
-  // H?m updateCountdown d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm updateCountdown dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function updateCountdown() {
     const timer = document.getElementById('practiceTimer');
     const value = timer?.querySelector('[data-timer-value]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!timer || !value || !state.deadlineAtMs || state.timeExpired) return;
 
     const remainingSeconds = Math.max(0, Math.ceil((state.deadlineAtMs - Date.now()) / 1000));
@@ -148,7 +148,7 @@
     timer.classList.toggle('is-urgent', remainingSeconds <= 60);
     timer.setAttribute('aria-label', `Thời gian còn lại ${formatCountdown(remainingSeconds)}`);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (remainingSeconds <= 0) {
       clearCountdown();
       state.timeExpired = true;
@@ -156,7 +156,7 @@
     }
   }
 
-  // H?m formatCountdown d?ng ?? chuy?n ??i d? li?u sang ??nh d?ng ph? h?p; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm formatCountdown dùng để chuyển đổi dữ liệu sang định dạng phù hợp; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function formatCountdown(totalSeconds) {
     const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
     const hours = Math.floor(safeSeconds / 3600);
@@ -169,14 +169,14 @@
       : `${minuteText}:${secondText}`;
   }
 
-  // H?m clearCountdown d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm clearCountdown dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function clearCountdown() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (state.countdownId) window.clearInterval(state.countdownId);
     state.countdownId = null;
   }
 
-  // H?m disablePracticeControls d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm disablePracticeControls dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function disablePracticeControls() {
     document.querySelectorAll(
       '.practice-shell button, .practice-shell input, .practice-shell textarea, .practice-shell select'
@@ -185,12 +185,12 @@
     });
   }
 
-  // H?m isAnswerPending d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm isAnswerPending dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function isAnswerPending() {
     return state.pendingQuestionId !== null;
   }
 
-  // H?m syncPracticeControlState d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm syncPracticeControlState dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function syncPracticeControlState() {
     const app = document.getElementById('practiceApp');
     const question = state.questions[state.currentIndex];
@@ -200,7 +200,7 @@
     const nextButton = document.getElementById('nextQuestionButton');
     const finishButton = document.getElementById('finishPracticeButton');
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (app) {
       app.setAttribute('aria-busy', isAnswerPending() ? 'true' : 'false');
       app.querySelectorAll('.answer-choice, [data-free-answer-input]').forEach((control) => {
@@ -210,33 +210,33 @@
     document.querySelectorAll('[data-progress-dot]').forEach((dot) => {
       dot.disabled = locked;
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (submitButton) submitButton.disabled = locked || hasSavedResult;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (nextButton) nextButton.disabled = locked;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (finishButton) finishButton.disabled = locked;
   }
 
-  // H?m clearAnswerPending d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm clearAnswerPending dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function clearAnswerPending(submitButton) {
     state.pendingQuestionId = null;
     restoreButton(submitButton);
     syncPracticeControlState();
   }
 
-  // H?m initQuestionProgressBar d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionProgressBar dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionProgressBar() {
     const bar = document.getElementById('questionProgressBar');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!bar) return;
 
     bar.querySelectorAll('[data-progress-dot]').forEach((dot) => {
       dot.addEventListener('click', () => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (isAnswerPending() || state.finishing || state.timeExpired) return;
         const index = Number(dot.dataset.index);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!Number.isInteger(index) || index === state.currentIndex) return;
         state.currentIndex = index;
         renderCurrentQuestion();
@@ -246,10 +246,10 @@
     updateQuestionProgressBar();
   }
 
-  // H?m updateQuestionProgressBar d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm updateQuestionProgressBar dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function updateQuestionProgressBar() {
     const bar = document.getElementById('questionProgressBar');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!bar) return;
 
     bar.querySelectorAll('[data-progress-dot]').forEach((dot) => {
@@ -269,7 +269,7 @@
     });
   }
 
-  // H?m renderCurrentQuestion d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm renderCurrentQuestion dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function renderCurrentQuestion() {
     const app = document.getElementById('practiceApp');
     const counter = document.getElementById('questionCounter');
@@ -279,7 +279,7 @@
     const finishButton = document.getElementById('finishPracticeButton');
     const question = state.questions[state.currentIndex];
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!app || !question) return;
 
     const savedResult = state.results[question.id] || null;
@@ -287,19 +287,19 @@
     state.selectedAnswer = savedResult ? savedResult.selectedAnswer : null;
     state.answered = Boolean(savedResult);
     state.startedAt = Date.now();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (feedback) feedback.hidden = true;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (nextButton) nextButton.hidden = state.currentIndex >= state.questions.length - 1;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (finishButton) finishButton.hidden = !hasAnyAnswer();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (submitButton) {
       submitButton.disabled = Boolean(savedResult);
       submitButton.hidden = Boolean(savedResult);
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (counter) {
       counter.textContent = `Câu ${state.currentIndex + 1}/${state.questions.length}`;
     }
@@ -315,7 +315,7 @@
 
     app.querySelectorAll('.answer-choice').forEach((button) => {
       button.addEventListener('click', () => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (state.answered || isAnswerPending()) return;
         state.selectedAnswer = button.dataset.answer;
         app.querySelectorAll('.answer-choice').forEach((item) => item.classList.remove('selected'));
@@ -329,7 +329,7 @@
       saveAnswerDraft(question.id, state.selectedAnswer);
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (savedResult) {
       renderAnsweredState(app, question, savedResult);
     } else {
@@ -342,7 +342,7 @@
     refreshIcons();
   }
 
-  // H?m hasAnyAnswer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm hasAnyAnswer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function hasAnyAnswer() {
     return Object.keys(state.results).length > 0;
   }
@@ -363,20 +363,20 @@
     app.querySelectorAll('.answer-choice').forEach((button) => {
       button.disabled = true;
       const answer = button.dataset.answer;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (savedResult.correctAnswer && answer === savedResult.correctAnswer) {
         button.classList.add('correct');
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (answer === savedResult.selectedAnswer && !savedResult.isCorrect) {
         button.classList.add('wrong');
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (answer === savedResult.selectedAnswer) button.classList.add('selected');
     });
 
     const freeInput = app.querySelector('[data-free-answer-input]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (freeInput) {
       freeInput.value = savedResult.selectedAnswer || '';
       freeInput.disabled = true;
@@ -398,16 +398,16 @@
     );
   }
 
-  // H?m draftStorageKey d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm draftStorageKey dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function draftStorageKey(questionId) {
     return `practice-draft:${state.practiceSessionId || 'no-session'}:${questionId}`;
   }
 
-  // H?m saveAnswerDraft d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm saveAnswerDraft dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function saveAnswerDraft(questionId, value) {
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (value === null || value === undefined || value === '') {
         window.sessionStorage.removeItem(draftStorageKey(questionId));
         return;
@@ -418,9 +418,9 @@
     }
   }
 
-  // H?m readAnswerDraft d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm readAnswerDraft dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function readAnswerDraft(questionId) {
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       return window.sessionStorage.getItem(draftStorageKey(questionId));
     } catch (error) {
@@ -428,9 +428,9 @@
     }
   }
 
-  // H?m clearAnswerDraft d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm clearAnswerDraft dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function clearAnswerDraft(questionId) {
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       window.sessionStorage.removeItem(draftStorageKey(questionId));
     } catch (error) {
@@ -438,14 +438,14 @@
     }
   }
 
-  // H?m restoreAnswerDraft d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm restoreAnswerDraft dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function restoreAnswerDraft(app, question) {
     const draft = readAnswerDraft(question.id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!draft) return;
 
     const freeInput = app.querySelector('[data-free-answer-input]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (freeInput) {
       freeInput.value = draft;
       state.selectedAnswer = draft;
@@ -454,13 +454,13 @@
 
     const choiceButton = Array.from(app.querySelectorAll('.answer-choice'))
       .find((button) => button.dataset.answer === draft);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choiceButton) return;
     choiceButton.classList.add('selected');
     state.selectedAnswer = draft;
   }
 
-  // H?m submitAnswer d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm submitAnswer dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function submitAnswer() {
     // Chụp câu, vị trí và đáp án ngay lúc gửi. Trong lúc chờ chấm, điều hướng câu hỏi
     // được khóa để kết quả không thể áp nhầm lên một lựa chọn vừa thay đổi.
@@ -471,15 +471,15 @@
     const nextButton = document.getElementById('nextQuestionButton');
     const finishButton = document.getElementById('finishPracticeButton');
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question || !feedback) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isAnswerPending() || state.finishing || state.timeExpired) return;
 
     const freeAnswerInput = document.querySelector('[data-free-answer-input]');
     const submittedAnswer = freeAnswerInput ? freeAnswerInput.value.trim() : state.selectedAnswer;
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!submittedAnswer) {
       showFeedback('warning', 'Vui lòng chọn một đáp án trước khi nộp.');
       return;
@@ -490,7 +490,7 @@
     syncPracticeControlState();
 
     let result;
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const response = await fetch(`/student/questions/${question.id}/answer`, {
         method: 'POST',
@@ -504,19 +504,19 @@
       });
       result = await response.json().catch(() => null);
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (result && result.code === 'PRACTICE_TIME_EXPIRED') {
         clearAnswerPending(submitButton);
         await showTimeExpiredDialog(result.redirectUrl);
         return;
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (isSessionExpired(response, result)) {
         clearAnswerPending(submitButton);
         showSessionExpiredFeedback(result && result.message);
         return;
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!result) throw new Error('Phản hồi không phải JSON');
     } catch (error) {
       clearAnswerPending(submitButton);
@@ -529,7 +529,7 @@
 
     clearAnswerPending(submitButton);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!result.ok) {
       showFeedback('danger', result.message || 'Không thể nộp đáp án.');
       syncPracticeControlState();
@@ -549,7 +549,7 @@
     clearAnswerDraft(question.id);
     updateQuestionProgressBar();
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (state.currentIndex !== submittedIndex) {
       // Học sinh đã sang câu khác. Không tô màu, không hiện lời giải, không ẩn
       // nút nộp và không đặt state.answered của câu đang xem.
@@ -561,13 +561,13 @@
     markAnswerState(result, submittedAnswer);
     showResultFeedback(result);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (submitButton) submitButton.hidden = true;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (nextButton && state.currentIndex < state.questions.length - 1) {
       nextButton.hidden = false;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (finishButton) {
       finishButton.hidden = false;
     }
@@ -579,10 +579,10 @@
   // Khi mọi câu trong bài đã có kết quả, hiện bảng tổng kết thay cho việc để
   // học sinh đứng lại ở câu cuối mà không biết làm gì tiếp.
   function maybeShowSummary() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (state.questions.length === 0) return;
     const allAnswered = state.questions.every((question) => state.results[question.id]);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!allAnswered) return;
     renderSummary();
   }
@@ -590,27 +590,27 @@
   // Ba sao theo tỉ lệ đúng: mốc quen thuộc với trẻ em từ các trò chơi. Ngưỡng
   // rộng rãi có chủ đích — mục tiêu là động viên, không phải xếp hạng.
   function tinhSoSao(correctCount, total) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (total === 0) return 0;
     const percent = correctCount / total;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (percent >= 0.9) return 3;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (percent >= 0.65) return 2;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (percent >= 0.4) return 1;
     return 0;
   }
 
-  // H?m loiNhanTongKet d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm loiNhanTongKet dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function loiNhanTongKet(soSao, correctCount, total) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (correctCount === total && total > 0) return 'Tuyệt vời! Em làm đúng hết cả bài!';
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (soSao === 3) return 'Giỏi quá! Em sắp đúng hết rồi!';
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (soSao === 2) return 'Em làm tốt lắm! Xem lại vài câu là giỏi hẳn luôn!';
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (soSao === 1) return 'Em đã cố gắng nhiều rồi! Xem lại các câu sai để lần sau cao điểm hơn nhé.';
     return 'Không sao đâu! Xem lại lời giải rồi thử lại, em sẽ làm được!';
   }
@@ -618,9 +618,9 @@
   // Mưa giấy màu thuần CSS khi đạt 2 sao trở lên. Tôn trọng cài đặt giảm chuyển
   // động của thiết bị: không rơi giấy với người dùng bật reduced-motion.
   function confettiHtml(soSao) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (soSao < 2) return '';
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return '';
     const mau = ['#2563eb', '#f97316', '#16a34a', '#eab308', '#ec4899'];
     const manh = Array.from({ length: 18 }, (_, i) => {
@@ -632,10 +632,10 @@
     return `<div class="confetti" aria-hidden="true">${manh}</div>`;
   }
 
-  // H?m renderSummary d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm renderSummary dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function renderSummary() {
     const panel = document.getElementById('practiceSummary');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!panel) return;
 
     const total = state.questions.length;
@@ -687,7 +687,7 @@
     panel.querySelectorAll('[data-summary-jump]').forEach((button) => {
       button.addEventListener('click', () => {
         const index = Number(button.dataset.summaryJump);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!Number.isInteger(index)) return;
         state.currentIndex = index;
         renderCurrentQuestion();
@@ -698,18 +698,18 @@
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // H?m setButtonBusy d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm setButtonBusy dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function setButtonBusy(button, busyLabel) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!button || button.dataset.originalHtml) return;
     button.dataset.originalHtml = button.innerHTML;
     button.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>${escapeHtml(busyLabel)}`;
     button.setAttribute('aria-busy', 'true');
   }
 
-  // H?m restoreButton d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm restoreButton dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function restoreButton(button) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!button || !button.dataset.originalHtml) return;
     button.innerHTML = button.dataset.originalHtml;
     delete button.dataset.originalHtml;
@@ -717,10 +717,10 @@
     refreshIcons();
   }
 
-  // H?m showRetryFeedback d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm showRetryFeedback dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function showRetryFeedback(message, retryHandler) {
     const feedback = document.getElementById('answerFeedback');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!feedback) return;
     feedback.className = 'answer-feedback feedback-danger';
     feedback.hidden = false;
@@ -738,7 +738,7 @@
   // vô ích. Phải chỉ đúng đường cho học sinh là đăng nhập lại.
   function showSessionExpiredFeedback(message) {
     const feedback = document.getElementById('answerFeedback');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!feedback) return;
     feedback.className = 'answer-feedback feedback-warning';
     feedback.hidden = false;
@@ -749,20 +749,20 @@
     `;
   }
 
-  // H?m isSessionExpired d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm isSessionExpired dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function isSessionExpired(response, result) {
     return response.status === 401 || (result && result.code === 'SESSION_EXPIRED');
   }
 
-  // H?m markAnswerState d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm markAnswerState dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function markAnswerState(result, submittedAnswer) {
     document.querySelectorAll('.answer-choice').forEach((button) => {
       const answer = button.dataset.answer;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (answer === result.correctAnswer) {
         button.classList.add('correct');
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (answer === submittedAnswer && !result.isCorrect) {
         button.classList.add('wrong');
       }
@@ -792,12 +792,12 @@
     '🔍 Chưa đúng rồi. Xem lời giải bên dưới, em sẽ hiểu ngay!'
   ];
 
-  // H?m cauNgauNhien d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm cauNgauNhien dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function cauNgauNhien(danhSach) {
     return danhSach[Math.floor(Math.random() * danhSach.length)];
   }
 
-  // H?m showResultFeedback d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm showResultFeedback dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function showResultFeedback(result) {
     const title = result.isCorrect ? cauNgauNhien(LOI_KHEN) : cauNgauNhien(LOI_DONG_VIEN);
     const tone = result.isCorrect ? 'success' : 'danger';
@@ -821,10 +821,10 @@
     `, true);
   }
 
-  // H?m showFeedback d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm showFeedback dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function showFeedback(type, message, isHtml = false) {
     const feedback = document.getElementById('answerFeedback');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!feedback) return;
     feedback.className = `answer-feedback feedback-${type}`;
     feedback.hidden = false;
@@ -832,25 +832,25 @@
     renderMath(feedback);
   }
 
-  // H?m nextQuestion d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm nextQuestion dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function nextQuestion() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isAnswerPending() || state.finishing || state.timeExpired) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (state.currentIndex < state.questions.length - 1) {
       state.currentIndex += 1;
       renderCurrentQuestion();
     }
   }
 
-  // H?m finishPractice d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm finishPractice dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function finishPractice(options = {}) {
     const timedOut = Boolean(options.timedOut);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (state.finishing) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isAnswerPending() && !timedOut) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!state.practiceSessionId) {
       window.location.href = '/student/history';
       return;
@@ -861,7 +861,7 @@
     // đường làm tiếp. Vì nút này nằm ngay cạnh "Câu tiếp theo" nên phải hỏi lại
     // khi bài còn dở.
     const remaining = state.questions.filter((question) => !state.results[question.id]).length;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!timedOut && remaining > 0) {
       const confirmed = await showAppConfirm({
         title: 'Kết thúc bài làm?',
@@ -870,18 +870,18 @@
         confirmLabel: 'Kết thúc bài',
         cancelLabel: 'Tiếp tục làm'
       });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!confirmed) return;
     }
 
     state.finishing = true;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (timedOut) disablePracticeControls();
     const finishButton = document.getElementById('finishPracticeButton');
     setButtonBusy(finishButton, 'Đang lưu kết quả...');
     syncPracticeControlState();
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
         method: 'POST',
@@ -889,7 +889,7 @@
       });
       const result = await response.json().catch(() => null);
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (isSessionExpired(response, result)) {
         state.finishing = false;
         restoreButton(finishButton);
@@ -897,19 +897,19 @@
         showSessionExpiredFeedback(result && result.message);
         return;
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!response.ok || !result || result.ok !== true) {
         throw new Error(result?.message || 'Không thể kết thúc bài làm');
       }
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (timedOut) {
         await showTimeExpiredDialog(result.redirectUrl);
         return;
       }
       window.location.href = result.redirectUrl || '/student/history';
     } catch (error) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (timedOut) {
         await showTimeExpiredDialog(`/student/sessions/${state.practiceSessionId}`);
         return;
@@ -924,7 +924,7 @@
     }
   }
 
-  // H?m showTimeExpiredDialog d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm showTimeExpiredDialog dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function showTimeExpiredDialog(redirectUrl) {
     clearCountdown();
     state.timeExpired = true;
@@ -938,25 +938,25 @@
     window.location.href = redirectUrl || `/student/sessions/${state.practiceSessionId}`;
   }
 
-  // H?m requestExerciseHelp d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm requestExerciseHelp dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function requestExerciseHelp(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const input = form.elements.message;
     const button = form.querySelector('button[type="submit"]');
     const question = state.questions[state.currentIndex];
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) return;
 
     const message = input.value.trim();
     appendChat('student', message || 'Em muốn được gợi ý thêm.');
     input.value = '';
     input.disabled = true;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (button) button.disabled = true;
     const thinkingNode = appendChat('ai', 'Mình đang xem câu này với em...', { loading: true });
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const response = await fetch('/api/ai/exercise-help', {
         method: 'POST',
@@ -978,16 +978,16 @@
       updateChat(thinkingNode, 'Mình chưa kết nối được phần gợi ý lúc này. Em thử gửi lại sau nhé.');
     } finally {
       input.disabled = false;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (button) button.disabled = false;
       input.focus();
     }
   }
 
-  // H?m appendChat d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm appendChat dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function appendChat(role, text, options = {}) {
     const box = document.getElementById('chatMessages');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!box) return null;
     const node = document.createElement('div');
     node.className = `chat-message ${role === 'student' ? 'student' : 'ai'}${options.loading ? ' loading' : ''}`;
@@ -997,20 +997,20 @@
     return node;
   }
 
-  // H?m updateChat d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm updateChat dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function updateChat(node, text) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!node) return;
     node.classList.remove('loading');
     renderChatNode(node, 'ai', text);
     const box = document.getElementById('chatMessages');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (box) box.scrollTop = box.scrollHeight;
   }
 
-  // H?m renderChatNode d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm renderChatNode dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function renderChatNode(node, role, text) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (role === 'ai') {
       node.innerHTML = renderMarkdownText(text);
     } else {
@@ -1019,7 +1019,7 @@
     renderMath(node);
   }
 
-  // H?m renderMarkdownText d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm renderMarkdownText dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function renderMarkdownText(value) {
     let html = escapeHtml(value || '');
     html = html.replace(/`([^`]+)`/g, '<code>$1</code>');

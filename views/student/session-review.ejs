@@ -1,4 +1,4 @@
-<%# M?u giao di?n session review k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện session review kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <%
   const answerByQuestion = new Map((answers || []).map((answer) => [Number(answer.question_id), answer]));
   const chatsByQuestion = new Map();
@@ -21,7 +21,7 @@
     <p><%= session.status === 'COMPLETED' ? 'Lần làm bài đã kết thúc.' : 'Lần làm bài này đang làm dở.' %> Dùng trang này để xem câu đúng, câu sai và lời giải.</p>
   </div>
   <div class="row-actions">
-    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% if (session.status === 'IN_PROGRESS') { %>
       <a class="btn btn-secondary" href="/student/sessions/<%= session.id %>/practice">
         <i data-lucide="play-circle" class="lucide-icon"></i>
@@ -35,7 +35,7 @@
   </div>
 </section>
 
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
 <% if (session.completion_reason === 'CONTENT_UNAVAILABLE') { %>
   <section class="flash flash-warning" role="status">
     Nội dung của một số câu trong phiên cũ không còn trong ngân hàng nên không thể phục hồi trung thực.
@@ -80,7 +80,7 @@
 </section>
 
 <section id="reviewQuestionList" class="review-list">
-  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% if (wrongCount > 0) { %>
     <%# Bài 15-20 câu thì trang xem lại rất dài; nút lọc giúp em nhảy thẳng tới
         các câu cần sửa thay vì cuộn qua cả các câu đã đúng. %>
@@ -95,13 +95,13 @@
       </button>
     </div>
   <% } %>
-  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% questions.forEach((question, index) => { %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const answer = answerByQuestion.get(Number(question.id)); %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const questionChats = chatsByQuestion.get(Number(question.id)) || []; %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const laCauSai = Boolean(answer) && Number(answer.is_correct) !== 1; %>
     <article class="review-item" data-review-result="<%= laCauSai ? 'wrong' : 'ok' %>">
       <div class="section-title">
@@ -121,9 +121,9 @@
       <div class="review-meta">
         <span>Em chọn: <strong><%= answer?.selected_answer || 'Chưa làm' %></strong></span>
         <span>Đáp án đúng: <strong><%= question.correct_answer %></strong></span>
-        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
         <% if (answer) { %>
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (Number(answer.is_correct) === 1) { %>
             <span class="status-pill status-completed">Đúng</span>
           <% } else { %>
@@ -131,18 +131,18 @@
           <% } %>
         <% } %>
       </div>
-      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (question.explanation?.text || (question.explanation?.images || []).length > 0) { %>
         <div class="review-explanation math-content">
           <strong>Lời giải:</strong>
           <%- contentRenderer.renderExplanationContent(question.explanation) %>
         </div>
       <% } %>
-      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+      <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (questionChats.length > 0) { %>
         <div class="review-chat">
           <strong>Trao đổi gợi ý thêm trong câu này</strong>
-          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% questionChats.forEach((chat) => { %>
             <div class="chat-message <%= chat.role === 'student' ? 'student' : 'ai' %>"><%= chat.message %></div>
           <% }) %>

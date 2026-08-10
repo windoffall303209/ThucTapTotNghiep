@@ -1,4 +1,4 @@
-// Ti?n ?ch grid layout cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích grid layout cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 /**
  * Chuẩn hóa bố cục lưới (canvas) dùng chung cho câu hỏi và thẻ lý thuyết.
  *
@@ -25,9 +25,9 @@ const GRID_CELL_TYPES = [
 // Nhận cả chuỗi JSON (giá trị hidden input từ form) lẫn object đã parse.
 function parseGridLayout(value) {
   let grid = value;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value === 'string') {
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       grid = value ? JSON.parse(value) : {};
     } catch (error) {
@@ -37,7 +37,7 @@ function parseGridLayout(value) {
   return normalizeGridLayout(grid);
 }
 
-// H?m normalizeGridLayout d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeGridLayout dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeGridLayout(value) {
   const grid = value && typeof value === 'object' ? value : {};
   const rows = clampGridSize(grid.rows || 5);
@@ -53,9 +53,9 @@ function normalizeGridLayout(value) {
   };
 }
 
-// H?m normalizeGridCell d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeGridCell dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeGridCell(cell, index, rows, columns) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!cell || typeof cell !== 'object') return null;
   const row = clampGridSpan(cell.row || 1, rows);
   const col = clampGridSpan(cell.col || 1, columns);
@@ -76,18 +76,18 @@ function normalizeGridCell(cell, index, rows, columns) {
   };
 }
 
-// H?m clampGridSize d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm clampGridSize dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function clampGridSize(value) {
   const number = Number(value);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isFinite(number)) return 5;
   return Math.min(Math.max(Math.round(number), 1), 10);
 }
 
-// H?m clampGridSpan d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm clampGridSpan dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function clampGridSpan(value, max) {
   const number = Number(value);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isFinite(number)) return 1;
   return Math.min(Math.max(Math.round(number), 1), Math.max(max, 1));
 }

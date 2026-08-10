@@ -1,4 +1,4 @@
-// M? JavaScript ph?a tr?nh duy?t exams ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt exams điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   // Form tạo đề gửi đi bằng POST rồi tải lại cả trang. Trong lúc chờ, học sinh
   // không thấy phản hồi nào nên hay bấm thêm lần nữa và tạo trùng đề.
@@ -21,11 +21,11 @@
         // Chỉ khóa các nút KHÁC nút vừa bấm. Nút vừa bấm luôn được giữ nguyên
         // trạng thái để giá trị của nó chắc chắn đi cùng request.
         form.querySelectorAll('button[type="submit"]').forEach((button) => {
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (button !== trigger) button.disabled = true;
         });
   
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (trigger) {
           trigger.setAttribute('aria-busy', 'true');
           setButtonBusy(trigger, form.dataset.busyLabel || 'Đang xử lý...');
@@ -34,7 +34,7 @@
     });
   }
 
-  // H?m setButtonBusy d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm setButtonBusy dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function setButtonBusy(button, busyLabel) {
     button.dataset.originalHtml = button.innerHTML;
     button.textContent = busyLabel;

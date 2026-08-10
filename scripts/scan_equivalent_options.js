@@ -1,4 +1,4 @@
-// Script scan equivalent options h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script scan equivalent options hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Tìm câu hỏi có hai phương án cùng đúng, quét trên toàn bộ ngân hàng câu hỏi.
  *
@@ -39,7 +39,7 @@ const KET_QUA = path.join(ROOT, 'tmp', 'quet_phuong_an_tuong_duong.json');
 // không còn là một, dù chuỗi có bao nhau.
 const TU_DOI_NGHIA = /\b(không|chưa|chẳng|hơn|kém|bằng|ít|nhiều|lớn|bé|nhỏ|cao|thấp|dài|ngắn|nặng|nhẹ|sai|đúng|gấp|thêm|bớt|còn|tất|cả)\b/u;
 
-// H?m chuanHoa d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm chuanHoa dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function chuanHoa(s) {
   return String(s || '')
     .trim()
@@ -52,10 +52,10 @@ function chuanHoa(s) {
 /** Tách "90 quyển vở" thành phần số "90" và phần chữ "quyển vở". */
 function tachSoVaChu(s) {
   const m = s.match(/^([0-9][0-9 .,]*?)\s*([^0-9]*)$/u);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!m) return null;
   const so = m[1].replace(/[ .,]/g, '');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!/^[0-9]+$/.test(so)) return null;
   const chu = m[2].trim();
   // Phần chữ phải là chữ thuần, không chứa dấu phép tính hay ký hiệu.
@@ -63,45 +63,45 @@ function tachSoVaChu(s) {
   return { so, chu };
 }
 
-// H?m soTrung d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm soTrung dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function soTrung(a, b) {
   const ta = tachSoVaChu(a);
   const tb = tachSoVaChu(b);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!ta || !tb) return false;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (ta.so !== tb.so) return false;
   // Một bên có đơn vị, bên kia không. Hai bên cùng có đơn vị mà khác nhau thì là
   // hai đại lượng khác nhau, ví dụ "12 cm" và "12 dm".
   return (ta.chu === '' && tb.chu !== '') || (tb.chu === '' && ta.chu !== '');
 }
 
-// H?m cauBao d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm cauBao dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function cauBao(a, b) {
   const [ngan, dai] = a.length <= b.length ? [a, b] : [b, a];
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (ngan.length < 5) return false;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!dai.endsWith(ngan)) return false;
   const doiRa = dai.slice(0, dai.length - ngan.length).trim();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!doiRa) return false;
   // Phải cắt đúng ranh giới từ, tránh "ba" khớp đuôi của "cái ba".
   if (!/\s$/.test(dai.slice(0, dai.length - ngan.length))) return false;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (TU_DOI_NGHIA.test(doiRa)) return false;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (/[0-9]/.test(doiRa)) return false;
   return true;
 }
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -109,7 +109,7 @@ function parseJson(value, fallback) {
   }
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const rows = await db.query(
     `SELECT q.id, ch.grade, l.lesson_name, q.content, q.choices, q.correct_answer
@@ -121,22 +121,22 @@ async function main() {
 
   const ketQua = [];
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const row of rows) {
     const choices = parseJson(row.choices, []) || [];
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Array.isArray(choices) || choices.length < 2) continue;
     const content = parseJson(row.content, {}) || {};
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (let i = 0; i < choices.length; i += 1) {
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (let j = i + 1; j < choices.length; j += 1) {
         const a = chuanHoa(choices[i].text);
         const b = chuanHoa(choices[j].text);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!a || !b || a === b) {
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (a && b && a === b) {
             ketQua.push({
               id: row.id, grade: row.grade, luat: 'TRUNG_HET', bai_hoc: row.lesson_name,
@@ -149,11 +149,11 @@ async function main() {
         }
 
         let luat = null;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (soTrung(a, b)) luat = 'SO_TRUNG';
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         else if (cauBao(a, b)) luat = 'CAU_BAO';
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!luat) continue;
 
         ketQua.push({
@@ -169,10 +169,10 @@ async function main() {
 
   const theoLuat = {};
   const theoLop = {};
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const k of ketQua) {
     theoLuat[k.luat] = (theoLuat[k.luat] || 0) + 1;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (k.dinh_dap_an) theoLop[k.grade] = (theoLop[k.grade] || 0) + 1;
   }
 
@@ -188,7 +188,7 @@ async function main() {
     console.log(`\n  lớp ${k.grade} id ${k.id} [${k.luat}] ${k.de_bai.slice(0, 62)}`);
     console.log(`    ${k.cap[0]}   ||   ${k.cap[1]}     -> chấm ${k.dap_an}`);
   });
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (nghiemTrong.length > 30) console.log(`\n  ... còn ${nghiemTrong.length - 30} cặp nữa, xem trong tệp báo cáo.`);
 
   fs.writeFileSync(KET_QUA, JSON.stringify(ketQua, null, 1), 'utf8');

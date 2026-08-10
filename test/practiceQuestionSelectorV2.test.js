@@ -1,4 +1,4 @@
-// B? ki?m th? practice question selector v2.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử practice question selector v2.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
@@ -11,7 +11,7 @@ const {
   selectQuestionsV2
 } = require('../utils/practiceQuestionSelectorV2');
 
-// H?m buildChapterCandidates d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildChapterCandidates dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildChapterCandidates(lessonCounts, questionsPerLesson = 1) {
   let id = 1;
   return lessonCounts.flatMap((lessonCount, chapterIndex) => (
@@ -28,17 +28,17 @@ function buildChapterCandidates(lessonCounts, questionsPerLesson = 1) {
   ));
 }
 
-// H?m buildCandidates d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildCandidates dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildCandidates({ chapters = 4, lessonsPerChapter = 8, questionsPerDifficulty = 4 } = {}) {
   let id = 1;
   const items = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let chapter = 1; chapter <= chapters; chapter += 1) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (let lesson = 1; lesson <= lessonsPerChapter; lesson += 1) {
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (const difficulty of ['EASY', 'MEDIUM', 'HARD']) {
-        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
         for (let index = 0; index < questionsPerDifficulty; index += 1) {
           items.push({
             id: id++,
@@ -53,7 +53,7 @@ function buildCandidates({ chapters = 4, lessonsPerChapter = 8, questionsPerDiff
   return items;
 }
 
-// H?m countBy d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm countBy dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function countBy(items, field) {
   return items.reduce((result, item) => {
     result[item[field]] = (result[item[field]] || 0) + 1;
@@ -164,7 +164,7 @@ test('mỗi nhóm bài liên tiếp đóng góp đúng một câu vào đề', (
     seed: '0202020202020202'
   });
   const selectedLessons = result.questions.map((question) => question.lesson_id);
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let groupIndex = 0; groupIndex < 6; groupIndex += 1) {
     const firstLesson = 101 + groupIndex * 3;
     const lessonGroup = [firstLesson, firstLesson + 1, firstLesson + 2];
@@ -223,9 +223,9 @@ test('thiếu câu khó thì ưu tiên thay bằng câu trung bình trước câ
 test('luân phiên câu khó sang chương có lịch sử nhận câu khó ít hơn', () => {
   const candidates = [];
   let id = 1;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let chapterId = 1; chapterId <= 4; chapterId += 1) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const difficulty of ['EASY', 'MEDIUM', 'HARD']) {
       candidates.push({
         id: id++,
@@ -273,7 +273,7 @@ test('cùng seed sinh cùng đề và seed khác tạo biến thể khác', () =
 });
 
 test('đề 15 và 20 câu đúng quota độ khó, phủ chương và không quá hai câu mỗi bài', () => {
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const count of [15, 20]) {
     const result = selectQuestionsV2(buildCandidates(), {
       count,
@@ -387,7 +387,7 @@ test('theo dõi độ phủ khái niệm và ghi fallback khi ràng buộc bài 
   assert.equal(Object.keys(conceptCounts).length, 8);
   assert.equal(result.selection.metadata.coveredConcepts, 8);
   assert.equal(result.selection.metadata.taggedQuestions, 15);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (result.selection.metadata.maxQuestionsPerConcept > 2) {
     assert.ok(result.selection.metadata.fallbackReasons.includes('CONCEPT_CAP_RELAXED'));
   }

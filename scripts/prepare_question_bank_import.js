@@ -1,4 +1,4 @@
-// Script prepare question bank import h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script prepare question bank import hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 require('dotenv').config();
 
 const fs = require('fs/promises');
@@ -14,19 +14,19 @@ const BANKS = [
   { grade: 5, file: 'grade5_question_bank.tex' }
 ];
 
-// H?m payloadFromLine d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm payloadFromLine dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function payloadFromLine(line) {
   return JSON.parse(Buffer.from(line.slice(9).trim(), 'base64').toString('utf8'));
 }
 
-// H?m explanationText d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm explanationText dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function explanationText(explanation) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof explanation === 'string') return explanation.trim();
   return String(explanation?.text || explanation?.body || '').trim();
 }
 
-// H?m inspectBank d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm inspectBank dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function inspectBank(bank, writeLayout) {
   const filePath = path.join(ROOT, 'data', bank.file);
   const original = await fs.readFile(filePath, 'utf8');
@@ -34,13 +34,13 @@ async function inspectBank(bank, writeLayout) {
   const payloads = [];
   let changedLayouts = 0;
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let index = 0; index < lines.length; index += 1) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lines[index].startsWith('% DBJSON ')) continue;
     const payload = payloadFromLine(lines[index]);
     payloads.push(payload);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (writeLayout && payload.layout_template !== 'STACK_VERTICAL') {
       payload.layout_template = 'STACK_VERTICAL';
       lines[index] = `% DBJSON ${Buffer.from(JSON.stringify(payload), 'utf8').toString('base64')}`;
@@ -50,32 +50,32 @@ async function inspectBank(bank, writeLayout) {
 
   const errors = [];
   const ids = new Set();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const payload of payloads) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (payload.grade !== bank.grade) errors.push(`${payload.external_id}: sai lớp`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Number.isInteger(payload.lesson_number) || payload.lesson_number < 1) {
       errors.push(`${payload.external_id}: lesson_number không hợp lệ`);
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!payload.content?.text?.trim()) errors.push(`${payload.external_id}: thiếu đề bài`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Array.isArray(payload.choices) || payload.choices.length < 2) {
       errors.push(`${payload.external_id}: thiếu phương án`);
     } else if (!payload.choices.some((choice) => choice.key === payload.correct_answer)) {
       errors.push(`${payload.external_id}: đáp án đúng không thuộc danh sách phương án`);
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!explanationText(payload.explanation)) errors.push(`${payload.external_id}: thiếu lời giải`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (ids.has(payload.external_id)) errors.push(`${payload.external_id}: trùng mã câu hỏi`);
     ids.add(payload.external_id);
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const image of payload.content?.images || []) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (image.source_path) {
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         try {
           await fs.access(image.source_path);
         } catch {
@@ -85,14 +85,14 @@ async function inspectBank(bank, writeLayout) {
     }
   }
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (writeLayout && changedLayouts) {
     const newline = original.includes('\r\n') ? '\r\n' : '\n';
     await fs.writeFile(filePath, lines.join(newline), 'utf8');
   }
 
   const countsByLesson = new Map();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const payload of payloads) {
     const current = countsByLesson.get(payload.lesson_number) || {
       lesson_number: payload.lesson_number,
@@ -115,7 +115,7 @@ async function inspectBank(bank, writeLayout) {
   };
 }
 
-// H?m backupQuestionData d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm backupQuestionData dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function backupQuestionData() {
   const rows = await db.query(
     `SELECT q.*, c.grade
@@ -142,12 +142,12 @@ async function backupQuestionData() {
   return { outputPath, question_count: rows.length, misconception_count: misconceptions.length };
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const writeLayout = process.argv.includes('--write-layout');
   const makeBackup = process.argv.includes('--backup');
   const reports = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const bank of BANKS) reports.push(await inspectBank(bank, writeLayout));
 
   const errors = reports.flatMap((report) => report.errors);
@@ -158,10 +158,10 @@ async function main() {
     banks: reports.map(({ lessons, errors: bankErrors, ...summary }) => ({ ...summary, error_count: bankErrors.length })),
     error_count: errors.length
   }, null, 2));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (errors.length) throw new Error(`Phát hiện ${errors.length} lỗi:\n${errors.slice(0, 30).join('\n')}`);
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (makeBackup) {
     const backup = await backupQuestionData();
     console.log(`Đã sao lưu ${backup.question_count} câu và ${backup.misconception_count} lỗi thường gặp vào ${backup.outputPath}`);
@@ -174,6 +174,6 @@ main()
     process.exitCode = 1;
   })
   .finally(async () => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof db.close === 'function') await db.close().catch(() => {});
   });

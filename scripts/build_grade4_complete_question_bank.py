@@ -1,4 +1,4 @@
-# Script build grade4 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade4 complete question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import hashlib
@@ -102,7 +102,7 @@ helper = importlib.util.module_from_spec(helper_spec)
 helper_spec.loader.exec_module(helper)
 
 
-# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm canonical_titles dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def canonical_titles() -> dict[int, str]:
     data = json.loads(BLUEPRINT.read_text(encoding="utf-8"))
@@ -119,14 +119,14 @@ def canonical_titles() -> dict[int, str]:
     return result
 
 
-# H?m converted_path d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm converted_path dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def converted_path(source: Path) -> Path:
     source_hash = hashlib.sha1(str(source).encode("utf-8")).hexdigest()[:10]
     return CONVERTED_ROOT / f"{source.stem}-{source_hash}.docx"
 
 
-# H?m ensure_converted d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm ensure_converted dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def ensure_converted(source: Path) -> Path:
     if source.suffix.lower() == ".docx":
@@ -160,14 +160,14 @@ def ensure_converted(source: Path) -> Path:
     return target
 
 
-# H?m image_directory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm image_directory dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def image_directory(source: Path) -> Path:
     stem = re.sub(r"_v\d+$", "", source.stem, flags=re.IGNORECASE)
     return source.parent / f"{stem}_images"
 
 
-# H?m image_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm image_for dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def image_for(source: Path, source_lesson: int, question_number: int) -> Path | None:
     if question_number > 10:
@@ -186,7 +186,7 @@ def image_for(source: Path, source_lesson: int, question_number: int) -> Path | 
     return matches[0]
 
 
-# H?m canonical_lesson_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm canonical_lesson_for_heading dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def canonical_lesson_for_heading(
     heading: str,
@@ -209,7 +209,7 @@ def canonical_lesson_for_heading(
     return candidates[0], source_lesson
 
 
-# H?m parse_source d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_source dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_source(
     source: Path,
@@ -222,7 +222,7 @@ def parse_source(
     local_question_number = 0
     current = None
 
-# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm flush dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def flush() -> None:
         nonlocal current
@@ -312,7 +312,7 @@ def parse_source(
     return records
 
 
-# H?m save_embedded_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm save_embedded_images dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def save_embedded_images(block, source: Path, question_number: int) -> list[Path]:
     relation_ids = []
@@ -344,7 +344,7 @@ def save_embedded_images(block, source: Path, question_number: int) -> list[Path
     return result
 
 
-# H?m parse_embedded_source d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_embedded_source dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_embedded_source(
     source: Path,
@@ -357,7 +357,7 @@ def parse_embedded_source(
     local_question_number = 0
     current = None
 
-# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm flush dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def flush() -> None:
         nonlocal current
@@ -469,7 +469,7 @@ def parse_embedded_source(
     return records
 
 
-# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm record_signature dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def record_signature(record: dict) -> tuple:
     image_path = Path(record["image_source_path"]) if record["image_source_path"] else None
@@ -487,7 +487,7 @@ def record_signature(record: dict) -> tuple:
     )
 
 
-# H?m finalize_source_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm finalize_source_choices dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def finalize_source_choices(record: dict) -> None:
     choices = [
@@ -507,7 +507,7 @@ def finalize_source_choices(record: dict) -> None:
     record["answer_text"] = keyed["text"]
 
 
-# H?m finalize_imported_choices d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm finalize_imported_choices dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def finalize_imported_choices(record: dict, conversions: list[dict]) -> None:
     if not record["raw_choices"]:
@@ -614,7 +614,7 @@ def finalize_imported_choices(record: dict, conversions: list[dict]) -> None:
     helper.finalize_choices(record, conversions)
 
 
-# H?m audit_record d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm audit_record dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def audit_record(record: dict) -> list[str]:
     issues = []
@@ -661,7 +661,7 @@ def audit_record(record: dict) -> list[str]:
     return issues
 
 
-# H?m supplemental_choice_set d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm supplemental_choice_set dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def supplemental_choice_set(
     answer: str | int,
@@ -683,7 +683,7 @@ def supplemental_choice_set(
     return choices, correct_answer
 
 
-# H?m supplemental_record d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm supplemental_record dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def supplemental_record(
     lesson_number: int,
@@ -715,7 +715,7 @@ def supplemental_record(
     }
 
 
-# H?m parallelogram_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parallelogram_supplement dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parallelogram_supplement() -> list[dict]:
     records = []
@@ -809,7 +809,7 @@ def parallelogram_supplement() -> list[dict]:
     return records
 
 
-# H?m rhombus_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm rhombus_supplement dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def rhombus_supplement() -> list[dict]:
     records = []
@@ -883,7 +883,7 @@ def rhombus_supplement() -> list[dict]:
     return records
 
 
-# H?m square_metre_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm square_metre_supplement dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def square_metre_supplement() -> list[dict]:
     records = []
@@ -985,7 +985,7 @@ def square_metre_supplement() -> list[dict]:
     return records
 
 
-# H?m supplemental_records d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm supplemental_records dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def supplemental_records() -> list[dict]:
     records = [
@@ -998,7 +998,7 @@ def supplemental_records() -> list[dict]:
     return records
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -1161,6 +1161,6 @@ def main() -> None:
     )
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

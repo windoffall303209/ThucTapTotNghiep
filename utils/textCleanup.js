@@ -1,4 +1,4 @@
-// Ti?n ?ch text cleanup cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích text cleanup cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 function normalizeExplanationText(value) {
   return normalizeSetNotationLineBreaks(value)
     .replace(/dấu\s+“:\s*”/g, 'dấu “;”')
@@ -8,13 +8,13 @@ function normalizeExplanationText(value) {
     .replace(/\r?\n\s*Chọn\s*(?=\r?\nKết luận:)/g, '');
 }
 
-// H?m normalizeQuestionText d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeQuestionText dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeQuestionText(value) {
   return String(value || '')
     .replace(/\bCác viết tập hợp\b/g, 'Cách viết tập hợp');
 }
 
-// H?m normalizeSetNotationLineBreaks d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeSetNotationLineBreaks dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSetNotationLineBreaks(value) {
   return String(value || '').replace(/\{([^{}]*[\r\n][^{}]*)\}/g, (match, inner) => {
     const compactInner = inner

@@ -1,4 +1,4 @@
-# Script build grade5 question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade5 question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import base64
@@ -16,10 +16,10 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 from PIL import Image
 
-# Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c ch?nh.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 try:
     from ftfy import fix_text
-# H?m fix_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm fix_text dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 except ImportError:
     def fix_text(value: str) -> str:
         return value
@@ -46,13 +46,13 @@ ANSWER_RE = re.compile(
 SOLUTION_RE = re.compile(r"^\*\*Lời giải:\*\*\s*(.*)$")
 
 
-# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm clean dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def clean(value: str) -> str:
     return re.sub(r"\s+", " ", fix_text(value or "")).strip()
 
 
-# H?m parse_choices d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_choices dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_choices(line: str) -> list[dict]:
     matches = list(CHOICE_RE.finditer(line))
@@ -62,7 +62,7 @@ def parse_choices(line: str) -> list[dict]:
     ]
 
 
-# H?m difficulty d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm difficulty dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def difficulty(question_number: int, source_kind: str) -> str:
     if source_kind == "supplement":
@@ -74,7 +74,7 @@ def difficulty(question_number: int, source_kind: str) -> str:
     return "HARD"
 
 
-# H?m source_files d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm source_files dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def source_files() -> list[tuple[Path, str]]:
     main = [(path, "main") for path in sorted(SOURCE_TMP.glob("toan5_bai*.md"))]
@@ -82,7 +82,7 @@ def source_files() -> list[tuple[Path, str]]:
     return main + extra
 
 
-# H?m parse_bank d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_bank dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_bank() -> list[dict]:
     lessons: dict[int, dict] = {}
@@ -93,7 +93,7 @@ def parse_bank() -> list[dict]:
         current_lesson = None
         current_question = None
 
-# H?m finish_question d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm finish_question dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
         def finish_question() -> None:
             nonlocal current_question
@@ -180,7 +180,7 @@ def parse_bank() -> list[dict]:
     return result
 
 
-# H?m validate_bank d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm validate_bank dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def validate_bank(lessons: list[dict]) -> None:
     errors = []
@@ -203,7 +203,7 @@ def validate_bank(lessons: list[dict]) -> None:
         raise ValueError("\n".join(errors[:50]))
 
 
-# H?m latex_escape d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm latex_escape dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def latex_escape(value: str) -> str:
     replacements = {
@@ -233,7 +233,7 @@ def latex_escape(value: str) -> str:
     return "".join(replacements.get(char, char) for char in value)
 
 
-# H?m question_payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm question_payload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def question_payload(question: dict) -> dict:
     images = []
@@ -265,7 +265,7 @@ def question_payload(question: dict) -> dict:
     }
 
 
-# H?m write_tex d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm write_tex dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def write_tex(lessons: list[dict]) -> None:
     OUTPUT_TEX.parent.mkdir(parents=True, exist_ok=True)
@@ -318,7 +318,7 @@ def write_tex(lessons: list[dict]) -> None:
     OUTPUT_TEX.write_text("\n".join(lines), encoding="utf-8")
 
 
-# H?m add_toc d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_toc dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_toc(document: Document) -> None:
     paragraph = document.add_paragraph()
@@ -338,7 +338,7 @@ def add_toc(document: Document) -> None:
     run._r.extend([field_begin, instruction, field_separate, placeholder, field_end])
 
 
-# H?m compressed_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm compressed_image dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def compressed_image(source: Path, question_id: str) -> Path:
     target = TEMP_IMAGES / f"{question_id}.jpg"
@@ -357,14 +357,14 @@ def compressed_image(source: Path, question_id: str) -> Path:
     return target
 
 
-# H?m set_keep d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_keep dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_keep(paragraph, next_paragraph: bool = False) -> None:
     paragraph.paragraph_format.keep_together = True
     paragraph.paragraph_format.keep_with_next = next_paragraph
 
 
-# H?m write_docx d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm write_docx dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def write_docx(lessons: list[dict]) -> None:
     OUTPUT_DOCX.parent.mkdir(parents=True, exist_ok=True)
@@ -469,7 +469,7 @@ def write_docx(lessons: list[dict]) -> None:
     shutil.rmtree(TEMP_IMAGES, ignore_errors=True)
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     lessons = parse_bank()
@@ -480,6 +480,6 @@ def main() -> None:
     print(json.dumps({"lessons": len(lessons), "questions": total, "images": images, "docx": str(OUTPUT_DOCX), "tex": str(OUTPUT_TEX)}, ensure_ascii=False))
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-# Script build grade3 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade3 complete question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import hashlib
@@ -36,7 +36,7 @@ helper = importlib.util.module_from_spec(helper_spec)
 helper_spec.loader.exec_module(helper)
 
 
-# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm canonical_titles dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def canonical_titles() -> dict[int, str]:
     data = json.loads(BLUEPRINT.read_text(encoding="utf-8"))
@@ -51,7 +51,7 @@ def canonical_titles() -> dict[int, str]:
     return titles
 
 
-# H?m comparable_title_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm comparable_title_key dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def comparable_title_key(value: object) -> str:
     key = helper.title_key(value)
@@ -59,7 +59,7 @@ def comparable_title_key(value: object) -> str:
     return helper.clean(key)
 
 
-# H?m lesson_number_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm lesson_number_for_heading dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def lesson_number_for_heading(
     heading: str, canonical: dict[int, str], source: Path | None = None
@@ -95,7 +95,7 @@ def lesson_number_for_heading(
     raise ValueError(f"Không map được tiêu đề lớp 3: {heading!r} (key={key!r})")
 
 
-# H?m selected_files d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm selected_files dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def selected_files() -> tuple[list[Path], list[Path]]:
     selected = []
@@ -111,13 +111,13 @@ def selected_files() -> tuple[list[Path], list[Path]]:
     return selected, excluded
 
 
-# H?m is_question_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm is_question_heading dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def is_question_heading(text: str) -> bool:
     return bool(re.match(r"^cau\s+\d+", helper.ascii_text(text)))
 
 
-# H?m save_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm save_images dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def save_images(paragraph, source: Path, question_number: int) -> list[Path]:
     blips = paragraph._p.xpath(".//a:blip")
@@ -139,7 +139,7 @@ def save_images(paragraph, source: Path, question_number: int) -> list[Path]:
     return result
 
 
-# H?m parse_answer_and_explanation d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_answer_and_explanation dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_answer_and_explanation(raw_text: str) -> tuple[str, str, str]:
     answer_key = ""
@@ -163,7 +163,7 @@ def parse_answer_and_explanation(raw_text: str) -> tuple[str, str, str]:
     return answer_key, answer_text, explanation
 
 
-# H?m parse_docx d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm parse_docx dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def parse_docx(path: Path, canonical: dict[int, str]) -> list[dict]:
     document = Document(path)
@@ -172,7 +172,7 @@ def parse_docx(path: Path, canonical: dict[int, str]) -> list[dict]:
     local_question_number = 0
     current = None
 
-# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm flush dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def flush() -> None:
         nonlocal current
@@ -265,7 +265,7 @@ def parse_docx(path: Path, canonical: dict[int, str]) -> list[dict]:
     return records
 
 
-# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm record_signature dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def record_signature(record: dict) -> tuple:
     return (
@@ -278,7 +278,7 @@ def record_signature(record: dict) -> tuple:
     )
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -417,6 +417,6 @@ def main() -> None:
     )
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

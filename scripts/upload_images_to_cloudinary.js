@@ -1,4 +1,4 @@
-// Script upload images to cloudinary h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script upload images to cloudinary hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Đẩy toàn bộ ảnh câu hỏi và ảnh lý thuyết lên Cloudinary, đồng thời cập nhật
  * đường dẫn trong cơ sở dữ liệu.
@@ -52,18 +52,18 @@ const TRANSFORMATION = undefined;
 // Chèn vào giữa "/upload/" và phần còn lại của đường dẫn để lấy bản đã tối ưu.
 const DELIVERY_HINT = 'f_auto,q_auto';
 
-// H?m duongDanToiUu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm duongDanToiUu dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function duongDanToiUu(secureUrl) {
   return secureUrl.replace('/image/upload/', `/image/upload/${DELIVERY_HINT}/`);
 }
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -71,14 +71,14 @@ function parseJson(value, fallback) {
   }
 }
 
-// H?m loadMap d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm loadMap dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function loadMap() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fs.existsSync(MAP_FILE)) return {};
   return parseJson(fs.readFileSync(MAP_FILE, 'utf8'), {});
 }
 
-// H?m saveMap d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm saveMap dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function saveMap(map) {
   fs.mkdirSync(path.dirname(MAP_FILE), { recursive: true });
   fs.writeFileSync(MAP_FILE, JSON.stringify(map, null, 2), 'utf8');
@@ -102,7 +102,7 @@ async function thuThapAnh() {
       ...(explanation.images || []),
       ...choices.flatMap((choice) => choice.images || [])
     ].forEach((image) => {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (image && image.url) urls.add(image.url);
     });
   });
@@ -111,7 +111,7 @@ async function thuThapAnh() {
   lessons.forEach((row) => {
     (parseJson(row.theory_cards, []) || []).forEach((card) => {
       (card.images || []).forEach((image) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (image && image.url) urls.add(image.url);
       });
     });
@@ -120,7 +120,7 @@ async function thuThapAnh() {
   return [...urls].sort();
 }
 
-// H?m duongDanCucBo d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm duongDanCucBo dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function duongDanCucBo(url) {
   return path.join(PUBLIC_DIR, String(url).replace(/^\//, ''));
 }
@@ -131,13 +131,13 @@ function publicIdTu(url) {
   return `${FOLDER}/${rel}`;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!cloudName || !apiKey || !apiSecret) {
     throw new Error('Thiếu CLOUDINARY_CLOUD_NAME / API_KEY / API_SECRET trong .env');
   }
@@ -153,13 +153,13 @@ async function main() {
   console.log(`Ảnh đang được tham chiếu: ${urls.length}`);
   console.log(`  Đã có trên Cloudinary:  ${urls.length - canDay.length}`);
   console.log(`  Cần đẩy lên:            ${saoChep.length}`);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (thieuFile.length > 0) {
     console.log(`  KHÔNG tìm thấy tệp:     ${thieuFile.length}`);
     thieuFile.slice(0, 5).forEach((url) => console.log(`    ${url}`));
   }
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!COMMIT) {
     const tongXemTruoc = saoChep.reduce((sum, url) => sum + fs.statSync(duongDanCucBo(url)).size, 0);
     console.log(`  Dung lượng gốc:         ${(tongXemTruoc / 1024 / 1024 / 1024).toFixed(2)} GB`);
@@ -173,11 +173,11 @@ async function main() {
   let byteSau = 0;
   const danhSach = saoChep.slice(0, LIMIT);
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let i = 0; i < danhSach.length; i += 1) {
     const url = danhSach[i];
     const filePath = duongDanCucBo(url);
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const goc = fs.statSync(filePath).size;
       const result = await cloudinary.uploader.upload(filePath, {
@@ -202,7 +202,7 @@ async function main() {
       byteSau += result.bytes;
       thanhCong += 1;
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (thanhCong % 25 === 0 || thanhCong === danhSach.length) {
         saveMap(map);
         const pct = ((i + 1) / danhSach.length * 100).toFixed(1);
@@ -211,7 +211,7 @@ async function main() {
     } catch (error) {
       thatBai += 1;
       console.log(`  LỖI ${url}: ${error.message || JSON.stringify(error)}`);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (thatBai > 20) {
         console.log('  Quá nhiều lỗi liên tiếp, dừng lại để kiểm tra.');
         break;
@@ -221,7 +221,7 @@ async function main() {
 
   saveMap(map);
   console.log(`\nĐẩy xong: ${thanhCong} thành công, ${thatBai} lỗi.`);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (byteGoc > 0) {
     console.log(`  Dung lượng: ${(byteGoc / 1024 / 1024).toFixed(0)} MB -> ${(byteSau / 1024 / 1024).toFixed(0)} MB`);
     console.log(`  Giảm ${(100 - byteSau / byteGoc * 100).toFixed(1)}%`);

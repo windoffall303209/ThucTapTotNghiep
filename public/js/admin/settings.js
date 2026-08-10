@@ -1,16 +1,16 @@
-// M? JavaScript ph?a tr?nh duy?t settings ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt settings điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   document.addEventListener('DOMContentLoaded', initSettingsCards);
 
-  // H?m initSettingsCards d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initSettingsCards dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initSettingsCards() {
     const cards = Array.from(document.querySelectorAll('[data-settings-target]'));
     const modals = Array.from(document.querySelectorAll('[data-settings-modal]'));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (cards.length === 0 || modals.length === 0) return;
     const returnFocusByModal = new WeakMap();
   
-    // H?m activateCard d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm activateCard dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const activateCard = (card) => {
       const target = card.dataset.settingsTarget;
       cards.forEach((item) => item.classList.toggle('active', item === card));
@@ -19,11 +19,11 @@
     cards.forEach((card) => {
       card.addEventListener('click', () => {
         const modal = modals.find((item) => item.dataset.settingsModal === card.dataset.settingsTarget);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!modal) return;
         activateCard(card);
         returnFocusByModal.set(modal, card);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (typeof modal.showModal === 'function') {
           modal.showModal();
         } else {
@@ -41,14 +41,14 @@
     activateCard(activeCard);
 
     modals.forEach((modal) => {
-      // H?m restoreModalFocus d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm restoreModalFocus dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const restoreModalFocus = () => {
         const returnTarget = returnFocusByModal.get(modal);
         returnFocusByModal.delete(modal);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (returnTarget?.isConnected) returnTarget.focus();
       };
-      // H?m closeModal d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm closeModal dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const closeModal = async () => {
         const form = modal.querySelector('form');
         const canClose = typeof window.AdminDirtyForms?.confirmDiscard === 'function'
@@ -56,12 +56,12 @@
               message: 'Cửa sổ cài đặt có thay đổi chưa lưu. Bạn có chắc muốn hủy các thay đổi này?'
             })
           : true;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canClose) return;
         form?.reset();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (typeof modal.close === 'function') modal.close();
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         else {
           modal.removeAttribute('open');
           restoreModalFocus();
@@ -72,7 +72,7 @@
         button.addEventListener('click', closeModal);
       });
       modal.addEventListener('click', (event) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (event.target === modal) closeModal();
       });
       modal.addEventListener('cancel', (event) => {
@@ -86,16 +86,16 @@
     initApiChecks();
   }
   
-  // H?m initModelSelectors d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initModelSelectors dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initModelSelectors() {
     document.querySelectorAll('[data-model-select]').forEach((select) => {
       const form = select.closest('form') || document;
       const input = form.querySelector(`[data-model-input="${select.dataset.modelSelect}"]`);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!input) return;
   
       select.addEventListener('change', () => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (select.value !== '__custom__') {
           input.value = select.value;
         }
@@ -108,13 +108,13 @@
     });
   }
   
-  // H?m initApiChecks d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initApiChecks dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initApiChecks() {
     document.querySelectorAll('[data-check-provider]').forEach((button) => {
       button.addEventListener('click', async () => {
         const form = button.closest('form');
         const status = form?.querySelector('[data-check-status]');
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!form || !status) return;
   
         const originalHtml = button.innerHTML;
@@ -127,7 +127,7 @@
         status.className = 'api-check-status';
         status.textContent = 'Đang kiểm tra kết nối...';
   
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         try {
           const response = await fetch('/admin/settings/check', {
             method: 'POST',
@@ -149,9 +149,9 @@
     });
   }
 
-  // H?m refreshIcons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm refreshIcons dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function refreshIcons() {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (window.lucide) window.lucide.createIcons();
   }
 })();

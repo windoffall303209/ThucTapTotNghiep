@@ -1,4 +1,4 @@
-// B? ki?m th? frontend contracts.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử frontend contracts.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -6,12 +6,12 @@ const assert = require('node:assert/strict');
 
 const projectRoot = path.resolve(__dirname, '..');
 
-// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm read dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function read(relativePath) {
   return fs.readFileSync(path.join(projectRoot, relativePath), 'utf8');
 }
 
-// H?m assertContainsAll d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm assertContainsAll dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function assertContainsAll(source, patterns) {
   patterns.forEach((pattern) => assert.match(source, pattern));
 }

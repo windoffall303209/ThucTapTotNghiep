@@ -1,4 +1,4 @@
-// Migration 20260807 remove unapproved question supplements c?p nh?t c?u tr?c ho?c d? li?u c? s? d? li?u theo c?ch c? th? ki?m tra v? l?p l?i.
+// Migration 20260807 remove unapproved question supplements cập nhật cấu trúc hoặc dữ liệu cơ sở dữ liệu theo cách có thể kiểm tra và lặp lại.
 /* eslint-disable no-console */
 require('dotenv').config({ quiet: true });
 
@@ -8,10 +8,10 @@ const APPLY_FLAG = '--apply';
 const CONFIRM_PREFIX = '--confirm-db=';
 const SOURCE_PATTERN = 'SUP-20260807-%';
 
-// H?m parseArguments d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseArguments dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseArguments(argv) {
   const unknown = argv.filter((value) => value !== APPLY_FLAG && !value.startsWith(CONFIRM_PREFIX));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (unknown.length) throw new Error(`Tham số không hợp lệ: ${unknown.join(', ')}`);
   return {
     apply: argv.includes(APPLY_FLAG),
@@ -19,15 +19,15 @@ function parseArguments(argv) {
   };
 }
 
-// H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm execute dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function execute(executor, sql, params = []) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (executor === db) return db.query(sql, params);
   const [rows] = await executor.execute(sql, params);
   return rows;
 }
 
-// H?m countAffected d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm countAffected dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function countAffected(executor = db) {
   const rows = await execute(executor,
     `WITH supplemental AS (
@@ -47,33 +47,33 @@ async function countAffected(executor = db) {
   return Object.fromEntries(Object.entries(rows[0]).map(([key, value]) => [key, Number(value)]));
 }
 
-// H?m hasUsage d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm hasUsage dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function hasUsage(counts) {
   return counts.session_questions > 0 || counts.student_logs > 0 || counts.chats > 0 || counts.ai_logs > 0;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const options = parseArguments(process.argv.slice(2));
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const connectionState = await db.testConnection();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!connectionState.connected) throw new Error(`Không kết nối được database: ${connectionState.reason}`);
     const [databaseRow] = await db.query('SELECT DATABASE() AS database_name');
     const databaseName = String(databaseRow.database_name || '');
     const before = await countAffected(db);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!options.apply) {
       console.log(JSON.stringify({ readOnly: true, database: databaseName, sourcePattern: SOURCE_PATTERN, affected: before }, null, 2));
       return;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!databaseName || options.confirmDatabase !== databaseName) {
       throw new Error(`Để xóa dữ liệu, cần truyền ${CONFIRM_PREFIX}${databaseName}`);
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (hasUsage(before)) {
       throw new Error('Lô câu hỏi đã phát sinh dữ liệu học tập; từ chối xóa tự động để bảo vệ lịch sử học sinh.');
     }
@@ -87,7 +87,7 @@ async function main() {
          FOR UPDATE`,
         [SOURCE_PATTERN]
       );
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (locked.length !== before.questions) throw new Error('Số câu thay đổi trong lúc khóa dữ liệu; đã hủy thao tác.');
       const [deletion] = await connection.execute(
         `DELETE FROM QuestionBank
@@ -95,7 +95,7 @@ async function main() {
         [SOURCE_PATTERN]
       );
       const after = await countAffected(connection);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (after.questions !== 0 || after.misconceptions !== 0) {
         throw new Error('Vẫn còn dữ liệu bổ sung sau khi xóa; đã rollback transaction.');
       }
@@ -107,7 +107,7 @@ async function main() {
   }
 }
 
-// Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+// Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if (require.main === module) {
   main().catch((error) => {
     console.error(error.message);

@@ -1,4 +1,4 @@
-// Script apply question difficulty policy h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script apply question difficulty policy hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 require('dotenv').config({ quiet: true });
 
 const fs = require('node:fs');
@@ -22,24 +22,24 @@ const RULES = {
   5: { MEDIUM: { side: 'head', rate: 0.10, target: 'EASY' }, HARD: { side: 'head', rate: 0.20, target: 'MEDIUM' } }
 };
 
-// H?m decodePayload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm decodePayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function decodePayload(line) {
   return JSON.parse(Buffer.from(line.slice('% DBJSON '.length).trim(), 'base64').toString('utf8'));
 }
 
-// H?m encodePayload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm encodePayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function encodePayload(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
 
-// H?m readTexPayloads d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm readTexPayloads dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function readTexPayloads(grade) {
   const filePath = path.join(ROOT, 'data', TEX_BY_GRADE[grade]);
   return fs.readFileSync(filePath, 'utf8').split(/\r?\n/)
     .filter((line) => line.startsWith('% DBJSON ')).map(decodePayload);
 }
 
-// H?m activeRowsByGrade d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm activeRowsByGrade dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function activeRowsByGrade(grade) {
   return db.query(
     `SELECT q.id, q.difficulty,
@@ -53,30 +53,30 @@ async function activeRowsByGrade(grade) {
   );
 }
 
-// H?m createPlan d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createPlan dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function createPlan() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fs.existsSync(PLAN_PATH)) throw new Error(`Kế hoạch đã tồn tại: ${PLAN_PATH}`);
   const operations = new Map();
   const ruleSummary = [];
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const grade of [1, 2, 3, 4, 5]) {
     const rows = await activeRowsByGrade(grade);
     const mainRows = rows.filter((row) => !row.source_key);
     const payloads = readTexPayloads(grade);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (mainRows.length !== payloads.length) {
       throw new Error(`Lớp ${grade}: ${mainRows.length} câu chính trong DB nhưng ${payloads.length} payload trong TEX`);
     }
     const externalIdByDbId = new Map(mainRows.map((row, index) => [Number(row.id), payloads[index].external_id]));
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const [difficulty, rule] of Object.entries(RULES[grade])) {
       const candidates = rows.filter((row) => row.difficulty === difficulty);
       const count = Math.floor(candidates.length * rule.rate);
       const selected = rule.side === 'head' ? candidates.slice(0, count) : candidates.slice(-count);
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (const row of selected) {
         operations.set(Number(row.id), {
           db_id: Number(row.id),
@@ -92,7 +92,7 @@ async function createPlan() {
       ruleSummary.push({ grade, difficulty, side: rule.side, rate: rule.rate, total: candidates.length, selected: count, target: rule.target });
     }
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const row of rows.filter((item) => item.source_key)) {
       const id = Number(row.id);
       const current = operations.get(id);
@@ -120,30 +120,30 @@ async function createPlan() {
   console.log(`Đã tạo kế hoạch ${path.relative(ROOT, PLAN_PATH)} với ${plan.operations.length} câu.`);
 }
 
-// H?m updateTexSources d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateTexSources dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function updateTexSources(plan) {
   const targets = new Map(plan.operations.filter((item) => item.external_id).map((item) => [item.external_id, item.target_difficulty]));
   let changed = 0;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const grade of [1, 2, 3, 4, 5]) {
     const filePath = path.join(ROOT, 'data', TEX_BY_GRADE[grade]);
     const lines = fs.readFileSync(filePath, 'utf8').split(/(?<=\n)/);
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (let index = 0; index < lines.length; index += 1) {
       const raw = lines[index].replace(/\r?\n$/, '');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!raw.startsWith('% DBJSON ')) continue;
       const payload = decodePayload(raw);
       const target = targets.get(payload.external_id);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!target || payload.difficulty === target) continue;
       const ending = lines[index].slice(raw.length);
       payload.difficulty = target;
       lines[index] = `% DBJSON ${encodePayload(payload)}${ending}`;
       const visible = new RegExp(`(${payload.external_id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\()[A-Z]+(\\):)`);
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (let cursor = index + 1; cursor < Math.min(lines.length, index + 8); cursor += 1) {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (visible.test(lines[cursor])) {
           lines[cursor] = lines[cursor].replace(visible, `$1${target}$2`);
           break;
@@ -156,20 +156,20 @@ function updateTexSources(plan) {
   console.log(`Đã đổi nhãn ${changed} câu trong các nguồn TEX.`);
 }
 
-// H?m updateSupplementSources d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm updateSupplementSources dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function updateSupplementSources() {
   const directory = path.join(ROOT, 'review', 'question_bank_redesign');
   const files = fs.readdirSync(directory).filter((name) => /^batch-.*\.json$/i.test(name));
   let questions = 0;
   let changed = 0;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const name of files) {
     const filePath = path.join(directory, name);
     const batch = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const question of batch.questions || []) {
       questions += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (question.difficulty !== 'HARD') {
         question.difficulty = 'HARD';
         changed += 1;
@@ -180,19 +180,19 @@ function updateSupplementSources() {
   console.log(`Đã kiểm tra ${questions} câu bổ sung và đổi ${changed} câu sang HARD.`);
 }
 
-// H?m applyDatabase d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm applyDatabase dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function applyDatabase(plan) {
   await db.transaction(async (connection) => {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const operation of plan.operations) {
       const [rows] = await connection.execute('SELECT difficulty FROM QuestionBank WHERE id = ? AND is_active = 1 FOR UPDATE', [operation.db_id]);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!rows[0]) throw new Error(`Không tìm thấy câu đang hoạt động id=${operation.db_id}`);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (![operation.original_difficulty, operation.target_difficulty].includes(rows[0].difficulty)) {
         throw new Error(`Câu id=${operation.db_id} đang có nhãn ${rows[0].difficulty}, không khớp kế hoạch`);
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (rows[0].difficulty !== operation.target_difficulty) {
         await connection.execute('UPDATE QuestionBank SET difficulty = ? WHERE id = ?', [operation.target_difficulty, operation.db_id]);
       }
@@ -201,19 +201,19 @@ async function applyDatabase(plan) {
   console.log(`Đã áp dụng ${plan.operations.length} mục kế hoạch vào database.`);
 }
 
-// H?m verify d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm verify dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function verify(plan) {
   const expected = new Map(plan.operations.map((item) => [item.db_id, item.target_difficulty]));
   const ids = [...expected.keys()];
   const rows = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let offset = 0; offset < ids.length; offset += 500) {
     const chunk = ids.slice(offset, offset + 500);
     const placeholders = chunk.map(() => '?').join(',');
     rows.push(...await db.query(`SELECT id, difficulty FROM QuestionBank WHERE id IN (${placeholders})`, chunk));
   }
   const mismatches = rows.filter((row) => expected.get(Number(row.id)) !== row.difficulty);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (rows.length !== ids.length || mismatches.length) throw new Error(`Database còn ${ids.length - rows.length + mismatches.length} mục chưa khớp kế hoạch`);
   const stats = await db.query(
     `SELECT ch.grade, q.difficulty, COUNT(*) AS total
@@ -224,24 +224,24 @@ async function verify(plan) {
   console.table(stats);
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const args = new Set(process.argv.slice(2));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (args.has('--create-plan')) await createPlan();
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fs.existsSync(PLAN_PATH)) throw new Error('Chưa có manifest; chạy với --create-plan trước');
   const plan = JSON.parse(fs.readFileSync(PLAN_PATH, 'utf8'));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (args.has('--update-sources')) {
     updateTexSources(plan);
     updateSupplementSources();
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (args.has('--apply-db')) await applyDatabase(plan);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (args.has('--verify')) await verify(plan);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (![...args].some((arg) => ['--create-plan', '--update-sources', '--apply-db', '--verify'].includes(arg))) {
     console.log(JSON.stringify({ operations: plan.operations.length, rules: plan.rule_summary }, null, 2));
   }

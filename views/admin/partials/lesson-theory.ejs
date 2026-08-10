@@ -1,4 +1,4 @@
-<%# M?u giao di?n lesson theory k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
+<%# Mẫu giao diện lesson theory kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <%
   const cards = Array.isArray(lesson.theory_cards) ? lesson.theory_cards : [];
   const theoryTypes = [
@@ -96,7 +96,7 @@
         <label>
           Loại thẻ
           <select name="type" data-theory-type>
-            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+            <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% theoryTypes.forEach((option) => { %>
               <option value="<%= option.value %>"><%= option.label %></option>
             <% }) %>
@@ -105,7 +105,7 @@
         <label>
           Bố cục
           <select name="layout" data-theory-layout>
-            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+            <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% theoryLayouts.forEach((option) => { %>
               <option value="<%= option.value %>"><%= option.label %></option>
             <% }) %>
@@ -132,7 +132,7 @@
         <label>
           Kiểu tương tác dự kiến
           <select name="interaction" data-theory-interaction>
-            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+            <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% interactionOptions.forEach((option) => { %>
               <option value="<%= option.value %>"><%= option.label %></option>
             <% }) %>
@@ -233,15 +233,15 @@
   </form>
 </details>
 
-<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+<%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
 <% if (cards.length === 0) { %>
   <div class="empty-state compact">Bài học này chưa có thẻ lý thuyết. Hãy thêm ít nhất một thẻ trước khi học sinh luyện bài.</div>
 <% } %>
 
 <div class="theory-card-list">
-  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
   <% cards.forEach((card, index) => { %>
-    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
+    <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
     <% const images = cardImages(card); %>
     <article class="admin-theory-card theory-card theory-layout-<%= card.layout || 'text_first' %> math-content math-lazy">
       <div class="theory-card-head">
@@ -262,17 +262,17 @@
       <details class="record-support">
         <summary>Xem nội dung thẻ</summary>
         <div class="record-support-content">
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.display_text) { %>
             <p class="theory-display-text"><%= card.display_text %></p>
           <% } %>
 
           <%- gridRenderHtml(card.grid_layout) %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (images.length > 0) { %>
             <div class="theory-image-row">
-              <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+              <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
               <% images.forEach((image) => { %>
                 <span class="question-image">
                   <img src="<%= image.url %>" alt="<%= image.alt_text || 'Hình minh họa lý thuyết' %>" loading="lazy" decoding="async">
@@ -281,22 +281,22 @@
             </div>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (bodyValue(card)) { %>
             <div class="theory-body"><%= bodyValue(card) %></div>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.student_task) { %>
             <p class="theory-task"><strong>Việc cần làm:</strong> <%= card.student_task %></p>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.example) { %>
             <p class="muted"><strong>Ví dụ:</strong> <%= card.example %></p>
           <% } %>
 
-          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
           <% if (card.remember) { %>
             <p class="theory-remember"><strong>Ghi nhớ:</strong> <%= card.remember %></p>
           <% } %>
@@ -327,7 +327,7 @@
               <label>
                 Loại thẻ
                 <select name="type" data-theory-type>
-                  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+                  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                   <% theoryTypes.forEach((option) => { %>
                     <option value="<%= option.value %>" <%= selected(card.type || 'concept', option.value) %>><%= option.label %></option>
                   <% }) %>
@@ -336,7 +336,7 @@
               <label>
                 Bố cục
                 <select name="layout" data-theory-layout>
-                  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+                  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                   <% theoryLayouts.forEach((option) => { %>
                     <option value="<%= option.value %>" <%= selected(card.layout || 'text_first', option.value) %>><%= option.label %></option>
                   <% }) %>
@@ -363,7 +363,7 @@
               <label>
                 Kiểu tương tác dự kiến
                 <select name="interaction" data-theory-interaction>
-                  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+                  <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                   <% interactionOptions.forEach((option) => { %>
                     <option value="<%= option.value %>" <%= selected(card.interaction || 'none', option.value) %>><%= option.label %></option>
                   <% }) %>
@@ -378,11 +378,11 @@
               Ghi nhớ
               <input name="remember" value="<%= card.remember || '' %>" data-theory-remember>
             </label>
-            <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
+            <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% if (images.length > 0) { %>
               <div class="choice-existing-images">
                 <span class="form-note">Ảnh hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
-                <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
+                <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
                 <% images.forEach((image) => { %>
                   <label class="image-keep-option">
                     <input type="checkbox" name="remove_theory_images" value="<%= image.id || image.url %>" data-preview-remove-image>

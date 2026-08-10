@@ -1,4 +1,4 @@
-// M? JavaScript ph?a tr?nh duy?t common ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt common điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   document.addEventListener('DOMContentLoaded', initPasswordMatchForms);
 
@@ -8,10 +8,10 @@
     document.querySelectorAll('form[data-password-match-form]').forEach((form) => {
       const password = form.querySelector('[name="password"]');
       const confirm = form.querySelector('[name="confirmPassword"]');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!password || !confirm) return;
   
-      // H?m checkMatch d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm checkMatch dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const checkMatch = () => {
         confirm.setCustomValidity(
           confirm.value && password.value !== confirm.value
@@ -24,7 +24,7 @@
       confirm.addEventListener('input', checkMatch);
       form.addEventListener('submit', (event) => {
         checkMatch();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!form.checkValidity()) {
           event.preventDefault();
           form.reportValidity();

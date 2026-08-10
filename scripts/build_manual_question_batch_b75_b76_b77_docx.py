@@ -2,7 +2,7 @@
 
 Script chỉ đọc nội dung từ JSON, chèn ảnh và áp dụng định dạng Word.
 """
-# Script build manual question batch b75 b76 b77 docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build manual question batch b75 b76 b77 docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 
 import importlib.util
 import json
@@ -25,7 +25,7 @@ LESSON_TITLES = {
 }
 
 
-# H?m load_layout_helpers d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm load_layout_helpers dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def load_layout_helpers():
     path = ROOT / "scripts" / "build_manual_question_batch_b68_b71_b73_docx.py"
@@ -37,7 +37,7 @@ def load_layout_helpers():
     return module
 
 
-# H?m validate d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm validate dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def validate(questions):
     if len(questions) != 66:
@@ -61,7 +61,7 @@ def validate(questions):
         raise FileNotFoundError(f"Thiếu ảnh: {missing}")
 
 
-# H?m add_cover d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_cover dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_cover(doc, payload):
     p = doc.add_paragraph()
@@ -108,7 +108,7 @@ def add_cover(doc, payload):
     doc.add_page_break()
 
 
-# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_summary dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_summary(doc, questions, helpers):
     doc.add_heading("THÔNG TIN BỘ CÂU HỎI", level=1)
@@ -141,7 +141,7 @@ def add_summary(doc, questions, helpers):
     doc.add_page_break()
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     payload = json.loads(DATA.read_text(encoding="utf-8"))
@@ -168,6 +168,6 @@ def main():
     print(f"Saved {OUTPUT}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

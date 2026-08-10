@@ -1,4 +1,4 @@
-# Script build grade2 question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade2 question bank hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from pathlib import Path
 import importlib.util
 
@@ -25,7 +25,7 @@ builder.TEMP_IMAGES = (
 )
 
 
-# H?m grade2_source_files d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm grade2_source_files dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def grade2_source_files():
     first = builder.SOURCE_TMP / "toan2_canhdieu_noi_dung.md"
@@ -36,6 +36,6 @@ def grade2_source_files():
 builder.source_files = grade2_source_files
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     builder.main()

@@ -1,4 +1,4 @@
-// Ti?n ?ch flash cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích flash cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 function setFlash(req, type, message, options = {}) {
   req.session.flash = {
     type,

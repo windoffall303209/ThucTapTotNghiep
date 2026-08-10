@@ -1,4 +1,4 @@
-// Script backup grades 6 7 h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script backup grades 6 7 hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Sao lưu toàn bộ dữ liệu khối 6 và 7 ra một file .sql trước khi xóa.
  *
@@ -16,13 +16,13 @@ const db = require('../config/db');
 
 const GRADES = [6, 7];
 
-// H?m quote d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm quote dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function quote(value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return 'NULL';
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value === 'number') return String(value);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value instanceof Date) return `'${value.toISOString().slice(0, 19).replace('T', ' ')}'`;
 
   const text = typeof value === 'string' ? value : JSON.stringify(value);
@@ -34,13 +34,13 @@ function quote(value) {
   return `'${escaped}'`;
 }
 
-// H?m insertStatement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm insertStatement dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function insertStatement(table, columns, row) {
   const values = columns.map((column) => quote(row[column])).join(', ');
   return `INSERT INTO ${table} (${columns.join(', ')}) VALUES (${values});`;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   const target = process.argv[2] || path.join(__dirname, '..', 'backup_lop6_7.sql');
   const gradeList = GRADES.join(', ');
@@ -83,7 +83,7 @@ async function main() {
     ''
   ];
 
-  // H?m push d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm push dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const push = (title, table, columns, rows) => {
     lines.push(`-- ${title}: ${rows.length} bản ghi`);
     rows.forEach((row) => lines.push(insertStatement(table, columns, row)));

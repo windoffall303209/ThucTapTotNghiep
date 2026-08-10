@@ -1,4 +1,4 @@
-// Ti?n ?ch safe json cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
+// Tiện ích safe json cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 const HTML_UNSAFE_JSON_CHARACTERS = /[<>&\u2028\u2029]/g;
 const JSON_CHARACTER_ESCAPES = {
   '<': '\\u003c',
@@ -8,10 +8,10 @@ const JSON_CHARACTER_ESCAPES = {
   '\u2029': '\\u2029'
 };
 
-// H?m safeJsonForHtml d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm safeJsonForHtml dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function safeJsonForHtml(value) {
   const serialized = JSON.stringify(value);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (serialized === undefined) return 'null';
   return serialized.replace(
     HTML_UNSAFE_JSON_CHARACTERS,

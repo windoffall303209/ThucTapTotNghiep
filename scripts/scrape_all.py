@@ -1,4 +1,4 @@
-# Script scrape all h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script scrape all hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import requests
 import sys
 from bs4 import BeautifulSoup
@@ -18,13 +18,13 @@ headers = {
 }
 
 
-# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm clean_text dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def clean_text(text):
     return " ".join(text.split())
 
 
-# H?m should_exclude d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm should_exclude dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def should_exclude(lesson_name):
     name_lower = lesson_name.lower()
@@ -42,7 +42,7 @@ def should_exclude(lesson_name):
 
 output_lines = []
 
-# Kh?i l?p ho?c ng? c?nh ki?m so?t ph?m vi x? l? v? ?i?u ki?n k?t th?c.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 for grade in sorted(urls.keys()):
     url = urls[grade]
     print(f"Processing Grade {grade}...")
@@ -110,11 +110,11 @@ for grade in sorted(urls.keys()):
 
 # Write to text file.
 output_path = r"c:\Users\WIND-OF-FALL\Documents\ThucTapTotNghiep\Danh_sach_chuong_va_bai_hoc.txt"
-# Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c ch?nh.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 try:
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(output_lines))
     print(f"Successfully wrote output to {output_path}")
-# Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c ch?nh.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 except Exception as e:
     print(f"Error writing file: {e}")

@@ -14,7 +14,7 @@ Cách dùng:
 
 Trả về mã thoát khác 0 nếu có bất kỳ câu nào lệch, để cắm vào quy trình tự động.
 """
-# Script verify question bank docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script verify question bank docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import json
@@ -24,7 +24,7 @@ from pathlib import Path
 
 from docx import Document
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -37,14 +37,14 @@ BAO_CAO = ROOT / "tmp" / "bao_cao_doi_chieu_docx.json"
 MA_CAU = re.compile(r"^(G\d-L\d{3}-Q\d{3})\s+-\s+(\S+)\s+-\s+(.+)$")
 
 
-# H?m chuan d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm chuan dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def chuan(s: str) -> str:
     """Bỏ khác biệt vô hại về khoảng trắng để so cho công bằng."""
     return re.sub(r"\s+", " ", str(s or "")).strip()
 
 
-# H?m doc_docx d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm doc_docx dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def doc_docx(tep: Path) -> dict[str, dict]:
     """Bóc từng câu hỏi ra khỏi .docx theo đúng khuôn mà exporter đã ghi."""
@@ -53,7 +53,7 @@ def doc_docx(tep: Path) -> dict[str, dict]:
     ma_hien_tai = None
     khoi: list = []
 
-# H?m chot d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm chot dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
     def chot():
         if ma_hien_tai is None:
@@ -105,7 +105,7 @@ def doc_docx(tep: Path) -> dict[str, dict]:
     return cau
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     if not DUMP.exists():
@@ -188,6 +188,6 @@ def main() -> None:
         sys.exit(1)
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

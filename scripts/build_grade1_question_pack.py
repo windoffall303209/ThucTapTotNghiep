@@ -1,4 +1,4 @@
-# Script build grade1 question pack h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 question pack hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 import random
 from pathlib import Path
@@ -53,13 +53,13 @@ SCENES = [
 ]
 
 
-# H?m mistake d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm mistake dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def mistake(value, reason):
     return {"wrong_answer": str(value), "hint": reason}
 
 
-# H?m numeric_distractors d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm numeric_distractors dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def numeric_distractors(answer, candidates, low=0, high=None):
     answer = int(answer)
@@ -85,7 +85,7 @@ def numeric_distractors(answer, candidates, low=0, high=None):
     return values[0], values[1]
 
 
-# H?m make d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm make dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def make(question, answer, visual, qtype, wrong_a, hint_a, wrong_b, hint_b, difficulty="Cơ bản"):
     return {
@@ -101,7 +101,7 @@ def make(question, answer, visual, qtype, wrong_a, hint_a, wrong_b, hint_b, diff
     }
 
 
-# H?m spatial_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm spatial_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def spatial_questions():
     return [
@@ -123,7 +123,7 @@ def spatial_questions():
     ]
 
 
-# H?m shape_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm shape_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def shape_questions():
     return [
@@ -145,7 +145,7 @@ def shape_questions():
     ]
 
 
-# H?m number_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm number_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def number_questions(values, label):
     lo, hi = min(values), max(values)
@@ -171,14 +171,14 @@ def number_questions(values, label):
     ]
 
 
-# H?m number_word d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm number_word dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def number_word(value):
     words = {0: "không", 1: "một", 2: "hai", 3: "ba", 4: "bốn", 5: "năm", 6: "sáu", 7: "bảy", 8: "tám", 9: "chín", 10: "mười"}
     return words.get(value, str(value))
 
 
-# H?m zero_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm zero_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def zero_questions():
     return [
@@ -200,7 +200,7 @@ def zero_questions():
     ]
 
 
-# H?m ten_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm ten_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def ten_questions():
     return [
@@ -222,7 +222,7 @@ def ten_questions():
     ]
 
 
-# H?m quantity_compare_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm quantity_compare_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def quantity_compare_questions():
     pairs = [(3, 5), (6, 2), (4, 4), (7, 9), (8, 5), (1, 3), (10, 10), (2, 6), (9, 7), (5, 5), (4, 8), (6, 6), (3, 2), (7, 4), (1, 1)]
@@ -250,7 +250,7 @@ def quantity_compare_questions():
     return qs
 
 
-# H?m sign_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm sign_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def sign_questions():
     pairs = [(2, 5), (4, 4), (7, 9), (1, 3), (6, 6), (3, 8), (5, 5), (0, 2), (8, 10), (2, 2), (4, 7), (1, 1), (6, 9), (3, 3), (5, 8)]
@@ -270,7 +270,7 @@ def sign_questions():
     return qs
 
 
-# H?m addition_questions d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm addition_questions dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def addition_questions(limit, phase=1, intro=False):
     rng = random.Random(limit * 100 + phase)
@@ -327,7 +327,7 @@ def addition_questions(limit, phase=1, intro=False):
     return qs
 
 
-# H?m solid_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm solid_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def solid_questions():
     return [
@@ -349,7 +349,7 @@ def solid_questions():
     ]
 
 
-# H?m subtraction_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm subtraction_questions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def subtraction_questions(limit, phase=1, intro=False):
     rng = random.Random(limit * 200 + phase)
@@ -406,7 +406,7 @@ def subtraction_questions(limit, phase=1, intro=False):
     return qs
 
 
-# H?m questions_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm questions_for dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def questions_for(kind):
     if kind == "spatial":
@@ -454,7 +454,7 @@ def questions_for(kind):
     raise ValueError(f"Unknown lesson kind: {kind}")
 
 
-# H?m image_prompt d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm image_prompt dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def image_prompt(question, visual, lesson, index):
     return (
@@ -470,7 +470,7 @@ def image_prompt(question, visual, lesson, index):
     )
 
 
-# H?m build_pack d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_pack dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_pack():
     pack = {
@@ -511,7 +511,7 @@ def build_pack():
     return pack
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -520,6 +520,6 @@ def main():
     print(f"Wrote {pack['question_count']} questions across {pack['lesson_count']} lessons to {QUESTIONS_PATH}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

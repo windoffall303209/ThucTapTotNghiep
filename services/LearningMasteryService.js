@@ -1,4 +1,4 @@
-// D?ch v? learning mastery service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ learning mastery service đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const Curriculum = require('../models/Curriculum');
 
 const MAX_ATTEMPTS_PER_LESSON = 10;
@@ -13,13 +13,13 @@ const DIFFICULTY_EVIDENCE_WEIGHTS = Object.freeze({
   EXPERT: Object.freeze({ correct: 1.3, wrong: 0.7 })
 });
 
-// H?m calculateLessonMastery d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm calculateLessonMastery dùng để tính toán kết quả từ các tham số đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function calculateLessonMastery(attempts = []) {
   const recentAttempts = [...attempts]
     .sort(compareAttemptsNewestFirst)
     .slice(0, MAX_ATTEMPTS_PER_LESSON);
   const attemptCount = recentAttempts.length;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (attemptCount === 0) return emptyMastery();
 
   let totalWeight = 0;
@@ -34,13 +34,13 @@ function calculateLessonMastery(attempts = []) {
     const evidenceWeight = isCorrect ? difficultyWeights.correct : difficultyWeights.wrong;
     const weight = (RECENCY_DECAY ** index) * evidenceWeight;
     totalWeight += weight;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isCorrect) {
       correctWeight += weight;
       correctCount += 1;
     } else {
       wrongCount += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (attempt.detected_misconception_id) misconceptionCount += 1;
     }
   });
@@ -81,15 +81,15 @@ function calculateLessonMastery(attempts = []) {
   };
 }
 
-// H?m buildLessonMasteryMap d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildLessonMasteryMap dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildLessonMasteryMap(attemptRows = []) {
   const attemptsByLesson = new Map();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const attempt of attemptRows) {
     const lessonId = Number(attempt.lesson_id);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!Number.isInteger(lessonId) || lessonId <= 0) continue;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!attemptsByLesson.has(lessonId)) attemptsByLesson.set(lessonId, []);
     attemptsByLesson.get(lessonId).push(attempt);
   }
@@ -100,7 +100,7 @@ function buildLessonMasteryMap(attemptRows = []) {
   }, {});
 }
 
-// H?m getMasteryByGrade d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getMasteryByGrade dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getMasteryByGrade(studentId, grade) {
   const rows = await Curriculum.getLessonAttemptHistory(
     studentId,
@@ -110,7 +110,7 @@ async function getMasteryByGrade(studentId, grade) {
   return buildLessonMasteryMap(rows);
 }
 
-// H?m getWeakLessonIds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getWeakLessonIds dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getWeakLessonIds(masteryByLesson = {}, allowedLessonIds = []) {
   const allowed = new Set(
     (allowedLessonIds || []).map(Number).filter((id) => Number.isInteger(id) && id > 0)
@@ -127,7 +127,7 @@ function getWeakLessonIds(masteryByLesson = {}, allowedLessonIds = []) {
     .map(([lessonId]) => Number(lessonId));
 }
 
-// H?m buildGradeProgress d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildGradeProgress dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildGradeProgress(chapters = [], masteryByLesson = {}) {
   const lessons = (chapters || []).flatMap((chapter) => chapter.lessons || []);
   const completed = lessons.filter(
@@ -140,7 +140,7 @@ function buildGradeProgress(chapters = [], masteryByLesson = {}) {
   };
 }
 
-// H?m findWeakestLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm findWeakestLesson dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function findWeakestLesson(chapters = [], masteryByLesson = {}) {
   return (chapters || [])
     .flatMap((chapter) => (chapter.lessons || []).map((lesson) => ({
@@ -156,7 +156,7 @@ function findWeakestLesson(chapters = [], masteryByLesson = {}) {
     ))[0] || null;
 }
 
-// H?m emptyMastery d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm emptyMastery dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function emptyMastery() {
   return {
     attempt_count: 0,
@@ -174,36 +174,36 @@ function emptyMastery() {
   };
 }
 
-// H?m countNewestWrongStreak d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm countNewestWrongStreak dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function countNewestWrongStreak(attempts) {
   let count = 0;
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const attempt of attempts) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (normalizeCorrect(attempt.is_correct)) break;
     count += 1;
   }
   return count;
 }
 
-// H?m compareAttemptsNewestFirst d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm compareAttemptsNewestFirst dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function compareAttemptsNewestFirst(left, right) {
   const timeDifference = new Date(right.created_at || 0) - new Date(left.created_at || 0);
   return timeDifference || Number(right.id || 0) - Number(left.id || 0);
 }
 
-// H?m normalizeCorrect d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeCorrect dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeCorrect(value) {
   return value === true || Number(value) === 1;
 }
 
-// H?m normalizeDifficulty d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeDifficulty dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeDifficulty(value) {
   const difficulty = String(value || 'MEDIUM').trim().toUpperCase();
   return Object.hasOwn(DIFFICULTY_EVIDENCE_WEIGHTS, difficulty) ? difficulty : 'MEDIUM';
 }
 
-// H?m roundScore d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm roundScore dùng để tính toán kết quả từ các tham số đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function roundScore(value) {
   return Number(Math.min(Math.max(Number(value) || 0, 0), 1).toFixed(4));
 }

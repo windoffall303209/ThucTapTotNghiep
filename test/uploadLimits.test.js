@@ -1,4 +1,4 @@
-// B? ki?m th? upload limits.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử upload limits.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const assert = require('node:assert/strict');
 const { EventEmitter } = require('node:events');
 const http = require('node:http');
@@ -35,7 +35,7 @@ test('multipart chunked bị dừng theo tổng byte stream và chuyển lỗi q
     'content-type': 'multipart/form-data; boundary=test'
   });
   let uploadStarted = false;
-  // H?m uploadMiddleware d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm uploadMiddleware dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const uploadMiddleware = (request, response, next) => {
     uploadStarted = true;
     request.once('error', next);
@@ -56,7 +56,7 @@ test('multipart trong giới hạn đi qua bình thường', async () => {
   const req = createRequest({
     'content-type': 'multipart/form-data; boundary=test'
   });
-  // H?m uploadMiddleware d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm uploadMiddleware dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const uploadMiddleware = (request, response, next) => {
     request.once('error', next);
     request.once('end', () => next());
@@ -86,7 +86,7 @@ test('giới hạn field vẫn đủ form quản trị thực tế và chặn re
   const endpoint = `http://127.0.0.1:${address.port}/upload`;
 
   const compatibleForm = new FormData();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let index = 0; index < 96; index += 1) {
     compatibleForm.append(`field_${index}`, 'x');
   }
@@ -95,7 +95,7 @@ test('giới hạn field vẫn đủ form quản trị thực tế và chặn re
   assert.deepEqual(await accepted.json(), { fieldCount: 96 });
 
   const oversizedForm = new FormData();
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (let index = 0; index <= MAX_MULTIPART_FIELDS; index += 1) {
     oversizedForm.append(`field_${index}`, 'x');
   }
@@ -110,7 +110,7 @@ test('giới hạn field vẫn đủ form quản trị thực tế và chặn re
   assert.deepEqual(await oversizedField.json(), { code: 'LIMIT_FIELD_VALUE' });
 });
 
-// H?m createRequest d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createRequest dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function createRequest(headers) {
   const req = new EventEmitter();
   req.headers = headers;
@@ -121,7 +121,7 @@ function createRequest(headers) {
   return req;
 }
 
-// H?m invokeMiddleware d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm invokeMiddleware dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function invokeMiddleware(middleware, req) {
   return new Promise((resolve) => {
     middleware(req, {}, (error) => resolve(error));

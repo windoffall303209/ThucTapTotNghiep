@@ -1,4 +1,4 @@
-// M? JavaScript ph?a tr?nh duy?t content manager ?i?u khi?n t??ng t?c v? c?p nh?t giao di?n ng??i d?ng.
+// Mã JavaScript phía trình duyệt content manager điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   const {
     boundsForCells,
@@ -39,15 +39,15 @@
   } = window.AppUI;
   let contentRequestSequence = 0;
 
-  // H?m nextContentRequestId d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm nextContentRequestId dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function nextContentRequestId(scope) {
     contentRequestSequence += 1;
     return `${scope}:${contentRequestSequence}`;
   }
 
-  // H?m confirmDiscard d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm confirmDiscard dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function confirmDiscard(root, message) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof window.AdminDirtyForms?.confirmDiscard !== 'function') return true;
     return window.AdminDirtyForms.confirmDiscard(root, {
       message,
@@ -56,20 +56,20 @@
     });
   }
 
-  // H?m initAdminPreview d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initAdminPreview dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initAdminPreview(root = document) {
     const previewForms = Array.from(root.querySelectorAll('[data-question-preview-form]:not([data-question-preview-ready])'));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (previewForms.length > 0) {
       previewForms.forEach((form) => {
         const parentDetails = form.closest('details');
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (parentDetails && !parentDetails.open) {
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (parentDetails.dataset.questionPreviewToggleReady !== 'true') {
             parentDetails.dataset.questionPreviewToggleReady = 'true';
             parentDetails.addEventListener('toggle', () => {
-              // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+              // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
               if (parentDetails.open) {
                 initAdminPreview(parentDetails);
                 initGridEditors(parentDetails);
@@ -90,7 +90,7 @@
 
     const legacyPreview = root.querySelector('#adminQuestionPreview');
     const legacyContentInput = root.querySelector('[data-preview-source="content"]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (legacyPreview && legacyContentInput) {
       initQuestionPreviewForm(root, {
         preview: legacyPreview,
@@ -100,11 +100,11 @@
     }
   }
 
-  // H?m initQuestionPreviewForm d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionPreviewForm dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionPreviewForm(form, overrides = {}) {
     const preview = overrides.preview || form.querySelector('[data-question-preview]');
     const contentInput = overrides.contentInput || form.querySelector('[data-preview-content]') || form.querySelector('[data-preview-source="content"]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!preview || !contentInput) return;
 
     const imageInput = form.querySelector('[data-preview-images]');
@@ -117,7 +117,7 @@
     const questionTypeInput = form.querySelector('[data-question-type], [name="question_type"]');
     const gridInput = form.querySelector('[data-grid-layout-input]');
 
-    // H?m updatePreview d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm updatePreview dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const updatePreview = () => {
       const allExistingImages = parsePreviewImages(existingImagesInput?.value);
       const existingImages = allExistingImages
@@ -144,7 +144,7 @@
           : collectPreviewChoices(form)
       };
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (placeholderList) {
         placeholderList.hidden = images.length === 0;
         placeholderList.innerHTML = images.map((image) => `
@@ -201,13 +201,13 @@
   // chọn (trình duyệt không cho phép nạp lại giá trị của input type=file).
   const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 
-  // H?m initQuestionFormGuards d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionFormGuards dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionFormGuards(root = document) {
     root.querySelectorAll('[data-question-preview-form]:not([data-question-guard-ready])').forEach((form) => {
       form.dataset.questionGuardReady = 'true';
       form.addEventListener('submit', (event) => {
         const message = validateQuestionForm(form);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!message) {
           clearFormError(form);
           return;
@@ -218,7 +218,7 @@
     });
   }
 
-  // H?m countChoiceImages d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm countChoiceImages dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function countChoiceImages(form, key) {
     const existingInput = form.querySelector(`[data-preview-choice-existing-images="${key}"]`);
     const existing = parsePreviewImages(existingInput?.value)
@@ -227,7 +227,7 @@
     return existing.length + uploads;
   }
 
-  // H?m validateQuestionForm d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm validateQuestionForm dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function validateQuestionForm(form) {
     const questionType = form.querySelector('[data-question-type], [name="question_type"]')?.value
       || 'MULTIPLE_CHOICE';
@@ -236,7 +236,7 @@
     const hasGrid = authoringMode === 'canvas' && gridLayout.enabled;
     const contentText = String(form.querySelector('[data-preview-content]')?.value || '').trim();
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!contentText && !hasGrid) {
       return 'Chưa có đề bài. Em hãy nhập nội dung đề bài trước khi lưu.';
     }
@@ -244,14 +244,14 @@
     const correctAnswer = String(form.querySelector('[name="correct_answer"]:not([disabled])')?.value || '').trim();
     const freeAnswer = String(form.querySelector('[name="correct_answer_free"]:not([disabled])')?.value || '').trim();
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (questionType === 'FILL_IN_THE_BLANK') {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!freeAnswer) return 'Chưa nhập đáp án đúng cho dạng điền khuyết.';
       return null;
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!correctAnswer) return 'Chưa chọn đáp án đúng cho câu hỏi.';
 
     // Lưới canvas có thể tự chứa các ô đáp án, khi đó không cần bốn phương án rời.
@@ -260,7 +260,7 @@
         .filter((cell) => cell.type === 'answer' && cell.answer_key)
         .map((cell) => String(cell.answer_key).toUpperCase())
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (hasGrid && gridAnswerKeys.size >= 2 && gridAnswerKeys.has(correctAnswer.toUpperCase())) {
       return null;
     }
@@ -269,13 +269,13 @@
       const text = String(form.querySelector(`[data-preview-choice="${key}"]`)?.value || '').trim();
       return !text && countChoiceImages(form, key) === 0;
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (thieu.length > 0) {
       return `Phương án ${thieu.join(', ')} còn trống. Mỗi phương án cần có nội dung chữ hoặc ảnh minh họa.`;
     }
 
     const layout = form.querySelector('[name="layout_variant"], [data-layout-variant], [name="layout_template"]')?.value;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (layout === 'IMAGE_IN_CHOICES'
       && ANSWER_KEYS.every((key) => countChoiceImages(form, key) === 0)) {
       return 'Bố cục ảnh trong đáp án cần có ít nhất một ảnh ở các phương án.';
@@ -284,10 +284,10 @@
     return null;
   }
 
-  // H?m showFormError d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm showFormError dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function showFormError(form, message) {
     let box = form.querySelector('[data-form-error]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!box) {
       box = document.createElement('div');
       box.className = 'flash flash-danger form-error-box';
@@ -301,17 +301,17 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  // H?m clearFormError d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm clearFormError dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function clearFormError(form) {
     const box = form.querySelector('[data-form-error]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (box) box.hidden = true;
   }
 
-  // H?m initQuestionTypeControls d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionTypeControls dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionTypeControls(form, updatePreview) {
     const typeInput = form.querySelector('[data-question-type], [name="question_type"]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!typeInput || typeInput.dataset.questionTypeReady === 'true') return;
 
     const choicePanel = form.querySelector('[data-choice-panel]');
@@ -321,31 +321,31 @@
     const correctFreeInput = correctFreePanel?.querySelector('[name="correct_answer_free"]');
     const interactionInput = form.querySelector('[data-question-interaction], [name="question_interaction"]');
 
-    // H?m sync d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm sync dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const sync = () => {
       const isFreeAnswer = typeInput.value === 'FILL_IN_THE_BLANK';
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (choicePanel) choicePanel.hidden = isFreeAnswer;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (correctChoicePanel) correctChoicePanel.hidden = isFreeAnswer;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (correctFreePanel) correctFreePanel.hidden = !isFreeAnswer;
 
       choicePanel?.querySelectorAll('input, select, textarea').forEach((input) => {
         input.disabled = isFreeAnswer;
       });
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (correctChoiceInput) {
         correctChoiceInput.disabled = isFreeAnswer;
         correctChoiceInput.required = !isFreeAnswer;
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (correctFreeInput) {
         correctFreeInput.disabled = !isFreeAnswer;
         correctFreeInput.required = isFreeAnswer;
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (interactionInput && isFreeAnswer && interactionInput.value === 'choose') {
         interactionInput.value = 'fill_blank';
       }
@@ -357,7 +357,7 @@
     sync();
   }
 
-  // H?m normalizeStorageLayout d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm normalizeStorageLayout dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function normalizeStorageLayout(value) {
     const layout = String(value || 'STACK_VERTICAL').toUpperCase();
     return [
@@ -368,7 +368,7 @@
     ].includes(layout) ? layout : 'STACK_VERTICAL';
   }
 
-  // H?m initAdminQuestionBank d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initAdminQuestionBank dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initAdminQuestionBank() {
     initContentManagers();
     initQuestionDetailsControls();
@@ -376,7 +376,7 @@
     const dialog = document.getElementById('questionCreateDialog');
     const lessonInput = document.getElementById('createQuestionLessonId');
     const lessonLabel = document.getElementById('createQuestionLessonLabel');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!dialog || !lessonInput || !lessonLabel) return;
 
     document.querySelectorAll('[data-create-question]').forEach((button) => {
@@ -389,7 +389,7 @@
         lessonInput.value = button.dataset.lessonId || '';
         lessonLabel.textContent = button.dataset.lessonLabel || 'Bài học đã chọn';
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (typeof dialog.showModal === 'function') {
           dialog.showModal();
         } else {
@@ -403,12 +403,12 @@
     });
 
     dialog.addEventListener('click', (event) => {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (event.target === dialog) closeDialog(dialog);
     });
   }
 
-  // H?m initQuestionDetailsControls d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionDetailsControls dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionDetailsControls(root = document) {
     root.querySelectorAll('[data-close-details]:not([data-close-details-ready])').forEach((button) => {
       button.dataset.closeDetailsReady = 'true';
@@ -419,31 +419,31 @@
           form || details,
           'Biểu mẫu đang có thay đổi chưa lưu. Bạn có chắc muốn hủy và đóng biểu mẫu?'
         );
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canClose) return;
         form?.reset();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (details) details.open = false;
       });
     });
   }
 
-  // H?m initTheoryEditors d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initTheoryEditors dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initTheoryEditors(root = document) {
     const forms = Array.from(root.querySelectorAll('[data-theory-preview-form]:not([data-theory-preview-ready])'));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (forms.length === 0) return;
 
     initQuestionDetailsControls(root);
     forms.forEach((form) => {
       const parentDetails = form.closest('details');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (parentDetails && !parentDetails.open) {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (parentDetails.dataset.theoryPreviewToggleReady !== 'true') {
             parentDetails.dataset.theoryPreviewToggleReady = 'true';
             parentDetails.addEventListener('toggle', () => {
-              // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+              // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
               if (parentDetails.open) {
                 initTheoryEditors(parentDetails);
                 initGridEditors(parentDetails);
@@ -460,10 +460,10 @@
     });
   }
 
-  // H?m initTheoryPreviewForm d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initTheoryPreviewForm dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initTheoryPreviewForm(form) {
     const preview = form.querySelector('[data-theory-preview]');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!preview) return;
 
     const titleInput = form.querySelector('[data-theory-title]');
@@ -478,7 +478,7 @@
     const existingImagesInput = form.querySelector('[data-theory-existing-images]');
     const gridInput = form.querySelector('[data-grid-layout-input]');
 
-    // H?m updatePreview d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm updatePreview dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const updatePreview = () => {
       const existingImages = parsePreviewImages(existingImagesInput?.value)
         .filter((image) => !isImageMarkedForRemoval(form, 'remove_theory_images', image));
@@ -514,20 +514,20 @@
     updatePreview();
   }
 
-  // H?m initProgressiveAuthoringForms d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initProgressiveAuthoringForms dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initProgressiveAuthoringForms(root = document) {
     root.querySelectorAll('form[data-question-preview-form], form[data-theory-preview-form]').forEach((form) => {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (form.dataset.progressiveFormReady === 'true') return;
       form.dataset.progressiveFormReady = 'true';
       form.classList.add('progressive-authoring-form');
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (form.matches('[data-question-preview-form]')) {
         form.querySelectorAll('.choice-editor').forEach((choiceEditor) => {
           const optionalItems = Array.from(choiceEditor.children)
             .filter((item) => item.matches('.choice-fieldset, .two-fields'));
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (optionalItems.length === 0) return;
 
           const key = choiceEditor.querySelector('[data-preview-choice]')?.dataset.previewChoice || '';
@@ -552,14 +552,14 @@
       const optionalContent = optionalPanel.querySelector('.form-optional-content');
       const optionalItems = [];
 
-      // H?m addOptional d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm addOptional dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const addOptional = (item) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (item && !optionalItems.includes(item)) optionalItems.push(item);
       };
 
       addOptional(form.querySelector(':scope > [data-authoring-mode]'));
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (form.matches('[data-question-preview-form]')) {
         addOptional(form.querySelector('[data-layout-variant]')?.closest('label'));
         addOptional(form.querySelector('[data-question-interaction]')?.closest('label'));
@@ -575,17 +575,17 @@
       addOptional(form.querySelector(':scope > .question-form-preview'));
 
       optionalItems.forEach((item) => optionalContent.appendChild(item));
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (optionalItems.length > 0) {
         const actionRows = Array.from(form.querySelectorAll(':scope > .form-actions'));
         const finalActions = actionRows[actionRows.length - 1];
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (finalActions) form.insertBefore(optionalPanel, finalActions);
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         else form.appendChild(optionalPanel);
       }
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (form.querySelector('[data-authoring-mode-input]')?.value === 'canvas') {
         optionalPanel.open = true;
       }
@@ -594,11 +594,11 @@
     refreshIcons();
   }
 
-  // H?m initAuthoringModeControls d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initAuthoringModeControls dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initAuthoringModeControls(root = document) {
     root.querySelectorAll('[data-authoring-mode]:not([data-authoring-mode-ready])').forEach((switcher) => {
       const form = switcher.closest('form');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!form) return;
       switcher.dataset.authoringModeReady = 'true';
       const hiddenInput = form.querySelector('[data-authoring-mode-input]');
@@ -607,28 +607,28 @@
       const gridInput = form.querySelector('[data-grid-layout-input]');
       const gridEnabledInput = form.querySelector('[data-grid-enabled]');
 
-      // H?m setGridEnabled d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm setGridEnabled dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const setGridEnabled = (enabled, notifyChange = true) => {
         const grid = parseGridLayoutValue(gridInput?.value);
         grid.enabled = enabled;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (gridInput) {
           gridInput.value = JSON.stringify(grid);
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (notifyChange) gridInput.dispatchEvent(new Event('input', { bubbles: true }));
         }
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (gridEnabledInput) {
           gridEnabledInput.checked = enabled;
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (notifyChange) gridEnabledInput.dispatchEvent(new Event('change', { bubbles: true }));
         }
       };
 
-      // H?m applyMode d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm applyMode dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const applyMode = (mode, notifyChange = true) => {
         const normalizedMode = mode === 'canvas' ? 'canvas' : 'fields';
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (hiddenInput) hiddenInput.value = normalizedMode;
         radios.forEach((radio) => {
           radio.checked = radio.value === normalizedMode;
@@ -637,7 +637,7 @@
           const isActive = panel.dataset.authorModePanel === normalizedMode;
           panel.hidden = !isActive;
           panel.querySelectorAll('input, textarea, select, button').forEach((control) => {
-            // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+            // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
             if (control.matches('[data-grid-enabled]')) return;
             control.disabled = !isActive;
           });
@@ -647,7 +647,7 @@
 
       radios.forEach((radio) => {
         radio.addEventListener('change', () => {
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (radio.checked) applyMode(radio.value);
         });
       });
@@ -658,12 +658,12 @@
     });
   }
 
-  // H?m initGridEditors d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initGridEditors dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initGridEditors(root = document) {
     root.querySelectorAll('[data-grid-editor]:not([data-grid-editor-ready])').forEach((editor) => {
       const input = editor.closest('form')?.querySelector('[data-grid-layout-input]');
       const canvas = editor.querySelector('[data-grid-canvas]');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!input || !canvas) return;
 
       editor.dataset.gridEditorReady = 'true';
@@ -673,7 +673,7 @@
         dragStart: null,
         isDragging: false
       };
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!state.grid.cells.length) state.grid.cells = createBaseGridCells(state.grid.rows, state.grid.columns);
 
       const enabledInput = editor.querySelector('[data-grid-enabled]');
@@ -686,25 +686,25 @@
       const alignInput = editor.querySelector('[data-grid-cell-align]');
       const backgroundInput = editor.querySelector('[data-grid-cell-background]');
 
-      // H?m syncInputs d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm syncInputs dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const syncInputs = (notifyChange = false) => {
         enabledInput.checked = Boolean(state.grid.enabled);
         rowsInput.value = state.grid.rows;
         columnsInput.value = state.grid.columns;
         input.value = JSON.stringify(state.grid);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (notifyChange) input.dispatchEvent(new Event('input', { bubbles: true }));
       };
 
-      // H?m selectedCells d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm selectedCells dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const selectedCells = () => Array.from(state.selectedIds)
         .map((id) => state.grid.cells.find((cell) => cell.id === id))
         .filter(Boolean);
 
-      // H?m syncPanel d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm syncPanel dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const syncPanel = () => {
         const cell = selectedCells()[0] || state.grid.cells[0];
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!cell) return;
         typeInput.value = cell.type || 'text';
         textInput.value = cell.text || '';
@@ -714,7 +714,7 @@
         backgroundInput.value = isHexColor(cell.background) ? cell.background : '#ffffff';
       };
 
-      // H?m render d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm render dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const render = (notifyChange = false) => {
         editor.classList.toggle('is-disabled', !state.grid.enabled);
         canvas.style.setProperty('--grid-rows', state.grid.rows);
@@ -732,7 +732,7 @@
         renderMath(canvas);
       };
 
-      // H?m selectRect d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm selectRect dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const selectRect = (startCell, endCell) => {
         const rect = normalizeRect(cellRect(startCell), cellRect(endCell));
         state.selectedIds = new Set(
@@ -745,10 +745,10 @@
 
       canvas.addEventListener('mousedown', (event) => {
         const button = event.target.closest('[data-cell-id]');
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!button) return;
         const cell = state.grid.cells.find((item) => item.id === button.dataset.cellId);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!cell) return;
         state.dragStart = cell;
         state.isDragging = true;
@@ -757,11 +757,11 @@
       });
 
       canvas.addEventListener('mouseover', (event) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!state.isDragging || !state.dragStart) return;
         const button = event.target.closest('[data-cell-id]');
         const cell = state.grid.cells.find((item) => item.id === button?.dataset.cellId);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (cell) selectRect(state.dragStart, cell);
       });
 
@@ -769,7 +769,7 @@
       // là canvas cũ bị thay nhưng listener cũ vẫn tích lũy. Cho nó tự gỡ khi
       // thấy canvas không còn trong DOM.
       const onDocumentMouseUp = () => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canvas.isConnected) {
           document.removeEventListener('mouseup', onDocumentMouseUp);
           return;
@@ -779,10 +779,10 @@
       };
       document.addEventListener('mouseup', onDocumentMouseUp);
 
-      // H?m applyPanelToSelection d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm applyPanelToSelection dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const applyPanelToSelection = () => {
         const cells = selectedCells();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!cells.length) return;
         cells.forEach((cell) => {
           cell.type = typeInput.value || 'text';
@@ -819,11 +819,11 @@
 
       editor.querySelector('[data-grid-merge]')?.addEventListener('click', async () => {
         const cells = selectedCells();
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (cells.length < 2) return;
         const rect = boundsForCells(cells);
         const affected = state.grid.cells.filter((cell) => rectIntersectsCell(rect, cell));
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!affected.every((cell) => rectContainsCell(rect, cell))) {
           await window.AppUI.alert({
             title: 'Không thể gộp ô',
@@ -842,12 +842,12 @@
 
       editor.querySelector('[data-grid-unmerge]')?.addEventListener('click', () => {
         const cell = selectedCells()[0];
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!cell || (cell.rowSpan === 1 && cell.colSpan === 1)) return;
         state.grid.cells = state.grid.cells.filter((item) => item.id !== cell.id);
-        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
         for (let row = cell.row; row < cell.row + cell.rowSpan; row += 1) {
-          // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+          // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
           for (let col = cell.col; col < cell.col + cell.colSpan; col += 1) {
             state.grid.cells.push(createGridCell(row, col));
           }
@@ -872,7 +872,7 @@
     });
   }
 
-  // H?m initContentManagers d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initContentManagers dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initContentManagers() {
     document.querySelectorAll('[data-content-manager]:not([data-content-manager-ready])').forEach((manager) => {
       manager.dataset.contentManagerReady = 'true';
@@ -890,7 +890,7 @@
       const closeButton = manager.querySelector('[data-workspace-close]');
       let activeGrade = 'all';
 
-      // H?m normalizedText d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm normalizedText dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const normalizedText = (value) => String(value || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -899,7 +899,7 @@
         .toLowerCase()
         .trim();
 
-      // H?m applyFilters d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm applyFilters dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const applyFilters = () => {
         const query = normalizedText(searchInput?.value);
         let visibleCount = 0;
@@ -908,7 +908,7 @@
           const matchesGrade = activeGrade === 'all' || button.dataset.grade === activeGrade;
           const matchesQuery = !query || normalizedText(button.dataset.searchText).includes(query);
           button.hidden = !(matchesGrade && matchesQuery);
-          // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
           if (!button.hidden) visibleCount += 1;
         });
 
@@ -921,29 +921,29 @@
             .some((chapter) => !chapter.hidden);
         });
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (emptyResult) emptyResult.hidden = visibleCount > 0;
       };
 
-      // H?m setLessonInUrl d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm setLessonInUrl dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const setLessonInUrl = (lessonId) => {
         const url = new URL(window.location.href);
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (lessonId) url.searchParams.set('lesson', lessonId);
-        // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         else url.searchParams.delete('lesson');
         window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
       };
 
-      // H?m activateLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm activateLesson dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       const activateLesson = async (button, options = {}) => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!button || !shell || !workspacePanel) return;
         const canChangeLesson = await confirmDiscard(
           shell,
           'Bài đang mở có thay đổi chưa lưu. Nếu chọn bài khác, các thay đổi này sẽ bị mất.'
         );
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canChangeLesson) return;
 
         lessonButtons.forEach((item) => {
@@ -951,11 +951,11 @@
           item.classList.toggle('is-active', isActive);
           item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (workspaceTitle) workspaceTitle.textContent = button.dataset.lessonTitle || 'Bài học';
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (workspaceMeta) workspaceMeta.textContent = button.dataset.lessonMeta || '';
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (emptyWorkspace) emptyWorkspace.hidden = true;
         workspacePanel.hidden = false;
 
@@ -965,17 +965,17 @@
         delete shell.dataset.loadedPage;
         setShellBusy(shell, false);
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (options.updateUrl !== false) setLessonInUrl(button.dataset.lessonId);
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (kind === 'questions') {
           await fetchLessonQuestions(shell, 1, { discardConfirmed: true });
         } else {
           await fetchLessonTheory(shell, { discardConfirmed: true });
         }
 
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (options.scroll !== false && window.matchMedia('(max-width: 920px)').matches) {
           workspacePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -1003,12 +1003,12 @@
           shell,
           'Bài đang mở có thay đổi chưa lưu. Nếu đóng không gian làm việc, các thay đổi này sẽ bị mất.'
         );
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canClose) return;
         lessonButtons.forEach((button) => button.classList.remove('is-active'));
         lessonButtons.forEach((button) => button.setAttribute('aria-pressed', 'false'));
         workspacePanel.hidden = true;
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (emptyWorkspace) emptyWorkspace.hidden = false;
         shell.innerHTML = '';
         setLessonInUrl('');
@@ -1018,7 +1018,7 @@
       const selectedLessonId = manager.dataset.selectedLesson;
       const initialButton = lessonButtons.find((button) => button.dataset.lessonId === selectedLessonId)
         || lessonButtons[0];
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (initialButton) activateLesson(initialButton, { updateUrl: Boolean(selectedLessonId), scroll: false });
     });
   }
@@ -1029,20 +1029,20 @@
   // truc tiep khi mo tung bai.
 
   function setShellBusy(shell, isBusy) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!shell) return;
     shell.setAttribute('aria-busy', isBusy ? 'true' : 'false');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (isBusy) shell.dataset.loading = 'true';
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else delete shell.dataset.loading;
   }
 
-  // H?m fetchLessonQuestions d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm fetchLessonQuestions dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function fetchLessonQuestions(shell, page = 1, options = {}) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!shell) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !options.discardConfirmed
       && !await confirmDiscard(
@@ -1056,24 +1056,24 @@
     setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải danh sách câu hỏi...</div>';
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       // Bộ lọc độ khó/từ khóa lưu trên dataset của shell để các lần lật trang
       // sau vẫn giữ nguyên điều kiện lọc.
       const params = new URLSearchParams({ page: String(page), limit: '8' });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.filterDifficulty) params.set('difficulty', shell.dataset.filterDifficulty);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.filterKeyword) params.set('q', shell.dataset.filterKeyword);
       const url = `/admin/questions/lesson/${encodeURIComponent(lessonId)}?${params.toString()}`;
       const response = await fetch(url, {
         headers: { 'X-Requested-With': 'fetch' }
       });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!response.ok) throw new Error('Không tải được dữ liệu câu hỏi.');
 
       const html = await response.text();
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = html;
       shell.dataset.loaded = 'true';
@@ -1092,16 +1092,16 @@
       bindQuestionPagination(shell);
       refreshIcons();
     } catch (error) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được danh sách câu hỏi. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId === requestId) setShellBusy(shell, false);
     }
   }
 
-  // H?m bindQuestionPagination d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm bindQuestionPagination dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function bindQuestionPagination(shell) {
     shell.querySelectorAll('[data-question-page]').forEach((button) => {
       button.addEventListener('click', () => {
@@ -1119,7 +1119,7 @@
           shell,
           'Có biểu mẫu câu hỏi chưa lưu. Nếu áp dụng bộ lọc, các thay đổi này sẽ bị mất.'
         );
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canFilter) return;
         shell.dataset.filterDifficulty = String(form.querySelector('[name="difficulty"]')?.value || '');
         shell.dataset.filterKeyword = String(form.querySelector('[name="q"]')?.value || '').trim();
@@ -1132,7 +1132,7 @@
           shell,
           'Có biểu mẫu câu hỏi chưa lưu. Nếu bỏ bộ lọc, các thay đổi này sẽ bị mất.'
         );
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!canClearFilter) return;
         delete shell.dataset.filterDifficulty;
         delete shell.dataset.filterKeyword;
@@ -1142,38 +1142,38 @@
     });
   }
 
-  // H?m initQuestionEditLoaders d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm initQuestionEditLoaders dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initQuestionEditLoaders(root = document) {
     root.querySelectorAll('.inline-edit-panel:not([data-edit-loader-ready])').forEach((details) => {
       const shell = details.querySelector('[data-question-edit-shell]');
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!shell) return;
       details.dataset.editLoaderReady = 'true';
       details.addEventListener('toggle', () => {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!details.open || shell.dataset.loaded === 'true' || shell.dataset.loading === 'true') return;
         loadQuestionEditForm(shell);
       });
     });
   }
 
-  // H?m loadQuestionEditForm d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm loadQuestionEditForm dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function loadQuestionEditForm(shell) {
     const canLoad = await confirmDiscard(
       shell,
       'Form sửa câu hỏi có thay đổi chưa lưu. Nếu tải lại, các thay đổi này sẽ bị mất.'
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!canLoad) return;
     setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải form sửa câu hỏi...</div>';
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const response = await fetch(`/admin/questions/${encodeURIComponent(shell.dataset.questionId)}/edit`, {
         headers: { 'X-Requested-With': 'fetch' }
       });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!response.ok) throw new Error('Không tải được form sửa.');
 
       shell.innerHTML = await response.text();
@@ -1194,11 +1194,11 @@
     }
   }
 
-  // H?m fetchLessonTheory d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm fetchLessonTheory dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function fetchLessonTheory(shell, options = {}) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!shell) return;
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !options.discardConfirmed
       && !await confirmDiscard(
@@ -1213,16 +1213,16 @@
     setShellBusy(shell, true);
     shell.innerHTML = '<div class="empty-state compact">Đang tải thẻ lý thuyết...</div>';
 
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       const response = await fetch(`/admin/theory/lesson/${encodeURIComponent(lessonId)}`, {
         headers: { 'X-Requested-With': 'fetch' }
       });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!response.ok) throw new Error('Không tải được dữ liệu lý thuyết.');
 
       const html = await response.text();
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = html;
       shell.dataset.loaded = 'true';
@@ -1236,18 +1236,18 @@
       initLazyMath(shell);
       refreshIcons();
     } catch (error) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId !== requestId) return;
       shell.innerHTML = '<div class="empty-state compact danger">Không tải được thẻ lý thuyết. Vui lòng tải lại trang hoặc thử lại.</div>';
     } finally {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (shell.dataset.requestId === requestId) setShellBusy(shell, false);
     }
   }
 
-  // H?m closeDialog d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm closeDialog dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function closeDialog(dialog) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (typeof dialog.close === 'function') {
       dialog.close();
     } else {

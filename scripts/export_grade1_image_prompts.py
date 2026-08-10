@@ -1,4 +1,4 @@
-# Script export grade1 image prompts h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script export grade1 image prompts hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 from pathlib import Path
 
@@ -8,7 +8,7 @@ INPUT_PATH = ROOT / "content-theory" / "grade-1-theory-blueprint.json"
 OUTPUT_PATH = ROOT / "output" / "doc" / "grade1_ai_image_prompts.jsonl"
 
 
-# H?m build_prompt d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_prompt dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_prompt(chapter_index, lesson_index, card_index, chapter, lesson, card):
     return {
@@ -31,7 +31,7 @@ def build_prompt(chapter_index, lesson_index, card_index, chapter, lesson, card)
     }
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     data = json.loads(INPUT_PATH.read_text(encoding="utf-8"))
@@ -45,6 +45,6 @@ def main():
     print(OUTPUT_PATH)
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

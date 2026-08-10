@@ -10,7 +10,7 @@ nguyên đề thuần chữ.
 
 Dùng: python scripts/build_broken_questions_docx.py [duong_dan_dich.docx]
 """
-# Script build broken questions docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build broken questions docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 from __future__ import annotations
 
 import json
@@ -43,7 +43,7 @@ NHAN_LOAI = {
 }
 
 
-# H?m nap_nguon d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm nap_nguon dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def nap_nguon() -> list[dict]:
     """Đọc và gộp các tệp báo cáo, khử trùng theo id câu hỏi."""
@@ -57,13 +57,13 @@ def nap_nguon() -> list[dict]:
     return list(theo_id.values())
 
 
-# H?m dat_mau d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm dat_mau dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def dat_mau(run, mau: RGBColor) -> None:
     run.font.color.rgb = mau
 
 
-# H?m them_dong d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm them_dong dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def them_dong(doc, nhan: str, noi_dung: str, mau_nhan: RGBColor | None = None) -> None:
     p = doc.add_paragraph()
@@ -75,7 +75,7 @@ def them_dong(doc, nhan: str, noi_dung: str, mau_nhan: RGBColor | None = None) -
     p.add_run(noi_dung or "(không có)")
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main() -> None:
     dich = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "outputs" / "bao_cao_cau_hoi_anh_loi.docx"
@@ -223,6 +223,6 @@ def main() -> None:
         print(f"  {loai}: {so}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

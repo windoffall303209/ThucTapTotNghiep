@@ -1,4 +1,4 @@
-// M? h?nh practice session ??nh ngh?a truy c?p, ki?m tra v? bi?n ??i d? li?u c?a m?t th?c th? trong h? th?ng.
+// Mô hình practice session định nghĩa truy cập, kiểm tra và biến đổi dữ liệu của một thực thể trong hệ thống.
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
@@ -13,7 +13,7 @@ const DURATION_SECONDS_BY_QUESTION_COUNT = Object.freeze(
   )
 );
 
-// H?m getSessionTiming d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getSessionTiming dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function getSessionTiming(session, nowMs = Date.now()) {
   const timedMode = ['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(
     String(session?.session_mode || '').toUpperCase()
@@ -44,7 +44,7 @@ function getSessionTiming(session, nowMs = Date.now()) {
     : Number.isFinite(startedAtMs) && durationSeconds
       ? startedAtMs + durationSeconds * 1000
       : Number.NaN;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!durationSeconds || !Number.isFinite(deadlineAtMs)) {
     return {
       enabled: false,
@@ -67,7 +67,7 @@ function getSessionTiming(session, nowMs = Date.now()) {
   };
 }
 
-// H?m ensureFallbackStore d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm ensureFallbackStore dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function ensureFallbackStore() {
   sampleData.practiceSessions = sampleData.practiceSessions || [];
   sampleData.practiceChats = sampleData.practiceChats || [];
@@ -75,13 +75,13 @@ function ensureFallbackStore() {
 
 let schemaCheckPromise = null;
 
-// H?m ensureSchema d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm ensureSchema dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function ensureSchema() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!schemaCheckPromise) {
     schemaCheckPromise = verifySchemaReady();
   }
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await schemaCheckPromise;
   } catch (error) {
@@ -91,7 +91,7 @@ async function ensureSchema() {
   }
 }
 
-// H?m verifySchemaReady d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm verifySchemaReady dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function verifySchemaReady() {
   const requiredColumns = new Map([
     ['PracticeSessions', [
@@ -128,17 +128,17 @@ async function verifySchemaReady() {
     rows.map((row) => `${String(row.TABLE_NAME).toLowerCase()}.${String(row.COLUMN_NAME).toLowerCase()}`)
   );
   const missing = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [tableName, columns] of requiredColumns) {
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const columnName of columns) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!available.has(`${tableName.toLowerCase()}.${columnName.toLowerCase()}`)) {
         missing.push(`${tableName}.${columnName}`);
       }
     }
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (missing.length > 0) {
     const error = new Error(
       `Database chưa được nâng cấp phiên luyện tập (${missing.join(', ')}). `
@@ -150,7 +150,7 @@ async function verifySchemaReady() {
   }
 }
 
-// H?m createSession d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createSession dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function createSession({
   studentId,
   lessonId = null,
@@ -165,7 +165,7 @@ async function createSession({
   await ensureSchema();
   const ids = questionIds.map(Number).filter(Boolean);
   const questions = await Question.getQuestionsByIds(ids);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (
     questions.length !== ids.length
     || questions.some((question) => Number(question.is_active ?? 1) !== 1)
@@ -195,7 +195,7 @@ async function createSession({
   });
   const selectionAudit = normalizeSelectionAudit(selection);
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const sessionId = await db.transaction(async (connection) => {
       const [activeRows] = await connection.execute(
@@ -206,9 +206,9 @@ async function createSession({
          FOR UPDATE`,
         [activeKey]
       );
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (activeRows[0] && !replaceActive) return Number(activeRows[0].id);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (activeRows[0]) {
         await connection.execute(
           `UPDATE PracticeSessions
@@ -248,7 +248,7 @@ async function createSession({
           JSON.stringify(selectionAudit.metadata)
         ]
       );
-      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+      // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
       for (const [position, question] of questionSnapshots.entries()) {
         await connection.execute(
           `INSERT INTO PracticeSessionQuestions
@@ -291,12 +291,12 @@ async function createSession({
   }
 }
 
-// H?m getActiveLessonSession d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getActiveLessonSession dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getActiveLessonSession(studentId, lessonId, mode = 'LESSON') {
   await ensureSchema();
   await completeExpiredSessions(studentId);
   const sessionMode = ['REVIEW', 'LESSON'].includes(mode) ? mode : 'LESSON';
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT *
@@ -321,10 +321,10 @@ async function getActiveLessonSession(studentId, lessonId, mode = 'LESSON') {
   }
 }
 
-// H?m getSessionById d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getSessionById dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getSessionById(studentId, sessionId) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT *
@@ -358,21 +358,21 @@ async function listSessions(studentId, limit = 50, options = {}) {
     .filter(Boolean);
   const where = ['ps.student_id = ?'];
   const params = [studentId];
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (status) {
     where.push('ps.status = ?');
     params.push(status);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (modes.length > 0) {
     where.push(`ps.session_mode IN (${modes.map(() => '?').join(',')})`);
     params.push(...modes);
   }
-  // H?m matchesFilters d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm matchesFilters dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const matchesFilters = (session) =>
     (!status || session.status === status)
     && (modes.length === 0 || modes.includes(session.session_mode));
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT ps.*
@@ -383,7 +383,7 @@ async function listSessions(studentId, limit = 50, options = {}) {
       params
     );
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (rows.length === 0) return [];
 
     const sessionIds = rows.map((row) => Number(row.id)).filter(Boolean);
@@ -438,10 +438,10 @@ async function listSessions(studentId, limit = 50, options = {}) {
   }
 }
 
-// H?m completeExpiredSessions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm completeExpiredSessions dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function completeExpiredSessions(studentId) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await db.query(
       `UPDATE PracticeSessions
@@ -490,10 +490,10 @@ async function completeExpiredSessions(studentId) {
   }
 }
 
-// H?m listAnswers d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm listAnswers dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function listAnswers(sessionId) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return await db.query(
       `SELECT sl.*
@@ -509,10 +509,10 @@ async function listAnswers(sessionId) {
   }
 }
 
-// H?m listChats d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm listChats dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function listChats(sessionId) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return await db.query(
       `SELECT *
@@ -528,13 +528,13 @@ async function listChats(sessionId) {
   }
 }
 
-// H?m saveChat d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm saveChat dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function saveChat({ sessionId, questionId, role, message }) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!sessionId || !message) return null;
   await ensureSchema();
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const result = await db.query(
       `INSERT INTO PracticeSessionChats (practice_session_id, question_id, role, message)
@@ -564,7 +564,7 @@ async function saveChat({ sessionId, questionId, role, message }) {
 // (bấm chấm tiến trình nhảy tới câu bất kỳ).
 async function syncSessionProgress(sessionId) {
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await db.query(
       `UPDATE PracticeSessions ps
@@ -580,7 +580,7 @@ async function syncSessionProgress(sessionId) {
     fallbackOrThrow(error);
     ensureFallbackStore();
     const session = sampleData.practiceSessions.find((item) => Number(item.id) === Number(sessionId));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) return;
     const answered = new Set(
       sampleData.studentLogs
@@ -591,11 +591,11 @@ async function syncSessionProgress(sessionId) {
   }
 }
 
-// H?m completeSession d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm completeSession dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function completeSession(studentId, sessionId, reason = 'USER_FINISHED') {
   await ensureSchema();
   const completionReason = normalizeCompletionReason(reason);
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await db.query(
       `UPDATE PracticeSessions
@@ -613,7 +613,7 @@ async function completeSession(studentId, sessionId, reason = 'USER_FINISHED') {
     const session = sampleData.practiceSessions.find(
       (item) => Number(item.id) === Number(sessionId) && Number(item.student_id) === Number(studentId)
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (session) {
       session.status = 'COMPLETED';
       session.completion_reason = session.completion_reason || completionReason;
@@ -624,9 +624,9 @@ async function completeSession(studentId, sessionId, reason = 'USER_FINISHED') {
   }
 }
 
-// H?m normalizeSession d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeSession dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSession(row) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!row) return null;
   const questionIds = parseJsonField(row.question_ids, []);
   const answeredCount = Number(row.answered_count || 0);
@@ -642,7 +642,7 @@ function normalizeSession(row) {
   };
 }
 
-// H?m normalizeSelectionAudit d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeSelectionAudit dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSelectionAudit(selection) {
   const source = selection && typeof selection === 'object' ? selection : {};
   const version = String(source.version || '').trim().slice(0, 32) || null;
@@ -654,12 +654,12 @@ function normalizeSelectionAudit(selection) {
   return { version, seed, metadata };
 }
 
-// H?m getSessionQuestions d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getSessionQuestions dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getSessionQuestions(session) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!session) return [];
   await ensureSchema();
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT snapshot
@@ -668,7 +668,7 @@ async function getSessionQuestions(session) {
        ORDER BY position`,
       [session.id]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (rows.length > 0) {
       return rows.map((row) => createQuestionSnapshot(parseJsonField(row.snapshot, {})));
     }
@@ -677,20 +677,20 @@ async function getSessionQuestions(session) {
     const snapshots = Array.isArray(session.question_snapshots)
       ? session.question_snapshots.map(createQuestionSnapshot)
       : [];
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (snapshots.length > 0) return snapshots;
   }
   return Question.getQuestionsByIds(session.question_ids);
 }
 
-// H?m getSessionQuestion d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm getSessionQuestion dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getSessionQuestion(studentId, sessionId, questionId) {
   const session = await getSessionById(studentId, sessionId);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!session || !session.question_ids.map(Number).includes(Number(questionId))) {
     return { session, question: null };
   }
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT snapshot
@@ -699,7 +699,7 @@ async function getSessionQuestion(studentId, sessionId, questionId) {
        LIMIT 1`,
       [sessionId, questionId]
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (rows[0]) {
       return {
         session,
@@ -716,7 +716,7 @@ async function getSessionQuestion(studentId, sessionId, questionId) {
   };
 }
 
-// H?m createQuestionSnapshot d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createQuestionSnapshot dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function createQuestionSnapshot(question) {
   return {
     snapshot_version: 1,
@@ -743,7 +743,7 @@ function createQuestionSnapshot(question) {
   };
 }
 
-// H?m buildActiveSessionKey d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm buildActiveSessionKey dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function buildActiveSessionKey({ studentId, lessonId, chapterId, semester, mode }) {
   return [
     Number(studentId),
@@ -754,7 +754,7 @@ function buildActiveSessionKey({ studentId, lessonId, chapterId, semester, mode 
   ].join(':');
 }
 
-// H?m normalizeCompletionReason d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeCompletionReason dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeCompletionReason(value) {
   const reason = String(value || '').trim().toUpperCase();
   return [
@@ -767,12 +767,12 @@ function normalizeCompletionReason(value) {
   ].includes(reason) ? reason : 'USER_FINISHED';
 }
 
-// H?m hydrateSessionFromLogs d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm hydrateSessionFromLogs dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function hydrateSessionFromLogs(session) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!session || session.question_ids.length > 0) return session;
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
       `SELECT question_id
@@ -783,7 +783,7 @@ async function hydrateSessionFromLogs(session) {
       [session.id]
     );
     const questionIds = rows.map((row) => Number(row.question_id)).filter(Boolean);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (questionIds.length > 0) {
       session.question_ids = questionIds;
       session.question_count = Math.max(Number(session.question_count || 0), questionIds.length);
@@ -795,7 +795,7 @@ async function hydrateSessionFromLogs(session) {
       .filter((log) => Number(log.practice_session_id) === Number(session.id))
       .map((log) => Number(log.question_id))
       .filter(Boolean);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (questionIds.length > 0) {
       session.question_ids = [...new Set(questionIds)];
       session.question_count = Math.max(Number(session.question_count || 0), session.question_ids.length);

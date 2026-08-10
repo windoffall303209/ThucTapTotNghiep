@@ -1,4 +1,4 @@
-# Script build grade1 full theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 full theory docx hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 import math
 import textwrap
@@ -222,14 +222,14 @@ STATIC_ANSWERS = {
 }
 
 
-# H?m font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm font dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def font(size, bold=False):
     path = FONT_BOLD if bold and FONT_BOLD.exists() else FONT_REGULAR
     return ImageFont.truetype(str(path), size=size) if path.exists() else ImageFont.load_default()
 
 
-# H?m safe_name d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm safe_name dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def safe_name(text):
     allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
@@ -239,7 +239,7 @@ def safe_name(text):
     return "".join(result).strip("-")[:80]
 
 
-# H?m draw_wrapped d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_wrapped dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_wrapped(draw, text, xy, fnt, fill="#1f2937", width=42, spacing=8):
     x, y = xy
@@ -253,13 +253,13 @@ def draw_wrapped(draw, text, xy, fnt, fill="#1f2937", width=42, spacing=8):
     return y
 
 
-# H?m rounded_rect d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm rounded_rect dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def rounded_rect(draw, box, fill, outline=None, width=2, radius=24):
     draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
 
-# H?m draw_badge d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_badge dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_badge(draw, text, x, y, fill="#dbeafe", color="#1d4ed8"):
     f = font(24, True)
@@ -268,7 +268,7 @@ def draw_badge(draw, text, x, y, fill="#dbeafe", color="#1d4ed8"):
     draw.text((x + 19, y + 9), text, font=f, fill=color)
 
 
-# H?m draw_apple d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_apple dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_apple(draw, cx, cy, r=26, fill="#ef4444"):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=fill, outline="#991b1b", width=3)
@@ -276,13 +276,13 @@ def draw_apple(draw, cx, cy, r=26, fill="#ef4444"):
     draw.ellipse((cx + 10, cy - r - 28, cx + 36, cy - r - 10), fill="#22c55e", outline="#15803d", width=2)
 
 
-# H?m draw_dot d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_dot dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_dot(draw, cx, cy, r=18, fill="#60a5fa"):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=fill, outline="#2563eb", width=3)
 
 
-# H?m draw_flower d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_flower dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_flower(draw, cx, cy, scale=1.0):
     r = int(14 * scale)
@@ -293,7 +293,7 @@ def draw_flower(draw, cx, cy, scale=1.0):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill="#facc15", outline="#a16207", width=2)
 
 
-# H?m draw_pencil d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_pencil dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_pencil(draw, x, y, length=110, color="#facc15"):
     draw.rounded_rectangle((x, y, x + length, y + 24), radius=8, fill=color, outline="#a16207", width=2)
@@ -302,7 +302,7 @@ def draw_pencil(draw, x, y, length=110, color="#facc15"):
     draw.rectangle((x, y, x + 18, y + 24), fill="#f9a8d4", outline="#be185d")
 
 
-# H?m draw_base10 d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_base10 dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_base10(draw, x, y, tens=2, ones=5):
     for i in range(tens):
@@ -318,7 +318,7 @@ def draw_base10(draw, x, y, tens=2, ones=5):
         draw.rounded_rectangle((ox, oy, ox + 26, oy + 26), radius=6, fill="#fde68a", outline="#a16207", width=2)
 
 
-# H?m draw_ten_frame d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_ten_frame dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_ten_frame(draw, x, y, filled=7, crossed=0):
     idx = 0
@@ -334,7 +334,7 @@ def draw_ten_frame(draw, x, y, filled=7, crossed=0):
             idx += 1
 
 
-# H?m draw_equation d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_equation dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_equation(draw, text, x, y):
     f = font(52, True)
@@ -342,7 +342,7 @@ def draw_equation(draw, text, x, y):
     draw.text((x + 35, y + 14), text, font=f, fill="#111827")
 
 
-# H?m draw_clock d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_clock dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_clock(draw, cx, cy, hour=7):
     r = 145
@@ -360,7 +360,7 @@ def draw_clock(draw, cx, cy, hour=7):
     draw.ellipse((cx - 9, cy - 9, cx + 9, cy + 9), fill="#111827")
 
 
-# H?m draw_calendar d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_calendar dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_calendar(draw, x, y):
     days = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"]
@@ -372,7 +372,7 @@ def draw_calendar(draw, x, y):
         draw.text((bx + 16, y + 32), day, font=f, fill="#111827")
 
 
-# H?m draw_ruler d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_ruler dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_ruler(draw, x, y):
     draw.rounded_rectangle((x, y, x + 670, y + 76), radius=10, fill="#fef3c7", outline="#a16207", width=4)
@@ -383,7 +383,7 @@ def draw_ruler(draw, x, y):
         draw.text((xx - 7, y + 48), str(i), font=f, fill="#78350f")
 
 
-# H?m draw_number_grid d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_number_grid dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_number_grid(draw, x, y, start=1):
     f = font(19, True)
@@ -398,7 +398,7 @@ def draw_number_grid(draw, x, y, start=1):
             n += 1
 
 
-# H?m draw_position_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_position_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_position_scene(draw):
     draw.rectangle((110, 300, 470, 330), fill="#8b5e34")
@@ -416,7 +416,7 @@ def draw_position_scene(draw):
     draw.polygon([(1010, 230), (980, 210), (980, 250)], fill="#2563eb")
 
 
-# H?m draw_shapes_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_shapes_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_shapes_scene(draw):
     draw.rectangle((130, 210, 280, 360), fill="#60a5fa", outline="#1d4ed8", width=5)
@@ -428,7 +428,7 @@ def draw_shapes_scene(draw):
         draw.text((x, y), label, font=font(30, True), fill="#111827")
 
 
-# H?m draw_counting_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_counting_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_counting_scene(draw, counts):
     colors = ["#ef4444", "#f97316", "#22c55e", "#60a5fa", "#a78bfa"]
@@ -440,7 +440,7 @@ def draw_counting_scene(draw, counts):
             draw_apple(draw, 260 + i * 72, y + 8, 24, fill=colors[row % len(colors)])
 
 
-# H?m draw_comparison_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_comparison_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_comparison_scene(draw):
     for i in range(5):
@@ -454,7 +454,7 @@ def draw_comparison_scene(draw):
     draw_badge(draw, "Nhóm A nhiều hơn", 730, 315, "#dcfce7", "#166534")
 
 
-# H?m draw_sign_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_sign_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_sign_scene(draw):
     draw_counting_scene(draw, [3, 5])
@@ -463,7 +463,7 @@ def draw_sign_scene(draw):
     draw.text((500, 425), "4 = 4", font=font(70, True), fill="#15803d")
 
 
-# H?m draw_add_scene d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_add_scene dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_add_scene(draw, equation="2 + 1 = 3", left=2, right=1):
     for i in range(left):
@@ -477,7 +477,7 @@ def draw_add_scene(draw, equation="2 + 1 = 3", left=2, right=1):
     draw_equation(draw, equation, 380, 405)
 
 
-# H?m draw_sub_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_sub_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_sub_scene(draw, equation="5 - 2 = 3", total=5, sub=2):
     for i in range(total):
@@ -492,7 +492,7 @@ def draw_sub_scene(draw, equation="5 - 2 = 3", total=5, sub=2):
     draw_equation(draw, equation, 390, 405)
 
 
-# H?m draw_solids_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_solids_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_solids_scene(draw):
     draw.polygon([(170, 285), (330, 235), (450, 300), (290, 360)], fill="#93c5fd", outline="#1d4ed8")
@@ -505,7 +505,7 @@ def draw_solids_scene(draw):
     draw.text((780, 500), "Khối lập phương", font=font(30, True), fill="#111827")
 
 
-# H?m draw_place_value_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_place_value_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_place_value_scene(draw, number=35):
     tens = number // 10
@@ -518,7 +518,7 @@ def draw_place_value_scene(draw, number=35):
     draw_base10(draw, 735, 205, tens=min(tens, 7), ones=ones)
 
 
-# H?m draw_length_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_length_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_length_scene(draw):
     draw_pencil(draw, 190, 230, 330, "#facc15")
@@ -528,13 +528,13 @@ def draw_length_scene(draw):
     draw.text((790, 356), "dài hơn", font=font(36, True), fill="#166534")
 
 
-# H?m draw_week_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_week_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_week_scene(draw):
     draw_calendar(draw, 135, 285)
 
 
-# H?m draw_default_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm draw_default_scene dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def draw_default_scene(draw, card, lesson):
     text = card.get("visual_prompt") or lesson.get("lesson") or ""
@@ -542,7 +542,7 @@ def draw_default_scene(draw, card, lesson):
     draw_wrapped(draw, text, (155, 235), font(30, True), width=48, spacing=12)
 
 
-# H?m choose_scene d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm choose_scene dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def choose_scene(draw, lesson, card):
     name = lesson["lesson"].lower()
@@ -632,7 +632,7 @@ def choose_scene(draw, lesson, card):
         draw_default_scene(draw, card, lesson)
 
 
-# H?m render_card_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm render_card_image dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def render_card_image(chapter_index, lesson_index, card_index, chapter, lesson, card):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -655,7 +655,7 @@ def render_card_image(chapter_index, lesson_index, card_index, chapter, lesson, 
     return path
 
 
-# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_run_font dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
@@ -667,7 +667,7 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
         run.font.color.rgb = RGBColor.from_string(color)
 
 
-# H?m set_document_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_document_defaults dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_document_defaults(doc):
     section = doc.sections[0]
@@ -696,7 +696,7 @@ def set_document_defaults(doc):
         style.font.bold = True
 
 
-# H?m add_meta_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_meta_paragraph dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_meta_paragraph(doc, label, value):
     paragraph = doc.add_paragraph()
@@ -706,7 +706,7 @@ def add_meta_paragraph(doc, label, value):
     set_run_font(value_run)
 
 
-# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_bullets dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_bullets(doc, items):
     for item in items:
@@ -715,7 +715,7 @@ def add_bullets(doc, items):
         set_run_font(run)
 
 
-# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_cell_text dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_cell_text(cell, text, bold=False, size=9):
     cell.text = ""
@@ -724,7 +724,7 @@ def set_cell_text(cell, text, bold=False, size=9):
     set_run_font(run, size=size, bold=bold)
 
 
-# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm set_cell_shading dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
@@ -733,7 +733,7 @@ def set_cell_shading(cell, fill):
     tc_pr.append(shd)
 
 
-# H?m add_overview_table d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm add_overview_table dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def add_overview_table(doc, rows):
     table = doc.add_table(rows=1, cols=4)
@@ -750,7 +750,7 @@ def add_overview_table(doc, rows):
             cells[i].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
-# H?m build_card_detail d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_card_detail dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_card_detail(card):
     card_type = card.get("type", "")
@@ -764,7 +764,7 @@ def build_card_detail(card):
     ]
 
 
-# H?m expected_answer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm expected_answer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def expected_answer(lesson, card_index):
     answers = STATIC_ANSWERS.get(lesson["lesson"], [])
@@ -775,7 +775,7 @@ def expected_answer(lesson, card_index):
     return "Học sinh hoàn thành đúng nhiệm vụ của thẻ theo tranh minh họa."
 
 
-# H?m theory_takeaway d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm theory_takeaway dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def theory_takeaway(lesson, card):
     card_type = card.get("type", "")
@@ -792,7 +792,7 @@ def theory_takeaway(lesson, card):
     return "Nắm ý chính của thẻ học."
 
 
-# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm build_docx dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def build_docx():
     data = json.loads(INPUT_PATH.read_text(encoding="utf-8"))
@@ -886,6 +886,6 @@ def build_docx():
         return FALLBACK_OUTPUT_PATH
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     print(build_docx())

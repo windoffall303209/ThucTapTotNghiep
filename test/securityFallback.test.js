@@ -1,4 +1,4 @@
-// B? ki?m th? security fallback.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử security fallback.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
@@ -25,7 +25,7 @@ test('không biến lỗi dữ liệu khi đăng ký thành tài khoản học s
     throw databaseError;
   };
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await assert.rejects(
       Student.createStudent({
@@ -52,7 +52,7 @@ test('xác thực luôn đóng khi database mất kết nối, kể cả chế �
     throw unavailable;
   };
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     await assert.rejects(Admin.findByUsername('admin'), (error) => error === unavailable);
     await assert.rejects(Student.findByUsername('annguyen'), (error) => error === unavailable);
@@ -79,7 +79,7 @@ test('fallback dữ liệu mẫu chỉ dùng cho lỗi mất DB ngoài productio
     databaseUnavailable: true
   });
 
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     process.env.NODE_ENV = 'development';
     process.env.ALLOW_SAMPLE_DATA_FALLBACK = 'true';
@@ -130,7 +130,7 @@ test('production từ chối secret mẫu và cấu hình thiếu', () => {
 
 test('phiên đăng nhập đổi phiên bản khi mật khẩu thay đổi', () => {
   const originalJwtSecret = process.env.JWT_SECRET;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     process.env.JWT_SECRET = 'test-secret-that-is-long-enough-for-hmac';
     const first = getCredentialVersion('hash-a');
@@ -163,10 +163,10 @@ test('giới hạn đầu vào tài khoản theo kích thước cột và giới
   assert.equal(validatePassword('mat-khau-an-toan'), '');
 });
 
-// H?m restoreEnv d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm restoreEnv dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function restoreEnv(key, value) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === undefined) delete process.env[key];
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   else process.env[key] = value;
 }

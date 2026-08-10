@@ -1,4 +1,4 @@
-# Script build grade1 image jobs h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+# Script build grade1 image jobs hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 import json
 from pathlib import Path
 
@@ -9,7 +9,7 @@ QUESTIONS_PATH = PACK_DIR / "questions.json"
 JOBS_PATH = PACK_DIR / "image-jobs.json"
 
 
-# H?m sheet_prompt d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm sheet_prompt dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def sheet_prompt(lesson, questions, job_index):
     panel_lines = []
@@ -34,7 +34,7 @@ def sheet_prompt(lesson, questions, job_index):
     ])
 
 
-# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+# Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 
 def main():
     pack = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
@@ -63,6 +63,6 @@ def main():
     print(f"Wrote {len(jobs)} image jobs to {JOBS_PATH}")
 
 
-# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
+# Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
 if __name__ == "__main__":
     main()

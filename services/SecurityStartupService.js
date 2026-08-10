@@ -1,4 +1,4 @@
-// D?ch v? security startup service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ security startup service đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const bcrypt = require('bcryptjs');
 const db = require('../config/db');
 
@@ -10,9 +10,9 @@ const KNOWN_DEMO_PASSWORDS = new Map([
   ['chilam', ['matkhau123']]
 ]);
 
-// H?m assertNoDemoCredentials d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm assertNoDemoCredentials dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function assertNoDemoCredentials() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (process.env.NODE_ENV !== 'production') return;
 
   const [admins, students] = await Promise.all([
@@ -20,7 +20,7 @@ async function assertNoDemoCredentials() {
     db.query('SELECT username, password_hash FROM Students WHERE is_active = 1')
   ]);
   const unsafeAccounts = await findKnownDemoAccounts([...admins, ...students]);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (unsafeAccounts.length > 0) {
     const error = new Error(
       `Production còn tài khoản dùng mật khẩu demo công khai: ${unsafeAccounts.join(', ')}. `
@@ -31,15 +31,15 @@ async function assertNoDemoCredentials() {
   }
 }
 
-// H?m findKnownDemoAccounts d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm findKnownDemoAccounts dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function findKnownDemoAccounts(accounts = []) {
   const unsafe = [];
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const account of accounts) {
     const candidates = KNOWN_DEMO_PASSWORDS.get(String(account.username || '')) || [];
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const password of candidates) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (await bcrypt.compare(password, String(account.password_hash || ''))) {
         unsafe.push(account.username);
         break;

@@ -1,4 +1,4 @@
-// B? ?i?u khi?n auth controller ti?p nh?n y?u c?u, ki?m tra d? li?u v? ?i?u ph?i ph?n h?i cho ng??i d?ng.
+// Bộ điều khiển auth controller tiếp nhận yêu cầu, kiểm tra dữ liệu và điều phối phản hồi cho người dùng.
 const bcrypt = require('bcryptjs');
 const Admin = require('../models/Admin');
 const Student = require('../models/Student');
@@ -17,7 +17,7 @@ const {
 // the timing gap large enough to enumerate accounts despite identical messages.
 const DUMMY_PASSWORD_HASH = '$2b$10$6tzMhutOT6ddxR6sSqLDiuzw409nMyXSAZW1B3GlPXpJ3cAecZiBq';
 
-// H?m showLogin d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm showLogin dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function showLogin(req, res) {
   res.render('auth/login', {
     title: 'Đăng nhập',
@@ -25,28 +25,28 @@ function showLogin(req, res) {
   });
 }
 
-// H?m showRegister d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm showRegister dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function showRegister(req, res) {
   res.render('auth/register', {
     title: 'Đăng ký tài khoản'
   });
 }
 
-// H?m register d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm register dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function register(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const { password, confirmPassword, grade } = req.body;
     const username = normalizeUsername(req.body.username);
     const fullname = normalizeFullname(req.body.fullname);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!username || !password || !confirmPassword || !fullname || !grade) {
       setFlash(req, 'danger', 'Vui lòng điền đầy đủ tất cả các trường.');
       return res.redirect('/auth/register');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (password !== confirmPassword) {
       setFlash(req, 'danger', 'Mật khẩu xác nhận không trùng khớp.');
       return res.redirect('/auth/register');
@@ -55,21 +55,21 @@ async function register(req, res, next) {
     const usernameError = validateUsername(username);
     const fullnameError = validateFullname(fullname);
     const passwordError = validatePassword(password);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (usernameError || fullnameError || passwordError) {
       setFlash(req, 'danger', usernameError || fullnameError || passwordError);
       return res.redirect('/auth/register');
     }
 
     const normalizedGrade = normalizeGrade(grade);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isSupportedGrade(normalizedGrade)) {
       setFlash(req, 'danger', `Khối học phải nằm trong phạm vi từ ${GRADE_RANGE_LABEL}.`);
       return res.redirect('/auth/register');
     }
 
     const existingStudent = await Student.findByUsername(username);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (existingStudent) {
       setFlash(req, 'danger', 'Tên đăng nhập đã tồn tại, vui lòng chọn tên khác.');
       return res.redirect('/auth/register');
@@ -86,7 +86,7 @@ async function register(req, res, next) {
     setFlash(req, 'success', 'Đăng ký thành công. Em có thể bắt đầu ôn luyện ngay.');
     return res.redirect('/student/dashboard');
   } catch (error) {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (error.code === 'ER_DUP_ENTRY' || error.code === 'DUPLICATE_USERNAME') {
       setFlash(req, 'danger', 'Tên đăng nhập đã tồn tại, vui lòng chọn tên khác.');
       return res.redirect('/auth/register');
@@ -95,14 +95,14 @@ async function register(req, res, next) {
   }
 }
 
-// H?m login d?ng ?? x? l? x?c th?c v? c?p nh?t tr?ng th?i phi?n ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm login dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function login(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const { password, role } = req.body;
     const username = normalizeUsername(req.body.username);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !username
       || !password
@@ -113,7 +113,7 @@ async function login(req, res, next) {
       return res.redirect(`/auth/login${role === 'admin' ? '?role=admin' : ''}`);
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (role === 'admin') {
       return loginAdmin(req, res, username, password);
     }
@@ -123,13 +123,13 @@ async function login(req, res, next) {
       password,
       student?.password_hash || DUMMY_PASSWORD_HASH
     );
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student || !isValidPassword) {
       setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
       return res.redirect('/auth/login');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (Number(student.is_active ?? 1) !== 1) {
       setFlash(req, 'danger', 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.');
       return res.redirect('/auth/login');
@@ -159,20 +159,20 @@ async function login(req, res, next) {
   }
 }
 
-// H?m logout d?ng ?? x? l? x?c th?c v? c?p nh?t tr?ng th?i phi?n ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm logout dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function logout(req, res, next) {
   clearAuthCookie(res);
   req.session.destroy((error) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (error) return next(error);
     return res.redirect('/');
   });
 }
 
-// H?m loginAdmin d?ng ?? x? l? x?c th?c v? c?p nh?t tr?ng th?i phi?n ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm loginAdmin dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function loginAdmin(req, res, username, password) {
   const admin = await verifyAdminCredentials(username, password);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (admin) {
     setAuthCookie(res, {
       id: admin.id,
@@ -193,14 +193,14 @@ async function loginAdmin(req, res, username, password) {
   return res.redirect('/auth/login?role=admin');
 }
 
-// H?m verifyAdminCredentials d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm verifyAdminCredentials dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function verifyAdminCredentials(username, password) {
   const admin = await Admin.findByUsername(username);
   const isValidAdminPassword = await bcrypt.compare(
     password,
     admin?.password_hash || DUMMY_PASSWORD_HASH
   );
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!admin || Number(admin.is_active) !== 1 || !isValidAdminPassword) {
     return null;
   }
@@ -208,7 +208,7 @@ async function verifyAdminCredentials(username, password) {
   return admin;
 }
 
-// H?m toStudentTokenPayload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm toStudentTokenPayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function toStudentTokenPayload(student) {
   return {
     id: student.id,

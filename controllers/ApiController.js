@@ -1,4 +1,4 @@
-// B? ?i?u khi?n api controller ti?p nh?n y?u c?u, ki?m tra d? li?u v? ?i?u ph?i ph?n h?i cho ng??i d?ng.
+// Bộ điều khiển api controller tiếp nhận yêu cầu, kiểm tra dữ liệu và điều phối phản hồi cho người dùng.
 const PracticeSession = require('../models/PracticeSession');
 const SocraticAIService = require('../services/SocraticAIService');
 const SystemSetting = require('../models/SystemSetting');
@@ -9,14 +9,14 @@ const { isAIEnabledForGrade } = require('../utils/aiPolicy');
 
 const MAX_STUDENT_MESSAGE_LENGTH = 1000;
 
-// H?m exerciseHelp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm exerciseHelp dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function exerciseHelp(req, res, next) {
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const practiceSessionId = parsePositiveInteger(req.body.practiceSessionId);
     const questionId = parsePositiveInteger(req.body.questionId);
     const studentMessage = normalizeMessage(req.body.message);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!practiceSessionId || !questionId) {
       return res.status(400).json({
         ok: false,
@@ -24,7 +24,7 @@ async function exerciseHelp(req, res, next) {
         message: 'Cần một phiên và câu hỏi hợp lệ để mở gợi ý.'
       });
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (studentMessage === null) {
       return res.status(400).json({
         ok: false,
@@ -34,7 +34,7 @@ async function exerciseHelp(req, res, next) {
     }
 
     const settings = await SystemSetting.getSettings();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isAIEnabledForGrade(req.auth?.current_grade, settings)) {
       await logBlockedRequest({
         req,
@@ -60,7 +60,7 @@ async function exerciseHelp(req, res, next) {
       maxPerQuestion: settings.ai_max_hints_per_question,
       maxPerSession: settings.ai_max_hints_per_session
     });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (reservation.outcome !== 'RESERVED') {
       const block = quotaOutcomeResponse(reservation.outcome, practiceSessionId);
       await logBlockedRequest({
@@ -82,7 +82,7 @@ async function exerciseHelp(req, res, next) {
       (chat) => Number(chat.question_id) === Number(question.id)
     );
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (studentMessage) {
       await PracticeSession.saveChat({
         sessionId: practiceSessionId,
@@ -130,19 +130,19 @@ async function exerciseHelp(req, res, next) {
   }
 }
 
-// H?m parsePositiveInteger d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parsePositiveInteger dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parsePositiveInteger(value) {
   const number = Number(value);
   return Number.isInteger(number) && number > 0 ? number : null;
 }
 
-// H?m normalizeMessage d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm normalizeMessage dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeMessage(value) {
   const message = String(value || '').trim();
   return message.length <= MAX_STUDENT_MESSAGE_LENGTH ? message : null;
 }
 
-// H?m quotaOutcomeResponse d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm quotaOutcomeResponse dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function quotaOutcomeResponse(outcome, sessionId) {
   const redirectUrl = `/student/sessions/${sessionId}`;
   const responses = {
@@ -223,20 +223,20 @@ function quotaOutcomeResponse(outcome, sessionId) {
   };
 }
 
-// H?m verifiedLogContext d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm verifiedLogContext dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function verifiedLogContext(outcome) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['ANSWER_REQUIRED', 'QUESTION_QUOTA_EXCEEDED', 'SESSION_QUOTA_EXCEEDED'].includes(outcome)) {
     return { attachSession: true, attachQuestion: true };
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['SESSION_EXPIRED', 'SESSION_COMPLETED', 'QUESTION_NOT_IN_SESSION'].includes(outcome)) {
     return { attachSession: true, attachQuestion: false };
   }
   return { attachSession: false, attachQuestion: false };
 }
 
-// H?m logBlockedRequest d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm logBlockedRequest dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function logBlockedRequest({
   req,
   practiceSessionId,

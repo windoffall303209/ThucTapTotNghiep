@@ -1,4 +1,4 @@
-// Script rebalance keys by id h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script rebalance keys by id hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Rải đều nhãn đáp án đúng ra bốn vị trí A, B, C, D, chạy thẳng trên MySQL.
  *
@@ -43,13 +43,13 @@ const GRADE = Number(process.argv[2]);
 const ROOT = path.join(__dirname, '..');
 const KEYS = ['A', 'B', 'C', 'D'];
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -69,9 +69,9 @@ function hoanVi(choices, khoaDung, viTriDich) {
   return moi.map((c, i) => ({ ...c, key: KEYS[i] }));
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isInteger(GRADE) || GRADE < 1 || GRADE > 5) {
     throw new Error('Cần truyền số khối lớp, ví dụ: node scripts/rebalance_keys_by_id.js 1');
   }
@@ -93,35 +93,35 @@ async function main() {
   let stt = 0;
   let doi = 0;
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const row of rows) {
     const choices = parseJson(row.choices, []) || [];
     const content = parseJson(row.content, {}) || {};
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (row.question_type && row.question_type !== 'MULTIPLE_CHOICE') {
       boQua.khongPhaiTracNghiem += 1;
       continue;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (choices.length !== 4) {
       boQua.thieuPhuongAn += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (truoc[row.correct_answer] !== undefined) truoc[row.correct_answer] += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (sau[row.correct_answer] !== undefined) sau[row.correct_answer] += 1;
       continue;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if ((content.images || []).some((im) => String(im.url || '').includes('c_crop'))) {
       boQua.anhCat += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (truoc[row.correct_answer] !== undefined) truoc[row.correct_answer] += 1;
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (sau[row.correct_answer] !== undefined) sau[row.correct_answer] += 1;
       continue;
     }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choices.some((c) => c.key === row.correct_answer)) {
       throw new Error(`id ${row.id}: đáp án ${row.correct_answer} không có trong phương án.`);
     }
@@ -133,7 +133,7 @@ async function main() {
     const khoaDich = KEYS[viTriDich];
     sau[khoaDich] += 1;
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (row.correct_answer === khoaDich) continue;
 
     const choicesMoi = hoanVi(choices, row.correct_answer, viTriDich);
@@ -145,7 +145,7 @@ async function main() {
       phuong_an_moi: choicesMoi.map((c) => `${c.key}. ${c.text}`)
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET choices = CAST(? AS JSON), correct_answer = ? WHERE id = ?',
@@ -155,13 +155,13 @@ async function main() {
   }
 
   const tong = rows.length || 1;
-  // H?m pct d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm pct dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const pct = (o) => KEYS.map((k) => `${k}=${((o[k] / tong) * 100).toFixed(1)}%`).join('  ');
 
   console.log(`Lớp ${GRADE}: ${rows.length} câu`);
   console.log(`  Bỏ qua vì chưa đủ 4 phương án:        ${boQua.thieuPhuongAn}`);
   console.log(`  Bỏ qua vì ảnh in sẵn nhãn A, B, C, D: ${boQua.anhCat}`);
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (boQua.khongPhaiTracNghiem) {
     console.log(`  Bỏ qua vì không phải trắc nghiệm:     ${boQua.khongPhaiTracNghiem}`);
   }
@@ -173,7 +173,7 @@ async function main() {
   const baoCao = path.join(ROOT, 'tmp', `bao_cao_can_bang_lop${GRADE}.json`);
   fs.writeFileSync(baoCao, JSON.stringify(chiTiet, null, 1), 'utf8');
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (COMMIT) {
     console.log('\nĐã ghi vào MySQL. Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');
   } else {

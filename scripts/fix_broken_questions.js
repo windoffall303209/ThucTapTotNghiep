@@ -1,4 +1,4 @@
-// Script fix broken questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script fix broken questions hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Sửa các câu hỏi bị lỗi nội dung trong ngân hàng câu hỏi.
  *
@@ -93,12 +93,12 @@ const FIXES = [
   }
 ];
 
-// H?m decodePayload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm decodePayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function decodePayload(base64) {
   return JSON.parse(Buffer.from(base64, 'base64').toString('utf8'));
 }
 
-// H?m encodePayload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm encodePayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function encodePayload(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
@@ -106,28 +106,28 @@ function encodePayload(payload) {
 // Thay đúng một dòng \item <KEY>. ... trong khối LaTeX của câu hỏi.
 function replaceLatexChoice(block, key, newText) {
   const pattern = new RegExp(`(\\\\item ${key}\\. )(.*)`, 'm');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!pattern.test(block)) return { block, ok: false };
   return { block: block.replace(pattern, `$1${newText}`), ok: true };
 }
 
-// H?m replaceLatexField d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm replaceLatexField dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function replaceLatexField(block, label, newValue) {
   const pattern = new RegExp(`(\\\\textbf\\{${label}:\\} )(.*)`, 'm');
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!pattern.test(block)) return { block, ok: false };
   return { block: block.replace(pattern, `$1${newValue}`), ok: true };
 }
 
-// H?m applyToTex d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm applyToTex dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function applyToTex(source, fix) {
   const lines = source.split('\n');
   const canhBao = [];
 
   const dbjsonIndex = lines.findIndex((line) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!line.startsWith('% DBJSON ')) return false;
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     try {
       return decodePayload(line.slice('% DBJSON '.length).trim()).external_id === fix.externalId;
     } catch (error) {
@@ -135,59 +135,59 @@ function applyToTex(source, fix) {
     }
   });
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (dbjsonIndex === -1) throw new Error(`Không tìm thấy ${fix.externalId} trong file`);
 
   const payload = decodePayload(lines[dbjsonIndex].slice('% DBJSON '.length).trim());
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.contentText) payload.content.text = fix.contentText;
   Object.entries(fix.choices || {}).forEach(([key, text]) => {
     const choice = payload.choices.find((item) => item.key === key);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choice) throw new Error(`${fix.externalId} không có phương án ${key}`);
     choice.text = text;
   });
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.correctAnswer) payload.correct_answer = fix.correctAnswer;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.explanation) payload.explanation.text = fix.explanation;
 
   lines[dbjsonIndex] = `% DBJSON ${encodePayload(payload)}`;
 
   // Khối LaTeX nằm ngay sau dòng DBJSON, kết thúc ở \end{minipage}
   const endIndex = lines.findIndex((line, index) => index > dbjsonIndex && line.includes('\\end{minipage}'));
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (endIndex === -1) throw new Error(`${fix.externalId}: không tìm thấy \\end{minipage}`);
 
   let block = lines.slice(dbjsonIndex + 1, endIndex + 1).join('\n');
 
   Object.entries(fix.choices || {}).forEach(([key, text]) => {
     const result = replaceLatexChoice(block, key, text);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!result.ok) canhBao.push(`${fix.externalId}: không thấy \\item ${key} trong khối LaTeX`);
     block = result.block;
   });
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.contentText) {
     const pattern = new RegExp(`(\\\\noindent\\\\textbf\\{${fix.externalId} \\([A-Z]+\\):\\} )(.*)`, 'm');
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (pattern.test(block)) block = block.replace(pattern, `$1${fix.contentText}`);
-    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     else canhBao.push(`${fix.externalId}: không thấy dòng đề bài trong khối LaTeX`);
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.correctAnswer) {
     const result = replaceLatexField(block, 'Đáp án đúng', `${fix.correctAnswer}\\\\`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!result.ok) canhBao.push(`${fix.externalId}: không thấy nhãn Đáp án đúng`);
     block = result.block;
   }
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (fix.explanation) {
     const result = replaceLatexField(block, 'Lời giải', fix.explanation);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!result.ok) canhBao.push(`${fix.externalId}: không thấy nhãn Lời giải`);
     block = result.block;
   }
@@ -197,7 +197,7 @@ function applyToTex(source, fix) {
   return { source: lines.join('\n'), payload, canhBao };
 }
 
-// H?m applyToDatabase d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm applyToDatabase dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function applyToDatabase(payload) {
   const rows = await db.query(
     `SELECT q.id, q.content, q.choices FROM QuestionBank q
@@ -212,25 +212,25 @@ async function applyToDatabase(payload) {
   return rows;
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
   console.log(COMMIT ? 'Chế độ GHI THẬT\n' : 'Chế độ xem trước (thêm --commit để ghi)\n');
 
   const theoFile = new Map();
   FIXES.forEach((fix) => {
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!theoFile.has(fix.file)) theoFile.set(fix.file, []);
     theoFile.get(fix.file).push(fix);
   });
 
   let tongCanhBao = 0;
 
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [file, fixes] of theoFile) {
     const filePath = path.join(DATA_DIR, file);
     let source = fs.readFileSync(filePath, 'utf8');
 
-    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+    // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
     for (const fix of fixes) {
       const truoc = decodePayload(
         source.split('\n')
@@ -248,23 +248,23 @@ async function main() {
 
       console.log(`${fix.externalId} (lớp ${truoc.grade})`);
       console.log(`  Lý do: ${fix.lyDo}`);
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (fix.contentText) console.log(`  Đề bài: "${truoc.content.text}" -> "${fix.contentText}"`);
       Object.entries(fix.choices || {}).forEach(([key, text]) => {
         const cu = truoc.choices.find((item) => item.key === key);
         console.log(`  Phương án ${key}: "${cu.text}" -> "${text}"`);
       });
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (fix.correctAnswer && fix.correctAnswer !== truoc.correct_answer) {
         console.log(`  Đáp án đúng: ${truoc.correct_answer} -> ${fix.correctAnswer}`);
       }
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (fix.explanation) console.log(`  Lời giải: đã viết lại`);
 
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (COMMIT) {
         const rows = await applyToDatabase({ ...result.payload, content: truoc.content });
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (rows.length !== 1) {
           console.log(`  CẢNH BÁO: tìm thấy ${rows.length} bản ghi khớp trong MySQL, bỏ qua cập nhật DB`);
           tongCanhBao += 1;
@@ -288,7 +288,7 @@ async function main() {
       console.log('');
     }
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       fs.writeFileSync(filePath, source, 'utf8');
       console.log(`Đã ghi ${file}\n`);

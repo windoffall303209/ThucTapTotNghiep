@@ -1,10 +1,10 @@
-// B? ki?m th? security credential rotation.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
+// Bộ kiểm thử security credential rotation.test xác minh hành vi và các điều kiện biên quan trọng của hệ thống.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const Rotation = require('../scripts/rotate_security_credentials');
 
-// H?m createHarness d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm createHarness dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function createHarness() {
   const calls = {
     reads: 0,
@@ -22,7 +22,7 @@ function createHarness() {
     },
     envPath: 'virtual/.env',
     fs: {
-      // H?m readFile d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm readFile dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async readFile() {
         calls.reads += 1;
         return [
@@ -32,41 +32,41 @@ function createHarness() {
           ''
         ].join('\n');
       },
-      // H?m writeFile d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm writeFile dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async writeFile(file, content) {
         calls.writes.push({ file, content });
       }
     },
     db: {
-      // H?m testConnection d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm testConnection dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async testConnection() {
         return { connected: true };
       },
-      // H?m query d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm query dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async query(sql) {
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (/SELECT DATABASE\(\)/.test(sql)) {
           return [{ database_name: databaseName }];
         }
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (/FROM SystemSettings/.test(sql)) {
           return [{
             setting_key: 'openai_api_key',
             setting_value: 'provider-secret-never-log'
           }];
         }
-        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (/SELECT username, password_hash/.test(sql)) return [];
         throw new Error(`Unexpected query: ${sql}`);
       },
-      // H?m transaction d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm transaction dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async transaction(callback) {
         calls.transactions += 1;
         return callback({
-          // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+          // Hàm execute dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
           async execute(sql, params = []) {
             calls.executes.push({ sql, params });
-            // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+            // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
             if (/SELECT DATABASE\(\)/.test(sql)) {
               return [[{ database_name: databaseName }]];
             }
@@ -76,23 +76,23 @@ function createHarness() {
       }
     },
     bcrypt: {
-      // H?m compare d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm compare dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async compare() {
         return false;
       },
-      // H?m hash d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm hash dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       async hash() {
         calls.hashes += 1;
         return 'password-hash-never-log';
       }
     },
-    // H?m randomSecret d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+    // Hàm randomSecret dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     randomSecret() {
       calls.randomSecrets += 1;
       return `generated-secret-${calls.randomSecrets}-never-log`;
     },
     logger: {
-      // H?m log d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+      // Hàm log dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
       log(value) {
         calls.logs.push(String(value));
       }
@@ -136,7 +136,7 @@ test('preflight chỉ đọc và không sinh secret, ghi file hoặc mở transa
   assert.equal(calls.hashes, 0);
 
   const output = calls.logs.join('\n');
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const secret of [
     'old-encryption-secret-never-log',
     'old-session-secret-never-log',
@@ -148,7 +148,7 @@ test('preflight chỉ đọc và không sinh secret, ghi file hoặc mở transa
 });
 
 test('--apply thiếu hoặc sai xác nhận database vẫn không tạo hay ghi secret', async () => {
-  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
+  // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const args of [
     ['--apply'],
     ['--apply', '--confirm-database=wrong_db']
@@ -203,7 +203,7 @@ test('ghi .env loại bỏ secret trùng và khôi phục nội dung cũ nếu l
   dependencies.fs.writeFile = async (file, content) => {
     writeAttempt += 1;
     calls.writes.push({ file, content });
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (writeAttempt === 1) throw new Error('simulated write failure');
   };
 

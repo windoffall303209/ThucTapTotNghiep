@@ -1,4 +1,4 @@
-// D?ch v? practice generation service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
+// Dịch vụ practice generation service đóng gói nghiệp vụ chính và phối hợp các lớp dữ liệu hoặc tích hợp bên ngoài.
 const Question = require('../models/Question');
 const {
   createSelectionSeed,
@@ -11,7 +11,7 @@ const RECENT_LIMITS = Object.freeze({
   COMPREHENSIVE: 40
 });
 
-// H?m generateLessonSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm generateLessonSelection dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function generateLessonSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
   const candidates = Array.isArray(options.candidates) ? options.candidates : [];
@@ -32,7 +32,7 @@ async function generateLessonSelection(options, dependencies = {}) {
   });
 }
 
-// H?m generateReviewSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm generateReviewSelection dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function generateReviewSelection(options = {}) {
   const questions = (Array.isArray(options.questions) ? options.questions : []).map((question) => ({
     ...question,
@@ -48,7 +48,7 @@ function generateReviewSelection(options = {}) {
   });
 }
 
-// H?m generateScopedSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm generateScopedSelection dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function generateScopedSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
   const mode = String(options.mode || 'COMPREHENSIVE').toUpperCase() === 'CHAPTER'

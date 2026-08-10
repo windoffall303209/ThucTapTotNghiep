@@ -1,4 +1,4 @@
-// Script fix audit findings h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
+// Script fix audit findings hỗ trợ nhập, xuất, kiểm tra hoặc bảo trì dữ liệu và cấu hình của dự án.
 /**
  * Sửa các lỗi tìm được ở lượt rà soát độc lập file Word ngân hàng câu hỏi.
  *
@@ -170,13 +170,13 @@ const THAY_MOI = new Map([
 const CAT_RAC = ['G2-L012-Q020', 'G2-L015-Q020'];
 const MAU_RAC = /\s*##\s*Ch(ươ|uo)ng[\s\S]*$/u;
 
-// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm parseJson dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function parseJson(value, fallback) {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (value === null || value === undefined) return fallback;
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (typeof value !== 'string') return value;
-  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -184,9 +184,9 @@ function parseJson(value, fallback) {
   }
 }
 
-// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+// Hàm main dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function main() {
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!fs.existsSync(DUMP)) {
     throw new Error('Chưa có tmp/dump_cau_hoi.json. Chạy trước: node scripts/dump_questions_json.js');
   }
@@ -195,10 +195,10 @@ async function main() {
 
   const baoCao = [];
 
-  // H?m lay d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm lay dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   async function lay(ma) {
     const id = idTheoMa.get(ma);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!id) return null;
     const rows = await db.query(
       'SELECT q.id, q.content, q.choices, q.correct_answer, q.explanation, l.lesson_name '
@@ -211,23 +211,23 @@ async function main() {
   // ---- Nhóm 4: thay mới ----
   for (const [ma, muc] of THAY_MOI) {
     const row = await lay(ma);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) { console.log(`  BỎ QUA ${ma}: không tìm thấy`); continue; }
     const content = parseJson(row.content, {}) || {};
     const choicesCu = parseJson(row.choices, []) || [];
     const explanation = parseJson(row.explanation, {}) || {};
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (muc.pa.length !== 4) throw new Error(`${ma}: cần đúng 4 phương án.`);
     const choicesMoi = muc.pa.map((text, i) => ({ key: NHAN[i], text, images: [] }));
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!choicesMoi.some((c) => c.key === muc.dap)) throw new Error(`${ma}: đáp án không có trong phương án.`);
     const chuan = choicesMoi.map((c) => c.text.trim().toLowerCase());
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (new Set(chuan).size !== chuan.length) throw new Error(`${ma}: phương án mới bị trùng nhau.`);
     // Chốt chặn riêng của nhóm này: đề mới không được chứa nguyên văn đáp án đúng.
     const dapAnText = choicesMoi.find((c) => c.key === muc.dap).text.trim().toLowerCase();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (dapAnText.length > 2 && muc.de.toLowerCase().includes(dapAnText)) {
       console.log(`  CHÚ Ý ${ma}: đề mới vẫn chứa nguyên văn đáp án "${dapAnText}".`);
     }
@@ -240,7 +240,7 @@ async function main() {
       dap_an_cu: row.correct_answer, dap_an_moi: muc.dap, giai_moi: muc.giai
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), choices = CAST(? AS JSON), '
@@ -257,7 +257,7 @@ async function main() {
   // ---- Nhóm 2: viết lại đề ----
   for (const [ma, muc] of VIET_LAI_DE) {
     const row = await lay(ma);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) { console.log(`  BỎ QUA ${ma}: không tìm thấy`); continue; }
     const content = parseJson(row.content, {}) || {};
     const explanation = parseJson(row.explanation, {}) || {};
@@ -268,7 +268,7 @@ async function main() {
       dap_an_cu: row.correct_answer, dap_an_moi: row.correct_answer, giai_moi: muc.giai
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), explanation = CAST(? AS JSON) WHERE id = ?',
@@ -283,16 +283,16 @@ async function main() {
   // ---- Nhóm 1 và 3: lời giải, và gắn lại ảnh ----
   for (const [ma, giai] of SUA_LOI_GIAI) {
     const row = await lay(ma);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) { console.log(`  BỎ QUA ${ma}: không tìm thấy`); continue; }
     const content = parseJson(row.content, {}) || {};
     const explanation = parseJson(row.explanation, {}) || {};
     const anh = GAN_LAI_ANH.get(ma);
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (anh) {
       const tep = path.join(ROOT, 'public', anh.url.replace(/^\//, ''));
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!fs.existsSync(tep)) throw new Error(`${ma}: không tìm thấy tệp ảnh ${tep}`);
       content.images = [anh];
     }
@@ -304,9 +304,9 @@ async function main() {
       anh_gan_lai: anh ? anh.url : ''
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
-      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (anh) {
         await db.query(
           'UPDATE QuestionBank SET content = CAST(? AS JSON), explanation = CAST(? AS JSON) WHERE id = ?',
@@ -322,12 +322,12 @@ async function main() {
   // ---- Cắt rác Markdown ----
   for (const ma of CAT_RAC) {
     const row = await lay(ma);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!row) { console.log(`  BỎ QUA ${ma}: không tìm thấy`); continue; }
     const explanation = parseJson(row.explanation, {}) || {};
     const cu = String(explanation.text || '');
     const moi = cu.replace(MAU_RAC, '').trim();
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (moi === cu) { console.log(`  BỎ QUA ${ma}: không còn rác`); continue; }
 
     baoCao.push({
@@ -335,14 +335,14 @@ async function main() {
       giai_cu: cu, giai_moi: moi
     });
 
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (COMMIT) {
       await db.query('UPDATE QuestionBank SET explanation = CAST(? AS JSON) WHERE id = ?',
         [JSON.stringify({ ...explanation, text: moi }), row.id]);
     }
   }
 
-  // H?m dem d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+  // Hàm dem dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   const dem = (l) => baoCao.filter((b) => b.loai === l).length;
   console.log(`Thay mới:                 ${dem('thay_moi')}`);
   console.log(`Viết lại đề:              ${dem('viet_lai_de')}`);
@@ -353,17 +353,17 @@ async function main() {
 
   baoCao.filter((b) => b.loai !== 'thay_moi').forEach((b) => {
     console.log(`\n  ${b.external_id} [${b.loai}]`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (b.de_moi) { console.log(`    đề cũ : ${b.de_cu}`); console.log(`    đề mới: ${b.de_moi}`); }
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (b.giai_cu !== undefined) console.log(`    giải cũ : ${String(b.giai_cu).slice(0, 110)}`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (b.giai_moi) console.log(`    giải mới: ${String(b.giai_moi).slice(0, 110)}`);
-    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (b.anh_gan_lai) console.log(`    gắn lại ảnh: ${b.anh_gan_lai}`);
   });
 
-  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
+  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${baoCao.length} câu.`);
     console.log('Chạy tiếp: node scripts/resync_tex_from_db.js --commit');
