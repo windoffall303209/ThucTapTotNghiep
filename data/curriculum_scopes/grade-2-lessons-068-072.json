@@ -1,0 +1,118 @@
+{
+  "scope_id": "grade-2-lessons-068-072",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+    "verified_book_pages": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh thể hiện rõ việc chia đều hoặc các nhóm bằng nhau; không chứa đáp án.",
+    "progression": "Bài 68 làm quen phép chia và dấu chia; bài 69–70 thực hiện phép chia và liên hệ với phép nhân; bài 71 và 72 chỉ dùng bảng chia 2 và bảng chia 5.",
+    "difficulty": "Một phép chia hoặc một tình huống chia đều đơn giản; không yêu cầu nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 68,
+      "lesson_name": "Làm quen với phép chia. Dấu chia",
+      "pdf_pages": [15, 16],
+      "book_pages": [14, 15],
+      "objective": "Nhận biết chia đều, dấu chia và biểu diễn một tình huống chia đều bằng phép chia.",
+      "allowed_knowledge_tags": [
+        "identify_division_sign",
+        "represent_equal_sharing_as_division",
+        "read_division_expression",
+        "model_equal_groups_division"
+      ],
+      "allowed_question_forms": [
+        "Chọn phép chia biểu diễn việc chia đều.",
+        "Nhận biết dấu chia trong phép tính.",
+        "Đọc một phép chia đơn giản."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng chia 2|bảng chia 5)\\b"],
+      "not_yet_allowed": ["Bảng chia 2 hoặc 5", "Phép chia có số bị chia lớn", "Bài toán nhiều bước"]
+    },
+    {
+      "lesson_id": 69,
+      "lesson_name": "Phép chia 1",
+      "pdf_pages": [17, 18],
+      "book_pages": [16, 17],
+      "objective": "Thực hiện phép chia trong tình huống chia đều hoặc xếp thành các nhóm bằng nhau.",
+      "allowed_knowledge_tags": [
+        "calculate_basic_division",
+        "solve_equal_sharing_division",
+        "model_division_with_groups",
+        "interpret_quotient_as_group_size"
+      ],
+      "allowed_question_forms": [
+        "Tính phép chia từ một nhóm đồ vật được chia đều.",
+        "Tìm số đồ vật trong mỗi nhóm.",
+        "Chọn phép chia phù hợp với tranh minh họa."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng chia 2|bảng chia 5)\\b"],
+      "not_yet_allowed": ["Bảng chia 2 hoặc 5 theo dạng ghi nhớ", "Phép chia nhiều bước", "Số dư"]
+    },
+    {
+      "lesson_id": 70,
+      "lesson_name": "Phép chia (tiếp theo)",
+      "pdf_pages": [19, 20],
+      "book_pages": [18, 19],
+      "objective": "Viết các phép chia tương ứng từ một phép nhân và sử dụng mối quan hệ giữa phép nhân và phép chia.",
+      "allowed_knowledge_tags": [
+        "relate_multiplication_and_division",
+        "write_corresponding_division_facts",
+        "calculate_related_division",
+        "read_multiplication_division_family"
+      ],
+      "allowed_question_forms": [
+        "Viết phép chia tương ứng với phép nhân đã cho.",
+        "Chọn phép chia có cùng các số với phép nhân.",
+        "Tìm số còn thiếu trong nhóm phép nhân và phép chia liên quan."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng chia 2|bảng chia 5)\\b"],
+      "not_yet_allowed": ["Bảng chia 2 hoặc 5 theo dạng ghi nhớ", "Phép tính nhiều bước", "Số dư"]
+    },
+    {
+      "lesson_id": 71,
+      "lesson_name": "Bảng chia 2",
+      "pdf_pages": [21, 22],
+      "book_pages": [20, 21],
+      "objective": "Ghi nhớ và vận dụng bảng chia 2 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": [
+        "recall_division_table_2",
+        "calculate_division_by_2",
+        "solve_one_step_division_story_by_2"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép chia trong bảng chia 2.",
+        "Điền kết quả còn thiếu của bảng chia 2.",
+        "Giải tình huống chia đều thành các nhóm 2."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng chia 5)\\b"],
+      "not_yet_allowed": ["Bảng chia 5", "Bảng chia ngoài 2", "Số dư"]
+    },
+    {
+      "lesson_id": 72,
+      "lesson_name": "Bảng chia 5",
+      "pdf_pages": [23, 24],
+      "book_pages": [22, 23],
+      "objective": "Ghi nhớ và vận dụng bảng chia 5 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": [
+        "recall_division_table_5",
+        "calculate_division_by_5",
+        "solve_one_step_division_story_by_5"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép chia trong bảng chia 5.",
+        "Điền kết quả còn thiếu của bảng chia 5.",
+        "Giải tình huống chia đều thành các nhóm 5."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng chia 2)\\b"],
+      "not_yet_allowed": ["Bảng chia 2", "Bảng chia ngoài 5", "Số dư"]
+    }
+  ]
+}

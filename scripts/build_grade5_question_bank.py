@@ -1,3 +1,4 @@
+# Script build grade5 question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import base64
@@ -15,8 +16,10 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 from PIL import Image
 
+# Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c ch?nh.
 try:
     from ftfy import fix_text
+# H?m fix_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 except ImportError:
     def fix_text(value: str) -> str:
         return value
@@ -43,9 +46,13 @@ ANSWER_RE = re.compile(
 SOLUTION_RE = re.compile(r"^\*\*Lời giải:\*\*\s*(.*)$")
 
 
+# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean(value: str) -> str:
     return re.sub(r"\s+", " ", fix_text(value or "")).strip()
 
+
+# H?m parse_choices d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_choices(line: str) -> list[dict]:
     matches = list(CHOICE_RE.finditer(line))
@@ -54,6 +61,8 @@ def parse_choices(line: str) -> list[dict]:
         for index, match in enumerate(matches)
     ]
 
+
+# H?m difficulty d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def difficulty(question_number: int, source_kind: str) -> str:
     if source_kind == "supplement":
@@ -65,11 +74,15 @@ def difficulty(question_number: int, source_kind: str) -> str:
     return "HARD"
 
 
+# H?m source_files d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def source_files() -> list[tuple[Path, str]]:
     main = [(path, "main") for path in sorted(SOURCE_TMP.glob("toan5_bai*.md"))]
     extra = [(path, "supplement") for path in sorted(SOURCE_TMP.glob("toan5_bo_sung*.md"))]
     return main + extra
 
+
+# H?m parse_bank d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_bank() -> list[dict]:
     lessons: dict[int, dict] = {}
@@ -79,6 +92,8 @@ def parse_bank() -> list[dict]:
         image_root = EXTRA_IMAGE_ROOT if source_kind == "supplement" else MAIN_IMAGE_ROOT
         current_lesson = None
         current_question = None
+
+# H?m finish_question d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
         def finish_question() -> None:
             nonlocal current_question
@@ -165,6 +180,8 @@ def parse_bank() -> list[dict]:
     return result
 
 
+# H?m validate_bank d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def validate_bank(lessons: list[dict]) -> None:
     errors = []
     if [item["number"] for item in lessons] != EXPECTED_LESSON_NUMBERS:
@@ -185,6 +202,8 @@ def validate_bank(lessons: list[dict]) -> None:
     if errors:
         raise ValueError("\n".join(errors[:50]))
 
+
+# H?m latex_escape d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def latex_escape(value: str) -> str:
     replacements = {
@@ -213,6 +232,8 @@ def latex_escape(value: str) -> str:
     }
     return "".join(replacements.get(char, char) for char in value)
 
+
+# H?m question_payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def question_payload(question: dict) -> dict:
     images = []
@@ -243,6 +264,8 @@ def question_payload(question: dict) -> dict:
         "source_file": question["source_file"],
     }
 
+
+# H?m write_tex d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def write_tex(lessons: list[dict]) -> None:
     OUTPUT_TEX.parent.mkdir(parents=True, exist_ok=True)
@@ -295,6 +318,8 @@ def write_tex(lessons: list[dict]) -> None:
     OUTPUT_TEX.write_text("\n".join(lines), encoding="utf-8")
 
 
+# H?m add_toc d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_toc(document: Document) -> None:
     paragraph = document.add_paragraph()
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -313,6 +338,8 @@ def add_toc(document: Document) -> None:
     run._r.extend([field_begin, instruction, field_separate, placeholder, field_end])
 
 
+# H?m compressed_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def compressed_image(source: Path, question_id: str) -> Path:
     target = TEMP_IMAGES / f"{question_id}.jpg"
     if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
@@ -330,10 +357,14 @@ def compressed_image(source: Path, question_id: str) -> Path:
     return target
 
 
+# H?m set_keep d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_keep(paragraph, next_paragraph: bool = False) -> None:
     paragraph.paragraph_format.keep_together = True
     paragraph.paragraph_format.keep_with_next = next_paragraph
 
+
+# H?m write_docx d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def write_docx(lessons: list[dict]) -> None:
     OUTPUT_DOCX.parent.mkdir(parents=True, exist_ok=True)
@@ -438,6 +469,8 @@ def write_docx(lessons: list[dict]) -> None:
     shutil.rmtree(TEMP_IMAGES, ignore_errors=True)
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main() -> None:
     lessons = parse_bank()
     write_tex(lessons)
@@ -447,5 +480,6 @@ def main() -> None:
     print(json.dumps({"lessons": len(lessons), "questions": total, "images": images, "docx": str(OUTPUT_DOCX), "tex": str(OUTPUT_TEX)}, ensure_ascii=False))
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

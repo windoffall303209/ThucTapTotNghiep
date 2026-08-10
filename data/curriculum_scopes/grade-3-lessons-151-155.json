@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-151-155",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [84, 85, 86, 87, 88, 89, 90, 93, 94, 95, 96, 97, 98],
+    "verified_book_pages": [83, 84, 85, 86, 87, 88, 89, 92, 93, 94, 95, 96, 97]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, không thêm dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 151 nhận biết và so sánh diện tích bằng cách đếm ô vuông; bài 152 sử dụng đơn vị xăng-ti-mét vuông; bài 153 tính diện tích hình chữ nhật và hình vuông; bài 154 thu thập, phân loại và ghi chép số liệu; bài 155 đọc và trả lời câu hỏi từ bảng số liệu thống kê.",
+    "excluded_pages": "Không gán phần Luyện tập chung ở trang sách 90–91 và các nội dung sau bài 155 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 151,
+      "lesson_name": "17. Diện tích một hình",
+      "pdf_pages": [84, 85],
+      "book_pages": [83, 84],
+      "objective": "Nhận biết diện tích của một hình qua số ô vuông bằng nhau và so sánh diện tích các hình.",
+      "allowed_knowledge_tags": ["area_by_unit_squares", "compare_area", "unit_square"],
+      "allowed_question_forms": ["Đếm số ô vuông để xác định diện tích hình.", "So sánh diện tích hai hình được ghép từ các ô vuông bằng nhau."],
+      "forbidden_text_patterns": ["\\b(chu vi|cm\\^2|xăng-ti-mét vuông|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Chu vi", "Công thức cm²", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 152,
+      "lesson_name": "18. Đơn vị đo diện tích. Xăng-ti-mét vuông",
+      "pdf_pages": [86, 87, 88],
+      "book_pages": [85, 86, 87],
+      "objective": "Nhận biết xăng-ti-mét vuông là đơn vị đo diện tích và đọc, viết kí hiệu cm².",
+      "allowed_knowledge_tags": ["square_centimeter", "area_unit", "cm2_notation"],
+      "allowed_question_forms": ["Chọn đơn vị thích hợp để đo diện tích.", "Đọc hoặc viết kí hiệu xăng-ti-mét vuông.", "Tính diện tích qua số ô vuông 1 cm²."],
+      "forbidden_text_patterns": ["\\b(chu vi|m\\^2|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Chu vi", "Mét vuông", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 153,
+      "lesson_name": "19. Diện tích hình chữ nhật, diện tích hình vuông",
+      "pdf_pages": [89, 90],
+      "book_pages": [88, 89],
+      "objective": "Tính diện tích hình chữ nhật bằng chiều dài nhân chiều rộng và diện tích hình vuông bằng độ dài một cạnh nhân chính nó.",
+      "allowed_knowledge_tags": ["rectangle_area", "square_area", "area_cm2"],
+      "allowed_question_forms": ["Tính diện tích hình chữ nhật biết chiều dài và chiều rộng.", "Tính diện tích hình vuông biết độ dài cạnh."],
+      "forbidden_text_patterns": ["\\b(chu vi|phân số|số thập phân|m\\^2)\\b"],
+      "not_yet_allowed": ["Chu vi", "Phân số", "Số thập phân", "Mét vuông"]
+    },
+    {
+      "lesson_id": 154,
+      "lesson_name": "21. Thu thập, phân loại, ghi chép số liệu thống kê",
+      "pdf_pages": [93, 94, 95],
+      "book_pages": [92, 93, 94],
+      "objective": "Thu thập, phân loại và ghi chép số liệu bằng bảng kiểm đếm hoặc bảng thống kê đơn giản.",
+      "allowed_knowledge_tags": ["collect_data", "classify_data", "tally_chart", "pictograph"],
+      "allowed_question_forms": ["Đọc bảng kiểm đếm và xác định nhóm có số lượng nhiều nhất hoặc ít nhất.", "Phân loại các đối tượng theo đặc điểm và ghi số lượng."],
+      "forbidden_text_patterns": ["\\b(trung bình cộng|xác suất|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Trung bình cộng", "Xác suất", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 155,
+      "lesson_name": "22. Bảng số liệu thống kê",
+      "pdf_pages": [96, 97, 98],
+      "book_pages": [95, 96, 97],
+      "objective": "Đọc bảng số liệu thống kê và trả lời câu hỏi về số lượng, lớn nhất, nhỏ nhất hoặc tổng số.",
+      "allowed_knowledge_tags": ["read_data_table", "compare_data", "sum_data_table"],
+      "allowed_question_forms": ["Đọc bảng số liệu và xác định giá trị lớn nhất hoặc nhỏ nhất.", "Tính tổng hoặc hiệu các số liệu trong bảng."],
+      "forbidden_text_patterns": ["\\b(trung bình cộng|xác suất|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Trung bình cộng", "Xác suất", "Phân số", "Số thập phân"]
+    }
+  ]
+}

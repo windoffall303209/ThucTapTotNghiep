@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-383-385",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [90, 91, 92, 93, 94, 95],
+    "verified_book_pages": [88, 89, 90, 91, 92, 93]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, ghi đầy đủ số liệu trong đề nhưng không ghi đáp án hoặc phép tính ra đáp án.",
+    "progression": "Bài 84 ôn tập phép tính với số thập phân; Bài 85 ôn tập tỉ số phần trăm; Bài 86 ôn tập diện tích và thể tích hình học.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 383,
+      "lesson_name": "Bài 84. Ôn tập về số thập phân và các phép tính với số thập phân",
+      "pdf_pages": [90, 91],
+      "book_pages": [88, 89],
+      "objective": "Thực hiện biểu thức có phép nhân và phép trừ với số thập phân.",
+      "allowed_knowledge_tags": ["decimal_addition", "decimal_subtraction", "decimal_multiplication", "decimal_operations"],
+      "allowed_question_forms": ["Tính giá trị biểu thức số thập phân có phép nhân và phép trừ."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 384,
+      "lesson_name": "Bài 85. Ôn tập về tỉ số, tỉ số phần trăm",
+      "pdf_pages": [92, 93],
+      "book_pages": [90, 91],
+      "objective": "Tính số lượng khi biết tỉ số phần trăm của một nhóm.",
+      "allowed_knowledge_tags": ["ratio", "percentage", "percentage_of_quantity"],
+      "allowed_question_forms": ["Tính một tỉ số phần trăm của một số trong tình huống thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 385,
+      "lesson_name": "Bài 86. Ôn tập về hình học",
+      "pdf_pages": [94, 95],
+      "book_pages": [92, 93],
+      "objective": "Tính thể tích hình hộp chữ nhật khi biết ba kích thước.",
+      "allowed_knowledge_tags": ["rectangular_prism", "volume", "geometry"],
+      "allowed_question_forms": ["Tính thể tích hình hộp chữ nhật từ các kích thước trên hình."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

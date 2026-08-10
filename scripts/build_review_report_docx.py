@@ -9,6 +9,7 @@ Nguồn dữ liệu là các tệp báo cáo trong tmp/ do từng script sửa s
 
 Dùng: python scripts/build_review_report_docx.py [duong_dan_dich.docx]
 """
+# Script build review report docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import json
@@ -32,6 +33,8 @@ XANH = RGBColor(0x1E, 0x82, 0x49)
 XAM = RGBColor(0x55, 0x55, 0x55)
 
 
+# H?m doc_json d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def doc_json(ten: str, mac_dinh):
     tep = TMP / ten
     if not tep.exists():
@@ -42,6 +45,8 @@ def doc_json(ten: str, mac_dinh):
         return mac_dinh
 
 
+# H?m dong d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def dong(doc, nhan: str, noi_dung: str, mau=None) -> None:
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(3)
@@ -51,6 +56,8 @@ def dong(doc, nhan: str, noi_dung: str, mau=None) -> None:
         r.font.color.rgb = mau
     p.add_run(noi_dung)
 
+
+# H?m bang_so_lieu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def bang_so_lieu(doc, tieu_de: str, hang: list[tuple[str, str]]) -> None:
     """Bảng hai cột đơn giản, dùng cho số liệu trước và sau."""
@@ -63,6 +70,8 @@ def bang_so_lieu(doc, tieu_de: str, hang: list[tuple[str, str]]) -> None:
         o[1].text = gia_tri
     doc.add_paragraph()
 
+
+# H?m them_vi_du d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def them_vi_du(doc, tieu_de: str, cac_dong: list[str], gioi_han: int = 6) -> None:
     if not cac_dong:
@@ -77,6 +86,8 @@ def them_vi_du(doc, tieu_de: str, cac_dong: list[str], gioi_han: int = 6) -> Non
         r.italic = True
         r.font.color.rgb = XAM
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     dich = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "outputs" / "bao_cao_ra_soat_ngan_hang_cau_hoi.docx"
@@ -340,5 +351,6 @@ def main() -> None:
     print(f"  Tổng lượt can thiệp: {tong_sua}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

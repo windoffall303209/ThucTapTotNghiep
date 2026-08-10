@@ -1,3 +1,4 @@
+// B? ?i?u khi?n admin controller ti?p nh?n y?u c?u, ki?m tra d? li?u v? ?i?u ph?i ph?n h?i cho ng??i d?ng.
 const Curriculum = require('../models/Curriculum');
 const Question = require('../models/Question');
 const Student = require('../models/Student');
@@ -30,6 +31,7 @@ const LAYOUT_VARIANTS = [
   'COMPACT'
 ];
 
+// H?m contentManagerUrl d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function contentManagerUrl(section, lessonId) {
   const normalizedLessonId = Number(lessonId);
   return Number.isInteger(normalizedLessonId) && normalizedLessonId > 0
@@ -37,7 +39,9 @@ function contentManagerUrl(section, lessonId) {
     : `/admin/${section}`;
 }
 
+// H?m dashboard d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function dashboard(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const [questionStats, recentQuestions, studentCount, difficultyStats, allLessons, questionCounts, theoryCounts] = await Promise.all([
       Question.getAdminStats(),
@@ -83,7 +87,9 @@ async function dashboard(req, res, next) {
   }
 }
 
+// H?m questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function questions(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const [questionCounts, lessons] = await Promise.all([
       Question.getQuestionCountsByLesson(),
@@ -113,7 +119,9 @@ async function questions(req, res, next) {
   }
 }
 
+// H?m theory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function theory(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const [lessons, theoryCounts] = await Promise.all([
       Curriculum.getAllLessons(),
@@ -141,9 +149,12 @@ async function theory(req, res, next) {
   }
 }
 
+// H?m lessonTheory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function lessonTheory(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) {
       return res.status(404).send('<div class="empty-state compact danger">Không tìm thấy bài học cần quản lý lý thuyết.</div>');
     }
@@ -157,9 +168,12 @@ async function lessonTheory(req, res, next) {
   }
 }
 
+// H?m createTheoryCard d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function createTheoryCard(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần thêm thẻ lý thuyết.');
       return res.redirect(contentManagerUrl('theory', req.params.lessonId));
@@ -168,6 +182,7 @@ async function createTheoryCard(req, res, next) {
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
     const newCard = await buildSingleTheoryCard(req.body, req.files || [], cards.length);
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!hasTheoryCardContent(newCard)) {
       setFlash(req, 'danger', 'Thẻ lý thuyết cần có tiêu đề, nội dung, ví dụ hoặc ảnh minh họa.');
       return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -177,6 +192,7 @@ async function createTheoryCard(req, res, next) {
     const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
       expectedTheoryCards: lesson.theory_cards
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!savedCards) {
       setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Ảnh tải lên không được lưu.');
       return res.redirect(contentManagerUrl('theory'));
@@ -190,16 +206,20 @@ async function createTheoryCard(req, res, next) {
   }
 }
 
+// H?m updateTheoryCard d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateTheoryCard(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
     const cardIndex = Number(req.params.cardIndex);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson || !Number.isInteger(cardIndex)) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
       return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!cards[cardIndex]) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
       return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -211,6 +231,7 @@ async function updateTheoryCard(req, res, next) {
       cardIndex,
       cards[cardIndex]
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!hasTheoryCardContent(updatedCard)) {
       setFlash(req, 'danger', 'Thẻ lý thuyết cần có tiêu đề, nội dung, ví dụ hoặc ảnh minh họa.');
       return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -220,6 +241,7 @@ async function updateTheoryCard(req, res, next) {
     const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
       expectedTheoryCards: lesson.theory_cards
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!savedCards) {
       setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Ảnh tải lên không được lưu.');
       return res.redirect(contentManagerUrl('theory'));
@@ -236,16 +258,20 @@ async function updateTheoryCard(req, res, next) {
   }
 }
 
+// H?m deleteTheoryCard d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function deleteTheoryCard(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
     const cardIndex = Number(req.params.cardIndex);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson || !Number.isInteger(cardIndex)) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần xóa.');
       return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!cards[cardIndex]) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần xóa.');
       return res.redirect(contentManagerUrl('theory', lesson.id));
@@ -255,6 +281,7 @@ async function deleteTheoryCard(req, res, next) {
     const savedCards = await Curriculum.updateLessonTheoryCards(lesson.id, cards, {
       expectedTheoryCards: lesson.theory_cards
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!savedCards) {
       setFlash(req, 'danger', 'Bài học đã được xóa ở yêu cầu khác. Vui lòng tải lại.');
       return res.redirect(contentManagerUrl('theory'));
@@ -270,9 +297,12 @@ async function deleteTheoryCard(req, res, next) {
   }
 }
 
+// H?m lessonQuestions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function lessonQuestions(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) {
       return res.status(404).json({
         ok: false,
@@ -311,6 +341,7 @@ async function lessonQuestions(req, res, next) {
  * câu đó.
  */
 async function questionSearch(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const filters = {
       grade: Number(req.query.grade || 0) || null,
@@ -337,7 +368,9 @@ async function questionSearch(req, res, next) {
   }
 }
 
+// H?m questionEditForm d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function questionEditForm(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const [question, lessons, misconceptions] = await Promise.all([
       Question.getQuestionById(req.params.id),
@@ -345,6 +378,7 @@ async function questionEditForm(req, res, next) {
       Question.getMisconceptionsByQuestion(req.params.id)
     ]);
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!question) {
       return res.status(404).send('<div class="empty-state compact danger">Không tìm thấy câu hỏi cần sửa.</div>');
     }
@@ -360,7 +394,9 @@ async function questionEditForm(req, res, next) {
   }
 }
 
+// H?m createQuestion d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function createQuestion(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     normalizeQuestionBody(req.body);
     const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
@@ -369,6 +405,7 @@ async function createQuestion(req, res, next) {
       : parseGridLayout({ enabled: false });
     const files = getUploadFiles(req.files);
     const validation = validateQuestionBody(req.body, files.choiceImages);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -427,7 +464,9 @@ async function createQuestion(req, res, next) {
   }
 }
 
+// H?m updateQuestion d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateQuestion(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     normalizeQuestionBody(req.body);
     const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
@@ -435,6 +474,7 @@ async function updateQuestion(req, res, next) {
       ? parseGridLayout(req.body.grid_layout)
       : parseGridLayout({ enabled: false });
     const question = await Question.getQuestionById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần sửa.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -443,6 +483,7 @@ async function updateQuestion(req, res, next) {
     const files = getUploadFiles(req.files);
     const existingChoices = new Map((question.choices || []).map((choice) => [choice.key, choice]));
     const validation = validateQuestionBody(req.body, files.choiceImages, existingChoices);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
@@ -504,6 +545,7 @@ async function updateQuestion(req, res, next) {
     const updatedQuestion = await Question.updateQuestion(Number(req.params.id), payload, {
       expectedQuestion: question
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!updatedQuestion) {
       setFlash(req, 'danger', 'Câu hỏi đã được thay đổi hoặc lưu trữ ở yêu cầu khác. Vui lòng tải lại.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
@@ -520,9 +562,12 @@ async function updateQuestion(req, res, next) {
   }
 }
 
+// H?m deleteQuestion d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function deleteQuestion(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const question = await Question.getQuestionById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần xóa.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -543,8 +588,10 @@ async function deleteQuestion(req, res, next) {
  * trùng nhau trong ngân hàng, và sao chép cả các lỗi sai thường gặp.
  */
 async function duplicateQuestion(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const duplicate = await Question.duplicateQuestion(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!duplicate) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần nhân bản.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
@@ -557,23 +604,28 @@ async function duplicateQuestion(req, res, next) {
   }
 }
 
+// H?m validateQuestionBody d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map()) {
   const questionType = normalizeQuestionType(body.question_type);
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const gridLayout = authoringMode === 'canvas' ? parseGridLayout(body.grid_layout) : parseGridLayout({ enabled: false });
   const hasGridLayout = gridLayout.enabled;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!body.lesson_id || (!body.content_text && !hasGridLayout) || !body.correct_answer) {
     return 'Vui lòng chọn bài học, nhập đề bài và chọn đáp án đúng.';
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (questionType === 'FILL_IN_THE_BLANK') {
     return null;
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!ANSWER_KEYS.includes(body.correct_answer)) {
     return 'Đáp án đúng phải là A, B, C hoặc D.';
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (gridHasAnswerOptions(gridLayout, body.correct_answer)) {
     return null;
   }
@@ -588,10 +640,12 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
     };
   });
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (choiceSummaries.some((choice) => !choice.text && choice.imageCount === 0)) {
     return 'Mỗi phương án A, B, C, D cần có nội dung chữ hoặc ảnh minh họa.';
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (body.layout_template === 'IMAGE_IN_CHOICES' && choiceSummaries.every((choice) => choice.imageCount === 0)) {
     return 'Bố cục ảnh trong đáp án cần có ít nhất một ảnh ở các phương án.';
   }
@@ -599,7 +653,9 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   return null;
 }
 
+// H?m gridHasAnswerOptions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function gridHasAnswerOptions(gridLayout, correctAnswer = '') {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!gridLayout?.enabled) return false;
   const keys = new Set(
     (gridLayout.cells || [])
@@ -610,8 +666,10 @@ function gridHasAnswerOptions(gridLayout, correctAnswer = '') {
   return keys.size >= 2 && keys.has(String(correctAnswer || '').trim().toUpperCase());
 }
 
+// H?m normalizeQuestionBody d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestionBody(body) {
   body.question_type = normalizeQuestionType(body.question_type);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (body.question_type === 'FILL_IN_THE_BLANK') {
     body.correct_answer = String(body.correct_answer_free || body.correct_answer || '').trim();
     body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
@@ -623,17 +681,21 @@ function normalizeQuestionBody(body) {
   return body;
 }
 
+// H?m buildChoices d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildChoices(body, choiceFiles = {}, existingChoices = new Map()) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
     return [];
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (normalizeAuthoringMode(body.authoring_mode) === 'canvas' && gridHasAnswerOptions(parseGridLayout(body.grid_layout), body.correct_answer)) {
     return [];
   }
 
   const choices = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const key of ANSWER_KEYS) {
     const existingChoice = existingChoices.get(key) || {};
     const existingImages = Array.isArray(existingChoice.images) ? existingChoice.images : [];
@@ -657,7 +719,9 @@ async function buildChoices(body, choiceFiles = {}, existingChoices = new Map())
   return choices;
 }
 
+// H?m buildMisconceptions d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildMisconceptions(choices, correctAnswer, body) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
     return [];
   }
@@ -672,30 +736,36 @@ function buildMisconceptions(choices, correctAnswer, body) {
     .filter((item) => item.explanation.trim());
 }
 
+// H?m normalizeQuestionType d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestionType(value) {
   const type = String(value || 'MULTIPLE_CHOICE').trim().toUpperCase();
   return QUESTION_TYPES.includes(type) ? type : 'MULTIPLE_CHOICE';
 }
 
+// H?m normalizeLayoutTemplate d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeLayoutTemplate(value) {
   const layout = String(value || 'STACK_VERTICAL').trim().toUpperCase();
   return LAYOUT_TEMPLATES.includes(layout) ? layout : 'STACK_VERTICAL';
 }
 
+// H?m normalizeLayoutVariant d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeLayoutVariant(value) {
   const layout = String(value || 'STACK_VERTICAL').trim().toUpperCase();
   return LAYOUT_VARIANTS.includes(layout) ? layout : normalizeLayoutTemplate(value);
 }
 
+// H?m normalizeQuestionInteraction d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestionInteraction(value) {
   const interaction = String(value || '').trim();
   return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
 }
 
+// H?m normalizeAuthoringMode d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeAuthoringMode(value) {
   return String(value || '').trim() === 'canvas' ? 'canvas' : 'fields';
 }
 
+// H?m buildQuestionBankTree d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildQuestionBankTree(lessons, questionCounts) {
   const gradeMap = new Map();
   const lessonMap = new Map();
@@ -703,8 +773,10 @@ function buildQuestionBankTree(lessons, questionCounts) {
     (questionCounts || []).map((row) => [Number(row.lesson_id), Number(row.question_count || 0)])
   );
 
+  // H?m ensureGrade d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const ensureGrade = (grade) => {
     const key = String(grade || 'Chưa phân loại');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!gradeMap.has(key)) {
       gradeMap.set(key, {
         grade: key,
@@ -716,8 +788,10 @@ function buildQuestionBankTree(lessons, questionCounts) {
     return gradeMap.get(key);
   };
 
+  // H?m ensureChapter d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const ensureChapter = (gradeGroup, lesson) => {
     const key = String(lesson.chapter_id || lesson.chapter_name || 'Chưa có chương');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!gradeGroup.chapterMap.has(key)) {
       const chapter = {
         id: lesson.chapter_id || key,
@@ -732,6 +806,7 @@ function buildQuestionBankTree(lessons, questionCounts) {
     return gradeGroup.chapterMap.get(key);
   };
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const lesson of lessons) {
     const gradeGroup = ensureGrade(lesson.grade);
     const chapter = ensureChapter(gradeGroup, lesson);
@@ -745,10 +820,13 @@ function buildQuestionBankTree(lessons, questionCounts) {
   }
 
   const grades = Array.from(gradeMap.values()).sort((a, b) => Number(a.grade) - Number(b.grade));
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const grade of grades) {
     grade.chapters.sort((a, b) => Number(a.chapter_sort_order) - Number(b.chapter_sort_order));
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const chapter of grade.chapters) {
       chapter.lessons.sort((a, b) => Number(a.lesson_sort_order) - Number(b.lesson_sort_order));
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const lesson of chapter.lessons) {
         lesson.questions = [];
       }
@@ -760,15 +838,18 @@ function buildQuestionBankTree(lessons, questionCounts) {
   return grades;
 }
 
+// H?m buildBookTree d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildBookTree(questionBankTree) {
   const books = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const gradeGroup of questionBankTree) {
     const grade = Number(gradeGroup.grade);
     const chapters = gradeGroup.chapters || [];
     const parts = grade === 1 ? [chapters] : splitChaptersIntoVolumes(chapters);
 
     parts.forEach((partChapters, index) => {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (partChapters.length === 0) return;
       const volume = grade === 1 ? null : index + 1;
       const questionCount = partChapters.reduce((sum, chapter) => sum + chapter.questionCount, 0);
@@ -790,14 +871,17 @@ function buildBookTree(questionBankTree) {
   return books.sort((a, b) => (a.grade - b.grade) || ((a.volume || 0) - (b.volume || 0)));
 }
 
+// H?m buildTheoryTree d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildTheoryTree(lessons, theoryCounts) {
   const gradeMap = new Map();
   const countMap = new Map(
     (theoryCounts || []).map((row) => [Number(row.lesson_id), Number(row.theory_count || 0)])
   );
 
+  // H?m ensureGrade d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const ensureGrade = (grade) => {
     const key = String(grade || 'Chưa phân loại');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!gradeMap.has(key)) {
       gradeMap.set(key, {
         grade: key,
@@ -809,8 +893,10 @@ function buildTheoryTree(lessons, theoryCounts) {
     return gradeMap.get(key);
   };
 
+  // H?m ensureChapter d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const ensureChapter = (gradeGroup, lesson) => {
     const key = String(lesson.chapter_id || lesson.chapter_name || 'Chưa có chương');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!gradeGroup.chapterMap.has(key)) {
       const chapter = {
         id: lesson.chapter_id || key,
@@ -825,6 +911,7 @@ function buildTheoryTree(lessons, theoryCounts) {
     return gradeGroup.chapterMap.get(key);
   };
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const lesson of lessons) {
     const gradeGroup = ensureGrade(lesson.grade);
     const chapter = ensureChapter(gradeGroup, lesson);
@@ -835,8 +922,10 @@ function buildTheoryTree(lessons, theoryCounts) {
   }
 
   const grades = Array.from(gradeMap.values()).sort((a, b) => Number(a.grade) - Number(b.grade));
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const grade of grades) {
     grade.chapters.sort((a, b) => Number(a.chapter_sort_order) - Number(b.chapter_sort_order));
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const chapter of grade.chapters) {
       chapter.lessons.sort((a, b) => Number(a.lesson_sort_order) - Number(b.lesson_sort_order));
       chapter.theoryCount = chapter.lessons.reduce((sum, lesson) => sum + Number(lesson.theoryCount || 0), 0);
@@ -847,15 +936,18 @@ function buildTheoryTree(lessons, theoryCounts) {
   return grades;
 }
 
+// H?m buildTheoryBookTree d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildTheoryBookTree(theoryTree) {
   const books = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const gradeGroup of theoryTree) {
     const grade = Number(gradeGroup.grade);
     const chapters = gradeGroup.chapters || [];
     const parts = grade === 1 ? [chapters] : splitChaptersIntoVolumes(chapters);
 
     parts.forEach((partChapters, index) => {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (partChapters.length === 0) return;
       const volume = grade === 1 ? null : index + 1;
       books.push({
@@ -874,13 +966,17 @@ function buildTheoryBookTree(theoryTree) {
   return books.sort((a, b) => (a.grade - b.grade) || ((a.volume || 0) - (b.volume || 0)));
 }
 
+// H?m splitChaptersIntoVolumes d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function splitChaptersIntoVolumes(chapters) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (chapters.length <= 1) return [chapters, []];
   const midpoint = Math.ceil(chapters.length / 2);
   return [chapters.slice(0, midpoint), chapters.slice(midpoint)];
 }
 
+// H?m getUploadFiles d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function getUploadFiles(files) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (Array.isArray(files)) {
     return {
       questionImages: files,
@@ -899,6 +995,7 @@ function getUploadFiles(files) {
   };
 }
 
+// H?m buildQuestionImages d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildQuestionImages(files, body, options = {}) {
   const startIndex = Number(options.startIndex || 0);
   const idPrefix = options.idPrefix || 'image';
@@ -911,6 +1008,7 @@ async function buildQuestionImages(files, body, options = {}) {
     : files.map(() => body[altField] || '');
 
   const images = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [index, file] of files.entries()) {
     const storedImage = await ImageStorageService.storeQuestionImage(file, {
       folder: options.folder || 'math-revision/questions'
@@ -930,30 +1028,40 @@ async function buildQuestionImages(files, body, options = {}) {
   return images;
 }
 
+// H?m normalizeWidthPercent d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeWidthPercent(value) {
   const width = Number(value || 70);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!Number.isFinite(width)) return 70;
   return Math.min(Math.max(Math.round(width), 20), 100);
 }
 
+// H?m normalizeRemoveIds d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeRemoveIds(value) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (Array.isArray(value)) return new Set(value.map(String));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value == null || value === '') return new Set();
   return new Set([String(value)]);
 }
 
+// H?m filterRemovedImages d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function filterRemovedImages(images, removeValue) {
   const removeIds = normalizeRemoveIds(removeValue);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (removeIds.size === 0) return images;
   return images.filter((image) => !removeIds.has(String(image.id || image.url || '')));
 }
 
+// H?m getRemovedImages d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function getRemovedImages(images, removeValue) {
   const removeIds = normalizeRemoveIds(removeValue);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (removeIds.size === 0) return [];
   return images.filter((image) => removeIds.has(String(image.id || image.url || '')));
 }
 
+// H?m maxImageIndex d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function maxImageIndex(images, idPrefix) {
   const pattern = new RegExp(`^${escapeRegExp(idPrefix)}-(\\d+)$`);
   return (images || []).reduce((max, image) => {
@@ -962,24 +1070,29 @@ function maxImageIndex(images, idPrefix) {
   }, 0);
 }
 
+// H?m escapeRegExp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// H?m stripImagePlaceholders d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function stripImagePlaceholders(contentText, images) {
   let text = contentText || '';
   (images || []).forEach((image) => {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (image.id) text = text.replaceAll(`[${image.id}]`, '');
   });
   return text;
 }
 
+// H?m ensureImagePlaceholders d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function ensureImagePlaceholders(contentText, images) {
   let text = contentText || '';
   const missingPlaceholders = images
     .filter((image) => !text.includes(`[${image.id}]`))
     .map((image) => `[${image.id}]`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (missingPlaceholders.length > 0) {
     text = `${text}\n\n${missingPlaceholders.join('\n')}`;
   }
@@ -987,7 +1100,9 @@ function ensureImagePlaceholders(contentText, images) {
   return text;
 }
 
+// H?m students d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function students(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const filterGrade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : null;
     const page = Math.max(Number(req.query.page || 1), 1);
@@ -1011,33 +1126,42 @@ async function students(req, res, next) {
   }
 }
 
+// H?m studentsRedirectUrl d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function studentsRedirectUrl(req) {
   const params = new URLSearchParams();
   const query = String(req.body.q || '').trim();
   const grade = Number(req.body.grade);
   const page = Math.max(Number(req.body.page || 1), 1);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (query) params.set('q', query);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (isSupportedGrade(grade)) params.set('grade', String(grade));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (page > 1) params.set('page', String(page));
   const queryString = params.toString();
   return queryString ? `/admin/students?${queryString}` : '/admin/students';
 }
 
+// H?m updateStudentStatus d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateStudentStatus(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const student = await Student.findById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần cập nhật.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
     const rawStatus = String(req.body.is_active || '');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!['0', '1'].includes(rawStatus)) {
       setFlash(req, 'danger', 'Trạng thái tài khoản không hợp lệ.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
     const isActive = rawStatus === '1';
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (Number(student.is_active ?? 1) === Number(isActive)) {
       setFlash(req, 'warning', `Tài khoản ${student.username} đã ở trạng thái được chọn.`);
       return res.redirect(studentsRedirectUrl(req));
@@ -1057,9 +1181,12 @@ async function updateStudentStatus(req, res, next) {
   }
 }
 
+// H?m resetStudentPassword d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function resetStudentPassword(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const student = await Student.findById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đặt mật khẩu tạm.');
       return res.redirect(studentsRedirectUrl(req));
@@ -1068,10 +1195,12 @@ async function resetStudentPassword(req, res, next) {
     const temporaryPassword = String(req.body.temporary_password || '');
     const confirmPassword = String(req.body.confirm_password || '');
     const passwordError = validatePassword(temporaryPassword);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (passwordError) {
       setFlash(req, 'danger', passwordError);
       return res.redirect(studentsRedirectUrl(req));
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (temporaryPassword !== confirmPassword) {
       setFlash(req, 'danger', 'Mật khẩu xác nhận không khớp.');
       return res.redirect(studentsRedirectUrl(req));
@@ -1091,29 +1220,36 @@ async function resetStudentPassword(req, res, next) {
   }
 }
 
+// H?m updateStudentGrade d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateStudentGrade(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const student = await Student.findById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đổi khối.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
     const grade = Number(req.body.current_grade);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!isSupportedGrade(grade)) {
       setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
       return res.redirect(studentsRedirectUrl(req));
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (Number(student.current_grade) === grade) {
       setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
       return res.redirect(studentsRedirectUrl(req));
     }
 
     const updateResult = await Student.updateCurrentGrade(student.id, grade);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!updateResult) {
       setFlash(req, 'danger', 'Tài khoản học sinh không còn tồn tại.');
       return res.redirect(studentsRedirectUrl(req));
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!updateResult.changed) {
       setFlash(req, 'warning', `${student.username} đang ở lớp ${grade}, không có gì thay đổi.`);
       return res.redirect(studentsRedirectUrl(req));
@@ -1149,7 +1285,9 @@ function curriculumUrl(grade, openChapterId = null) {
   return openChapterId ? `${base}&open=${Number(openChapterId)}#chapter-${Number(openChapterId)}` : base;
 }
 
+// H?m curriculum d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function curriculum(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const grade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : 1;
     // Một truy vấn cho tất cả bài học của khối rồi gom theo chương, thay vì
@@ -1182,15 +1320,19 @@ async function curriculum(req, res, next) {
   }
 }
 
+// H?m createChapter d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function createChapter(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const grade = isSupportedGrade(req.body.grade) ? Number(req.body.grade) : null;
     const chapterName = String(req.body.chapter_name || '').trim();
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!grade) {
       setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapterName) {
       setFlash(req, 'danger', 'Vui lòng nhập tên chương.');
       return res.redirect(curriculumUrl(grade));
@@ -1209,15 +1351,19 @@ async function createChapter(req, res, next) {
   }
 }
 
+// H?m updateChapter d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateChapter(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const chapter = await Curriculum.getChapterById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương cần cập nhật.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
     const chapterName = String(req.body.chapter_name || '').trim();
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapterName) {
       setFlash(req, 'danger', 'Tên chương không được để trống.');
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
@@ -1235,9 +1381,12 @@ async function updateChapter(req, res, next) {
   }
 }
 
+// H?m deleteChapter d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function deleteChapter(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const chapter = await Curriculum.getChapterById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương cần xóa.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
@@ -1246,6 +1395,7 @@ async function deleteChapter(req, res, next) {
     // Một câu lệnh DELETE có điều kiện vừa kiểm tra vừa xóa, nên bài học mới
     // được tạo đồng thời không thể lọt vào giữa hai thao tác và bị cascade.
     const deleted = await Curriculum.deleteChapterIfEmpty(chapter.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!deleted) {
       const lessonCount = await Curriculum.countLessonsInChapter(chapter.id);
       setFlash(
@@ -1265,15 +1415,19 @@ async function deleteChapter(req, res, next) {
   }
 }
 
+// H?m createLesson d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function createLesson(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const chapter = await Curriculum.getChapterById(req.body.chapter_id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương để thêm bài học.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
     const lessonName = String(req.body.lesson_name || '').trim();
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lessonName) {
       setFlash(req, 'danger', 'Vui lòng nhập tên bài học.');
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
@@ -1291,15 +1445,19 @@ async function createLesson(req, res, next) {
   }
 }
 
+// H?m updateLesson d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateLesson(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần cập nhật.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
     const lessonName = String(req.body.lesson_name || '').trim();
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lessonName) {
       setFlash(req, 'danger', 'Tên bài học không được để trống.');
       return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
@@ -1316,9 +1474,12 @@ async function updateLesson(req, res, next) {
   }
 }
 
+// H?m deleteLesson d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function deleteLesson(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const lesson = await Curriculum.getLessonById(req.params.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần xóa.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
@@ -1327,6 +1488,7 @@ async function deleteLesson(req, res, next) {
     // Khóa hàng bài học, kiểm tra câu hỏi và xóa trong cùng transaction. Ảnh
     // trả về là ảnh thực tế ở thời điểm xóa, không phải snapshot cũ của form.
     const deletion = await Curriculum.deleteLessonIfEmpty(lesson.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!deletion.deleted) {
       const questionCount = await Curriculum.countQuestionsInLesson(lesson.id);
       setFlash(
@@ -1349,6 +1511,7 @@ async function deleteLesson(req, res, next) {
 
 // Chức năng AD-08: giám sát nội dung hội thoại giữa học sinh và AI.
 async function aiLogs(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const filters = AIConversationLog.normalizeLogFilters({
       sessionType: req.query.type,
@@ -1380,6 +1543,7 @@ async function aiLogs(req, res, next) {
       filters
     });
   } catch (error) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (error.code === 'INVALID_AI_LOG_FILTER') {
       setFlash(req, 'danger', error.message);
       return res.redirect('/admin/logs/ai');
@@ -1388,11 +1552,14 @@ async function aiLogs(req, res, next) {
   }
 }
 
+// H?m flagAiLog d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function flagAiLog(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const flagged = String(req.body.flagged || '1') === '1';
     const updated = await AIConversationLog.setFlagged(req.params.id, flagged);
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!updated) {
       setFlash(req, 'danger', 'Không tìm thấy hội thoại cần đánh dấu.');
     } else {
@@ -1411,7 +1578,9 @@ async function flagAiLog(req, res, next) {
   }
 }
 
+// H?m settings d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function settings(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const settings = await SystemSetting.getSettings();
     res.render('admin/settings', {
@@ -1423,7 +1592,9 @@ async function settings(req, res, next) {
   }
 }
 
+// H?m updateSettings d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateSettings(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     await SystemSetting.updateSettings({
       practice_duration_5_minutes: req.body.practice_duration_5_minutes,
@@ -1462,6 +1633,7 @@ async function updateSettings(req, res, next) {
     setFlash(req, 'success', 'Đã cập nhật cấu hình hệ thống.');
     return res.redirect('/admin/settings');
   } catch (error) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (['INVALID_PRACTICE_DURATION', 'INVALID_SYSTEM_SETTING'].includes(error.code)) {
       setFlash(req, 'danger', error.message, { modal: true });
       return res.redirect('/admin/settings');
@@ -1470,7 +1642,9 @@ async function updateSettings(req, res, next) {
   }
 }
 
+// H?m checkSettings d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function checkSettings(req, res, next) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const result = await ProviderCheckService.checkProvider(req.body.provider, req.body);
     return res.status(result.ok ? 200 : 400).json(result);
@@ -1479,6 +1653,7 @@ async function checkSettings(req, res, next) {
   }
 }
 
+// H?m buildSingleTheoryCard d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = null) {
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const existingImages = filterRemovedImages(
@@ -1511,6 +1686,7 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = 
   };
 }
 
+// H?m hasTheoryCardContent d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function hasTheoryCardContent(card) {
   return Boolean(
     String(card?.title || '').trim()
@@ -1524,11 +1700,13 @@ function hasTheoryCardContent(card) {
   );
 }
 
+// H?m normalizeTheoryType d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTheoryType(value) {
   const type = String(value || '').trim();
   return ['observe', 'concept', 'model', 'quick_try', 'remember'].includes(type) ? type : 'concept';
 }
 
+// H?m normalizeTheoryLayout d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTheoryLayout(value) {
   const layout = String(value || '').trim();
   return ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'].includes(layout)
@@ -1536,13 +1714,16 @@ function normalizeTheoryLayout(value) {
     : 'text_first';
 }
 
+// H?m normalizeTheoryInteraction d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTheoryInteraction(value) {
   const interaction = String(value || '').trim();
   return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction) ? interaction : 'none';
 }
 
+// H?m buildTheoryImages d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildTheoryImages(files, cardIndex, startIndex = 0) {
   const images = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [index, file] of files.entries()) {
     const storedImage = await ImageStorageService.storeQuestionImage(file, {
       folder: 'math-revision/theory'

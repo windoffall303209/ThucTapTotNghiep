@@ -1,3 +1,4 @@
+<%# M?u giao di?n header k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <% if (admin) { %>
 <header class="admin-mobile-bar">
   <a class="brand admin-mobile-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
@@ -48,6 +49,7 @@
       Nhật ký AI
     </a>
 
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (admin.role === 'SYSADMIN') { %>
       <span class="admin-nav-label">Hệ thống</span>
       <a href="/admin/students" class="<%= currentPath.startsWith('/admin/students') ? 'active' : '' %>" <%- currentPath.startsWith('/admin/students') ? 'aria-current="page"' : '' %>>
@@ -83,6 +85,7 @@
   </a>
 
   <nav class="nav-links" aria-label="Điều hướng chính">
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (student) { %>
       <%# Nhãn và điều kiện active phải TRÙNG với bottom-nav bên dưới: cùng một
           trang mà thanh trên gọi "Hôm nay", thanh dưới gọi "Học" thì trẻ tưởng
@@ -125,6 +128,7 @@
   </nav>
 </header>
 
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (student) { %>
 <nav class="bottom-nav" aria-label="Điều hướng nhanh">
   <a href="/student/dashboard" class="<%= currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'active' : '' %>" <%- currentPath === '/student/dashboard' || currentPath.startsWith('/student/lessons') ? 'aria-current="page"' : '' %>>

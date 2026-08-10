@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-106-110",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [51, 52, 57, 58, 59, 60, 61, 62, 63, 69, 70],
+    "verified_book_pages": [50, 51, 56, 57, 58, 59, 60, 61, 62, 68, 69]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa phân chia phần bằng nhau, phép chia hoặc nhóm chục; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 106 bảng chia 9; bài 107 một phần hai, một phần tư; bài 108 một phần ba, một phần năm, một phần sáu; bài 109 một phần bảy, một phần tám, một phần chín; bài 110 nhân số tròn chục với số có một chữ số.",
+    "excluded_pages": "Các trang ôn lại những gì đã học và hoạt động vui học từ trang sách 63–67 không được gán vào một bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 106,
+      "lesson_name": "Bảng chia 9",
+      "pdf_pages": [51, 52],
+      "book_pages": [50, 51],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 9 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_9", "divide_by_9", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 9.", "Viết phép chia từ tình huống chia đều.", "Giải bài toán một bước dùng bảng chia 9."],
+      "forbidden_text_patterns": ["\\b(bảng chia 7|bảng chia 8|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 7", "Bảng chia 8", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 107,
+      "lesson_name": "Một phần hai, một phần tư",
+      "pdf_pages": [57, 58, 59],
+      "book_pages": [56, 57, 58],
+      "objective": "Nhận biết một phần hai và một phần tư của hình được chia thành các phần bằng nhau.",
+      "allowed_knowledge_tags": ["fraction_one_half", "fraction_one_quarter", "equal_parts", "identify_shaded_fraction"],
+      "allowed_question_forms": ["Nhận biết phần đã tô màu là một phần hai hoặc một phần tư.", "Chọn hình được chia thành các phần bằng nhau.", "Đọc phân số đơn vị một phần hai hoặc một phần tư."],
+      "forbidden_text_patterns": ["\\b(1/3|1/5|1/6|1/7|1/8|1/9|phân số khác)\\b"],
+      "not_yet_allowed": ["Một phần ba", "Một phần năm", "Một phần sáu", "Một phần bảy", "Một phần tám", "Một phần chín"]
+    },
+    {
+      "lesson_id": 108,
+      "lesson_name": "Một phần ba, một phần năm, một phần sáu",
+      "pdf_pages": [60, 61],
+      "book_pages": [59, 60],
+      "objective": "Nhận biết một phần ba, một phần năm và một phần sáu của hình được chia thành các phần bằng nhau.",
+      "allowed_knowledge_tags": ["fraction_one_third", "fraction_one_fifth", "fraction_one_sixth", "equal_parts", "identify_shaded_fraction"],
+      "allowed_question_forms": ["Nhận biết phần đã tô màu là một phần ba, một phần năm hoặc một phần sáu.", "Chọn hình được chia thành các phần bằng nhau.", "Đọc phân số đơn vị trong phạm vi bài học."],
+      "forbidden_text_patterns": ["\\b(1/2|1/4|1/7|1/8|1/9|phân số khác)\\b"],
+      "not_yet_allowed": ["Một phần hai", "Một phần tư", "Một phần bảy", "Một phần tám", "Một phần chín"]
+    },
+    {
+      "lesson_id": 109,
+      "lesson_name": "Một phần bảy. Một phần tám. Một phần chín",
+      "pdf_pages": [62, 63],
+      "book_pages": [61, 62],
+      "objective": "Nhận biết một phần bảy, một phần tám và một phần chín của hình được chia thành các phần bằng nhau.",
+      "allowed_knowledge_tags": ["fraction_one_seventh", "fraction_one_eighth", "fraction_one_ninth", "equal_parts", "identify_shaded_fraction"],
+      "allowed_question_forms": ["Nhận biết phần đã tô màu là một phần bảy, một phần tám hoặc một phần chín.", "Chọn hình được chia thành các phần bằng nhau.", "Đọc phân số đơn vị trong phạm vi bài học."],
+      "forbidden_text_patterns": ["\\b(1/2|1/3|1/4|1/5|1/6|phân số khác)\\b"],
+      "not_yet_allowed": ["Một phần hai", "Một phần ba", "Một phần tư", "Một phần năm", "Một phần sáu"]
+    },
+    {
+      "lesson_id": 110,
+      "lesson_name": "Nhân số tròn chục với số có một chữ số",
+      "pdf_pages": [69, 70],
+      "book_pages": [68, 69],
+      "objective": "Tính được tích của số tròn chục với số có một chữ số trong phạm vi đã học.",
+      "allowed_knowledge_tags": ["multiply_round_tens", "multiply_by_one_digit", "place_value_tens", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính tích của số tròn chục với số có một chữ số.", "Giải bài toán một bước dùng phép nhân số tròn chục.", "Biểu diễn số tròn chục thành các nhóm chục bằng nhau."],
+      "forbidden_text_patterns": ["\\b(có nhớ|số có hai chữ số nhân|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Nhân số có một chữ số có nhớ", "Phân số", "Số thập phân"]
+    }
+  ]
+}

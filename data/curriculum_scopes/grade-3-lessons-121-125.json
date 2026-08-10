@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-121-125",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [98, 99, 100, 101, 102, 103, 104, 105, 106, 107],
+    "verified_book_pages": [97, 98, 99, 100, 101, 102, 103, 104, 105, 106]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa dụng cụ đo hoặc hình học; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 121 dùng đơn vị mi-li-lít và quan hệ 1 l = 1 000 ml; bài 122 đọc, so sánh và nhận biết nhiệt độ theo độ C; bài 123 nhận biết góc vuông, góc không vuông bằng ê-ke; bài 124 nhận biết đặc điểm hình tam giác và hình tứ giác; bài 125 tính chu vi bằng tổng độ dài các cạnh.",
+    "excluded_pages": "Các trang luyện tập chung sau bài 125 không được gán vào bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 121,
+      "lesson_name": "16. Mi-li-lít",
+      "pdf_pages": [98, 99],
+      "book_pages": [97, 98],
+      "objective": "Đọc, viết, đổi và tính toán đơn giản với đơn vị mi-li-lít; biết 1 l = 1 000 ml.",
+      "allowed_knowledge_tags": ["milliliter_unit", "liter_milliliter_conversion", "compare_volume_measurements"],
+      "allowed_question_forms": ["Đổi lít sang mi-li-lít.", "Đọc số đo dung tích theo đơn vị ml.", "Tính tổng hoặc hiệu các số đo cùng đơn vị ml."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|cm2|m2)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích"]
+    },
+    {
+      "lesson_id": 122,
+      "lesson_name": "17. Nhiệt độ",
+      "pdf_pages": [100, 101],
+      "book_pages": [99, 100],
+      "objective": "Đọc nhiệt độ trên nhiệt kế, sử dụng đơn vị độ C và nhận biết nhiệt độ tăng hoặc giảm trong tình huống đơn giản.",
+      "allowed_knowledge_tags": ["read_temperature", "degree_celsius", "compare_temperature"],
+      "allowed_question_forms": ["Đọc số chỉ trên nhiệt kế.", "So sánh hai nhiệt độ.", "Nhận biết nhiệt độ tăng hoặc giảm trong tình huống quen thuộc."],
+      "forbidden_text_patterns": ["\\b(độ F|nhiệt độ âm|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Độ F", "Nhiệt độ âm", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 123,
+      "lesson_name": "18. Góc vuông, góc không vuông",
+      "pdf_pages": [102, 103],
+      "book_pages": [101, 102],
+      "objective": "Nhận biết góc vuông và góc không vuông, gọi tên đỉnh và các cạnh của góc, sử dụng ê-ke để kiểm tra.",
+      "allowed_knowledge_tags": ["right_angle", "non_right_angle", "identify_angle_vertex_sides", "use_set_square"],
+      "allowed_question_forms": ["Nhận biết góc vuông.", "Chỉ ra đỉnh và cạnh của góc.", "Chọn dụng cụ kiểm tra góc vuông."],
+      "forbidden_text_patterns": ["\\b(góc nhọn|góc tù|độ|phân số)\\b"],
+      "not_yet_allowed": ["Phân loại góc nhọn, góc tù", "Đo số đo góc", "Phân số"]
+    },
+    {
+      "lesson_id": 124,
+      "lesson_name": "19. Hình tam giác, hình tứ giác",
+      "pdf_pages": [104, 105],
+      "book_pages": [103, 104],
+      "objective": "Nhận biết, gọi tên và nêu số đỉnh, cạnh, góc của hình tam giác và hình tứ giác.",
+      "allowed_knowledge_tags": ["triangle_properties", "quadrilateral_properties", "count_vertices_sides_angles"],
+      "allowed_question_forms": ["Nhận biết hình tam giác hoặc hình tứ giác.", "Đếm đỉnh, cạnh, góc.", "Gọi tên hình theo các đỉnh đã cho."],
+      "forbidden_text_patterns": ["\\b(diện tích|chu vi|hình tròn|phân số)\\b"],
+      "not_yet_allowed": ["Công thức chu vi", "Diện tích", "Hình tròn", "Phân số"]
+    },
+    {
+      "lesson_id": 125,
+      "lesson_name": "20. Chu vi hình tam giác, chu vi hình tứ giác",
+      "pdf_pages": [106, 107],
+      "book_pages": [105, 106],
+      "objective": "Tính chu vi hình tam giác và hình tứ giác bằng tổng độ dài các cạnh.",
+      "allowed_knowledge_tags": ["triangle_perimeter", "quadrilateral_perimeter", "sum_side_lengths"],
+      "allowed_question_forms": ["Tính chu vi hình tam giác.", "Tính chu vi hình tứ giác.", "Chọn tổng độ dài các cạnh biểu thị chu vi."],
+      "forbidden_text_patterns": ["\\b(diện tích|hình tròn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Diện tích", "Chu vi hình tròn", "Phân số", "Số thập phân"]
+    }
+  ]
+}

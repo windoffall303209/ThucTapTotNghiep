@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-378-380",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [68, 69, 70, 71, 75, 76],
+    "verified_book_pages": [66, 67, 68, 69, 73, 74]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, có đầy đủ số liệu trong đề nhưng không chứa đáp án.",
+    "progression": "Bài 76 về thời gian và vận tốc; Bài 77 về thể tích và đơn vị đo; Bài 78 về thể tích hình hộp chữ nhật.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 378,
+      "lesson_name": "1. Bài 76. Bài toán về thời gian và vận tốc",
+      "pdf_pages": [68, 69],
+      "book_pages": [66, 67],
+      "objective": "Vận dụng mối quan hệ giữa quãng đường, vận tốc và thời gian; cộng thời gian nghỉ.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula", "time_addition", "time_conversion"],
+      "allowed_question_forms": ["Tính thời gian đi từ quãng đường và vận tốc.", "Cộng thời gian di chuyển với thời gian nghỉ."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 379,
+      "lesson_name": "2. Bài 77. Thể tích và đơn vị đo thể tích",
+      "pdf_pages": [70, 71],
+      "book_pages": [68, 69],
+      "objective": "Tính phần thể tích còn lại và đổi giữa mét khối với lít.",
+      "allowed_knowledge_tags": ["cuboid_volume", "volume_conversion", "subtraction", "measurement"],
+      "allowed_question_forms": ["Tính thể tích còn trống từ dung tích và thể tích đã chứa.", "Đổi mét khối sang lít."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 380,
+      "lesson_name": "3. Bài 78. Thể tích hình hộp chữ nhật",
+      "pdf_pages": [75, 76],
+      "book_pages": [73, 74],
+      "objective": "Tính thể tích hình hộp chữ nhật khi biết chiều dài, chiều rộng và chiều cao.",
+      "allowed_knowledge_tags": ["cuboid_volume", "volume_conversion", "decimal_multiplication", "measurement"],
+      "allowed_question_forms": ["Tính thể tích hình hộp chữ nhật từ ba kích thước."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

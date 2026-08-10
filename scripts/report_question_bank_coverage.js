@@ -1,3 +1,4 @@
+// Script report question bank coverage h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 require('dotenv').config();
 
 const fs = require('fs/promises');
@@ -8,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const JSON_OUTPUT = path.join(ROOT, 'data', 'question_bank_coverage_report.json');
 const MD_OUTPUT = path.join(ROOT, 'data', 'question_bank_coverage_report.md');
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const rows = await db.query(
     `SELECT c.grade,
@@ -36,6 +38,7 @@ async function main() {
   }));
   const shortages = normalized.filter((row) => row.question_count < 20);
   const summary = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let grade = 1; grade <= 5; grade += 1) {
     const gradeRows = normalized.filter((row) => row.grade === grade);
     summary.push({
@@ -72,11 +75,14 @@ async function main() {
     `## Các bài chưa đạt ngưỡng (${shortages.length} bài)`,
     ''
   ];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!shortages.length) {
     markdown.push('Không có. Tất cả bài học đều có ít nhất 20 câu.');
   } else {
     let currentGrade = null;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const item of shortages) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (currentGrade !== item.grade) {
         currentGrade = item.grade;
         markdown.push(`### Lớp ${currentGrade}`, '');
@@ -99,5 +105,6 @@ main()
     process.exitCode = 1;
   })
   .finally(async () => {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (typeof db.close === 'function') await db.close().catch(() => {});
   });

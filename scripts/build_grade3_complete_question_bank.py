@@ -1,3 +1,4 @@
+# Script build grade3 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import hashlib
@@ -35,6 +36,8 @@ helper = importlib.util.module_from_spec(helper_spec)
 helper_spec.loader.exec_module(helper)
 
 
+# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def canonical_titles() -> dict[int, str]:
     data = json.loads(BLUEPRINT.read_text(encoding="utf-8"))
     titles = {}
@@ -48,11 +51,15 @@ def canonical_titles() -> dict[int, str]:
     return titles
 
 
+# H?m comparable_title_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def comparable_title_key(value: object) -> str:
     key = helper.title_key(value)
     key = re.sub(r"\s+trang\s+\d+\s*$", "", key)
     return helper.clean(key)
 
+
+# H?m lesson_number_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def lesson_number_for_heading(
     heading: str, canonical: dict[int, str], source: Path | None = None
@@ -88,6 +95,8 @@ def lesson_number_for_heading(
     raise ValueError(f"Không map được tiêu đề lớp 3: {heading!r} (key={key!r})")
 
 
+# H?m selected_files d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def selected_files() -> tuple[list[Path], list[Path]]:
     selected = []
     excluded = []
@@ -102,9 +111,13 @@ def selected_files() -> tuple[list[Path], list[Path]]:
     return selected, excluded
 
 
+# H?m is_question_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def is_question_heading(text: str) -> bool:
     return bool(re.match(r"^cau\s+\d+", helper.ascii_text(text)))
 
+
+# H?m save_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def save_images(paragraph, source: Path, question_number: int) -> list[Path]:
     blips = paragraph._p.xpath(".//a:blip")
@@ -125,6 +138,8 @@ def save_images(paragraph, source: Path, question_number: int) -> list[Path]:
         result.append(target)
     return result
 
+
+# H?m parse_answer_and_explanation d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_answer_and_explanation(raw_text: str) -> tuple[str, str, str]:
     answer_key = ""
@@ -148,12 +163,16 @@ def parse_answer_and_explanation(raw_text: str) -> tuple[str, str, str]:
     return answer_key, answer_text, explanation
 
 
+# H?m parse_docx d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_docx(path: Path, canonical: dict[int, str]) -> list[dict]:
     document = Document(path)
     records = []
     current_lesson = None
     local_question_number = 0
     current = None
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -246,6 +265,8 @@ def parse_docx(path: Path, canonical: dict[int, str]) -> list[dict]:
     return records
 
 
+# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def record_signature(record: dict) -> tuple:
     return (
         int(record["lesson_number"]),
@@ -256,6 +277,8 @@ def record_signature(record: dict) -> tuple:
         helper.normalized(record["answer_text"]),
     )
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -394,5 +417,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

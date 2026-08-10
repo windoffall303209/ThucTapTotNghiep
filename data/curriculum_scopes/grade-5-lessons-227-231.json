@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-227-231",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [68, 69, 70, 71, 73, 74, 75, 76, 77, 78],
+    "verified_book_pages": [66, 67, 68, 69, 71, 72, 73, 74, 75, 76]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 25 cộng số thập phân; bài 26 trừ số thập phân; bài 28 nhân số thập phân với 10, 100, 1 000; bài 29 nhân số thập phân với số tự nhiên; bài 30 nhân hai số thập phân.",
+    "excluded_pages": "Bài 27 và Bài 31 là phần luyện tập, không đưa vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 227,
+      "lesson_name": "1. Bài 25. Cộng các số thập phân",
+      "pdf_pages": [68, 69],
+      "book_pages": [66, 67],
+      "objective": "Đặt tính và thực hiện phép cộng các số thập phân, viết các chữ số cùng hàng thẳng cột.",
+      "allowed_knowledge_tags": ["add_decimals", "decimal_alignment", "decimal_calculation"],
+      "allowed_question_forms": ["Cộng hai số thập phân.", "Áp dụng phép cộng số thập phân trong tình huống thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 228,
+      "lesson_name": "2. Bài 26. Trừ các số thập phân",
+      "pdf_pages": [70, 71],
+      "book_pages": [68, 69],
+      "objective": "Đặt tính và thực hiện phép trừ các số thập phân, viết các chữ số cùng hàng thẳng cột.",
+      "allowed_knowledge_tags": ["subtract_decimals", "decimal_alignment", "decimal_calculation"],
+      "allowed_question_forms": ["Trừ hai số thập phân.", "Áp dụng phép trừ số thập phân trong tình huống thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 229,
+      "lesson_name": "4. Bài 28. Nhân một số thập phân với 10, 100, 1 000, ...",
+      "pdf_pages": [73, 74],
+      "book_pages": [71, 72],
+      "objective": "Nhân một số thập phân với 10, 100, 1 000 bằng cách chuyển dấu phẩy sang bên phải.",
+      "allowed_knowledge_tags": ["multiply_decimal_by_power_of_ten", "decimal_point_shift", "decimal_calculation"],
+      "allowed_question_forms": ["Tính số thập phân nhân với 10, 100 hoặc 1 000.", "Áp dụng phép nhân với lũy thừa của 10."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 230,
+      "lesson_name": "5. Bài 29. Nhân một số thập phân với một số tự nhiên",
+      "pdf_pages": [75, 76],
+      "book_pages": [73, 74],
+      "objective": "Thực hiện phép nhân một số thập phân với một số tự nhiên.",
+      "allowed_knowledge_tags": ["multiply_decimal_by_whole", "decimal_calculation", "place_value"],
+      "allowed_question_forms": ["Nhân một số thập phân với số tự nhiên.", "Áp dụng phép nhân trong tình huống lặp lại nhiều lần."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 231,
+      "lesson_name": "6. Bài 30. Nhân một số thập phân với một số thập phân",
+      "pdf_pages": [77, 78],
+      "book_pages": [75, 76],
+      "objective": "Thực hiện phép nhân hai số thập phân và xác định vị trí dấu phẩy ở tích.",
+      "allowed_knowledge_tags": ["multiply_decimals", "decimal_point_in_product", "area_calculation"],
+      "allowed_question_forms": ["Nhân hai số thập phân.", "Tính diện tích hình chữ nhật có số đo thập phân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

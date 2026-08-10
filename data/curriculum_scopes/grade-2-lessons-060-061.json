@@ -1,0 +1,61 @@
+{
+  "scope_id": "grade-2-lessons-060-061",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 1 - Cánh diều.pdf",
+    "verified_pdf_pages": [87, 88, 89, 90],
+    "verified_book_pages": [86, 87, 88, 89]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh thể hiện đúng loại đường, số đoạn hoặc sơ đồ độ dài; không chứa đáp án.",
+    "progression": "Bài 60 chỉ nhận biết đường thẳng, đường cong, đường gấp khúc và đếm đoạn; bài 61 mới dùng độ dài đoạn thẳng và cộng độ dài đường gấp khúc.",
+    "difficulty": "Một nhận biết trực tiếp hoặc một phép cộng độ dài đơn giản; không yêu cầu đổi đơn vị."
+  },
+  "lessons": [
+    {
+      "lesson_id": 60,
+      "lesson_name": "Đường thẳng, đường cong, đường gấp khúc",
+      "pdf_pages": [87, 88],
+      "book_pages": [86, 87],
+      "objective": "Nhận biết đường thẳng, đường cong, đường gấp khúc; nhận biết các đoạn thẳng tạo nên đường gấp khúc và các điểm thẳng hàng.",
+      "allowed_knowledge_tags": [
+        "identify_straight_line",
+        "identify_curve",
+        "identify_polyline",
+        "count_segments_in_polyline",
+        "identify_collinear_points"
+      ],
+      "allowed_question_forms": [
+        "Nhận biết loại đường qua hình minh họa.",
+        "Đếm số đoạn thẳng tạo nên một đường gấp khúc.",
+        "Nhận biết ba điểm cùng nằm trên một đường thẳng."
+      ],
+      "forbidden_text_patterns": ["\\b(cm|xăng-ti-mét|đo độ dài|ki-lô-gam|lít)\\b"],
+      "not_yet_allowed": ["Tính độ dài đoạn thẳng", "Cộng độ dài đường gấp khúc", "Đổi đơn vị đo"]
+    },
+    {
+      "lesson_id": 61,
+      "lesson_name": "Độ dài đoạn thẳng. Độ dài đường gấp khúc",
+      "pdf_pages": [89, 90],
+      "book_pages": [88, 89],
+      "objective": "Nhận biết độ dài đoạn thẳng theo xăng-ti-mét và tính độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng.",
+      "allowed_knowledge_tags": [
+        "measure_segment_length_in_centimeters",
+        "read_length_unit_centimeter",
+        "sum_segment_lengths_in_polyline",
+        "calculate_polyline_length"
+      ],
+      "allowed_question_forms": [
+        "Đọc độ dài đoạn thẳng theo đơn vị xăng-ti-mét.",
+        "Tính độ dài đường gấp khúc bằng cách cộng độ dài các đoạn.",
+        "Chọn phép tính biểu diễn độ dài đường gấp khúc."
+      ],
+      "forbidden_text_patterns": ["\\b(ki-lô-gam|lít)\\b", "\\b(diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Đổi đơn vị độ dài", "Đo bằng mét hoặc mi-li-mét", "Tính diện tích hoặc chu vi"]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-198-202",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_2_-_Canh_dieu_59332.pdf",
+    "verified_pdf_pages": [32, 33, 34, 35, 36, 37, 38, 39, 48, 49],
+    "verified_book_pages": [32, 33, 34, 35, 36, 37, 38, 39, 48, 49]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 198 nhận biết hình thoi; bài 199 mét vuông; bài 200 đề-xi-mét vuông; bài 201 mi-li-mét vuông; bài 202 cộng các phân số cùng mẫu số.",
+    "excluded_pages": "Không gán các trang Luyện tập chung, ôn tập hoặc Em vui học ở PDF 40–47 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 198,
+      "lesson_name": "66. Bài 66: Hình thoi",
+      "pdf_pages": [32, 33],
+      "book_pages": [32, 33],
+      "objective": "Nhận biết hình thoi và đặc điểm bốn cạnh bằng nhau.",
+      "allowed_knowledge_tags": ["rhombus", "equal_sides", "quadrilateral"],
+      "allowed_question_forms": ["Nhận biết hình thoi.", "Chọn đặc điểm đúng của hình thoi."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 199,
+      "lesson_name": "67. Bài 67: Mét vuông",
+      "pdf_pages": [34, 35],
+      "book_pages": [34, 35],
+      "objective": "Nhận biết mét vuông và mối quan hệ 1 m² = 100 dm².",
+      "allowed_knowledge_tags": ["square_meter", "area_unit", "unit_conversion"],
+      "allowed_question_forms": ["Đổi mét vuông sang đề-xi-mét vuông.", "Nhận biết kí hiệu m²."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 200,
+      "lesson_name": "68. Bài 68: Đề-xi-mét vuông",
+      "pdf_pages": [36, 37],
+      "book_pages": [36, 37],
+      "objective": "Nhận biết đề-xi-mét vuông và mối quan hệ 1 dm² = 100 cm².",
+      "allowed_knowledge_tags": ["square_decimeter", "area_unit", "unit_conversion"],
+      "allowed_question_forms": ["Đổi đề-xi-mét vuông sang xăng-ti-mét vuông.", "Nhận biết kí hiệu dm²."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 201,
+      "lesson_name": "69. Bài 69: Mi-li-mét vuông",
+      "pdf_pages": [38, 39],
+      "book_pages": [38, 39],
+      "objective": "Nhận biết mi-li-mét vuông và mối quan hệ 1 cm² = 100 mm².",
+      "allowed_knowledge_tags": ["square_millimeter", "area_unit", "unit_conversion"],
+      "allowed_question_forms": ["Đổi xăng-ti-mét vuông sang mi-li-mét vuông.", "Nhận biết kí hiệu mm²."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 202,
+      "lesson_name": "73. Bài 73: Cộng các phân số cùng mẫu số",
+      "pdf_pages": [48, 49],
+      "book_pages": [48, 49],
+      "objective": "Cộng hai phân số cùng mẫu số bằng cách cộng các tử số và giữ nguyên mẫu số.",
+      "allowed_knowledge_tags": ["add_same_denominator_fractions", "fraction_addition", "same_denominator"],
+      "allowed_question_forms": ["Tính tổng hai phân số cùng mẫu số.", "Nhận biết quy tắc cộng phân số cùng mẫu số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

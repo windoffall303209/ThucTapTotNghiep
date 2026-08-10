@@ -1,3 +1,4 @@
+// Script apply session integrity h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /* eslint-disable no-console */
 require('dotenv').config({ quiet: true });
 
@@ -13,8 +14,10 @@ const COMPLETION_REASONS = Object.freeze({
   DUPLICATE: 'REPLACED'
 });
 
+// H?m parseArgs d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseArgs(argv) {
   const unknown = argv.filter((arg) => arg !== APPLY_FLAG && !HELP_FLAGS.has(arg));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (unknown.length > 0) {
     throw new Error(`Tham số không được hỗ trợ: ${unknown.join(', ')}`);
   }
@@ -24,6 +27,7 @@ function parseArgs(argv) {
   };
 }
 
+// H?m printHelp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function printHelp() {
   console.log(`
 Rà soát và nâng cấp tính toàn vẹn phiên luyện tập.
@@ -40,23 +44,28 @@ kết thúc với completion_reason=${COMPLETION_REASONS.MISSING_QUESTION}.
 `.trim());
 }
 
+// H?m asNumber d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function asNumber(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : 0;
 }
 
+// H?m firstRow d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function firstRow(rows) {
   return Array.isArray(rows) && rows.length > 0 ? rows[0] : {};
 }
 
+// H?m quoteIdentifier d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function quoteIdentifier(value) {
   const identifier = String(value || '');
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!/^[A-Za-z0-9_$]+$/.test(identifier)) {
     throw new Error(`Tên định danh database không hợp lệ: ${identifier}`);
   }
   return `\`${identifier}\``;
 }
 
+// H?m tableExists d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function tableExists(tableName) {
   const rows = await db.query(
     `SELECT COUNT(*) AS count
@@ -67,6 +76,7 @@ async function tableExists(tableName) {
   return asNumber(rows[0]?.count) > 0;
 }
 
+// H?m columnExists d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function columnExists(tableName, columnName) {
   const rows = await db.query(
     `SELECT COUNT(*) AS count
@@ -79,6 +89,7 @@ async function columnExists(tableName, columnName) {
   return asNumber(rows[0]?.count) > 0;
 }
 
+// H?m indexExists d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function indexExists(tableName, indexName) {
   const rows = await db.query(
     `SELECT COUNT(*) AS count
@@ -91,6 +102,7 @@ async function indexExists(tableName, indexName) {
   return asNumber(rows[0]?.count) > 0;
 }
 
+// H?m constraintExists d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function constraintExists(tableName, constraintName) {
   const rows = await db.query(
     `SELECT COUNT(*) AS count
@@ -103,6 +115,7 @@ async function constraintExists(tableName, constraintName) {
   return asNumber(rows[0]?.count) > 0;
 }
 
+// H?m foreignKeyExistsForColumns d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function foreignKeyExistsForColumns(
   tableName,
   columnNames,
@@ -129,7 +142,9 @@ async function foreignKeyExistsForColumns(
   return rows[0] || null;
 }
 
+// H?m addColumnIfMissing d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function addColumnIfMissing(tableName, columnName, definition) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (await columnExists(tableName, columnName)) return false;
   await db.query(
     `ALTER TABLE ${quoteIdentifier(tableName)}
@@ -139,20 +154,25 @@ async function addColumnIfMissing(tableName, columnName, definition) {
   return true;
 }
 
+// H?m addIndexIfMissing d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function addIndexIfMissing(tableName, indexName, createSql) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (await indexExists(tableName, indexName)) return false;
   await db.query(createSql);
   console.log(`+ Đã thêm index ${indexName}`);
   return true;
 }
 
+// H?m addConstraintIfMissing d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function addConstraintIfMissing(tableName, constraintName, alterSql) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (await constraintExists(tableName, constraintName)) return false;
   await db.query(alterSql);
   console.log(`+ Đã thêm constraint ${constraintName}`);
   return true;
 }
 
+// H?m getSchemaState d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getSchemaState() {
   const [
     hasPracticeSessionQuestions,
@@ -180,6 +200,7 @@ async function getSchemaState() {
   };
 }
 
+// H?m getPreflightReport d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getPreflightReport() {
   const schema = await getSchemaState();
   const [
@@ -329,6 +350,7 @@ async function getPreflightReport() {
   let answerMembershipMismatches = null;
   let chatMembershipMismatches = null;
   let aiSessionMismatches = null;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (schema.hasPracticeSessionQuestions) {
     [answerMembershipMismatches, chatMembershipMismatches, aiSessionMismatches] = await Promise.all([
       db.query(
@@ -396,11 +418,14 @@ async function getPreflightReport() {
   };
 }
 
+// H?m selectIfTableExists d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function selectIfTableExists(tableName, sql = null) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!(await tableExists(tableName))) return [];
   return db.query(sql || `SELECT * FROM ${quoteIdentifier(tableName)} ORDER BY 1`);
 }
 
+// H?m backupAffectedData d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function backupAffectedData(preflight) {
   const [
     practiceSessions,
@@ -469,6 +494,7 @@ async function backupAffectedData(preflight) {
   return backupPath;
 }
 
+// H?m expandSchema d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function expandSchema() {
   await addColumnIfMissing(
     'QuestionBank',
@@ -545,6 +571,7 @@ async function expandSchema() {
   );
 }
 
+// H?m backfillQuestionSnapshots d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function backfillQuestionSnapshots() {
   const result = await db.query(
     `INSERT IGNORE INTO PracticeSessionQuestions
@@ -634,6 +661,7 @@ async function backfillQuestionSnapshots() {
   console.log('+ Đã đồng bộ bộ đếm AI từ lịch sử chat và log hiện có');
 }
 
+// H?m reconcileSessions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function reconcileSessions() {
   const results = await db.transaction(async (connection) => {
     // Temporary tables are connection-scoped, so every statement in this block must use
@@ -794,6 +822,7 @@ async function reconcileSessions() {
   console.log(`+ Đã gán active_key cho ${asNumber(results.activeKeys.affectedRows)} phiên còn hoạt động`);
 }
 
+// H?m getForeignKeyForColumn d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getForeignKeyForColumn(tableName, columnName, referencedTableName) {
   const rows = await db.query(
     `SELECT
@@ -814,10 +843,12 @@ async function getForeignKeyForColumn(tableName, columnName, referencedTableName
   return rows[0] || null;
 }
 
+// H?m addSafeConstraints d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function addSafeConstraints() {
   const report = await getPreflightReport();
   const issues = report.integrity;
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (asNumber(issues.duplicate_answers.extra_rows) === 0) {
     await addIndexIfMissing(
       'StudentLogs',
@@ -829,6 +860,7 @@ async function addSafeConstraints() {
     console.warn('! Bỏ qua unique đáp án: vẫn còn bản ghi trả lời trùng.');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (asNumber(issues.duplicate_misconceptions.extra_rows) === 0) {
     await addIndexIfMissing(
       'CommonMisconceptions',
@@ -840,6 +872,7 @@ async function addSafeConstraints() {
     console.warn('! Bỏ qua unique misconception: vẫn còn distractor trùng.');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (
     asNumber(issues.duplicate_active_sessions.extra_sessions) === 0
   ) {
@@ -853,6 +886,7 @@ async function addSafeConstraints() {
     console.warn('! Bỏ qua unique active_key: vẫn còn phiên hoạt động hoặc ID câu bị trùng.');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (
     issues.orphan_session_logs === 0
     && issues.answer_membership_mismatches === 0
@@ -863,6 +897,7 @@ async function addSafeConstraints() {
       'PracticeSessionQuestions',
       ['practice_session_id', 'question_id']
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!answerMembershipForeignKey) {
       await addConstraintIfMissing(
         'StudentLogs',
@@ -878,6 +913,7 @@ async function addSafeConstraints() {
     console.warn('! Bỏ qua FK StudentLogs → phiên/snapshot vì dữ liệu chưa sạch.');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (issues.chat_membership_mismatches === 0 && issues.chats_without_question === 0) {
     const chatMembershipForeignKey = await foreignKeyExistsForColumns(
       'PracticeSessionChats',
@@ -885,6 +921,7 @@ async function addSafeConstraints() {
       'PracticeSessionQuestions',
       ['practice_session_id', 'question_id']
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chatMembershipForeignKey) {
       await addConstraintIfMissing(
         'PracticeSessionChats',
@@ -901,6 +938,7 @@ async function addSafeConstraints() {
       'question_id',
       'QuestionBank'
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (existingChatQuestionForeignKey) {
       await db.query(
         `ALTER TABLE PracticeSessionChats
@@ -916,6 +954,7 @@ async function addSafeConstraints() {
          AND LOWER(COLUMN_NAME) = 'question_id'
        LIMIT 1`
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (String(chatQuestionColumn[0]?.IS_NULLABLE || '').toUpperCase() === 'YES') {
       await db.query(
         `ALTER TABLE PracticeSessionChats
@@ -927,12 +966,14 @@ async function addSafeConstraints() {
     console.warn('! Bỏ qua FK chat → snapshot vì còn chat thiếu câu hoặc không thuộc phiên.');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (issues.orphan_question_logs === 0) {
     const existingQuestionForeignKey = await getForeignKeyForColumn(
       'StudentLogs',
       'question_id',
       'QuestionBank'
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (
       existingQuestionForeignKey
       && String(existingQuestionForeignKey.DELETE_RULE).toUpperCase() === 'CASCADE'
@@ -943,6 +984,7 @@ async function addSafeConstraints() {
       );
       console.log(`- Đã bỏ FK cascade ${existingQuestionForeignKey.CONSTRAINT_NAME}`);
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (
       !existingQuestionForeignKey
       || String(existingQuestionForeignKey.DELETE_RULE).toUpperCase() === 'CASCADE'
@@ -962,6 +1004,7 @@ async function addSafeConstraints() {
   }
 }
 
+// H?m applyMigration d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function applyMigration(initialPreflight) {
   const backupPath = await backupAffectedData(initialPreflight);
   console.log('Bắt đầu mở rộng schema...');
@@ -972,14 +1015,17 @@ async function applyMigration(initialPreflight) {
   return backupPath;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (args.help) {
     printHelp();
     return;
   }
 
   const connection = await db.testConnection();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!connection.connected) {
     throw new Error(`Không kết nối được database: ${connection.reason || 'unknown'}`);
   }
@@ -987,6 +1033,7 @@ async function main() {
   const initialPreflight = await getPreflightReport();
   console.log(JSON.stringify(initialPreflight, null, 2));
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!args.apply) {
     console.log('\nPreflight hoàn tất. Database không bị thay đổi.');
     console.log(`Dùng "node scripts/apply_session_integrity.js ${APPLY_FLAG}" để áp dụng.`);

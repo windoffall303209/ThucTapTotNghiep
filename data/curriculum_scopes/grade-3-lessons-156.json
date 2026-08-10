@@ -1,0 +1,31 @@
+{
+  "scope_id": "grade-3-lessons-156",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [99, 100],
+    "verified_book_pages": [98, 99]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, không thêm dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 156 nhận biết khả năng xảy ra của một sự kiện qua các tình huống tung đồng xu, rút đồ vật, rút thẻ và quay vòng xoay.",
+    "excluded_pages": "Không gán phần ôn tập cuối năm hoặc hoạt động vui học ngoài nội dung bài 156 vào batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 156,
+      "lesson_name": "23. Khả năng xảy ra của một sự kiện",
+      "pdf_pages": [99, 100],
+      "book_pages": [98, 99],
+      "objective": "Phân biệt sự kiện chắc chắn xảy ra, có thể xảy ra và không thể xảy ra trong tình huống đơn giản.",
+      "allowed_knowledge_tags": ["event_certain", "event_possible", "event_impossible", "random_experiment"],
+      "allowed_question_forms": ["Xác định sự kiện chắc chắn, có thể hoặc không thể xảy ra.", "Đọc tình huống rút thẻ, tung đồng xu hoặc quay vòng xoay và chọn khả năng phù hợp."],
+      "forbidden_text_patterns": ["\\b(xác suất|phân số|số thập phân|trung bình cộng)\\b"],
+      "not_yet_allowed": ["Tính xác suất bằng số", "Phân số", "Số thập phân", "Trung bình cộng"]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-178-182",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [79, 80, 82, 83, 85, 86, 88, 89, 90, 91],
+    "verified_book_pages": [78, 79, 81, 82, 84, 85, 87, 88, 89, 90]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 178 nhân với số có hai chữ số; bài 179 nhận biết tính chất phép nhân; bài 180 nhân với 10, 100, 1 000; bài 181 chia cho số có một chữ số; bài 182 chia cho 10, 100, 1 000.",
+    "excluded_pages": "Không gán các trang Luyện tập chung hoặc Luyện tập ở PDF 81, 84, 87 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 178,
+      "lesson_name": "32. Bài 32: Nhân với số có hai chữ số",
+      "pdf_pages": [79, 80],
+      "book_pages": [78, 79],
+      "objective": "Thực hiện phép nhân số có nhiều chữ số với số có hai chữ số bằng các tích riêng.",
+      "allowed_knowledge_tags": ["multiply_two_digit", "partial_products", "column_multiplication"],
+      "allowed_question_forms": ["Đặt tính rồi tính phép nhân với số có hai chữ số.", "Giải bài toán thực tế bằng phép nhân hai chữ số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 179,
+      "lesson_name": "34. Bài 34: Các tính chất của phép nhân",
+      "pdf_pages": [82, 83],
+      "book_pages": [81, 82],
+      "objective": "Nhận biết tính chất giao hoán, kết hợp, nhân với 1 và nhân với 0.",
+      "allowed_knowledge_tags": ["multiplication_commutative", "multiplication_associative", "multiply_one_zero"],
+      "allowed_question_forms": ["Xác định tính chất phép nhân.", "Vận dụng tính chất phép nhân để tính thuận tiện."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 180,
+      "lesson_name": "36. Bài 36: Nhân với 10, 100, 1 000, ...",
+      "pdf_pages": [85, 86],
+      "book_pages": [84, 85],
+      "objective": "Nhân số tự nhiên với 10, 100, 1 000 bằng cách thêm các chữ số 0 vào bên phải.",
+      "allowed_knowledge_tags": ["multiply_by_10", "multiply_by_100", "place_value_zeros"],
+      "allowed_question_forms": ["Tính nhẩm phép nhân với 10, 100 hoặc 1 000.", "Giải thích sự thay đổi giá trị khi thêm chữ số 0."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 181,
+      "lesson_name": "38. Bài 38: Chia cho số có một chữ số",
+      "pdf_pages": [88, 89],
+      "book_pages": [87, 88],
+      "objective": "Thực hiện phép chia số có nhiều chữ số cho số có một chữ số.",
+      "allowed_knowledge_tags": ["division_one_digit", "long_division", "quotient"],
+      "allowed_question_forms": ["Đặt tính rồi tính phép chia cho số có một chữ số.", "Kiểm tra phép chia bằng phép nhân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 182,
+      "lesson_name": "39. Bài 39: Chia cho 10, 100, 1 000, ...",
+      "pdf_pages": [90, 91],
+      "book_pages": [89, 90],
+      "objective": "Chia số tự nhiên cho 10, 100, 1 000 bằng cách bớt các chữ số 0 ở bên phải.",
+      "allowed_knowledge_tags": ["divide_by_10", "divide_by_100", "place_value_zeros"],
+      "allowed_question_forms": ["Tính nhẩm phép chia cho 10, 100 hoặc 1 000.", "Liên hệ phép nhân và phép chia với 10, 100, 1 000."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

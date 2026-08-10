@@ -1,3 +1,4 @@
+<%# M?u giao di?n ai logs k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <%
   function roleLabel(role) {
     return role === 'ai' ? 'AI' : 'Học sinh';
@@ -70,6 +71,7 @@
   </article>
 </section>
 
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (stats.providers.length > 0 || stats.blockedReasons.length > 0) { %>
   <section class="learning-summary">
     <div>
@@ -89,6 +91,7 @@
         <i data-lucide="shield" class="lucide-icon"></i>
         Lý do bị chặn
       </div>
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (stats.blockedReasons.length === 0) { %>
         <p class="muted">Chưa có lượt nào bị chặn.</p>
       <% } %>
@@ -104,6 +107,7 @@
     Học sinh
     <select name="student_id">
       <option value="">Tất cả học sinh</option>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% students.forEach((item) => { %>
         <option value="<%= item.id %>" <%= Number(filters.studentId) === Number(item.id) ? 'selected' : '' %>>
           <%= item.fullname %> (<%= item.username %>)
@@ -123,6 +127,7 @@
     Bài học
     <select name="lesson_id">
       <option value="">Tất cả bài học</option>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% lessons.forEach((item) => { %>
         <option value="<%= item.id %>" <%= Number(filters.lessonId) === Number(item.id) ? 'selected' : '' %>>
           Lớp <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
@@ -146,6 +151,7 @@
     <i data-lucide="filter" class="lucide-icon"></i>
     Áp dụng
   </button>
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (hasActiveFilters) { %>
     <a class="btn btn-secondary" href="/admin/logs/ai">Xóa bộ lọc</a>
   <% } %>
@@ -158,6 +164,7 @@
     <small class="muted">Trang <%= pagination.page %>/<%= pagination.totalPages %> · <%= pagination.total %> bản ghi</small>
   </div>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (logs.length === 0) { %>
     <div class="empty-state compact">
       <p>Chưa có hội thoại nào khớp điều kiện đang chọn.</p>
@@ -165,16 +172,20 @@
   <% } %>
 
   <div class="card-list">
+    <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
     <% logs.forEach((log) => { %>
       <article class="activity-card ai-log-card <%= log.is_flagged_inaccurate ? 'ai-log-flagged' : '' %>">
         <div class="row-actions">
           <span class="status-pill status-new"><%= sessionTypeLabel(log.session_type) %></span>
+          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.blocked_reason) { %>
             <span class="status-pill status-review">Bị chặn</span>
           <% } %>
+          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.is_fallback) { %>
             <span class="status-pill status-review">Câu dự phòng</span>
           <% } %>
+          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.is_flagged_inaccurate) { %>
             <span class="status-pill status-review">Đã đánh dấu sai</span>
           <% } %>
@@ -182,16 +193,21 @@
 
         <h2><%= log.fullname || 'Học sinh đã xóa' %></h2>
         <p class="muted">
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.username) { %>Tài khoản <strong><%= log.username %></strong> · Lớp <%= log.current_grade %> · <% } %>
           <%= log.created_at ? new Date(log.created_at).toLocaleString('vi-VN') : '-' %>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.lesson_name) { %> · Bài: <%= log.lesson_name %><% } %>
         </p>
         <p class="muted">
           Nguồn: <strong><%= log.provider || 'chưa ghi nhận' %></strong>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.model) { %> · Model: <%= log.model %><% } %>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (log.question_id) { %> · Câu hỏi #<%= log.question_id %><% } %>
         </p>
 
+        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
         <% if (log.blocked_reason) { %>
           <p class="student-warning">
             <i data-lucide="shield-off" class="lucide-icon"></i>
@@ -199,6 +215,7 @@
           </p>
         <% } %>
 
+        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
         <% if (log.blocked_reason) { %>
           <p class="muted">
             Nội dung yêu cầu bị chặn không được lưu; nhật ký này chỉ giữ metadata phục vụ giám sát chính sách.
@@ -210,6 +227,7 @@
               Xem hội thoại (<%= log.chat_history.length %> tin nhắn)
             </summary>
             <div class="review-chat ai-log-chat">
+              <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
               <% if (log.chat_history.length === 0) { %>
                 <p class="muted">Không có nội dung hội thoại.</p>
               <% } %>
@@ -236,16 +254,20 @@
     <% }) %>
   </div>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (pagination.totalPages > 1) { %>
     <nav class="pagination" aria-label="Phân trang nhật ký">
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (pagination.page > 1) { %>
         <a class="btn btn-secondary" href="<%= pageUrl(pagination.page - 1) %>">Trang trước</a>
       <% } %>
       <span class="muted">Trang <%= pagination.page %>/<%= pagination.totalPages %></span>
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (pagination.page < pagination.totalPages) { %>
         <a class="btn btn-secondary" href="<%= pageUrl(pagination.page + 1) %>">Trang sau</a>
       <% } %>
     </nav>
   <% } %>
 </section>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/ai-logs.css'); %>

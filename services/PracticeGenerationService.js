@@ -1,3 +1,4 @@
+// D?ch v? practice generation service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
 const Question = require('../models/Question');
 const {
   createSelectionSeed,
@@ -10,6 +11,7 @@ const RECENT_LIMITS = Object.freeze({
   COMPREHENSIVE: 40
 });
 
+// H?m generateLessonSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function generateLessonSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
   const candidates = Array.isArray(options.candidates) ? options.candidates : [];
@@ -30,6 +32,7 @@ async function generateLessonSelection(options, dependencies = {}) {
   });
 }
 
+// H?m generateReviewSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function generateReviewSelection(options = {}) {
   const questions = (Array.isArray(options.questions) ? options.questions : []).map((question) => ({
     ...question,
@@ -45,6 +48,7 @@ function generateReviewSelection(options = {}) {
   });
 }
 
+// H?m generateScopedSelection d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function generateScopedSelection(options, dependencies = {}) {
   const questionModel = dependencies.Question || Question;
   const mode = String(options.mode || 'COMPREHENSIVE').toUpperCase() === 'CHAPTER'

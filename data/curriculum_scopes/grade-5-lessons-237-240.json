@@ -1,0 +1,64 @@
+{
+  "scope_id": "grade-5-lessons-237-240",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [99, 100, 101, 102, 103, 106, 107, 108, 109, 110, 111, 112],
+    "verified_book_pages": [97, 98, 99, 100, 101, 104, 105, 106, 107, 108, 109, 110]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 41 tìm tỉ số phần trăm của hai số; bài 42 tìm giá trị phần trăm của một số; bài 44 sử dụng máy tính cầm tay; bài 45 tỉ lệ bản đồ.",
+    "excluded_pages": "Bài 43 và Bài 46 là phần luyện tập chung, không đưa vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 237,
+      "lesson_name": "17. Bài 41. Tìm tỉ số phần trăm của hai số",
+      "pdf_pages": [99, 100],
+      "book_pages": [97, 98],
+      "objective": "Tìm tỉ số phần trăm của hai số bằng cách tìm thương rồi nhân với 100 và viết kí hiệu phần trăm.",
+      "allowed_knowledge_tags": ["percentage_ratio", "ratio_of_two_numbers", "decimal_to_percent"],
+      "allowed_question_forms": ["Tìm tỉ số phần trăm của hai số.", "Áp dụng tỉ số phần trăm trong tình huống có phần và toàn thể."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 238,
+      "lesson_name": "18. Bài 42. Tìm giá trị phần trăm của một số cho trước",
+      "pdf_pages": [101, 102, 103],
+      "book_pages": [99, 100, 101],
+      "objective": "Tìm giá trị phần trăm của một số cho trước bằng cách nhân số đó với phân số phần trăm.",
+      "allowed_knowledge_tags": ["percentage_of_number", "percent_calculation", "fraction_to_percent"],
+      "allowed_question_forms": ["Tìm một phần trăm của số cho trước.", "Tính số tiền hoặc số lượng theo phần trăm."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 239,
+      "lesson_name": "20. Bài 44. Sử dụng máy tính cầm tay",
+      "pdf_pages": [106, 107, 108],
+      "book_pages": [104, 105, 106],
+      "objective": "Sử dụng các phím cơ bản của máy tính cầm tay để thực hiện phép tính, tìm tỉ số phần trăm và giá trị phần trăm.",
+      "allowed_knowledge_tags": ["calculator_operation", "arithmetic_calculation", "percentage_with_calculator"],
+      "allowed_question_forms": ["Đọc kết quả phép tính trên máy tính cầm tay.", "Chọn kết quả đúng sau khi nhập phép tính."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 240,
+      "lesson_name": "21. Bài 45. Tỉ lệ bản đồ",
+      "pdf_pages": [109, 110, 111, 112],
+      "book_pages": [107, 108, 109, 110],
+      "objective": "Hiểu tỉ lệ bản đồ và tính độ dài thật hoặc độ dài trên bản đồ từ tỉ lệ đã cho.",
+      "allowed_knowledge_tags": ["map_scale", "real_distance", "map_distance"],
+      "allowed_question_forms": ["Tính độ dài thật theo tỉ lệ bản đồ.", "Tính độ dài trên bản đồ theo khoảng cách thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

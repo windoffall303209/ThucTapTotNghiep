@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-193-197",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_2_-_Canh_dieu_59332.pdf",
+    "verified_pdf_pages": [18, 19, 20, 21, 22, 23, 24, 25, 30, 31],
+    "verified_book_pages": [18, 19, 20, 21, 22, 23, 24, 25, 30, 31]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 193 rút gọn phân số; bài 194 quy đồng mẫu số; bài 195 so sánh hai phân số cùng mẫu số; bài 196 so sánh hai phân số khác mẫu số; bài 197 hình bình hành.",
+    "excluded_pages": "Không gán các trang Luyện tập và Luyện tập chung ở PDF 26–29 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 193,
+      "lesson_name": "59. Bài 59: Rút gọn phân số",
+      "pdf_pages": [18, 19],
+      "book_pages": [18, 19],
+      "objective": "Rút gọn phân số về phân số tối giản bằng cách chia cả tử và mẫu cho cùng một số lớn hơn 1.",
+      "allowed_knowledge_tags": ["simplify_fraction", "fraction_reduction", "irreducible_fraction"],
+      "allowed_question_forms": ["Rút gọn phân số.", "Nhận biết phân số tối giản."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 194,
+      "lesson_name": "60. Bài 60: Quy đồng mẫu số các phân số",
+      "pdf_pages": [20, 21],
+      "book_pages": [20, 21],
+      "objective": "Tìm mẫu số chung và quy đồng mẫu số hai phân số.",
+      "allowed_knowledge_tags": ["common_denominator", "equivalent_fractions", "fraction_denominator"],
+      "allowed_question_forms": ["Tìm mẫu số chung của hai phân số.", "Quy đồng mẫu số hai phân số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 195,
+      "lesson_name": "61. Bài 61: So sánh hai phân số cùng mẫu số",
+      "pdf_pages": [22, 23],
+      "book_pages": [22, 23],
+      "objective": "So sánh hai phân số có cùng mẫu số dựa vào tử số.",
+      "allowed_knowledge_tags": ["compare_same_denominator", "fraction_order", "fraction_comparison"],
+      "allowed_question_forms": ["Điền dấu so sánh hai phân số cùng mẫu số.", "Sắp xếp các phân số cùng mẫu số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 196,
+      "lesson_name": "62. Bài 62: So sánh hai phân số khác mẫu số",
+      "pdf_pages": [24, 25],
+      "book_pages": [24, 25],
+      "objective": "Quy đồng mẫu số rồi so sánh hai phân số khác mẫu số.",
+      "allowed_knowledge_tags": ["compare_different_denominator", "common_denominator", "fraction_comparison"],
+      "allowed_question_forms": ["So sánh hai phân số khác mẫu số.", "Quy đồng rồi kết luận thứ tự hai phân số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 197,
+      "lesson_name": "65. Bài 65: Hình bình hành",
+      "pdf_pages": [30, 31],
+      "book_pages": [30, 31],
+      "objective": "Nhận biết hình bình hành và đặc điểm hai cặp cạnh đối diện song song, bằng nhau.",
+      "allowed_knowledge_tags": ["parallelogram", "parallel_opposite_sides", "equal_opposite_sides"],
+      "allowed_question_forms": ["Nhận biết hình bình hành.", "Chọn đặc điểm đúng của hình bình hành."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

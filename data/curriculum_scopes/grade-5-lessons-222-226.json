@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-222-226",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [46, 47, 48, 49, 50, 51, 54, 55, 56, 57, 58],
+    "verified_book_pages": [44, 45, 46, 47, 48, 49, 50, 51, 54, 55, 56, 57, 58]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 17 số thập phân bằng nhau; bài 18 so sánh số thập phân; bài 19 làm tròn số thập phân; bài 21 héc-ta; bài 22 ki-lô-mét vuông.",
+    "excluded_pages": "Không gán phần Ôn tập diện tích ở trang in 52–53 vào batch này; Bài 20 là phần ôn tập nên được loại khỏi phạm vi câu hỏi mới."
+  },
+  "lessons": [
+    {
+      "lesson_id": 222,
+      "lesson_name": "17. Bài 17. Số thập phân bằng nhau",
+      "pdf_pages": [46, 47],
+      "book_pages": [44, 45],
+      "objective": "Nhận biết các số thập phân bằng nhau khi thêm hoặc bớt chữ số 0 ở tận cùng phần thập phân.",
+      "allowed_knowledge_tags": ["equal_decimals", "trailing_zero", "decimal_number"],
+      "allowed_question_forms": ["Nhận biết hai số thập phân bằng nhau.", "Viết số thập phân bằng số đã cho."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 223,
+      "lesson_name": "18. Bài 18. So sánh số thập phân",
+      "pdf_pages": [48, 49, 50],
+      "book_pages": [46, 47, 48],
+      "objective": "So sánh các số thập phân dựa vào phần nguyên và các hàng tương ứng ở phần thập phân.",
+      "allowed_knowledge_tags": ["compare_decimals", "decimal_place_value", "greater_less"],
+      "allowed_question_forms": ["So sánh hai số thập phân.", "Chọn số lớn hơn hoặc nhỏ hơn trong tình huống thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 224,
+      "lesson_name": "19. Bài 19. Làm tròn số thập phân",
+      "pdf_pages": [51, 52, 53],
+      "book_pages": [49, 50, 51],
+      "objective": "Làm tròn số thập phân đến hàng phần mười, phần trăm hoặc hàng đơn vị theo chữ số liền sau.",
+      "allowed_knowledge_tags": ["round_decimals", "tenths_rounding", "decimal_place_value"],
+      "allowed_question_forms": ["Làm tròn số thập phân đến một hàng đã cho.", "Áp dụng làm tròn trong tình huống đo lường."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 225,
+      "lesson_name": "21. Bài 21. Héc-ta",
+      "pdf_pages": [56, 57],
+      "book_pages": [54, 55],
+      "objective": "Nhận biết héc-ta và đổi các số đo diện tích giữa héc-ta với mét vuông.",
+      "allowed_knowledge_tags": ["hectare", "area_conversion", "square_meter"],
+      "allowed_question_forms": ["Đổi héc-ta sang mét vuông.", "Tính diện tích thực tế có đơn vị héc-ta."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 226,
+      "lesson_name": "22. Bài 22. Ki-lô-mét vuông",
+      "pdf_pages": [58, 59, 60],
+      "book_pages": [56, 57, 58],
+      "objective": "Nhận biết ki-lô-mét vuông và đổi các số đo diện tích giữa ki-lô-mét vuông, héc-ta và mét vuông.",
+      "allowed_knowledge_tags": ["square_kilometer", "area_conversion", "hectare"],
+      "allowed_question_forms": ["Đổi ki-lô-mét vuông sang héc-ta.", "Chọn đơn vị diện tích phù hợp."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

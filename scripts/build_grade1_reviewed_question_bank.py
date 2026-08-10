@@ -1,3 +1,4 @@
+# Script build grade1 reviewed question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import importlib.util
@@ -65,9 +66,13 @@ KNOWN_CORRECTIONS = [
 ]
 
 
+# H?m normalize d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
+
+# H?m explanation_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def explanation_for(question: dict) -> str:
     prompt = normalize(question["question"]).replace("−", "-")
@@ -84,6 +89,8 @@ def explanation_for(question: dict) -> str:
         return "Đối chiếu dữ kiện hoặc thực hiện phép tính cho thấy khẳng định đã nêu là sai."
     return f"Dựa vào dữ kiện của đề bài, đáp án đúng là: {answer}."
 
+
+# H?m audit d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def audit(data: dict) -> list[dict]:
     issues = []
@@ -157,6 +164,8 @@ def audit(data: dict) -> list[dict]:
     return issues
 
 
+# H?m choices_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def choices_for(question: dict) -> tuple[list[dict], str, list[dict]]:
     answer = normalize(question["answer"])
     options = [answer] + [
@@ -185,6 +194,8 @@ def choices_for(question: dict) -> tuple[list[dict], str, list[dict]]:
     ]
     return choices, correct_key, misconceptions
 
+
+# H?m convert d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def convert(data: dict) -> list[dict]:
     lessons = []
@@ -224,6 +235,8 @@ def convert(data: dict) -> list[dict]:
     builder.validate_bank(lessons)
     return lessons
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     data = json.loads(SOURCE_JSON.read_text(encoding="utf-8"))
@@ -271,5 +284,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+-- T?p l?nh SQL seed kh?i t?o ho?c n?p d? li?u cho c? s? d? li?u c?a ?ng d?ng.
 -- =========================================================================
 -- SEED DATA DEMO CHO HỆ THỐNG ÔN LUYỆN TOÁN TIỂU HỌC 1-5
 -- Lưu ý: Tất cả mật khẩu bên dưới đã được băm bằng bcrypt.
@@ -21,12 +22,14 @@ CREATE TABLE IF NOT EXISTS Admins (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- C?u l?nh SQL `CREATE` th?c hi?n m?t b??c thay ??i ho?c truy v?n d? li?u; c?n ki?m tra ?i?u ki?n v? ph?m vi t?c ??ng tr??c khi ch?y.
 CREATE TABLE IF NOT EXISTS SystemSettings (
     setting_key VARCHAR(100) PRIMARY KEY,
     setting_value TEXT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- C?u l?nh SQL `INSERT` th?c hi?n m?t b??c thay ??i ho?c truy v?n d? li?u; c?n ki?m tra ?i?u ki?n v? ph?m vi t?c ??ng tr??c khi ch?y.
 INSERT INTO Admins (username, password_hash, fullname, role, is_active)
 VALUES
   (
@@ -47,6 +50,7 @@ ON DUPLICATE KEY UPDATE
   fullname = VALUES(fullname),
   role = VALUES(role);
 
+-- C?u l?nh SQL `INSERT` th?c hi?n m?t b??c thay ??i ho?c truy v?n d? li?u; c?n ki?m tra ?i?u ki?n v? ph?m vi t?c ??ng tr??c khi ch?y.
 INSERT INTO Students (username, password_hash, fullname, registered_grade, current_grade)
 VALUES
   (
@@ -75,6 +79,7 @@ ON DUPLICATE KEY UPDATE
   registered_grade = VALUES(registered_grade),
   current_grade = VALUES(current_grade);
 
+-- C?u l?nh SQL `INSERT` th?c hi?n m?t b??c thay ??i ho?c truy v?n d? li?u; c?n ki?m tra ?i?u ki?n v? ph?m vi t?c ??ng tr??c khi ch?y.
 INSERT INTO SystemSettings (setting_key, setting_value)
 VALUES
   ('practice_duration_5_minutes', '10'),

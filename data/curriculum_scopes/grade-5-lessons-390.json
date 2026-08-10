@@ -1,0 +1,31 @@
+{
+  "scope_id": "grade-5-lessons-390",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [104, 105],
+    "verified_book_pages": [102, 103]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, thể hiện đầy đủ số liệu và tỉ lệ trong đề nhưng không chứa đáp án.",
+    "progression": "Bài 91 ôn tập chung, kết hợp các kiến thức về số thập phân, đo lường và tỉ số phần trăm.",
+    "excluded_pages": "Không đưa các hoạt động thực hành mở rộng ngoài mục tiêu kiến thức chính vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 390,
+      "lesson_name": "Bài 91. Ôn tập chung",
+      "pdf_pages": [104, 105],
+      "book_pages": [102, 103],
+      "objective": "Vận dụng đổi đơn vị thể tích và tỉ số phần trăm trong bài toán tổng hợp.",
+      "allowed_knowledge_tags": ["mixed_revision", "volume_conversion", "percentage", "measurement"],
+      "allowed_question_forms": ["Tính lượng còn lại sau khi dùng một tỉ lệ phần trăm.", "Đổi mét khối sang lít trong bài toán thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

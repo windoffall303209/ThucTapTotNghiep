@@ -1,4 +1,5 @@
 """Gắn dữ kiện thủ công lên 33 ảnh của Bài 78, 82 và 83."""
+# Script prepare grade5 b78 b82 b83 assets h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
@@ -50,12 +51,16 @@ LABELS = {
 }
 
 
+# H?m font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def font(size):
     for path in ("C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/calibrib.ttf"):
         if Path(path).exists():
             return ImageFont.truetype(path, size)
     return ImageFont.load_default()
 
+
+# H?m fit d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def fit(draw, text, width):
     for size in range(38, 17, -2):
@@ -65,6 +70,8 @@ def fit(draw, text, width):
             return selected
     return font(18)
 
+
+# H?m prepare d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def prepare(source, destination, label):
     image = Image.open(source).convert("RGB")
@@ -86,6 +93,8 @@ def prepare(source, destination, label):
     canvas.save(destination, "JPEG", quality=92, optimize=True, progressive=True)
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     files = []
     for lesson, labels in LABELS.items():
@@ -101,5 +110,6 @@ def main():
     print(f"Prepared {len(files)} images at {OUTPUT}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

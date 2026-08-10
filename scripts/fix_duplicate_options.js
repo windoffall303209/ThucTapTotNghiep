@@ -1,3 +1,4 @@
+// Script fix duplicate options h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Sửa các câu hỏi lớp 1 có HAI phương án cùng đúng.
  *
@@ -111,9 +112,13 @@ const SUA = new Map([
   [14559, { dap: 'A', pa: ['5 kg', '30 kg', '20 kg', '125 kg'] }]
 ]);
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -123,28 +128,33 @@ function parseJson(value, fallback) {
 
 const NHAN = ['A', 'B', 'C', 'D'];
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const baoCao = [];
   let daSua = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, muc] of SUA) {
     const rows = await db.query(
       'SELECT q.id, q.content, q.choices, q.correct_answer, l.lesson_name '
       + 'FROM QuestionBank q JOIN Lessons l ON l.id = q.lesson_id WHERE q.id = ?',
       [id]
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (rows.length === 0) {
       console.log(`  BỎ QUA id ${id}: không còn trong cơ sở dữ liệu`);
       continue;
     }
 
     const row = rows[0];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (row.correct_answer !== muc.dap) {
       throw new Error(
         `id ${id}: bảng sửa ghi đáp án ${muc.dap} nhưng dữ liệu đang là ${row.correct_answer}. `
         + 'Dừng lại vì script này không được phép đổi đáp án.'
       );
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (muc.pa.length !== 4) {
       throw new Error(`id ${id}: cần đúng 4 phương án, đang có ${muc.pa.length}.`);
     }
@@ -155,6 +165,7 @@ async function main() {
 
     // Chốt chặn: sau khi sửa không được còn hai phương án trùng nội dung.
     const chuan = choicesMoi.map((c) => c.text.trim().toLowerCase().replace(/[.;]+$/, ''));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (new Set(chuan).size !== chuan.length) {
       throw new Error(`id ${id}: bộ phương án mới vẫn còn hai phương án giống nhau.`);
     }
@@ -171,6 +182,7 @@ async function main() {
       dap_an_moi_noi_dung: choicesMoi.find((c) => c.key === muc.dap).text
     });
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET choices = CAST(? AS JSON) WHERE id = ?',
@@ -190,6 +202,7 @@ async function main() {
     const moi = b.dap_an_moi_noi_dung.trim().toLowerCase().replace(/[.;]+$/, '');
     return cu !== moi;
   });
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (doiNoiDung.length) {
     console.log(`\nCẢNH BÁO: ${doiNoiDung.length} câu có nội dung đáp án đúng thay đổi:`);
     doiNoiDung.forEach((b) => console.log(`  id ${b.id}: "${b.dap_an_cu_noi_dung}" -> "${b.dap_an_moi_noi_dung}"`));
@@ -197,6 +210,7 @@ async function main() {
     console.log('  Nội dung đáp án đúng: giữ nguyên ở cả 100% số câu');
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${daSua} câu.`);
     console.log('Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');

@@ -1,3 +1,4 @@
+// B? ki?m th? ai log management.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -7,6 +8,7 @@ const AIConversationLog = require('../models/AIConversationLog');
 const SystemSetting = require('../models/SystemSetting');
 const RetentionMigration = require('../scripts/apply_ai_log_retention');
 
+// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function read(relativePath) {
   return fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 }
@@ -45,6 +47,7 @@ test('bộ lọc nhật ký AI chuẩn hóa ngày và ID trước khi tạo SQL 
 });
 
 test('bộ lọc nhật ký AI từ chối ngày, khoảng ngày và lesson_id không hợp lệ', () => {
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const filters of [
     { from: '2026-02-30' },
     { from: '2026-08-01', to: '2026-07-31' },

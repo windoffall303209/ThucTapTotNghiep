@@ -1,3 +1,4 @@
+// B? ki?m th? web security.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -45,6 +46,7 @@ test('chuyển hướng quay lại chỉ chấp nhận đường dẫn nội b�
     safeAdminReturnTo('/admin/logs/ai?page=2#result', '/admin/logs/ai'),
     '/admin/logs/ai?page=2#result'
   );
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const unsafe of [
     'https://evil.example/steal',
     '//evil.example/steal',
@@ -85,6 +87,7 @@ test('Base URL AI chỉ gửi khóa tới allowlist riêng của đúng provider
   );
   assert.doesNotThrow(() => validateAllowedProviderOrigins(providerAllowlists));
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [url, provider] of [
     ['https://openai-gateway.example/v1', 'nvidia'],
     ['https://nvidia-gateway.example/v1', 'openai'],
@@ -97,6 +100,7 @@ test('Base URL AI chỉ gửi khóa tới allowlist riêng của đúng provider
     );
   }
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const unsafe of [
     'http://127.0.0.1:8080/v1',
     'https://127.0.0.1/v1',

@@ -1,3 +1,4 @@
+# Script build grade1 question docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import json
 from datetime import date
@@ -17,6 +18,8 @@ QUESTIONS_PATH = PACK_DIR / "questions.json"
 OUTPUT_DOCX = PACK_DIR / "Bo_cau_hoi_Toan_lop_1_Chu_de_1_2.docx"
 
 
+# H?m add_page_number d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_page_number(paragraph):
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = paragraph.add_run()
@@ -32,12 +35,16 @@ def add_page_number(paragraph):
     run._r.append(fld_char_2)
 
 
+# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_shading(paragraph, color_hex):
     p_pr = paragraph._p.get_or_add_pPr()
     shd = OxmlElement("w:shd")
     shd.set(qn("w:fill"), color_hex)
     p_pr.append(shd)
 
+
+# H?m setup_styles d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def setup_styles(doc):
     normal = doc.styles["Normal"]
@@ -63,6 +70,8 @@ def setup_styles(doc):
         style.paragraph_format.keep_with_next = True
 
 
+# H?m set_margins d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_margins(doc):
     section = doc.sections[0]
     section.top_margin = Inches(1)
@@ -72,6 +81,8 @@ def set_margins(doc):
     section.header_distance = Inches(0.492)
     section.footer_distance = Inches(0.492)
 
+
+# H?m add_header_footer d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_header_footer(section, title):
     header = section.header
@@ -88,6 +99,8 @@ def add_header_footer(section, title):
         run.font.size = Pt(9)
         run.font.color.rgb = RGBColor(90, 98, 110)
 
+
+# H?m add_cover d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_cover(doc, data):
     spacer = doc.add_paragraph()
@@ -131,6 +144,8 @@ def add_cover(doc, data):
     doc.add_page_break()
 
 
+# H?m add_contents d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_contents(doc, lessons):
     doc.add_heading("Mục lục nội dung", level=1)
     current_chapter = None
@@ -146,6 +161,8 @@ def add_contents(doc, lessons):
         p.add_run(lesson["lesson"])
     doc.add_page_break()
 
+
+# H?m add_question_block d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_question_block(doc, question):
     image_path = PACK_DIR / question["image_file"]
@@ -175,6 +192,8 @@ def add_question_block(doc, question):
         p.add_run(mistake["hint"])
 
 
+# H?m add_lessons d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_lessons(doc, lessons, allow_missing=False):
     current_chapter = None
     first_lesson = True
@@ -199,6 +218,8 @@ def add_lessons(doc, lessons, allow_missing=False):
             added_any = True
 
 
+# H?m build d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build(allow_missing=False):
     data = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
     if not allow_missing:
@@ -221,6 +242,8 @@ def build(allow_missing=False):
     print(OUTPUT_DOCX)
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--allow-missing", action="store_true")
@@ -228,5 +251,6 @@ def main():
     build(allow_missing=args.allow_missing)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

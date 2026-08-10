@@ -1,3 +1,4 @@
+# Script build grade1 questions generated h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import math
 import sys
@@ -22,13 +23,19 @@ DOCX_PATH = OUTPUT_DIR / "cau-hoi-lop-1-codex.docx"
 FALLBACK_DOCX_PATH = OUTPUT_DIR / "cau-hoi-lop-1-codex-fixed.docx"
 
 
+# H?m norm d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def norm(text):
     return base.norm(text)
 
 
+# H?m question_id d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def question_id(chapter_index, lesson_index, q_index):
     return 100000 + chapter_index * 1000 + lesson_index * 10 + q_index
 
+
+# H?m classify_lesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def classify_lesson(name):
     n = norm(name)
@@ -75,6 +82,8 @@ def classify_lesson(name):
     return "count_1_3"
 
 
+# H?m choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def choices(correct, distractors, offset=0):
     values = [correct] + [d for d in distractors if str(d) != str(correct)]
     values = values[:4]
@@ -85,6 +94,8 @@ def choices(correct, distractors, offset=0):
     correct_key = keys[values.index(correct)]
     return [{"key": k, "text": str(v)} for k, v in zip(keys, values)], correct_key
 
+
+# H?m make_mc d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def make_mc(chapter, lesson, q_index, qtype, text, correct, distractors, explanation, data, difficulty="EASY"):
     offset = chapter["chapter_index"] + lesson["lesson_index"] + q_index
@@ -109,6 +120,8 @@ def make_mc(chapter, lesson, q_index, qtype, text, correct, distractors, explana
         "visual_data": data,
     }
 
+
+# H?m build_questions_for_lesson d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_questions_for_lesson(chapter, lesson):
     k = classify_lesson(lesson["lesson"])
@@ -210,6 +223,8 @@ def build_questions_for_lesson(chapter, lesson):
     return qs
 
 
+# H?m draw_item d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_item(draw, cx, cy, item, scale=1.0):
     if "táo" in item or "quả" in item:
         base.draw_apple(draw, cx, cy, scale)
@@ -223,6 +238,8 @@ def draw_item(draw, cx, cy, item, scale=1.0):
     else:
         draw.ellipse((cx-18*scale, cy-18*scale, cx+18*scale, cy+18*scale), fill="#60a5fa", outline="#1d4ed8", width=2)
 
+
+# H?m draw_question_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_question_image(q):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -271,6 +288,7 @@ def draw_question_image(q):
             draw.text((110 + a * 45, 392), op, font=base.font(34, True), fill="#0f172a")
             for i in range(b):
                 draw_item(draw, 180 + a * 45 + i * 45, 405, "quả táo", 0.55)
+        # H?m number_blocks d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
         else:
             def number_blocks(n, x, y, label):
                 tens, ones = divmod(n, 10)
@@ -335,6 +353,8 @@ def draw_question_image(q):
     return out
 
 
+# H?m load_lessons d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def load_lessons():
     data = json.loads(BLUEPRINT_PATH.read_text(encoding="utf-8"))
     chapters = []
@@ -346,12 +366,16 @@ def load_lessons():
     return chapters
 
 
+# H?m set_doc_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_doc_defaults(doc):
     base.set_defaults(doc)
     for style_name in ["Normal", "Heading 1", "Heading 2", "Heading 3"]:
         style = doc.styles[style_name]
         style.font.name = "Arial"
 
+
+# H?m add_run d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_run(p, text, bold=False, size=10.5, color=None):
     r = p.add_run(text)
@@ -362,6 +386,8 @@ def add_run(p, text, bold=False, size=10.5, color=None):
         r.font.color.rgb = RGBColor.from_string(color)
     return r
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx(chapters, questions):
     doc = Document()
@@ -407,6 +433,8 @@ def build_docx(chapters, questions):
         return FALLBACK_DOCX_PATH
 
 
+# H?m build_contact_sheets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_contact_sheets():
     paths = sorted(IMAGE_DIR.glob("q*.png"))
     cols = 5
@@ -426,6 +454,8 @@ def build_contact_sheets():
         outs.append(out)
     return outs
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -448,5 +478,6 @@ def main():
     print(f"images={len(list(IMAGE_DIR.glob('q*.png')))}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

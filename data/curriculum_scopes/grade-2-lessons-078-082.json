@@ -1,0 +1,120 @@
+{
+  "scope_id": "grade-2-lessons-078-082",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 59, 60],
+    "verified_book_pages": [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 59]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa số có ba chữ số, giá trị hàng hoặc phép tính; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 78 đọc và biểu diễn số trong phạm vi 1000; bài 79–80 đọc, viết và phân tích số có ba chữ số; bài 81 so sánh số có ba chữ số; bài 82 cộng không nhớ trong phạm vi 1000.",
+    "difficulty": "Một yêu cầu nhận biết hoặc một phép tính không nhớ; không yêu cầu kiến thức của bài sau."
+  },
+  "lessons": [
+    {
+      "lesson_id": 78,
+      "lesson_name": "Các số trong phạm vi 1000",
+      "pdf_pages": [47, 48, 49],
+      "book_pages": [46, 47, 48],
+      "objective": "Đọc, viết và nhận biết cấu tạo các số trong phạm vi 1000 theo trăm, chục, đơn vị.",
+      "allowed_knowledge_tags": [
+        "read_number_to_1000",
+        "identify_hundreds_tens_units",
+        "represent_number_with_base_ten_blocks",
+        "count_to_1000"
+      ],
+      "allowed_question_forms": [
+        "Chọn số có ba chữ số trong phạm vi 1000.",
+        "Đọc một số trong phạm vi 1000.",
+        "Xác định số trăm, chục và đơn vị của một số."
+      ],
+      "forbidden_text_patterns": ["\\b(phép cộng|phép trừ|so sánh số)\\b"],
+      "not_yet_allowed": ["Đặt tính cộng hoặc trừ", "So sánh hai số có ba chữ số", "Số có bốn chữ số"]
+    },
+    {
+      "lesson_id": 79,
+      "lesson_name": "Các số có ba chữ số",
+      "pdf_pages": [50],
+      "book_pages": [49],
+      "objective": "Đọc và viết các số có ba chữ số, nhận biết số trăm, số chục và số đơn vị.",
+      "allowed_knowledge_tags": [
+        "read_three_digit_number",
+        "write_three_digit_number",
+        "identify_digit_place_value",
+        "compose_three_digit_number"
+      ],
+      "allowed_question_forms": [
+        "Chọn cách đọc đúng của một số có ba chữ số.",
+        "Viết số từ các chữ số hàng trăm, chục, đơn vị.",
+        "Xác định chữ số ở một hàng."
+      ],
+      "forbidden_text_patterns": ["\\b(phép cộng|phép trừ|so sánh)\\b"],
+      "not_yet_allowed": ["So sánh số có ba chữ số", "Cộng hoặc trừ số có ba chữ số", "Số có bốn chữ số"]
+    },
+    {
+      "lesson_id": 80,
+      "lesson_name": "Các số có ba chữ số (tiếp theo)",
+      "pdf_pages": [51, 52],
+      "book_pages": [50, 51],
+      "objective": "Phân tích và viết số có ba chữ số dựa vào giá trị các hàng trăm, chục và đơn vị.",
+      "allowed_knowledge_tags": [
+        "decompose_three_digit_number",
+        "represent_hundreds_tens_units",
+        "write_number_from_place_values",
+        "read_place_value_table"
+      ],
+      "allowed_question_forms": [
+        "Chọn cách phân tích đúng một số có ba chữ số.",
+        "Viết số từ bảng trăm, chục, đơn vị.",
+        "Điền chữ số còn thiếu trong số có ba chữ số."
+      ],
+      "forbidden_text_patterns": ["\\b(phép cộng|phép trừ|so sánh)\\b"],
+      "not_yet_allowed": ["So sánh số có ba chữ số", "Cộng hoặc trừ số có ba chữ số", "Số có bốn chữ số"]
+    },
+    {
+      "lesson_id": 81,
+      "lesson_name": "So sánh các số có ba chữ số",
+      "pdf_pages": [53, 54, 55, 56],
+      "book_pages": [52, 53, 54, 55],
+      "objective": "So sánh và sắp xếp các số có ba chữ số bằng cách xét lần lượt hàng trăm, hàng chục và hàng đơn vị.",
+      "allowed_knowledge_tags": [
+        "compare_three_digit_numbers",
+        "use_place_value_to_compare",
+        "order_three_digit_numbers",
+        "identify_greater_or_less"
+      ],
+      "allowed_question_forms": [
+        "Chọn số lớn hơn hoặc bé hơn.",
+        "Điền dấu >, < hoặc =.",
+        "Sắp xếp các số có ba chữ số theo thứ tự."
+      ],
+      "forbidden_text_patterns": ["\\b(phép cộng|phép trừ|số có bốn chữ số)\\b"],
+      "not_yet_allowed": ["Cộng hoặc trừ số có ba chữ số", "So sánh số có bốn chữ số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 82,
+      "lesson_name": "Phép cộng (không nhớ) trong phạm vi 1000",
+      "pdf_pages": [59, 60],
+      "book_pages": [58, 59],
+      "objective": "Đặt tính và thực hiện phép cộng không nhớ trong phạm vi 1000 theo từng hàng.",
+      "allowed_knowledge_tags": [
+        "add_without_regrouping_to_1000",
+        "align_place_values",
+        "calculate_column_addition",
+        "solve_one_step_addition"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép cộng không nhớ trong phạm vi 1000.",
+        "Chọn kết quả đúng của phép cộng.",
+        "Giải bài toán một bước dùng phép cộng không nhớ."
+      ],
+      "forbidden_text_patterns": ["\\b(phép trừ|có nhớ|số có bốn chữ số)\\b"],
+      "not_yet_allowed": ["Phép cộng có nhớ", "Phép trừ", "Số có bốn chữ số"]
+    }
+  ]
+}

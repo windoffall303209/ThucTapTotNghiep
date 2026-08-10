@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-2-lessons-083-087",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh Diều.pdf",
+    "verified_pdf_pages": [61, 62, 65, 66, 67, 68, 69, 70, 72, 73],
+    "verified_book_pages": [60, 61, 64, 65, 66, 67, 68, 69, 71, 72]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa phép tính hoặc đơn vị đo; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 83 trừ không nhớ trong phạm vi 1000; bài 84 đổi mét và xăng-ti-mét; bài 85 đổi ki-lô-mét và mét; bài 86 cộng có nhớ trong phạm vi 1000; bài 87 trừ có nhớ trong phạm vi 1000.",
+    "difficulty": "Một yêu cầu nhận biết hoặc một phép tính trong phạm vi kiến thức của bài; không yêu cầu kiến thức của bài sau."
+  },
+  "lessons": [
+    {
+      "lesson_id": 83,
+      "lesson_name": "Phép trừ (không nhớ) trong phạm vi 1000",
+      "pdf_pages": [61, 62],
+      "book_pages": [60, 61],
+      "objective": "Đặt tính và thực hiện phép trừ không nhớ trong phạm vi 1000 theo từng hàng.",
+      "allowed_knowledge_tags": ["subtract_without_regrouping_to_1000", "align_place_values", "calculate_column_subtraction", "solve_one_step_subtraction"],
+      "allowed_question_forms": ["Tính một phép trừ không nhớ trong phạm vi 1000.", "Chọn kết quả đúng của phép trừ.", "Giải bài toán một bước dùng phép trừ không nhớ."],
+      "forbidden_text_patterns": ["\\b(phép cộng có nhớ|phép trừ có nhớ|số có bốn chữ số)\\b"],
+      "not_yet_allowed": ["Phép trừ có nhớ", "Phép cộng có nhớ", "Số có bốn chữ số"]
+    },
+    {
+      "lesson_id": 84,
+      "lesson_name": "Mét",
+      "pdf_pages": [65, 66],
+      "book_pages": [64, 65],
+      "objective": "Nhận biết mét, kí hiệu m và mối quan hệ 1 m = 100 cm, 1 m = 10 dm.",
+      "allowed_knowledge_tags": ["identify_meter", "meter_to_centimeter", "meter_to_decimeter", "choose_length_unit"],
+      "allowed_question_forms": ["Đổi mét sang xăng-ti-mét hoặc đề-xi-mét.", "Chọn đơn vị đo thích hợp cho đồ vật.", "Tính độ dài đơn giản có đơn vị mét."],
+      "forbidden_text_patterns": ["\\b(km|ki-lô-mét|mi-li-mét|giây)\\b"],
+      "not_yet_allowed": ["Đổi ki-lô-mét sang mét", "Đổi mi-li-mét", "Tính khoảng cách nhiều bước"]
+    },
+    {
+      "lesson_id": 85,
+      "lesson_name": "Ki-lô-mét",
+      "pdf_pages": [67, 68],
+      "book_pages": [66, 67],
+      "objective": "Nhận biết ki-lô-mét, kí hiệu km và mối quan hệ 1 km = 1000 m.",
+      "allowed_knowledge_tags": ["identify_kilometer", "kilometer_to_meter", "choose_kilometer_unit", "compare_lengths_in_km"],
+      "allowed_question_forms": ["Đổi ki-lô-mét sang mét.", "Chọn đơn vị đo thích hợp cho quãng đường.", "So sánh các độ dài đơn giản theo km hoặc m."],
+      "forbidden_text_patterns": ["\\b(phút|giây|mi-li-mét|năm nhuận)\\b"],
+      "not_yet_allowed": ["Đổi mi-li-mét", "Tính thời gian", "Tính quãng đường nhiều bước"]
+    },
+    {
+      "lesson_id": 86,
+      "lesson_name": "Phép cộng (có nhớ) trong phạm vi 1000",
+      "pdf_pages": [69, 70],
+      "book_pages": [68, 69],
+      "objective": "Đặt tính và thực hiện phép cộng có nhớ trong phạm vi 1000 theo từng hàng.",
+      "allowed_knowledge_tags": ["add_with_regrouping_to_1000", "align_place_values", "calculate_column_addition_with_carry", "solve_one_step_addition"],
+      "allowed_question_forms": ["Tính một phép cộng có nhớ trong phạm vi 1000.", "Chọn kết quả đúng của phép cộng.", "Giải bài toán một bước dùng phép cộng có nhớ."],
+      "forbidden_text_patterns": ["\\b(phép trừ có nhớ|phân số|số có bốn chữ số)\\b"],
+      "not_yet_allowed": ["Phép trừ có nhớ", "Phân số", "Số có bốn chữ số"]
+    },
+    {
+      "lesson_id": 87,
+      "lesson_name": "Phép trừ (có nhớ) trong phạm vi 1000",
+      "pdf_pages": [72, 73],
+      "book_pages": [71, 72],
+      "objective": "Đặt tính và thực hiện phép trừ có nhớ trong phạm vi 1000 theo từng hàng.",
+      "allowed_knowledge_tags": ["subtract_with_regrouping_to_1000", "align_place_values", "calculate_column_subtraction_with_borrow", "solve_one_step_subtraction"],
+      "allowed_question_forms": ["Tính một phép trừ có nhớ trong phạm vi 1000.", "Chọn kết quả đúng của phép trừ.", "Giải bài toán một bước dùng phép trừ có nhớ."],
+      "forbidden_text_patterns": ["\\b(phân số|số có bốn chữ số|phép chia có dư)\\b"],
+      "not_yet_allowed": ["Phân số", "Số có bốn chữ số", "Phép chia có dư"]
+    }
+  ]
+}

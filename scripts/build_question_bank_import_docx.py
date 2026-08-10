@@ -1,3 +1,4 @@
+# Script build question bank import docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import base64
 import json
 import re
@@ -30,6 +31,8 @@ BLUE = RGBColor(31, 78, 121)
 GREEN = RGBColor(0, 112, 60)
 
 
+# H?m set_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_font(run, name="Arial", size=10, bold=None, color=None):
     run.font.name = name
     run._element.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), name)
@@ -39,6 +42,8 @@ def set_font(run, name="Arial", size=10, bold=None, color=None):
     if color is not None:
         run.font.color.rgb = color
 
+
+# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_summary(document, title, subtitle, rows):
     section = document.sections[0]
@@ -70,6 +75,8 @@ def add_summary(document, title, subtitle, rows):
     set_font(note.add_run("Dùng scripts/import_question_bank_docx.py để kiểm tra hoặc nhập file này; dữ liệu DBJSON được ẩn để tài liệu chỉ hiển thị phần tóm tắt."))
 
 
+# H?m add_hidden_line d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_hidden_line(document, line):
     paragraph = document.add_paragraph()
     paragraph.paragraph_format.space_before = Pt(0)
@@ -80,6 +87,8 @@ def add_hidden_line(document, line):
     run.font.hidden = True
 
 
+# H?m tex_payloads d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def tex_payloads(grade):
     payloads = []
     for line in (DATA / TEX_BY_GRADE[grade]).read_text(encoding="utf-8").splitlines():
@@ -88,10 +97,14 @@ def tex_payloads(grade):
     return payloads
 
 
+# H?m encode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def encode(value):
     raw = json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     return base64.b64encode(raw).decode("ascii")
 
+
+# H?m build_primary_import_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_primary_import_docx(grade):
     payloads = tex_payloads(grade)
@@ -117,6 +130,8 @@ def build_primary_import_docx(grade):
     return target, len(payloads), counts
 
 
+# H?m supplement_batches d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def supplement_batches():
     files = sorted(REVIEW.glob("batch-*.json"))
     seen = Counter()
@@ -139,6 +154,8 @@ def supplement_batches():
         batches.append(batch)
     return batches
 
+
+# H?m build_supplement_import_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_supplement_import_docx():
     batches = supplement_batches()
@@ -166,6 +183,8 @@ def build_supplement_import_docx():
     return target, total
 
 
+# H?m replace_text_in_runs d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def replace_text_in_runs(paragraph, pattern, replacement):
     changed = False
     for run in paragraph.runs:
@@ -175,6 +194,8 @@ def replace_text_in_runs(paragraph, pattern, replacement):
             changed = True
     return changed
 
+
+# H?m build_readable_supplement_docx d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_readable_supplement_docx():
     if not SOURCE_SUPPLEMENT_DOCX.exists():
@@ -199,6 +220,8 @@ def build_readable_supplement_docx():
     return target, changed
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -212,5 +235,6 @@ def main():
     print(f"Bản đọc: {changed} tiêu đề được kiểm tra -> {target.relative_to(ROOT)}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+// B? ki?m th? question similarity.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 

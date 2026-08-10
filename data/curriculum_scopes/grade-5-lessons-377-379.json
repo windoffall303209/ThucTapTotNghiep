@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-377-379",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [66, 67, 68, 69, 70, 71],
+    "verified_book_pages": [64, 65, 66, 67, 68, 69]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, ghi đầy đủ số liệu trong đề nhưng không ghi đáp án hoặc phép tính ra đáp án.",
+    "progression": "Ôn tập vận tốc, thời gian, quãng đường và thể tích trong các tình huống thực tế.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 377,
+      "lesson_name": "Bài 75. Luyện tập",
+      "pdf_pages": [66, 67],
+      "book_pages": [64, 65],
+      "objective": "Tính quãng đường khi biết vận tốc và thời gian.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula"],
+      "allowed_question_forms": ["Tính quãng đường từ vận tốc và thời gian."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 378,
+      "lesson_name": "Bài 76. Luyện tập chung",
+      "pdf_pages": [68, 69],
+      "book_pages": [66, 67],
+      "objective": "Kết hợp tính thời gian chuyển động và thời gian nghỉ.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula", "time_addition", "time_conversion"],
+      "allowed_question_forms": ["Tính tổng thời gian của quãng đường có thời gian nghỉ."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 379,
+      "lesson_name": "Bài 77. Em ôn lại những gì đã học",
+      "pdf_pages": [70, 71],
+      "book_pages": [68, 69],
+      "objective": "Ôn tập thể tích và đổi đơn vị đo thể tích trong bài toán thực tế.",
+      "allowed_knowledge_tags": ["cuboid_volume", "volume_conversion", "subtraction", "measurement"],
+      "allowed_question_forms": ["Tìm phần thể tích còn trống và đổi sang lít."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

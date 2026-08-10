@@ -1,3 +1,4 @@
+// Script import grade5 question bank tex h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 require('dotenv').config();
 
 const fs = require('fs/promises');
@@ -8,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const DEFAULT_INPUT = path.join(ROOT, 'data', 'grade5_question_bank.tex');
 const DEFAULT_IMAGE_DIR = path.join(ROOT, 'public', 'uploads', 'images', 'grade5');
 
+// H?m parseArgs d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseArgs(argv) {
   const args = {
     input: DEFAULT_INPUT,
@@ -17,10 +19,15 @@ function parseArgs(argv) {
     validateOnly: false,
     createMissingLessons: false
   };
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const arg of argv) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (arg === '--commit') args.commit = true;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg === '--validate-only') args.validateOnly = true;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg === '--create-missing-lessons') args.createMissingLessons = true;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg === '--replace') {
       args.replace = true;
       args.commit = true;
@@ -33,11 +40,13 @@ function parseArgs(argv) {
   return args;
 }
 
+// H?m parsePayloads d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parsePayloads(tex) {
   return tex
     .split(/\r?\n/)
     .filter((line) => line.startsWith('% DBJSON '))
     .map((line, index) => {
+      // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
       try {
         return JSON.parse(Buffer.from(line.slice(9).trim(), 'base64').toString('utf8'));
       } catch (error) {
@@ -46,6 +55,7 @@ function parsePayloads(tex) {
     });
 }
 
+// H?m grade5Lessons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function grade5Lessons() {
   return db.query(
     `SELECT l.id, l.lesson_name, c.id AS chapter_id, c.chapter_name
@@ -56,6 +66,7 @@ async function grade5Lessons() {
   );
 }
 
+// H?m grade5Chapters d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function grade5Chapters() {
   return db.query(
     `SELECT id, chapter_name, sort_order
@@ -65,21 +76,29 @@ async function grade5Chapters() {
   );
 }
 
+// H?m sourceLessonNumber d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function sourceLessonNumber(lessonName) {
   const match = String(lessonName || '').match(/\bBài\s+(\d+)\b/i);
   return match ? Number(match[1]) : null;
 }
 
+// H?m chapterIndexForLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function chapterIndexForLesson(lessonNumber) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessonNumber <= 24) return 0;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessonNumber <= 45) return 1;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessonNumber <= 78) return 2;
   return 3;
 }
 
+// H?m sourceLessons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function sourceLessons(payloads) {
   const result = new Map();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const payload of payloads) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!result.has(payload.lesson_number)) {
       result.set(payload.lesson_number, payload.lesson_title);
     }
@@ -87,10 +106,13 @@ function sourceLessons(payloads) {
   return result;
 }
 
+// H?m materializeImages d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function materializeImages(payload, imageDir) {
   const images = payload.content?.images || [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let index = 0; index < images.length; index += 1) {
     const image = images[index];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!image.source_path) continue;
     const extension = path.extname(image.source_path) || '.png';
     const fileName = `${payload.external_id.toLowerCase()}-${String(index + 1).padStart(2, '0')}${extension}`;
@@ -102,6 +124,7 @@ async function materializeImages(payload, imageDir) {
   return payload;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const tex = await fs.readFile(args.input, 'utf8');
@@ -123,9 +146,11 @@ async function main() {
           String(item.correct_answer || '').trim())
       )
   );
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (invalid.length) {
     throw new Error(`Có ${invalid.length} payload không hợp lệ; dừng import.`);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (args.validateOnly) {
     const lessonCount = new Set(payloads.map((item) => item.lesson_number)).size;
     const imageCount = payloads.reduce((sum, item) => sum + (item.content?.images?.length || 0), 0);
@@ -135,6 +160,7 @@ async function main() {
 
   const lessons = await grade5Lessons();
   const chapters = await grade5Chapters();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (chapters.length !== 4) {
     throw new Error(`Database có ${chapters.length} chủ đề Toán 5; cần đúng 4 chủ đề để map Bài 1-91.`);
   }
@@ -151,6 +177,7 @@ async function main() {
     `Đã kiểm tra ${payloads.length} câu: ${lessonBySourceNumber.size} bài đã có trong DB, ` +
       `${missingLessonNumbers.length} bài cần tạo thêm.`
   );
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!args.commit) {
     console.log(
       'Dry run hoàn tất. Dùng --commit --create-missing-lessons để nạp đủ 91 bài, ' +
@@ -158,6 +185,7 @@ async function main() {
     );
     return;
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (missingLessonNumbers.length && !args.createMissingLessons) {
     throw new Error(
       `Còn thiếu ${missingLessonNumbers.length} bài trong Curriculum. ` +
@@ -166,15 +194,18 @@ async function main() {
   }
 
   const prepared = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const payload of payloads) {
     prepared.push(await materializeImages(payload, args.imageDir));
   }
 
   await db.transaction(async (connection) => {
     const allSourceLessons = sourceLessons(prepared);
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const [lessonNumber, title] of allSourceLessons.entries()) {
       let lesson = lessonBySourceNumber.get(lessonNumber);
       const chapter = chapters[chapterIndexForLesson(lessonNumber)];
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!lesson) {
         const [result] = await connection.execute(
           `INSERT INTO Lessons (chapter_id, lesson_name, theory_cards, sort_order)
@@ -195,6 +226,7 @@ async function main() {
       }
     }
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (args.replace) {
       await connection.execute(
         `UPDATE QuestionBank q
@@ -204,6 +236,7 @@ async function main() {
          WHERE c.grade = 5 AND q.is_active = 1`
       );
     }
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const payload of prepared) {
       const lesson = lessonBySourceNumber.get(payload.lesson_number);
       await connection.execute(
@@ -234,5 +267,6 @@ main()
     process.exitCode = 1;
   })
   .finally(async () => {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (typeof db.close === 'function') await db.close().catch(() => {});
   });

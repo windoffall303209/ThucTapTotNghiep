@@ -1,3 +1,4 @@
+# Script build grade1 ai theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import shutil
 from pathlib import Path
@@ -30,6 +31,8 @@ FALLBACK_OUTPUT_PATH = OUTPUT_DIR / "ly-thuyet-lop-1-codex-ai-fixed.docx"
 GENERATED_ROOT = Path(r"C:\Users\WIND-OF-FALL\.codex\generated_images")
 
 
+# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
     run._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
@@ -39,6 +42,8 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     if color:
         run.font.color.rgb = RGBColor.from_string(color)
 
+
+# H?m set_document_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_document_defaults(doc):
     section = doc.sections[0]
@@ -67,6 +72,8 @@ def set_document_defaults(doc):
         style.font.bold = True
 
 
+# H?m add_meta_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_meta_paragraph(doc, label, value):
     paragraph = doc.add_paragraph()
     label_run = paragraph.add_run(f"{label}: ")
@@ -75,12 +82,16 @@ def add_meta_paragraph(doc, label, value):
     set_run_font(value_run)
 
 
+# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_bullets(doc, items):
     for item in items:
         paragraph = doc.add_paragraph(style="List Bullet")
         run = paragraph.add_run(item)
         set_run_font(run)
 
+
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_cell_text(cell, text, bold=False, size=9):
     cell.text = ""
@@ -89,12 +100,16 @@ def set_cell_text(cell, text, bold=False, size=9):
     set_run_font(run, size=size, bold=bold)
 
 
+# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd")
     shd.set(qn("w:fill"), fill)
     tc_pr.append(shd)
 
+
+# H?m add_overview_table d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_overview_table(doc, rows):
     table = doc.add_table(rows=1, cols=4)
@@ -111,6 +126,8 @@ def add_overview_table(doc, rows):
             cells[index].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
+# H?m build_card_detail d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_card_detail(card):
     card_type = card.get("type", "")
     interaction = card.get("interaction", "none")
@@ -124,11 +141,15 @@ def build_card_detail(card):
     ]
 
 
+# H?m get_latest_sheet_images d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def get_latest_sheet_images(count=10):
     images = sorted(GENERATED_ROOT.rglob("*.png"), key=lambda path: path.stat().st_mtime, reverse=True)
     selected = images[:count]
     return list(reversed(selected))
 
+
+# H?m crop_sheet_panels d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def crop_sheet_panels(sheet_paths, expected_lessons):
     AI_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -160,6 +181,8 @@ def crop_sheet_panels(sheet_paths, expected_lessons):
         raise RuntimeError(f"Không đủ panel ảnh AI: cần {expected_lessons}, có {len(panel_paths)}")
     return panel_paths[:expected_lessons]
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx():
     data = json.loads(INPUT_PATH.read_text(encoding="utf-8"))
@@ -253,5 +276,6 @@ def build_docx():
         return FALLBACK_OUTPUT_PATH
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     print(build_docx())

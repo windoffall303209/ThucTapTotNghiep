@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-116-120",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95],
+    "verified_book_pages": [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa một tình huống hoặc biểu thức; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 116 dùng bài toán có đến hai bước tính; bài 117 nhận biết và đọc biểu thức số; bài 118 tính biểu thức chỉ có cộng/trừ hoặc nhân/chia theo thứ tự từ trái sang phải; bài 119 tính biểu thức có đủ phép tính, thực hiện nhân/chia trước rồi cộng/trừ; bài 120 tính biểu thức có dấu ngoặc, thực hiện trong ngoặc trước.",
+    "excluded_pages": "Trang luyện tập chung sau bài 120 không được gán vào bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 116,
+      "lesson_name": "10. Giải bài toán có đến hai bước tính",
+      "pdf_pages": [85, 86, 87],
+      "book_pages": [84, 85, 86],
+      "objective": "Giải bài toán thực tế cần thực hiện liên tiếp hai phép tính.",
+      "allowed_knowledge_tags": ["two_step_word_problem", "multiply_then_add", "multiply_then_subtract"],
+      "allowed_question_forms": ["Giải bài toán hai bước dùng phép nhân rồi cộng hoặc trừ.", "Chọn biểu thức phù hợp với bài toán hai bước.", "Tìm đáp số của bài toán có hai bước tính."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|hình học nâng cao)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Bài toán quá ba bước"]
+    },
+    {
+      "lesson_id": 117,
+      "lesson_name": "11. Làm quen với biểu thức số",
+      "pdf_pages": [88, 89],
+      "book_pages": [87, 88],
+      "objective": "Nhận biết, lập và đọc các biểu thức số gồm các phép cộng, trừ, nhân, chia.",
+      "allowed_knowledge_tags": ["recognize_numeric_expression", "read_numeric_expression", "form_numeric_expression"],
+      "allowed_question_forms": ["Chọn biểu thức tương ứng với cách đọc.", "Đọc một biểu thức số.", "Lập biểu thức từ lời mô tả phép tính."],
+      "forbidden_text_patterns": ["\\b(dấu ngoặc|ưu tiên nhân chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Tính giá trị biểu thức có dấu ngoặc", "Quy tắc ưu tiên nhân chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 118,
+      "lesson_name": "12. Tính giá trị của biểu thức số",
+      "pdf_pages": [90, 91],
+      "book_pages": [89, 90],
+      "objective": "Tính giá trị biểu thức chỉ gồm phép cộng, trừ hoặc chỉ gồm phép nhân, chia theo thứ tự từ trái sang phải.",
+      "allowed_knowledge_tags": ["evaluate_add_subtract_expression", "evaluate_multiply_divide_expression", "left_to_right_same_precedence"],
+      "allowed_question_forms": ["Tính biểu thức chỉ có cộng và trừ.", "Tính biểu thức chỉ có nhân và chia.", "Chọn giá trị đúng của biểu thức."],
+      "forbidden_text_patterns": ["\\b(dấu ngoặc|nhân chia trước|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Biểu thức có cả bốn phép tính", "Biểu thức có dấu ngoặc", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 119,
+      "lesson_name": "13. Tính giá trị của biểu thức số (tiếp theo)",
+      "pdf_pages": [92, 93],
+      "book_pages": [91, 92],
+      "objective": "Tính biểu thức có phép cộng, trừ, nhân, chia bằng cách thực hiện nhân, chia trước rồi cộng, trừ sau.",
+      "allowed_knowledge_tags": ["evaluate_mixed_expression", "multiplication_division_before_add_subtract", "operator_precedence"],
+      "allowed_question_forms": ["Tính biểu thức có phép nhân hoặc chia cùng phép cộng, trừ.", "Chọn giá trị đúng của biểu thức hỗn hợp.", "Phát hiện thứ tự tính đúng."],
+      "forbidden_text_patterns": ["\\b(dấu ngoặc|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Biểu thức có dấu ngoặc", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 120,
+      "lesson_name": "14. Tính giá trị của biểu thức số (tiếp theo) trang 93",
+      "pdf_pages": [94, 95],
+      "book_pages": [93, 94],
+      "objective": "Tính giá trị biểu thức có dấu ngoặc bằng cách thực hiện phép tính trong ngoặc trước.",
+      "allowed_knowledge_tags": ["evaluate_parenthesized_expression", "parentheses_first", "operator_precedence"],
+      "allowed_question_forms": ["Tính biểu thức có một cặp dấu ngoặc.", "Chọn thứ tự thực hiện phép tính đúng.", "Chọn giá trị đúng của biểu thức có ngoặc."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|hai cặp dấu ngoặc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Biểu thức nhiều tầng ngoặc"]
+    }
+  ]
+}

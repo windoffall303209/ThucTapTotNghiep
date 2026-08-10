@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-217-221",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42],
+    "verified_book_pages": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 217 phân số thập phân; bài 218 số thập phân; bài 219 số thập phân (tiếp theo); bài 220 số thập phân (tiếp theo); bài 221 số thập phân bằng nhau.",
+    "excluded_pages": "Không gán các trang ôn tập và đo diện tích ở PDF 43–52 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 217,
+      "lesson_name": "12. Bài 12. Phân số thập phân",
+      "pdf_pages": [33, 34],
+      "book_pages": [33, 34],
+      "objective": "Nhận biết phân số thập phân là phân số có mẫu số 10, 100, 1 000, ...",
+      "allowed_knowledge_tags": ["decimal_fraction", "denominator_power_of_ten", "fraction_notation"],
+      "allowed_question_forms": ["Nhận biết phân số thập phân.", "Chọn phân số có mẫu số là lũy thừa của 10."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 218,
+      "lesson_name": "13. Bài 13. Số thập phân",
+      "pdf_pages": [35, 36],
+      "book_pages": [35, 36],
+      "objective": "Nhận biết số thập phân và hàng phần mười trong số thập phân.",
+      "allowed_knowledge_tags": ["decimal_number", "tenths_place", "decimal_notation"],
+      "allowed_question_forms": ["Xác định hàng của chữ số trong số thập phân.", "Đọc hoặc viết số thập phân đơn giản."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 219,
+      "lesson_name": "14. Bài 14. Số thập phân (tiếp theo)",
+      "pdf_pages": [37, 38],
+      "book_pages": [37, 38],
+      "objective": "Đọc, viết số thập phân và chuyển phân số thập phân về số thập phân.",
+      "allowed_knowledge_tags": ["decimal_number", "convert_decimal_fraction", "decimal_reading"],
+      "allowed_question_forms": ["Chuyển phân số thập phân thành số thập phân.", "Đọc số thập phân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 220,
+      "lesson_name": "15. Bài 15. Số thập phân (tiếp theo)",
+      "pdf_pages": [39, 40],
+      "book_pages": [39, 40],
+      "objective": "Nhận biết phần nguyên, phần thập phân và các hàng của số thập phân.",
+      "allowed_knowledge_tags": ["decimal_parts", "decimal_places", "thousandths_place"],
+      "allowed_question_forms": ["Xác định hàng phần mười, phần trăm, phần nghìn.", "Phân tích số thập phân theo hàng."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 221,
+      "lesson_name": "16. Bài 16. Số thập phân (tiếp theo)",
+      "pdf_pages": [41, 42],
+      "book_pages": [41, 42],
+      "objective": "Đọc, viết số thập phân và hiểu giá trị của các chữ số ở các hàng thập phân.",
+      "allowed_knowledge_tags": ["decimal_reading", "decimal_writing", "decimal_place_value"],
+      "allowed_question_forms": ["Đọc và viết số thập phân.", "Xác định giá trị chữ số theo hàng."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

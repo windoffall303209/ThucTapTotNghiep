@@ -1,3 +1,4 @@
+<%# M?u giao di?n question search k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <%
   // Nhãn tiếng Việt cho mã thô, đồng bộ với bảng nhãn của form soạn câu hỏi.
   const difficultyLabels = { EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó', EXPERT: 'Nâng cao' };
@@ -26,6 +27,7 @@
       Khối lớp
       <select name="grade">
         <option value="">Tất cả lớp</option>
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% gradeOptions.forEach((option) => { %>
           <option value="<%= option.value %>" <%= Number(filters.grade) === Number(option.value) ? 'selected' : '' %>>
             <%= option.label %>
@@ -66,11 +68,13 @@
   <div class="section-title">
     <i data-lucide="list-checks" class="lucide-icon"></i>
     Kết quả
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (daLoc) { %>
       <small class="muted"><%= results.length %> câu<%= results.length >= 50 ? ' (hiện 50 câu đầu, hãy thu hẹp bộ lọc)' : '' %></small>
     <% } %>
   </div>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (!daLoc) { %>
     <div class="empty-state compact">
       <p>Nhập ít nhất một điều kiện lọc ở phía trên rồi bấm Tìm kiếm.</p>
@@ -93,7 +97,9 @@
           </tr>
         </thead>
         <tbody>
+          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
           <% results.forEach((question) => { %>
+            <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
             <% const coLoiGiai = Boolean((question.explanation?.text || '').trim()); %>
             <tr>
               <td data-label="ID">#<%= question.id %></td>
@@ -120,4 +126,5 @@
     </div>
   <% } %>
 </section>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/question-filters.css'); %>

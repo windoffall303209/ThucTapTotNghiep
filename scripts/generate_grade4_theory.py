@@ -1,3 +1,4 @@
+# Script generate grade4 theory h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import os
 import sys
 import json
@@ -21,6 +22,8 @@ CACHE_JSON = ROOT / "output" / "doc" / "grade4_theory_cards.json"
 CRAWLED_THEORY_JSON = ROOT / "output" / "doc" / "crawled_theory_cards.json"
 OUTPUT_DOCX = ROOT / "output" / "doc" / "toan_4_ly_thuyet_canh_dieu.docx"
 
+# H?m load_env d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def load_env(env_path):
     env_vars = {}
     if os.path.exists(env_path):
@@ -38,6 +41,8 @@ env = load_env(ENV_PATH)
 API_KEY = env.get("NVIDIA_NIM_API_KEY", "")
 BASE_URL = env.get("NVIDIA_NIM_BASE_URL", "https://integrate.api.nvidia.com/v1").rstrip("/")
 MODEL = env.get("NVIDIA_NIM_MODEL", "meta/llama-3.3-70b-instruct")
+
+# H?m call_nvidia_nim d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def call_nvidia_nim(prompt, retries=3):
     url = f"{BASE_URL}/chat/completions"
@@ -71,6 +76,8 @@ def call_nvidia_nim(prompt, retries=3):
             
     raise Exception("Failed to call API after all retries.")
 
+# H?m fix_json_backslashes d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def fix_json_backslashes(text):
     marker_double_backslash = "___DOUBLE_BACKSLASH_MARKER___"
     marker_escaped_quote = "___ESCAPED_QUOTE_MARKER___"
@@ -86,6 +93,8 @@ def fix_json_backslashes(text):
     processed = processed.replace(marker_double_backslash, "\\\\")
     
     return processed
+
+# H?m parse_ai_response d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_ai_response(content):
     # Try to find JSON array brackets
@@ -104,6 +113,8 @@ def parse_ai_response(content):
         
     json_str = fix_json_backslashes(content[start_idx:end_idx+1])
     return json.loads(json_str, strict=False)
+
+# H?m get_mathematical_context d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def get_mathematical_context(lesson_name):
     ln = lesson_name.lower()
@@ -234,6 +245,8 @@ def get_mathematical_context(lesson_name):
 
     return ""
 
+# H?m generate_theory_prompt d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def generate_theory_prompt(grade, chapter_name, lesson_name, raw_context):
     math_context = get_mathematical_context(lesson_name)
     context_str = f"\n{math_context}\n" if math_context else ""
@@ -285,6 +298,8 @@ JSON Schema mẫu:
     "example": "Ví dụ và lời giải mẫu chi tiết (sử dụng LaTeX $)..."
   }}
 ]"""
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx(lessons_theory, output_path):
     print(f"Đang xây dựng file Word tại: {output_path}...")
@@ -390,6 +405,8 @@ def build_docx(lessons_theory, output_path):
             
     doc.save(output_path)
     print(f"Đã lưu file Word thành công tại: {output_path}")
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     parser = argparse.ArgumentParser(description="Sinh lý thuyết Toán 4 Cánh Diều bằng NVIDIA NIM API")
@@ -509,5 +526,6 @@ def main():
     # Build the Word Document
     build_docx(results, OUTPUT_DOCX)
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

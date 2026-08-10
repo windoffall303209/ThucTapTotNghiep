@@ -1,3 +1,4 @@
+// Script resync tex from db h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Dựng lại các khối câu hỏi trong file .tex theo đúng dữ liệu đang có trong MySQL.
  *
@@ -39,9 +40,13 @@ const TEX_THEO_KHOI = {
   5: 'grade5_question_bank.tex'
 };
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -49,10 +54,12 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m decode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function decode(b64) {
   return JSON.parse(Buffer.from(b64, 'base64').toString('utf8'));
 }
 
+// H?m encode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function encode(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
@@ -66,6 +73,7 @@ function dungKhoiLatex(payload, cr) {
   const dong = [];
   dong.push(`\\noindent\\textbf{${nhan}:} ${String(payload.content?.text || '').trim()}`);
   dong.push('\\begin{itemize}[label={}]');
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const c of payload.choices || []) {
     dong.push(`\\item ${c.key}. ${String(c.text || '').trim()}`);
   }
@@ -76,6 +84,7 @@ function dungKhoiLatex(payload, cr) {
   // Chỉ ghi lại dòng ảnh khi câu thực sự còn ảnh. Câu đã bị gỡ ảnh thì bỏ hẳn dòng
   // này, nếu không người đọc file .tex tưởng vẫn còn tranh minh họa.
   const anh = (payload.content?.images || []).filter((im) => im && (im.url || im.source_path));
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const im of anh) {
     const ten = String(im.url || im.source_path).split(/[\\/]/).pop();
     dong.push(`\\\\ \\textit{Ảnh nguồn:} \\texttt{${ten}}`);
@@ -84,9 +93,11 @@ function dungKhoiLatex(payload, cr) {
   return dong.map((d) => d + cr);
 }
 
+// H?m xuLyKhoi d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function xuLyKhoi(grade, thongKe, baoCao) {
   const fileName = TEX_THEO_KHOI[grade];
   const filePath = path.join(ROOT, 'data', fileName);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!fs.existsSync(filePath)) return;
 
   const rows = await db.query(
@@ -101,10 +112,13 @@ async function xuLyKhoi(grade, thongKe, baoCao) {
 
   const lines = fs.readFileSync(filePath, 'utf8').split('\n');
   const viTriDbjson = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let i = 0; i < lines.length; i += 1) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (lines[i].startsWith('% DBJSON ')) viTriDbjson.push(i);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (viTriDbjson.length !== rows.length) {
     throw new Error(
       `Lớp ${grade}: .tex có ${viTriDbjson.length} khối nhưng MySQL có ${rows.length} câu. `
@@ -137,12 +151,18 @@ async function xuLyKhoi(grade, thongKe, baoCao) {
       anh: (cu.content?.images || []).length !== (content.images || []).length
     };
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.de) doiDe += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.phuongAn) doiPhuongAn += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.dapAn) doiDapAn += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.loiGiai) doiLoiGiai += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.anh) doiAnh += 1;
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (khac.de || khac.phuongAn || khac.dapAn || khac.anh) {
       baoCao.push({
         grade,
@@ -156,6 +176,7 @@ async function xuLyKhoi(grade, thongKe, baoCao) {
       });
     }
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!COMMIT) continue;
 
     // Giữ nguyên phần định danh và siêu dữ liệu của .tex, chỉ đồng bộ phần nội dung
@@ -174,9 +195,12 @@ async function xuLyKhoi(grade, thongKe, baoCao) {
 
     // Thay toàn bộ phần chữ nằm giữa \begin{minipage} và \end{minipage}.
     let dau = i + 1;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     while (dau < lines.length && !lines[dau].includes('\\begin{minipage}')) dau += 1;
     let cuoi = dau;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     while (cuoi < lines.length && !lines[cuoi].includes('\\end{minipage}')) cuoi += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (dau >= lines.length || cuoi >= lines.length) continue;
 
     const cr = lines[dau].endsWith('\r') ? '\r' : '';
@@ -185,21 +209,25 @@ async function xuLyKhoi(grade, thongKe, baoCao) {
 
   thongKe.push({ grade, tong: rows.length, doiDe, doiPhuongAn, doiDapAn, doiLoiGiai, doiAnh });
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
   }
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const thongKe = [];
   const baoCao = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const grade of [1, 2, 3, 4, 5]) {
     await xuLyKhoi(grade, thongKe, baoCao);
   }
 
   console.log('Khối lệch giữa .tex và MySQL (đã lấy MySQL làm chuẩn):\n');
   console.log('lớp   tổng   đề   phương án   đáp án   lời giải   ảnh');
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const t of thongKe) {
     console.log(
       `  ${t.grade}   ${String(t.tong).padStart(4)}   ${String(t.doiDe).padStart(3)}`
@@ -211,6 +239,7 @@ async function main() {
   fs.writeFileSync(BAO_CAO, JSON.stringify(baoCao, null, 1), 'utf8');
   console.log(`\nBáo cáo chi tiết: ${path.relative(ROOT, BAO_CAO)}  (${baoCao.length} khối)`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log('Đã ghi lại các file .tex.');
   } else {

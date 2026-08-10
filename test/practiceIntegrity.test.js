@@ -1,3 +1,4 @@
+// B? ki?m th? practice integrity.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -20,6 +21,7 @@ const {
   verifiedLogContext
 } = require('../controllers/ApiController');
 
+// H?m snapshot d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function snapshot(overrides = {}) {
   return PracticeSession.createQuestionSnapshot({
     id: 99,
@@ -82,6 +84,7 @@ test('nộp đáp án được chấm bằng snapshot và ghi trong một transa
   db.transaction = async (callback) => callback({
     execute: async (sql, params) => {
       statements.push({ sql, params });
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM PracticeSessions ps')) {
         return [[{
           id: 123,
@@ -92,16 +95,21 @@ test('nộp đáp án được chấm bằng snapshot và ghi trong một transa
           server_now_ms: Date.now()
         }]];
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM PracticeSessionQuestions')) {
         return [[{ snapshot: JSON.stringify(frozenQuestion) }]];
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM StudentLogs')) return [[]];
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('INSERT INTO StudentLogs')) return [{ insertId: 456 }];
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('UPDATE PracticeSessions ps')) return [{ affectedRows: 1 }];
       throw new Error(`Unexpected SQL in test: ${sql}`);
     }
   });
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const result = await PracticeSubmissionService.submitAnswer({
       studentId: 5,
@@ -128,6 +136,7 @@ test('nộp lặp giữ nguyên đáp án lần đầu, không ghi thêm log', a
   let insertCount = 0;
   db.transaction = async (callback) => callback({
     execute: async (sql) => {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM PracticeSessions ps')) {
         return [[{
           id: 123,
@@ -138,9 +147,11 @@ test('nộp lặp giữ nguyên đáp án lần đầu, không ghi thêm log', a
           server_now_ms: Date.now()
         }]];
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM PracticeSessionQuestions')) {
         return [[{ snapshot: JSON.stringify(snapshot()) }]];
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('FROM StudentLogs')) {
         return [[{
           id: 1,
@@ -149,11 +160,13 @@ test('nộp lặp giữ nguyên đáp án lần đầu, không ghi thêm log', a
           is_correct: 1
         }]];
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (sql.includes('INSERT INTO StudentLogs')) insertCount += 1;
       return [{ affectedRows: 1 }];
     }
   });
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const result = await PracticeSubmissionService.submitAnswer({
       studentId: 5,

@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-141-145",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64],
+    "verified_book_pages": [52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa phép tính đặt tính, tiền Việt Nam hoặc phép nhân; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 141 thực hiện phép cộng trong phạm vi 100 000; bài 142 thực hiện phép trừ trong phạm vi 100 000; bài 143 nhận biết mệnh giá và tính tiền Việt Nam; bài 144 nhân số có nhiều chữ số với số có một chữ số không nhớ; bài 145 nhân số có nhiều chữ số với số có một chữ số có nhớ.",
+    "excluded_pages": "Không gán nội dung chương mở đầu, bài luyện tập chung hoặc các bài chia và bài sau bài 145 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 141,
+      "lesson_name": "2. Phép cộng trong phạm vi 100 000",
+      "pdf_pages": [53, 54],
+      "book_pages": [52, 53],
+      "objective": "Đặt tính và thực hiện phép cộng các số trong phạm vi 100 000, có thể vận dụng vào bài toán thực tế.",
+      "allowed_knowledge_tags": ["addition_to_100000", "column_addition", "addition_with_regrouping"],
+      "allowed_question_forms": ["Tính tổng hai số trong phạm vi 100 000.", "Đặt tính rồi tính.", "Giải bài toán thực tế bằng phép cộng."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phép chia|diện tích)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phép chia", "Diện tích"]
+    },
+    {
+      "lesson_id": 142,
+      "lesson_name": "3. Phép trừ trong phạm vi 100 000",
+      "pdf_pages": [55, 56],
+      "book_pages": [54, 55],
+      "objective": "Đặt tính và thực hiện phép trừ các số trong phạm vi 100 000, có nhớ khi cần.",
+      "allowed_knowledge_tags": ["subtraction_to_100000", "column_subtraction", "subtraction_with_regrouping"],
+      "allowed_question_forms": ["Tính hiệu hai số trong phạm vi 100 000.", "Đặt tính rồi tính.", "Giải bài toán thực tế bằng phép trừ."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phép chia|diện tích)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phép chia", "Diện tích"]
+    },
+    {
+      "lesson_id": 143,
+      "lesson_name": "4. Tiền Việt Nam",
+      "pdf_pages": [57, 58],
+      "book_pages": [56, 57],
+      "objective": "Nhận biết các mệnh giá tiền Việt Nam và tính số tiền phải trả hoặc số tiền còn lại.",
+      "allowed_knowledge_tags": ["vietnamese_currency", "money_total", "money_change"],
+      "allowed_question_forms": ["Tính tổng các mệnh giá tiền.", "Tính số tiền còn lại sau khi mua hàng.", "So sánh hoặc chọn đủ số tiền."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|lãi suất|tỉ lệ phần trăm)\\b"],
+      "not_yet_allowed": ["Lãi suất", "Tỉ lệ phần trăm", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 144,
+      "lesson_name": "5. Nhân với số có một chữ số (không nhớ)",
+      "pdf_pages": [59, 60],
+      "book_pages": [58, 59],
+      "objective": "Đặt tính và nhân số có nhiều chữ số với số có một chữ số trong trường hợp không nhớ.",
+      "allowed_knowledge_tags": ["multiply_by_one_digit_no_carry", "column_multiplication", "multiplication_to_100000"],
+      "allowed_question_forms": ["Tính tích không nhớ.", "Đặt tính rồi tính.", "Giải bài toán thực tế bằng phép nhân không nhớ."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phép chia|nhân hai chữ số)\\b"],
+      "not_yet_allowed": ["Nhân với số có hai chữ số", "Phân số", "Số thập phân", "Phép chia"]
+    },
+    {
+      "lesson_id": 145,
+      "lesson_name": "6. Nhân với số có một chữ số (có nhớ)",
+      "pdf_pages": [61, 62, 63, 64],
+      "book_pages": [60, 61, 62, 63],
+      "objective": "Đặt tính và nhân số có nhiều chữ số với số có một chữ số trong trường hợp có nhớ.",
+      "allowed_knowledge_tags": ["multiply_by_one_digit_with_carry", "column_multiplication_carry", "multiplication_to_100000"],
+      "allowed_question_forms": ["Tính tích có nhớ.", "Đặt tính rồi tính.", "Giải bài toán thực tế bằng phép nhân có nhớ."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phép chia|nhân hai chữ số)\\b"],
+      "not_yet_allowed": ["Nhân với số có hai chữ số", "Phân số", "Số thập phân", "Phép chia"]
+    }
+  ]
+}

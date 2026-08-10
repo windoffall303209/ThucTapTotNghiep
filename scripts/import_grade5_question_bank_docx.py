@@ -4,6 +4,7 @@ Ví dụ kiểm tra:
   py scripts/import_grade5_question_bank_docx.py \
     output/doc/ngan_hang_cau_hoi_lop_5_phan_2_import.docx --validate-only
 """
+# Script import grade5 question bank docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 import base64
 import hashlib
@@ -19,6 +20,8 @@ from docx import Document
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     if len(sys.argv) < 2:
@@ -82,5 +85,6 @@ def main():
         raise SystemExit(result.returncode)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

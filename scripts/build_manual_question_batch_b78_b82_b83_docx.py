@@ -1,4 +1,5 @@
 """Dàn trang 66 câu đã biên soạn thủ công của Bài 78, 82 và 83."""
+# Script build manual question batch b78 b82 b83 docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 import importlib.util
 import json
@@ -22,6 +23,8 @@ LESSON_TITLES = {
 }
 
 
+# H?m helpers d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def helpers():
     path = ROOT / "scripts" / "build_manual_question_batch_b68_b71_b73_docx.py"
     spec = importlib.util.spec_from_file_location("shared_question_layout", path)
@@ -31,6 +34,8 @@ def helpers():
     module.LESSON_TITLES = LESSON_TITLES
     return module
 
+
+# H?m validate d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def validate(questions):
     if len(questions) != 66:
@@ -50,6 +55,8 @@ def validate(questions):
         if not (ASSETS / name.replace(".png", ".jpg")).exists():
             raise FileNotFoundError(name)
 
+
+# H?m cover d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def cover(doc, payload):
     p = doc.add_paragraph()
@@ -91,6 +98,8 @@ def cover(doc, payload):
     doc.add_page_break()
 
 
+# H?m summary d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def summary(doc, questions, h):
     doc.add_heading("THÔNG TIN BỘ CÂU HỎI", level=1)
     table = doc.add_table(rows=1, cols=4)
@@ -118,6 +127,8 @@ def summary(doc, questions, h):
     doc.add_page_break()
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     payload = json.loads(DATA.read_text(encoding="utf-8"))
     questions = payload["questions"]
@@ -139,5 +150,6 @@ def main():
     print(f"Saved {OUTPUT}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

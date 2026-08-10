@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-162-166",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [27, 28, 32, 33, 34, 35, 36, 37, 38, 39],
+    "verified_book_pages": [26, 27, 31, 32, 33, 34, 35, 36, 37, 38]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, không thêm dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 162 làm tròn số đến hàng trăm nghìn; bài 163 nhận biết số tự nhiên và số liền trước, liền sau; bài 164 viết số trong hệ thập phân; bài 165 đổi các đơn vị yến, tạ, tấn về ki-lô-gam; bài 166 đổi phút và giây.",
+    "excluded_pages": "Không gán bài Luyện tập ở trang sách 28–30 hoặc nội dung của các bài sau bài 166 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 162,
+      "lesson_name": "10. Bài 10: Làm tròn số đến hàng trăm nghìn",
+      "pdf_pages": [27, 28],
+      "book_pages": [26, 27],
+      "objective": "Làm tròn số đến hàng trăm nghìn dựa vào chữ số hàng chục nghìn.",
+      "allowed_knowledge_tags": ["rounding_to_hundred_thousand", "rounding_large_numbers"],
+      "allowed_question_forms": ["Làm tròn số đến hàng trăm nghìn.", "Chọn số tròn trăm nghìn gần với số đã cho."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 163,
+      "lesson_name": "12. Bài 12: Số tự nhiên. Dãy số tự nhiên",
+      "pdf_pages": [32, 33],
+      "book_pages": [31, 32],
+      "objective": "Nhận biết số tự nhiên, dãy số tự nhiên và số liền trước, liền sau.",
+      "allowed_knowledge_tags": ["natural_numbers", "natural_number_sequence", "successor_predecessor"],
+      "allowed_question_forms": ["Tìm số liền trước hoặc số liền sau.", "Nhận biết dãy số tự nhiên liên tiếp.", "Xác định tính chất của dãy số tự nhiên."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 164,
+      "lesson_name": "13. Bài 13: Viết số tự nhiên trong hệ thập phân",
+      "pdf_pages": [34, 35],
+      "book_pages": [33, 34],
+      "objective": "Viết số tự nhiên trong hệ thập phân và xác định giá trị chữ số theo vị trí.",
+      "allowed_knowledge_tags": ["decimal_numeration", "place_value", "expanded_form"],
+      "allowed_question_forms": ["Xác định giá trị của chữ số trong số tự nhiên.", "Viết số thành tổng các giá trị hàng."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 165,
+      "lesson_name": "14. Bài 14: Yến, tạ, tấn",
+      "pdf_pages": [36, 37],
+      "book_pages": [35, 36],
+      "objective": "Nhận biết và đổi các đơn vị khối lượng yến, tạ, tấn với ki-lô-gam.",
+      "allowed_knowledge_tags": ["mass_units", "yen_ta_tan", "unit_conversion_mass"],
+      "allowed_question_forms": ["Đổi yến, tạ, tấn ra ki-lô-gam.", "Đổi ki-lô-gam ra yến, tạ hoặc tấn.", "Giải bài toán khối lượng đơn giản."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 166,
+      "lesson_name": "15. Bài 15: Giây",
+      "pdf_pages": [38, 39],
+      "book_pages": [37, 38],
+      "objective": "Nhận biết giây là đơn vị đo thời gian và đổi phút sang giây, giây sang phút.",
+      "allowed_knowledge_tags": ["time_seconds", "minute_second_conversion", "time_word_problem"],
+      "allowed_question_forms": ["Đổi phút ra giây hoặc giây ra phút.", "Tính thời gian bằng phút và giây trong tình huống thực tế."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    }
+  ]
+}

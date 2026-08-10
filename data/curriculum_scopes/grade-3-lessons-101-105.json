@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-101-105",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+    "verified_book_pages": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa nhóm đồ vật, phép chia hoặc quan hệ giảm số lần; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 101 bảng chia 4; bài 102 bảng chia 6; bài 103 giảm một số đi một số lần; bài 104 bảng chia 7; bài 105 bảng chia 8.",
+    "excluded_pages": "Các trang luyện tập chung sau bảng chia 8 và phần ôn tập tiếp theo không được gán vào một bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 101,
+      "lesson_name": "Bảng chia 4",
+      "pdf_pages": [41, 42],
+      "book_pages": [40, 41],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 4 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_4", "divide_by_4", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 4.", "Viết phép chia từ tình huống chia đều.", "Giải bài toán một bước dùng bảng chia 4."],
+      "forbidden_text_patterns": ["\\b(bảng chia 6|bảng chia 7|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 6", "Bảng chia 7", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 102,
+      "lesson_name": "Bảng chia 6",
+      "pdf_pages": [43, 44],
+      "book_pages": [42, 43],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 6 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_6", "divide_by_6", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 6.", "Viết phép chia từ tình huống chia đều.", "Giải bài toán một bước dùng bảng chia 6."],
+      "forbidden_text_patterns": ["\\b(bảng chia 4|bảng chia 7|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 4", "Bảng chia 7", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 103,
+      "lesson_name": "Giảm một số đi một số lần",
+      "pdf_pages": [45, 46],
+      "book_pages": [44, 45],
+      "objective": "Biết muốn giảm một số đi một số lần thì chia số đó cho số lần.",
+      "allowed_knowledge_tags": ["divide_to_decrease_by_factor", "identify_decrease_times", "solve_one_step_division", "represent_factor_relationship"],
+      "allowed_question_forms": ["Tính số mới khi giảm một số đi một số lần.", "Giải bài toán về số lượng hoặc độ dài bị giảm theo số lần.", "Chọn phép tính biểu thị quan hệ giảm số lần."],
+      "forbidden_text_patterns": ["\\b(gấp lên|nhân với|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Gấp một số lên một số lần", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 104,
+      "lesson_name": "Bảng chia 7",
+      "pdf_pages": [47, 48],
+      "book_pages": [46, 47],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 7 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_7", "divide_by_7", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 7.", "Viết phép chia từ tình huống chia đều.", "Giải bài toán một bước dùng bảng chia 7."],
+      "forbidden_text_patterns": ["\\b(bảng chia 4|bảng chia 8|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 4", "Bảng chia 8", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 105,
+      "lesson_name": "Bảng chia 8",
+      "pdf_pages": [49, 50],
+      "book_pages": [48, 49],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 8 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_8", "divide_by_8", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 8.", "Điền số bị chia hoặc thương còn thiếu.", "Giải bài toán một bước dùng bảng chia 8."],
+      "forbidden_text_patterns": ["\\b(bảng chia 4|bảng chia 9|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 4", "Bảng chia 9", "Phân số", "Số thập phân"]
+    }
+  ]
+}

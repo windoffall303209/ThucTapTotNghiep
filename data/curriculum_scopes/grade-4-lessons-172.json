@@ -1,0 +1,31 @@
+{
+  "scope_id": "grade-4-lessons-172",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [55, 56, 57],
+    "verified_book_pages": [54, 55, 56]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 172 nhận biết hai đường thẳng song song, xác định các cặp đường thẳng song song và vận dụng trong hình học, đời sống.",
+    "excluded_pages": "Không gán các trang Luyện tập chung ở trang sách 57–58 hoặc nội dung bài khác vào bài 172."
+  },
+  "lessons": [
+    {
+      "lesson_id": 172,
+      "lesson_name": "22. Bài 22: Hai đường thẳng song song. Vẽ hai đường thẳng song song",
+      "pdf_pages": [55, 56, 57],
+      "book_pages": [54, 55, 56],
+      "objective": "Nhận biết hai đường thẳng song song và vận dụng cách nhận biết, vẽ hai đường thẳng song song.",
+      "allowed_knowledge_tags": ["parallel_lines", "same_direction", "opposite_sides_rectangle", "parallel_in_real_life", "constant_distance"],
+      "allowed_question_forms": ["Nhận biết hai đường thẳng song song.", "Xác định cặp cạnh song song trong hình.", "Nhận biết hình ảnh song song trong thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

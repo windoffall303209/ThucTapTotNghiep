@@ -1,3 +1,4 @@
+// Script fix placeholder options h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Thay phương án giữ chỗ "Kết quả ngược lại với đáp án đúng" bằng phương án thật.
  *
@@ -129,9 +130,13 @@ const THAY = new Map([
   [6813, 'thứ Sáu, thứ Năm, thứ Tư']
 ]);
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -139,16 +144,19 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const baoCao = [];
   let daSua = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, moi] of THAY) {
     const rows = await db.query(
       'SELECT q.id, q.content, q.choices, q.correct_answer, l.lesson_name '
       + 'FROM QuestionBank q JOIN Lessons l ON l.id = q.lesson_id WHERE q.id = ?',
       [id]
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (rows.length === 0) {
       console.log(`  BỎ QUA id ${id}: không còn trong cơ sở dữ liệu`);
       continue;
@@ -159,10 +167,12 @@ async function main() {
     const choices = parseJson(row.choices, []) || [];
 
     const viTri = choices.findIndex((c) => String(c.text || '').trim() === GIU_CHO);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (viTri === -1) {
       console.log(`  BỎ QUA id ${id}: không còn phương án giữ chỗ (có thể đã sửa rồi)`);
       continue;
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (choices[viTri].key === row.correct_answer) {
       throw new Error(`id ${id}: phương án giữ chỗ lại đang là đáp án đúng, phải xem lại bằng tay.`);
     }
@@ -171,6 +181,7 @@ async function main() {
 
     // Chốt chặn: phương án mới không được trùng với phương án nào khác.
     const chuan = choicesMoi.map((c) => String(c.text || '').trim().toLowerCase().replace(/[.;]+$/, ''));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (new Set(chuan).size !== chuan.length) {
       throw new Error(`id ${id}: phương án mới "${moi}" trùng với một phương án sẵn có.`);
     }
@@ -183,6 +194,7 @@ async function main() {
       dap_an: row.correct_answer
     });
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query('UPDATE QuestionBank SET choices = CAST(? AS JSON) WHERE id = ?',
         [JSON.stringify(choicesMoi), id]);
@@ -195,6 +207,7 @@ async function main() {
   const baPa = baoCao.filter((b) => b.phuong_an_moi.length === 3).length;
   console.log(`  trong đó câu chỉ có 3 phương án: ${baPa}`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${daSua} câu.`);
     console.log('Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');

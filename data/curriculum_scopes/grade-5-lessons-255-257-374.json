@@ -1,0 +1,64 @@
+{
+  "scope_id": "grade-5-lessons-255-257-374",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [52, 53, 54, 55, 56, 57, 60, 61],
+    "verified_book_pages": [50, 51, 52, 53, 54, 55, 58, 59]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 68 ôn tập đơn vị đo thời gian; Bài 69 cộng, trừ số đo thời gian; Bài 70 nhân, chia số đo thời gian; Bài 72 vận tốc.",
+    "excluded_pages": "Không đưa Bài 67, 71 và các phần luyện tập xen giữa các bài vào batch. Bài 68 dùng lesson_id 374 theo mapping thực tế của bảng Lessons."
+  },
+  "lessons": [
+    {
+      "lesson_id": 374,
+      "lesson_name": "Bài 68. Ôn tập về các đơn vị đo thời gian",
+      "pdf_pages": [52, 53],
+      "book_pages": [50, 51],
+      "objective": "Đổi và sử dụng các đơn vị đo thời gian như năm, tháng, ngày, giờ, phút và giây.",
+      "allowed_knowledge_tags": ["time_units", "year_month", "time_conversion"],
+      "allowed_question_forms": ["Đổi năm sang tháng.", "Đổi giờ, phút, giây.", "Nhận biết số ngày trong tháng."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 255,
+      "lesson_name": "20. Bài 69. Cộng số đo thời gian. Trừ số đo thời gian",
+      "pdf_pages": [54, 55],
+      "book_pages": [52, 53],
+      "objective": "Thực hiện phép cộng và phép trừ các số đo thời gian, biết đổi đơn vị khi cần.",
+      "allowed_knowledge_tags": ["time_addition", "time_subtraction", "time_regrouping"],
+      "allowed_question_forms": ["Cộng hai số đo thời gian.", "Trừ hai số đo thời gian có đổi đơn vị."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 256,
+      "lesson_name": "21. Bài 70. Nhân số đo thời gian với một số. Chia số đo thời gian cho một số",
+      "pdf_pages": [56, 57],
+      "book_pages": [54, 55],
+      "objective": "Nhân hoặc chia số đo thời gian với một số tự nhiên, đổi đơn vị khi kết quả vượt một đơn vị.",
+      "allowed_knowledge_tags": ["time_multiplication", "time_division", "time_regrouping"],
+      "allowed_question_forms": ["Nhân số đo thời gian với một số.", "Chia số đo thời gian cho một số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 257,
+      "lesson_name": "23. Bài 72. Vận tốc",
+      "pdf_pages": [60, 61],
+      "book_pages": [58, 59],
+      "objective": "Tính vận tốc khi biết quãng đường và thời gian theo công thức v = s : t.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula"],
+      "allowed_question_forms": ["Tính vận tốc từ quãng đường và thời gian.", "Nhận biết đơn vị vận tốc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

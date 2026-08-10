@@ -1,3 +1,4 @@
+# Script crawl theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import hashlib
 import json
@@ -56,6 +57,8 @@ SKIP_LINK_KEYWORDS = [
 ]
 
 
+# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean_text(value):
     if not value:
         return ""
@@ -65,14 +68,20 @@ def clean_text(value):
     return value.strip()
 
 
+# H?m compact_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def compact_text(value):
     return re.sub(r"\s+", " ", value or "").strip()
 
+
+# H?m strip_accents d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def strip_accents(value):
     normalized = unicodedata.normalize("NFD", value or "")
     return "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
 
+
+# H?m normalize_title d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def normalize_title(value):
     text = strip_accents(value).lower()
@@ -84,10 +93,14 @@ def normalize_title(value):
     return re.sub(r"\s+", " ", text).strip()
 
 
+# H?m should_skip_link d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def should_skip_link(title):
     lowered = (title or "").lower()
     return any(keyword in lowered for keyword in SKIP_LINK_KEYWORDS)
 
+
+# H?m fetch_soup d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def fetch_soup(session, url, timeout=25, retries=3):
     last_error = None
@@ -103,10 +116,14 @@ def fetch_soup(session, url, timeout=25, retries=3):
     raise last_error
 
 
+# H?m normalize_url d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalize_url(url):
     parsed = urlparse(url)
     return parsed._replace(fragment="").geturl()
 
+
+# H?m get_current_lessons d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def get_current_lessons():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -139,6 +156,8 @@ const Curriculum = require('./models/Curriculum');
     LESSONS_JSON.write_text(json.dumps(lessons, ensure_ascii=False, indent=2), encoding="utf-8")
     return lessons
 
+
+# H?m discover_lesson_links d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def discover_lesson_links(session, grade):
     index_url = INDEX_URLS[grade]
@@ -210,6 +229,8 @@ def discover_lesson_links(session, grade):
     return links
 
 
+# H?m build_link_index d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_link_index(session):
     all_links = []
     for grade in sorted(INDEX_URLS):
@@ -220,6 +241,8 @@ def build_link_index(session):
         time.sleep(0.2)
     return all_links
 
+
+# H?m find_best_link d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def find_best_link(lesson, links_by_grade):
     grade_links = links_by_grade.get(int(lesson["grade"]), [])
@@ -236,6 +259,8 @@ def find_best_link(lesson, links_by_grade):
     return None
 
 
+# H?m find_theory_url d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def find_theory_url(session, lesson_url):
     soup = fetch_soup(session, lesson_url)
     content = soup.select_one(".box_content") or soup.select_one("#main-content") or soup
@@ -250,6 +275,8 @@ def find_theory_url(session, lesson_url):
     return None
 
 
+# H?m remove_noise d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def remove_noise(container):
     for node in container.find_all(["script", "style", "ins", "iframe", "button", "form"]):
         node.decompose()
@@ -261,6 +288,8 @@ def remove_noise(container):
             node.decompose()
 
 
+# H?m image_url_from_tag d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def image_url_from_tag(img, base_url):
     src = img.get("data-src") or img.get("data-original") or img.get("src")
     if not src or src.startswith("data:"):
@@ -271,6 +300,8 @@ def image_url_from_tag(img, base_url):
         return ""
     return full_url
 
+
+# H?m extract_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def extract_images(container, base_url):
     seen = set()
@@ -288,6 +319,8 @@ def extract_images(container, base_url):
         })
     return images
 
+
+# H?m text_lines_from_container d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def text_lines_from_container(container):
     lines = []
@@ -307,10 +340,14 @@ def text_lines_from_container(container):
     return [line for line in compacted if line != ""]
 
 
+# H?m split_cards_from_theory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def split_cards_from_theory(container, base_url, lesson_title):
     cards = []
     current = {"title": lesson_title, "body_lines": []}
     found_section = False
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush():
         body = "\n".join(line for line in current["body_lines"] if line).strip()
@@ -356,6 +393,8 @@ def split_cards_from_theory(container, base_url, lesson_title):
     return cards[:8]
 
 
+# H?m extract_theory_from_page d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def extract_theory_from_page(session, url, lesson_title):
     soup = fetch_soup(session, url)
     container = soup.select_one(".detail_new") or soup.select_one(".box_content") or soup.select_one(".content_box") or soup
@@ -363,6 +402,8 @@ def extract_theory_from_page(session, url, lesson_title):
     cards = split_cards_from_theory(container, url, lesson_title)
     return cards
 
+
+# H?m extract_fallback_summary d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def extract_fallback_summary(session, url, lesson_title):
     soup = fetch_soup(session, url)
@@ -383,6 +424,8 @@ def extract_fallback_summary(session, url, lesson_title):
     return [{"title": lesson_title, "body": body, "example": "", "images": images}]
 
 
+# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def download_image(session, image_url, cache):
     if image_url in cache:
         return cache[image_url]
@@ -402,6 +445,8 @@ def download_image(session, image_url, cache):
     return file_path
 
 
+# H?m add_doc_text_block d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_doc_text_block(document, text):
     for line in (text or "").splitlines():
         line = line.strip()
@@ -412,6 +457,8 @@ def add_doc_text_block(document, text):
         else:
             document.add_paragraph(line)
 
+
+# H?m add_images d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_images(document, session, images, cache):
     for image in images or []:
@@ -426,6 +473,8 @@ def add_images(document, session, images, cache):
             document.add_paragraph(f"[Không tải được ảnh: {image.get('url')} - {error}]")
 
 
+# H?m setup_document_styles d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def setup_document_styles(document):
     styles = document.styles
     styles["Normal"].font.name = "Arial"
@@ -433,6 +482,8 @@ def setup_document_styles(document):
     for name in ["Heading 1", "Heading 2", "Heading 3"]:
         styles[name].font.name = "Arial"
 
+
+# H?m export_readable_docx d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def export_readable_docx(items, output_path, session):
     doc = Document()
@@ -469,6 +520,8 @@ def export_readable_docx(items, output_path, session):
     doc.save(output_path)
 
 
+# H?m export_import_docx d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def export_import_docx(items, output_path):
     doc = Document()
     setup_document_styles(doc)
@@ -493,6 +546,8 @@ def export_import_docx(items, output_path):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)
 
+
+# H?m crawl d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def crawl(args):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -563,6 +618,8 @@ def crawl(args):
     return items
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     parser = argparse.ArgumentParser(description="Crawl lý thuyết tóm tắt Toán Cánh Diều 1-5 và xuất DOCX.")
     parser.add_argument("--limit", type=int, default=0, help="Giới hạn số bài để test.")
@@ -587,5 +644,6 @@ def main():
     }, ensure_ascii=False, indent=2))
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

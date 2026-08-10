@@ -1,3 +1,4 @@
+// Script fix broken image questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Gỡ ảnh hỏng khỏi câu hỏi lớp 1 và thay bằng đề bài tự đủ nghĩa.
  *
@@ -37,9 +38,13 @@ const NGUON = path.join(ROOT, 'tmp', 'anh_hong.json');
 const TEX = path.join(ROOT, 'data', 'grade1_question_bank_reviewed.tex');
 const BAO_CAO = path.join(ROOT, 'tmp', 'bao_cao_sua_anh.json');
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -47,10 +52,12 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m decode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function decode(b64) {
   return JSON.parse(Buffer.from(b64, 'base64').toString('utf8'));
 }
 
+// H?m encode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function encode(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
@@ -64,6 +71,7 @@ function boMaGiuCho(text) {
     .trim();
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const danhSach = JSON.parse(fs.readFileSync(NGUON, 'utf8'));
   const lines = fs.readFileSync(TEX, 'utf8').split('\n');
@@ -73,12 +81,14 @@ async function main() {
   let suaDb = 0;
   let khongThayTex = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const muc of danhSach) {
     const rows = await db.query(
       'SELECT q.id, q.content, q.choices, q.correct_answer, q.explanation, l.lesson_name '
       + 'FROM QuestionBank q JOIN Lessons l ON l.id = q.lesson_id WHERE q.id = ?',
       [muc.id]
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (rows.length === 0) continue;
 
     const row = rows[0];
@@ -86,6 +96,7 @@ async function main() {
     const choices = parseJson(row.choices, []) || [];
     const deCu = String(contentCu.text || '');
     const deMoi = String(muc.de_xuat_de_moi || '').trim();
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!deMoi) continue;
 
     const anhCu = (contentCu.images || []).map((image) => image.url);
@@ -111,14 +122,18 @@ async function main() {
 
     // Cập nhật file .tex: tìm theo đề bài cũ vì payload không lưu id của MySQL.
     let daSuaTex = false;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (let i = 0; i < lines.length; i += 1) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!lines[i].startsWith('% DBJSON ')) continue;
       let payload;
+      // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
       try {
         payload = decode(lines[i].slice('% DBJSON '.length).trim());
       } catch (error) {
         continue;
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (String(payload.content?.text || '') !== deCu) continue;
 
       payload.content.text = contentMoi.text;
@@ -127,23 +142,29 @@ async function main() {
 
       // Sửa khối LaTeX đi kèm: đổi dòng đề bài và bỏ dòng ghi tên ảnh nguồn.
       let end = i + 1;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       while (end < lines.length && !lines[end].includes('\\end{minipage}')) end += 1;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (let j = i + 1; j <= end; j += 1) {
         const cr = lines[j].endsWith('\r') ? '\r' : '';
         const noiDung = lines[j].replace(/\r$/, '');
         const khopDe = noiDung.match(/^(\\noindent\\textbf\{[^}]+\}\s*)(.*)$/);
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (khopDe) {
           lines[j] = `${khopDe[1]}${contentMoi.text}${cr}`;
           continue;
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (noiDung.includes('\\textit{Ảnh nguồn:}')) lines[j] = cr;
       }
       daSuaTex = true;
       suaTex += 1;
       break;
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!daSuaTex) khongThayTex += 1;
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON) WHERE id = ?',
@@ -155,7 +176,9 @@ async function main() {
 
   console.log(`Số câu xử lý:        ${baoCao.length}`);
   console.log(`  Sửa được trong .tex: ${suaTex}`);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (khongThayTex > 0) console.log(`  KHÔNG thấy trong .tex: ${khongThayTex}`);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`  Đã cập nhật MySQL:   ${suaDb}`);
     fs.writeFileSync(TEX, lines.join('\n'), 'utf8');

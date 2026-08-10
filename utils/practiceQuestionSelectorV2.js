@@ -1,3 +1,4 @@
+// Ti?n ?ch practice question selector v2 cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
 const crypto = require('node:crypto');
 const {
   DEFAULT_SIMILARITY_THRESHOLD,
@@ -15,16 +16,19 @@ const DIFFICULTY_TARGETS = Object.freeze({
   20: Object.freeze({ EASY: 9, MEDIUM: 8, HARD: 3 })
 });
 
+// H?m createSelectionSeed d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function createSelectionSeed() {
   return crypto.randomBytes(8).toString('hex');
 }
 
+// H?m createSeededRandom d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function createSeededRandom(seed) {
   const normalized = normalizeSeed(seed);
   let state = (
     Number.parseInt(normalized.slice(0, 8), 16)
     ^ Number.parseInt(normalized.slice(8), 16)
   ) >>> 0;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (state === 0) state = 0x9e3779b9;
   return function random() {
     state ^= state << 13;
@@ -34,6 +38,7 @@ function createSeededRandom(seed) {
   };
 }
 
+// H?m allocateChapterQuotas d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function allocateChapterQuotas(candidates, count, selectionHistory = {}, random = Math.random) {
   const normalizedCandidates = normalizeCandidates(candidates);
   const targetCount = Math.min(normalizeCount(count), normalizedCandidates.length);
@@ -54,20 +59,25 @@ function allocateChapterQuotas(candidates, count, selectionHistory = {}, random 
   });
   const totalLessons = chapters.reduce((sum, chapter) => sum + chapter.lessonCount, 0);
   const totalHistory = chapters.reduce((sum, chapter) => sum + chapter.historyCount, 0);
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const chapter of chapters) {
     chapter.expectedCount = (totalHistory + targetCount) * chapter.lessonCount / Math.max(totalLessons, 1);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (targetCount >= chapters.length) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const chapter of chapters) chapter.quota = 1;
   }
 
   // Phân từng câu còn lại cho chương đang thiếu bao phủ nhất so với số bài.
   let remaining = targetCount - chapters.reduce((sum, chapter) => sum + chapter.quota, 0);
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (remaining > 0) {
     const chapter = chapters
       .filter((item) => item.quota < item.availableCount)
       .sort(compareChapterCoverage)[0];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!chapter) break;
     chapter.quota += 1;
     remaining -= 1;
@@ -76,20 +86,27 @@ function allocateChapterQuotas(candidates, count, selectionHistory = {}, random 
   return Object.fromEntries(chapters.map((chapter) => [chapter.id, chapter.quota]));
 }
 
+// H?m compareChapterCoverage d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function compareChapterCoverage(left, right) {
   const leftDeficit = left.expectedCount - left.historyCount - left.quota;
   const rightDeficit = right.expectedCount - right.historyCount - right.quota;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftDeficit !== rightDeficit) return rightDeficit - leftDeficit;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.lessonCount !== right.lessonCount) return right.lessonCount - left.lessonCount;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.sortOrder !== right.sortOrder) return left.sortOrder - right.sortOrder;
   return left.randomOrder - right.randomOrder;
 }
 
+// H?m buildLessonGroups d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildLessonGroups(candidates, chapterQuotas, selectionHistory = {}, random = Math.random) {
   const normalizedCandidates = normalizeCandidates(candidates);
   const history = normalizeSelectionHistory(selectionHistory);
   const groups = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [chapterId, questions] of groupBy(normalizedCandidates, 'chapter_id')) {
     let remaining = Math.min(
       Math.max(0, Number(chapterQuotas?.[chapterId]) || 0),
@@ -110,17 +127,23 @@ function buildLessonGroups(candidates, chapterQuotas, selectionHistory = {}, ran
     const tiers = [...groupBy(lessons, 'historyCount').entries()]
       .sort(([left], [right]) => Number(left) - Number(right));
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const [, tierLessons] of tiers) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (remaining <= 0) break;
       const ordered = [...tierLessons].sort(compareLessonOrder);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (remaining < ordered.length) {
+        // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
         for (const lessonGroup of partitionContiguous(ordered, remaining)) {
           groups.push({ chapterId, lessonIds: lessonGroup.map((lesson) => lesson.id) });
+          // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
           for (const lesson of lessonGroup) lesson.assignedCount += 1;
         }
         remaining = 0;
         break;
       }
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const lesson of ordered) {
         groups.push({ chapterId, lessonIds: [lesson.id] });
         lesson.assignedCount += 1;
@@ -133,6 +156,7 @@ function buildLessonGroups(candidates, chapterQuotas, selectionHistory = {}, ran
       const lesson = lessons
         .filter((item) => item.assignedCount < item.availableCount)
         .sort(compareAdditionalLessonSlot)[0];
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!lesson) break;
       groups.push({ chapterId, lessonIds: [lesson.id] });
       lesson.assignedCount += 1;
@@ -142,21 +166,29 @@ function buildLessonGroups(candidates, chapterQuotas, selectionHistory = {}, ran
   return groups;
 }
 
+// H?m compareLessonOrder d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function compareLessonOrder(left, right) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.sortOrder !== right.sortOrder) return left.sortOrder - right.sortOrder;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
   return left.randomOrder - right.randomOrder;
 }
 
+// H?m compareAdditionalLessonSlot d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function compareAdditionalLessonSlot(left, right) {
   const leftCoverage = left.historyCount + left.assignedCount;
   const rightCoverage = right.historyCount + right.assignedCount;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftCoverage !== rightCoverage) return leftCoverage - rightCoverage;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (left.lastSelectedAt !== right.lastSelectedAt) return left.lastSelectedAt - right.lastSelectedAt;
   return left.randomOrder - right.randomOrder;
 }
 
+// H?m partitionContiguous d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function partitionContiguous(items, groupCount) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (groupCount <= 0) return [];
   return Array.from({ length: groupCount }, (_, index) => {
     const start = Math.floor(index * items.length / groupCount);
@@ -165,6 +197,7 @@ function partitionContiguous(items, groupCount) {
   }).filter((group) => group.length > 0);
 }
 
+// H?m buildDifficultySelectionPlan d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildDifficultySelectionPlan(
   candidates,
   lessonGroups,
@@ -180,7 +213,9 @@ function buildDifficultySelectionPlan(
   const targets = normalizeDifficultyTargets(requestedTargets, lessonGroups.length);
   const targetOptions = enumerateDifficultyTargets(targets, lessonGroups.length);
   const availableByDifficulty = countByDifficulty(normalizedCandidates);
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const targetOption of targetOptions) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (DIFFICULTIES.some((difficulty) => (
       targetOption[difficulty] > availableByDifficulty[difficulty]
     ))) continue;
@@ -190,6 +225,7 @@ function buildDifficultySelectionPlan(
       targetOption,
       history
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (result.questions.length === lessonGroups.length) {
       return {
         ...result,
@@ -206,6 +242,7 @@ function buildDifficultySelectionPlan(
   };
 }
 
+// H?m matchQuestionsToGroups d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
   const graph = new Map();
   const source = 'SOURCE';
@@ -219,6 +256,7 @@ function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
       return result;
     }, new Map());
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const difficulty of ['HARD', 'MEDIUM', 'EASY']) {
     addFlowEdge(graph, source, `DIFFICULTY:${difficulty}`, targets[difficulty]);
     const difficultyCandidates = orderDifficultyCandidates(
@@ -227,12 +265,16 @@ function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
       history,
       hardHistoryByChapter
     );
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const question of difficultyCandidates) {
       addFlowEdge(graph, `DIFFICULTY:${difficulty}`, `QUESTION:${question.id}`, 1);
     }
   }
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const question of candidates) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (let groupIndex = 0; groupIndex < lessonGroups.length; groupIndex += 1) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!groupLessonSets[groupIndex].has(question.lesson_id)) continue;
       addFlowEdge(graph, `QUESTION:${question.id}`, `GROUP:${groupIndex}`, 1, {
         type: 'QUESTION_GROUP',
@@ -241,19 +283,25 @@ function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
       });
     }
   }
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let groupIndex = 0; groupIndex < lessonGroups.length; groupIndex += 1) {
     addFlowEdge(graph, `GROUP:${groupIndex}`, sink, 1);
   }
 
   const flow = calculateMaxFlow(graph, source, sink);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (flow !== lessonGroups.length) return { questions: [], assignments: {} };
   const questionById = new Map(candidates.map((question) => [question.id, question]));
   const selectedByGroup = {};
   const assignments = {};
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const edges of graph.values()) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const edge of edges) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (edge.meta?.type !== 'QUESTION_GROUP' || edge.capacity !== 0) continue;
       const question = questionById.get(edge.meta.questionId);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!question) continue;
       selectedByGroup[edge.meta.groupIndex] = question;
       assignments[edge.meta.groupIndex] = question.difficulty;
@@ -268,22 +316,29 @@ function matchQuestionsToGroups(candidates, lessonGroups, targets, history) {
   };
 }
 
+// H?m orderDifficultyCandidates d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function orderDifficultyCandidates(candidates, difficulty, history, hardHistoryByChapter) {
+  // H?m compareHistory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const compareHistory = (left, right) => {
     const leftLesson = getHistoryEntry(history.lessons, left.lesson_id);
     const rightLesson = getHistoryEntry(history.lessons, right.lesson_id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (leftLesson.count !== rightLesson.count) return leftLesson.count - rightLesson.count;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (leftLesson.lastSelectedAt !== rightLesson.lastSelectedAt) {
       return leftLesson.lastSelectedAt - rightLesson.lastSelectedAt;
     }
     const leftQuestion = getHistoryEntry(history.questions, left.id);
     const rightQuestion = getHistoryEntry(history.questions, right.id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (leftQuestion.count !== rightQuestion.count) return leftQuestion.count - rightQuestion.count;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (leftQuestion.lastSelectedAt !== rightQuestion.lastSelectedAt) {
       return leftQuestion.lastSelectedAt - rightQuestion.lastSelectedAt;
     }
     return left.selection_order - right.selection_order;
   };
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (difficulty !== 'HARD') return [...candidates].sort(compareHistory);
 
   const chapterQueues = [...groupBy(candidates, 'chapter_id').entries()]
@@ -298,18 +353,24 @@ function orderDifficultyCandidates(candidates, difficulty, history, hardHistoryB
       || left.sortOrder - right.sortOrder
     ));
   const ordered = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (chapterQueues.some((chapter) => chapter.questions.length > 0)) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const chapter of chapterQueues) {
       const question = chapter.questions.shift();
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (question) ordered.push(question);
     }
   }
   return ordered;
 }
 
+// H?m enumerateDifficultyTargets d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function enumerateDifficultyTargets(targets, count) {
   const options = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let hard = 0; hard <= count; hard += 1) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (let medium = 0; medium <= count - hard; medium += 1) {
       const easy = count - hard - medium;
       const value = { EASY: easy, MEDIUM: medium, HARD: hard };
@@ -321,6 +382,7 @@ function enumerateDifficultyTargets(targets, count) {
     .map((option) => option.value);
 }
 
+// H?m difficultyFallbackScore d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function difficultyFallbackScore(actual, target) {
   const shortage = {
     EASY: Math.max(0, target.EASY - actual.EASY),
@@ -340,8 +402,11 @@ function difficultyFallbackScore(actual, target) {
     + excess.MEDIUM;
 }
 
+// H?m addFlowEdge d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function addFlowEdge(graph, from, to, capacity, meta = null) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!graph.has(from)) graph.set(from, []);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!graph.has(to)) graph.set(to, []);
   const forward = { to, capacity, reverseIndex: graph.get(to).length, meta };
   const reverse = { to: from, capacity: 0, reverseIndex: graph.get(from).length, meta: null };
@@ -349,23 +414,30 @@ function addFlowEdge(graph, from, to, capacity, meta = null) {
   graph.get(to).push(reverse);
 }
 
+// H?m calculateMaxFlow d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function calculateMaxFlow(graph, source, sink) {
   let totalFlow = 0;
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (true) {
     const parent = new Map([[source, null]]);
     const queue = [source];
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     while (queue.length > 0 && !parent.has(sink)) {
       const node = queue.shift();
       const edges = graph.get(node) || [];
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (let edgeIndex = 0; edgeIndex < edges.length; edgeIndex += 1) {
         const edge = edges[edgeIndex];
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (edge.capacity <= 0 || parent.has(edge.to)) continue;
         parent.set(edge.to, { node, edgeIndex });
         queue.push(edge.to);
       }
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!parent.has(sink)) return totalFlow;
     let node = sink;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     while (node !== source) {
       const step = parent.get(node);
       const edge = graph.get(step.node)[step.edgeIndex];
@@ -377,6 +449,7 @@ function calculateMaxFlow(graph, source, sink) {
   }
 }
 
+// H?m selectQuestionsV2 d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function selectQuestionsV2(candidates, options = {}) {
   const count = normalizeCount(options.count);
   const mode = normalizeMode(options.mode);
@@ -411,7 +484,9 @@ function selectQuestionsV2(candidates, options = {}) {
   const basePool = normalizedCandidates.filter((question) => !reviewIds.has(question.id));
   const freshPool = basePool.filter((question) => !recentIds.has(question.id));
   const phases = [{ name: 'STRICT', pool: freshPool }];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (recentIds.size > 0) phases.push({ name: 'RECENT_REUSED', pool: basePool });
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (reviewIds.size > 0) phases.push({ name: 'REVIEW_REUSED', pool: normalizedCandidates });
   const plannedPhases = phases.map((phase) => ({
     ...phase,
@@ -451,12 +526,17 @@ function selectQuestionsV2(candidates, options = {}) {
   const taggedQuestions = selected.filter((question) => question.concept_id);
   const conceptCounts = countBy(taggedQuestions, 'concept_id');
   const fallbackReasons = [];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (selected.some((question) => recentIds.has(question.id))) fallbackReasons.push('RECENT_REUSED');
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (selected.some((question) => reviewIds.has(question.id))) fallbackReasons.push('REVIEW_REUSED');
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (plan && !plan.exact) fallbackReasons.push('DIFFICULTY_RELAXED');
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (conceptCounts.size > 0 && Math.max(...conceptCounts.values()) > maxPerConcept) {
     fallbackReasons.push('CONCEPT_CAP_RELAXED');
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (countNearDuplicatePairs(selected, similarityThreshold) > 0) {
     fallbackReasons.push('SIMILARITY_RELAXED');
   }
@@ -497,8 +577,10 @@ function selectQuestionsV2(candidates, options = {}) {
   };
 }
 
+// H?m improvePlannedQuestions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function improvePlannedQuestions(plannedQuestions, options) {
   const selected = [...plannedQuestions];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let groupIndex = 0; groupIndex < selected.length; groupIndex += 1) {
     const current = selected[groupIndex];
     const lessonIds = new Set(options.lessonGroups[groupIndex]?.lessonIds || []);
@@ -526,25 +608,32 @@ function improvePlannedQuestions(plannedQuestions, options) {
   return selected;
 }
 
+// H?m compareReplacementCandidates d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function compareReplacementCandidates(left, right, history) {
   const leftLesson = getHistoryEntry(history.lessons, left.lesson_id);
   const rightLesson = getHistoryEntry(history.lessons, right.lesson_id);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftLesson.count !== rightLesson.count) return leftLesson.count - rightLesson.count;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftLesson.lastSelectedAt !== rightLesson.lastSelectedAt) {
     return leftLesson.lastSelectedAt - rightLesson.lastSelectedAt;
   }
   const leftQuestion = getHistoryEntry(history.questions, left.id);
   const rightQuestion = getHistoryEntry(history.questions, right.id);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftQuestion.count !== rightQuestion.count) return leftQuestion.count - rightQuestion.count;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (leftQuestion.lastSelectedAt !== rightQuestion.lastSelectedAt) {
     return leftQuestion.lastSelectedAt - rightQuestion.lastSelectedAt;
   }
   return left.selection_order - right.selection_order;
 }
 
+// H?m orderQuestionsDiversely d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function orderQuestionsDiversely(questions, random) {
   const remaining = questions.map((question) => ({ ...question, sequence_order: random() }));
   const ordered = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (remaining.length > 0) {
     const previous = ordered.at(-1);
     const previousSecond = ordered.at(-2);
@@ -559,16 +648,21 @@ function orderQuestionsDiversely(questions, random) {
   return optimized.map(({ sequence_order: sequenceOrder, ...question }) => question);
 }
 
+// H?m improveSequenceBySwaps d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function improveSequenceBySwaps(questions) {
   const ordered = [...questions];
   let currentScore = sequenceConflictScore(ordered);
   let improved = true;
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (improved && currentScore > 0) {
     improved = false;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (let left = 0; left < ordered.length - 1 && !improved; left += 1) {
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (let right = left + 1; right < ordered.length; right += 1) {
         [ordered[left], ordered[right]] = [ordered[right], ordered[left]];
         const score = sequenceConflictScore(ordered);
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (score < currentScore) {
           currentScore = score;
           improved = true;
@@ -581,41 +675,57 @@ function improveSequenceBySwaps(questions) {
   return ordered;
 }
 
+// H?m sequenceConflictScore d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function sequenceConflictScore(questions) {
   const conflicts = countSequenceConflicts(questions);
   return conflicts.chapter + conflicts.lesson + conflicts.difficulty;
 }
 
+// H?m sequencePenalty d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function sequencePenalty(question, previous, previousSecond) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!previous) return 0;
   let penalty = 0;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (question.lesson_id === previous.lesson_id) penalty += 8;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (question.chapter_id === previous.chapter_id) penalty += 4;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (question.difficulty === previous.difficulty) penalty += 2;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (previousSecond) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.lesson_id === previousSecond.lesson_id) penalty += 2;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.chapter_id === previousSecond.chapter_id) penalty += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.difficulty === previousSecond.difficulty) penalty += 0.5;
   }
   return penalty;
 }
 
+// H?m countSequenceConflicts d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function countSequenceConflicts(questions) {
   return questions.slice(1).reduce((result, question, index) => {
     const previous = questions[index];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.chapter_id === previous.chapter_id) result.chapter += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.lesson_id === previous.lesson_id) result.lesson += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (question.difficulty === previous.difficulty) result.difficulty += 1;
     return result;
   }, { chapter: 0, lesson: 0, difficulty: 0 });
 }
 
+// H?m normalizeCandidates d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeCandidates(candidates) {
   const seen = new Set();
   return (Array.isArray(candidates) ? candidates : []).reduce((result, item) => {
     const id = Number(item?.id);
     const lessonId = Number(item?.lesson_id);
     const chapterId = Number(item?.chapter_id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!id || !lessonId || !chapterId || seen.has(id)) return result;
     seen.add(id);
     result.push({
@@ -635,24 +745,31 @@ function normalizeCandidates(candidates) {
   }, []);
 }
 
+// H?m normalizeDifficulty d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeDifficulty(value) {
   const difficulty = String(value || 'EASY').trim().toUpperCase();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (difficulty === 'EXPERT') return 'HARD';
   return DIFFICULTIES.includes(difficulty) ? difficulty : 'EASY';
 }
 
+// H?m normalizeDifficultyTargets d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeDifficultyTargets(targets, count) {
   const normalized = Object.fromEntries(
     DIFFICULTIES.map((difficulty) => [difficulty, Math.max(0, Math.floor(Number(targets?.[difficulty]) || 0))])
   );
   let remaining = count - Object.values(normalized).reduce((sum, value) => sum + value, 0);
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const difficulty of DIFFICULTIES) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (remaining <= 0) break;
     normalized[difficulty] += 1;
     remaining -= 1;
   }
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   while (remaining < 0) {
     const difficulty = [...DIFFICULTIES].reverse().find((item) => normalized[item] > 0);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!difficulty) break;
     normalized[difficulty] -= 1;
     remaining += 1;
@@ -660,12 +777,14 @@ function normalizeDifficultyTargets(targets, count) {
   return normalized;
 }
 
+// H?m buildRatioTargets d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildRatioTargets(count) {
   const easy = Math.round(count * 0.45);
   const medium = Math.round(count * 0.4);
   return { EASY: easy, MEDIUM: medium, HARD: Math.max(0, count - easy - medium) };
 }
 
+// H?m countBy d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function countBy(items, field) {
   return items.reduce((result, item) => {
     result.set(item[field], (result.get(item[field]) || 0) + 1);
@@ -673,15 +792,18 @@ function countBy(items, field) {
   }, new Map());
 }
 
+// H?m groupBy d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function groupBy(items, field) {
   return items.reduce((result, item) => {
     const key = item[field];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!result.has(key)) result.set(key, []);
     result.get(key).push(item);
     return result;
   }, new Map());
 }
 
+// H?m normalizeSelectionHistory d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeSelectionHistory(value = {}) {
   return {
     questions: normalizeHistoryEntries(value.questions),
@@ -689,6 +811,7 @@ function normalizeSelectionHistory(value = {}) {
   };
 }
 
+// H?m normalizeHistoryEntries d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeHistoryEntries(entries) {
   return new Map(Object.entries(entries || {}).map(([id, entry]) => [
     Number(id),
@@ -699,12 +822,15 @@ function normalizeHistoryEntries(entries) {
   ]).filter(([id]) => Number.isInteger(id) && id > 0));
 }
 
+// H?m getHistoryEntry d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function getHistoryEntry(entries, id) {
   return entries.get(Number(id)) || { count: 0, lastSelectedAt: Number.NEGATIVE_INFINITY };
 }
 
+// H?m recentQuestionIdsFromHistory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function recentQuestionIdsFromHistory(history, limit) {
   const safeLimit = Math.max(0, Number(limit) || 0);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (safeLimit === 0) return [];
   return [...history.questions.entries()]
     .filter(([, entry]) => Number.isFinite(entry.lastSelectedAt))
@@ -713,11 +839,13 @@ function recentQuestionIdsFromHistory(history, limit) {
     .map(([questionId]) => questionId);
 }
 
+// H?m normalizeTimestamp d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTimestamp(value) {
   const timestamp = Date.parse(String(value || ''));
   return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
 }
 
+// H?m countByDifficulty d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function countByDifficulty(items) {
   return items.reduce((result, item) => {
     result[item.difficulty] = (result[item.difficulty] || 0) + 1;
@@ -725,16 +853,20 @@ function countByDifficulty(items) {
   }, { EASY: 0, MEDIUM: 0, HARD: 0 });
 }
 
+// H?m toIdSet d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function toIdSet(values) {
   return new Set((Array.isArray(values) ? values : []).map(Number).filter(Boolean));
 }
 
+// H?m normalizeSeed d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeSeed(value) {
   const seed = String(value || '').trim().toLowerCase();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (/^[a-f0-9]{16}$/.test(seed)) return seed;
   return crypto.createHash('sha256').update(seed || 'balanced-v2').digest('hex').slice(0, 16);
 }
 
+// H?m normalizeMode d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeMode(value) {
   const mode = String(value || 'COMPREHENSIVE').trim().toUpperCase();
   return ['REVIEW', 'LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(mode)
@@ -742,16 +874,19 @@ function normalizeMode(value) {
     : 'COMPREHENSIVE';
 }
 
+// H?m normalizeCount d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeCount(value) {
   const count = Number(value);
   return Number.isInteger(count) && count > 0 ? count : 0;
 }
 
+// H?m normalizePositiveInteger d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizePositiveInteger(value, fallback) {
   const number = Number(value);
   return Number.isInteger(number) && number > 0 ? number : fallback;
 }
 
+// H?m normalizeSimilarityThreshold d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeSimilarityThreshold(value) {
   const threshold = Number(value);
   return Number.isFinite(threshold) && threshold >= 0.75 && threshold <= 1
@@ -759,11 +894,13 @@ function normalizeSimilarityThreshold(value) {
     : DEFAULT_SIMILARITY_THRESHOLD;
 }
 
+// H?m normalizeOptionalId d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeOptionalId(value) {
   const id = Number(value);
   return Number.isInteger(id) && id > 0 ? id : null;
 }
 
+// H?m normalizeSortOrder d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeSortOrder(value, fallback) {
   const order = Number(value);
   return Number.isFinite(order) ? order : Number(fallback);

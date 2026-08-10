@@ -1,3 +1,4 @@
+// Script generate and seed questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 require('dotenv').config();
 
 const fs = require('fs');
@@ -25,7 +26,9 @@ const limit = limitArg ? Number(limitArg.split('=')[1]) : null;
 const selectedModel = modelArg ? modelArg.split('=')[1] : DEFAULT_MODEL;
 const isDemo = demoArg !== undefined;
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!API_KEY) {
     console.error('Lỗi: NVIDIA_NIM_API_KEY chưa được cấu hình trong file .env');
     process.exit(1);
@@ -34,17 +37,22 @@ async function main() {
   console.log('--- KHỞI ĐỘNG TIẾN TRÌNH TẠO NGÂN HÀNG CÂU HỎI ---');
   console.log(`AI Provider: NVIDIA NIM`);
   console.log(`Model: ${selectedModel}`);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (selectedGrade && !isSupportedGrade(selectedGrade)) {
     console.error(`Lỗi: chỉ hỗ trợ khối lớp từ ${MIN_GRADE} đến ${MAX_GRADE}.`);
     process.exit(1);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (selectedGrade) console.log(`Khối lớp lựa chọn: Lớp ${selectedGrade}`);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (limit) console.log(`Giới hạn số lượng bài học: ${limit}`);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (isDemo) console.log(`Chế độ: Demo (Chọn tối đa 2 bài học đại diện cho mỗi khối lớp từ Lớp ${MIN_GRADE}-${MAX_GRADE})`);
 
   // Test DB connection
   const connStatus = await db.testConnection();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!connStatus.connected) {
     console.error('Không kết nối được MySQL. Vui lòng kiểm tra cấu hình trong .env');
     process.exit(1);
@@ -62,6 +70,7 @@ async function main() {
   querySql += ' WHERE c.grade BETWEEN ? AND ?';
   queryParams.push(MIN_GRADE, MAX_GRADE);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (selectedGrade) {
     querySql += ' AND c.grade = ?';
     queryParams.push(selectedGrade);
@@ -69,21 +78,26 @@ async function main() {
 
   querySql += ' ORDER BY c.grade, c.sort_order, l.sort_order';
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (limit && !isDemo) {
     querySql += ` LIMIT ${Number(limit)}`;
   }
 
   let lessons = await db.query(querySql, queryParams);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (isDemo) {
     const grouped = {};
     lessons.forEach(l => {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!grouped[l.grade]) grouped[l.grade] = [];
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (grouped[l.grade].length < 2) {
         grouped[l.grade].push(l);
       }
     });
     lessons = Object.values(grouped).flat();
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (limit) {
       lessons = lessons.slice(0, limit);
     }
@@ -91,6 +105,7 @@ async function main() {
 
   console.log(`Đã tìm thấy ${lessons.length} bài học cần sinh câu hỏi.`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessons.length === 0) {
     console.log('Không có bài học nào để xử lý.');
     process.exit(0);
@@ -102,15 +117,18 @@ async function main() {
   let countSuccess = 0;
   let countFailed = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let i = 0; i < lessons.length; i++) {
     const lesson = lessons[i];
     console.log(`\n[${i + 1}/${lessons.length}] Đang xử lý: Lớp ${lesson.grade} -> ${lesson.chapter_name} -> ${lesson.lesson_name}`);
     
+    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
     try {
       const questions = await generateQuestionsWithAI(lesson, selectedModel);
       console.log(`-> Sinh thành công ${questions.length} câu hỏi từ AI.`);
       
       let insertedCount = 0;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const q of questions) {
         // Insert into database
         await Question.createQuestion({
@@ -155,6 +173,7 @@ async function main() {
   process.exit(0);
 }
 
+// H?m generateQuestionsWithAI d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function generateQuestionsWithAI(lesson, model) {
   const prompt = `Bạn là chuyên gia giáo dục Toán tiểu học Việt Nam (Lớp ${MIN_GRADE}-${MAX_GRADE}).
 Hãy biên soạn 3 câu hỏi trắc nghiệm Toán học (độ khó: 1 EASY, 1 MEDIUM, 1 HARD) cho bài học sau:
@@ -216,6 +235,7 @@ JSON Schema mẫu:
   const timeout = setTimeout(() => controller.abort(), 35000);
 
   let response;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     response = await fetch(`${BASE_URL}/chat/completions`, {
       method: 'POST',
@@ -234,6 +254,7 @@ JSON Schema mẫu:
       })
     });
   } catch (error) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (error.name === 'AbortError') {
       throw new Error('Yêu cầu gọi NVIDIA NIM API bị quá thời gian chờ (35 giây).');
     }
@@ -242,6 +263,7 @@ JSON Schema mẫu:
     clearTimeout(timeout);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!response.ok) {
     const errText = await response.text();
     throw new Error(`NVIDIA NIM API trả về mã lỗi HTTP ${response.status}: ${errText}`);
@@ -250,10 +272,12 @@ JSON Schema mẫu:
   const data = await response.json();
   const rawContent = data.choices?.[0]?.message?.content?.trim() || '';
   
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!rawContent) {
     throw new Error('API không trả về câu trả lời.');
   }
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return parseAIResponse(rawContent);
   } catch (err) {
@@ -262,10 +286,12 @@ JSON Schema mẫu:
   }
 }
 
+// H?m parseAIResponse d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseAIResponse(content) {
   const startIdx = content.indexOf('[');
   const endIdx = content.lastIndexOf(']');
   
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (startIdx === -1 || endIdx === -1 || endIdx < startIdx) {
     throw new Error('Không tìm thấy JSON Array trong kết quả trả về của AI.');
   }

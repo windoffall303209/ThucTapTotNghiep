@@ -1,3 +1,4 @@
+# Script th? nghi?m test model d?ng ?? kh?o s?t nhanh m?t th? vi?n, d? li?u ho?c ? t??ng x? l?.
 import requests
 import os
 import json
@@ -8,6 +9,7 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
 env_vars = {}
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if os.path.exists(".env"):
     with open(".env", "r", encoding="utf-8") as f:
         for line in f:
@@ -30,6 +32,7 @@ crawled_by_id = {c["lesson_id"]: c for c in crawled_cards}
 
 test_ids = [157, 158, 159]
 
+# Kh?i l?p ho?c ng? c?nh ki?m so?t ph?m vi x? l? v? ?i?u ki?n k?t th?c.
 for l_id in test_ids:
     crawled_item = crawled_by_id.get(l_id)
     if not crawled_item:

@@ -1,0 +1,64 @@
+{
+  "scope_id": "grade-4-lessons-208-211",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_2_-_Canh_dieu_59332.pdf",
+    "verified_pdf_pages": [70, 71, 76, 77, 78, 79, 80, 81, 83, 84],
+    "verified_book_pages": [70, 71, 76, 77, 78, 79, 80, 81, 83, 84]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 208 phép chia phân số; bài 209 dãy số liệu thống kê; bài 210 biểu đồ cột; bài 211 kiểm đếm số lần xuất hiện của một sự kiện.",
+    "excluded_pages": "Không gán các trang Luyện tập chung ở PDF 72–75 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 208,
+      "lesson_name": "84. Bài 84: Phép chia phân số",
+      "pdf_pages": [70, 71],
+      "book_pages": [70, 71],
+      "objective": "Chia một phân số cho một phân số khác 0 bằng cách nhân với phân số đảo ngược.",
+      "allowed_knowledge_tags": ["fraction_division", "reciprocal_fraction", "fraction_operations"],
+      "allowed_question_forms": ["Tính thương hai phân số.", "Nhận biết phân số đảo ngược."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 209,
+      "lesson_name": "87. Bài 87: Dãy số liệu thống kê",
+      "pdf_pages": [76, 77, 78],
+      "book_pages": [76, 77, 78],
+      "objective": "Nhận biết, lập và đọc một dãy số liệu thống kê đơn giản.",
+      "allowed_knowledge_tags": ["statistical_data_sequence", "read_data", "order_data"],
+      "allowed_question_forms": ["Đọc số liệu trong dãy thống kê.", "Tìm số liệu lớn nhất hoặc nhỏ nhất."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 210,
+      "lesson_name": "88. Bài 88: Biểu đồ cột",
+      "pdf_pages": [79, 80, 81],
+      "book_pages": [79, 80, 81],
+      "objective": "Nhận biết các thành phần và đọc thông tin cơ bản từ biểu đồ cột.",
+      "allowed_knowledge_tags": ["bar_chart", "read_bar_chart", "statistical_chart"],
+      "allowed_question_forms": ["Nhận biết biểu đồ cột.", "Đọc số liệu từ chiều cao cột."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 211,
+      "lesson_name": "89. Bài 89: Kiểm đếm số lần xuất hiện của một sự kiện",
+      "pdf_pages": [83, 84],
+      "book_pages": [83, 84],
+      "objective": "Kiểm đếm số lần một kết quả xuất hiện trong một dãy lần thử đơn giản.",
+      "allowed_knowledge_tags": ["count_occurrences", "frequency", "simple_experiment"],
+      "allowed_question_forms": ["Đếm số lần một kết quả xuất hiện.", "Đọc bảng kết quả thử nghiệm đơn giản."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

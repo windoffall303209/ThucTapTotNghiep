@@ -1,3 +1,4 @@
+// T?p m? ngu?n sample data th?c hi?n m?t ph?n ch?c n?ng c?a ?ng d?ng v? ph?i h?p v?i c?c m?-?un li?n quan.
 function svgDataUri(label, background = '#eff6ff', foreground = '#1d4ed8') {
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="${label}">

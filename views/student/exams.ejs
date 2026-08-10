@@ -1,3 +1,4 @@
+<%# M?u giao di?n exams k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Luyện tập</p>
@@ -40,6 +41,7 @@
         </select>
       </label>
       <div class="row-actions">
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% limits.forEach((limit) => { %>
           <button class="btn btn-secondary" type="submit" name="count" value="<%= limit %>">
             <i data-lucide="file-question" class="lucide-icon"></i>
@@ -66,6 +68,7 @@
         </select>
       </label>
       <div class="row-actions">
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% limits.forEach((limit) => { %>
           <button class="btn btn-primary" type="submit" name="count" value="<%= limit %>">
             <i data-lucide="shuffle" class="lucide-icon"></i>
@@ -83,13 +86,16 @@
     Bài đang làm dở
   </div>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (!sessions || sessions.length === 0) { %>
     <div class="empty-state compact">
       <p>Em không có bài nào đang làm dở. Chọn một kiểu luyện ở phía trên để bắt đầu nhé!</p>
     </div>
   <% } else { %>
     <div class="card-list">
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% sessions.forEach((session) => { %>
+        <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
         <% const sessionPercent = session.question_count ? Math.round((Number(session.current_index || 0) / Number(session.question_count || 1)) * 100) : 0; %>
         <article class="activity-card">
           <span class="status-pill status-in-progress">Đang làm</span>

@@ -1,0 +1,76 @@
+{
+  "G2-L002-Q038": {
+    "prompt": "Hà viết 4 dm = 40 cm. Nhận xét nào đúng?",
+    "choices": {"A": "Hà viết đúng", "B": "Hà viết sai vì 4 dm = 4 cm", "C": "Hà viết sai vì 4 dm = 14 cm", "D": "Hà viết sai vì 4 dm = 400 cm"},
+    "answer": "A",
+    "explanation": "Vì 1 dm = 10 cm nên 4 dm = 4 × 10 cm = 40 cm. Vậy phép đổi của Hà là đúng.",
+    "misconceptions": [
+      {"distractor_key": "B", "explanation": "Em cần nhân 4 với 10 vì 1 dm = 10 cm, không giữ nguyên số 4."},
+      {"distractor_key": "C", "explanation": "Đổi từ đề-xi-mét sang xăng-ti-mét là nhân với 10, không phải cộng thêm 10."},
+      {"distractor_key": "D", "explanation": "1 dm chỉ bằng 10 cm nên 4 dm bằng 40 cm, không phải 400 cm."}
+    ]
+  },
+  "G2-L004-Q019": {
+    "choices": {"A": "Hiệu đúng là 9", "B": "Hiệu đúng là 6", "C": "Hiệu đúng là 8", "D": "An viết đúng"}
+  },
+  "G2-L005-Q018": {
+    "choices": {"A": "Hoa tính đúng", "B": "Kết quả đúng là 12", "C": "Kết quả đúng là 10", "D": "Kết quả đúng là 13"}
+  },
+  "G2-L012-Q009": {
+    "choices": {"A": "Phép cộng", "B": "Phép trừ", "C": "Phép nhân", "D": "Phép chia"}
+  },
+  "G2-L012-Q026": {
+    "prompt": "Dũng 7 tuổi. Anh Nam hơn Dũng 9 tuổi. Anh Nam bao nhiêu tuổi?",
+    "choices": {"A": "14 tuổi", "B": "15 tuổi", "C": "16 tuổi", "D": "17 tuổi"},
+    "answer": "C",
+    "explanation": "Anh Nam nhiều hơn Dũng 9 tuổi nên em thực hiện phép cộng: 7 + 9 = 16. Vậy anh Nam 16 tuổi."
+  },
+  "G2-L014-Q025": {
+    "prompt": "Lan tính 89 + 6 bằng cách tách 6 thành 1 và 5. Kết quả Lan nhận được là bao nhiêu?",
+    "explanation": "Em tách 6 thành 1 và 5: 89 + 1 = 90, rồi 90 + 5 = 95. Vậy 89 + 6 = 95."
+  },
+  "G2-L019-Q038": {"prompt": "Đặc điểm nào đúng với mọi hình tứ giác?"},
+  "G2-L019-Q041": {"prompt": "Nhận xét nào đúng về hình vuông và hình chữ nhật?"},
+  "G2-L020-Q028": {"prompt": "Đoạn thẳng MN được giới hạn bởi mấy đầu mút?"},
+  "G2-L020-Q041": {"prompt": "Dựa vào tên đoạn thẳng AB, hãy xác định hai đầu mút của đoạn thẳng."},
+  "G2-L035-Q010": {"prompt": "Đếm tất cả các khối trụ được xếp trong hình. Có bao nhiêu khối trụ?"},
+  "G2-L035-Q015": {"prompt": "Trong các đồ vật sau, đồ vật nào thường có dạng khối hộp chữ nhật thay vì dạng khối trụ?"},
+  "G2-L035-Q030": {"prompt": "Trong hình có lon, trống, nến và ba đồ vật dạng khối cầu. Có bao nhiêu đồ vật dạng khối trụ?"},
+  "G2-L035-Q039": {"prompt": "Trong các đồ vật sau, vật nào tròn đều theo mọi phía và gần giống khối cầu?"},
+  "G2-L037-Q002": {"prompt": "Kim phút chỉ số 6, kim giờ nằm giữa số 11 và số 12. Đồng hồ chỉ mấy giờ?"},
+  "G2-L037-Q004": {"prompt": "Kim phút chỉ số 6, kim giờ nằm giữa số 2 và số 3. Đồng hồ chỉ mấy giờ?"},
+  "G2-L037-Q006": {"prompt": "Kim phút chỉ số 3, kim giờ vừa qua số 10. Đồng hồ chỉ mấy giờ?"},
+  "G2-L037-Q008": {"prompt": "Kim phút chỉ số 3, kim giờ vừa qua số 4. Đồng hồ chỉ mấy giờ?"},
+  "G2-L037-Q025": {"prompt": "Đổi 1 giờ ra phút. Kết quả nào đúng?"},
+  "G2-L037-Q030": {"prompt": "Kim phút chỉ số 3, kim giờ vừa qua số 6. Đồng hồ trong hình chỉ mấy giờ?"},
+  "G2-L038-Q021": {"prompt": "Tờ lịch của một năm có tất cả bao nhiêu tháng?"},
+  "G2-L039-Q002": {"prompt": "Số tròn nghìn ghi trong hình được đọc như thế nào?"},
+  "G2-L039-Q016": {"prompt": "Số có một trăm, không chục và ba đơn vị trong hình được đọc như thế nào?"},
+  "G2-L040-Q002": {"prompt": "Hình có 3 trăm, 5 chục và không đơn vị. Các khối lập phương biểu diễn số nào?"},
+  "G2-L040-Q010": {"prompt": "Hình có 2 trăm, 1 chục và 4 đơn vị. Các khối lập phương biểu diễn số nào?"},
+  "G2-L040-Q012": {"prompt": "Hình có 4 trăm, 5 chục và 1 đơn vị. Các khối lập phương biểu diễn số nào?"},
+  "G2-L040-Q014": {"prompt": "Hình có 6 trăm, không chục và 9 đơn vị. Các khối lập phương biểu diễn số nào?"},
+  "G2-L040-Q016": {"prompt": "Hình có 4 trăm, 8 chục và không đơn vị. Các khối lập phương biểu diễn số nào?"},
+  "G2-L040-Q006": {"prompt": "Thẻ số 800 được đọc như thế nào?"},
+  "G2-L040-Q008": {"prompt": "Thẻ ghi số 705. Em đọc số này như thế nào?"},
+  "G2-L040-Q018": {"prompt": "Thẻ ghi số 304. Cách đọc nào đúng?"},
+  "G2-L041-Q002": {"prompt": "Nhóm khối lập phương gồm 6 trăm, 2 chục và không đơn vị biểu diễn số nào?"},
+  "G2-L041-Q018": {"prompt": "Nhóm khối lập phương gồm 4 trăm, 2 chục và 6 đơn vị biểu diễn số nào?"},
+  "G2-L042-Q002": {"prompt": "So sánh 936 và 836. Dấu nào thích hợp điền vào ô trống?"},
+  "G2-L043-Q002": {"prompt": "Tính tổng 582 + 207 được minh họa trong hình."},
+  "G2-L043-Q004": {"prompt": "Thực hiện phép cộng 666 + 300 trong hình. Kết quả là bao nhiêu?"},
+  "G2-L043-Q006": {"prompt": "Phép cộng 246 + 31 trong hình cho kết quả nào?"},
+  "G2-L043-Q008": {"prompt": "Tính nhẩm 694 + 4 theo phép tính trong hình."},
+  "G2-L044-Q002": {"prompt": "Tính hiệu 865 − 224 được minh họa trong hình."},
+  "G2-L044-Q004": {"prompt": "Thực hiện phép trừ 946 − 932 trong hình. Kết quả là bao nhiêu?"},
+  "G2-L044-Q006": {"prompt": "Phép trừ 387 − 16 trong hình cho kết quả nào?"},
+  "G2-L044-Q008": {"prompt": "Tính nhẩm 435 − 4 theo phép tính trong hình."},
+  "G2-L045-Q025": {"prompt": "Một dải ruy băng dài 1 m. Dải ruy băng đó dài bao nhiêu xăng-ti-mét?"},
+  "G2-L045-Q026": {"prompt": "Một sợi dây dài 2 m. Đổi độ dài của sợi dây ra xăng-ti-mét."},
+  "G2-L046-Q025": {"prompt": "Một quãng đường dài 1 km. Quãng đường đó dài bao nhiêu mét?"},
+  "G2-L046-Q041": {"prompt": "Một đường chạy dài 3 km. Đổi độ dài đường chạy ra mét."},
+  "G2-L016-Q010": {
+    "remove_images": true,
+    "explanation": "Buổi chiều bán ít hơn buổi sáng 6 quả nên em thực hiện phép trừ: 31 − 6 = 25. Vậy buổi chiều cửa hàng bán được 25 quả bóng."
+  }
+}

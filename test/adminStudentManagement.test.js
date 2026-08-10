@@ -1,3 +1,4 @@
+// B? ki?m th? admin student management.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,6 +10,7 @@ const Student = require('../models/Student');
 const AdminController = require('../controllers/AdminController');
 const { getCredentialVersion } = require('../utils/authToken');
 
+// H?m makeRequest d?ng ?? x? l? y?u c?u, ?i?u ph?i c?c b??c nghi?p v? v? ph?n h?i l?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function makeRequest(body = {}) {
   return {
     auth: { id: 1, role: 'SYSADMIN', type: 'admin' },
@@ -18,9 +20,11 @@ function makeRequest(body = {}) {
   };
 }
 
+// H?m makeResponse d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function makeResponse() {
   return {
     redirectedTo: '',
+    // H?m redirect d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
     redirect(url) {
       this.redirectedTo = url;
       return url;
@@ -39,14 +43,18 @@ test('đổi khối đóng phiên đang làm và cập nhật học sinh trong c
   db.transaction = async (callback) => {
     transactionCount += 1;
     return callback({
+      // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
       async execute(sql, params) {
         statements.push({ sql, params });
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/SELECT id, current_grade/i.test(sql)) {
           return [[{ id: 81, current_grade: 4 }]];
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/UPDATE PracticeSessions/i.test(sql)) {
           return [{ affectedRows: 2 }];
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/UPDATE Students/i.test(sql)) {
           return [{ affectedRows: 1 }];
         }

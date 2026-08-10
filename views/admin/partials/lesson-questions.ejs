@@ -1,3 +1,4 @@
+<%# M?u giao di?n lesson questions k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <%
   const answerKeys = ['A', 'B', 'C', 'D'];
   const difficultyOptions = [
@@ -192,6 +193,7 @@
       <label data-author-mode-panel="fields">
         Bố cục hiển thị
         <select name="layout_variant" data-layout-variant>
+          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
           <% layoutOptions.forEach((option) => { %>
             <option value="<%= option.value %>"><%= option.label %></option>
           <% }) %>
@@ -203,6 +205,7 @@
       <label>
         Độ khó
         <select name="difficulty">
+          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
           <% difficultyOptions.forEach((option) => { %>
             <option value="<%= option.value %>"><%= option.label %></option>
           <% }) %>
@@ -269,6 +272,7 @@
             <label>Mã đáp án
               <select data-grid-cell-answer>
                 <option value="">Không</option>
+<%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
                 <% answerKeys.forEach((key) => { %><option value="<%= key %>"><%= key %></option><% }) %>
               </select>
             </label>
@@ -307,6 +311,7 @@
 
     <fieldset class="choice-fieldset" data-choice-panel data-author-mode-panel="fields">
       <legend>Phương án trả lời và lỗi sai thường gặp</legend>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% answerKeys.forEach((key) => { %>
         <div class="choice-editor">
           <label class="choice-input">
@@ -348,6 +353,7 @@
       Đáp án đúng
       <select name="correct_answer" required>
         <option value="">Chọn đáp án</option>
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% answerKeys.forEach((key) => { %>
           <option value="<%= key %>"><%= key %></option>
         <% }) %>
@@ -413,6 +419,7 @@
     Độ khó
     <select name="difficulty">
       <option value="">Tất cả</option>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% difficultyOptions.forEach((option) => { %>
         <option value="<%= option.value %>" <%= boLoc.difficulty === option.value ? 'selected' : '' %>><%= option.label %></option>
       <% }) %>
@@ -426,6 +433,7 @@
     <i data-lucide="filter" class="lucide-icon"></i>
     Lọc
   </button>
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (dangLoc) { %>
     <button class="btn btn-secondary btn-compact" type="button" data-question-filter-clear>
       Bỏ lọc
@@ -433,6 +441,7 @@
   <% } %>
 </form>
 
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (questions.length === 0) { %>
   <div class="empty-state compact">
     <%= dangLoc
@@ -441,6 +450,7 @@
   </div>
 <% } %>
 
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (pageInfo.totalPages > 1) { %>
   <nav class="question-pagination" aria-label="Phân trang câu hỏi">
     <button class="btn btn-secondary btn-compact" type="button" data-question-page="<%= pageInfo.page - 1 %>" <%= pageInfo.page <= 1 ? 'disabled' : '' %>>
@@ -456,7 +466,9 @@
 <% } %>
 
 <div class="bank-question-list">
+  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
   <% questions.forEach((question) => { %>
+    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
     <% const hasSupportingContent = question.question_type !== 'FILL_IN_THE_BLANK' || Boolean(question.explanation?.text) || (question.explanation?.images || []).length > 0; %>
     <article class="bank-question">
       <div class="bank-question-head">
@@ -474,13 +486,17 @@
         <span class="answer-badge">Đáp án <%= question.correct_answer %></span>
       </div>
 
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (hasSupportingContent) { %>
         <details class="record-support">
           <summary>Đáp án và lời giải</summary>
           <div class="record-support-content">
+            <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
             <% if (question.question_type !== 'FILL_IN_THE_BLANK' && !hasGridAnswers(question)) { %>
               <div class="question-choice-list math-content math-lazy <%= displayLayout(question) === 'IMAGE_IN_CHOICES' ? 'answer-grid-image-choices' : '' %>">
+                <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
                 <% answerKeys.forEach((key) => { %>
+                  <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
                   <% const choice = choiceFor(question, key); %>
                   <div class="<%= question.correct_answer === key ? 'is-correct' : '' %>">
                     <span><%= key %></span>

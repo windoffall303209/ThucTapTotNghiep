@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-380-382",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [75, 76, 86, 87, 88, 89],
+    "verified_book_pages": [73, 74, 84, 85, 86, 87]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, ghi đầy đủ số liệu trong đề nhưng không ghi đáp án hoặc phép tính ra đáp án.",
+    "progression": "Bài 78 vận dụng thể tích hình hộp chữ nhật và đổi đơn vị; Bài 82 ôn tập số tự nhiên và các phép tính; Bài 83 ôn tập cộng phân số khác mẫu.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 380,
+      "lesson_name": "Bài 78. Em vui học Toán",
+      "pdf_pages": [75, 76],
+      "book_pages": [73, 74],
+      "objective": "Tính thể tích hình hộp chữ nhật và đổi đơn vị từ xăng-ti-mét khối sang lít.",
+      "allowed_knowledge_tags": ["cuboid_volume", "volume_conversion", "decimal_multiplication", "measurement"],
+      "allowed_question_forms": ["Tính thể tích hình hộp chữ nhật rồi đổi sang lít."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 381,
+      "lesson_name": "Bài 82. Ôn tập về số tự nhiên và các phép tính với số tự nhiên",
+      "pdf_pages": [86, 87],
+      "book_pages": [84, 85],
+      "objective": "Thực hiện biểu thức gồm phép cộng và phép trừ số tự nhiên.",
+      "allowed_knowledge_tags": ["natural_number", "number_place_value", "natural_number_operations"],
+      "allowed_question_forms": ["Tính giá trị biểu thức cộng, trừ số tự nhiên."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 382,
+      "lesson_name": "Bài 83. Ôn tập về phân số và các phép tính với phân số",
+      "pdf_pages": [88, 89],
+      "book_pages": [86, 87],
+      "objective": "Cộng hai phân số khác mẫu bằng cách quy đồng mẫu số.",
+      "allowed_knowledge_tags": ["fraction_addition", "fraction_equivalence", "fraction_operations"],
+      "allowed_question_forms": ["Tính tổng hai phân số khác mẫu."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

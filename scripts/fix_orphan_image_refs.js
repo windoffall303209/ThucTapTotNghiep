@@ -1,3 +1,4 @@
+// Script fix orphan image refs h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Dọn các câu hỏi còn nhắc tới tranh, hình mà câu không còn ảnh nào.
  *
@@ -67,9 +68,12 @@ const MAU_TIEN_TO = [
   /^Dùng các khối biểu diễn số như trong ảnh[:.]\s*/iu
 ];
 
+// H?m boTienTo d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function boTienTo(de) {
   let ra = String(de || '').trim();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const mau of MAU_TIEN_TO) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (mau.test(ra)) {
       ra = ra.replace(mau, '').trim();
       break;
@@ -152,9 +156,13 @@ const LOI_GIAI = new Map([
     + 'không nhiều hơn cũng không ít hơn.']
 ]);
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -162,6 +170,7 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m layCau d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function layCau(id) {
   const rows = await db.query(
     'SELECT q.id, q.content, q.choices, q.correct_answer, q.explanation, l.lesson_name '
@@ -171,20 +180,25 @@ async function layCau(id) {
   return rows[0] || null;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const baoCao = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const id of BO_TIEN_TO) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) continue;
     const content = parseJson(row.content, {}) || {};
     const deCu = String(content.text || '');
     const deMoi = boTienTo(deCu);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (deMoi === deCu) {
       console.log(`  CHÚ Ý id ${id}: không cắt được tiền tố nào khỏi "${deCu.slice(0, 50)}"`);
       continue;
     }
     baoCao.push({ id, loai: 'bo_tien_to', bai_hoc: row.lesson_name, de_cu: deCu, de_moi: deMoi });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON) WHERE id = ?',
@@ -193,8 +207,10 @@ async function main() {
     }
   }
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, muc] of VIET_LAI_DE) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) continue;
     const content = parseJson(row.content, {}) || {};
     const explanation = parseJson(row.explanation, {}) || {};
@@ -203,6 +219,7 @@ async function main() {
       de_cu: String(content.text || ''), de_moi: muc.de,
       dap_an: row.correct_answer, loi_giai_moi: muc.giai
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), explanation = CAST(? AS JSON) WHERE id = ?',
@@ -215,13 +232,16 @@ async function main() {
     }
   }
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, muc] of THAY_MOI) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) continue;
     const content = parseJson(row.content, {}) || {};
     const choicesCu = parseJson(row.choices, []) || [];
     const explanation = parseJson(row.explanation, {}) || {};
     const choicesMoi = muc.pa.map((text, i) => ({ key: NHAN[i], text, images: [] }));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!choicesMoi.some((c) => c.key === muc.dap)) {
       throw new Error(`id ${id}: đáp án ${muc.dap} không có trong bộ phương án mới.`);
     }
@@ -232,6 +252,7 @@ async function main() {
       phuong_an_moi: choicesMoi.map((c) => `${c.key}. ${c.text}`),
       dap_an_cu: row.correct_answer, dap_an_moi: muc.dap, loi_giai_moi: muc.giai
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), choices = CAST(? AS JSON), '
@@ -245,14 +266,17 @@ async function main() {
     }
   }
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, giai] of LOI_GIAI) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) continue;
     const explanation = parseJson(row.explanation, {}) || {};
     baoCao.push({
       id, loai: 'sua_loi_giai', bai_hoc: row.lesson_name,
       loi_giai_cu: String(explanation.text || ''), loi_giai_moi: giai
     });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET explanation = CAST(? AS JSON) WHERE id = ?',
@@ -261,6 +285,7 @@ async function main() {
     }
   }
 
+  // H?m dem d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const dem = (loai) => baoCao.filter((b) => b.loai === loai).length;
   console.log(`Bỏ tiền tố nhắc ảnh: ${dem('bo_tien_to')}`);
   console.log(`Viết lại đề:         ${dem('viet_lai_de')}`);
@@ -276,9 +301,11 @@ async function main() {
     console.log(`\n  id ${b.id} [${b.loai}] ${b.bai_hoc}`);
     console.log(`    cũ : ${b.de_cu}`);
     console.log(`    mới: ${b.de_moi}`);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (b.phuong_an_moi) console.log(`    ${b.phuong_an_moi.join(' | ')}  -> ${b.dap_an_moi}`);
   });
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${baoCao.length} câu.`);
     console.log('Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');

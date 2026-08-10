@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-126-130",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 và Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf; SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [108, 109, 110, 111, 112, 113, 5, 6, 7, 8, 9, 10],
+    "verified_book_pages": [107, 108, 109, 110, 111, 112, 4, 5, 6, 7, 8, 9]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa hình học hoặc khối hàng nghìn; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 126 nhận biết đặc điểm hình chữ nhật; bài 127 nhận biết đặc điểm hình vuông; bài 128 tính chu vi hình chữ nhật và hình vuông; bài 129 đọc, viết và phân tích số trong phạm vi 10 000; bài 130 phân tích số theo hàng nghìn, trăm, chục, đơn vị và viết số thành tổng.",
+    "excluded_pages": "Các trang ôn tập chung cuối Tập 1 và các bài sau bài 130 không được gán vào bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 126,
+      "lesson_name": "21. Hình chữ nhật",
+      "pdf_pages": [108, 109],
+      "book_pages": [107, 108],
+      "objective": "Nhận biết hình chữ nhật có bốn góc vuông, hai cạnh dài bằng nhau và hai cạnh ngắn bằng nhau.",
+      "allowed_knowledge_tags": ["rectangle_properties", "opposite_sides_equal", "length_width"],
+      "allowed_question_forms": ["Nhận biết cặp cạnh bằng nhau của hình chữ nhật.", "Xác định chiều dài hoặc chiều rộng.", "Nhận biết bốn góc vuông của hình chữ nhật."],
+      "forbidden_text_patterns": ["\\b(diện tích|chu vi|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Công thức chu vi", "Diện tích", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 127,
+      "lesson_name": "22. Hình vuông",
+      "pdf_pages": [110, 111],
+      "book_pages": [109, 110],
+      "objective": "Nhận biết hình vuông có bốn góc vuông và bốn cạnh bằng nhau.",
+      "allowed_knowledge_tags": ["square_properties", "four_equal_sides", "four_right_angles"],
+      "allowed_question_forms": ["Nhận biết hình vuông.", "Xác định các cạnh bằng nhau của hình vuông.", "Nhận biết bốn góc vuông của hình vuông."],
+      "forbidden_text_patterns": ["\\b(diện tích|chu vi|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Công thức chu vi", "Diện tích", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 128,
+      "lesson_name": "23. Chu vi hình chữ nhật, chu vi hình vuông",
+      "pdf_pages": [112, 113],
+      "book_pages": [111, 112],
+      "objective": "Tính chu vi hình chữ nhật bằng (chiều dài + chiều rộng) × 2 và chu vi hình vuông bằng độ dài một cạnh × 4.",
+      "allowed_knowledge_tags": ["rectangle_perimeter", "square_perimeter", "sum_side_lengths"],
+      "allowed_question_forms": ["Tính chu vi hình chữ nhật.", "Tính chu vi hình vuông.", "Giải bài toán thực tế về hàng rào hoặc đường viền."],
+      "forbidden_text_patterns": ["\\b(diện tích|hình tròn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Diện tích", "Chu vi hình tròn", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 129,
+      "lesson_name": "1. Các số trong phạm vi 10 000",
+      "pdf_pages": [5, 6, 7],
+      "book_pages": [4, 5, 6],
+      "objective": "Đọc, viết, đếm và nhận biết các số trong phạm vi 10 000 theo hàng nghìn, trăm, chục và đơn vị.",
+      "allowed_knowledge_tags": ["numbers_to_10000", "read_four_digit_numbers", "place_value_thousands_hundreds_tens_ones"],
+      "allowed_question_forms": ["Đọc hoặc viết số có bốn chữ số.", "Xác định giá trị chữ số theo hàng.", "Phân tích số theo các khối nghìn, trăm, chục, đơn vị."],
+      "forbidden_text_patterns": ["\\b(số có năm chữ số|hàng chục nghìn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Số trong phạm vi 100 000", "Hàng chục nghìn", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 130,
+      "lesson_name": "2. Các số trong phạm vi 10 000 (tiếp theo)",
+      "pdf_pages": [8, 9, 10],
+      "book_pages": [7, 8, 9],
+      "objective": "Viết số, đọc số và viết số thành tổng của các nghìn, trăm, chục và đơn vị trong phạm vi 10 000.",
+      "allowed_knowledge_tags": ["decompose_four_digit_number", "expanded_form_to_10000", "place_value_table"],
+      "allowed_question_forms": ["Viết số từ bảng giá trị các hàng.", "Viết số thành tổng.", "Xác định chữ số hàng nghìn, trăm, chục, đơn vị."],
+      "forbidden_text_patterns": ["\\b(số có năm chữ số|hàng chục nghìn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Số trong phạm vi 100 000", "Hàng chục nghìn", "Phân số", "Số thập phân"]
+    }
+  ]
+}

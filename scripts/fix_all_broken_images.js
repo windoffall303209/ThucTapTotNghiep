@@ -1,3 +1,4 @@
+// Script fix all broken images h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Xử lý gộp toàn bộ câu hỏi có ảnh hỏng, phát hiện qua các đợt quét lớp 1 đến 5.
  *
@@ -59,9 +60,13 @@ const BAC_BO = new Map([
     + 'máy đi đo toạ độ pixel rồi kết luận 82, đó là suy diễn sai']
 ]);
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -69,10 +74,12 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m decode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function decode(b64) {
   return JSON.parse(Buffer.from(b64, 'base64').toString('utf8'));
 }
 
+// H?m encode d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function encode(payload) {
   return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
 }
@@ -86,6 +93,7 @@ function boMaGiuCho(text) {
     .trim();
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const danhSach = JSON.parse(fs.readFileSync(NGUON, 'utf8'));
   const texCache = new Map();
@@ -97,7 +105,9 @@ async function main() {
   let suaTex = 0;
   let boQua = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const muc of danhSach) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (BAC_BO.has(muc.id)) {
       boQua += 1;
       continue;
@@ -111,6 +121,7 @@ async function main() {
        WHERE q.id = ?`,
       [muc.id]
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (rows.length === 0) {
       boQua += 1;
       continue;
@@ -148,9 +159,12 @@ async function main() {
     });
 
     goAnh += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (deMoi !== boMaGiuCho(deCu)) vietLaiDe += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (dapAnMoi !== row.correct_answer) doiDapAn += 1;
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), correct_answer = ? WHERE id = ?',
@@ -160,22 +174,29 @@ async function main() {
 
     // Đồng bộ file .tex của khối tương ứng.
     const fileName = TEX_THEO_KHOI[row.grade];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!fileName) continue;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!texCache.has(fileName)) {
       const filePath = path.join(ROOT, 'data', fileName);
       texCache.set(fileName, fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8').split('\n') : null);
     }
     const lines = texCache.get(fileName);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lines) continue;
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (let i = 0; i < lines.length; i += 1) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!lines[i].startsWith('% DBJSON ')) continue;
       let payload;
+      // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
       try {
         payload = decode(lines[i].slice('% DBJSON '.length).trim());
       } catch (error) {
         continue;
       }
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (String(payload.content?.text || '') !== deCu) continue;
 
       payload.content.text = deMoi;
@@ -184,19 +205,24 @@ async function main() {
       lines[i] = `% DBJSON ${encode(payload)}`;
 
       let end = i + 1;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       while (end < lines.length && !lines[end].includes('\\end{minipage}')) end += 1;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (let j = i + 1; j <= end; j += 1) {
         const cr = lines[j].endsWith('\r') ? '\r' : '';
         const noiDung = lines[j].replace(/\r$/, '');
         const khopDe = noiDung.match(/^(\\noindent\\textbf\{[^}]+\}\s*)(.*)$/);
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (khopDe) {
           lines[j] = `${khopDe[1]}${deMoi}${cr}`;
           continue;
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (noiDung.includes('Đáp án đúng:')) {
           lines[j] = noiDung.replace(/(Đáp án đúng:\} )([A-D])/, `$1${dapAnMoi}`) + cr;
           continue;
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (noiDung.includes('\\textit{Ảnh nguồn:}')) lines[j] = cr;
       }
       suaTex += 1;
@@ -211,8 +237,11 @@ async function main() {
   console.log(`  Sửa trong .tex:   ${suaTex}`);
   console.log(`  Bỏ qua:           ${boQua}  (gồm ${BAC_BO.size} câu bị bác bỏ đề xuất đổi đáp án)`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const [fileName, lines] of texCache) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!lines) continue;
       fs.writeFileSync(path.join(ROOT, 'data', fileName), lines.join('\n'), 'utf8');
       console.log(`  Đã ghi ${fileName}`);

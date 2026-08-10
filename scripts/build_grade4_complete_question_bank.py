@@ -1,3 +1,4 @@
+# Script build grade4 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import hashlib
@@ -101,6 +102,8 @@ helper = importlib.util.module_from_spec(helper_spec)
 helper_spec.loader.exec_module(helper)
 
 
+# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def canonical_titles() -> dict[int, str]:
     data = json.loads(BLUEPRINT.read_text(encoding="utf-8"))
     result = {}
@@ -116,10 +119,14 @@ def canonical_titles() -> dict[int, str]:
     return result
 
 
+# H?m converted_path d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def converted_path(source: Path) -> Path:
     source_hash = hashlib.sha1(str(source).encode("utf-8")).hexdigest()[:10]
     return CONVERTED_ROOT / f"{source.stem}-{source_hash}.docx"
 
+
+# H?m ensure_converted d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def ensure_converted(source: Path) -> Path:
     if source.suffix.lower() == ".docx":
@@ -153,10 +160,14 @@ def ensure_converted(source: Path) -> Path:
     return target
 
 
+# H?m image_directory d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def image_directory(source: Path) -> Path:
     stem = re.sub(r"_v\d+$", "", source.stem, flags=re.IGNORECASE)
     return source.parent / f"{stem}_images"
 
+
+# H?m image_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def image_for(source: Path, source_lesson: int, question_number: int) -> Path | None:
     if question_number > 10:
@@ -174,6 +185,8 @@ def image_for(source: Path, source_lesson: int, question_number: int) -> Path | 
         )
     return matches[0]
 
+
+# H?m canonical_lesson_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def canonical_lesson_for_heading(
     heading: str,
@@ -196,6 +209,8 @@ def canonical_lesson_for_heading(
     return candidates[0], source_lesson
 
 
+# H?m parse_source d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_source(
     source: Path,
     canonical: dict[int, str],
@@ -206,6 +221,8 @@ def parse_source(
     source_lesson = 0
     local_question_number = 0
     current = None
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -295,6 +312,8 @@ def parse_source(
     return records
 
 
+# H?m save_embedded_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def save_embedded_images(block, source: Path, question_number: int) -> list[Path]:
     relation_ids = []
     for blip in block._element.xpath(".//a:blip"):
@@ -325,6 +344,8 @@ def save_embedded_images(block, source: Path, question_number: int) -> list[Path
     return result
 
 
+# H?m parse_embedded_source d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_embedded_source(
     source: Path,
     canonical: dict[int, str],
@@ -335,6 +356,8 @@ def parse_embedded_source(
     source_lesson = 0
     local_question_number = 0
     current = None
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -446,6 +469,8 @@ def parse_embedded_source(
     return records
 
 
+# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def record_signature(record: dict) -> tuple:
     image_path = Path(record["image_source_path"]) if record["image_source_path"] else None
     image_fingerprint = (
@@ -461,6 +486,8 @@ def record_signature(record: dict) -> tuple:
         image_fingerprint,
     )
 
+
+# H?m finalize_source_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def finalize_source_choices(record: dict) -> None:
     choices = [
@@ -479,6 +506,8 @@ def finalize_source_choices(record: dict) -> None:
     record["correct_answer"] = answer_key
     record["answer_text"] = keyed["text"]
 
+
+# H?m finalize_imported_choices d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def finalize_imported_choices(record: dict, conversions: list[dict]) -> None:
     if not record["raw_choices"]:
@@ -585,6 +614,8 @@ def finalize_imported_choices(record: dict, conversions: list[dict]) -> None:
     helper.finalize_choices(record, conversions)
 
 
+# H?m audit_record d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def audit_record(record: dict) -> list[str]:
     issues = []
     choices = record["choices"]
@@ -630,6 +661,8 @@ def audit_record(record: dict) -> list[str]:
     return issues
 
 
+# H?m supplemental_choice_set d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def supplemental_choice_set(
     answer: str | int,
     distractors: list[str | int],
@@ -649,6 +682,8 @@ def supplemental_choice_set(
     )
     return choices, correct_answer
 
+
+# H?m supplemental_record d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def supplemental_record(
     lesson_number: int,
@@ -679,6 +714,8 @@ def supplemental_record(
         "image_relative_path": "",
     }
 
+
+# H?m parallelogram_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parallelogram_supplement() -> list[dict]:
     records = []
@@ -772,6 +809,8 @@ def parallelogram_supplement() -> list[dict]:
     return records
 
 
+# H?m rhombus_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rhombus_supplement() -> list[dict]:
     records = []
     conceptual = [
@@ -843,6 +882,8 @@ def rhombus_supplement() -> list[dict]:
         )
     return records
 
+
+# H?m square_metre_supplement d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def square_metre_supplement() -> list[dict]:
     records = []
@@ -944,6 +985,8 @@ def square_metre_supplement() -> list[dict]:
     return records
 
 
+# H?m supplemental_records d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def supplemental_records() -> list[dict]:
     records = [
         *parallelogram_supplement(),
@@ -954,6 +997,8 @@ def supplemental_records() -> list[dict]:
         raise ValueError(f"Phải có 60 câu bổ sung lớp 4, tìm thấy {len(records)}.")
     return records
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -1116,5 +1161,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

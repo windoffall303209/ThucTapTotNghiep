@@ -1,3 +1,4 @@
+// B? ki?m th? curriculum deletion safety.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -24,8 +25,10 @@ test('xóa bài khóa hàng và trả đúng ảnh ở thời điểm xóa', asy
   const calls = [];
   const deletion = await Curriculum.deleteLessonIfEmpty(11, {
     transaction: async (callback) => callback({
+      // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
       async execute(sql, params) {
         calls.push({ sql, params });
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/SELECT theory_cards/.test(sql)) {
           return [[{
             theory_cards: [{
@@ -36,6 +39,7 @@ test('xóa bài khóa hàng và trả đúng ảnh ở thời điểm xóa', asy
             }]
           }]];
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/FROM QuestionBank/.test(sql)) return [[]];
         return [{ affectedRows: 1 }];
       }
@@ -59,6 +63,7 @@ test('cập nhật lý thuyết khóa hàng và từ chối revision đã cũ', 
     {
       expectedTheoryCards: [{ title: 'Nội dung cũ' }],
       transaction: async (callback) => callback({
+        // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
         async execute(sql) {
           calls.push(sql);
           return [[{

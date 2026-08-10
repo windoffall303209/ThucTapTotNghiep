@@ -1,3 +1,4 @@
+// Ti?n ?ch flash cung c?p c?c h?m d?ng chung cho chu?n h?a d? li?u, b?o m?t v? x? l? l?i.
 function setFlash(req, type, message, options = {}) {
   req.session.flash = {
     type,

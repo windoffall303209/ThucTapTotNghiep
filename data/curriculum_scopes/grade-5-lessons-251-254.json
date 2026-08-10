@@ -1,0 +1,64 @@
+{
+  "scope_id": "grade-5-lessons-251-254",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
+    "verified_book_pages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 62 thể tích của một hình; Bài 63 xăng-ti-mét khối và đề-xi-mét khối; Bài 64 mét khối; Bài 65 thể tích hình hộp chữ nhật và hình lập phương.",
+    "excluded_pages": "Không đưa Bài 61, 66, 67 và các phần luyện tập xen giữa các bài vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 251,
+      "lesson_name": "13. Bài 62. Thể tích của một hình",
+      "pdf_pages": [38, 39],
+      "book_pages": [36, 37],
+      "objective": "So sánh thể tích và nhận biết thể tích của hình được ghép từ các khối lập phương đơn vị.",
+      "allowed_knowledge_tags": ["volume", "unit_cubes", "volume_comparison"],
+      "allowed_question_forms": ["So sánh thể tích dựa vào số khối lập phương đơn vị.", "Tìm thể tích bằng cách đếm khối lập phương đơn vị."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 252,
+      "lesson_name": "14. Bài 63. Xăng-ti-mét khối. Đề-xi-mét khối",
+      "pdf_pages": [40, 41, 42],
+      "book_pages": [38, 39, 40],
+      "objective": "Nhận biết cm³, dm³ và mối quan hệ 1 dm³ = 1 000 cm³.",
+      "allowed_knowledge_tags": ["cubic_centimeter", "cubic_decimeter", "volume_conversion"],
+      "allowed_question_forms": ["Đổi dm³ sang cm³.", "Đổi cm³ sang dm³.", "Nhận biết đơn vị đo thể tích."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 253,
+      "lesson_name": "15. Bài 64. Mét khối",
+      "pdf_pages": [43, 44, 45],
+      "book_pages": [41, 42, 43],
+      "objective": "Nhận biết m³ và mối quan hệ 1 m³ = 1 000 dm³ = 1 000 000 cm³.",
+      "allowed_knowledge_tags": ["cubic_meter", "volume_conversion", "cubic_decimeter"],
+      "allowed_question_forms": ["Đổi m³ sang dm³.", "Đổi m³ sang cm³.", "Chọn đơn vị đo thể tích phù hợp."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 254,
+      "lesson_name": "16. Bài 65. Thể tích hình hộp chữ nhật, hình lập phương",
+      "pdf_pages": [46, 47],
+      "book_pages": [44, 45],
+      "objective": "Tính thể tích hình hộp chữ nhật bằng chiều dài nhân chiều rộng nhân chiều cao và thể tích hình lập phương bằng cạnh nhân cạnh nhân cạnh.",
+      "allowed_knowledge_tags": ["rectangular_prism_volume", "cube_volume", "volume_formula"],
+      "allowed_question_forms": ["Tính thể tích hình hộp chữ nhật.", "Tính thể tích hình lập phương."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

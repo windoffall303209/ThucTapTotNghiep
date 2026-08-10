@@ -1,3 +1,4 @@
+# Script build grade5 theory docx detailed h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import math
 import sys
@@ -96,9 +97,13 @@ CHAPTERS = [
 ]
 
 
+# H?m ntext d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def ntext(text):
     return base.norm(text)
 
+
+# H?m lesson_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def lesson_kind(name):
     n = ntext(name)
@@ -199,6 +204,8 @@ def lesson_kind(name):
     return "decimal_number"
 
 
+# H?m lesson_spec d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def lesson_spec(name):
     k = lesson_kind(name)
     specs = {
@@ -254,6 +261,8 @@ def lesson_spec(name):
     return {"kind": k, "objective": objective, "model": model, "quick": quick, "answer": answer}
 
 
+# H?m header d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def header(draw, lesson, card_title):
     base.rounded(draw, (34, 34, 1166, 641), "#ffffff", "#cbd5e1", 3, 30)
     draw.text((78, 65), "Toán lớp 5", font=base.font(27, True), fill="#1f4e79")
@@ -262,12 +271,16 @@ def header(draw, lesson, card_title):
     draw.line((78, 145, 1122, 145), fill="#e2e8f0", width=3)
 
 
+# H?m draw_quick_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_quick_scene(draw, card):
     base.rounded(draw, (130, 225, 1070, 485), "#f8fafc", "#cbd5e1", 3, 24)
     draw.text((185, 260), "Bài thử nhanh", font=base.font(34, True), fill="#0f172a")
     base.draw_wrapped(draw, card["display_text"], (185, 320), base.font(35, True), fill="#1d4ed8", width=36, spacing=10)
     base.label_box(draw, (650, 370, 1010, 445), f"Đáp án: {card['expected_answer']}", "#dcfce7", "#15803d", "#166534", 24)
 
+
+# H?m draw_decimal_place d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_decimal_place(draw, text="3,47"):
     digits = [("3", "đơn vị"), (",", ""), ("4", "phần mười"), ("7", "phần trăm")]
@@ -283,6 +296,8 @@ def draw_decimal_place(draw, text="3,47"):
     draw.text((700, 315), text, font=base.font(56, True), fill="#dc2626")
 
 
+# H?m draw_fraction_grid d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_fraction_grid(draw, num=3, den=4, label="3/4"):
     x0, y0 = 250, 250
     cols = den
@@ -292,12 +307,16 @@ def draw_fraction_grid(draw, num=3, den=4, label="3/4"):
     draw.text((650, 305), label, font=base.font(62, True), fill="#dc2626")
 
 
+# H?m draw_vertical_decimal d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_vertical_decimal(draw, expr, result, note="Thẳng hàng dấu phẩy"):
     draw.text((330, 260), expr, font=base.font(58, True), fill="#0f172a")
     draw.line((350, 365, 790, 365), fill="#1d4ed8", width=5)
     draw.text((520, 395), result, font=base.font(58, True), fill="#dc2626")
     base.label_box(draw, (330, 475, 850, 535), note, "#fef3c7", "#ca8a04", "#92400e", 24)
 
+
+# H?m draw_geometry d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_geometry(draw, k):
     if k in {"triangle", "triangle_area"}:
@@ -340,6 +359,8 @@ def draw_geometry(draw, k):
         }[k]
         draw.text((310, 520), label, font=base.font(32, True), fill="#1d4ed8")
 
+
+# H?m draw_scene_by_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_scene_by_kind(draw, name, k):
     if k in {"ratio", "sum_ratio", "diff_ratio"}:
@@ -431,6 +452,8 @@ def draw_scene_by_kind(draw, name, k):
                 draw.text((780, y), f"{count} lần", font=base.font(28, True), fill="#1d4ed8")
 
 
+# H?m build_cards d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_cards(lesson_name):
     spec = lesson_spec(lesson_name)
     return [
@@ -470,6 +493,8 @@ def build_cards(lesson_name):
     ]
 
 
+# H?m build_blueprint d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_blueprint():
     chapters = []
     for chapter in CHAPTERS:
@@ -491,6 +516,8 @@ def build_blueprint():
     }
 
 
+# H?m render_card_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
     img = Image.new("RGB", (1200, 675), "#f1f5f9")
@@ -506,6 +533,8 @@ def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card
     img.save(out)
     return out
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx(data):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -565,6 +594,8 @@ def build_docx(data):
         return FALLBACK_OUTPUT_PATH
 
 
+# H?m build_contact_sheets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_contact_sheets():
     paths = sorted(IMAGE_DIR.glob("grade5-*.png"))
     outs = []
@@ -586,6 +617,8 @@ def build_contact_sheets():
     return outs
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     data = build_blueprint()
     BLUEPRINT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -601,5 +634,6 @@ def main():
     print(f"images={len(list(IMAGE_DIR.glob('grade5-*.png')))}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

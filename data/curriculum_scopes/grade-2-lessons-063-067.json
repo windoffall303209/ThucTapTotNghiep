@@ -1,0 +1,117 @@
+{
+  "scope_id": "grade-2-lessons-063-067",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "verified_book_pages": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh thể hiện rõ nhóm đối tượng hoặc sơ đồ phép nhân; không chứa đáp án.",
+    "progression": "Bài 63 làm quen nhóm bằng nhau và dấu nhân; bài 64 tính phép nhân; bài 65 phân biệt thừa số, tích; bài 66 và 67 chỉ dùng bảng nhân 2 và bảng nhân 5.",
+    "difficulty": "Một phép nhân hoặc một nhận biết trực tiếp; không dùng phép chia hay bảng nhân ngoài phạm vi bài."
+  },
+  "lessons": [
+    {
+      "lesson_id": 63,
+      "lesson_name": "Làm quen với phép nhân. Dấu nhân",
+      "pdf_pages": [5, 6],
+      "book_pages": [4, 5],
+      "objective": "Nhận biết các nhóm bằng nhau, chuyển phép cộng lặp lại thành phép nhân và đọc dấu nhân.",
+      "allowed_knowledge_tags": [
+        "identify_multiplication_sign",
+        "represent_equal_groups_as_multiplication",
+        "read_multiplication_expression",
+        "model_repeated_addition_with_multiplication"
+      ],
+      "allowed_question_forms": [
+        "Chọn phép nhân biểu diễn các nhóm bằng nhau.",
+        "Đọc một phép nhân đơn giản.",
+        "Nhận biết dấu nhân trong phép tính."
+      ],
+      "forbidden_text_patterns": ["\\b(chia|phép chia|thương)\\b"],
+      "not_yet_allowed": ["Phép chia", "Bảng nhân 2 hoặc 5", "Tìm thừa số hoặc tích"]
+    },
+    {
+      "lesson_id": 64,
+      "lesson_name": "Phép nhân",
+      "pdf_pages": [7, 8, 9],
+      "book_pages": [6, 7, 8],
+      "objective": "Hiểu phép nhân là phép cộng các số hạng bằng nhau và tính các phép nhân đơn giản.",
+      "allowed_knowledge_tags": [
+        "calculate_basic_multiplication",
+        "equal_groups_multiplication",
+        "convert_repeated_addition_to_multiplication",
+        "solve_one_step_multiplication_story"
+      ],
+      "allowed_question_forms": [
+        "Tính phép nhân trong phạm vi các nhóm bằng nhau.",
+        "Chọn phép nhân tương ứng với phép cộng lặp lại.",
+        "Giải tình huống thực tế bằng một phép nhân."
+      ],
+      "forbidden_text_patterns": ["\\b(chia|phép chia|thương)\\b"],
+      "not_yet_allowed": ["Phép chia", "Bảng nhân 2 hoặc 5 theo dạng ghi nhớ", "Phép nhân nhiều bước"]
+    },
+    {
+      "lesson_id": 65,
+      "lesson_name": "Thừa số, tích",
+      "pdf_pages": [10],
+      "book_pages": [9],
+      "objective": "Nhận biết hai thừa số và tích trong một phép nhân.",
+      "allowed_knowledge_tags": [
+        "identify_factors",
+        "identify_product",
+        "read_factor_product_relationship"
+      ],
+      "allowed_question_forms": [
+        "Chỉ ra thừa số thứ nhất hoặc thứ hai.",
+        "Chỉ ra tích trong phép nhân.",
+        "Phân biệt thừa số với tích."
+      ],
+      "forbidden_text_patterns": ["\\b(chia|phép chia|thương)\\b"],
+      "not_yet_allowed": ["Tìm thừa số chưa biết", "Phép chia", "Biểu thức nhiều phép tính"]
+    },
+    {
+      "lesson_id": 66,
+      "lesson_name": "Bảng nhân 2",
+      "pdf_pages": [11, 12],
+      "book_pages": [10, 11],
+      "objective": "Ghi nhớ và vận dụng bảng nhân 2 trong các phép tính, tình huống đơn giản.",
+      "allowed_knowledge_tags": [
+        "recall_multiplication_table_2",
+        "calculate_multiplication_by_2",
+        "solve_one_step_multiplication_story_by_2"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép nhân trong bảng nhân 2.",
+        "Điền kết quả còn thiếu của bảng nhân 2.",
+        "Giải tình huống có các nhóm 2 đối tượng."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng nhân 5|chia|phép chia|thương)\\b"],
+      "not_yet_allowed": ["Bảng nhân 5", "Bảng nhân ngoài 2", "Phép chia tương ứng"]
+    },
+    {
+      "lesson_id": 67,
+      "lesson_name": "Bảng nhân 5",
+      "pdf_pages": [13, 14],
+      "book_pages": [12, 13],
+      "objective": "Ghi nhớ và vận dụng bảng nhân 5 trong các phép tính, tình huống đơn giản.",
+      "allowed_knowledge_tags": [
+        "recall_multiplication_table_5",
+        "calculate_multiplication_by_5",
+        "solve_one_step_multiplication_story_by_5"
+      ],
+      "allowed_question_forms": [
+        "Tính một phép nhân trong bảng nhân 5.",
+        "Điền kết quả còn thiếu của bảng nhân 5.",
+        "Giải tình huống có các nhóm 5 đối tượng."
+      ],
+      "forbidden_text_patterns": ["\\b(bảng nhân 2|chia|phép chia|thương)\\b"],
+      "not_yet_allowed": ["Bảng nhân 2", "Bảng nhân ngoài 5", "Phép chia tương ứng"]
+    }
+  ]
+}

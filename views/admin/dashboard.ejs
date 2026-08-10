@@ -1,3 +1,4 @@
+<%# M?u giao di?n dashboard k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Quản trị nội dung</p>
@@ -55,8 +56,11 @@
       Phân bố độ khó ngân hàng câu hỏi
     </div>
     <div class="difficulty-bars" aria-label="Bảng phân bố câu hỏi theo độ khó">
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% mucDoKho.forEach((muc) => { %>
+        <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
         <% const soCau = Number(difficultyStats[muc.key] || 0); %>
+        <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
         <% const phanTram = Math.round((soCau / tongCau) * 100); %>
         <div class="difficulty-row">
           <span class="difficulty-label"><%= muc.label %></span>
@@ -81,9 +85,11 @@
     </div>
     <%# Hai con số người soạn nội dung cần thấy đầu tiên: bài nào còn trống.
         Bấm vào là sang thẳng trang biên soạn của bài đó. %>
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (backlog.thieuCauHoi === 0 && backlog.thieuLyThuyet === 0) { %>
       <p class="muted">Mọi bài học đều đã có câu hỏi và lý thuyết. Không còn việc tồn đọng.</p>
     <% } else { %>
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (backlog.thieuCauHoi > 0) { %>
         <p class="muted"><strong><%= backlog.thieuCauHoi %></strong> bài chưa có câu hỏi nào:</p>
         <div class="row-actions">
@@ -92,9 +98,11 @@
               <%= lesson.lesson_name %>
             </a>
           <% }) %>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (backlog.thieuCauHoi > 5) { %><span class="status-pill status-new">+<%= backlog.thieuCauHoi - 5 %> bài nữa</span><% } %>
         </div>
       <% } %>
+      <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
       <% if (backlog.thieuLyThuyet > 0) { %>
         <p class="muted"><strong><%= backlog.thieuLyThuyet %></strong> bài chưa có thẻ lý thuyết:</p>
         <div class="row-actions">
@@ -103,6 +111,7 @@
               <%= lesson.lesson_name %>
             </a>
           <% }) %>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (backlog.thieuLyThuyet > 5) { %><span class="status-pill status-new">+<%= backlog.thieuLyThuyet - 5 %> bài nữa</span><% } %>
         </div>
       <% } %>
@@ -121,6 +130,7 @@
     <strong>Quản lý lý thuyết</strong>
     <p class="muted">Cập nhật thẻ kiến thức, ví dụ và ảnh minh họa cho từng bài.</p>
   </a>
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (admin.role === 'SYSADMIN') { %>
     <a class="action-card" href="/admin/settings">
       <i data-lucide="settings" class="feature-icon"></i>
@@ -139,6 +149,7 @@
     <i data-lucide="list-checks" class="lucide-icon"></i>
     Câu hỏi gần đây
   </div>
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (!questions || questions.length === 0) { %>
     <div class="empty-state compact">
       <p>Chưa có câu hỏi nào trong ngân hàng. Vào "Ngân hàng câu hỏi" để soạn câu đầu tiên.</p>
@@ -156,6 +167,7 @@
           </tr>
         </thead>
         <tbody>
+          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
           <% questions.forEach((question) => { %>
             <tr>
               <td data-label="ID">#<%= question.id %></td>
@@ -177,4 +189,5 @@
     </div>
   <% } %>
 </section>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/dashboard.css'); %>

@@ -1,0 +1,165 @@
+{
+  "scope_id": "grade-2-lessons-045-049",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 1 - Cánh diều.pdf",
+    "verified_pdf_pages": [21, 22, 25, 26, 31, 32, 33, 34, 37, 38],
+    "verified_book_pages": [20, 21, 24, 25, 30, 31, 32, 33, 36, 37]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa đúng số lượng, khung mười hoặc tình huống trực quan; không chứa đáp án.",
+    "progression": "Chỉ cộng, trừ có nhớ trong phạm vi 20 và các chiến lược đếm tiếp, đếm lùi, làm tròn 10 đã xuất hiện trong bài.",
+    "difficulty": "Một phép tính hoặc một bước của chiến lược làm tròn 10; không dùng biểu thức phức tạp."
+  },
+  "lessons": [
+    {
+      "lesson_id": 45,
+      "lesson_name": "Phép cộng (có nhớ) trong phạm vi 20 (tiếp theo)",
+      "pdf_pages": [21, 22],
+      "book_pages": [20, 21],
+      "objective": "Cộng có nhớ trong phạm vi 20 bằng cách tách số hạng thứ hai để làm tròn 10.",
+      "allowed_knowledge_tags": [
+        "add_with_regrouping_within_20_continued",
+        "make_ten_strategy_for_addition",
+        "decompose_addend_to_make_ten",
+        "model_make_ten_addition",
+        "solve_one_step_addition_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Tách số hạng thứ hai thành hai phần để số hạng thứ nhất đủ 10.",
+        "Chọn số cần chuyển vào khung mười.",
+        "Tính tổng hai số có một chữ số bằng cách làm tròn 10.",
+        "Quan sát khung mười rồi tìm tổng không quá 20."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|nhân|chia)\\b",
+        "[−×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ có nhớ.",
+        "Tổng lớn hơn 20.",
+        "Hai số hạng có từ hai chữ số trở lên."
+      ]
+    },
+    {
+      "lesson_id": 46,
+      "lesson_name": "Bảng cộng (có nhớ) trong phạm vi 20",
+      "pdf_pages": [25, 26],
+      "book_pages": [24, 25],
+      "objective": "Ghi nhớ, vận dụng và hoàn thiện bảng cộng có nhớ trong phạm vi 20.",
+      "allowed_knowledge_tags": [
+        "recall_addition_facts_within_20",
+        "complete_addition_table_within_20",
+        "find_missing_addend_within_20",
+        "use_commutative_addition_facts",
+        "solve_one_step_addition_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm một phép cộng có nhớ trong phạm vi 20.",
+        "Điền số hạng còn thiếu trong bảng cộng.",
+        "Chọn phép cộng có kết quả cho trước.",
+        "Nhận biết hai phép cộng đổi chỗ có cùng kết quả."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|nhân|chia)\\b",
+        "[−×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ có nhớ.",
+        "Tổng lớn hơn 20.",
+        "Phép cộng nhiều số hạng trong một câu."
+      ]
+    },
+    {
+      "lesson_id": 47,
+      "lesson_name": "Phép trừ (có nhớ) trong phạm vi 20",
+      "pdf_pages": [31, 32],
+      "book_pages": [30, 31],
+      "objective": "Trừ có nhớ trong phạm vi 20 bằng cách đếm lùi từ số bị trừ.",
+      "allowed_knowledge_tags": [
+        "subtract_with_regrouping_within_20",
+        "count_back_for_subtraction_within_20",
+        "model_subtraction_with_regrouping_within_20",
+        "calculate_subtraction_facts_within_20",
+        "solve_one_step_subtraction_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Đếm lùi để tính phép trừ có nhớ trong phạm vi 20.",
+        "Quan sát nhóm bị bớt rồi tìm số còn lại.",
+        "Tính một phép trừ có số bị trừ từ 11 đến 20.",
+        "Giải tình huống bớt đi bằng một phép trừ."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|tổng|nhân|chia)\\b",
+        "[+×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ số có hai chữ số ngoài phạm vi 20.",
+        "Phép tính nhiều bước.",
+        "Kết quả âm."
+      ]
+    },
+    {
+      "lesson_id": 48,
+      "lesson_name": "Phép trừ (có nhớ) trong phạm vi 20 (tiếp theo)",
+      "pdf_pages": [33, 34],
+      "book_pages": [32, 33],
+      "objective": "Trừ có nhớ trong phạm vi 20 bằng cách tách số trừ để đưa số bị trừ về 10 rồi trừ tiếp.",
+      "allowed_knowledge_tags": [
+        "subtract_with_regrouping_within_20_continued",
+        "subtract_to_ten_strategy",
+        "decompose_subtrahend_to_reach_ten",
+        "model_subtract_to_ten",
+        "solve_one_step_subtraction_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Chọn phần đầu của số trừ để đưa số bị trừ về 10.",
+        "Tách số trừ thành hai phần rồi trừ qua 10.",
+        "Quan sát khung mười và các chấm bị bớt rồi tìm hiệu.",
+        "Tính một phép trừ có nhớ trong phạm vi 20."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|tổng|nhân|chia)\\b",
+        "[+×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ ngoài phạm vi 20.",
+        "Phép tính nhiều bước không thuộc chiến lược trừ về 10.",
+        "Kết quả âm."
+      ]
+    },
+    {
+      "lesson_id": 49,
+      "lesson_name": "Bảng trừ (có nhớ) trong phạm vi 20",
+      "pdf_pages": [37, 38],
+      "book_pages": [36, 37],
+      "objective": "Ghi nhớ, vận dụng và hoàn thiện bảng trừ có nhớ trong phạm vi 20.",
+      "allowed_knowledge_tags": [
+        "recall_subtraction_facts_within_20",
+        "complete_subtraction_table_within_20",
+        "find_missing_subtrahend_within_20",
+        "match_subtraction_fact_to_difference",
+        "solve_one_step_subtraction_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm phép trừ có nhớ trong phạm vi 20.",
+        "Điền số còn thiếu trong bảng trừ.",
+        "Chọn phép trừ có hiệu cho trước.",
+        "Ghép phép trừ với đúng kết quả."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|tổng|nhân|chia)\\b",
+        "[+×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ ngoài phạm vi 20.",
+        "Phép tính nhiều bước.",
+        "Kết quả âm."
+      ]
+    }
+  ]
+}

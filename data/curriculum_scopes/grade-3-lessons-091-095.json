@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-091-095",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [13, 14, 17, 18, 19, 20, 21, 22, 23, 24],
+    "verified_book_pages": [12, 13, 16, 17, 18, 19, 20, 21, 22, 23]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa đơn vị đo hoặc nhóm đồ vật; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 91 đổi mi-li-mét; bài 92 bảng nhân 3; bài 93 bảng nhân 4; bài 94 bảng nhân 6; bài 95 gấp một số lên một số lần.",
+    "difficulty": "Một phép đổi đơn vị hoặc phép nhân trong bảng đã học; bài gấp số dùng một phép nhân."
+  },
+  "lessons": [
+    {
+      "lesson_id": 91,
+      "lesson_name": "Mi-li-mét",
+      "pdf_pages": [13, 14],
+      "book_pages": [12, 13],
+      "objective": "Nhận biết mi-li-mét, kí hiệu mm và mối quan hệ 1 cm = 10 mm.",
+      "allowed_knowledge_tags": ["identify_millimeter", "centimeter_to_millimeter", "millimeter_to_centimeter", "choose_length_unit"],
+      "allowed_question_forms": ["Đổi xăng-ti-mét sang mi-li-mét.", "Đổi mi-li-mét sang xăng-ti-mét trong trường hợp tròn chục.", "Chọn đơn vị đo phù hợp."],
+      "forbidden_text_patterns": ["\\b(km|ki-lô-mét|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Đổi ki-lô-mét", "Tính diện tích", "Tính chu vi"]
+    },
+    {
+      "lesson_id": 92,
+      "lesson_name": "Bảng nhân 3",
+      "pdf_pages": [17, 18],
+      "book_pages": [16, 17],
+      "objective": "Lập, đọc và vận dụng bảng nhân 3 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_3", "multiply_by_3", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 3.", "Chọn phép nhân phù hợp với các nhóm bằng nhau.", "Giải bài toán một bước dùng bảng nhân 3."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 93,
+      "lesson_name": "Bảng nhân 4",
+      "pdf_pages": [19, 20],
+      "book_pages": [18, 19],
+      "objective": "Lập, đọc và vận dụng bảng nhân 4 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_4", "multiply_by_4", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 4.", "Chọn kết quả đúng của phép nhân.", "Giải bài toán một bước dùng bảng nhân 4."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 94,
+      "lesson_name": "Bảng nhân 6",
+      "pdf_pages": [21, 22],
+      "book_pages": [20, 21],
+      "objective": "Lập, đọc và vận dụng bảng nhân 6 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_6", "multiply_by_6", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 6.", "Điền thừa số còn thiếu trong phép nhân 6.", "Giải bài toán một bước dùng bảng nhân 6."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 95,
+      "lesson_name": "Gấp một số lên một số lần",
+      "pdf_pages": [23, 24],
+      "book_pages": [22, 23],
+      "objective": "Biết muốn gấp một số lên một số lần thì lấy số đó nhân với số lần.",
+      "allowed_knowledge_tags": ["multiply_to_increase_by_factor", "identify_times_as_many", "solve_one_step_multiplication", "represent_factor_relationship"],
+      "allowed_question_forms": ["Tính số mới khi gấp một số lên một số lần.", "Giải bài toán độ dài hoặc số lượng gấp nhiều lần.", "Chọn phép tính biểu thị quan hệ gấp số lần."],
+      "forbidden_text_patterns": ["\\b(giảm đi|chia đều|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Giảm một số đi một số lần", "Chia đều", "Phân số"]
+    }
+  ]
+}

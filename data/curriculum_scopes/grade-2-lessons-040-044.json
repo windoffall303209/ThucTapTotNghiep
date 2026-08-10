@@ -1,0 +1,161 @@
+{
+  "scope_id": "grade-2-lessons-040-044",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 1 - Cánh diều.pdf",
+    "verified_pdf_pages": [11, 12, 13, 14, 15, 16, 19, 20],
+    "verified_book_pages": [10, 11, 12, 13, 14, 15, 18, 19]
+  },
+  "review_rules": {
+    "question_language": "Một yêu cầu rõ ràng, từ ngữ phù hợp học sinh đầu lớp 2.",
+    "images": "Ảnh minh họa đúng khái niệm, vật thể dễ đếm và không chứa đáp án.",
+    "progression": "Không mở rộng khỏi tia số đến 100, đề-xi-mét, tên thành phần cộng/trừ và phép cộng có nhớ trong phạm vi 20.",
+    "difficulty": "Ưu tiên nhận biết trực tiếp hoặc một phép tính; không kết hợp nhiều kiến thức trong một câu."
+  },
+  "lessons": [
+    {
+      "lesson_id": 40,
+      "lesson_name": "Tia số. Số liền trước, số liền sau",
+      "pdf_pages": [11, 12],
+      "book_pages": [10, 11],
+      "objective": "Đọc vị trí số trên tia số đến 100 và xác định số liền trước, số liền sau của một số.",
+      "allowed_knowledge_tags": [
+        "read_number_line_to_100",
+        "identify_previous_number_to_100",
+        "identify_next_number_to_100",
+        "order_numbers_on_number_line_to_100",
+        "compare_positions_on_number_line_to_100"
+      ],
+      "allowed_question_forms": [
+        "Chọn số liền trước hoặc số liền sau của số đã cho.",
+        "Điền một số còn thiếu trên đoạn tia số liên tiếp.",
+        "Sắp xếp số theo vị trí từ trái sang phải trên tia số.",
+        "So sánh hai số dựa vào vị trí trên tia số."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(số âm|phân số|số thập phân)\\b"
+      ],
+      "not_yet_allowed": [
+        "Số lớn hơn 100 hoặc số âm.",
+        "Khoảng cách không đều hoặc tia số có phân số.",
+        "Phép tính nhiều bước trên tia số."
+      ]
+    },
+    {
+      "lesson_id": 41,
+      "lesson_name": "Đề-xi-mét",
+      "pdf_pages": [13, 14],
+      "book_pages": [12, 13],
+      "objective": "Nhận biết đề-xi-mét, kí hiệu dm và quan hệ 1 dm = 10 cm; đo, ước lượng độ dài đơn giản.",
+      "allowed_knowledge_tags": [
+        "recognize_decimeter_unit",
+        "convert_dm_to_cm_whole_tens",
+        "convert_cm_to_dm_whole_tens",
+        "measure_length_in_dm",
+        "calculate_lengths_with_same_unit_dm"
+      ],
+      "allowed_question_forms": [
+        "Đổi 1 dm hoặc 2 dm sang xăng-ti-mét.",
+        "Đổi 10 cm hoặc 20 cm sang đề-xi-mét.",
+        "Chọn đơn vị thích hợp cho một độ dài.",
+        "Cộng, trừ các độ dài cùng đơn vị dm ở mức đơn giản."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(mét vuông|xăng-ti-mét vuông|thể tích)\\b"
+      ],
+      "not_yet_allowed": [
+        "Đổi số đo có phần lẻ.",
+        "Đơn vị diện tích hoặc thể tích.",
+        "Đổi đồng thời qua nhiều đơn vị."
+      ]
+    },
+    {
+      "lesson_id": 42,
+      "lesson_name": "Số hạng – Tổng",
+      "pdf_pages": [15],
+      "book_pages": [14],
+      "objective": "Nhận biết tên gọi số hạng và tổng trong phép cộng, đồng thời lập tổng từ hai số hạng.",
+      "allowed_knowledge_tags": [
+        "identify_addends",
+        "identify_sum",
+        "name_parts_of_addition",
+        "form_sum_from_addends",
+        "calculate_sum_from_given_addends"
+      ],
+      "allowed_question_forms": [
+        "Chỉ ra số hạng trong một phép cộng.",
+        "Chỉ ra tổng trong một phép cộng.",
+        "Viết phép cộng khi biết hai số hạng.",
+        "Tính tổng của hai số hạng đã cho bằng phép cộng đã học."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(số bị trừ|số trừ|hiệu|tích|thương)\\b"
+      ],
+      "not_yet_allowed": [
+        "Tên thành phần của phép nhân hoặc phép chia.",
+        "Phương trình có ẩn.",
+        "Phép tính nhiều bước."
+      ]
+    },
+    {
+      "lesson_id": 43,
+      "lesson_name": "Số bị trừ – Số trừ – Hiệu",
+      "pdf_pages": [16],
+      "book_pages": [15],
+      "objective": "Nhận biết tên gọi số bị trừ, số trừ và hiệu trong phép trừ; lập hiệu từ dữ kiện đã cho.",
+      "allowed_knowledge_tags": [
+        "identify_minuend",
+        "identify_subtrahend",
+        "identify_difference",
+        "name_parts_of_subtraction",
+        "form_difference_from_given_parts"
+      ],
+      "allowed_question_forms": [
+        "Chỉ ra số bị trừ, số trừ hoặc hiệu trong một phép trừ.",
+        "Viết phép trừ khi biết số bị trừ và số trừ.",
+        "Tính hiệu bằng phép trừ đã học.",
+        "Ghép tên thành phần với đúng số trong phép trừ."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(số hạng|tổng|tích|thương)\\b"
+      ],
+      "not_yet_allowed": [
+        "Tên thành phần của phép nhân hoặc phép chia.",
+        "Phương trình có ẩn.",
+        "Phép tính nhiều bước."
+      ]
+    },
+    {
+      "lesson_id": 44,
+      "lesson_name": "Phép cộng (có nhớ) trong phạm vi 20",
+      "pdf_pages": [19, 20],
+      "book_pages": [18, 19],
+      "objective": "Cộng hai số có một chữ số với tổng lớn hơn 10 và không quá 20 bằng cách đếm tiếp hoặc làm tròn 10.",
+      "allowed_knowledge_tags": [
+        "add_with_regrouping_within_20",
+        "make_ten_strategy_within_20",
+        "count_on_for_sum_within_20",
+        "model_addition_with_regrouping_within_20",
+        "solve_one_step_addition_story_within_20"
+      ],
+      "allowed_question_forms": [
+        "Tính tổng hai số có một chữ số, kết quả từ 11 đến 20.",
+        "Quan sát chấm hoặc khối được gộp thành một nhóm 10 rồi tìm tổng.",
+        "Tách số hạng để làm tròn 10.",
+        "Giải tình huống thêm vào bằng một phép cộng trong phạm vi 20."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|nhân|chia)\\b",
+        "[−×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ có nhớ.",
+        "Phép cộng có số hạng lớn hơn 10.",
+        "Tổng lớn hơn 20 hoặc phép tính nhiều bước."
+      ]
+    }
+  ]
+}

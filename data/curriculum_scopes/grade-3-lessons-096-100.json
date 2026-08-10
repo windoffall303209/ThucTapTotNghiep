@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-096-100",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [25, 26, 27, 28, 29, 30, 35, 36, 39, 40],
+    "verified_book_pages": [24, 25, 26, 27, 28, 29, 34, 35, 38, 39]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa nhóm đồ vật, phép tính hoặc đơn vị đo; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 96 bảng nhân 7; bài 97 bảng nhân 8; bài 98 bảng nhân 9; bài 99 gam; bài 100 bảng chia 3.",
+    "excluded_pages": "Các trang luyện tập chung giữa bài 98 và bài 99, cùng phần ôn tập bảng chia 2 và 5, không được gán vào một bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 96,
+      "lesson_name": "Bảng nhân 7",
+      "pdf_pages": [25, 26],
+      "book_pages": [24, 25],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng nhân 7 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_7", "multiply_by_7", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 7.", "Điền thừa số còn thiếu trong phép nhân 7.", "Giải bài toán một bước dùng bảng nhân 7."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 97,
+      "lesson_name": "Bảng nhân 8",
+      "pdf_pages": [27, 28],
+      "book_pages": [26, 27],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng nhân 8 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_8", "multiply_by_8", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 8.", "Điền thừa số còn thiếu trong phép nhân 8.", "Giải bài toán một bước dùng bảng nhân 8."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 98,
+      "lesson_name": "Bảng nhân 9",
+      "pdf_pages": [29, 30],
+      "book_pages": [28, 29],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng nhân 9 trong phép tính và tình huống đơn giản.",
+      "allowed_knowledge_tags": ["multiplication_table_9", "multiply_by_9", "interpret_equal_groups", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một tích trong bảng nhân 9.", "Điền thừa số còn thiếu trong phép nhân 9.", "Giải bài toán một bước dùng bảng nhân 9."],
+      "forbidden_text_patterns": ["\\b(bảng chia|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 99,
+      "lesson_name": "Gam",
+      "pdf_pages": [35, 36],
+      "book_pages": [34, 35],
+      "objective": "Nhận biết gam, kí hiệu g và mối quan hệ 1 kg = 1 000 g.",
+      "allowed_knowledge_tags": ["identify_gram", "kilogram_to_gram", "choose_mass_unit"],
+      "allowed_question_forms": ["Đổi ki-lô-gam sang gam trong trường hợp tròn chục hoặc tròn đơn vị.", "Chọn đơn vị đo khối lượng phù hợp.", "Tính khối lượng đơn giản với đơn vị g và kg."],
+      "forbidden_text_patterns": ["\\b(mm|cm|km|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Đổi đơn vị độ dài", "Tính diện tích", "Tính chu vi"]
+    },
+    {
+      "lesson_id": 100,
+      "lesson_name": "Bảng chia 3",
+      "pdf_pages": [39, 40],
+      "book_pages": [38, 39],
+      "objective": "Đọc, ghi nhớ và vận dụng bảng chia 3 trong phép tính và tình huống chia đều.",
+      "allowed_knowledge_tags": ["division_table_3", "divide_by_3", "equal_sharing", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính một thương trong bảng chia 3.", "Viết phép chia từ tình huống chia đều.", "Giải bài toán một bước dùng bảng chia 3."],
+      "forbidden_text_patterns": ["\\b(bảng chia 4|bảng chia 6|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Bảng chia 4", "Bảng chia 6", "Phân số", "Số thập phân"]
+    }
+  ]
+}

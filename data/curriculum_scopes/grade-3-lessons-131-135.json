@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-131-135",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+    "verified_book_pages": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa chữ số La Mã, khối hàng, bảng so sánh hoặc đoạn thẳng; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 131 nhận biết và đọc, viết chữ số La Mã trong phạm vi đã học; bài 132 đọc, viết và nhận biết số trong phạm vi 100 000; bài 133 phân tích số theo hàng chục nghìn, nghìn, trăm, chục, đơn vị; bài 134 so sánh số trong phạm vi 100 000; bài 135 nhận biết điểm ở giữa và trung điểm của đoạn thẳng.",
+    "excluded_pages": "Không gán các bài luyện tập chung hoặc nội dung sau bài 135 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 131,
+      "lesson_name": "3. Làm quen với chữ số La Mã",
+      "pdf_pages": [11, 12],
+      "book_pages": [10, 11],
+      "objective": "Nhận biết các chữ số La Mã I, V, X và đọc, viết các số La Mã từ 1 đến 20 theo bài học.",
+      "allowed_knowledge_tags": ["roman_numerals", "roman_numerals_to_20", "read_write_roman_numerals"],
+      "allowed_question_forms": ["Đọc số La Mã quen thuộc.", "Viết số tự nhiên từ 1 đến 20 bằng chữ số La Mã.", "Ghép chữ số La Mã với giá trị tương ứng."],
+      "forbidden_text_patterns": ["\\b(số La Mã lớn hơn 20|phân số|số thập phân|phương trình)\\b"],
+      "not_yet_allowed": ["Quy tắc số La Mã ngoài phạm vi bài học", "Phân số", "Số thập phân", "Phương trình"]
+    },
+    {
+      "lesson_id": 132,
+      "lesson_name": "4. Các số trong phạm vi 100 000",
+      "pdf_pages": [13, 14, 15],
+      "book_pages": [12, 13, 14],
+      "objective": "Đọc, viết và nhận biết các số trong phạm vi 100 000, gồm hàng chục nghìn, nghìn, trăm, chục và đơn vị.",
+      "allowed_knowledge_tags": ["numbers_to_100000", "read_five_digit_numbers", "place_value_ten_thousands"],
+      "allowed_question_forms": ["Đọc hoặc viết số có năm chữ số.", "Xác định giá trị chữ số theo hàng.", "Nhận biết số tròn chục nghìn."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|làm tròn đến hàng nghìn|diện tích)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Làm tròn số", "Diện tích"]
+    },
+    {
+      "lesson_id": 133,
+      "lesson_name": "5. Các số trong phạm vi 100 000 (tiếp theo)",
+      "pdf_pages": [16, 17, 18],
+      "book_pages": [15, 16, 17],
+      "objective": "Phân tích số trong phạm vi 100 000 theo hàng chục nghìn, nghìn, trăm, chục và đơn vị; viết số thành tổng.",
+      "allowed_knowledge_tags": ["decompose_five_digit_number", "expanded_form_to_100000", "place_value_table_five_digits"],
+      "allowed_question_forms": ["Viết số từ bảng giá trị các hàng.", "Viết số thành tổng.", "Xác định số chục nghìn, nghìn, trăm, chục và đơn vị."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|làm tròn|phương trình)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Làm tròn số", "Phương trình"]
+    },
+    {
+      "lesson_id": 134,
+      "lesson_name": "6. So sánh các số trong phạm vi 100 000",
+      "pdf_pages": [19, 20, 21, 22],
+      "book_pages": [18, 19, 20, 21],
+      "objective": "So sánh, tìm số lớn nhất hoặc bé nhất và sắp xếp các số trong phạm vi 100 000.",
+      "allowed_knowledge_tags": ["compare_numbers_to_100000", "order_numbers", "greater_less_equal"],
+      "allowed_question_forms": ["Điền dấu lớn hơn, bé hơn hoặc bằng.", "Tìm số lớn nhất hoặc bé nhất.", "Sắp xếp các số theo thứ tự."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|số âm|làm tròn)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Số âm", "Làm tròn số"]
+    },
+    {
+      "lesson_id": 135,
+      "lesson_name": "8. Điểm ở giữa, trung điểm của đoạn thẳng",
+      "pdf_pages": [23, 24],
+      "book_pages": [22, 23],
+      "objective": "Nhận biết điểm ở giữa hai điểm và trung điểm của đoạn thẳng khi hai đoạn thẳng tạo thành hai phần bằng nhau.",
+      "allowed_knowledge_tags": ["point_between_two_points", "midpoint_of_segment", "equal_segment_lengths"],
+      "allowed_question_forms": ["Xác định điểm ở giữa hai điểm.", "Nhận biết trung điểm của đoạn thẳng.", "Kiểm tra hai đoạn thẳng có bằng nhau để xác định trung điểm."],
+      "forbidden_text_patterns": ["\\b(diện tích|chu vi|góc|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Diện tích", "Chu vi", "Đo góc", "Phân số", "Số thập phân"]
+    }
+  ]
+}

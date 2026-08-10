@@ -1,3 +1,4 @@
+# Script build grade1 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import importlib.util
@@ -83,13 +84,19 @@ TOPIC2_FOLDERS = [
 ]
 
 
+# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
+# H?m signature_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def signature_text(value: object) -> str:
     return clean(value).casefold().replace("−", "-")
 
+
+# H?m semantic_choice_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def semantic_choice_key(value: object) -> str:
     text = signature_text(value).rstrip(" .;,:!?")
@@ -101,9 +108,13 @@ def semantic_choice_key(value: object) -> str:
     return text
 
 
+# H?m natural_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def natural_key(path: Path) -> list[object]:
     return [int(part) if part.isdigit() else part.casefold() for part in re.split(r"(\d+)", path.name)]
 
+
+# H?m canonical_lessons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def canonical_lessons() -> list[str]:
     data = json.loads(GENERATED_JSON.read_text(encoding="utf-8"))
@@ -119,6 +130,8 @@ def canonical_lessons() -> list[str]:
     return result
 
 
+# H?m is_question_line d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def is_question_line(text: str) -> bool:
     return (
         len(text) > 6
@@ -129,12 +142,16 @@ def is_question_line(text: str) -> bool:
     )
 
 
+# H?m strip_question_number d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def strip_question_number(text: str) -> str:
     colon = text.find(":")
     dot = text.find(".")
     positions = [item for item in (colon, dot) if 0 <= item < 12]
     return clean(text[min(positions) + 1 :] if positions else text)
 
+
+# H?m parse_choice_line d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_choice_line(line: str) -> list[dict]:
     matches = list(re.finditer(r"(?<!\S)([A-D])\.\s*", line))
@@ -147,6 +164,8 @@ def parse_choice_line(line: str) -> list[dict]:
     return choices
 
 
+# H?m parse_answer d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_answer(line: str) -> tuple[str, str]:
     answer = clean(line.split(":", 1)[1] if ":" in line else line)
     match = re.match(r"^([A-D])\.\s*(.+)$", answer)
@@ -155,6 +174,8 @@ def parse_answer(line: str) -> tuple[str, str]:
     return "", answer
 
 
+# H?m iter_document_blocks d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def iter_document_blocks(document: Document):
     for child in document.element.body.iterchildren():
         if isinstance(child, CT_P):
@@ -162,6 +183,8 @@ def iter_document_blocks(document: Document):
         elif isinstance(child, CT_Tbl):
             yield Table(child, document)
 
+
+# H?m save_data_toan_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def save_data_toan_images(
     paragraph: Paragraph,
@@ -190,12 +213,16 @@ def save_data_toan_images(
     return images
 
 
+# H?m parse_data_toan_bank d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_data_toan_bank(path: Path) -> list[dict]:
     document = Document(path)
     records: list[dict] = []
     current_lesson = 0
     local_question_number = 0
     current: dict | None = None
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -307,6 +334,8 @@ def parse_data_toan_bank(path: Path) -> list[dict]:
     return records
 
 
+# H?m extract_position_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def extract_position_images() -> list[Path]:
     target = ASSET_DIR / "position-variants"
     target.mkdir(parents=True, exist_ok=True)
@@ -326,6 +355,8 @@ def extract_position_images() -> list[Path]:
     return images
 
 
+# H?m parse_word_bank d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_word_bank(
     path: Path,
     lesson_numbers: list[int],
@@ -336,6 +367,8 @@ def parse_word_bank(
     lesson_index = -1
     question_index = 0
     current: dict | None = None
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -396,6 +429,8 @@ def parse_word_bank(
     return records
 
 
+# H?m topic1_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def topic1_image(lesson_index: int, question_index: int) -> Path | None:
     folder = (
         SOURCE_ROOT
@@ -411,6 +446,8 @@ def topic1_image(lesson_index: int, question_index: int) -> Path | None:
     return images[selected] if selected is not None and selected < len(images) else None
 
 
+# H?m topic2_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def topic2_image(lesson_index: int, question_index: int) -> Path | None:
     folder = (
         SOURCE_ROOT
@@ -422,9 +459,13 @@ def topic2_image(lesson_index: int, question_index: int) -> Path | None:
     return images[question_index - 1] if question_index <= len(images) else None
 
 
+# H?m position_image_resolver d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def position_image_resolver(images: list[Path]):
     return lambda _lesson_index, question_index: images[question_index - 1]
 
+
+# H?m records_from_pack d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def records_from_pack() -> list[dict]:
     data = json.loads(PACK_JSON.read_text(encoding="utf-8"))
@@ -463,6 +504,8 @@ def records_from_pack() -> list[dict]:
     return result
 
 
+# H?m records_from_generated d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def records_from_generated() -> list[dict]:
     data = json.loads(GENERATED_JSON.read_text(encoding="utf-8"))
     lesson_lookup: dict[tuple[int, int], int] = {}
@@ -495,6 +538,8 @@ def records_from_generated() -> list[dict]:
     return result
 
 
+# H?m numeric_distractors d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def numeric_distractors(answer: int) -> list[str]:
     candidates = [
         max(0, answer - 1),
@@ -506,6 +551,8 @@ def numeric_distractors(answer: int) -> list[str]:
     ]
     return [str(value) for value in dict.fromkeys(candidates) if value != answer]
 
+
+# H?m distractors_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def distractors_for(prompt: str, answer: str) -> list[str]:
     normalized_answer = signature_text(answer)
@@ -559,6 +606,8 @@ def distractors_for(prompt: str, answer: str) -> list[str]:
     ]
 
 
+# H?m explanation_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def explanation_for(prompt: str, answer: str) -> str:
     text = prompt.replace("−", "-")
     blank_patterns = [
@@ -580,6 +629,8 @@ def explanation_for(prompt: str, answer: str) -> str:
             return f"Ta tính {left} {operator} {right} = {answer}."
     return f"Dựa vào dữ kiện của câu hỏi, đáp án đúng là: {answer}."
 
+
+# H?m finalize_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def finalize_choices(record: dict, repair_log: list[dict]) -> None:
     raw_choices = record.get("raw_choices", [])
@@ -641,6 +692,8 @@ def finalize_choices(record: dict, repair_log: list[dict]) -> None:
         )
 
 
+# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def record_signature(record: dict) -> tuple:
     return (
         record["lesson_number"],
@@ -649,6 +702,8 @@ def record_signature(record: dict) -> tuple:
         signature_text(record["answer_text"]),
     )
 
+
+# H?m audit_math d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def audit_math(record: dict) -> list[str]:
     issues = []
@@ -667,6 +722,8 @@ def audit_math(record: dict) -> list[str]:
                 issues.append(f"Đáp án số điền khuyết phải là {expected}.")
     return issues
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     for path in (
@@ -842,5 +899,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

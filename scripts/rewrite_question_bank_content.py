@@ -1,3 +1,4 @@
+# Script rewrite question bank content h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import copy
 import json
@@ -25,14 +26,20 @@ ANGLE_WORD_PATTERN = re.compile(
 )
 
 
+# H?m latex_angle d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def latex_angle(value):
     normalized = value.replace("’", "'").replace("′", "'")
     return f"$\\widehat{{{normalized}}}$"
 
 
+# H?m normalize_plain_angle_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalize_plain_angle_text(value):
     if not isinstance(value, str) or not value:
         return value
+
+# H?m repl_angle d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def repl_angle(match):
         label, angle = match.groups()
@@ -43,6 +50,8 @@ def normalize_plain_angle_text(value):
     current = ANGLE_INLINE_PATTERN.sub(repl_angle, value)
     return current
 
+
+# H?m split_sentences d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def split_sentences(value):
     text = re.sub(r"\s+", " ", str(value or "")).strip()
@@ -55,11 +64,15 @@ def split_sentences(value):
     return [part.strip(" •") for part in parts if part.strip(" •")]
 
 
+# H?m strip_prompt_prefix d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def strip_prompt_prefix(text):
     current = re.sub(r"^\s*Con hãy (?:chọn|lựa chọn)[^.?!]*?\s+", "", str(text or ""), flags=re.I)
     current = re.sub(r"^\s*Em hãy (?:chọn|lựa chọn)[^.?!]*?\s+", "", current, flags=re.I)
     return current.strip()
 
+
+# H?m choice_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def choice_text(question, key):
     for choice in question.get("choices") or []:
@@ -67,6 +80,8 @@ def choice_text(question, key):
             return str(choice.get("text") or "").strip()
     return ""
 
+
+# H?m set_choices d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_choices(question, values, correct_value):
     choices = []
@@ -79,6 +94,8 @@ def set_choices(question, values, correct_value):
     question["choices"] = choices
     question["correct_answer"] = correct_key
 
+
+# H?m number_to_vietnamese d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def number_to_vietnamese(n):
     n = int(n)
@@ -114,14 +131,20 @@ def number_to_vietnamese(n):
     return str(n)
 
 
+# H?m title_case_vietnamese d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def title_case_vietnamese(value):
     return value[:1].upper() + value[1:] if value else value
 
+
+# H?m deterministic_delta d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def deterministic_delta(question, lesson, modulo=9, minimum=1):
     seed = int(question.get("number") or 0) + int(lesson.get("grade") or 0) * 7 + len(str(lesson.get("title") or ""))
     return minimum + (seed % modulo)
 
+
+# H?m make_unique_numeric_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def make_unique_numeric_choices(correct, spread=3, minimum=0):
     correct = int(correct)
@@ -141,13 +164,19 @@ def make_unique_numeric_choices(correct, spread=3, minimum=0):
     return [str(value) for value in values[:4]]
 
 
+# H?m format_number_with_unit d?ng ?? chuy?n ??i d? li?u sang ??nh d?ng ph? h?p; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def format_number_with_unit(value, unit=""):
     return f"{value} {unit}".strip()
 
 
+# H?m make_numeric_choices_with_unit d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def make_numeric_choices_with_unit(correct, unit="", spread=3, minimum=0):
     return [format_number_with_unit(value, unit) for value in make_unique_numeric_choices(correct, spread, minimum)]
 
+
+# H?m rewrite_read_number d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def rewrite_read_number(question, lesson):
     text = question.get("text") or ""
@@ -190,6 +219,8 @@ def rewrite_read_number(question, lesson):
     return "read_number"
 
 
+# H?m rewrite_neighbor_number d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rewrite_neighbor_number(question, lesson):
     text = question.get("text") or ""
     match = re.search(r"Số liền (trước|sau) của\s+(\d+)\s+là", text, flags=re.I)
@@ -210,6 +241,8 @@ def rewrite_neighbor_number(question, lesson):
     )
     return f"neighbor_{kind}"
 
+
+# H?m rewrite_arithmetic d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def rewrite_arithmetic(question, lesson):
     text = question.get("text") or ""
@@ -243,6 +276,8 @@ def rewrite_arithmetic(question, lesson):
     )
     return "arithmetic"
 
+
+# H?m rewrite_three_term_arithmetic d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def rewrite_three_term_arithmetic(question, lesson):
     text = question.get("text") or ""
@@ -288,6 +323,8 @@ def rewrite_three_term_arithmetic(question, lesson):
     return "three_term_arithmetic"
 
 
+# H?m rewrite_multiply_divide d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rewrite_multiply_divide(question, lesson):
     text = question.get("text") or ""
     match = re.search(r"(Tính:\s*)(\d+)\s*([×xX*:])\s*(\d+)(?:\s*=\s*\?)?", text, flags=re.I)
@@ -321,6 +358,8 @@ def rewrite_multiply_divide(question, lesson):
     return "multiply_divide"
 
 
+# H?m rewrite_sum_difference d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rewrite_sum_difference(question, lesson):
     text = question.get("text") or ""
     match = re.search(r"(Tổng|Hiệu) của (?:hai số\s*)?(\d+) và (\d+) là", text, flags=re.I)
@@ -345,6 +384,8 @@ def rewrite_sum_difference(question, lesson):
     )
     return f"{kind}_variant"
 
+
+# H?m rewrite_compare d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def rewrite_compare(question, lesson):
     text = question.get("text") or ""
@@ -373,6 +414,8 @@ def rewrite_compare(question, lesson):
     return "compare"
 
 
+# H?m try_make_variant d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def try_make_variant(question, lesson):
     if int(lesson.get("grade") or 0) not in TARGET_GRADES:
         return None
@@ -392,6 +435,8 @@ def try_make_variant(question, lesson):
             return result
     return None
 
+
+# H?m build_detailed_explanation d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_detailed_explanation(question, lesson, original_explanation, variant_type=None):
     correct_key = str(question.get("correct_answer") or "").strip()
@@ -420,6 +465,8 @@ def build_detailed_explanation(question, lesson, original_explanation, variant_t
             lines.append(conclusion)
     return "\n".join(line for line in lines if line.strip())
 
+
+# H?m enhance_payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def enhance_payload(payload):
     data = copy.deepcopy(payload)
@@ -472,6 +519,8 @@ def enhance_payload(payload):
     return data, report
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     parser = argparse.ArgumentParser(description="Viết lại lời giải và tạo biến thể dữ liệu cho câu hỏi crawl.")
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
@@ -495,5 +544,6 @@ def main():
     }, ensure_ascii=False, indent=2))
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

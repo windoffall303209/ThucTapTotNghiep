@@ -1,3 +1,4 @@
+// Script report question bank readiness h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /* eslint-disable no-console */
 require('dotenv').config({ quiet: true });
 
@@ -11,17 +12,21 @@ const {
   summarizeReadiness
 } = require('../utils/questionBankReadiness');
 
+// H?m buildReadinessReport d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildReadinessReport() {
   const lessons = [];
   const scopes = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let grade = MIN_GRADE; grade <= MAX_GRADE; grade += 1) {
     const [chapters, candidates] = await Promise.all([
       Curriculum.getCurriculumByGrade(grade),
       Question.getQuestionCandidates({ grade })
     ]);
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const chapter of chapters) {
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const lesson of chapter.lessons || []) {
         const lessonCandidates = candidates.filter(
           (question) => Number(question.lesson_id) === Number(lesson.id)
@@ -55,7 +60,9 @@ async function buildReadinessReport() {
       }))
     ];
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const definition of scopeDefinitions) {
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const count of [15, 20]) {
         scopes.push({
           grade,
@@ -82,12 +89,15 @@ async function buildReadinessReport() {
   };
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const connection = await db.testConnection();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!connection.connected) throw new Error(`Không kết nối được database: ${connection.reason}`);
   console.log(JSON.stringify(await buildReadinessReport(), null, 2));
 }
 
+// Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
 if (require.main === module) {
   main()
     .catch((error) => {

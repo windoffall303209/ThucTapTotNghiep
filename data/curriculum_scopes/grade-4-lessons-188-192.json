@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-188-192",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_2_-_Canh_dieu_59332.pdf",
+    "verified_pdf_pages": [4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17],
+    "verified_book_pages": [4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 188 khái niệm phân số; bài 189 khái niệm phân số (tiếp theo); bài 190 phân số và phép chia số tự nhiên; bài 191 phân số bằng nhau; bài 192 tính chất cơ bản của phân số.",
+    "excluded_pages": "Không gán các trang Luyện tập của bài 56 ở PDF 11–12 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 188,
+      "lesson_name": "53. Bài 53: Khái niệm phân số",
+      "pdf_pages": [4, 5, 6],
+      "book_pages": [4, 5, 6],
+      "objective": "Nhận biết phân số qua số phần đã lấy trong các phần bằng nhau; xác định tử số và mẫu số.",
+      "allowed_knowledge_tags": ["fraction_concept", "numerator_denominator", "equal_parts"],
+      "allowed_question_forms": ["Xác định phân số chỉ phần đã tô màu.", "Nhận biết tử số và mẫu số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 189,
+      "lesson_name": "54. Bài 54: Khái niệm phân số (tiếp theo)",
+      "pdf_pages": [7, 8],
+      "book_pages": [7, 8],
+      "objective": "Đọc, viết và nhận biết phân số lớn hơn 1 qua hình biểu diễn.",
+      "allowed_knowledge_tags": ["fraction_concept", "fraction_greater_than_one", "fraction_reading"],
+      "allowed_question_forms": ["Nhận biết phân số lớn hơn 1.", "Đọc hoặc viết phân số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 190,
+      "lesson_name": "55. Bài 55: Phân số và phép chia số tự nhiên",
+      "pdf_pages": [9, 10],
+      "book_pages": [9, 10],
+      "objective": "Viết thương của phép chia hai số tự nhiên dưới dạng phân số và ngược lại.",
+      "allowed_knowledge_tags": ["fraction_as_division", "natural_number_division", "fraction_notation"],
+      "allowed_question_forms": ["Viết thương của phép chia dưới dạng phân số.", "Viết phân số dưới dạng thương của hai số tự nhiên."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 191,
+      "lesson_name": "57. Bài 57: Phân số bằng nhau",
+      "pdf_pages": [13, 14, 15],
+      "book_pages": [13, 14, 15],
+      "objective": "Nhận biết và tìm các phân số bằng nhau qua hình vẽ và phép biến đổi.",
+      "allowed_knowledge_tags": ["equivalent_fractions", "fraction_models", "fraction_equality"],
+      "allowed_question_forms": ["Chọn phân số bằng phân số đã cho.", "Tìm phân số tương đương qua hình biểu diễn."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 192,
+      "lesson_name": "58. Bài 58: Tính chất cơ bản của phân số",
+      "pdf_pages": [16, 17],
+      "book_pages": [16, 17],
+      "objective": "Vận dụng tính chất cơ bản để tạo phân số bằng phân số đã cho bằng cách nhân hoặc chia cả tử và mẫu với cùng một số khác 0.",
+      "allowed_knowledge_tags": ["fraction_basic_property", "scale_fraction", "equivalent_fractions"],
+      "allowed_question_forms": ["Tìm tử số hoặc mẫu số còn thiếu của phân số bằng nhau.", "Nhân cả tử và mẫu với cùng một số khác 0."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

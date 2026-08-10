@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-232-236",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [80, 81, 82, 83, 84, 86, 87, 92, 93, 96, 97, 98],
+    "verified_book_pages": [78, 79, 80, 81, 82, 84, 85, 90, 91, 94, 95, 96]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 32 chia số thập phân cho 10, 100, 1 000; bài 33 chia số thập phân cho số tự nhiên; bài 35 chia số thập phân cho số thập phân; bài 38 viết số đo đại lượng dưới dạng số thập phân; bài 40 tỉ số phần trăm.",
+    "excluded_pages": "Các bài luyện tập và luyện tập chung nằm giữa các bài trên, không đưa vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 232,
+      "lesson_name": "8. Bài 32. Chia một số thập phân cho 10, 100, 1 000, ...",
+      "pdf_pages": [80, 81],
+      "book_pages": [78, 79],
+      "objective": "Chia một số thập phân cho 10, 100, 1 000 bằng cách chuyển dấu phẩy sang bên trái.",
+      "allowed_knowledge_tags": ["divide_decimal_by_power_of_ten", "decimal_point_shift", "decimal_calculation"],
+      "allowed_question_forms": ["Tính số thập phân chia cho 10, 100 hoặc 1 000.", "Áp dụng phép chia với lũy thừa của 10."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 233,
+      "lesson_name": "9. Bài 33. Chia một số thập phân cho một số tự nhiên",
+      "pdf_pages": [82, 83, 84],
+      "book_pages": [80, 81, 82],
+      "objective": "Thực hiện phép chia một số thập phân cho một số tự nhiên.",
+      "allowed_knowledge_tags": ["divide_decimal_by_whole", "decimal_calculation", "equal_sharing"],
+      "allowed_question_forms": ["Chia một số thập phân cho số tự nhiên.", "Áp dụng phép chia trong tình huống chia đều."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 234,
+      "lesson_name": "11. Bài 35. Chia một số thập phân cho một số thập phân",
+      "pdf_pages": [86, 87],
+      "book_pages": [84, 85],
+      "objective": "Chuyển phép chia cho số thập phân thành phép chia cho số tự nhiên rồi thực hiện phép chia.",
+      "allowed_knowledge_tags": ["divide_decimals", "convert_divisor_to_whole", "decimal_calculation"],
+      "allowed_question_forms": ["Chia hai số thập phân.", "Giải quyết tình huống chia độ dài thành các đoạn bằng nhau."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 235,
+      "lesson_name": "14. Bài 38. Viết các số đo đại lượng dưới dạng số thập phân",
+      "pdf_pages": [92, 93],
+      "book_pages": [90, 91],
+      "objective": "Đổi số đo đại lượng gồm nhiều đơn vị về dạng một số thập phân theo đơn vị đã cho.",
+      "allowed_knowledge_tags": ["measurement_as_decimal", "unit_conversion", "length_measurement"],
+      "allowed_question_forms": ["Đổi số đo độ dài sang số thập phân.", "Viết số đo khối lượng hoặc diện tích dưới dạng số thập phân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 236,
+      "lesson_name": "16. Bài 40. Tỉ số phần trăm",
+      "pdf_pages": [96, 97, 98],
+      "book_pages": [94, 95, 96],
+      "objective": "Nhận biết tỉ số phần trăm và biểu diễn tỉ số giữa một phần với toàn thể dưới dạng phần trăm.",
+      "allowed_knowledge_tags": ["percentage_ratio", "fraction_to_percent", "whole_and_part"],
+      "allowed_question_forms": ["Tìm tỉ số phần trăm của một phần và toàn thể.", "Viết phân số hoặc số thập phân dưới dạng phần trăm."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

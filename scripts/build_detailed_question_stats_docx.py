@@ -1,3 +1,4 @@
+# Script build detailed question stats docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import base64
@@ -38,6 +39,8 @@ BLUEPRINT_FILES = {
 }
 
 
+# H?m set_cell_fill d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_fill(cell, color: str) -> None:
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = tc_pr.find(qn("w:shd"))
@@ -47,6 +50,8 @@ def set_cell_fill(cell, color: str) -> None:
     shd.set(qn("w:fill"), color)
 
 
+# H?m set_repeat_table_header d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_repeat_table_header(row) -> None:
     tr_pr = row._tr.get_or_add_trPr()
     tbl_header = OxmlElement("w:tblHeader")
@@ -54,11 +59,15 @@ def set_repeat_table_header(row) -> None:
     tr_pr.append(tbl_header)
 
 
+# H?m prevent_row_split d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def prevent_row_split(row) -> None:
     tr_pr = row._tr.get_or_add_trPr()
     cant_split = OxmlElement("w:cantSplit")
     tr_pr.append(cant_split)
 
+
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_cell_text(
     cell,
@@ -80,6 +89,8 @@ def set_cell_text(
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
+# H?m read_question_counts d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def read_question_counts(grade: int) -> tuple[Counter, dict[int, str]]:
     counts: Counter = Counter()
     source_titles: dict[int, str] = {}
@@ -93,6 +104,8 @@ def read_question_counts(grade: int) -> tuple[Counter, dict[int, str]]:
         source_titles[number] = str(payload.get("lesson_title", "")).strip()
     return counts, source_titles
 
+
+# H?m read_curriculum d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def read_curriculum(grade: int) -> list[dict]:
     path = PROJECT / "content-theory" / BLUEPRINT_FILES[grade]
@@ -111,6 +124,8 @@ def read_curriculum(grade: int) -> list[dict]:
     return lessons
 
 
+# H?m grade_rows d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def grade_rows(grade: int) -> list[dict]:
     counts, source_titles = read_question_counts(grade)
     lessons = read_curriculum(grade)
@@ -127,6 +142,8 @@ def grade_rows(grade: int) -> list[dict]:
         for number in range(1, maximum + 1)
     ]
 
+
+# H?m style_document d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def style_document(document: Document) -> None:
     styles = document.styles
@@ -151,6 +168,8 @@ def style_document(document: Document) -> None:
     section.left_margin = Inches(0.6)
     section.right_margin = Inches(0.6)
 
+
+# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_summary(document: Document, all_rows: dict[int, list[dict]]) -> None:
     title = document.add_paragraph(style="Title")
@@ -207,6 +226,8 @@ def add_summary(document: Document, all_rows: dict[int, list[dict]]) -> None:
     )
 
 
+# H?m add_grade_section d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_grade_section(document: Document, grade: int, rows: list[dict]) -> None:
     document.add_page_break()
     heading = document.add_heading(f"LỚP {grade}", level=1)
@@ -259,6 +280,8 @@ def add_grade_section(document: Document, grade: int, rows: list[dict]) -> None:
         set_cell_fill(row.cells[3], "E2F0D9" if item["count"] else "FCE4D6")
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main() -> None:
     all_rows = {grade: grade_rows(grade) for grade in range(1, 6)}
     document = Document()
@@ -291,5 +314,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

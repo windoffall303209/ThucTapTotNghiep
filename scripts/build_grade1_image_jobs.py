@@ -1,3 +1,4 @@
+# Script build grade1 image jobs h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 from pathlib import Path
 
@@ -7,6 +8,8 @@ PACK_DIR = ROOT / "output" / "grade1-question-pack"
 QUESTIONS_PATH = PACK_DIR / "questions.json"
 JOBS_PATH = PACK_DIR / "image-jobs.json"
 
+
+# H?m sheet_prompt d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def sheet_prompt(lesson, questions, job_index):
     panel_lines = []
@@ -30,6 +33,8 @@ def sheet_prompt(lesson, questions, job_index):
         "Avoid: text, watermark, logo, panel labels, clutter, tiny objects, confusing perspective, photorealistic faces, decorative borders.",
     ])
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     pack = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
@@ -58,5 +63,6 @@ def main():
     print(f"Wrote {len(jobs)} image jobs to {JOBS_PATH}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+// B? ki?m th? question bank readiness.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -10,6 +11,7 @@ const {
   summarizeReadiness
 } = require('../utils/questionBankReadiness');
 
+// H?m candidates d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function candidates({ lessons = 10, easy = 9, medium = 8, hard = 3 } = {}) {
   let id = 1;
   return [

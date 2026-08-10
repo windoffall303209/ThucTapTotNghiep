@@ -1,3 +1,4 @@
+# Script crawl public questions docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import hashlib
 import json
@@ -63,6 +64,8 @@ INDEX_URLS = {
 }
 
 
+# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean_text(value):
     if not value:
         return ""
@@ -71,16 +74,22 @@ def clean_text(value):
     return value.strip()
 
 
+# H?m normalize_url d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalize_url(url):
     parsed = urlparse(url)
     return parsed._replace(fragment="").geturl()
 
+
+# H?m fetch_soup d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def fetch_soup(session, url, timeout=20):
     response = session.get(url, headers=HEADERS, timeout=timeout)
     response.raise_for_status()
     return BeautifulSoup(response.text, "html.parser")
 
+
+# H?m is_question_link d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def is_question_link(base_url, href, title):
     if not href:
@@ -112,6 +121,8 @@ def is_question_link(base_url, href, title):
         return False
     return True
 
+
+# H?m discover_links d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def discover_links(session, grade, index_url):
     soup = fetch_soup(session, index_url)
@@ -145,11 +156,15 @@ def discover_links(session, grade, index_url):
     return links
 
 
+# H?m extract_text_with_math d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def extract_text_with_math(tag):
     for node in tag.find_all(["script", "style", "ins"]):
         node.decompose()
     return clean_text(tag.get_text(" "))
 
+
+# H?m extract_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def extract_images(tag, base_url):
     images = []
@@ -172,6 +187,8 @@ def extract_images(tag, base_url):
     return images
 
 
+# H?m image_extension d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def image_extension(url, content_type):
     path_ext = Path(urlparse(url).path).suffix.lower()
     if path_ext in {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"}:
@@ -186,6 +203,8 @@ def image_extension(url, content_type):
         return ".webp"
     return ".img"
 
+
+# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def download_image(session, image_url, assets_dir, cache):
     if image_url in cache:
@@ -207,6 +226,8 @@ def download_image(session, image_url, assets_dir, cache):
     return file_path
 
 
+# H?m parse_answer d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_answer(text):
     patterns = [
         r"Đáp án đúng là\s*:?\s*([A-D])",
@@ -220,6 +241,8 @@ def parse_answer(text):
     return ""
 
 
+# H?m has_explanation_context d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def has_explanation_context(tag):
     if tag is None:
         return False
@@ -230,6 +253,8 @@ def has_explanation_context(tag):
     return False
 
 
+# H?m append_unique_images d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def append_unique_images(target, images):
     existing = {item["url"] for item in target}
     for image in images:
@@ -237,6 +262,8 @@ def append_unique_images(target, images):
             target.append(image)
             existing.add(image["url"])
 
+
+# H?m parse_question_page d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_question_page(session, task, max_questions=None):
     soup = fetch_soup(session, task["url"])
@@ -318,6 +345,8 @@ def parse_question_page(session, task, max_questions=None):
     return questions
 
 
+# H?m add_metadata d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_metadata(document, stats, source_urls):
     document.add_heading("Tổng hợp câu hỏi crawl công khai", 0)
     document.add_paragraph(f"Thời điểm tạo: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
@@ -336,6 +365,8 @@ def add_metadata(document, stats, source_urls):
         document.add_paragraph(url, style="List Bullet")
 
 
+# H?m add_embedded_image d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_embedded_image(document, session, image, assets_dir, cache):
     try:
         image_path = download_image(session, image["url"], assets_dir, cache)
@@ -349,6 +380,8 @@ def add_embedded_image(document, session, image, assets_dir, cache):
         document.add_paragraph(f"Không tải được ảnh: {image['url']} ({error})", style="List Bullet")
         return False
 
+
+# H?m add_questions d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_questions(document, grouped, embed_images=True, assets_dir=DEFAULT_IMAGE_DIR):
     image_cache = {}
@@ -401,6 +434,8 @@ def add_questions(document, grouped, embed_images=True, assets_dir=DEFAULT_IMAGE
     return {"embedded_images": embedded_count, "failed_images": failed_count}
 
 
+# H?m style_document d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def style_document(document):
     styles = document.styles
     styles["Normal"].font.name = "Arial"
@@ -408,6 +443,8 @@ def style_document(document):
     for style_name in ["Heading 1", "Heading 2", "Heading 3"]:
         styles[style_name].font.name = "Arial"
 
+
+# H?m calculate_stats d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def calculate_stats(grouped):
     return {
@@ -429,6 +466,8 @@ def calculate_stats(grouped):
     }
 
 
+# H?m save_docx d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def save_docx(grouped, source_urls, output_path, embed_images=True, assets_dir=DEFAULT_IMAGE_DIR):
     stats = calculate_stats(grouped)
     document = Document()
@@ -440,6 +479,8 @@ def save_docx(grouped, source_urls, output_path, embed_images=True, assets_dir=D
     document.save(output_path)
     return stats
 
+
+# H?m make_json_export d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def make_json_export(grouped, source_urls, stats):
     lessons = []
@@ -470,6 +511,8 @@ def make_json_export(grouped, source_urls, stats):
     }
 
 
+# H?m save_json_export d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def save_json_export(grouped, source_urls, stats, output_path):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = make_json_export(grouped, source_urls, stats)
@@ -478,6 +521,8 @@ def save_json_export(grouped, source_urls, stats, output_path):
         encoding="utf-8",
     )
 
+
+# H?m parse_grades d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_grades(value):
     if not value:
@@ -492,6 +537,8 @@ def parse_grades(value):
             grades.append(int(part))
     return [grade for grade in sorted(set(grades)) if grade in INDEX_URLS]
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     parser = argparse.ArgumentParser(description="Crawl câu hỏi công khai và xuất file Word để duyệt.")
@@ -574,5 +621,6 @@ def main():
     print(f"Số ảnh lỗi: {stats.get('failed_images', 0)}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

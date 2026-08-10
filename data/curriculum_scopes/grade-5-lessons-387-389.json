@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-387-389",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [98, 99, 100, 101, 102, 103],
+    "verified_book_pages": [96, 97, 98, 99, 100, 101]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, thể hiện đầy đủ số liệu, kích thước hoặc nhãn cần đọc nhưng không chứa đáp án.",
+    "progression": "Bài 88 ôn tập một số yếu tố thống kê và xác suất; Bài 89 ôn lại kiến thức đã học; Bài 90 vận dụng kiến thức Toán trong tình huống thực tế.",
+    "excluded_pages": "Không đưa các hoạt động thực hành mở rộng ngoài mục tiêu kiến thức chính vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 387,
+      "lesson_name": "Bài 88. Ôn tập về một số yếu tố thống kê và xác suất",
+      "pdf_pages": [98, 99],
+      "book_pages": [96, 97],
+      "objective": "So sánh khả năng xảy ra dựa trên số lượng kết quả trong một hộp.",
+      "allowed_knowledge_tags": ["probability", "frequency", "data_interpretation"],
+      "allowed_question_forms": ["So sánh khả năng xảy ra của các màu hoặc kết quả.", "Đọc số lượng kết quả từ hình minh họa."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 388,
+      "lesson_name": "Bài 89. Em ôn lại những gì đã học",
+      "pdf_pages": [100, 101],
+      "book_pages": [98, 99],
+      "objective": "Vận dụng diện tích hình chữ nhật và tỉ số phần trăm trong bài toán thực tế.",
+      "allowed_knowledge_tags": ["mixed_revision", "area", "percentage", "geometry"],
+      "allowed_question_forms": ["Tính phần diện tích còn lại sau khi biết tỉ lệ phần trăm.", "Kết hợp diện tích hình chữ nhật với tỉ số phần trăm."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 389,
+      "lesson_name": "Bài 90. Em vui học Toán",
+      "pdf_pages": [102, 103],
+      "book_pages": [100, 101],
+      "objective": "Vận dụng phép nhân số tự nhiên vào tình huống mua bán đơn giản.",
+      "allowed_knowledge_tags": ["mixed_revision", "multiplication", "money", "word_problem"],
+      "allowed_question_forms": ["Tính tổng tiền khi biết số lượng và đơn giá.", "Giải bài toán thực tế bằng phép nhân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

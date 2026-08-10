@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-384-386",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [92, 93, 94, 95, 96, 97],
+    "verified_book_pages": [90, 91, 92, 93, 94, 95]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, thể hiện đầy đủ số liệu, kích thước hoặc thời điểm trong đề nhưng không chứa đáp án.",
+    "progression": "Bài 85 ôn tập tỉ số và tỉ số phần trăm; Bài 86 ôn tập hình học; Bài 87 ôn tập đo lường.",
+    "excluded_pages": "Không đưa các hoạt động thực hành mở rộng ngoài mục tiêu kiến thức chính vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 384,
+      "lesson_name": "Bài 85. Ôn tập về tỉ số, tỉ số phần trăm",
+      "pdf_pages": [92, 93],
+      "book_pages": [90, 91],
+      "objective": "Tính phần trăm của một số trong tình huống thực tế.",
+      "allowed_knowledge_tags": ["ratio", "percentage", "percentage_of_quantity"],
+      "allowed_question_forms": ["Tính một tỉ số phần trăm của một số.", "Giải bài toán tỉ số phần trăm trong thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 385,
+      "lesson_name": "Bài 86. Ôn tập về hình học",
+      "pdf_pages": [94, 95],
+      "book_pages": [92, 93],
+      "objective": "Tính thể tích hình hộp chữ nhật khi biết chiều dài, chiều rộng và chiều cao.",
+      "allowed_knowledge_tags": ["rectangular_prism", "volume", "geometry"],
+      "allowed_question_forms": ["Tính thể tích hình hộp chữ nhật.", "Đọc kích thước hình hộp chữ nhật từ hình minh họa."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 386,
+      "lesson_name": "Bài 87. Ôn tập về đo lường",
+      "pdf_pages": [96, 97],
+      "book_pages": [94, 95],
+      "objective": "Tính khoảng thời gian giữa hai thời điểm trong ngày.",
+      "allowed_knowledge_tags": ["time_measurement", "elapsed_time", "time_conversion"],
+      "allowed_question_forms": ["Tính thời gian trôi qua giữa giờ bắt đầu và giờ kết thúc.", "Đọc giờ trên đồng hồ và đổi đơn vị thời gian."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

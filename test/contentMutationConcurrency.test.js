@@ -1,3 +1,4 @@
+// B? ki?m th? content mutation concurrency.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -5,6 +6,7 @@ const test = require('node:test');
 
 const Question = require('../models/Question');
 
+// H?m questionRow d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function questionRow(overrides = {}) {
   return {
     id: 7,
@@ -53,6 +55,7 @@ test('cập nhật câu hỏi khóa hàng và từ chối revision đã cũ', as
     {
       expectedQuestion: expected,
       transaction: async (callback) => callback({
+        // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
         async execute(sql) {
           calls.push(sql);
           return [[current]];
@@ -71,9 +74,12 @@ test('nhân bản khóa câu nguồn và sao chép trong cùng transaction', asy
   const calls = [];
   const duplicate = await Question.duplicateQuestion(source.id, {
     transaction: async (callback) => callback({
+      // H?m execute d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
       async execute(sql) {
         calls.push(sql);
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/SELECT \*/.test(sql)) return [[source]];
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/SELECT distractor_key/.test(sql)) {
           return [[{
             distractor_key: 'B',
@@ -81,6 +87,7 @@ test('nhân bản khóa câu nguồn và sao chép trong cùng transaction', asy
             explanation: 'Cần kiểm tra lại.'
           }]];
         }
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (/INSERT INTO QuestionBank/.test(sql)) return [{ insertId: 99 }];
         return [{ affectedRows: 1 }];
       }

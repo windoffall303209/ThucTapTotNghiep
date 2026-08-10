@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-212-216",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_1_-_Canh_dieu_d0f94.pdf",
+    "verified_pdf_pages": [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32],
+    "verified_book_pages": [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 212 giới thiệu tỉ số; bài 213 tìm hai số khi biết tổng và tỉ số; bài 214 tìm hai số khi biết hiệu và tỉ số; bài 215 bài toán quan hệ phụ thuộc; bài 216 hỗn số.",
+    "excluded_pages": "Không gán các trang Bài 10 Luyện tập ở PDF 29–30 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 212,
+      "lesson_name": "6. Bài 6. Giới thiệu về tỉ số",
+      "pdf_pages": [17, 18, 19],
+      "book_pages": [17, 18, 19],
+      "objective": "Nhận biết tỉ số của hai số và cách viết tỉ số dưới dạng a : b hoặc a/b.",
+      "allowed_knowledge_tags": ["ratio", "ratio_notation", "compare_two_quantities"],
+      "allowed_question_forms": ["Viết tỉ số của hai số.", "Nhận biết thứ tự hai số trong tỉ số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 213,
+      "lesson_name": "7. Bài 7. Tìm hai số khi biết tổng và tỉ số của hai số đó",
+      "pdf_pages": [20, 21, 22],
+      "book_pages": [20, 21, 22],
+      "objective": "Giải bài toán tìm hai số khi biết tổng và tỉ số của hai số đó bằng sơ đồ đoạn thẳng.",
+      "allowed_knowledge_tags": ["sum_ratio_word_problem", "parts_method", "ratio_diagram"],
+      "allowed_question_forms": ["Tìm số bé hoặc số lớn khi biết tổng và tỉ số.", "Giải bài toán bằng tổng số phần bằng nhau."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 214,
+      "lesson_name": "8. Bài 8. Tìm hai số khi biết hiệu và tỉ số của hai số đó",
+      "pdf_pages": [23, 24, 25],
+      "book_pages": [23, 24, 25],
+      "objective": "Giải bài toán tìm hai số khi biết hiệu và tỉ số của hai số đó bằng sơ đồ đoạn thẳng.",
+      "allowed_knowledge_tags": ["difference_ratio_word_problem", "parts_difference_method", "ratio_diagram"],
+      "allowed_question_forms": ["Tìm số lớn hoặc số bé khi biết hiệu và tỉ số.", "Giải bài toán bằng hiệu số phần bằng nhau."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 215,
+      "lesson_name": "9. Bài 9. Bài toán liên quan đến quan hệ phụ thuộc",
+      "pdf_pages": [26, 27, 28],
+      "book_pages": [26, 27, 28],
+      "objective": "Nhận biết và giải bài toán trong đó một đại lượng thay đổi thì đại lượng kia thay đổi theo.",
+      "allowed_knowledge_tags": ["dependent_relationship", "direct_proportion", "unit_rate"],
+      "allowed_question_forms": ["Tính đại lượng phụ thuộc khi biết quan hệ gấp lên hoặc giảm đi.", "Giải bài toán quan hệ phụ thuộc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 216,
+      "lesson_name": "11. Bài 11. Hỗn số",
+      "pdf_pages": [31, 32],
+      "book_pages": [31, 32],
+      "objective": "Nhận biết hỗn số, phần nguyên, phần phân số và chuyển hỗn số thành phân số.",
+      "allowed_knowledge_tags": ["mixed_number", "whole_part", "fraction_part", "mixed_to_improper"],
+      "allowed_question_forms": ["Đọc hoặc viết hỗn số.", "Chuyển hỗn số thành phân số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

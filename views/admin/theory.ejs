@@ -1,3 +1,4 @@
+<%# M?u giao di?n theory k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <%
   const grades = [...new Set((bookTree || []).map((book) => Number(book.grade)))].filter(Boolean);
 %>
@@ -19,6 +20,7 @@
     </div>
   </header>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (!bookTree || bookTree.length === 0) { %>
     <div class="empty-state compact">Chưa có dữ liệu chương trình để quản lý lý thuyết.</div>
   <% } else { %>
@@ -33,6 +35,7 @@
 
           <div class="grade-filter" role="group" aria-label="Lọc theo lớp">
             <button class="is-active" type="button" data-grade-filter="all" aria-pressed="true">Tất cả</button>
+            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
             <% grades.forEach((grade) => { %>
               <button type="button" data-grade-filter="<%= grade %>" aria-pressed="false">Lớp <%= grade %></button>
             <% }) %>
@@ -40,6 +43,7 @@
         </div>
 
         <div class="lesson-browser-list" data-lesson-list>
+          <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
           <% bookTree.forEach((book) => { %>
             <section class="lesson-book-group" data-lesson-group data-grade="<%= book.grade %>">
               <div class="lesson-book-heading">

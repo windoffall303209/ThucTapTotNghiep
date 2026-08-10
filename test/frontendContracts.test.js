@@ -1,3 +1,4 @@
+// B? ki?m th? frontend contracts.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -5,10 +6,12 @@ const assert = require('node:assert/strict');
 
 const projectRoot = path.resolve(__dirname, '..');
 
+// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function read(relativePath) {
   return fs.readFileSync(path.join(projectRoot, relativePath), 'utf8');
 }
 
+// H?m assertContainsAll d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function assertContainsAll(source, patterns) {
   patterns.forEach((pattern) => assert.match(source, pattern));
 }

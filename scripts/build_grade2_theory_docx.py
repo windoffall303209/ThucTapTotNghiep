@@ -1,3 +1,4 @@
+# Script build grade2 theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import math
 import textwrap
@@ -97,10 +98,14 @@ CHAPTERS = [
 ]
 
 
+# H?m font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def font(size, bold=False):
     path = FONT_BOLD if bold and FONT_BOLD.exists() else FONT_REGULAR
     return ImageFont.truetype(str(path), size=size) if path.exists() else ImageFont.load_default()
 
+
+# H?m wrap_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def wrap_text(text, width=48):
     lines = []
@@ -109,9 +114,13 @@ def wrap_text(text, width=48):
     return lines
 
 
+# H?m normalize d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalize(text):
     return text.lower()
 
+
+# H?m lesson_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def lesson_kind(name):
     n = normalize(name)
@@ -145,6 +154,8 @@ def lesson_kind(name):
         return "probability"
     return "general"
 
+
+# H?m examples_for_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def examples_for_kind(kind, name):
     n = normalize(name)
@@ -230,6 +241,8 @@ def examples_for_kind(kind, name):
     return {"model": "Quan sát ví dụ, gọi tên kiến thức rồi làm một bài thử nhanh.", "quick": "Học sinh hoàn thành đúng nhiệm vụ theo mẫu."}
 
 
+# H?m objective_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def objective_for(name):
     kind = lesson_kind(name)
     mapping = {
@@ -250,6 +263,8 @@ def objective_for(name):
     return mapping.get(kind, "Nhận biết kiến thức mới và vận dụng vào bài tập đơn giản.")
 
 
+# H?m visual_prompt_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def visual_prompt_for(kind, name):
     prompts = {
         "number_line": "Một tia số từ 24 đến 30, số 28 được tô màu để học sinh tìm số liền trước và số liền sau.",
@@ -269,6 +284,8 @@ def visual_prompt_for(kind, name):
     }
     return prompts.get(kind, prompts["general"])
 
+
+# H?m build_cards d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_cards(name):
     kind = lesson_kind(name)
@@ -307,6 +324,8 @@ def build_cards(name):
     ]
 
 
+# H?m build_blueprint d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_blueprint():
     chapters = []
     for chapter in CHAPTERS:
@@ -334,6 +353,8 @@ def build_blueprint():
     }
 
 
+# H?m draw_wrapped d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_wrapped(draw, text, xy, fnt, fill="#172033", width=42, spacing=8):
     x, y = xy
     for line in wrap_text(text, width):
@@ -342,9 +363,13 @@ def draw_wrapped(draw, text, xy, fnt, fill="#172033", width=42, spacing=8):
     return y
 
 
+# H?m rounded d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rounded(draw, box, fill, outline="#cbd5e1", width=3, radius=24):
     draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
+
+# H?m draw_base_ten d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_base_ten(draw, x, y, hundreds=0, tens=0, ones=0):
     for i in range(hundreds):
@@ -365,6 +390,8 @@ def draw_base_ten(draw, x, y, hundreds=0, tens=0, ones=0):
         rounded(draw, (ox, oy, ox + 22, oy + 22), "#bbf7d0", "#15803d", 2, 6)
 
 
+# H?m draw_groups d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_groups(draw, x, y, groups=3, each=2, color="#60a5fa"):
     for g in range(groups):
         rounded(draw, (x + g * 160, y - 30, x + g * 160 + 120, y + 90), "#f8fafc", "#cbd5e1", 2, 18)
@@ -372,6 +399,8 @@ def draw_groups(draw, x, y, groups=3, each=2, color="#60a5fa"):
             cx = x + g * 160 + 38 + i * 45
             draw.ellipse((cx - 16, y + 10, cx + 16, y + 42), fill=color, outline="#1d4ed8", width=2)
 
+
+# H?m render_lesson_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def render_lesson_image(chapter_index, lesson_index, lesson):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -481,6 +510,8 @@ def render_lesson_image(chapter_index, lesson_index, lesson):
     return out
 
 
+# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
     run._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
@@ -490,6 +521,8 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     if color:
         run.font.color.rgb = RGBColor.from_string(color)
 
+
+# H?m set_document_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_document_defaults(doc):
     section = doc.sections[0]
@@ -510,6 +543,8 @@ def set_document_defaults(doc):
         style.font.bold = True
 
 
+# H?m add_meta d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_meta(doc, label, value):
     p = doc.add_paragraph()
     r = p.add_run(f"{label}: ")
@@ -518,6 +553,8 @@ def add_meta(doc, label, value):
     set_run_font(r)
 
 
+# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_bullets(doc, items):
     for item in items:
         p = doc.add_paragraph(style="List Bullet")
@@ -525,11 +562,15 @@ def add_bullets(doc, items):
         set_run_font(r)
 
 
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_text(cell, text, bold=False):
     cell.text = ""
     r = cell.paragraphs[0].add_run(str(text))
     set_run_font(r, size=9, bold=bold)
 
+
+# H?m shade d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def shade(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
@@ -537,6 +578,8 @@ def shade(cell, fill):
     shd.set(qn("w:fill"), fill)
     tc_pr.append(shd)
 
+
+# H?m add_overview d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_overview(doc, data):
     table = doc.add_table(rows=1, cols=4)
@@ -552,6 +595,8 @@ def add_overview(doc, data):
             set_cell_text(row[j], value)
             row[j].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx(data):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -615,6 +660,8 @@ def build_docx(data):
         return FALLBACK_OUTPUT_PATH
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     data = build_blueprint()
     BLUEPRINT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -624,5 +671,6 @@ def main():
     print(output)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

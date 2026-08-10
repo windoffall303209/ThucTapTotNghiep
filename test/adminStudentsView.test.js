@@ -1,3 +1,4 @@
+// B? ki?m th? admin students view.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -7,6 +8,7 @@ const ejs = require('ejs');
 const viewPath = path.join(__dirname, '..', 'views', 'admin', 'students.ejs');
 const viewSource = fs.readFileSync(viewPath, 'utf8');
 
+// H?m renderStudents d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function renderStudents(overrides = {}) {
   const students = Array.from({ length: 20 }, (_, index) => ({
     id: index + 81,

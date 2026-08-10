@@ -1,0 +1,120 @@
+{
+  "scope_id": "grade-2-lessons-073-077",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [25, 26, 29, 30, 33, 34, 35, 36, 37, 38],
+    "verified_book_pages": [24, 25, 28, 29, 32, 33, 34, 35, 36, 37]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa làm rõ số bị chia, hình khối hoặc thời gian; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 73 nhận biết tên các thành phần của phép chia; bài 74 nhận biết khối trụ và khối cầu; bài 75 đọc giờ và mối quan hệ ngày–giờ; bài 76 đổi giờ–phút; bài 77 đọc lịch và số ngày trong tháng.",
+    "difficulty": "Một yêu cầu đơn giản, tối đa một bước tính hoặc một nhận biết trực tiếp; không yêu cầu kiến thức của bài sau."
+  },
+  "lessons": [
+    {
+      "lesson_id": 73,
+      "lesson_name": "Số bị chia, số chia, thương",
+      "pdf_pages": [25, 26],
+      "book_pages": [24, 25],
+      "objective": "Nhận biết và gọi đúng số bị chia, số chia, thương trong một phép chia.",
+      "allowed_knowledge_tags": [
+        "identify_dividend",
+        "identify_divisor",
+        "identify_quotient",
+        "read_division_components"
+      ],
+      "allowed_question_forms": [
+        "Chọn tên đúng của một thành phần trong phép chia.",
+        "Xác định số bị chia, số chia hoặc thương trong phép tính.",
+        "Đọc phép chia và gọi tên các thành phần."
+      ],
+      "forbidden_text_patterns": ["\\b(số dư|chia có dư|phân số)\\b"],
+      "not_yet_allowed": ["Số dư", "Phép chia có dư", "Phép chia nhiều bước"]
+    },
+    {
+      "lesson_id": 74,
+      "lesson_name": "Khối trụ - Khối cầu",
+      "pdf_pages": [29, 30],
+      "book_pages": [28, 29],
+      "objective": "Nhận biết khối trụ, khối cầu và liên hệ với đồ vật quen thuộc.",
+      "allowed_knowledge_tags": [
+        "identify_cylinder",
+        "identify_sphere",
+        "classify_solid_shape",
+        "relate_solid_shape_to_object"
+      ],
+      "allowed_question_forms": [
+        "Chọn đồ vật có dạng khối trụ hoặc khối cầu.",
+        "Nhận biết đặc điểm trực quan của khối trụ, khối cầu.",
+        "Phân loại đồ vật theo dạng hình khối."
+      ],
+      "forbidden_text_patterns": ["\\b(hình chữ nhật|hình vuông|chu vi|diện tích)\\b"],
+      "not_yet_allowed": ["Diện tích hoặc chu vi", "Đo độ dài cạnh", "Công thức hình học"]
+    },
+    {
+      "lesson_id": 75,
+      "lesson_name": "Ngày - giờ",
+      "pdf_pages": [33, 34],
+      "book_pages": [32, 33],
+      "objective": "Biết một ngày có 24 giờ, đọc giờ đúng trên đồng hồ và liên hệ giờ với hoạt động trong ngày.",
+      "allowed_knowledge_tags": [
+        "relate_day_to_24_hours",
+        "read_clock_hour",
+        "identify_time_of_day",
+        "sequence_daily_time"
+      ],
+      "allowed_question_forms": [
+        "Chọn số giờ trong một ngày.",
+        "Đọc giờ đúng trên đồng hồ.",
+        "Xác định buổi hoặc thời điểm dựa vào giờ."
+      ],
+      "forbidden_text_patterns": ["\\b(phút|giây|tháng|năm nhuận)\\b"],
+      "not_yet_allowed": ["Đổi giờ sang phút", "Đọc phút trên đồng hồ", "Ngày trong tháng"]
+    },
+    {
+      "lesson_id": 76,
+      "lesson_name": "Giờ - Phút",
+      "pdf_pages": [35, 36],
+      "book_pages": [34, 35],
+      "objective": "Biết 1 giờ bằng 60 phút và đọc, xác định số phút theo mặt đồng hồ đơn giản.",
+      "allowed_knowledge_tags": [
+        "relate_hour_to_60_minutes",
+        "read_clock_minutes",
+        "convert_hour_to_minutes",
+        "read_five_minute_intervals"
+      ],
+      "allowed_question_forms": [
+        "Đổi giờ sang phút.",
+        "Đọc số phút theo vị trí kim phút.",
+        "Chọn mốc thời gian đúng trên đồng hồ."
+      ],
+      "forbidden_text_patterns": ["\\b(ngày|tháng|năm nhuận|giây)\\b"],
+      "not_yet_allowed": ["Ngày trong tháng", "Năm nhuận", "Đổi phút sang giây"]
+    },
+    {
+      "lesson_id": 77,
+      "lesson_name": "Ngày - Tháng",
+      "pdf_pages": [37, 38],
+      "book_pages": [36, 37],
+      "objective": "Đọc lịch, xác định ngày trong tuần và biết số ngày của một số tháng quen thuộc.",
+      "allowed_knowledge_tags": [
+        "read_calendar",
+        "identify_day_of_week",
+        "identify_month_date",
+        "recall_days_in_month"
+      ],
+      "allowed_question_forms": [
+        "Đọc ngày, tháng trên lịch.",
+        "Xác định thứ của một ngày theo lịch cho trước.",
+        "Chọn số ngày đúng của tháng."
+      ],
+      "forbidden_text_patterns": ["\\b(giờ|phút|giây|năm nhuận)\\b"],
+      "not_yet_allowed": ["Năm nhuận", "Đổi giờ sang phút", "Tính khoảng thời gian nhiều bước"]
+    }
+  ]
+}

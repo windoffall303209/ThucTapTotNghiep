@@ -1,3 +1,4 @@
+// Script import grade1 question bank tex h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 require('dotenv').config();
 
 const fs = require('fs/promises');
@@ -8,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const DEFAULT_INPUT = path.join(ROOT, 'data', 'grade1_question_bank_reviewed.tex');
 const DEFAULT_IMAGE_DIR = path.join(ROOT, 'public', 'uploads', 'images', 'grade1');
 
+// H?m parseArgs d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseArgs(argv) {
   const args = {
     input: DEFAULT_INPUT,
@@ -16,9 +18,13 @@ function parseArgs(argv) {
     replace: false,
     validateOnly: false
   };
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const arg of argv) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (arg === '--commit') args.commit = true;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg === '--validate-only') args.validateOnly = true;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg === '--replace') {
       args.replace = true;
       args.commit = true;
@@ -31,11 +37,13 @@ function parseArgs(argv) {
   return args;
 }
 
+// H?m parsePayloads d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parsePayloads(tex) {
   return tex
     .split(/\r?\n/)
     .filter((line) => line.startsWith('% DBJSON '))
     .map((line, index) => {
+      // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
       try {
         return JSON.parse(Buffer.from(line.slice(9).trim(), 'base64').toString('utf8'));
       } catch (error) {
@@ -44,6 +52,7 @@ function parsePayloads(tex) {
     });
 }
 
+// H?m normalizeTitle d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTitle(value) {
   return String(value || '')
     .normalize('NFD')
@@ -58,6 +67,7 @@ function normalizeTitle(value) {
     .trim();
 }
 
+// H?m grade1Lessons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function grade1Lessons() {
   return db.query(
     `SELECT l.id, l.lesson_name, c.chapter_name, c.sort_order AS chapter_order
@@ -68,10 +78,13 @@ async function grade1Lessons() {
   );
 }
 
+// H?m materializeImages d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function materializeImages(payload, imageDir) {
   const images = payload.content?.images || [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let index = 0; index < images.length; index += 1) {
     const image = images[index];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!image.source_path) continue;
     const extension = path.extname(image.source_path) || '.jpg';
     const fileName =
@@ -83,6 +96,7 @@ async function materializeImages(payload, imageDir) {
   return payload;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const tex = await fs.readFile(args.input, 'utf8');
@@ -98,10 +112,12 @@ async function main() {
       item.choices.length > 4 ||
       !item.choices.some((choice) => choice.key === item.correct_answer)
   );
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (invalid.length) {
     throw new Error(`Có ${invalid.length} payload không hợp lệ; dừng import.`);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (args.validateOnly) {
     const lessonCount = new Set(payloads.map((item) => item.lesson_number)).size;
     const imageCount = payloads.reduce(
@@ -114,8 +130,10 @@ async function main() {
 
   const lessons = await grade1Lessons();
   const lessonByTitle = new Map();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const lesson of lessons) {
     const key = normalizeTitle(lesson.lesson_name);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (lessonByTitle.has(key)) {
       throw new Error(`Tên bài bị trùng sau chuẩn hóa: ${lesson.lesson_name}`);
     }
@@ -123,16 +141,21 @@ async function main() {
   }
 
   const sourceLessonTitles = new Map();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const payload of payloads) {
     sourceLessonTitles.set(payload.lesson_number, payload.lesson_title);
   }
   const mapping = new Map();
   const unmatched = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [lessonNumber, title] of sourceLessonTitles.entries()) {
     const lesson = lessonByTitle.get(normalizeTitle(title));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lesson) unmatched.push(`Bài nguồn ${lessonNumber}: ${title}`);
+    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
     else mapping.set(lessonNumber, lesson);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (unmatched.length) {
     throw new Error(
       `Không map được ${unmatched.length} bài vào Curriculum lớp 1:\n${unmatched.join('\n')}`
@@ -142,6 +165,7 @@ async function main() {
   console.log(
     `Đã kiểm tra ${payloads.length} câu và map đủ ${mapping.size}/39 bài có ngân hàng lớp 1.`
   );
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!args.commit) {
     console.log(
       'Dry run hoàn tất. Dùng --commit để thêm hoặc --replace để lưu trữ bản cũ rồi nạp dữ liệu mới cho 39 bài này.'
@@ -150,12 +174,14 @@ async function main() {
   }
 
   const prepared = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const payload of payloads) {
     prepared.push(await materializeImages(payload, args.imageDir));
   }
   const mappedLessonIds = [...new Set([...mapping.values()].map((lesson) => Number(lesson.id)))];
 
   await db.transaction(async (connection) => {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (args.replace) {
       const placeholders = mappedLessonIds.map(() => '?').join(',');
       await connection.execute(
@@ -165,6 +191,7 @@ async function main() {
         mappedLessonIds
       );
     }
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const payload of prepared) {
       const lesson = mapping.get(payload.lesson_number);
       const [result] = await connection.execute(
@@ -182,6 +209,7 @@ async function main() {
           JSON.stringify(payload.explanation)
         ]
       );
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const misconception of payload.misconceptions || []) {
         await connection.execute(
           `INSERT INTO CommonMisconceptions
@@ -208,5 +236,6 @@ main()
     process.exitCode = 1;
   })
   .finally(async () => {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (typeof db.close === 'function') await db.close().catch(() => {});
   });

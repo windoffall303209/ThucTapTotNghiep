@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-381-383",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [86, 87, 88, 89, 90, 91],
+    "verified_book_pages": [84, 85, 86, 87, 88, 89]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, thể hiện đầy đủ dữ kiện số học nhưng không chứa đáp án.",
+    "progression": "Bài 82 ôn tập số tự nhiên và các phép tính; Bài 83 ôn tập phân số và các phép tính với phân số; Bài 84 ôn tập số thập phân và các phép tính với số thập phân.",
+    "excluded_pages": "Không đưa các hoạt động thực hành mở rộng ngoài mục tiêu kiến thức chính vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 381,
+      "lesson_name": "Bài 82. Ôn tập về số tự nhiên và các phép tính với số tự nhiên",
+      "pdf_pages": [86, 87],
+      "book_pages": [84, 85],
+      "objective": "Nhận biết tính chẵn lẻ của số tự nhiên dựa vào chữ số hàng đơn vị.",
+      "allowed_knowledge_tags": ["natural_number", "number_place_value", "natural_number_operations"],
+      "allowed_question_forms": ["Nhận biết số chẵn trong một nhóm số tự nhiên.", "Đọc và phân tích chữ số hàng đơn vị."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 382,
+      "lesson_name": "Bài 83. Ôn tập về phân số và các phép tính với phân số",
+      "pdf_pages": [88, 89],
+      "book_pages": [86, 87],
+      "objective": "Cộng hai phân số khác mẫu bằng cách quy đồng mẫu số.",
+      "allowed_knowledge_tags": ["fraction_addition", "fraction_equivalence", "fraction_operations"],
+      "allowed_question_forms": ["Tính tổng hai phân số khác mẫu.", "Quy đồng rồi thực hiện phép tính với phân số."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 383,
+      "lesson_name": "Bài 84. Ôn tập về số thập phân và các phép tính với số thập phân",
+      "pdf_pages": [90, 91],
+      "book_pages": [88, 89],
+      "objective": "Đặt tính và cộng các số thập phân bằng cách thẳng hàng các chữ số cùng hàng.",
+      "allowed_knowledge_tags": ["decimal_addition", "decimal_place_value", "decimal_operations"],
+      "allowed_question_forms": ["Tính tổng hai số thập phân.", "Đặt tính theo hàng rồi thực hiện phép cộng."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

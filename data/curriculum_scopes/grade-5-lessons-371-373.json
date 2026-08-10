@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-371-373",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [36, 37, 48, 49, 50, 51],
+    "verified_book_pages": [34, 35, 46, 47, 48, 49]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, ghi đầy đủ số liệu trong đề nhưng không ghi đáp án hoặc phép tính ra đáp án.",
+    "progression": "Luyện tập chung về diện tích, thể tích hình hộp chữ nhật và đổi đơn vị đo.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 371,
+      "lesson_name": "Bài 61. Luyện tập chung",
+      "pdf_pages": [36, 37],
+      "book_pages": [34, 35],
+      "objective": "Vận dụng công thức thể tích hình hộp chữ nhật để tìm một kích thước chưa biết.",
+      "allowed_knowledge_tags": ["cuboid_volume", "reverse_measurement", "length_units", "cube_surface_area", "lateral_surface_area", "square_area"],
+      "allowed_question_forms": ["Tìm chiều cao khi biết thể tích, chiều dài và chiều rộng.", "Tính diện tích xung quanh khối lập phương từ độ dài cạnh."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 372,
+      "lesson_name": "Bài 66. Luyện tập",
+      "pdf_pages": [48, 49],
+      "book_pages": [46, 47],
+      "objective": "Tính thể tích hình hộp chữ nhật, đổi dm³ sang lít và giải quyết tình huống chia đều.",
+      "allowed_knowledge_tags": ["cuboid_volume", "dm3_to_liter", "division", "decimal_multiplication", "volume_units"],
+      "allowed_question_forms": ["Tính số chai có cùng dung tích từ một bể hình hộp chữ nhật.", "Tính thể tích hình hộp chữ nhật có số đo thập phân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 373,
+      "lesson_name": "Bài 67. Luyện tập chung",
+      "pdf_pages": [50, 51],
+      "book_pages": [48, 49],
+      "objective": "Tổng hợp phép cộng, trừ diện tích trong tình huống khu đất được chia thành nhiều phần.",
+      "allowed_knowledge_tags": ["area", "addition", "subtraction", "mixed_revision", "rectangle_area", "area_units", "real_world_area"],
+      "allowed_question_forms": ["Tìm diện tích phần còn lại khi biết diện tích toàn khu và diện tích các phần đã chia.", "Tính diện tích phần cần sơn sau khi trừ diện tích cửa."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

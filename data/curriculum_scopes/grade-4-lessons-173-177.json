@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-173-177",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 77, 78],
+    "verified_book_pages": [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 76, 77]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 173 thực hiện phép cộng, phép trừ; bài 174 nhận biết tính chất phép cộng; bài 175 tìm số trung bình cộng; bài 176 tìm hai số khi biết tổng và hiệu; bài 177 nhân số có nhiều chữ số với số có một chữ số.",
+    "excluded_pages": "Không gán các trang Luyện tập chung ở PDF 75–76 hoặc nội dung bài khác vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 173,
+      "lesson_name": "26. Bài 26: Phép cộng, phép trừ",
+      "pdf_pages": [65, 66, 67],
+      "book_pages": [64, 65, 66],
+      "objective": "Thực hiện và vận dụng phép cộng, phép trừ các số tự nhiên.",
+      "allowed_knowledge_tags": ["addition_natural_numbers", "subtraction_natural_numbers", "column_calculation"],
+      "allowed_question_forms": ["Tính tổng hoặc hiệu của hai số tự nhiên.", "Đặt tính rồi tính."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 174,
+      "lesson_name": "27. Bài 27: Các tính chất của phép cộng",
+      "pdf_pages": [68, 69],
+      "book_pages": [67, 68],
+      "objective": "Nhận biết tính chất giao hoán, kết hợp và cộng với số 0.",
+      "allowed_knowledge_tags": ["addition_commutative", "addition_associative", "add_zero"],
+      "allowed_question_forms": ["Xác định tính chất phép cộng.", "Vận dụng tính chất để tính thuận tiện."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 175,
+      "lesson_name": "28. Bài 28: Tìm số trung bình cộng",
+      "pdf_pages": [70, 71, 72],
+      "book_pages": [69, 70, 71],
+      "objective": "Tìm số trung bình cộng của một nhóm số và giải bài toán liên quan.",
+      "allowed_knowledge_tags": ["arithmetic_mean", "sum_and_divide", "average_word_problem"],
+      "allowed_question_forms": ["Tìm số trung bình cộng của các số.", "Giải bài toán về số trung bình cộng."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 176,
+      "lesson_name": "29. Bài 29: Tìm hai số khi biết tổng và hiệu của hai số đó",
+      "pdf_pages": [73, 74],
+      "book_pages": [72, 73],
+      "objective": "Tìm hai số khi biết tổng và hiệu của hai số đó.",
+      "allowed_knowledge_tags": ["sum_difference", "find_two_numbers", "word_problem"],
+      "allowed_question_forms": ["Tìm số lớn hoặc số bé từ tổng và hiệu.", "Giải bài toán biết tổng và hiệu."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 177,
+      "lesson_name": "31. Bài 31: Nhân với số có một chữ số",
+      "pdf_pages": [77, 78],
+      "book_pages": [76, 77],
+      "objective": "Thực hiện phép nhân số có nhiều chữ số với số có một chữ số.",
+      "allowed_knowledge_tags": ["multiply_one_digit", "column_multiplication", "natural_number_multiplication"],
+      "allowed_question_forms": ["Đặt tính rồi tính phép nhân.", "Tính giá trị phép nhân trong bài toán thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

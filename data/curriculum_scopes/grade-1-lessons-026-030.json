@@ -1,0 +1,170 @@
+{
+  "scope_id": "grade-1-lessons-026-030",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
+    "verified_book_pages": [104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Bài đo độ dài không dùng xăng-ti-mét trước bài 30; bài so sánh độ dài không yêu cầu tính số đo.",
+    "difficulty": "Ưu tiên thao tác trực quan đúng mẫu SGK; không thêm phép tính hoặc suy luận nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 26,
+      "lesson_name": "Chục và đơn vị",
+      "pdf_pages": [105, 106, 107, 108, 109],
+      "book_pages": [104, 105, 106, 107, 108],
+      "objective": "Nhận biết 10 đơn vị tạo thành 1 chục; đọc, viết và phân tích số có hai chữ số theo số chục và số đơn vị.",
+      "allowed_knowledge_tags": [
+        "ten_units_make_one_ten",
+        "identify_tens_and_ones",
+        "compose_two_digit_number_from_tens_and_ones",
+        "represent_two_digit_number_with_tens_and_ones",
+        "complete_tens_ones_table"
+      ],
+      "allowed_question_forms": [
+        "Đếm số thanh chục và khối đơn vị rồi chọn số được biểu diễn.",
+        "Nêu số chục và số đơn vị của một số có hai chữ số.",
+        "Chọn số tạo bởi số chục và số đơn vị đã cho.",
+        "Hoàn thành bảng chục và đơn vị."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|lớn hơn|bé hơn|dài hơn|ngắn hơn|xăng-ti-mét|cm)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "So sánh hai số bằng dấu lớn hơn, bé hơn hoặc bằng.",
+        "Phép cộng hoặc phép trừ với số có hai chữ số.",
+        "Đo hoặc so sánh độ dài."
+      ]
+    },
+    {
+      "lesson_id": 27,
+      "lesson_name": "So sánh các số trong phạm vi 100",
+      "pdf_pages": [110, 111, 112, 113],
+      "book_pages": [109, 110, 111, 112],
+      "objective": "So sánh các số trong phạm vi 100 bằng thứ tự trên dãy số, các dấu lớn hơn, bé hơn, bằng; tìm số lớn nhất, bé nhất và sắp xếp số.",
+      "allowed_knowledge_tags": [
+        "compare_numbers_to_100",
+        "use_comparison_symbols_to_100",
+        "compare_visual_quantities_to_100",
+        "find_largest_smallest_to_100",
+        "order_numbers_to_100",
+        "complete_number_sequence_to_100"
+      ],
+      "allowed_question_forms": [
+        "Điền dấu lớn hơn, bé hơn hoặc bằng giữa hai số.",
+        "So sánh hai nhóm đồ vật hoặc hai cách biểu diễn số.",
+        "Tìm số lớn nhất hoặc bé nhất trong một nhóm.",
+        "Sắp xếp các số theo thứ tự.",
+        "Điền số còn thiếu trên dãy số."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|dài hơn|ngắn hơn|xăng-ti-mét|cm)\\b",
+        "[+\\-]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng hoặc phép trừ với số có hai chữ số.",
+        "So sánh hoặc đo độ dài.",
+        "Suy luận nhiều bước ngoài việc so sánh và sắp xếp số."
+      ]
+    },
+    {
+      "lesson_id": 28,
+      "lesson_name": "Dài hơn, ngắn hơn",
+      "pdf_pages": [114, 115],
+      "book_pages": [113, 114],
+      "objective": "So sánh trực quan độ dài hoặc chiều cao của hai hay nhiều vật; biết đặt các vật cùng điểm đầu để so sánh.",
+      "allowed_knowledge_tags": [
+        "compare_length_visually",
+        "identify_longer_shorter_object",
+        "identify_longest_shortest_object",
+        "compare_height_visually",
+        "align_same_start_for_length_comparison"
+      ],
+      "allowed_question_forms": [
+        "Chọn vật dài hơn hoặc ngắn hơn khi các vật đặt cùng điểm đầu.",
+        "Chọn vật dài nhất hoặc ngắn nhất trong một nhóm.",
+        "Chọn con vật hoặc người cao hơn, thấp hơn.",
+        "Nhận biết cách đặt đúng để so sánh độ dài."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(xăng-ti-mét|cm|mét|milimét|đo được|số đo)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Đọc độ dài bằng đơn vị xăng-ti-mét.",
+        "Tính chênh lệch độ dài bằng phép cộng hoặc phép trừ.",
+        "So sánh các vật không được đặt cùng điểm đầu nếu không yêu cầu sửa cách đặt."
+      ]
+    },
+    {
+      "lesson_id": 29,
+      "lesson_name": "Đo độ dài",
+      "pdf_pages": [116, 117],
+      "book_pages": [115, 116],
+      "objective": "Thực hành đo độ dài bằng đơn vị không chuẩn như gang tay, sải tay, bước chân, que tính, kẹp giấy hoặc khối giống nhau đặt nối tiếp.",
+      "allowed_knowledge_tags": [
+        "measure_with_hand_spans",
+        "measure_with_arm_spans",
+        "measure_with_steps",
+        "measure_with_repeated_objects",
+        "count_nonstandard_length_units",
+        "place_units_end_to_end"
+      ],
+      "allowed_question_forms": [
+        "Đếm số vật giống nhau đặt nối tiếp để nêu độ dài.",
+        "Chọn đơn vị không chuẩn phù hợp để đo một vật.",
+        "Nhận biết cách đặt các đơn vị đo sát nhau, không chồng hoặc để hở.",
+        "Đọc kết quả đo bằng gang tay, sải tay hoặc bước chân."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(xăng-ti-mét|cm|mét|milimét)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Dùng thước có vạch xăng-ti-mét hoặc ghi kết quả bằng cm.",
+        "Cộng, trừ hoặc tính chênh lệch các số đo.",
+        "Đo với các vật đơn vị khác kích thước hoặc đặt không nối tiếp."
+      ]
+    },
+    {
+      "lesson_id": 30,
+      "lesson_name": "Xăng-ti-mét",
+      "pdf_pages": [118, 119],
+      "book_pages": [117, 118],
+      "objective": "Nhận biết xăng-ti-mét, kí hiệu cm; dùng thước có vạch chia xăng-ti-mét để đo từ vạch 0 và đọc số đo độ dài.",
+      "allowed_knowledge_tags": [
+        "recognize_centimeter_unit",
+        "recognize_cm_symbol",
+        "measure_from_zero_in_centimeters",
+        "read_ruler_length_in_centimeters",
+        "compare_measured_lengths_in_centimeters",
+        "estimate_length_in_centimeters"
+      ],
+      "allowed_question_forms": [
+        "Chọn kí hiệu viết tắt của xăng-ti-mét.",
+        "Đọc độ dài của vật đặt từ vạch 0 trên thước.",
+        "Đo hoặc đọc độ dài băng giấy bằng xăng-ti-mét.",
+        "Chọn vật dài hơn sau khi đã có số đo bằng cm.",
+        "Ước lượng độ dài đơn giản bằng xăng-ti-mét."
+      ],
+      "forbidden_text_patterns": [
+        "(^|\\s)(mét|milimét|đề-xi-mét)(\\s|$)",
+        "\\d\\s*[+−]\\s*\\d"
+      ],
+      "not_yet_allowed": [
+        "Đổi đơn vị đo độ dài.",
+        "Tính chu vi hoặc thực hiện phép tính với số đo.",
+        "Đọc thước bắt đầu ở vạch khác 0."
+      ]
+    }
+  ]
+}

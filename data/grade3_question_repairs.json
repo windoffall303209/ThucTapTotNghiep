@@ -1,0 +1,43 @@
+{
+  "G3-L061-Q005": {
+    "choices": {
+      "A": "Mảnh vườn A",
+      "B": "Mảnh vườn B",
+      "C": "Hai mảnh có diện tích bằng nhau",
+      "D": "Không xác định được"
+    },
+    "answer": "A",
+    "explanation": "Mỗi ô vuông đơn vị biểu thị cùng một phần diện tích. Mảnh vườn A có 18 ô, còn mảnh vườn B có 16 ô; vì 18 > 16 nên mảnh vườn A có diện tích lớn hơn."
+  },
+  "G3-L062-Q014": {
+    "choices": {
+      "A": "Hình A",
+      "B": "Hình B",
+      "C": "Hai hình có diện tích bằng nhau",
+      "D": "Không so sánh được"
+    },
+    "answer": "B",
+    "explanation": "Hai diện tích đều được đo bằng xăng-ti-mét vuông nên ta so sánh trực tiếp 18 và 21. Vì 21 cm² > 18 cm² nên hình B có diện tích lớn hơn."
+  },
+  "G3-L045-Q011": {
+    "choices": {
+      "A": "A, M, B",
+      "B": "A, B, M",
+      "C": "M, B, A",
+      "D": "M, A, B"
+    },
+    "answer": "A",
+    "explanation": "Điểm M nằm giữa A và B nên M phải đứng ở vị trí thứ hai khi viết ba điểm theo thứ tự từ A đến B. Vì vậy, thứ tự phù hợp là A, M, B."
+  },
+  "G3-L066-Q006": {
+    "prompt": "Tung một đồng xu có hai mặt sấp và ngửa. Sự kiện “xuất hiện mặt ngửa” thuộc loại nào?",
+    "choices": {
+      "A": "Có thể",
+      "B": "Chắc chắn",
+      "C": "Không thể",
+      "D": "Không liên quan"
+    },
+    "answer": "A",
+    "explanation": "Khi tung đồng xu, mặt sấp hoặc mặt ngửa đều có thể xuất hiện nhưng không mặt nào chắc chắn xuất hiện trong mọi lần tung. Vì vậy, “xuất hiện mặt ngửa” là một sự kiện có thể xảy ra."
+  }
+}

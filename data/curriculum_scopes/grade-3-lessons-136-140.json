@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-136-140",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 37, 38, 45, 46, 47],
+    "verified_book_pages": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 36, 37, 44, 45, 46]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa hình tròn, tia số làm tròn, khối hình học hoặc lịch; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 136 nhận biết tâm, bán kính và đường kính; bài 137 làm tròn số đến hàng chục, hàng trăm; bài 138 làm tròn số đến hàng nghìn, hàng chục nghìn; bài 139 nhận biết khối hộp chữ nhật và khối lập phương; bài 140 nhận biết số ngày trong tháng và mối quan hệ tuần–ngày.",
+    "excluded_pages": "Không gán các trang luyện tập chung, bài xem đồng hồ ở giữa chương hoặc nội dung sau bài 140 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 136,
+      "lesson_name": "9. Hình tròn, tâm, đường kính, bán kính",
+      "pdf_pages": [25, 26, 27, 28],
+      "book_pages": [24, 25, 26, 27],
+      "objective": "Nhận biết tâm, bán kính, đường kính của hình tròn và mối quan hệ đường kính gấp hai lần bán kính.",
+      "allowed_knowledge_tags": ["circle_center", "radius", "diameter_twice_radius"],
+      "allowed_question_forms": ["Xác định tâm hoặc bán kính trên hình tròn.", "Nhận biết đường kính đi qua tâm.", "Tính bán kính từ đường kính hoặc ngược lại."],
+      "forbidden_text_patterns": ["\\b(diện tích hình tròn|chu vi hình tròn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Diện tích hình tròn", "Chu vi hình tròn", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 137,
+      "lesson_name": "10. Làm tròn số đến hàng chục, hàng trăm",
+      "pdf_pages": [29, 30],
+      "book_pages": [28, 29],
+      "objective": "Làm tròn số đến hàng chục và hàng trăm dựa vào chữ số hàng liền sau hoặc vị trí trên tia số.",
+      "allowed_knowledge_tags": ["round_to_tens", "round_to_hundreds", "nearest_ten_hundred"],
+      "allowed_question_forms": ["Làm tròn số đến hàng chục.", "Làm tròn số đến hàng trăm.", "Chọn số gần nhất trên tia số."],
+      "forbidden_text_patterns": ["\\b(làm tròn đến hàng nghìn|hàng chục nghìn|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Làm tròn đến hàng nghìn", "Làm tròn đến hàng chục nghìn", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 138,
+      "lesson_name": "11. Làm tròn số đến hàng nghìn, hàng chục nghìn",
+      "pdf_pages": [31, 32, 33, 34],
+      "book_pages": [30, 31, 32, 33],
+      "objective": "Làm tròn số đến hàng nghìn và hàng chục nghìn trong phạm vi 100 000.",
+      "allowed_knowledge_tags": ["round_to_thousands", "round_to_ten_thousands", "nearest_thousand_ten_thousand"],
+      "allowed_question_forms": ["Làm tròn số đến hàng nghìn.", "Làm tròn số đến hàng chục nghìn.", "Chọn số gần nhất trên tia số."],
+      "forbidden_text_patterns": ["\\b(làm tròn đến hàng triệu|phân số|số thập phân|số âm)\\b"],
+      "not_yet_allowed": ["Làm tròn đến hàng triệu", "Phân số", "Số thập phân", "Số âm"]
+    },
+    {
+      "lesson_id": 139,
+      "lesson_name": "13. Khối hộp chữ nhật, khối lập phương",
+      "pdf_pages": [37, 38],
+      "book_pages": [36, 37],
+      "objective": "Nhận biết số mặt, số cạnh, số đỉnh của khối hộp chữ nhật và khối lập phương; nhận biết mặt hình chữ nhật hoặc hình vuông.",
+      "allowed_knowledge_tags": ["rectangular_prism", "cube", "faces_edges_vertices"],
+      "allowed_question_forms": ["Đếm số mặt, cạnh hoặc đỉnh.", "Phân biệt khối hộp chữ nhật và khối lập phương.", "Nhận biết dạng mặt của mỗi khối."],
+      "forbidden_text_patterns": ["\\b(diện tích toàn phần|thể tích|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Diện tích toàn phần", "Thể tích", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 140,
+      "lesson_name": "16. Tháng - năm trang 46",
+      "pdf_pages": [45, 46, 47],
+      "book_pages": [44, 45, 46],
+      "objective": "Nhận biết số tháng trong năm, số ngày của từng tháng và mối quan hệ một tuần có bảy ngày.",
+      "allowed_knowledge_tags": ["months_in_year", "days_in_month", "week_seven_days"],
+      "allowed_question_forms": ["Xác định tháng có 30, 31 hoặc 28/29 ngày.", "Đọc lịch và xác định thứ, ngày.", "Tính khoảng thời gian theo ngày trong cùng tháng."],
+      "forbidden_text_patterns": ["\\b(năm nhuận ngoài ví dụ|múi giờ|số thập phân|phân số)\\b"],
+      "not_yet_allowed": ["Tính lịch phức tạp ngoài ví dụ", "Múi giờ", "Phân số", "Số thập phân"]
+    }
+  ]
+}

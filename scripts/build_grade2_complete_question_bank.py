@@ -1,3 +1,4 @@
+# Script build grade2 complete question bank h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import base64
@@ -35,13 +36,19 @@ builder.OUTPUT_TEX = OUTPUT_TEX
 builder.TEMP_IMAGES = ASSET_DIR / "compressed"
 
 
+# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip().rstrip()
 
 
+# H?m normalized d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def normalized(value: object) -> str:
     return clean(value).casefold().replace("−", "-").replace("×", "x")
 
+
+# H?m ascii_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def ascii_text(value: object) -> str:
     text = normalized(value).replace("đ", "d")
@@ -51,6 +58,8 @@ def ascii_text(value: object) -> str:
         if unicodedata.category(char) != "Mn"
     )
 
+
+# H?m title_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def title_key(value: object) -> str:
     text = ascii_text(value)
@@ -62,6 +71,8 @@ def title_key(value: object) -> str:
     return clean(text)
 
 
+# H?m semantic_choice_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def semantic_choice_key(value: object) -> str:
     text = normalized(value)
     words = text.split()
@@ -71,6 +82,8 @@ def semantic_choice_key(value: object) -> str:
                 return f"direction:{direction}"
     return text
 
+
+# H?m parse_current_payloads d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_current_payloads() -> list[dict]:
     records = []
@@ -108,6 +121,8 @@ def parse_current_payloads() -> list[dict]:
     return records
 
 
+# H?m canonical_titles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def canonical_titles(records: list[dict]) -> dict[int, str]:
     result = {}
     for record in records:
@@ -120,6 +135,8 @@ def canonical_titles(records: list[dict]) -> dict[int, str]:
         raise ValueError("Không đọc đủ 51 tiêu đề bài lớp 2.")
     return result
 
+
+# H?m selected_data_files d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def selected_data_files() -> tuple[list[Path], list[Path]]:
     selected = []
@@ -135,6 +152,8 @@ def selected_data_files() -> tuple[list[Path], list[Path]]:
     return selected, excluded
 
 
+# H?m is_question_line d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def is_question_line(text: str) -> bool:
     return (
         len(text) > 6
@@ -145,12 +164,16 @@ def is_question_line(text: str) -> bool:
     )
 
 
+# H?m strip_question_number d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def strip_question_number(text: str) -> str:
     colon = text.find(":")
     dot = text.find(".")
     positions = [item for item in (colon, dot) if 0 <= item < 12]
     return clean(text[min(positions) + 1 :] if positions else text)
 
+
+# H?m parse_choices d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_choices(text: str) -> list[dict]:
     if ":" in text and normalized(text).startswith(("lựa chọn", "lua chon")):
@@ -165,6 +188,8 @@ def parse_choices(text: str) -> list[dict]:
     return choices
 
 
+# H?m parse_answer d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_answer(text: str) -> tuple[str, str]:
     answer = clean(text.split(":", 1)[1] if ":" in text else text).rstrip(".")
     match = re.match(r"^([A-D])\.\s*(.+)$", answer)
@@ -172,6 +197,8 @@ def parse_answer(text: str) -> tuple[str, str]:
         return match.group(1), clean(match.group(2)).rstrip(".")
     return "", answer
 
+
+# H?m lesson_number_for_heading d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def lesson_number_for_heading(
     heading: str,
@@ -203,6 +230,8 @@ def lesson_number_for_heading(
     raise ValueError(f"Không map được tiêu đề DataToan: {heading!r} (key={key!r})")
 
 
+# H?m save_paragraph_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def save_paragraph_images(paragraph, source: Path, question_number: int) -> list[Path]:
     result = []
     blips = paragraph._p.xpath(".//a:blip")
@@ -223,6 +252,8 @@ def save_paragraph_images(paragraph, source: Path, question_number: int) -> list
     return result
 
 
+# H?m parse_data_docx d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_data_docx(
     path: Path,
     canonical: dict[int, str],
@@ -233,6 +264,8 @@ def parse_data_docx(
     current_lesson = None
     current = None
     local_question_number = 0
+
+# H?m flush d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
     def flush() -> None:
         nonlocal current
@@ -291,6 +324,8 @@ def parse_data_docx(
     return records
 
 
+# H?m number_distractors d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def number_distractors(answer: int) -> list[str]:
     candidates = [
         answer - 1,
@@ -303,6 +338,8 @@ def number_distractors(answer: int) -> list[str]:
     ]
     return [str(item) for item in dict.fromkeys(candidates) if item >= 0 and item != answer]
 
+
+# H?m distractors_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def distractors_for(prompt: str, answer: str) -> list[str]:
     if re.fullmatch(r"-?\d+", answer):
@@ -337,6 +374,8 @@ def distractors_for(prompt: str, answer: str) -> list[str]:
     ]
 
 
+# H?m expression_value d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def expression_value(left: int, operator: str, right: int) -> int | None:
     if operator in {"+", "＋"}:
         return left + right
@@ -348,6 +387,8 @@ def expression_value(left: int, operator: str, right: int) -> int | None:
         return left // right
     return None
 
+
+# H?m math_repair d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def math_repair(record: dict, corrections: list[dict]) -> None:
     prompt = record["prompt"].replace("−", "-").replace("×", "x")
@@ -392,6 +433,8 @@ def math_repair(record: dict, corrections: list[dict]) -> None:
                 "reason": "Sửa theo phép tính trực tiếp/ô trống.",
             }
         )
+
+# H?m finalize_choices d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def finalize_choices(record: dict, conversions: list[dict]) -> None:
     answer_key = clean(record.get("answer_key"))
@@ -456,11 +499,15 @@ def finalize_choices(record: dict, conversions: list[dict]) -> None:
         )
 
 
+# H?m explanation_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def explanation_for(record: dict) -> str:
     if record["explanation"]:
         return record["explanation"]
     return f"Dựa vào dữ kiện và phép tính phù hợp, đáp án đúng là: {record['answer_text']}."
 
+
+# H?m record_signature d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def record_signature(record: dict) -> tuple:
     return (
@@ -470,6 +517,8 @@ def record_signature(record: dict) -> tuple:
         normalized(record["answer_text"]),
     )
 
+
+# H?m audit_record d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def audit_record(record: dict) -> list[str]:
     issues = []
@@ -511,6 +560,8 @@ def audit_record(record: dict) -> list[str]:
         issues.append("Nội dung có dấu hiệu lỗi mã hóa.")
     return issues
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main() -> None:
     if not DATA_ROOT.exists():
@@ -652,5 +703,6 @@ def main() -> None:
     )
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -3,6 +3,7 @@
 Script này chỉ đọc dữ liệu có sẵn, áp dụng định dạng và chèn ảnh; không sinh,
 viết lại hoặc biến đổi nội dung câu hỏi, đáp án hay lời giải.
 """
+# Script build manual question batch docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 import json
 from pathlib import Path
@@ -27,6 +28,8 @@ LESSON_TITLES = {
 }
 
 
+# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd")
@@ -34,12 +37,16 @@ def set_cell_shading(cell, fill):
     tc_pr.append(shd)
 
 
+# H?m set_repeat_table_header d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_repeat_table_header(row):
     tr_pr = row._tr.get_or_add_trPr()
     tbl_header = OxmlElement("w:tblHeader")
     tbl_header.set(qn("w:val"), "true")
     tr_pr.append(tbl_header)
 
+
+# H?m add_labeled_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_labeled_paragraph(doc, label, text, color="1F4E78", fill=None):
     if fill:
@@ -57,6 +64,8 @@ def add_labeled_paragraph(doc, label, text, color="1F4E78", fill=None):
     paragraph.add_run(text)
     return paragraph
 
+
+# H?m configure_document d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def configure_document(doc):
     section = doc.sections[0]
@@ -81,6 +90,8 @@ def configure_document(doc):
     styles["Heading 1"].font.size = Pt(17)
     styles["Heading 2"].font.size = Pt(13)
 
+
+# H?m add_cover d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_cover(doc, payload):
     p = doc.add_paragraph()
@@ -121,6 +132,8 @@ def add_cover(doc, payload):
     doc.add_page_break()
 
 
+# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_summary(doc, questions):
     doc.add_heading("Thông tin bộ câu hỏi", level=1)
     table = doc.add_table(rows=1, cols=4)
@@ -148,6 +161,8 @@ def add_summary(doc, questions):
     )
     doc.add_page_break()
 
+
+# H?m add_question d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_question(doc, q):
     heading = doc.add_heading(f"Câu {q['number']}. {q['type']}", level=2)
@@ -183,12 +198,16 @@ def add_question(doc, q):
     divider.runs[0].font.color.rgb = RGBColor(166, 166, 166)
 
 
+# H?m add_footer d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_footer(section):
     footer = section.footer
     p = footer.paragraphs[0]
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.add_run("Ngân hàng câu hỏi bổ sung Toán 5 Cánh Diều - Bài 61, 66, 67")
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     payload = json.loads(DATA.read_text(encoding="utf-8"))
@@ -222,5 +241,6 @@ def main():
     print(OUTPUT)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

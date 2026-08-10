@@ -1,0 +1,165 @@
+{
+  "scope_id": "grade-1-lessons-031-035",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [127, 128, 129, 130, 133, 134, 135, 136, 137, 138],
+    "verified_book_pages": [126, 127, 128, 129, 132, 133, 134, 135, 136, 137]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh minh họa các nhóm số bằng chấm hoặc khối trực quan; không chứa câu hỏi hay đáp án.",
+    "progression": "Chỉ dùng cộng, trừ không nhớ đúng dạng của từng bài; không đổi chục và không tạo phép tính có nhớ.",
+    "difficulty": "Ưu tiên tính một bước và mô hình chục–đơn vị; không yêu cầu quy tắc thành văn phức tạp."
+  },
+  "lessons": [
+    {
+      "lesson_id": 31,
+      "lesson_name": "Phép cộng dạng 14 + 3",
+      "pdf_pages": [127, 128],
+      "book_pages": [126, 127],
+      "objective": "Cộng một số từ 10 đến 19 với một số có một chữ số bằng cách thêm vào phần đơn vị, không tạo thêm chục mới.",
+      "allowed_knowledge_tags": [
+        "add_one_digit_to_teen_without_regrouping",
+        "model_teen_plus_one_digit",
+        "calculate_teen_plus_one_digit",
+        "match_teen_addition_to_result",
+        "write_addition_from_picture_to_19"
+      ],
+      "allowed_question_forms": [
+        "Tính số từ 10 đến 19 cộng với số có một chữ số, kết quả không quá 19.",
+        "Quan sát hai nhóm rồi chọn phép cộng phù hợp.",
+        "Chọn kết quả đúng cho phép cộng dạng đã học.",
+        "Ghép phép cộng với kết quả."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu)\\b",
+        "[−<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng tạo thành một chục mới ở hàng đơn vị.",
+        "Hai số hạng đều là số có hai chữ số.",
+        "Phép tính nhiều bước hoặc phép trừ."
+      ]
+    },
+    {
+      "lesson_id": 32,
+      "lesson_name": "Phép trừ dạng 17 − 2",
+      "pdf_pages": [129, 130],
+      "book_pages": [128, 129],
+      "objective": "Trừ một số có một chữ số khỏi số từ 10 đến 19 bằng cách bớt ở phần đơn vị, không phải tách chục.",
+      "allowed_knowledge_tags": [
+        "subtract_one_digit_from_teen_without_regrouping",
+        "model_teen_minus_one_digit",
+        "calculate_teen_minus_one_digit",
+        "match_teen_subtraction_to_result",
+        "write_subtraction_from_picture_to_19"
+      ],
+      "allowed_question_forms": [
+        "Tính số từ 10 đến 19 trừ số có một chữ số khi phần đơn vị đủ để trừ.",
+        "Quan sát nhóm bị bớt rồi chọn phép trừ phù hợp.",
+        "Chọn kết quả đúng cho phép trừ dạng đã học.",
+        "Ghép phép trừ với kết quả."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ cần tách một chục thành mười đơn vị.",
+        "Số trừ có hai chữ số.",
+        "Phép tính nhiều bước hoặc phép cộng."
+      ]
+    },
+    {
+      "lesson_id": 33,
+      "lesson_name": "Cộng, trừ các số tròn chục",
+      "pdf_pages": [133, 134],
+      "book_pages": [132, 133],
+      "objective": "Cộng và trừ các số tròn chục trong phạm vi 100 bằng cách thao tác với số chục.",
+      "allowed_knowledge_tags": [
+        "add_round_tens_to_100",
+        "subtract_round_tens_to_100",
+        "model_round_tens_operation",
+        "complete_round_tens_equation",
+        "solve_one_step_round_tens_story"
+      ],
+      "allowed_question_forms": [
+        "Tính tổng của hai số tròn chục trong phạm vi 100.",
+        "Tính hiệu của hai số tròn chục không âm.",
+        "Điền số tròn chục còn thiếu trong phép tính.",
+        "Quan sát các thanh chục rồi chọn phép tính phù hợp."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(có nhớ|mượn|đổi chục)\\b",
+        "[<>]"
+      ],
+      "not_yet_allowed": [
+        "Số hạng hoặc số trừ không phải số tròn chục.",
+        "Phép tính nhiều bước.",
+        "Kết quả ngoài phạm vi 100 hoặc kết quả âm."
+      ]
+    },
+    {
+      "lesson_id": 34,
+      "lesson_name": "Phép cộng dạng 25 + 14",
+      "pdf_pages": [135, 136],
+      "book_pages": [134, 135],
+      "objective": "Cộng hai số có hai chữ số không nhớ bằng cách cộng đơn vị với đơn vị và chục với chục.",
+      "allowed_knowledge_tags": [
+        "add_two_digit_numbers_without_regrouping",
+        "model_two_digit_addition_without_regrouping",
+        "vertical_addition_without_regrouping",
+        "match_two_digit_addition_to_result",
+        "solve_one_step_two_digit_addition_story"
+      ],
+      "allowed_question_forms": [
+        "Tính tổng hai số có hai chữ số khi tổng các đơn vị không quá 9.",
+        "Quan sát hai nhóm chục–đơn vị rồi tìm tổng.",
+        "Đặt tính thẳng cột rồi cộng không nhớ.",
+        "Chọn kết quả đúng của phép cộng hai số có hai chữ số."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|có nhớ|nhớ 1|đổi chục)\\b",
+        "[−<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có tổng hàng đơn vị từ 10 trở lên.",
+        "Phép trừ hai số có hai chữ số.",
+        "Phép tính nhiều bước."
+      ]
+    },
+    {
+      "lesson_id": 35,
+      "lesson_name": "Phép cộng dạng 25 + 4, 25 + 40",
+      "pdf_pages": [137, 138],
+      "book_pages": [136, 137],
+      "objective": "Cộng số có hai chữ số với số có một chữ số hoặc số tròn chục, không nhớ và trong phạm vi 100.",
+      "allowed_knowledge_tags": [
+        "add_one_digit_to_two_digit_without_regrouping",
+        "add_round_tens_to_two_digit_without_regrouping",
+        "model_mixed_place_value_addition",
+        "vertical_mixed_place_value_addition",
+        "solve_one_step_mixed_addition_story"
+      ],
+      "allowed_question_forms": [
+        "Tính số có hai chữ số cộng số có một chữ số khi không nhớ.",
+        "Tính số có hai chữ số cộng số tròn chục khi không nhớ.",
+        "Quan sát nhóm chục–đơn vị được thêm rồi tìm tổng.",
+        "Đặt tính thẳng cột rồi cộng đúng hàng."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|có nhớ|nhớ 1|đổi chục)\\b",
+        "[−<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có nhớ ở hàng đơn vị hoặc hàng chục.",
+        "Hai số hạng đều là số có hai chữ số không tròn chục.",
+        "Phép trừ hoặc phép tính nhiều bước."
+      ]
+    }
+  ]
+}

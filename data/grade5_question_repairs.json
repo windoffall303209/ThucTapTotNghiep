@@ -1,0 +1,39 @@
+{
+  "G5-L001-Q003": {
+    "choices": {
+      "A": "Năm mươi tám nghìn ba trăm mười sáu",
+      "B": "Năm tám nghìn ba trăm sáu mươi mốt",
+      "C": "Năm mươi tám nghìn ba trăm sáu mươi mốt",
+      "D": "Năm mươi tám nghìn ba sáu một"
+    },
+    "answer": "C",
+    "explanation": "Ta tách số 58 361 thành 58 nghìn và 361. Phần 58 nghìn đọc là “năm mươi tám nghìn”, còn 361 đọc là “ba trăm sáu mươi mốt”; ghép hai phần lại được “năm mươi tám nghìn ba trăm sáu mươi mốt”. Vậy đáp án đúng là C."
+  },
+  "G5-L052-Q021": {
+    "prompt": "Trong hình thang ABCD có AB song song với CD. Hai đáy của hình thang là cặp cạnh nào?",
+    "choices": {
+      "A": "AB và CD",
+      "B": "AD và BC",
+      "C": "AB và BC",
+      "D": "CD và AD"
+    },
+    "answer": "A",
+    "explanation": "Trong hình thang, hai cạnh đối diện song song được gọi là hai đáy. Đề bài cho AB song song với CD nên AB và CD chính là hai đáy; hai cạnh AD và BC là hai cạnh bên. Vậy đáp án đúng là A."
+  },
+  "G5-L019-Q012": {
+    "image_urls": [
+      "/uploads/images/grade5/g5-l019-q012-01.png"
+    ]
+  },
+  "G5-L059-Q021": {
+    "prompt": "Một hình khai triển gồm sáu hình vuông bằng nhau và có thể gấp lại mà các mặt không chồng lên nhau. Hình đó tạo thành khối nào?",
+    "choices": {
+      "A": "Hình hộp chữ nhật",
+      "B": "Hình trụ",
+      "C": "Hình lập phương",
+      "D": "Hình cầu"
+    },
+    "answer": "C",
+    "explanation": "Hình lập phương có đúng sáu mặt và cả sáu mặt đều là những hình vuông bằng nhau. Khi hình khai triển đã cho gấp lại vừa khít, không có mặt nào chồng lên nhau, sáu hình vuông ấy tạo thành sáu mặt của hình lập phương. Vì vậy, đáp án đúng là C."
+  }
+}

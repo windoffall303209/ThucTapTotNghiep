@@ -1,3 +1,4 @@
+# Script rebuild docx with images h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import os
 import sys
 import json
@@ -18,6 +19,8 @@ CRAWLED_THEORY_JSON = ROOT / "output" / "doc" / "crawled_theory_cards.json"
 GRADE4_THEORY_JSON = ROOT / "output" / "doc" / "grade4_theory_cards.json"
 IMAGE_DIR = ROOT / "output" / "doc" / "theory_images"
 OUTPUT_DOCX = ROOT / "output" / "doc" / "toan_4_ly_thuyet_canh_dieu_co_hinh_ve.docx"
+
+# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def download_image(session, image_url, cache_dir):
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -40,6 +43,8 @@ def download_image(session, image_url, cache_dir):
     except Exception as e:
         print(f"      [Lỗi tải ảnh] {image_url}: {e}")
     return None
+
+# H?m build_docx_with_images d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx_with_images(lessons_theory, output_path):
     print(f"Đang xây dựng file Word có hình vẽ tại: {output_path}...")
@@ -170,6 +175,8 @@ def build_docx_with_images(lessons_theory, output_path):
     doc.save(output_path)
     print(f"Đã lưu file Word thành công tại: {output_path}")
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     if not CRAWLED_THEORY_JSON.exists():
         print(f"Lỗi: Không tìm thấy file lý thuyết thô tại {CRAWLED_THEORY_JSON}")
@@ -223,5 +230,6 @@ def main():
     # 4. Rebuild Word
     build_docx_with_images(grade4_list, OUTPUT_DOCX)
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

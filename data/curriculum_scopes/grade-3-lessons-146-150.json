@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-146-150",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 2 Cánh diều.pdf",
+    "verified_pdf_pages": [66, 67, 68, 69, 70, 71, 72, 77, 78, 79, 80, 81],
+    "verified_book_pages": [65, 66, 67, 68, 69, 70, 71, 76, 77, 78, 79, 80]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, không thêm dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 146 và 147 luyện chia cho số có một chữ số trong phạm vi 100 000; bài 148 tiếp tục thực hiện phép chia và bài toán có lời văn; bài 149 tìm số hạng, số bị trừ hoặc số trừ chưa biết; bài 150 tìm thừa số, số bị chia hoặc số chia chưa biết.",
+    "excluded_pages": "Không gán nội dung của phần Luyện tập chung ở trang 81 trở đi vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 146,
+      "lesson_name": "8. Chia cho số có một chữ số trong phạm vi 100 000",
+      "pdf_pages": [66, 67],
+      "book_pages": [65, 66],
+      "objective": "Đặt tính và thực hiện phép chia cho số có một chữ số trong phạm vi 100 000, nhận biết phép chia hết.",
+      "allowed_knowledge_tags": ["division_to_100000", "exact_division", "long_division"],
+      "allowed_question_forms": ["Tính thương của phép chia hết trong phạm vi 100 000.", "Đặt tính rồi tính phép chia cho số có một chữ số."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích", "Chu vi"]
+    },
+    {
+      "lesson_id": 147,
+      "lesson_name": "9. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+      "pdf_pages": [68, 69],
+      "book_pages": [67, 68],
+      "objective": "Thực hiện phép chia có dư cho số có một chữ số và xác định thương, số dư.",
+      "allowed_knowledge_tags": ["division_to_100000", "division_with_remainder", "quotient_remainder"],
+      "allowed_question_forms": ["Tính thương và số dư của phép chia.", "Chọn kết quả phép chia có dư đúng."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích", "Chu vi"]
+    },
+    {
+      "lesson_id": 148,
+      "lesson_name": "11. Chia cho số có một chữ số trong phạm vi 100 000 (tiếp theo)",
+      "pdf_pages": [70, 71, 72],
+      "book_pages": [69, 70, 71],
+      "objective": "Củng cố thực hiện phép chia cho số có một chữ số trong phạm vi 100 000 và vận dụng vào bài toán thực tế.",
+      "allowed_knowledge_tags": ["division_to_100000", "long_division", "word_problem_division"],
+      "allowed_question_forms": ["Tính thương của phép chia trong phạm vi 100 000.", "Giải bài toán thực tế bằng phép chia cho số có một chữ số."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích", "Chu vi"]
+    },
+    {
+      "lesson_id": 149,
+      "lesson_name": "14. Tìm thành phần chưa biết của phép tính",
+      "pdf_pages": [77, 78, 79],
+      "book_pages": [76, 77, 78],
+      "objective": "Tìm số hạng chưa biết trong phép cộng, số bị trừ hoặc số trừ chưa biết trong phép trừ.",
+      "allowed_knowledge_tags": ["unknown_addend", "unknown_minuend", "unknown_subtrahend"],
+      "allowed_question_forms": ["Tìm số hạng chưa biết.", "Tìm số bị trừ hoặc số trừ chưa biết."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích", "Chu vi"]
+    },
+    {
+      "lesson_id": 150,
+      "lesson_name": "15. Tìm thành phần chưa biết của phép tính (tiếp theo)",
+      "pdf_pages": [80, 81],
+      "book_pages": [79, 80],
+      "objective": "Tìm thừa số chưa biết, số bị chia hoặc số chia chưa biết trong phép nhân và phép chia.",
+      "allowed_knowledge_tags": ["unknown_factor", "unknown_dividend", "unknown_divisor"],
+      "allowed_question_forms": ["Tìm thừa số chưa biết.", "Tìm số bị chia hoặc số chia chưa biết."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|diện tích|chu vi)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Diện tích", "Chu vi"]
+    }
+  ]
+}

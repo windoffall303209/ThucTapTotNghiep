@@ -3,6 +3,7 @@
 Script chỉ đọc nội dung có sẵn trong JSON, chèn 33 ảnh đã được duyệt và áp dụng
 định dạng Word. Script không sinh hoặc viết lại câu hỏi, đáp án hay lời giải.
 """
+# Script build manual question batch b68 b71 b73 docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 import json
 from pathlib import Path
@@ -27,12 +28,16 @@ LESSON_TITLES = {
 }
 
 
+# H?m set_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd")
     shd.set(qn("w:fill"), fill)
     tc_pr.append(shd)
 
+
+# H?m set_cell_margins d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_cell_margins(cell, top=110, start=150, bottom=110, end=150):
     tc = cell._tc
@@ -50,6 +55,8 @@ def set_cell_margins(cell, top=110, start=150, bottom=110, end=150):
         node.set(qn("w:type"), "dxa")
 
 
+# H?m add_page_number d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_page_number(paragraph):
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = paragraph.add_run("Trang ")
@@ -62,6 +69,8 @@ def add_page_number(paragraph):
     fld_char2.set(qn("w:fldCharType"), "end")
     run._r.extend([fld_char1, instr_text, fld_char2])
 
+
+# H?m configure d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def configure(doc):
     section = doc.sections[0]
@@ -95,6 +104,8 @@ def configure(doc):
     run.font.color.rgb = RGBColor(89, 89, 89)
     add_page_number(section.footer.paragraphs[0])
 
+
+# H?m add_cover d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_cover(doc, payload):
     p = doc.add_paragraph()
@@ -141,6 +152,8 @@ def add_cover(doc, payload):
     doc.add_page_break()
 
 
+# H?m add_summary d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_summary(doc, questions):
     doc.add_heading("THÔNG TIN BỘ CÂU HỎI", level=1)
     table = doc.add_table(rows=1, cols=4)
@@ -179,6 +192,8 @@ def add_summary(doc, questions):
     doc.add_page_break()
 
 
+# H?m add_label_box d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_label_box(doc, label, text, fill, label_color):
     table = doc.add_table(rows=1, cols=1)
     table.autofit = True
@@ -192,6 +207,8 @@ def add_label_box(doc, label, text, fill, label_color):
     run.font.color.rgb = RGBColor.from_string(label_color)
     p.add_run(text)
 
+
+# H?m add_question d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_question(doc, question):
     lesson = question["lesson"]
@@ -234,6 +251,8 @@ def add_question(doc, question):
     add_label_box(doc, "Lời giải chi tiết: ", question["explanation"], "EAF2F8", "1F4E78")
 
 
+# H?m validate d?ng ?? ki?m tra t?nh h?p l? v? c?c ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def validate(questions):
     if len(questions) != 66:
         raise ValueError(f"Cần đúng 66 câu, hiện có {len(questions)}")
@@ -249,6 +268,8 @@ def validate(questions):
     if len(image_names) != len(set(image_names)):
         raise ValueError("Mỗi câu có hình phải dùng một tệp ảnh riêng")
 
+
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def main():
     payload = json.loads(DATA.read_text(encoding="utf-8"))
@@ -270,5 +291,6 @@ def main():
     print(OUTPUT)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+// B? ki?m th? runtime storage.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -9,6 +10,7 @@ const {
 } = require('../stores/MySQLSessionStore');
 const { hashKey } = require('../stores/MySQLRateLimitStore');
 
+// H?m read d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function read(relativePath) {
   return fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 }
@@ -53,6 +55,7 @@ test('rate-limit chỉ lưu hash ổn định, không lưu IP hoặc ID thô', (
 });
 
 test('model chỉ kiểm tra schema, không chạy DDL trong request', () => {
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const file of [
     'models/PracticeSession.js',
     'models/AIConversationLog.js',

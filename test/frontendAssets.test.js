@@ -1,3 +1,4 @@
+// B? ki?m th? frontend assets.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const fs = require('fs');
 const path = require('path');
 const test = require('node:test');
@@ -14,8 +15,11 @@ const staticRoots = new Map([
   ['/vendor/nunito/', path.join(projectRoot, 'node_modules', '@fontsource', 'nunito')]
 ]);
 
+// H?m resolveStaticAsset d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function resolveStaticAsset(assetPath) {
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [prefix, root] of staticRoots) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (assetPath.startsWith(prefix)) {
       return path.join(root, ...assetPath.slice(prefix.length).split('/').filter(Boolean));
     }
@@ -23,9 +27,11 @@ function resolveStaticAsset(assetPath) {
   return null;
 }
 
+// H?m listFiles d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function listFiles(directory, extension) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const absolutePath = path.join(directory, entry.name);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (entry.isDirectory()) return listFiles(absolutePath, extension);
     return absolutePath.endsWith(extension) ? [absolutePath] : [];
   });
@@ -43,13 +49,16 @@ test('không dùng lại hai bundle frontend cũ', () => {
 test('mọi asset tĩnh được khai báo trong EJS đều tồn tại', () => {
   const missingAssets = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const viewPath of listFiles(viewsRoot, '.ejs')) {
     const source = fs.readFileSync(viewPath, 'utf8');
     const assetPaths = [...source.matchAll(/['"](\/(?:css|js|vendor)\/[^'"]+\.(?:css|js))['"]/g)]
       .map((match) => match[1]);
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const assetPath of assetPaths) {
       const diskPath = resolveStaticAsset(assetPath);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!diskPath || !fs.existsSync(diskPath)) {
         missingAssets.push(`${path.relative(projectRoot, viewPath)} -> ${assetPath}`);
       }
@@ -97,6 +106,7 @@ test('EJS không chứa CSS hoặc JavaScript thực thi viết trực tiếp', 
 
     const inlineScripts = [...source.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>/gi)]
       .filter((match) => !/type=["']application\/json["']/i.test(match[1]));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (inlineScripts.length > 0) {
       violations.push(`${path.relative(projectRoot, viewPath)} chứa script thực thi inline`);
     }

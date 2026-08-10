@@ -1,3 +1,4 @@
+// M? h?nh question ??nh ngh?a truy c?p, ki?m tra v? bi?n ??i d? li?u c?a m?t th?c th? trong h? th?ng.
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { parseJsonField } = require('../utils/json');
@@ -13,12 +14,16 @@ const LAYOUT_TEMPLATES = new Set([
   'IMAGE_IN_CHOICES'
 ]);
 
+// H?m normalizeQuestion d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestion(row) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!row) return null;
   const content = normalizeQuestionContent(parseJsonField(row.content, row.content ?? { text: '', images: [] }));
   const explanation = normalizeExplanation(parseJsonField(row.explanation, row.explanation ?? { text: '', images: [] }));
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (content.text) content.text = normalizeQuestionText(content.text);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (explanation.text) explanation.text = normalizeExplanationText(explanation.text);
 
   return {
@@ -30,8 +35,10 @@ function normalizeQuestion(row) {
   };
 }
 
+// H?m questionRevision d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function questionRevision(value) {
   const question = normalizeQuestion(value);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!question) return '';
   return JSON.stringify({
     lesson_id: Number(question.lesson_id),
@@ -45,16 +52,20 @@ function questionRevision(value) {
   });
 }
 
+// H?m isActiveQuestion d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function isActiveQuestion(question) {
   return Number(question?.is_active ?? 1) === 1;
 }
 
+// H?m normalizeLayoutTemplate d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeLayoutTemplate(value) {
   const layout = String(value || '').trim().toUpperCase();
   return LAYOUT_TEMPLATES.has(layout) ? layout : 'STACK_VERTICAL';
 }
 
+// H?m normalizeQuestionContent d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestionContent(content) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof content === 'string') {
     return {
       text: content.trim(),
@@ -76,11 +87,13 @@ function normalizeQuestionContent(content) {
   };
 }
 
+// H?m normalizeQuestionInteraction d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeQuestionInteraction(value) {
   const interaction = String(value || '').trim();
   return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
 }
 
+// H?m normalizeLayoutVariant d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeLayoutVariant(value) {
   const layout = String(value || '').trim().toUpperCase();
   return [
@@ -94,7 +107,9 @@ function normalizeLayoutVariant(value) {
   ].includes(layout) ? layout : '';
 }
 
+// H?m normalizeExplanation d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeExplanation(explanation) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof explanation === 'string') {
     return {
       text: explanation.trim(),
@@ -116,6 +131,7 @@ function normalizeExplanation(explanation) {
   };
 }
 
+// H?m normalizeChoices d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeChoices(value) {
   const rawChoices = Array.isArray(value)
     ? value
@@ -126,8 +142,11 @@ function normalizeChoices(value) {
   return rawChoices.map((choice, index) => {
     const key = String(choice?.key || String.fromCharCode(65 + index)).trim().toUpperCase();
     const legacyImages = [];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (choice?.image_url) legacyImages.push({ url: choice.image_url, alt_text: choice.alt_text || choice.text });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (typeof choice?.image === 'string') legacyImages.push({ url: choice.image, alt_text: choice.alt_text || choice.text });
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (choice?.image && typeof choice.image === 'object') legacyImages.push(choice.image);
 
     return {
@@ -142,12 +161,14 @@ function normalizeChoices(value) {
   });
 }
 
+// H?m normalizeImages d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeImages(images, idPrefix, defaultAlt) {
   return (Array.isArray(images) ? images : [])
     .map((image, index) => normalizeImage(image, index, idPrefix, defaultAlt))
     .filter((image) => image.url);
 }
 
+// H?m normalizeImage d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeImage(image, index, idPrefix, defaultAlt) {
   const value = typeof image === 'string' ? { url: image } : image || {};
   const width = Number(value.width_percent || value.width || 100);
@@ -172,10 +193,12 @@ function buildLessonQuestionFilter(options = {}) {
   const difficulty = String(options.difficulty || '').trim().toUpperCase();
   const keyword = String(options.keyword || '').trim();
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
     where.push('difficulty = ?');
     params.push(difficulty);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (keyword) {
     where.push("JSON_UNQUOTE(JSON_EXTRACT(content, '$.text')) LIKE ?");
     params.push(`%${keyword}%`);
@@ -183,12 +206,14 @@ function buildLessonQuestionFilter(options = {}) {
   return { whereClause: where.join(' AND '), params };
 }
 
+// H?m getQuestionsByLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionsByLesson(lessonId, options = {}) {
   const limit = normalizePageLimit(options.limit || 0, 0);
   const offset = Math.max(Number(options.offset || 0), 0);
   const limitClause = limit > 0 ? `LIMIT ${limit} OFFSET ${offset}` : '';
   const filter = buildLessonQuestionFilter(options);
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT *
@@ -211,6 +236,7 @@ async function getQuestionsByLesson(lessonId, options = {}) {
   }
 }
 
+// H?m getTheoryReviewQuestions d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getTheoryReviewQuestions(lessonId, limit = 8) {
   return getQuestionsByLesson(lessonId, {
     limit: normalizePageLimit(limit, 8, 8),
@@ -218,8 +244,10 @@ async function getTheoryReviewQuestions(lessonId, limit = 8) {
   });
 }
 
+// H?m getQuestionCandidates d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionCandidates(options = {}) {
   const grade = Number(options.grade);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!isSupportedGrade(grade)) return [];
 
   const chapterId = Number(options.chapterId || 0);
@@ -230,19 +258,23 @@ async function getQuestionCandidates(options = {}) {
   const conditions = ['c.grade = ?', 'q.is_active = 1'];
   const params = [grade];
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (chapterId > 0) {
     conditions.push('c.id = ?');
     params.push(chapterId);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessonId > 0) {
     conditions.push('l.id = ?');
     params.push(lessonId);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (semester) {
     conditions.push('c.semester = ?');
     params.push(semester);
   }
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await db.query(
       `SELECT
@@ -308,9 +340,11 @@ async function getQuestionCandidates(options = {}) {
   }
 }
 
+// H?m getRecentQuestionIds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getRecentQuestionIds(options = {}) {
   const studentId = Number(options.studentId);
   const grade = Number(options.grade);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!studentId || !isSupportedGrade(grade)) return [];
 
   const lessonId = Number(options.lessonId || 0);
@@ -321,19 +355,23 @@ async function getRecentQuestionIds(options = {}) {
   const limit = Math.min(Math.max(Number(options.limit) || 5, 1), 100);
   const conditions = ['sl.student_id = ?', 'c.grade = ?'];
   const params = [studentId, grade];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (lessonId > 0) {
     conditions.push('l.id = ?');
     params.push(lessonId);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (chapterId > 0) {
     conditions.push('c.id = ?');
     params.push(chapterId);
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (semester) {
     conditions.push('c.semester = ?');
     params.push(semester);
   }
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT q.id, MAX(sl.created_at) AS last_answered_at
@@ -378,11 +416,14 @@ async function getRecentQuestionIds(options = {}) {
   }
 }
 
+// H?m getPracticeSelectionHistory d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getPracticeSelectionHistory(options = {}) {
   const studentId = Number(options.studentId);
   const grade = Number(options.grade);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!studentId || !isSupportedGrade(grade)) return emptySelectionHistory();
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT
@@ -413,14 +454,18 @@ async function getPracticeSelectionHistory(options = {}) {
       ]))
     );
     const rows = [];
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const session of sampleData.practiceSessions || []) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (
         Number(session.student_id) !== studentId
         || !['LESSON', 'CHAPTER', 'COMPREHENSIVE'].includes(String(session.session_mode || '').toUpperCase())
       ) continue;
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const questionId of session.question_ids || []) {
         const question = questionById.get(Number(questionId));
         const lesson = lessonById.get(Number(question?.lesson_id));
+        // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
         if (!question || Number(lesson?.grade) !== grade) continue;
         rows.push({
           question_id: Number(question.id),
@@ -435,14 +480,17 @@ async function getPracticeSelectionHistory(options = {}) {
   }
 }
 
+// H?m buildSelectionHistory d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildSelectionHistory(rows = []) {
   const history = emptySelectionHistory();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const row of rows) {
     const questionId = Number(row.question_id);
     const lessonId = Number(row.lesson_id);
     const chapterId = Number(row.chapter_id);
     const count = Math.max(0, Number(row.appearance_count) || 0);
     const lastSelectedAt = normalizeHistoryTimestamp(row.last_selected_at);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!questionId || !lessonId || !chapterId || count === 0) continue;
     mergeHistoryEntry(history.questions, questionId, count, lastSelectedAt);
     mergeHistoryEntry(history.lessons, lessonId, count, lastSelectedAt);
@@ -450,31 +498,38 @@ function buildSelectionHistory(rows = []) {
   return history;
 }
 
+// H?m emptySelectionHistory d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function emptySelectionHistory() {
   return { questions: {}, lessons: {} };
 }
 
+// H?m mergeHistoryEntry d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function mergeHistoryEntry(target, id, count, lastSelectedAt) {
   const current = target[id] || { count: 0, lastSelectedAt: null };
   current.count += count;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (timestampValue(lastSelectedAt) > timestampValue(current.lastSelectedAt)) {
     current.lastSelectedAt = lastSelectedAt;
   }
   target[id] = current;
 }
 
+// H?m normalizeHistoryTimestamp d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeHistoryTimestamp(value) {
   const timestamp = value instanceof Date ? value.getTime() : Date.parse(String(value || ''));
   return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : null;
 }
 
+// H?m timestampValue d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function timestampValue(value) {
   const timestamp = Date.parse(String(value || ''));
   return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
 }
 
+// H?m countQuestionsByLesson d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function countQuestionsByLesson(lessonId, options = {}) {
   const filter = buildLessonQuestionFilter(options);
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT COUNT(*) AS total
@@ -492,6 +547,7 @@ async function countQuestionsByLesson(lessonId, options = {}) {
   }
 }
 
+// H?m getQuestionPageByLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionPageByLesson(lessonId, options = {}) {
   const page = Math.max(Number(options.page || 1), 1);
   const limit = normalizePageLimit(options.limit || 20, 20);
@@ -518,6 +574,7 @@ async function getQuestionPageByLesson(lessonId, options = {}) {
  */
 async function getDifficultyStats() {
   const base = { EASY: 0, MEDIUM: 0, HARD: 0, EXPERT: 0 };
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT q.difficulty, COUNT(*) AS total
@@ -530,6 +587,7 @@ async function getDifficultyStats() {
     );
     rows.forEach((row) => {
       const key = String(row.difficulty || '').toUpperCase();
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (key in base) base[key] = Number(row.total || 0);
     });
     return base;
@@ -552,29 +610,34 @@ async function searchQuestions(filters = {}) {
   const params = [];
 
   const grade = Number(filters.grade || 0);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (grade >= MIN_GRADE && grade <= MAX_GRADE) {
     where.push('c.grade = ?');
     params.push(grade);
   }
 
   const difficulty = String(filters.difficulty || '').trim().toUpperCase();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
     where.push('q.difficulty = ?');
     params.push(difficulty);
   }
 
   const questionType = String(filters.questionType || '').trim().toUpperCase();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'].includes(questionType)) {
     where.push('q.question_type = ?');
     params.push(questionType);
   }
 
   const keyword = String(filters.keyword || '').trim();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (keyword) {
     where.push("JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) LIKE ?");
     params.push(`%${keyword}%`);
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (filters.missingExplanation) {
     where.push("TRIM(COALESCE(JSON_UNQUOTE(JSON_EXTRACT(q.explanation, '$.text')), '')) = ''");
   }
@@ -582,6 +645,7 @@ async function searchQuestions(filters = {}) {
   const whereClause = where.length ? `WHERE ${where.join(' AND ')}` : '';
   const limit = normalizePageLimit(filters.limit || 50, 50);
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT q.*, l.lesson_name, c.chapter_name, c.grade
@@ -600,7 +664,9 @@ async function searchQuestions(filters = {}) {
   }
 }
 
+// H?m getQuestionById d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionById(id) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       'SELECT * FROM QuestionBank WHERE id = ? AND is_active = 1 LIMIT 1',
@@ -617,10 +683,13 @@ async function getQuestionById(id) {
   }
 }
 
+// H?m getQuestionsByIds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionsByIds(ids) {
   const questionIds = ids.map(Number).filter(Boolean);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (questionIds.length === 0) return [];
 
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const placeholders = questionIds.map(() => '?').join(',');
     const rows = await db.query(
@@ -648,14 +717,19 @@ const PLACEHOLDER_MISCONCEPTION_TEXTS = [
   'đối chiếu lại dữ kiện và yêu cầu của câu hỏi'
 ];
 
+// H?m isPlaceholderMisconception d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function isPlaceholderMisconception(misconception) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!misconception) return true;
   const explanation = String(misconception.explanation || '').trim().toLowerCase();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!explanation) return true;
   return PLACEHOLDER_MISCONCEPTION_TEXTS.includes(explanation);
 }
 
+// H?m getMisconception d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getMisconception(questionId, selectedAnswer) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT *
@@ -675,7 +749,9 @@ async function getMisconception(questionId, selectedAnswer) {
   }
 }
 
+// H?m getMisconceptionsByQuestion d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getMisconceptionsByQuestion(questionId) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await db.query(
       `SELECT *
@@ -690,9 +766,12 @@ async function getMisconceptionsByQuestion(questionId) {
   }
 }
 
+// H?m getMisconceptionsByQuestionIds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getMisconceptionsByQuestionIds(questionIds) {
   const ids = [...new Set((questionIds || []).map(Number).filter(Boolean))];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (ids.length === 0) return new Map();
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const placeholders = ids.map(() => '?').join(',');
     const rows = await db.query(
@@ -704,7 +783,9 @@ async function getMisconceptionsByQuestionIds(questionIds) {
     );
     return rows.reduce((result, row) => {
       const key = Number(row.question_id);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!result.has(key)) result.set(key, []);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!isPlaceholderMisconception(row)) result.get(key).push(row);
       return result;
     }, new Map());
@@ -722,7 +803,9 @@ async function getMisconceptionsByQuestionIds(questionIds) {
   }
 }
 
+// H?m listQuestions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function listQuestions() {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT q.*, l.lesson_name, c.chapter_name, c.grade
@@ -751,7 +834,9 @@ async function listQuestions() {
   }
 }
 
+// H?m getAdminStats d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getAdminStats() {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT
@@ -790,8 +875,10 @@ async function getAdminStats() {
   }
 }
 
+// H?m getRecentQuestions d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getRecentQuestions(limit = 6) {
   const safeLimit = normalizePageLimit(limit, 6, 50);
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const rows = await db.query(
       `SELECT q.*, l.lesson_name, c.chapter_name, c.grade
@@ -810,7 +897,9 @@ async function getRecentQuestions(limit = 6) {
   }
 }
 
+// H?m getQuestionCountsByLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getQuestionCountsByLesson() {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await db.query(
       `SELECT q.lesson_id, COUNT(*) AS question_count
@@ -829,8 +918,10 @@ async function getQuestionCountsByLesson() {
         .flatMap((chapter) => chapter.lessons.map((lesson) => Number(lesson.id)))
     );
     const counts = new Map();
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const question of sampleData.questions) {
       const lessonId = Number(question.lesson_id);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!isActiveQuestion(question) || !supportedLessonIds.has(lessonId)) continue;
       counts.set(lessonId, (counts.get(lessonId) || 0) + 1);
     }
@@ -841,6 +932,7 @@ async function getQuestionCountsByLesson() {
   }
 }
 
+// H?m updateQuestion d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function updateQuestion(
   id,
   payload,
@@ -849,6 +941,7 @@ async function updateQuestion(
     transaction = db.transaction
   } = {}
 ) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await transaction(async (connection) => {
       const [currentRows] = await connection.execute(
@@ -859,7 +952,9 @@ async function updateQuestion(
          FOR UPDATE`,
         [id]
       );
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!currentRows[0]) return null;
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (
         expectedQuestion
         && questionRevision(currentRows[0]) !== questionRevision(expectedQuestion)
@@ -890,9 +985,11 @@ async function updateQuestion(
           id
         ]
       );
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!result.affectedRows) return null;
 
       await connection.execute('DELETE FROM CommonMisconceptions WHERE question_id = ?', [id]);
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const misconception of payload.misconceptions || []) {
         await connection.execute(
           `INSERT INTO CommonMisconceptions
@@ -914,7 +1011,9 @@ async function updateQuestion(
     const index = sampleData.questions.findIndex(
       (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (index === -1) return null;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (
       expectedQuestion
       && questionRevision(sampleData.questions[index]) !== questionRevision(expectedQuestion)
@@ -930,6 +1029,7 @@ async function updateQuestion(
     sampleData.misconceptions = sampleData.misconceptions.filter(
       (item) => Number(item.question_id) !== Number(id)
     );
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const misconception of payload.misconceptions || []) {
       sampleData.misconceptions.push({
         id: sampleData.misconceptions.length + 1,
@@ -941,7 +1041,9 @@ async function updateQuestion(
   }
 }
 
+// H?m deleteQuestion d?ng ?? x?a ho?c gi?i ph?ng t?i nguy?n theo ?i?u ki?n an to?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function deleteQuestion(id) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     const result = await db.query(
       `UPDATE QuestionBank
@@ -955,6 +1057,7 @@ async function deleteQuestion(id) {
     const index = sampleData.questions.findIndex(
       (question) => isActiveQuestion(question) && Number(question.id) === Number(id)
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (index === -1) return false;
 
     sampleData.questions[index] = {
@@ -966,6 +1069,7 @@ async function deleteQuestion(id) {
   }
 }
 
+// H?m insertQuestionWithConnection d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function insertQuestionWithConnection(connection, payload) {
   const [result] = await connection.execute(
     `INSERT INTO QuestionBank
@@ -984,6 +1088,7 @@ async function insertQuestionWithConnection(connection, payload) {
   );
 
   const questionId = result.insertId;
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const misconception of payload.misconceptions || []) {
     await connection.execute(
       `INSERT INTO CommonMisconceptions
@@ -1000,6 +1105,7 @@ async function insertQuestionWithConnection(connection, payload) {
   return { ...payload, id: questionId, is_active: 1 };
 }
 
+// H?m createFallbackQuestion d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function createFallbackQuestion(payload) {
   const question = {
     ...payload,
@@ -1007,6 +1113,7 @@ function createFallbackQuestion(payload) {
     is_active: 1
   };
   sampleData.questions.push(question);
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const misconception of payload.misconceptions || []) {
     sampleData.misconceptions.push({
       id: sampleData.misconceptions.length + 1,
@@ -1017,7 +1124,9 @@ function createFallbackQuestion(payload) {
   return question;
 }
 
+// H?m createQuestion d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function createQuestion(payload) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await db.transaction(
       (connection) => insertQuestionWithConnection(connection, payload)
@@ -1028,6 +1137,7 @@ async function createQuestion(payload) {
   }
 }
 
+// H?m duplicateQuestion d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function duplicateQuestion(
   sourceId,
   {
@@ -1035,6 +1145,7 @@ async function duplicateQuestion(
     copySuffix = ' (bản sao — cần sửa lại)'
   } = {}
 ) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return await transaction(async (connection) => {
       const [sourceRows] = await connection.execute(
@@ -1046,6 +1157,7 @@ async function duplicateQuestion(
         [Number(sourceId)]
       );
       const source = normalizeQuestion(sourceRows[0]);
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!source) return null;
 
       const [misconceptions] = await connection.execute(
@@ -1084,6 +1196,7 @@ async function duplicateQuestion(
           && Number(question.id) === Number(sourceId)
       )
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!source) return null;
     const misconceptions = sampleData.misconceptions
       .filter((item) => Number(item.question_id) === Number(sourceId))
@@ -1109,13 +1222,17 @@ async function duplicateQuestion(
   }
 }
 
+// H?m normalizePageLimit d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizePageLimit(value, fallback = 20, max = 100) {
   const limit = Number(value);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!Number.isFinite(limit) || limit <= 0) return fallback;
   return Math.min(Math.max(Math.round(limit), 1), max);
 }
 
+// H?m recordAnswer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function recordAnswer({ studentId, practiceSessionId, questionId, selectedAnswer, isCorrect, misconceptionId, timeSpentSeconds }) {
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     await db.query(
       `INSERT INTO StudentLogs

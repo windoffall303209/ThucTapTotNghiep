@@ -1,0 +1,167 @@
+{
+  "scope_id": "grade-1-lessons-021-025",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [69, 70, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102],
+    "verified_book_pages": [68, 69, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh chỉ minh họa dữ kiện, không chứa câu hỏi, đáp án, tên lớp, chương hoặc bài.",
+    "progression": "Mỗi câu chỉ dùng đúng dải số đã xuất hiện trong bài; chưa đưa so sánh số hoặc cấu tạo chục và đơn vị của bài sau vào.",
+    "difficulty": "Ưu tiên nhận biết trực quan, đếm, đọc hoặc viết số; không tăng độ khó bằng phép tính hay thuật ngữ chưa học."
+  },
+  "lessons": [
+    {
+      "lesson_id": 21,
+      "lesson_name": "Phép trừ trong phạm vi 10 (tiếp theo)",
+      "pdf_pages": [69, 70],
+      "book_pages": [68, 69],
+      "objective": "Củng cố bảng trừ trong phạm vi 10, tính nhẩm, chọn kết quả và lập phép trừ một bước từ tranh.",
+      "allowed_knowledge_tags": [
+        "mental_subtraction_to_10",
+        "complete_subtraction_table_to_10",
+        "match_subtraction_to_result_to_10",
+        "subtract_zero_to_10",
+        "write_subtraction_from_picture_to_10"
+      ],
+      "allowed_question_forms": [
+        "Tính nhẩm phép trừ trong phạm vi 10.",
+        "Chọn kết quả đúng của phép trừ.",
+        "Chọn phép trừ có kết quả đã cho.",
+        "Quan sát tranh rồi chọn hoặc viết phép trừ phù hợp."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng)\\b",
+        "\\b(1[1-9]|[2-9][0-9])\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Số bị trừ lớn hơn 10.",
+        "Phép tính nhiều bước hoặc kết hợp cộng và trừ.",
+        "Bài toán lời văn dài cần suy luận ngoài thao tác bớt đi."
+      ]
+    },
+    {
+      "lesson_id": 22,
+      "lesson_name": "Các số đến 100",
+      "pdf_pages": [87, 88, 89, 90, 91, 92, 93, 94, 95, 96],
+      "book_pages": [86, 87, 88, 89, 90, 91, 92, 93, 94, 95],
+      "objective": "Đếm, đọc, viết và sắp xếp các số từ 11 đến 20; nhận biết các số tròn chục từ 10 đến 90 qua nhóm mười đồ vật.",
+      "allowed_knowledge_tags": [
+        "count_objects_11_to_20",
+        "read_numbers_11_to_20",
+        "write_numbers_11_to_20",
+        "complete_sequence_11_to_20",
+        "recognize_round_tens_10_to_90",
+        "count_groups_of_ten_to_90"
+      ],
+      "allowed_question_forms": [
+        "Đếm đồ vật rồi chọn số từ 11 đến 20.",
+        "Đọc hoặc viết một số từ 11 đến 20.",
+        "Điền số còn thiếu trong dãy số đến 20.",
+        "Đếm các nhóm mười rồi chọn số tròn chục từ 10 đến 90."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|lớn hơn|bé hơn|chục|đơn vị)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Đọc hoặc viết các số không tròn chục từ 21 đến 99.",
+        "Phân tích số thành chục và đơn vị bằng thuật ngữ vị trí.",
+        "So sánh hai số hoặc thực hiện phép tính với số có hai chữ số."
+      ]
+    },
+    {
+      "lesson_id": 23,
+      "lesson_name": "Các số có hai chữ số (Từ 21 đến 40)",
+      "pdf_pages": [97, 98],
+      "book_pages": [96, 97],
+      "objective": "Đếm, đọc, viết và tìm số còn thiếu trong phạm vi từ 21 đến 40 bằng hình ảnh các nhóm mười và các vật rời.",
+      "allowed_knowledge_tags": [
+        "count_objects_21_to_40",
+        "read_numbers_21_to_40",
+        "write_numbers_21_to_40",
+        "represent_numbers_21_to_40_with_tens_and_ones",
+        "complete_sequence_21_to_40"
+      ],
+      "allowed_question_forms": [
+        "Đếm nhóm mười và vật rời rồi chọn số từ 21 đến 40.",
+        "Đọc hoặc viết một số từ 21 đến 40.",
+        "Điền số còn thiếu trong dãy số từ 21 đến 40.",
+        "Đếm số đồ vật trong một hình với tổng không quá 40."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|lớn hơn|bé hơn|chục|đơn vị)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Số nhỏ hơn 21 hoặc lớn hơn 40 làm dữ kiện chính cần nhận biết.",
+        "Phân tích số thành chục và đơn vị bằng thuật ngữ vị trí.",
+        "So sánh hoặc thực hiện phép tính với số có hai chữ số."
+      ]
+    },
+    {
+      "lesson_id": 24,
+      "lesson_name": "Các số có hai chữ số (Từ 41 đến 70)",
+      "pdf_pages": [99, 100],
+      "book_pages": [98, 99],
+      "objective": "Đếm, đọc, viết và tìm số còn thiếu trong phạm vi từ 41 đến 70 bằng hình ảnh các nhóm mười và các vật rời.",
+      "allowed_knowledge_tags": [
+        "count_objects_41_to_70",
+        "read_numbers_41_to_70",
+        "write_numbers_41_to_70",
+        "represent_numbers_41_to_70_with_tens_and_ones",
+        "complete_sequence_41_to_70"
+      ],
+      "allowed_question_forms": [
+        "Đếm nhóm mười và vật rời rồi chọn số từ 41 đến 70.",
+        "Đọc hoặc viết một số từ 41 đến 70.",
+        "Điền số còn thiếu trong dãy số từ 41 đến 70.",
+        "Đếm số đồ vật trong một hình với tổng từ 41 đến 70."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|lớn hơn|bé hơn|chục|đơn vị)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Số nhỏ hơn 41 hoặc lớn hơn 70 làm dữ kiện chính cần nhận biết.",
+        "Phân tích số thành chục và đơn vị bằng thuật ngữ vị trí.",
+        "So sánh hoặc thực hiện phép tính với số có hai chữ số."
+      ]
+    },
+    {
+      "lesson_id": 25,
+      "lesson_name": "Các số có hai chữ số (Từ 71 đến 99)",
+      "pdf_pages": [101, 102],
+      "book_pages": [100, 101],
+      "objective": "Đếm, đọc, viết và tìm số còn thiếu trong phạm vi từ 71 đến 99 bằng hình ảnh các nhóm mười và các vật rời.",
+      "allowed_knowledge_tags": [
+        "count_objects_71_to_99",
+        "read_numbers_71_to_99",
+        "write_numbers_71_to_99",
+        "represent_numbers_71_to_99_with_tens_and_ones",
+        "complete_sequence_71_to_99"
+      ],
+      "allowed_question_forms": [
+        "Đếm nhóm mười và vật rời rồi chọn số từ 71 đến 99.",
+        "Đọc hoặc viết một số từ 71 đến 99.",
+        "Điền số còn thiếu trong dãy số từ 71 đến 99.",
+        "Đếm số đồ vật trong một hình với tổng từ 71 đến 99."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|trừ|tổng|hiệu|lớn hơn|bé hơn|chục|đơn vị)\\b",
+        "[+\\-<>]"
+      ],
+      "not_yet_allowed": [
+        "Số nhỏ hơn 71 hoặc lớn hơn 99 làm dữ kiện chính cần nhận biết.",
+        "Phân tích số thành chục và đơn vị bằng thuật ngữ vị trí.",
+        "So sánh hoặc thực hiện phép tính với số có hai chữ số."
+      ]
+    }
+  ]
+}

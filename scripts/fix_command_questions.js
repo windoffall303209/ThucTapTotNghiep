@@ -1,3 +1,4 @@
+// Script fix command questions h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Thay các câu hỏi lớp 1 vốn là CÂU LỆNH thao tác trên giấy chứ không phải câu hỏi.
  *
@@ -138,9 +139,13 @@ const THAY_MOT_PHUONG_AN = new Map([
   [6456, { cu: 'Thực hiện ít hơn yêu cầu một đơn vị', moi: 'Chưa đủ dữ kiện để so sánh' }]
 ]);
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -148,6 +153,7 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m layCau d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function layCau(id) {
   const rows = await db.query(
     'SELECT q.id, q.content, q.choices, q.correct_answer, q.explanation, l.lesson_name '
@@ -157,18 +163,23 @@ async function layCau(id) {
   return rows[0] || null;
 }
 
+// H?m kiemTraTrung d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function kiemTraTrung(id, choices) {
   const chuan = choices.map((c) => String(c.text || '').trim().toLowerCase().replace(/[.;]+$/, ''));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (new Set(chuan).size !== chuan.length) {
     throw new Error(`id ${id}: bộ phương án mới còn hai phương án giống nhau.`);
   }
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const baoCao = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, muc] of THAY_MOI) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) {
       console.log(`  BỎ QUA id ${id}: không còn trong cơ sở dữ liệu`);
       continue;
@@ -177,8 +188,10 @@ async function main() {
     const choicesCu = parseJson(row.choices, []) || [];
     const explanation = parseJson(row.explanation, {}) || {};
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (muc.pa.length !== 4) throw new Error(`id ${id}: cần đúng 4 phương án.`);
     const choicesMoi = muc.pa.map((text, i) => ({ key: NHAN[i], text, images: [] }));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!choicesMoi.some((c) => c.key === muc.dap)) {
       throw new Error(`id ${id}: đáp án ${muc.dap} không có trong bộ phương án mới.`);
     }
@@ -193,6 +206,7 @@ async function main() {
       dap_an_cu: row.correct_answer, dap_an_moi: muc.dap, loi_giai_moi: muc.giai
     });
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query(
         'UPDATE QuestionBank SET content = CAST(? AS JSON), choices = CAST(? AS JSON), '
@@ -206,16 +220,20 @@ async function main() {
     }
   }
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [id, muc] of THAY_MOT_PHUONG_AN) {
     const row = await layCau(id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!row) continue;
     const content = parseJson(row.content, {}) || {};
     const choices = parseJson(row.choices, []) || [];
     const viTri = choices.findIndex((c) => String(c.text || '').trim() === muc.cu);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (viTri === -1) {
       console.log(`  BỎ QUA id ${id}: không tìm thấy phương án "${muc.cu}"`);
       continue;
     }
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (choices[viTri].key === row.correct_answer) {
       throw new Error(`id ${id}: phương án cần thay lại đang là đáp án đúng.`);
     }
@@ -230,6 +248,7 @@ async function main() {
       dap_an_cu: row.correct_answer, dap_an_moi: row.correct_answer
     });
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query('UPDATE QuestionBank SET choices = CAST(? AS JSON) WHERE id = ?',
         [JSON.stringify(choicesMoi), id]);
@@ -244,11 +263,13 @@ async function main() {
   baoCao.forEach((b) => {
     console.log(`\n  id ${b.id} [${b.bai_hoc}]`);
     console.log(`    đề cũ : ${b.de_cu}`);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (b.loai === 'thay_moi') console.log(`    đề mới: ${b.de_moi}`);
     console.log(`    pa cũ : ${b.phuong_an_cu.join(' | ')}  -> ${b.dap_an_cu}`);
     console.log(`    pa mới: ${b.phuong_an_moi.join(' | ')}  -> ${b.dap_an_moi}`);
   });
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${baoCao.length} câu.`);
     console.log('Nhớ chạy tiếp: node scripts/resync_tex_from_db.js --commit');

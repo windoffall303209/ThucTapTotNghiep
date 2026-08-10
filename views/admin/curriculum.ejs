@@ -1,3 +1,4 @@
+<%# M?u giao di?n curriculum k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <section class="workspace-head">
   <div>
     <p class="eyebrow">Nội dung</p>
@@ -7,6 +8,7 @@
 </section>
 
 <nav class="grade-tabs" aria-label="Chọn khối lớp">
+  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
   <% gradeOptions.forEach((option) => { %>
     <a
       class="btn <%= Number(option.value) === Number(grade) ? 'btn-primary' : 'btn-secondary' %>"
@@ -53,13 +55,16 @@
     <small class="muted"><%= chapters.length %> chương</small>
   </div>
 
+  <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
   <% if (chapters.length === 0) { %>
     <div class="empty-state compact">
       <p>Lớp <%= grade %> chưa có chương nào. Hãy thêm chương đầu tiên ở phía trên.</p>
     </div>
   <% } %>
 
+  <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
   <% chapters.forEach((chapter) => { %>
+    <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
     <% const lessons = lessonsByChapter[chapter.id] || []; %>
     <%# id để redirect sau khi lưu nhảy thẳng về chương vừa thao tác; thuộc tính
         open đọc từ ?open= nên trạng thái đang mở không mất sau mỗi lần lưu. %>
@@ -111,6 +116,7 @@
             <i data-lucide="trash-2" class="lucide-icon"></i>
             Xóa chương
           </button>
+          <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
           <% if (chapter.lesson_count > 0) { %>
             <small class="muted">Còn <%= chapter.lesson_count %> bài học nên chưa xóa được.</small>
           <% } %>
@@ -121,10 +127,12 @@
           Bài học trong chương
         </div>
 
+        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
         <% if (lessons.length === 0) { %>
           <p class="muted">Chương này chưa có bài học nào.</p>
         <% } %>
 
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% lessons.forEach((lesson) => { %>
           <article class="curriculum-lesson-row">
             <form class="curriculum-form" action="/admin/curriculum/lessons/<%= lesson.id %>" method="post">
@@ -192,4 +200,5 @@
     </details>
   <% }) %>
 </section>
+<%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
 <% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/curriculum.css'); %>

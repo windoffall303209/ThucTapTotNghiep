@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-3-lessons-111-115",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 3,
+  "source": {
+    "title": "SGK Toán 3 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 3 Tập 1 Cánh diều.pdf",
+    "verified_pdf_pages": [71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 83, 84],
+    "verified_book_pages": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 82, 83]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 3.",
+    "images": "Ảnh minh họa nhóm đồ vật, phép tính đặt tính hoặc quan hệ gấp số lần; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 111 nhân với số có một chữ số không nhớ; bài 112 phép chia hết, phép chia có dư; bài 113 chia số tròn chục, tròn trăm cho số có một chữ số; bài 114 chia cho số có một chữ số; bài 115 so sánh số lớn gấp mấy lần số bé.",
+    "excluded_pages": "Các trang luyện tập chung giữa bài 114 và bài 115 không được gán vào bài riêng."
+  },
+  "lessons": [
+    {
+      "lesson_id": 111,
+      "lesson_name": "Nhân với số có một chữ số (không nhớ)",
+      "pdf_pages": [71, 72, 73],
+      "book_pages": [70, 71, 72],
+      "objective": "Đặt tính và tính phép nhân số có nhiều chữ số với số có một chữ số trong trường hợp không nhớ.",
+      "allowed_knowledge_tags": ["multiply_by_one_digit_no_carry", "place_value_multiplication", "solve_one_step_multiplication"],
+      "allowed_question_forms": ["Tính một phép nhân không nhớ.", "Giải bài toán một bước dùng phép nhân không nhớ.", "Nhận biết các hàng khi nhân với số có một chữ số."],
+      "forbidden_text_patterns": ["\\b(có nhớ|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Nhân có nhớ", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 112,
+      "lesson_name": "Phép chia hết, phép chia có dư",
+      "pdf_pages": [74, 75],
+      "book_pages": [73, 74],
+      "objective": "Phân biệt phép chia hết và phép chia có dư, xác định thương và số dư trong trường hợp đơn giản.",
+      "allowed_knowledge_tags": ["exact_division", "division_with_remainder", "identify_quotient_remainder", "remainder_less_than_divisor"],
+      "allowed_question_forms": ["Tìm thương và số dư của phép chia.", "Phân loại phép chia hết hoặc có dư.", "Chọn phép chia có số dư bé hơn số chia."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|chia số có ba chữ số)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Thuật toán chia dài phức tạp"]
+    },
+    {
+      "lesson_id": 113,
+      "lesson_name": "Chia số tròn chục, tròn trăm cho số có một chữ số",
+      "pdf_pages": [76, 77],
+      "book_pages": [75, 76],
+      "objective": "Tính được phép chia số tròn chục hoặc tròn trăm cho số có một chữ số.",
+      "allowed_knowledge_tags": ["divide_round_tens", "divide_round_hundreds", "place_value_division", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính số tròn chục chia cho số có một chữ số.", "Tính số tròn trăm chia cho số có một chữ số.", "Giải bài toán chia đều với số tròn chục hoặc tròn trăm."],
+      "forbidden_text_patterns": ["\\b(chia số có hai chữ số|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Chia số không tròn", "Phân số", "Số thập phân"]
+    },
+    {
+      "lesson_id": 114,
+      "lesson_name": "Chia cho số có một chữ số",
+      "pdf_pages": [78, 79, 80],
+      "book_pages": [77, 78, 79],
+      "objective": "Đặt tính và thực hiện phép chia số có hai hoặc ba chữ số cho số có một chữ số.",
+      "allowed_knowledge_tags": ["long_division_one_digit_divisor", "division_with_remainder", "place_value_division", "solve_one_step_division"],
+      "allowed_question_forms": ["Tính phép chia cho số có một chữ số.", "Xác định thương và số dư.", "Giải bài toán chia đều với số có hai hoặc ba chữ số."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|chia cho số có hai chữ số)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Chia cho số có hai chữ số"]
+    },
+    {
+      "lesson_id": 115,
+      "lesson_name": "So sánh số lớn gấp mấy lần số bé",
+      "pdf_pages": [83, 84],
+      "book_pages": [82, 83],
+      "objective": "Biết lấy số lớn chia cho số bé để tìm số lớn gấp mấy lần số bé.",
+      "allowed_knowledge_tags": ["compare_as_many_times", "divide_large_by_small", "solve_one_step_division", "represent_factor_relationship"],
+      "allowed_question_forms": ["Tìm số lớn gấp mấy lần số bé.", "Giải bài toán so sánh độ dài hoặc số lượng theo số lần.", "Chọn phép chia biểu thị quan hệ gấp số lần."],
+      "forbidden_text_patterns": ["\\b(giảm đi|phân số|số thập phân)\\b"],
+      "not_yet_allowed": ["Giảm một số đi một số lần", "Phân số", "Số thập phân"]
+    }
+  ]
+}

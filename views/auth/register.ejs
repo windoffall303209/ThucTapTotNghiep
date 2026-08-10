@@ -1,3 +1,4 @@
+<%# M?u giao di?n register k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <section class="auth-shell">
   <div class="auth-layout">
     <aside class="auth-copy">
@@ -50,6 +51,7 @@
               thấy sai toàn bộ chương trình và phải nhờ người lớn sửa lại. %>
           <select name="grade" required>
             <option value="" selected disabled>— Em học lớp mấy? —</option>
+            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
             <% gradeOptions.forEach((grade) => { %>
               <option value="<%= grade.value %>"><%= grade.label %></option>
             <% }) %>

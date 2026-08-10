@@ -1,3 +1,4 @@
+// Script remove grades 6 7 h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Xóa dữ liệu chương trình khối 6 và 7 khỏi cơ sở dữ liệu.
  *
@@ -23,11 +24,13 @@ const db = require('../config/db');
 const GRADES = [6, 7];
 const COMMIT = process.argv.includes('--commit');
 
+// H?m count d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function count(sql, params = []) {
   const rows = await db.query(sql, params);
   return Number(rows[0]?.total || 0);
 }
 
+// H?m thongKe d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function thongKe() {
   const gradeList = GRADES.join(', ');
   return {
@@ -62,11 +65,13 @@ async function timPhienRong() {
   );
 
   const rong = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const row of rows) {
     const ids = typeof row.question_ids === 'string'
       ? JSON.parse(row.question_ids || '[]')
       : (row.question_ids || []);
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!Array.isArray(ids) || ids.length === 0) {
       rong.push({ ...row, conLai: 0, tong: 0 });
       continue;
@@ -76,11 +81,13 @@ async function timPhienRong() {
       `SELECT COUNT(*) AS total FROM QuestionBank WHERE id IN (${ids.map(() => '?').join(',')})`,
       ids
     );
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (conLai === 0) rong.push({ ...row, conLai, tong: ids.length });
   }
   return rong;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const truoc = await thongKe();
   console.log(`Dữ liệu khối ${GRADES.join(' và ')} hiện có:`);
@@ -89,11 +96,13 @@ async function main() {
   console.log(`  QuestionBank: ${truoc.questions}`);
   console.log(`  StudentLogs bị kéo theo (CASCADE): ${truoc.logs}`);
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (truoc.chapters === 0) {
     console.log('\nKhông còn gì để xóa.');
     return;
   }
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!COMMIT) {
     console.log('\nĐây là bản xem trước. Thêm --commit để thực hiện xóa.');
     return;
@@ -109,6 +118,7 @@ async function main() {
   console.log(`  Chapters: ${sau.chapters} | Lessons: ${sau.lessons} | QuestionBank: ${sau.questions}`);
 
   const phienRong = await timPhienRong();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (phienRong.length === 0) {
     console.log('\nKhông có phiên luyện tập nào bị rỗng câu hỏi.');
     return;

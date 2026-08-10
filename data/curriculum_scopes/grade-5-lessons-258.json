@@ -1,0 +1,31 @@
+{
+  "scope_id": "grade-5-lessons-258",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [64, 65, 66],
+    "verified_book_pages": [62, 63, 64]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 74 quãng đường, thời gian trong chuyển động đều.",
+    "excluded_pages": "Không đưa Bài 73 luyện tập và các bài luyện tập tiếp theo vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 258,
+      "lesson_name": "25. Bài 74. Quãng đường, thời gian trong chuyển động đều",
+      "pdf_pages": [64, 65, 66],
+      "book_pages": [62, 63, 64],
+      "objective": "Tính quãng đường bằng vận tốc nhân thời gian và nhận biết mối liên hệ giữa ba đại lượng.",
+      "allowed_knowledge_tags": ["distance", "speed", "time", "distance_formula"],
+      "allowed_question_forms": ["Tính quãng đường từ vận tốc và thời gian.", "Tính thời gian từ quãng đường và vận tốc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

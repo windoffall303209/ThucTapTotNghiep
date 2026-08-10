@@ -1,0 +1,135 @@
+{
+  "scope_id": "grade-1-lessons-036-039",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 1,
+  "source": {
+    "title": "SGK Toán 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 1 Cánh diều.pdf",
+    "verified_pdf_pages": [141, 142, 143, 144, 149, 150, 151, 152, 153],
+    "verified_book_pages": [140, 141, 142, 143, 148, 149, 150, 151, 152]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, dùng từ quen thuộc với học sinh lớp 1.",
+    "images": "Ảnh có chi tiết trực quan cần thiết, không chứa câu hỏi hoặc đáp án.",
+    "progression": "Phép trừ chỉ dùng dạng không nhớ đã học; thời gian chỉ đọc giờ đúng và quan hệ ngày liền trước, liền sau.",
+    "difficulty": "Mỗi câu chỉ yêu cầu một thao tác trực tiếp, không suy luận nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 36,
+      "lesson_name": "Phép trừ dạng 39 − 15",
+      "pdf_pages": [141, 142],
+      "book_pages": [140, 141],
+      "objective": "Trừ hai số có hai chữ số không nhớ bằng cách trừ đơn vị với đơn vị và chục với chục.",
+      "allowed_knowledge_tags": [
+        "subtract_two_digit_numbers_without_regrouping",
+        "model_two_digit_subtraction_without_regrouping",
+        "vertical_subtraction_without_regrouping",
+        "match_two_digit_subtraction_to_result",
+        "solve_one_step_two_digit_subtraction_story"
+      ],
+      "allowed_question_forms": [
+        "Tính hiệu hai số có hai chữ số khi từng hàng đủ để trừ.",
+        "Quan sát các khối chục–đơn vị bị bớt rồi tìm hiệu.",
+        "Đặt tính thẳng cột rồi trừ không nhớ.",
+        "Giải tình huống bớt đi bằng một phép trừ."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng|có nhớ|mượn|đổi chục)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ cần tách một chục thành mười đơn vị.",
+        "Phép tính nhiều bước.",
+        "Kết quả âm hoặc số ngoài phạm vi 100."
+      ]
+    },
+    {
+      "lesson_id": 37,
+      "lesson_name": "Phép trừ dạng 27 − 4; 63 − 40",
+      "pdf_pages": [143, 144],
+      "book_pages": [142, 143],
+      "objective": "Trừ số có một chữ số hoặc số tròn chục khỏi số có hai chữ số, đúng hàng và không nhớ.",
+      "allowed_knowledge_tags": [
+        "subtract_one_digit_from_two_digit_without_regrouping",
+        "subtract_round_tens_from_two_digit_without_regrouping",
+        "model_mixed_place_value_subtraction",
+        "vertical_mixed_place_value_subtraction",
+        "solve_one_step_mixed_subtraction_story"
+      ],
+      "allowed_question_forms": [
+        "Tính số có hai chữ số trừ số có một chữ số khi hàng đơn vị đủ để trừ.",
+        "Tính số có hai chữ số trừ số tròn chục.",
+        "Quan sát nhóm chục hoặc đơn vị được bớt rồi tìm hiệu.",
+        "Đặt tính thẳng cột rồi trừ đúng hàng."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|gộp|tổng|có nhớ|mượn|đổi chục)\\b",
+        "[+<>]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ có nhớ.",
+        "Trừ một số có hai chữ số không tròn chục.",
+        "Phép tính nhiều bước."
+      ]
+    },
+    {
+      "lesson_id": 38,
+      "lesson_name": "Các ngày trong tuần lễ",
+      "pdf_pages": [149, 150],
+      "book_pages": [148, 149],
+      "objective": "Nhận biết một tuần có bảy ngày, gọi đúng tên các ngày và xác định ngày hôm qua, hôm nay, ngày mai.",
+      "allowed_knowledge_tags": [
+        "name_days_of_week",
+        "order_days_of_week",
+        "identify_previous_day",
+        "identify_next_day",
+        "recognize_seven_days_in_week"
+      ],
+      "allowed_question_forms": [
+        "Chọn ngày đứng ngay trước hoặc ngay sau một ngày cho trước.",
+        "Xác định hôm qua hoặc ngày mai khi biết hôm nay.",
+        "Nhận biết một tuần có bảy ngày.",
+        "Sắp xếp một nhóm ngày liên tiếp theo đúng thứ tự."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(giờ|phút|kim dài|kim ngắn)\\b"
+      ],
+      "not_yet_allowed": [
+        "Tính khoảng thời gian giữa hai ngày.",
+        "Đọc lịch tháng hoặc xác định ngày của nhiều tuần sau.",
+        "Đọc giờ trên đồng hồ."
+      ]
+    },
+    {
+      "lesson_id": 39,
+      "lesson_name": "Đồng hồ – thời gian",
+      "pdf_pages": [151, 152, 153],
+      "book_pages": [150, 151, 152],
+      "objective": "Nhận biết kim ngắn, kim dài và đọc giờ đúng khi kim dài chỉ số 12.",
+      "allowed_knowledge_tags": [
+        "identify_clock_hands",
+        "read_whole_hour",
+        "match_whole_hour_clock_to_activity",
+        "set_clock_to_whole_hour",
+        "order_daily_activities_by_whole_hour"
+      ],
+      "allowed_question_forms": [
+        "Đọc giờ đúng trên đồng hồ kim.",
+        "Chọn đồng hồ phù hợp với hoạt động và giờ đã cho.",
+        "Nhận biết kim dài và kim ngắn.",
+        "Xác định hoạt động phù hợp với một giờ đúng."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(rưỡi|kém|phút|giây)\\b",
+        ":"
+      ],
+      "not_yet_allowed": [
+        "Đọc giờ có phút hoặc nửa giờ.",
+        "Tính khoảng thời gian.",
+        "Đổi đơn vị giờ, phút, giây."
+      ]
+    }
+  ]
+}

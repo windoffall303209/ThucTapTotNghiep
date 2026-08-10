@@ -1,3 +1,4 @@
+# Script build grade1 question pack h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import random
 from pathlib import Path
@@ -52,9 +53,13 @@ SCENES = [
 ]
 
 
+# H?m mistake d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def mistake(value, reason):
     return {"wrong_answer": str(value), "hint": reason}
 
+
+# H?m numeric_distractors d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def numeric_distractors(answer, candidates, low=0, high=None):
     answer = int(answer)
@@ -80,6 +85,8 @@ def numeric_distractors(answer, candidates, low=0, high=None):
     return values[0], values[1]
 
 
+# H?m make d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def make(question, answer, visual, qtype, wrong_a, hint_a, wrong_b, hint_b, difficulty="Cơ bản"):
     return {
         "question": question,
@@ -93,6 +100,8 @@ def make(question, answer, visual, qtype, wrong_a, hint_a, wrong_b, hint_b, diff
         ],
     }
 
+
+# H?m spatial_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def spatial_questions():
     return [
@@ -114,6 +123,8 @@ def spatial_questions():
     ]
 
 
+# H?m shape_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def shape_questions():
     return [
         make("Hình nào có 4 cạnh bằng nhau và 4 góc?", "Hình vuông", "các khối hình phẳng bằng giấy màu, nổi bật hình vuông", "Nhận biết hình", "Hình tròn", "Hình tròn không có cạnh thẳng và góc.", "Hình tam giác", "Hình tam giác chỉ có 3 cạnh."),
@@ -133,6 +144,8 @@ def shape_questions():
         make("Sắp xếp theo số cạnh tăng dần: hình tròn, hình tam giác, hình vuông.", "Hình tròn, hình tam giác, hình vuông", "ba hình học cơ bản xếp trên bàn học", "Sắp xếp", "Hình tam giác, hình vuông, hình tròn", "Hình tròn có 0 cạnh thẳng nên phải đứng đầu.", "Hình vuông, hình tam giác, hình tròn", "Thứ tự này đang giảm dần số cạnh."),
     ]
 
+
+# H?m number_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def number_questions(values, label):
     lo, hi = min(values), max(values)
@@ -158,10 +171,14 @@ def number_questions(values, label):
     ]
 
 
+# H?m number_word d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def number_word(value):
     words = {0: "không", 1: "một", 2: "hai", 3: "ba", 4: "bốn", 5: "năm", 6: "sáu", 7: "bảy", 8: "tám", 9: "chín", 10: "mười"}
     return words.get(value, str(value))
 
+
+# H?m zero_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def zero_questions():
     return [
@@ -183,6 +200,8 @@ def zero_questions():
     ]
 
 
+# H?m ten_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def ten_questions():
     return [
         make("Số nào đứng ngay sau số 9?", 10, "đoạn dãy số 8, 9, 10 với điểm nhấn ở cuối", "Số liền sau", 9, "Số 9 là số đang xét, chưa phải số liền sau.", 8, "Số 8 đứng trước 9."),
@@ -202,6 +221,8 @@ def ten_questions():
         make("Có 5 quả đỏ và 5 quả xanh. Có tất cả bao nhiêu quả?", 10, "hai nhóm trái cây đỏ và xanh cân đối", "Gộp hai nhóm", 5, "Em mới đếm một nhóm.", 9, "5 và 5 tạo thành 10, không phải 9."),
     ]
 
+
+# H?m quantity_compare_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def quantity_compare_questions():
     pairs = [(3, 5), (6, 2), (4, 4), (7, 9), (8, 5), (1, 3), (10, 10), (2, 6), (9, 7), (5, 5), (4, 8), (6, 6), (3, 2), (7, 4), (1, 1)]
@@ -229,6 +250,8 @@ def quantity_compare_questions():
     return qs
 
 
+# H?m sign_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def sign_questions():
     pairs = [(2, 5), (4, 4), (7, 9), (1, 3), (6, 6), (3, 8), (5, 5), (0, 2), (8, 10), (2, 2), (4, 7), (1, 1), (6, 9), (3, 3), (5, 8)]
     qs = []
@@ -246,6 +269,8 @@ def sign_questions():
         qs.append(make(question, expected, f"hai thẻ số {a} và {b}, khoảng trống rõ ở giữa, không hiển thị dấu đáp án", "So sánh bằng dấu", wrong_a, "Số bên trái không lớn hơn số bên phải.", wrong_b, "Chỉ dùng dấu bằng khi hai số có cùng giá trị."))
     return qs
 
+
+# H?m addition_questions d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def addition_questions(limit, phase=1, intro=False):
     rng = random.Random(limit * 100 + phase)
@@ -302,6 +327,8 @@ def addition_questions(limit, phase=1, intro=False):
     return qs
 
 
+# H?m solid_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def solid_questions():
     return [
         make("Khối nào có các mặt đều là hình vuông bằng nhau?", "Khối lập phương", "khối lập phương gỗ cạnh khối hộp chữ nhật", "Nhận biết khối", "Khối hộp chữ nhật", "Các mặt của khối hộp chữ nhật không nhất thiết đều là hình vuông bằng nhau.", "Hình vuông", "Hình vuông là hình phẳng, không phải khối."),
@@ -321,6 +348,8 @@ def solid_questions():
         make("Phân loại hai vật: con xúc xắc và hộp bút dài. Vật nào gần khối lập phương?", "Con xúc xắc", "xúc xắc cạnh hộp bút dài dạng hộp", "Tổng hợp", "Hộp bút dài", "Hộp bút dài gần khối hộp chữ nhật.", "Cả hai đều là hình vuông", "Hai vật là khối, không phải hình phẳng."),
     ]
 
+
+# H?m subtraction_questions d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def subtraction_questions(limit, phase=1, intro=False):
     rng = random.Random(limit * 200 + phase)
@@ -377,6 +406,8 @@ def subtraction_questions(limit, phase=1, intro=False):
     return qs
 
 
+# H?m questions_for d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def questions_for(kind):
     if kind == "spatial":
         return spatial_questions()
@@ -423,6 +454,8 @@ def questions_for(kind):
     raise ValueError(f"Unknown lesson kind: {kind}")
 
 
+# H?m image_prompt d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def image_prompt(question, visual, lesson, index):
     return (
         "Use case: scientific-educational\n"
@@ -436,6 +469,8 @@ def image_prompt(question, visual, lesson, index):
         "Avoid: text, watermark, logo, clutter, tiny objects, photorealistic faces, confusing perspective, decorative borders."
     )
 
+
+# H?m build_pack d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_pack():
     pack = {
@@ -476,6 +511,8 @@ def build_pack():
     return pack
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     pack = build_pack()
@@ -483,5 +520,6 @@ def main():
     print(f"Wrote {pack['question_count']} questions across {pack['lesson_count']} lessons to {QUESTIONS_PATH}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

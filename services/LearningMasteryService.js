@@ -1,3 +1,4 @@
+// D?ch v? learning mastery service ??ng g?i nghi?p v? ch?nh v? ph?i h?p c?c l?p d? li?u ho?c t?ch h?p b?n ngo?i.
 const Curriculum = require('../models/Curriculum');
 
 const MAX_ATTEMPTS_PER_LESSON = 10;
@@ -12,11 +13,13 @@ const DIFFICULTY_EVIDENCE_WEIGHTS = Object.freeze({
   EXPERT: Object.freeze({ correct: 1.3, wrong: 0.7 })
 });
 
+// H?m calculateLessonMastery d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function calculateLessonMastery(attempts = []) {
   const recentAttempts = [...attempts]
     .sort(compareAttemptsNewestFirst)
     .slice(0, MAX_ATTEMPTS_PER_LESSON);
   const attemptCount = recentAttempts.length;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (attemptCount === 0) return emptyMastery();
 
   let totalWeight = 0;
@@ -31,11 +34,13 @@ function calculateLessonMastery(attempts = []) {
     const evidenceWeight = isCorrect ? difficultyWeights.correct : difficultyWeights.wrong;
     const weight = (RECENCY_DECAY ** index) * evidenceWeight;
     totalWeight += weight;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (isCorrect) {
       correctWeight += weight;
       correctCount += 1;
     } else {
       wrongCount += 1;
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (attempt.detected_misconception_id) misconceptionCount += 1;
     }
   });
@@ -76,11 +81,15 @@ function calculateLessonMastery(attempts = []) {
   };
 }
 
+// H?m buildLessonMasteryMap d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildLessonMasteryMap(attemptRows = []) {
   const attemptsByLesson = new Map();
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const attempt of attemptRows) {
     const lessonId = Number(attempt.lesson_id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!Number.isInteger(lessonId) || lessonId <= 0) continue;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!attemptsByLesson.has(lessonId)) attemptsByLesson.set(lessonId, []);
     attemptsByLesson.get(lessonId).push(attempt);
   }
@@ -91,6 +100,7 @@ function buildLessonMasteryMap(attemptRows = []) {
   }, {});
 }
 
+// H?m getMasteryByGrade d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function getMasteryByGrade(studentId, grade) {
   const rows = await Curriculum.getLessonAttemptHistory(
     studentId,
@@ -100,6 +110,7 @@ async function getMasteryByGrade(studentId, grade) {
   return buildLessonMasteryMap(rows);
 }
 
+// H?m getWeakLessonIds d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function getWeakLessonIds(masteryByLesson = {}, allowedLessonIds = []) {
   const allowed = new Set(
     (allowedLessonIds || []).map(Number).filter((id) => Number.isInteger(id) && id > 0)
@@ -116,6 +127,7 @@ function getWeakLessonIds(masteryByLesson = {}, allowedLessonIds = []) {
     .map(([lessonId]) => Number(lessonId));
 }
 
+// H?m buildGradeProgress d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildGradeProgress(chapters = [], masteryByLesson = {}) {
   const lessons = (chapters || []).flatMap((chapter) => chapter.lessons || []);
   const completed = lessons.filter(
@@ -128,6 +140,7 @@ function buildGradeProgress(chapters = [], masteryByLesson = {}) {
   };
 }
 
+// H?m findWeakestLesson d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function findWeakestLesson(chapters = [], masteryByLesson = {}) {
   return (chapters || [])
     .flatMap((chapter) => (chapter.lessons || []).map((lesson) => ({
@@ -143,6 +156,7 @@ function findWeakestLesson(chapters = [], masteryByLesson = {}) {
     ))[0] || null;
 }
 
+// H?m emptyMastery d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function emptyMastery() {
   return {
     attempt_count: 0,
@@ -160,29 +174,36 @@ function emptyMastery() {
   };
 }
 
+// H?m countNewestWrongStreak d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function countNewestWrongStreak(attempts) {
   let count = 0;
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const attempt of attempts) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (normalizeCorrect(attempt.is_correct)) break;
     count += 1;
   }
   return count;
 }
 
+// H?m compareAttemptsNewestFirst d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function compareAttemptsNewestFirst(left, right) {
   const timeDifference = new Date(right.created_at || 0) - new Date(left.created_at || 0);
   return timeDifference || Number(right.id || 0) - Number(left.id || 0);
 }
 
+// H?m normalizeCorrect d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeCorrect(value) {
   return value === true || Number(value) === 1;
 }
 
+// H?m normalizeDifficulty d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeDifficulty(value) {
   const difficulty = String(value || 'MEDIUM').trim().toUpperCase();
   return Object.hasOwn(DIFFICULTY_EVIDENCE_WEIGHTS, difficulty) ? difficulty : 'MEDIUM';
 }
 
+// H?m roundScore d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function roundScore(value) {
   return Number(Math.min(Math.max(Number(value) || 0, 0), 1).toFixed(4));
 }

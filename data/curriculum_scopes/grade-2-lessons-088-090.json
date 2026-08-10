@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-2-lessons-088-090",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 2 Cánh Diều.pdf",
+    "verified_pdf_pages": [79, 80, 81, 82, 83, 84],
+    "verified_book_pages": [78, 79, 80, 81, 82, 83]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa bảng kiểm đếm, biểu đồ tranh hoặc tình huống xác suất; không chứa đáp án và không tạo dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 88 thu thập và kiểm đếm; bài 89 đọc biểu đồ tranh; bài 90 phân biệt chắc chắn, có thể, không thể.",
+    "difficulty": "Nhận biết hoặc đọc một dữ liệu trực quan đơn giản; không yêu cầu suy luận nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 88,
+      "lesson_name": "Thu thập - Kiểm đếm",
+      "pdf_pages": [79, 80],
+      "book_pages": [78, 79],
+      "objective": "Đọc vạch kiểm đếm, thu thập và ghi lại số lượng của các đối tượng.",
+      "allowed_knowledge_tags": ["read_tally_marks", "count_objects", "record_counts", "compare_counts"],
+      "allowed_question_forms": ["Đọc một nhóm vạch kiểm đếm.", "Đếm số đối tượng trong tranh.", "So sánh số lượng đơn giản."],
+      "forbidden_text_patterns": ["\\b(phân số|xác suất|biểu đồ cột)\\b"],
+      "not_yet_allowed": ["Biểu đồ cột", "Tính xác suất", "Phân số"]
+    },
+    {
+      "lesson_id": 89,
+      "lesson_name": "Biểu đồ tranh",
+      "pdf_pages": [81, 82],
+      "book_pages": [80, 81],
+      "objective": "Đọc số lượng trong biểu đồ tranh khi mỗi hình ảnh đại diện cho một đối tượng.",
+      "allowed_knowledge_tags": ["read_picture_graph", "interpret_one_picture_one_unit", "compare_picture_graph_counts", "answer_graph_question"],
+      "allowed_question_forms": ["Đọc số lượng từ một hàng trong biểu đồ tranh.", "So sánh hai hàng trong biểu đồ tranh.", "Tìm tổng đơn giản từ biểu đồ tranh."],
+      "forbidden_text_patterns": ["\\b(biểu đồ cột|tỉ lệ|phần trăm|trung bình)\\b"],
+      "not_yet_allowed": ["Biểu đồ cột", "Tỉ lệ phần trăm", "Số trung bình"]
+    },
+    {
+      "lesson_id": 90,
+      "lesson_name": "Chắc chắn - Có thể - Không thể",
+      "pdf_pages": [83, 84],
+      "book_pages": [82, 83],
+      "objective": "Phân biệt tình huống chắc chắn xảy ra, có thể xảy ra và không thể xảy ra.",
+      "allowed_knowledge_tags": ["classify_certain_event", "classify_possible_event", "classify_impossible_event", "reason_from_simple_context"],
+      "allowed_question_forms": ["Phân loại một tình huống là chắc chắn, có thể hoặc không thể.", "Đọc tranh và chọn mô tả phù hợp.", "Nhận biết kết quả có thể xảy ra trong một hộp đồ vật."],
+      "forbidden_text_patterns": ["\\b(xác suất|phần trăm|tỉ số|phân số)\\b"],
+      "not_yet_allowed": ["Tính xác suất", "Tỉ số", "Phân số"]
+    }
+  ]
+}

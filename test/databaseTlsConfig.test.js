@@ -1,3 +1,4 @@
+// B? ki?m th? database tls config.test x?c minh h?nh vi v? c?c ?i?u ki?n bi?n quan tr?ng c?a h? th?ng.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
@@ -11,6 +12,7 @@ const {
 } = require('../config/db');
 const { validateProductionConfig } = require('../config/runtimeSecurity');
 
+// H?m databaseEnv d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function databaseEnv(overrides = {}) {
   return {
     NODE_ENV: 'development',
@@ -26,6 +28,7 @@ function databaseEnv(overrides = {}) {
   };
 }
 
+// H?m productionEnv d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function productionEnv(overrides = {}) {
   return {
     ...databaseEnv(),
@@ -50,9 +53,11 @@ test('DB SSL mode only accepts the three documented values', () => {
 });
 
 test('loopback detection covers localhost, IPv4 range and IPv6', () => {
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const host of ['localhost', 'LOCALHOST.', '127.0.0.1', '127.9.8.7', '::1', '[::1]']) {
     assert.equal(isLoopbackDatabaseHost(host), true, host);
   }
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const host of ['10.0.0.5', '192.168.1.10', 'db.internal', 'mysql.example.com', '0.0.0.0']) {
     assert.equal(isLoopbackDatabaseHost(host), false, host);
   }
@@ -105,6 +110,7 @@ test('CA file is read only through the initialization loader and its contents ar
   });
   let requestedPath = '';
   const material = loadDatabaseSslMaterial(env, {
+    // H?m readFileSync d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
     readFileSync(filePath, encoding) {
       requestedPath = filePath;
       assert.equal(encoding, 'utf8');
@@ -116,6 +122,7 @@ test('CA file is read only through the initialization loader and its contents ar
 
   assert.throws(
     () => loadDatabaseSslMaterial(env, {
+      // H?m readFileSync d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
       readFileSync() {
         throw new Error('read failed');
       }

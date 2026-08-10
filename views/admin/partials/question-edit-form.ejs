@@ -1,3 +1,4 @@
+<%# M?u giao di?n question edit form k?t h?p d? li?u m?y ch? v?i HTML ?? hi?n th? m?t m?n h?nh c?a ?ng d?ng. %>
 <%
   const answerKeys = ['A', 'B', 'C', 'D'];
   const difficultyOptions = [
@@ -77,6 +78,7 @@
   <label>
     Bài học
     <select name="lesson_id" required>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% lessons.forEach((item) => { %>
         <option value="<%= item.id %>" <%= selected(Number(question.lesson_id), Number(item.id)) %>>
           Lớp <%= item.grade %> · <%= item.chapter_name %> · <%= item.lesson_name %>
@@ -96,6 +98,7 @@
     <label data-author-mode-panel="fields">
       Bố cục hiển thị
       <select name="layout_variant" data-layout-variant>
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% layoutOptions.forEach((option) => { %>
           <option value="<%= option.value %>" <%= selected(layoutVariant, option.value) %>><%= option.label %></option>
         <% }) %>
@@ -107,6 +110,7 @@
     <label>
       Độ khó
       <select name="difficulty">
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% difficultyOptions.forEach((option) => { %>
           <option value="<%= option.value %>" <%= selected(question.difficulty, option.value) %>><%= option.label %></option>
         <% }) %>
@@ -174,6 +178,7 @@
           <label>Mã đáp án
             <select data-grid-cell-answer>
               <option value="">Không</option>
+<%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
               <% answerKeys.forEach((key) => { %><option value="<%= key %>"><%= key %></option><% }) %>
             </select>
           </label>
@@ -208,9 +213,11 @@
         <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
       </label>
     </div>
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (questionImages.length > 0) { %>
       <div class="choice-existing-images">
         <span class="form-note">Ảnh đề bài hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% questionImages.forEach((image) => { %>
           <label class="image-keep-option">
             <input type="checkbox" name="remove_question_images" value="<%= image.id || image.url %>" data-preview-remove-image>
@@ -226,9 +233,13 @@
 
   <fieldset class="choice-fieldset" data-choice-panel data-author-mode-panel="fields">
     <legend>Phương án trả lời và lỗi sai thường gặp</legend>
+    <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
     <% answerKeys.forEach((key) => { %>
+      <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
       <% const choice = choiceFor(question, key); %>
+      <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
       <% const choiceImages = Array.isArray(choice.images) ? choice.images : []; %>
+      <%# Kh?i chu?n b? d? li?u t?o gi? tr? trung gian cho ph?n giao di?n b?n d??i. %>
       <% const misconception = misconceptionByKey.get(key) || {}; %>
       <div class="choice-editor">
         <label class="choice-input">
@@ -236,9 +247,11 @@
           <input name="choice_<%= key %>" value="<%= choice.text || '' %>" data-preview-choice="<%= key %>" placeholder="Nội dung đáp án <%= key %>">
         </label>
         <input type="hidden" data-preview-choice-existing-images="<%= key %>" value="<%- escapeAttribute(JSON.stringify(choiceImages)) %>">
+        <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
         <% if (choiceImages.length > 0) { %>
           <div class="choice-existing-images">
             <span class="form-note">Ảnh đáp án hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
+            <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
             <% choiceImages.forEach((image) => { %>
               <label class="image-keep-option">
                 <input type="checkbox" name="remove_choice_images_<%= key %>" value="<%= image.id || image.url %>" data-preview-remove-image>
@@ -284,6 +297,7 @@
   <label data-correct-choice-panel>
     Đáp án đúng
     <select name="correct_answer" required>
+      <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
       <% answerKeys.forEach((key) => { %>
         <option value="<%= key %>" <%= selected(question.correct_answer, key) %>><%= key %></option>
       <% }) %>
@@ -316,9 +330,11 @@
         <input name="explanation_image_alt_text" placeholder="Ví dụ: Hình minh họa lời giải">
       </label>
     </div>
+    <%# Kh?i ?i?u ki?n trong m?u quy?t ??nh n?i dung giao di?n d?a tr?n d? li?u m?y ch?. %>
     <% if (explanationImages.length > 0) { %>
       <div class="choice-existing-images">
         <span class="form-note">Ảnh lời giải hiện có, tích "Xóa" nếu muốn bỏ khi lưu:</span>
+        <%# Kh?i l?p trong m?u t?o n?i dung ??ng t? danh s?ch d? li?u m?y ch?. %>
         <% explanationImages.forEach((image) => { %>
           <label class="image-keep-option">
             <input type="checkbox" name="remove_explanation_images" value="<%= image.id || image.url %>">

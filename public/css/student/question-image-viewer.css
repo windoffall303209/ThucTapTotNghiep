@@ -1,3 +1,4 @@
+/* Bi?u ??nh ki?u question image viewer t? ch?c b? c?c, m?u s?c v? tr?ng th?i hi?n th? c?a giao di?n. */
 /* Ảnh chỉ hỗ trợ đề bài: giữ vùng làm câu hỏi gọn và mở lớn khi học sinh cần. */
 .question-content .question-image-row {
   grid-template-columns: repeat(auto-fit, minmax(150px, 280px));

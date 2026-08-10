@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-241-245",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+    "verified_book_pages": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 50 hình tam giác; bài 51 diện tích hình tam giác; bài 52 hình thang; bài 53 diện tích hình thang; bài 54 hình tròn, đường tròn.",
+    "excluded_pages": "Không đưa phần luyện tập xen giữa các bài vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 241,
+      "lesson_name": "1. Bài 50. Hình tam giác",
+      "pdf_pages": [6, 7, 8],
+      "book_pages": [4, 5, 6],
+      "objective": "Nhận biết và phân loại tam giác nhọn, tam giác tù, tam giác vuông và tam giác đều.",
+      "allowed_knowledge_tags": ["triangle_types", "right_triangle", "acute_obtuse_triangle"],
+      "allowed_question_forms": ["Nhận biết loại tam giác theo góc.", "Chọn đặc điểm của hình tam giác."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 242,
+      "lesson_name": "2. Bài 51. Diện tích hình tam giác",
+      "pdf_pages": [9, 10],
+      "book_pages": [7, 8],
+      "objective": "Tính diện tích hình tam giác bằng độ dài đáy nhân chiều cao tương ứng rồi chia cho 2.",
+      "allowed_knowledge_tags": ["triangle_area", "base_height", "area_formula"],
+      "allowed_question_forms": ["Tính diện tích tam giác từ đáy và chiều cao.", "Chọn công thức tính diện tích tam giác."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 243,
+      "lesson_name": "3. Bài 52. Hình thang",
+      "pdf_pages": [11, 12, 13],
+      "book_pages": [9, 10, 11],
+      "objective": "Nhận biết hình thang và cặp cạnh đáy, cạnh bên, chiều cao của hình thang.",
+      "allowed_knowledge_tags": ["trapezoid", "parallel_sides", "trapezoid_height"],
+      "allowed_question_forms": ["Nhận biết hình thang.", "Xác định hai đáy hoặc chiều cao của hình thang."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 244,
+      "lesson_name": "4. Bài 53. Diện tích hình thang",
+      "pdf_pages": [14, 15],
+      "book_pages": [12, 13],
+      "objective": "Tính diện tích hình thang bằng tổng độ dài hai đáy nhân chiều cao rồi chia cho 2.",
+      "allowed_knowledge_tags": ["trapezoid_area", "two_bases", "area_formula"],
+      "allowed_question_forms": ["Tính diện tích hình thang từ hai đáy và chiều cao.", "Áp dụng công thức diện tích hình thang."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 245,
+      "lesson_name": "5. Bài 54 Hình tròn. Đường tròn",
+      "pdf_pages": [16, 17, 18],
+      "book_pages": [14, 15, 16],
+      "objective": "Nhận biết tâm, bán kính, đường kính của hình tròn và mối quan hệ giữa bán kính với đường kính.",
+      "allowed_knowledge_tags": ["circle", "radius", "diameter"],
+      "allowed_question_forms": ["Tìm đường kính từ bán kính.", "Nhận biết tâm, bán kính và đường kính của hình tròn."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

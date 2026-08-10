@@ -1,3 +1,4 @@
+// Script import crawled theory h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 require('dotenv').config();
 
 const fs = require('fs/promises');
@@ -9,20 +10,25 @@ const ROOT = path.join(__dirname, '..');
 const DEFAULT_INPUT = path.join(ROOT, 'output', 'doc', 'crawled_theory_cards.json');
 const DEFAULT_REPORT = path.join(ROOT, 'output', 'doc', 'import_crawled_theory_report.json');
 
+// H?m parseArgs d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseArgs(argv) {
   const args = {
     input: DEFAULT_INPUT,
     report: DEFAULT_REPORT
   };
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const arg of argv) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (arg.startsWith('--input=')) args.input = path.resolve(arg.split('=').slice(1).join('='));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     else if (arg.startsWith('--report=')) args.report = path.resolve(arg.split('=').slice(1).join('='));
   }
 
   return args;
 }
 
+// H?m normalizeTheoryCards d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeTheoryCards(cards) {
   return (Array.isArray(cards) ? cards : [])
     .map((card, index) => {
@@ -44,7 +50,9 @@ function normalizeTheoryCards(cards) {
     }));
 }
 
+// H?m normalizeFormulaList d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeFormulaList(value) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (Array.isArray(value)) {
     return value.map((item) => String(item || '').trim()).filter(Boolean);
   }
@@ -55,6 +63,7 @@ function normalizeFormulaList(value) {
     .filter(Boolean);
 }
 
+// H?m normalizeImages d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function normalizeImages(images) {
   return (Array.isArray(images) ? images : [])
     .map((image, index) => ({
@@ -68,8 +77,10 @@ function normalizeImages(images) {
     .filter((image) => image.url);
 }
 
+// H?m timestamp d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function timestamp() {
   const now = new Date();
+  // H?m pad d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
   const pad = (value) => String(value).padStart(2, '0');
   return [
     now.getFullYear(),
@@ -82,10 +93,12 @@ function timestamp() {
   ].join('');
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const raw = await fs.readFile(args.input, 'utf8');
   const crawledItems = JSON.parse(raw);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!Array.isArray(crawledItems) || crawledItems.length === 0) {
     throw new Error('File crawl không có dữ liệu lý thuyết hợp lệ.');
   }
@@ -93,9 +106,12 @@ async function main() {
   const normalizedByLessonId = new Map();
   const duplicateLessonIds = [];
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const item of crawledItems) {
     const lessonId = Number(item.lesson_id);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!lessonId) continue;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (normalizedByLessonId.has(lessonId)) duplicateLessonIds.push(lessonId);
     normalizedByLessonId.set(lessonId, {
       lesson_id: lessonId,
@@ -146,7 +162,9 @@ async function main() {
     await connection.execute('UPDATE Lessons SET theory_cards = JSON_ARRAY()');
     report.clearedLessons = existingLessons.length;
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const [lessonId, item] of normalizedByLessonId.entries()) {
+      // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
       if (!existingIds.has(lessonId)) {
         report.unmatchedCrawledLessonIds.push(lessonId);
         continue;

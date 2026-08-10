@@ -1,0 +1,120 @@
+{
+  "scope_id": "grade-2-lessons-055-059",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 1 - Cánh diều.pdf",
+    "verified_pdf_pages": [69, 70, 77, 78, 79, 80, 83, 84, 85, 86],
+    "verified_book_pages": [68, 69, 76, 77, 78, 79, 82, 83, 84, 85]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 2.",
+    "images": "Ảnh minh họa đúng nhóm số đo hoặc hình học; không chứa đáp án.",
+    "progression": "Chỉ sử dụng nội dung đã xuất hiện trong từng bài: trừ có nhớ, ki-lô-gam, lít, hình tứ giác, điểm và đoạn thẳng.",
+    "difficulty": "Một phép tính hoặc một nhận biết trực tiếp; không yêu cầu suy luận nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 55,
+      "lesson_name": "Phép trừ (có nhớ) trong phạm vi 100 (tiếp theo)",
+      "pdf_pages": [69, 70],
+      "book_pages": [68, 69],
+      "objective": "Thực hiện phép trừ có nhớ trong phạm vi 100, gồm trường hợp số bị trừ có một chữ số ở hàng đơn vị.",
+      "allowed_knowledge_tags": [
+        "subtract_two_digit_numbers_with_regrouping_to_100",
+        "regroup_ten_into_ones_for_subtraction",
+        "vertical_subtraction_with_regrouping_to_100",
+        "solve_one_step_two_digit_subtraction_story"
+      ],
+      "allowed_question_forms": [
+        "Tính phép trừ hai chữ số cho một chữ số khi cần đổi một chục.",
+        "Đặt tính rồi tính phép trừ có nhớ trong phạm vi 100.",
+        "Giải tình huống bớt đi bằng một phép trừ có nhớ."
+      ],
+      "forbidden_text_patterns": ["\\b(cộng|thêm|tổng|nhân|chia)\\b", "[+×÷]"],
+      "not_yet_allowed": ["Phép trừ số có ba chữ số", "Kết quả âm", "Phép tính nhiều bước"]
+    },
+    {
+      "lesson_id": 56,
+      "lesson_name": "Ki-lô-gam",
+      "pdf_pages": [77, 78],
+      "book_pages": [76, 77],
+      "objective": "Nhận biết ki-lô-gam là đơn vị đo khối lượng và giải quyết phép tính đơn giản với số đo ki-lô-gam.",
+      "allowed_knowledge_tags": [
+        "identify_kilogram_unit",
+        "read_simple_mass_in_kilograms",
+        "add_masses_in_kilograms",
+        "compare_masses_in_kilograms"
+      ],
+      "allowed_question_forms": [
+        "Đọc số đo khối lượng có đơn vị ki-lô-gam.",
+        "Cộng hai số đo khối lượng đơn giản cùng đơn vị ki-lô-gam.",
+        "So sánh hai khối lượng biểu diễn bằng ki-lô-gam."
+      ],
+      "forbidden_text_patterns": ["\\b(tấn|tạ|yến)\\b", "[.,]\\d+\\s*kg"],
+      "not_yet_allowed": ["Đổi đơn vị khối lượng", "Số đo thập phân", "Phép tính nhiều bước"]
+    },
+    {
+      "lesson_id": 57,
+      "lesson_name": "Lít",
+      "pdf_pages": [79, 80],
+      "book_pages": [78, 79],
+      "objective": "Nhận biết lít là đơn vị đo dung tích và tính tổng hoặc phần còn lại trong tình huống đơn giản.",
+      "allowed_knowledge_tags": [
+        "identify_liter_unit",
+        "read_simple_capacity_in_liters",
+        "add_capacities_in_liters",
+        "subtract_capacities_in_liters"
+      ],
+      "allowed_question_forms": [
+        "Đọc số đo dung tích có đơn vị lít.",
+        "Cộng hai số đo dung tích đơn giản cùng đơn vị lít.",
+        "Tìm phần dung tích còn lại bằng một phép trừ."
+      ],
+      "forbidden_text_patterns": ["\\b(ml|mi-li-lít|mét khối)\\b", "[.,]\\d+\\s*l"],
+      "not_yet_allowed": ["Đổi đơn vị dung tích", "Số đo thập phân", "Phép tính nhiều bước"]
+    },
+    {
+      "lesson_id": 58,
+      "lesson_name": "Hình tứ giác",
+      "pdf_pages": [83, 84],
+      "book_pages": [82, 83],
+      "objective": "Nhận biết hình tứ giác qua số cạnh và số đỉnh, phân biệt với các hình không phải tứ giác.",
+      "allowed_knowledge_tags": [
+        "identify_quadrilateral",
+        "count_sides_of_quadrilateral",
+        "count_vertices_of_quadrilateral",
+        "recognize_quadrilateral_among_shapes"
+      ],
+      "allowed_question_forms": [
+        "Chọn hình tứ giác trong một nhóm hình.",
+        "Đếm số cạnh hoặc số đỉnh của hình tứ giác.",
+        "Phân biệt hình có bốn cạnh với hình không có bốn cạnh."
+      ],
+      "forbidden_text_patterns": ["\\b(diện tích|chu vi|đường tròn|góc)\\b"],
+      "not_yet_allowed": ["Tính chu vi", "Tính diện tích", "Gọi tên các loại tứ giác theo tính chất nâng cao"]
+    },
+    {
+      "lesson_id": 59,
+      "lesson_name": "Điểm, đoạn thẳng",
+      "pdf_pages": [85, 86],
+      "book_pages": [84, 85],
+      "objective": "Đọc tên điểm, tên đoạn thẳng và nhận biết hai đầu mút của một đoạn thẳng.",
+      "allowed_knowledge_tags": [
+        "identify_point_label",
+        "identify_line_segment",
+        "identify_segment_endpoints",
+        "read_segment_name"
+      ],
+      "allowed_question_forms": [
+        "Chọn tên đúng của đoạn thẳng dựa vào hai đầu mút.",
+        "Xác định hai đầu mút của đoạn thẳng.",
+        "Đọc tên điểm được đánh dấu trong hình."
+      ],
+      "forbidden_text_patterns": ["\\b(đường thẳng|đường cong|đường gấp khúc|độ dài)\\b"],
+      "not_yet_allowed": ["Tính độ dài đoạn thẳng", "Đo bằng đơn vị xăng-ti-mét", "Đường thẳng kéo dài vô hạn"]
+    }
+  ]
+}

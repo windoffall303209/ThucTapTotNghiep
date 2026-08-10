@@ -1,3 +1,4 @@
+// Script crop sheet images h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Cắt các tờ đề gộp thành từng ô câu hỏi riêng bằng Cloudinary.
  *
@@ -45,13 +46,17 @@ const SHEETS = [
   { url: '/uploads/images/grade1/g1-l001-q023-01.png', idDau: 5540 }
 ];
 
+// H?m publicIdTu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function publicIdTu(url) {
   const rel = String(url).replace(/^\/uploads\/images\//, '').replace(/\.[^.]+$/, '');
   return `${FOLDER}/${rel}`;
 }
 
+// H?m loadMap d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function loadMap() {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!fs.existsSync(MAP_FILE)) return {};
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(fs.readFileSync(MAP_FILE, 'utf8'));
   } catch (error) {
@@ -59,6 +64,7 @@ function loadMap() {
   }
 }
 
+// H?m saveMap d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function saveMap(map) {
   fs.mkdirSync(path.dirname(MAP_FILE), { recursive: true });
   fs.writeFileSync(MAP_FILE, JSON.stringify(map, null, 2), 'utf8');
@@ -71,6 +77,7 @@ function urlCat(publicId, { x, y, w, h }) {
   return `${base}/${crop}/f_auto,q_auto/${publicId}`;
 }
 
+// H?m upload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function upload() {
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -81,12 +88,15 @@ async function upload() {
   const map = loadMap();
   let xong = 0;
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const sheet of SHEETS) {
     const filePath = path.join(PUBLIC_DIR, sheet.url.replace(/^\//, ''));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!fs.existsSync(filePath)) {
       console.log(`  BỎ QUA (không có tệp): ${sheet.url}`);
       continue;
     }
+    // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
     try {
       const result = await cloudinary.uploader.upload(filePath, {
         public_id: publicIdTu(sheet.url),
@@ -112,9 +122,11 @@ async function upload() {
   console.log(`Bảng: ${path.relative(ROOT, MAP_FILE)}`);
 }
 
+// H?m preview d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function preview(url) {
   const map = loadMap();
   const info = map[url];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!info) {
     console.log('Chưa có trong bảng, hãy chạy --upload trước.');
     return;
@@ -138,6 +150,7 @@ function preview(url) {
 // Chỉ chạy phần dòng lệnh khi gọi trực tiếp, để file còn dùng được như module.
 if (require.main === module) {
   const args = process.argv.slice(2);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (args.includes('--upload')) {
     upload().then(() => process.exit(0)).catch((e) => {
       console.error(e.message);

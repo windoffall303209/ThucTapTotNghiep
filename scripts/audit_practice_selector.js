@@ -1,3 +1,4 @@
+// Script audit practice selector h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /* eslint-disable no-console */
 require('dotenv').config({ quiet: true });
 
@@ -7,6 +8,7 @@ const Question = require('../models/Question');
 const { MIN_GRADE, MAX_GRADE } = require('../config/grades');
 const { selectQuestionsV2 } = require('../utils/practiceQuestionSelectorV2');
 
+// H?m parseArguments d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseArguments(argv = process.argv.slice(2)) {
   const runsFlag = argv.find((arg) => arg.startsWith('--runs='));
   const difficultyFlag = argv.find((arg) => arg.startsWith('--max-difficulty-fallback-rate='));
@@ -20,8 +22,10 @@ function parseArguments(argv = process.argv.slice(2)) {
     arg !== '--fail-on-warning'
     && !supportedPrefixes.some((prefix) => arg.startsWith(prefix))
   ));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (unknown.length > 0) throw new Error(`Tham số không được hỗ trợ: ${unknown.join(', ')}`);
   const runs = Number(runsFlag?.slice('--runs='.length) || 25);
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!Number.isInteger(runs) || runs < 1 || runs > 500) {
     throw new Error('--runs phải là số nguyên từ 1 đến 500.');
   }
@@ -35,6 +39,7 @@ function parseArguments(argv = process.argv.slice(2)) {
   };
 }
 
+// H?m auditScope d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function auditScope({ grade, scope, mode, candidates, count, runs }) {
   const poolIds = new Set(candidates.map((question) => Number(question.id)));
   const usedIds = new Set();
@@ -50,28 +55,34 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
     fallbackReasons: {}
   };
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let run = 0; run < runs; run += 1) {
     const seed = buildAuditSeed(grade, scope, count, run);
     const result = selectQuestionsV2(candidates, { count, mode, seed, maxPerLesson: 2 });
     const ids = result.questions.map((question) => Number(question.id));
     totals.generated += 1;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (ids.length !== Math.min(count, candidates.length)) totals.incomplete += 1;
     totals.duplicateQuestionIds += ids.length - new Set(ids).size;
     totals.nearDuplicatePairs += Number(result.selection.metadata.nearDuplicatePairs || 0);
     totals.outOfScopeQuestionIds += ids.filter((id) => !poolIds.has(id)).length;
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!sameNumberRecord(
       result.selection.metadata.chapterTargets,
       result.selection.metadata.actualChapters
     )) totals.chapterQuotaMismatches += 1;
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const field of Object.keys(totals.sequenceConflicts)) {
       totals.sequenceConflicts[field] += Number(
         result.selection.metadata.sequenceConflicts?.[field] || 0
       );
     }
     ids.forEach((id) => usedIds.add(id));
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const difficulty of Object.keys(totals.difficulty)) {
       totals.difficulty[difficulty] += Number(result.selection.metadata.actualDifficulty[difficulty] || 0);
     }
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const reason of result.selection.metadata.fallbackReasons) {
       totals.fallbackReasons[reason] = (totals.fallbackReasons[reason] || 0) + 1;
     }
@@ -105,10 +116,12 @@ function auditScope({ grade, scope, mode, candidates, count, runs }) {
   };
 }
 
+// H?m buildAuditSeed d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function buildAuditSeed(grade, scope, count, run) {
   const value = `${grade}|${scope}|${count}|${run}`;
   let first = 2166136261;
   let second = 0x9e3779b9;
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const character of value) {
     first = Math.imul(first ^ character.charCodeAt(0), 16777619) >>> 0;
     second = Math.imul(second ^ character.charCodeAt(0), 2246822519) >>> 0;
@@ -116,6 +129,7 @@ function buildAuditSeed(grade, scope, count, run) {
   return first.toString(16).padStart(8, '0') + second.toString(16).padStart(8, '0');
 }
 
+// H?m evaluateAuditGate d?ng ?? ??i chi?u k?t qu? v?i c?c ?i?u ki?n mong ??i v? b?o c?o sai l?ch; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function evaluateAuditGate(scopes = [], thresholds = {}) {
   const totalRuns = scopes.reduce((sum, scope) => sum + Number(scope.runs || 0), 0);
   const totals = scopes.reduce((summary, scope) => {
@@ -124,6 +138,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
     summary.nearDuplicatePairs += Number(scope.nearDuplicatePairs || 0);
     summary.outOfScopeQuestionIds += Number(scope.outOfScopeQuestionIds || 0);
     summary.chapterQuotaMismatches += Number(scope.chapterQuotaMismatches || 0);
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const [reason, count] of Object.entries(scope.fallbackReasons || {})) {
       summary.fallbackReasons[reason] = (summary.fallbackReasons[reason] || 0) + Number(count || 0);
     }
@@ -137,13 +152,17 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
     fallbackReasons: {}
   });
   const violations = [];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (totals.incompleteRuns > 0) violations.push({ code: 'INCOMPLETE_EXAMS', count: totals.incompleteRuns });
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (totals.duplicateQuestionIds > 0) {
     violations.push({ code: 'DUPLICATE_QUESTION_IDS', count: totals.duplicateQuestionIds });
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (totals.outOfScopeQuestionIds > 0) {
     violations.push({ code: 'OUT_OF_SCOPE_QUESTION_IDS', count: totals.outOfScopeQuestionIds });
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (totals.chapterQuotaMismatches > 0) {
     violations.push({ code: 'CHAPTER_QUOTA_MISMATCHES', count: totals.chapterQuotaMismatches });
   }
@@ -161,7 +180,9 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
     difficultyFallbackRate: 'HIGH_DIFFICULTY_FALLBACK_RATE',
     similarityFallbackRate: 'HIGH_SIMILARITY_FALLBACK_RATE'
   };
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const [metric, rate] of Object.entries(rates)) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (rate > normalizedThresholds[metric]) {
       warnings.push({
         code: warningCodes[metric],
@@ -170,6 +191,7 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
       });
     }
   }
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (totals.nearDuplicatePairs > 0) {
     warnings.push({
       code: 'NEAR_DUPLICATE_PAIRS_SELECTED',
@@ -188,8 +210,10 @@ function evaluateAuditGate(scopes = [], thresholds = {}) {
   };
 }
 
+// H?m buildAuditReport d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function buildAuditReport(runs) {
   const report = [];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (let grade = MIN_GRADE; grade <= MAX_GRADE; grade += 1) {
     const [chapters, gradeCandidates] = await Promise.all([
       Curriculum.getCurriculumByGrade(grade),
@@ -211,7 +235,9 @@ async function buildAuditReport(runs) {
       }))
     ];
 
+    // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
     for (const scope of scopes.filter((item) => item.candidates.length > 0)) {
+      // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
       for (const count of [15, 20]) {
         report.push(auditScope({
           grade,
@@ -227,18 +253,22 @@ async function buildAuditReport(runs) {
   return report;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const { runs, failOnWarning, thresholds } = parseArguments();
   const connection = await db.testConnection();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!connection.connected) throw new Error(`Không kết nối được database: ${connection.reason}`);
   const scopes = await buildAuditReport(runs);
   const gate = evaluateAuditGate(scopes, thresholds);
   console.log(JSON.stringify({ generatedAt: new Date().toISOString(), readOnly: true, gate, scopes }, null, 2));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (gate.status === 'FAIL' || (failOnWarning && gate.status === 'WARN')) {
     process.exitCode = 1;
   }
 }
 
+// Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
 if (require.main === module) {
   main()
     .catch((error) => {
@@ -248,27 +278,33 @@ if (require.main === module) {
     .finally(() => db.close());
 }
 
+// H?m parseRate d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseRate(flag, prefix, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!flag) return fallback;
   const value = Number(flag.slice(prefix.length));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!Number.isFinite(value) || value < 0 || value > 1) {
     throw new Error(`${prefix.slice(0, -1)} phải nằm trong khoảng 0 đến 1.`);
   }
   return value;
 }
 
+// H?m validRate d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function validRate(value, fallback) {
   return Number.isFinite(Number(value)) && Number(value) >= 0 && Number(value) <= 1
     ? Number(value)
     : fallback;
 }
 
+// H?m fallbackRate d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function fallbackRate(totals, reason, totalRuns) {
   return totalRuns > 0
     ? Number((Number(totals.fallbackReasons[reason] || 0) / totalRuns).toFixed(4))
     : 0;
 }
 
+// H?m sameNumberRecord d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function sameNumberRecord(left = {}, right = {}) {
   const keys = new Set([...Object.keys(left || {}), ...Object.keys(right || {})]);
   return [...keys].every((key) => Number(left?.[key] || 0) === Number(right?.[key] || 0));

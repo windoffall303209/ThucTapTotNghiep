@@ -1,4 +1,5 @@
 """Gom 20 bài bổ sung Toán 5 thành bản đọc và bản DBJSON để import."""
+# Script build grade5 part2 compilation h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 
 from __future__ import annotations
 
@@ -54,9 +55,13 @@ LEGACY = (
 )
 
 
+# H?m clean d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean(text):
     return re.sub(r"\s+", " ", text or "").strip()
 
+
+# H?m image_blobs d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def image_blobs(paragraph, document):
     result = []
@@ -69,6 +74,8 @@ def image_blobs(paragraph, document):
     return result
 
 
+# H?m save_images d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def save_images(blobs, lesson, number):
     paths = []
     for index, (blob, suffix) in enumerate(blobs, 1):
@@ -78,6 +85,8 @@ def save_images(blobs, lesson, number):
         paths.append(str(path.resolve()))
     return paths
 
+
+# H?m finish d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def finish(records, question):
     if not question:
@@ -89,6 +98,8 @@ def finish(records, question):
     if question["prompt"] and question["lesson"] in LESSONS:
         records.append(question)
 
+
+# H?m parse_classic d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def parse_classic(path, wanted):
     doc = Document(path)
@@ -146,6 +157,8 @@ def parse_classic(path, wanted):
     return [q for q in records if q["lesson"] in wanted]
 
 
+# H?m parse_modern d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def parse_modern(path, wanted):
     doc = Document(path)
     records, question, lesson = [], None, None
@@ -175,6 +188,8 @@ def parse_modern(path, wanted):
     return [q for q in records if q["lesson"] in wanted]
 
 
+# H?m manual_image_map d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def manual_image_map(path):
     doc = Document(path)
     result = {}
@@ -198,6 +213,8 @@ def manual_image_map(path):
     return result
 
 
+# H?m manual_records d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def manual_records():
     records = []
     for filename, source_docx in MANUAL:
@@ -217,6 +234,8 @@ def manual_records():
     return records
 
 
+# H?m all_records d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def all_records():
     records = manual_records()
     for filename, wanted, kind in LEGACY:
@@ -226,10 +245,14 @@ def all_records():
     return records
 
 
+# H?m correct_key d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def correct_key(record):
     match = re.match(r"^\s*([A-D])(?:\.|\b)", record["answer"])
     return match.group(1) if match else ""
 
+
+# H?m payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def payload(record, bank_index):
     lesson, key = record["lesson"], correct_key(record)
@@ -259,6 +282,8 @@ def payload(record, bank_index):
     }
 
 
+# H?m configure d?ng ?? kh?i t?o tr?ng th?i v? c?c ph? thu?c c?n thi?t; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def configure(doc):
     section = doc.sections[0]
     section.top_margin = section.bottom_margin = Cm(1.5)
@@ -270,6 +295,8 @@ def configure(doc):
         doc.styles[name].font.size = Pt(size)
         doc.styles[name].font.color.rgb = RGBColor(31, 78, 121)
 
+
+# H?m cover d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def cover(doc, title, records):
     p = doc.add_paragraph(style="Title"); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -286,6 +313,8 @@ def cover(doc, title, records):
             cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
     doc.add_page_break()
 
+
+# H?m write_read_doc d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def write_read_doc(records):
     doc = Document(); configure(doc)
@@ -314,6 +343,8 @@ def write_read_doc(records):
     doc.save(READ_DOCX)
 
 
+# H?m write_import_doc d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def write_import_doc(records):
     doc = Document(); configure(doc)
     cover(doc, "DỮ LIỆU IMPORT NGÂN HÀNG CÂU HỎI LỚP 5 - PHẦN 2", records)
@@ -337,6 +368,8 @@ def write_import_doc(records):
     IMPORT_TEX.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     if ASSET_OUT.exists():
         shutil.rmtree(ASSET_OUT)
@@ -353,5 +386,6 @@ def main():
                       "import_docx": str(IMPORT_DOCX), "import_tex": str(IMPORT_TEX)}, ensure_ascii=False))
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

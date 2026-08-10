@@ -24,6 +24,7 @@ Dùng:
     python scripts/export_question_bank_docx.py            -> xuất cả 5 khối
     python scripts/export_question_bank_docx.py 1 3        -> chỉ xuất lớp 1 và 3
 """
+# Script export question bank docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 from __future__ import annotations
 
 import base64
@@ -68,6 +69,7 @@ XANH_VUA = RGBColor(47, 84, 150)
 XANH_LA = RGBColor(0, 112, 60)
 
 
+# H?m doc_payload d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 # --------------------------------------------------------------------- đọc .tex
 def doc_payload(grade: int) -> list[dict]:
     """Đọc các dòng % DBJSON trong file .tex, giữ nguyên thứ tự xuất hiện."""
@@ -87,6 +89,8 @@ def doc_payload(grade: int) -> list[dict]:
     return ra
 
 
+# H?m gom_theo_bai d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def gom_theo_bai(payloads: list[dict]) -> list[dict]:
     """Gom câu hỏi theo bài, giữ thứ tự bài xuất hiện lần đầu trong file."""
     theo_bai: OrderedDict[int, dict] = OrderedDict()
@@ -102,6 +106,7 @@ def gom_theo_bai(payloads: list[dict]) -> list[dict]:
     return list(theo_bai.values())
 
 
+# H?m tai_anh_ngoai d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 # ---------------------------------------------------------------------- ảnh
 def tai_anh_ngoai(url: str) -> Path | None:
     """Tải ảnh có đường dẫn http về máy để nhúng được vào Word.
@@ -109,11 +114,7 @@ def tai_anh_ngoai(url: str) -> Path | None:
     Lớp 1 có 26 câu dùng ảnh cắt trên Cloudinary bằng phép biến đổi c_crop, các
     ảnh này không tồn tại dưới dạng tệp trên đĩa nên phải tải mới nhúng được.
     """
-    try:
-        import requests
-    except ImportError:
-        print("  CHÚ Ý: thiếu thư viện requests nên bỏ qua ảnh trên mạng.")
-        return None
+    from urllib.request import Request, urlopen
 
     ANH_TAI_VE.mkdir(parents=True, exist_ok=True)
     ten = re.sub(r"[^A-Za-z0-9_.-]+", "_", urlparse(url).path.strip("/")) or "anh"
@@ -121,14 +122,16 @@ def tai_anh_ngoai(url: str) -> Path | None:
     if dich.exists() and dich.stat().st_size > 0:
         return dich
     try:
-        r = requests.get(url, timeout=30)
-        r.raise_for_status()
-        dich.write_bytes(r.content)
+        request = Request(url, headers={"User-Agent": "Mozilla/5.0 question-bank-exporter"})
+        with urlopen(request, timeout=30) as response:
+            dich.write_bytes(response.read())
         return dich
     except Exception as loi:  # noqa: BLE001 - chỉ cần bỏ qua ảnh lỗi
         print(f"  CHÚ Ý: không tải được {url}: {loi}")
         return None
 
+
+# H?m duong_dan_anh d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def duong_dan_anh(url: str) -> Path | None:
     url = str(url or "").strip()
@@ -140,6 +143,8 @@ def duong_dan_anh(url: str) -> Path | None:
     return tep if tep.exists() else None
 
 
+# H?m anh_da_nen d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
     """Nén ảnh về JPEG cạnh dài tối đa 1400 để file Word không phình quá to.
 
@@ -148,7 +153,14 @@ def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
     ANH_TAM.mkdir(parents=True, exist_ok=True)
     dich = ANH_TAM / f"{ma}-{thu_tu}.jpg"
     try:
-        if not dich.exists():
+        can_tao_lai = not dich.exists()
+        if dich.exists():
+            try:
+                with Image.open(dich) as anh_tam:
+                    anh_tam.verify()
+            except Exception:  # Cache có thể dang dở nếu lần xuất trước bị dừng giữa chừng.
+                can_tao_lai = True
+        if can_tao_lai:
             with Image.open(nguon) as anh:
                 anh = anh.convert("RGB")
                 anh.thumbnail((1400, 1400), Image.Resampling.LANCZOS)
@@ -161,6 +173,7 @@ def anh_da_nen(nguon: Path, ma: str, thu_tu: int) -> tuple[Path, float] | None:
         return None
 
 
+# H?m them_muc_luc d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 # ---------------------------------------------------------------------- docx
 def them_muc_luc(document: Document) -> None:
     p = document.add_paragraph()
@@ -180,10 +193,14 @@ def them_muc_luc(document: Document) -> None:
     run._r.extend([bat_dau, lenh, ngan, cho, ket])
 
 
+# H?m giu_khoi d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def giu_khoi(paragraph, dinh_doan_sau: bool = False) -> None:
     paragraph.paragraph_format.keep_together = True
     paragraph.paragraph_format.keep_with_next = dinh_doan_sau
 
+
+# H?m ep_font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def ep_font(style, ten_font: str) -> None:
     """Đặt font cho đủ bốn nhóm ký tự của Word.
@@ -207,6 +224,8 @@ def ep_font(style, ten_font: str) -> None:
         rFonts.set(qn(f"w:{thuoc_tinh}"), ten_font)
 
 
+# H?m them_chan_trang d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def them_chan_trang(section) -> None:
     """Đặt số trang ở chân trang. Tài liệu dài vài nghìn trang mà không có số trang
     thì không tra cứu và không đóng quyển được."""
@@ -225,6 +244,8 @@ def them_chan_trang(section) -> None:
     ket.set(qn("w:fldCharType"), "end")
     run._r.extend([bat_dau, lenh, ket])
 
+
+# H?m dat_kieu d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def dat_kieu(document: Document) -> None:
     section = document.sections[0]
@@ -258,6 +279,8 @@ ANH_RONG_TOI_DA = 14.5
 ANH_CAO_TOI_DA = 12.0
 
 
+# H?m them_anh d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
     """Nhúng ảnh vào tài liệu, trả về số ảnh đã nhúng được.
 
@@ -281,11 +304,17 @@ def them_anh(document: Document, images: list, ma: str, giu_sau: bool) -> int:
 
         p = document.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.add_run().add_picture(str(nen), width=Cm(rong))
+        picture = p.add_run().add_picture(str(nen), width=Cm(rong))
+        alt_text = str((im or {}).get("alt_text") or f"Hình minh họa cho câu hỏi {ma}").strip()
+        doc_pr = picture._inline.docPr
+        doc_pr.set("descr", alt_text)
+        doc_pr.set("title", f"Hình minh họa {ma}")
         giu_khoi(p, giu_sau)
         da_nhung += 1
     return da_nhung
 
+
+# H?m dung_docx d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
     document = Document()
@@ -408,6 +437,8 @@ def dung_docx(grade: int, bai_hoc: list[dict], dich: Path) -> dict:
     }
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main() -> None:
     khoi = [int(a) for a in sys.argv[1:] if a.isdigit()] or [1, 2, 3, 4, 5]
 
@@ -435,5 +466,6 @@ def main() -> None:
     shutil.rmtree(ANH_TAM, ignore_errors=True)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

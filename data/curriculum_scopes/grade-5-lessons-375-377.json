@@ -1,0 +1,53 @@
+{
+  "scope_id": "grade-5-lessons-375-377",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [58, 59, 62, 63, 66, 67],
+    "verified_book_pages": [56, 57, 60, 61, 64, 65]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, ghi đầy đủ số liệu thời gian, vận tốc hoặc quãng đường nhưng không ghi đáp án.",
+    "progression": "Bài 71 cộng các khoảng thời gian; Bài 73 tính vận tốc; Bài 75 tính quãng đường từ vận tốc và thời gian.",
+    "excluded_pages": "Không đưa các hoạt động mở rộng ngoài mục tiêu kiến thức chính vào batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 375,
+      "lesson_name": "Bài 71. Luyện tập",
+      "pdf_pages": [58, 59],
+      "book_pages": [56, 57],
+      "objective": "Cộng nhiều khoảng thời gian và đổi phút sang giờ, phút.",
+      "allowed_knowledge_tags": ["time_addition", "time_multiplication", "time_conversion"],
+      "allowed_question_forms": ["Cộng thời gian của nhiều chặng và thời gian nghỉ."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 376,
+      "lesson_name": "Bài 73. Luyện tập",
+      "pdf_pages": [62, 63],
+      "book_pages": [60, 61],
+      "objective": "Tính vận tốc từ quãng đường và thời gian đã cho.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula"],
+      "allowed_question_forms": ["Tính vận tốc khi biết quãng đường và thời gian."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 377,
+      "lesson_name": "Bài 75. Luyện tập",
+      "pdf_pages": [66, 67],
+      "book_pages": [64, 65],
+      "objective": "Tính quãng đường khi biết vận tốc và thời gian.",
+      "allowed_knowledge_tags": ["speed", "distance", "time", "speed_formula"],
+      "allowed_question_forms": ["Tính quãng đường từ vận tốc và thời gian."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

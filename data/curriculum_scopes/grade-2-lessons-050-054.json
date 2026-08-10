@@ -1,0 +1,163 @@
+{
+  "scope_id": "grade-2-lessons-050-054",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 2,
+  "source": {
+    "title": "SGK Toán 2 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toán 2 Tập 1 - Cánh diều.pdf",
+    "verified_pdf_pages": [43, 44, 47, 48, 49, 59, 60, 61, 62, 67, 68],
+    "verified_book_pages": [42, 43, 46, 47, 48, 58, 59, 60, 61, 66, 67]
+  },
+  "review_rules": {
+    "question_language": "Tình huống ngắn, dữ kiện rõ, một câu hỏi và một phép tính chính.",
+    "images": "Ảnh biểu diễn đúng các nhóm số hoặc quan hệ nhiều hơn, ít hơn; không chứa đáp án.",
+    "progression": "Phân biệt bài toán gộp, bớt, nhiều hơn, ít hơn; phép tính có nhớ chỉ dùng đúng dạng đã học trong phạm vi 100.",
+    "difficulty": "Một bước giải hoặc một phép tính đặt thẳng cột, không yêu cầu lập luận nhiều bước."
+  },
+  "lessons": [
+    {
+      "lesson_id": 50,
+      "lesson_name": "Bài toán liên quan đến phép cộng, phép trừ",
+      "pdf_pages": [43, 44],
+      "book_pages": [42, 43],
+      "objective": "Nhận biết và giải bài toán một bước dạng gộp thêm bằng phép cộng hoặc bớt đi bằng phép trừ.",
+      "allowed_knowledge_tags": [
+        "identify_addition_story_problem",
+        "identify_subtraction_story_problem",
+        "solve_join_result_unknown",
+        "solve_separate_result_unknown",
+        "write_answer_sentence_for_one_step_problem"
+      ],
+      "allowed_question_forms": [
+        "Tìm tất cả khi biết hai phần bằng phép cộng.",
+        "Tìm phần còn lại khi biết số ban đầu và số bớt đi.",
+        "Chọn phép tính phù hợp với một tình huống gộp hoặc bớt.",
+        "Chọn câu trả lời đúng cho bài toán một bước."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(nhiều hơn|ít hơn|gấp|kém)\\b"
+      ],
+      "not_yet_allowed": [
+        "Bài toán so sánh nhiều hơn hoặc ít hơn.",
+        "Bài toán hai bước.",
+        "Dữ kiện thừa hoặc ẩn nhiều đại lượng."
+      ]
+    },
+    {
+      "lesson_id": 51,
+      "lesson_name": "Bài toán liên quan đến phép cộng, phép trừ (tiếp theo)",
+      "pdf_pages": [47, 48, 49],
+      "book_pages": [46, 47, 48],
+      "objective": "Giải bài toán một bước về nhiều hơn và ít hơn bằng phép cộng hoặc phép trừ.",
+      "allowed_knowledge_tags": [
+        "solve_more_than_problem",
+        "solve_less_than_problem",
+        "identify_comparison_operation",
+        "model_more_than_with_bars",
+        "model_less_than_with_bars"
+      ],
+      "allowed_question_forms": [
+        "Tìm số lớn hơn khi biết số bé và phần nhiều hơn.",
+        "Tìm số bé hơn khi biết số lớn và phần ít hơn.",
+        "Chọn phép cộng hoặc phép trừ phù hợp với quan hệ so sánh.",
+        "Quan sát sơ đồ phần bằng nhau và phần hơn rồi tìm kết quả."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(gấp.*lần|chia đều|mỗi nhóm)\\b"
+      ],
+      "not_yet_allowed": [
+        "So sánh theo số lần.",
+        "Bài toán hai bước.",
+        "Tìm phần chênh lệch khi cả hai số đều chưa biết."
+      ]
+    },
+    {
+      "lesson_id": 52,
+      "lesson_name": "Phép cộng (có nhớ) trong phạm vi 100",
+      "pdf_pages": [59, 60],
+      "book_pages": [58, 59],
+      "objective": "Cộng hai số có hai chữ số có nhớ từ hàng đơn vị sang hàng chục trong phạm vi 100.",
+      "allowed_knowledge_tags": [
+        "add_two_digit_numbers_with_regrouping_to_100",
+        "regroup_ones_into_ten_for_addition",
+        "vertical_addition_with_regrouping_to_100",
+        "model_two_digit_addition_with_base_ten_blocks",
+        "solve_one_step_two_digit_addition_story"
+      ],
+      "allowed_question_forms": [
+        "Đặt tính rồi cộng hai số có hai chữ số, tổng không quá 100.",
+        "Gộp đơn vị, đổi 10 đơn vị thành 1 chục rồi tìm tổng.",
+        "Phát hiện lỗi quên nhớ 1 ở hàng chục.",
+        "Giải tình huống gộp hai số có hai chữ số."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|nhân|chia)\\b",
+        "[−×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép cộng có từ ba số hạng.",
+        "Tổng lớn hơn 100.",
+        "Phép trừ có nhớ."
+      ]
+    },
+    {
+      "lesson_id": 53,
+      "lesson_name": "Phép cộng (có nhớ) trong phạm vi 100 (tiếp theo)",
+      "pdf_pages": [61, 62],
+      "book_pages": [60, 61],
+      "objective": "Cộng số có hai chữ số với số có một chữ số có nhớ, trong phạm vi 100.",
+      "allowed_knowledge_tags": [
+        "add_one_digit_to_two_digit_with_regrouping",
+        "regroup_ones_for_mixed_addition",
+        "vertical_two_digit_plus_one_digit_with_regrouping",
+        "model_mixed_addition_with_base_ten_blocks",
+        "solve_one_step_mixed_addition_story"
+      ],
+      "allowed_question_forms": [
+        "Đặt tính rồi cộng số có hai chữ số với số có một chữ số.",
+        "Đổi 10 đơn vị thành 1 chục rồi tìm tổng.",
+        "Tìm chữ số bị che trong phép cộng dạng đã học.",
+        "Giải tình huống thêm một số có một chữ số."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(trừ|bớt|hiệu|nhân|chia)\\b",
+        "[−×÷]"
+      ],
+      "not_yet_allowed": [
+        "Số hạng thứ hai có hai chữ số.",
+        "Tổng lớn hơn 100.",
+        "Phép trừ có nhớ."
+      ]
+    },
+    {
+      "lesson_id": 54,
+      "lesson_name": "Phép trừ (có nhớ) trong phạm vi 100",
+      "pdf_pages": [67, 68],
+      "book_pages": [66, 67],
+      "objective": "Trừ hai số có hai chữ số có nhớ bằng cách đổi một chục thành mười đơn vị, trong phạm vi 100.",
+      "allowed_knowledge_tags": [
+        "subtract_two_digit_numbers_with_regrouping_to_100",
+        "regroup_ten_into_ones_for_subtraction",
+        "vertical_subtraction_with_regrouping_to_100",
+        "model_two_digit_subtraction_with_base_ten_blocks",
+        "solve_one_step_two_digit_subtraction_story"
+      ],
+      "allowed_question_forms": [
+        "Đặt tính rồi trừ hai số có hai chữ số khi phải đổi một chục.",
+        "Quan sát đổi một thanh chục thành mười đơn vị rồi tìm hiệu.",
+        "Tìm chữ số bị che trong phép trừ dạng đã học.",
+        "Giải tình huống bớt đi bằng phép trừ có nhớ."
+      ],
+      "forbidden_text_patterns": [
+        "\\b(cộng|thêm|tổng|nhân|chia)\\b",
+        "[+×÷]"
+      ],
+      "not_yet_allowed": [
+        "Phép trừ số có ba chữ số.",
+        "Kết quả âm.",
+        "Phép tính nhiều bước."
+      ]
+    }
+  ]
+}

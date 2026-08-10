@@ -1,3 +1,4 @@
+# Script export structured questions docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import hashlib
 import json
@@ -34,11 +35,15 @@ HEADERS = {
 }
 
 
+# H?m clean_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def clean_text(value):
     if value is None:
         return ""
     return re.sub(r"\s+", " ", str(value).replace("\xa0", " ")).strip()
 
+
+# H?m clean_multiline_text d?ng ?? chu?n h?a v? l?m s?ch d? li?u ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def clean_multiline_text(value):
     if value is None:
@@ -47,6 +52,8 @@ def clean_multiline_text(value):
     lines = [re.sub(r"[ \t]+", " ", line).strip() for line in text.splitlines()]
     return "\n".join(line for line in lines if line)
 
+
+# H?m book_label d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def book_label(index_url):
     path = urlparse(index_url or "").path.lower()
@@ -60,6 +67,8 @@ def book_label(index_url):
     return f"Toán {grade} {series}{suffix}".strip()
 
 
+# H?m risk_label d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def risk_label(flags):
     if not flags:
         return "OK - map rõ"
@@ -71,6 +80,8 @@ def risk_label(flags):
     }
     return "Cần duyệt lại: " + ", ".join(labels.get(flag, flag) for flag in flags)
 
+
+# H?m image_extension d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def image_extension(url, content_type=""):
     path_ext = Path(urlparse(url).path).suffix.lower()
@@ -87,12 +98,16 @@ def image_extension(url, content_type=""):
     return ".img"
 
 
+# H?m cached_image_path d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def cached_image_path(image_dir, image_url):
     prefix = hashlib.sha1(image_url.encode("utf-8")).hexdigest()
     for item in image_dir.glob(prefix + ".*"):
         return item
     return None
 
+
+# H?m download_image d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def download_image(session, image_dir, image_url):
     image_dir.mkdir(parents=True, exist_ok=True)
@@ -112,6 +127,8 @@ def download_image(session, image_dir, image_url):
     return target
 
 
+# H?m docx_compatible_image d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def docx_compatible_image(image_path, converted_dir):
     if image_path.suffix.lower() != ".webp":
         return image_path
@@ -123,6 +140,8 @@ def docx_compatible_image(image_path, converted_dir):
     return target
 
 
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_text(cell, text, bold=False):
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
     cell.text = ""
@@ -132,6 +151,8 @@ def set_cell_text(cell, text, bold=False):
     run.font.name = "Arial"
     run.font.size = Pt(9)
 
+
+# H?m add_info_table d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_info_table(document, lesson, mapping):
     rows = [
@@ -168,12 +189,16 @@ def add_info_table(document, lesson, mapping):
         set_cell_text(table.cell(index, 1), value)
 
 
+# H?m add_choice d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_choice(document, choice):
     paragraph = document.add_paragraph(style="List Bullet")
     run = paragraph.add_run(f"{choice.get('key', '')}. {clean_text(choice.get('text', ''))}")
     run.font.name = "Arial"
     run.font.size = Pt(10)
 
+
+# H?m add_explanation d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_explanation(document, explanation):
     text = clean_multiline_text(explanation)
@@ -194,6 +219,8 @@ def add_explanation(document, explanation):
         if line.startswith("Bước ") or line.startswith("Kết luận"):
             run.bold = True
 
+
+# H?m add_image d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_image(document, session, image_dir, converted_dir, image, stats):
     url = image.get("url", "")
@@ -217,6 +244,8 @@ def add_image(document, session, image_dir, converted_dir, image, stats):
         document.add_paragraph(f"Không nhúng được ảnh: {url} ({error})", style="List Bullet")
         stats["failed_images"] += 1
 
+
+# H?m add_question d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_question(document, session, image_dir, converted_dir, question, stats):
     number = question.get("number", "")
@@ -252,6 +281,8 @@ def add_question(document, session, image_dir, converted_dir, question, stats):
     add_explanation(document, question.get("explanation", ""))
 
 
+# H?m style_document d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def style_document(document):
     styles = document.styles
     styles["Normal"].font.name = "Arial"
@@ -265,6 +296,8 @@ def style_document(document):
     styles["Heading 1"].font.color.rgb = RGBColor(31, 41, 55)
 
 
+# H?m group_lessons d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def group_lessons(lessons):
     grouped = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     for lesson in lessons:
@@ -274,6 +307,8 @@ def group_lessons(lessons):
         grouped[grade][book][chapter].append(lesson)
     return grouped
 
+
+# H?m add_metadata d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_metadata(document, payload, mappings):
     stats = payload.get("stats") or {}
@@ -297,6 +332,8 @@ def add_metadata(document, payload, mappings):
             f"{summary.get('unmatchedLessons', 0)} bài chưa map được."
         )
 
+
+# H?m export_docx d?ng ?? ??ng b? d? li?u gi?a c?c ??nh d?ng ho?c ngu?n kh?c nhau; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def export_docx(input_path, output_path, mapping_path, image_dir, embed_images=True):
     payload = json.loads(input_path.read_text(encoding="utf-8"))
@@ -339,6 +376,8 @@ def export_docx(input_path, output_path, mapping_path, image_dir, embed_images=T
     }
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     parser = argparse.ArgumentParser(description="Xuất file Word crawl theo lớp, sách, chương, bài.")
     parser.add_argument("--input", default=str(DEFAULT_INPUT))
@@ -358,5 +397,6 @@ def main():
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

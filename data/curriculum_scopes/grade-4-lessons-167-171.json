@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-167-171",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [40, 41, 42, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53],
+    "verified_book_pages": [39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 167 học thế kỉ; bài 168 giải bài toán rút về đơn vị; bài 169 phân biệt các loại góc; bài 170 đo góc bằng độ và thước đo góc; bài 171 nhận biết và vẽ hai đường thẳng vuông góc.",
+    "excluded_pages": "Không gán các trang Luyện tập chung hoặc nội dung bài khác vào bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 167,
+      "lesson_name": "16. Bài 16: Thế kỉ",
+      "pdf_pages": [40, 41],
+      "book_pages": [39, 40],
+      "objective": "Xác định thế kỉ của một năm và mối quan hệ giữa thế kỉ với năm.",
+      "allowed_knowledge_tags": ["century", "year_to_century", "time_period"],
+      "allowed_question_forms": ["Xác định thế kỉ của một năm.", "Đổi thế kỉ thành số năm hoặc ngược lại."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 168,
+      "lesson_name": "17. Bài 17: Bài toán liên quan đến rút về đơn vị",
+      "pdf_pages": [42, 43],
+      "book_pages": [41, 42],
+      "objective": "Giải bài toán bằng cách tìm giá trị của một đơn vị trước rồi tìm giá trị của nhiều đơn vị.",
+      "allowed_knowledge_tags": ["unit_rate", "division_multiplication", "word_problem"],
+      "allowed_question_forms": ["Tìm giá trị một đơn vị rồi tìm giá trị của nhiều đơn vị.", "Giải bài toán thực tế bằng hai bước."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 169,
+      "lesson_name": "19. Bài 19: Góc nhọn, góc tù, góc bẹt",
+      "pdf_pages": [45, 46],
+      "book_pages": [44, 45],
+      "objective": "Nhận biết và phân biệt góc nhọn, góc vuông, góc tù và góc bẹt.",
+      "allowed_knowledge_tags": ["angle_types", "acute_right_obtuse_straight"],
+      "allowed_question_forms": ["Phân loại góc dựa vào hình dạng hoặc số đo.", "Nhận biết góc trong hình ảnh thực tế."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 170,
+      "lesson_name": "20. Bài 20: Đơn vị đo góc. Độ (°)",
+      "pdf_pages": [47, 48, 49, 50],
+      "book_pages": [46, 47, 48, 49],
+      "objective": "Biết độ là đơn vị đo góc và sử dụng thước đo góc để xác định số đo góc.",
+      "allowed_knowledge_tags": ["angle_measure", "degree_unit", "protractor"],
+      "allowed_question_forms": ["Nhận biết số đo góc đặc biệt.", "Đọc số đo góc trên thước đo góc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 171,
+      "lesson_name": "21. Bài 21: Hai đường thẳng vuông góc. Vẽ hai đường thẳng vuông góc",
+      "pdf_pages": [51, 52, 53],
+      "book_pages": [50, 51, 52],
+      "objective": "Nhận biết hai đường thẳng vuông góc và mối quan hệ giữa các góc vuông tạo thành.",
+      "allowed_knowledge_tags": ["perpendicular_lines", "right_angle", "geometry"],
+      "allowed_question_forms": ["Nhận biết cặp đường thẳng vuông góc.", "Xác định số góc vuông tạo bởi hai đường thẳng vuông góc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

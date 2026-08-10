@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-157-161",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26],
+    "verified_book_pages": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, không thêm dữ kiện ngoài câu hỏi.",
+    "progression": "Bài 157 đọc, viết số trong phạm vi 1 000 000; bài 158 phân tích số theo các hàng; bài 159 làm quen các số có nhiều chữ số đến hàng tỉ; bài 160 đọc số theo các lớp triệu, nghìn, đơn vị; bài 161 so sánh các số có nhiều chữ số.",
+    "excluded_pages": "Không gán bài Luyện tập ở trang sách 22 hoặc nội dung của các bài sau bài 161 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 157,
+      "lesson_name": "4. Bài 4: Các số trong phạm vi 1 000 000",
+      "pdf_pages": [13, 14],
+      "book_pages": [12, 13],
+      "objective": "Đọc, viết và xác định giá trị chữ số trong các số đến 1 000 000.",
+      "allowed_knowledge_tags": ["numbers_to_1000000", "place_value", "read_write_number"],
+      "allowed_question_forms": ["Xác định giá trị của một chữ số trong số có sáu chữ số.", "Đọc hoặc viết số trong phạm vi 1 000 000."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 158,
+      "lesson_name": "5. Bài 5: Các số trong phạm vi 1 000 000 (tiếp theo)",
+      "pdf_pages": [15, 16, 17],
+      "book_pages": [14, 15, 16],
+      "objective": "Đọc, viết số, phân tích số theo các hàng và viết số thành tổng các giá trị hàng.",
+      "allowed_knowledge_tags": ["numbers_to_1000000", "place_value", "expanded_form"],
+      "allowed_question_forms": ["Viết số thành tổng các giá trị hàng.", "Xác định chữ số theo hàng trong số có sáu chữ số.", "Đọc số có chữ số 0 ở giữa."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 159,
+      "lesson_name": "6. Bài 6: Các số có nhiều chữ số",
+      "pdf_pages": [18, 19],
+      "book_pages": [17, 18],
+      "objective": "Nhận biết, đọc và viết các số có nhiều chữ số đến hàng tỉ.",
+      "allowed_knowledge_tags": ["large_numbers", "millions_billions", "read_large_number"],
+      "allowed_question_forms": ["Xác định số chữ số của số đến hàng tỉ.", "Đọc hoặc viết số có nhiều chữ số.", "Đổi mối quan hệ giữa tỉ và triệu."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 160,
+      "lesson_name": "7. Bài 7: Các số có nhiều chữ số (tiếp theo)",
+      "pdf_pages": [20, 21, 22],
+      "book_pages": [19, 20, 21],
+      "objective": "Đọc số theo từng lớp triệu, lớp nghìn, lớp đơn vị và xác định giá trị chữ số theo hàng.",
+      "allowed_knowledge_tags": ["large_numbers", "number_classes", "place_value"],
+      "allowed_question_forms": ["Xác định hàng hoặc lớp của một chữ số.", "Đọc số có đủ lớp triệu, nghìn và đơn vị.", "Viết số theo cấu tạo các lớp."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    },
+    {
+      "lesson_id": 161,
+      "lesson_name": "9. Bài 9: So sánh các số có nhiều chữ số",
+      "pdf_pages": [24, 25, 26],
+      "book_pages": [23, 24, 25],
+      "objective": "So sánh các số có nhiều chữ số bằng cách so sánh số chữ số và từng hàng từ trái sang phải.",
+      "allowed_knowledge_tags": ["compare_large_numbers", "order_numbers", "comparison_symbols"],
+      "allowed_question_forms": ["Điền dấu so sánh hai số.", "Sắp xếp các số theo thứ tự tăng dần hoặc giảm dần.", "Chọn số lớn nhất hoặc nhỏ nhất."],
+      "forbidden_text_patterns": ["\\b(phân số|số thập phân|phương trình|góc)\\b"],
+      "not_yet_allowed": ["Phân số", "Số thập phân", "Phương trình", "Góc"]
+    }
+  ]
+}

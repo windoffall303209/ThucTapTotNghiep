@@ -1,3 +1,4 @@
+# Script compose grade1 question images h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import argparse
 import json
 from pathlib import Path
@@ -25,6 +26,8 @@ ART_W = CARD_W - PAD * 2
 ART_H = CARD_H - ART_TOP - 58
 
 
+# H?m load_pack d?ng ?? l?y d? li?u v? x? l? tr??ng h?p kh?ng t?m th?y k?t qu?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def load_pack():
     questions_doc = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
     jobs_doc = json.loads(JOBS_PATH.read_text(encoding="utf-8"))
@@ -35,13 +38,19 @@ def load_pack():
     return questions_doc, jobs_doc["jobs"], questions
 
 
+# H?m font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def font(path, size):
     return ImageFont.truetype(str(path), size=size)
 
 
+# H?m text_bbox d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def text_bbox(draw, xy, text, font_obj):
     return draw.textbbox(xy, text, font=font_obj)
 
+
+# H?m wrap_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def wrap_text(draw, text, font_obj, max_width):
     words = text.split()
@@ -61,6 +70,8 @@ def wrap_text(draw, text, font_obj, max_width):
     return lines
 
 
+# H?m fit_question_text d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def fit_question_text(draw, text):
     max_width = CARD_W - PAD * 2
     max_height = TEXT_H
@@ -76,6 +87,8 @@ def fit_question_text(draw, text):
     return font_obj, wrap_text(draw, text, font_obj, max_width), 38
 
 
+# H?m cover_crop d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def cover_crop(image, size):
     target_w, target_h = size
     src_w, src_h = image.size
@@ -85,6 +98,8 @@ def cover_crop(image, size):
     y = (resized.height - target_h) // 2
     return resized.crop((x, y, x + target_w, y + target_h))
 
+
+# H?m panel_crop d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def panel_crop(sheet, panel_index):
     cols = 3
@@ -97,6 +112,8 @@ def panel_crop(sheet, panel_index):
     y1 = round((row + 1) * sheet.height / rows)
     return sheet.crop((x0, y0, x1, y1))
 
+
+# H?m make_card d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def make_card(question_text, panel):
     card = Image.new("RGB", (CARD_W, CARD_H), "#fbfaf5")
@@ -120,6 +137,8 @@ def make_card(question_text, panel):
     draw.rounded_rectangle((PAD, ART_TOP, PAD + ART_W, ART_TOP + ART_H), radius=14, outline="#c8d6d3", width=3)
     return card
 
+
+# H?m compose d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def compose(allow_missing=False):
     questions_doc, jobs, questions = load_pack()
@@ -154,6 +173,8 @@ def compose(allow_missing=False):
         print("\n".join(missing_sheets[:20]))
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--allow-missing", action="store_true")
@@ -161,5 +182,6 @@ def main():
     compose(allow_missing=args.allow_missing)
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-4-lessons-183-187",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 4,
+  "source": {
+    "title": "SGK Toán 4 Tập 1 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_4_Tap_1_-_Canh_dieu_26e5b.pdf",
+    "verified_pdf_pages": [92, 93, 96, 97, 98, 99, 104, 105, 106, 108, 109, 110],
+    "verified_book_pages": [91, 92, 95, 96, 97, 98, 103, 104, 105, 107, 108, 109]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 4.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án, số liệu hoặc chữ làm lộ đáp án.",
+    "progression": "Bài 183 chia cho số có hai chữ số; bài 184 chia cho số có hai chữ số (tiếp theo); bài 185 thương có chữ số 0; bài 186 ước lượng tính; bài 187 biểu thức có chứa chữ.",
+    "excluded_pages": "Không gán các trang Luyện tập hoặc Luyện tập chung ở PDF 94–95, 100–103, 107 và 111 vào các bài riêng trong batch này."
+  },
+  "lessons": [
+    {
+      "lesson_id": 183,
+      "lesson_name": "40. Bài 40: Chia cho số có hai chữ số",
+      "pdf_pages": [92, 93],
+      "book_pages": [91, 92],
+      "objective": "Thực hiện phép chia số có nhiều chữ số cho số có hai chữ số.",
+      "allowed_knowledge_tags": ["division_two_digit", "long_division", "quotient"],
+      "allowed_question_forms": ["Đặt tính rồi tính phép chia cho số có hai chữ số.", "Kiểm tra thương bằng phép nhân."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 184,
+      "lesson_name": "42. Bài 42: Chia cho số có hai chữ số (tiếp theo)",
+      "pdf_pages": [96, 97],
+      "book_pages": [95, 96],
+      "objective": "Vận dụng phép chia cho số có hai chữ số vào bài toán thực tế và thương ước lượng.",
+      "allowed_knowledge_tags": ["division_two_digit", "division_application", "quotient"],
+      "allowed_question_forms": ["Giải bài toán thực tế bằng phép chia cho số có hai chữ số.", "Tìm số phần bằng nhau."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 185,
+      "lesson_name": "44. Bài 44: Thương có chữ số 0",
+      "pdf_pages": [98, 99],
+      "book_pages": [97, 98],
+      "objective": "Thực hiện phép chia cho số có hai chữ số khi thương có chữ số 0.",
+      "allowed_knowledge_tags": ["quotient_zero", "division_two_digit", "place_value"],
+      "allowed_question_forms": ["Tính phép chia có chữ số 0 ở giữa thương.", "Nhận biết và giải thích chữ số 0 trong thương."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 186,
+      "lesson_name": "47. Bài 47: Ước lượng tính",
+      "pdf_pages": [104, 105, 106],
+      "book_pages": [103, 104, 105],
+      "objective": "Làm tròn số rồi ước lượng kết quả của phép cộng, phép nhân và phép chia.",
+      "allowed_knowledge_tags": ["estimation", "rounding_tens", "multiplication_estimate"],
+      "allowed_question_forms": ["Làm tròn các thừa số đến hàng chục rồi ước lượng tích.", "Ước lượng kết quả phép tính."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 187,
+      "lesson_name": "49. Bài 49: Biểu thức có chứa chữ",
+      "pdf_pages": [108, 109, 110],
+      "book_pages": [107, 108, 109],
+      "objective": "Tính giá trị biểu thức có chứa chữ khi thay chữ bằng số.",
+      "allowed_knowledge_tags": ["expression_letters", "substitution", "operation_order"],
+      "allowed_question_forms": ["Tính giá trị biểu thức có chứa một hoặc nhiều chữ.", "Thay chữ bằng số rồi tính theo đúng thứ tự thực hiện phép tính."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}

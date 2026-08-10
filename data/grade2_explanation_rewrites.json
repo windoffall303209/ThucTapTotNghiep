@@ -1,0 +1,508 @@
+{
+  "G2-L001-Q002": "Số liền trước là số đứng ngay bên trái số đã cho trên tia số và bé hơn số đó 1 đơn vị. Ta lấy 5 - 1 = 4. Vậy số liền trước của 5 là 4.",
+  "G2-L001-Q005": "Số liền sau đứng ngay bên phải số đã cho trên tia số và lớn hơn số đó 1 đơn vị. Ta có 9 + 1 = 10. Vì vậy, số liền sau của 9 là 10.",
+  "G2-L001-Q011": "Bảng đã cho số 30 và yêu cầu tìm số liền sau. Số liền sau lớn hơn 30 đúng 1 đơn vị nên ta tính 30 + 1 = 31. Dấu hỏi cần được thay bằng số 31.",
+  "G2-L001-Q013": "Muốn tìm số liền trước của 99, em bớt 99 đi 1 đơn vị. Ta có 99 - 1 = 98; trên tia số, 98 cũng nằm ngay trước 99. Vậy đáp án là 98.",
+  "G2-L001-Q030": "Số liền trước của 35 bé hơn 35 một đơn vị nên bằng 35 - 1 = 34. Số liền sau lớn hơn 35 một đơn vị nên bằng 35 + 1 = 36. Hai số cần điền lần lượt là 34 và 36.",
+  "G2-L001-Q034": "Các vạch trên tia số mang những số liên tiếp từ 20 đến 25. Vạch ngay trước 24 là vạch 23 vì 23 + 1 = 24. Do đó, ngôi sao nằm ở số 23.",
+  "G2-L002-Q001": "Một đề-xi-mét gồm 10 xăng-ti-mét. Vì 1 dm = 10 cm nên khi đổi 1 dm sang xăng-ti-mét, ta được 10 cm. Đáp án đúng là 10 cm.",
+  "G2-L002-Q002": "Mỗi đề-xi-mét bằng 10 xăng-ti-mét. Với 2 dm, ta có 10 cm + 10 cm = 20 cm, hay 2 × 10 = 20. Vậy 2 dm bằng 20 cm.",
+  "G2-L002-Q005": "Đề bài cho băng giấy dài 1 dm. Ta đổi đơn vị bằng cách dùng 1 dm = 10 cm, nên độ dài ấy cũng chính là 10 cm. Vì vậy, số đo đúng là 10 cm.",
+  "G2-L002-Q006": "Mỗi đề-xi-mét tương ứng với 10 xăng-ti-mét. Bốn đề-xi-mét tương ứng với 4 nhóm 10 cm, nên 4 × 10 = 40 cm. Số cần điền là 40.",
+  "G2-L002-Q010": "Hai băng giấy đều được đo bằng đề-xi-mét nên ta cộng trực tiếp hai số đo. Ta tính 1 + 2 = 3 và giữ nguyên đơn vị dm. Cả hai băng giấy dài 3 dm.",
+  "G2-L002-Q012": "Muốn so sánh, trước hết ta đổi 3 dm thành xăng-ti-mét: 3 dm = 30 cm. Vì 30 cm lớn hơn 25 cm nên 3 dm > 25 cm. Dấu thích hợp là dấu >.",
+  "G2-L002-Q014": "Thước dài từ vạch 0 đến vạch 20 cm nên độ dài của thước là 20 cm. Cứ 10 cm bằng 1 dm, vì vậy 20 cm = 2 dm. Đáp án đúng là 2 dm.",
+  "G2-L002-Q015": "Ta đổi số đo theo quy tắc 1 dm = 10 cm. Bốn đề-xi-mét bằng 4 × 10 = 40 cm. Vì vậy, 4 dm và 40 cm là hai số đo bằng nhau.",
+  "G2-L002-Q017": "Dải ruy băng dài 20 cm. Vì 10 cm bằng 1 dm nên 20 cm gồm hai đoạn 10 cm, tức là 2 dm. Vậy dải ruy băng dài 2 dm.",
+  "G2-L003-Q002": "Trong một phép cộng, kết quả nhận được gọi là tổng. Ở phép tính 7 + 6 = 13, hai số 7 và 6 là các số hạng, còn 13 là kết quả. Vì vậy, tổng là 13.",
+  "G2-L003-Q003": "Ta tính từng phép cộng trong các phương án rồi tìm phép có kết quả bằng 17. Phép tính 9 + 8 cho kết quả 17. Do đó, phép tính có tổng là 17 là 9 + 8.",
+  "G2-L003-Q004": "Sơ đồ gồm hai phần có số lượng 6 và 9, nên muốn tìm toàn bộ ta thực hiện phép cộng. Ta tính 6 + 9 = 15. Vậy tổng của hai phần là 15.",
+  "G2-L003-Q005": "Số còn thiếu là một số hạng của phép cộng. Ta lấy tổng 15 trừ số hạng đã biết 7: 15 - 7 = 8. Kiểm tra lại, 8 + 7 = 15, nên số cần điền là 8.",
+  "G2-L003-Q006": "Tổng là 14 và một số hạng là 9. Muốn tìm số hạng còn lại, ta lấy 14 - 9 = 5. Kiểm tra bằng phép cộng 9 + 5 = 14, vậy đáp án là 5.",
+  "G2-L003-Q007": "Trong phép cộng, các số đứng trước dấu bằng và được cộng với nhau gọi là số hạng. Ở phép tính 12 + 4 = 16, 12 và 4 là hai số hạng. Vì vậy, phép tính có 2 số hạng.",
+  "G2-L003-Q008": "Hình có hai nhóm riêng: một nhóm 4 chấm và một nhóm 5 chấm. Gộp hai nhóm lại, ta tính 4 + 5 = 9. Phép cộng đúng là 4 + 5 = 9.",
+  "G2-L003-Q009": "Trong phép cộng, số đứng sau dấu bằng là kết quả và được gọi là tổng. Với 10 + 3 = 13, số 13 là kết quả của phép cộng. Vì vậy, 13 được gọi là tổng.",
+  "G2-L003-Q010": "Hai phần của sơ đồ có độ dài 11 và 3. Độ dài cả thanh bằng tổng hai phần nên ta tính 11 + 3 = 14. Vậy cả hai phần dài 14 đơn vị.",
+  "G2-L003-Q011": "Đề bài cho hai số hạng là 10 và 8. Muốn tìm tổng, ta cộng hai số hạng: 10 + 8 = 18. Vậy tổng cần tìm là 18.",
+  "G2-L003-Q012": "Một phép cộng có các số được cộng và kết quả. Các số được cộng gọi là số hạng, còn kết quả gọi là tổng. Vì thế, cách gọi đúng là “số hạng - số hạng - tổng”.",
+  "G2-L003-Q013": "Ta cần tìm số hạng còn thiếu trong tổng 14. Lấy 14 - 6 = 8, rồi kiểm tra lại 8 + 6 = 14. Vì vậy, số cần điền là 8.",
+  "G2-L003-Q014": "Có 7 hình tròn ở nhóm thứ nhất và 2 hình tròn ở nhóm thứ hai. Gộp hai nhóm lại, ta có 7 + 2 = 9 hình tròn. Vậy tổng số hình tròn là 9.",
+  "G2-L003-Q015": "Khi thay số hạng 6 bằng 7, phép cộng mới là 7 + 4. Ta tính 7 + 4 = 11. Vì vậy, tổng mới là 11, lớn hơn tổng cũ 1 đơn vị.",
+  "G2-L003-Q016": "Hai thẻ số hạng mang số 5 và 10. Ta cộng 5 + 10 = 15 để tìm tổng tương ứng. Vì vậy, thẻ tổng phù hợp là thẻ 15.",
+  "G2-L003-Q017": "Lan có 6 nhãn vở và được mua thêm 8 nhãn vở, nên số nhãn vở tăng lên. Ta thực hiện phép cộng 6 + 8 = 14. Lan có tất cả 14 nhãn vở.",
+  "G2-L003-Q018": "Sơ đồ được ghép từ hai phần mang số 8 và 4. Muốn tìm toàn bộ, ta cộng 8 + 4 = 12. Vậy tổng được biểu diễn trên sơ đồ là 12.",
+  "G2-L003-Q019": "Ta kiểm tra phép tính của Nam bằng cách cộng lại: 8 + 4 = 12, không phải 11. Nam đã tính thiếu 1 đơn vị. Vì vậy, nhận xét đúng là tổng phải bằng 12.",
+  "G2-L003-Q025": "Hai số hạng lần lượt là 20 và 30 nên tổng được tìm bằng phép cộng. Ta có 20 + 30 = 50. Vậy tổng cần tìm là 50.",
+  "G2-L003-Q027": "Ta cộng 35 với 20 theo hàng chục và hàng đơn vị. Ba chục cộng hai chục bằng năm chục, còn 5 đơn vị giữ nguyên, nên 35 + 20 = 55. Tổng là 55.",
+  "G2-L003-Q028": "Số hạng thứ nhất là 18 và số hạng thứ hai là 50. Ta tính 18 + 50 = 68; có thể kiểm tra bằng 68 - 50 = 18. Vậy tổng là 68.",
+  "G2-L003-Q030": "Hai giỏ có 4 quả táo đỏ và 3 quả táo xanh. Câu hỏi hỏi tất cả nên ta gộp hai nhóm bằng phép cộng 4 + 3 = 7. Có tất cả 7 quả táo.",
+  "G2-L003-Q031": "Ban đầu có 5 chú chim, sau đó thêm 2 chú chim bay tới nên số chim tăng lên. Ta tính 5 + 2 = 7. Khi cả hai chú chim đậu vào cành, có tất cả 7 chú chim.",
+  "G2-L003-Q037": "Có hai nhóm viên bi gồm 6 viên xanh và 4 viên đỏ. Gộp cả hai nhóm, ta tính 6 + 4 = 10. Vậy có tất cả 10 viên bi.",
+  "G2-L003-Q040": "Có 4 bạn đang chơi và 2 bạn đang chờ; cả hai nhóm đều được tính vào số bạn có mặt. Ta cộng 4 + 2 = 6. Vì vậy, có tất cả 6 bạn.",
+  "G2-L004-Q003": "Trong phép trừ, kết quả của phép tính được gọi là hiệu. Ở phép tính 15 - 7 = 8, số 15 là số bị trừ, 7 là số trừ và 8 là kết quả. Vì vậy, hiệu là 8.",
+  "G2-L004-Q004": "Sơ đồ cho biết có 14 rồi bớt đi 5, nên ta dùng phép trừ. Ta tính 14 - 5 = 9. Vì vậy, số còn lại là 9.",
+  "G2-L004-Q005": "Số ban đầu là 13 và phần bị bớt đi là 4. Hiệu biểu thị phần còn lại nên ta tính 13 - 4 = 9. Vậy hiệu là 9.",
+  "G2-L004-Q006": "Trên tia số, lùi sang trái một vạch là bớt 1 đơn vị. Từ 12 lùi ba vạch lần lượt đến 11, 10 rồi 9. Vì vậy, điểm đến là 9.",
+  "G2-L004-Q007": "Ta cần tìm số bị trừ trong phép tính còn thiếu. Vì 9 + 4 = 13 nên 13 - 4 = 9. Số cần điền là 13.",
+  "G2-L004-Q008": "Ban đầu có 16 chấm và 7 chấm bị gạch đi, nên còn lại 16 - 7 chấm. Ta tính được 16 - 7 = 9. Phép tính đúng là 16 - 7 = 9.",
+  "G2-L004-Q009": "Ta tính các phép trừ trong từng phương án và tìm kết quả bằng 6. Phép tính 12 - 6 cho kết quả 6. Vì vậy, đáp án đúng là 12 - 6.",
+  "G2-L004-Q010": "Đoạn thanh ban đầu dài 17 đơn vị, trong đó bớt đi một phần dài 8 đơn vị. Phần còn lại dài 17 - 8 = 9 đơn vị. Vậy đáp án là 9.",
+  "G2-L004-Q012": "Ba số 16, 7 và 9 có quan hệ 7 + 9 = 16. Vì vậy, lấy tổng 16 bớt một phần 7 sẽ còn phần kia là 9. Phép trừ đúng là 16 - 7 = 9.",
+  "G2-L004-Q013": "Số còn thiếu là số trừ. Ta lấy 17 - 8 = 9, rồi kiểm tra 17 - 9 = 8. Vì vậy, số cần điền là 9.",
+  "G2-L004-Q014": "Số bị trừ là 18 và số trừ là 6. Ta thực hiện phép tính 18 - 6 = 12. Vậy hiệu của phép trừ là 12.",
+  "G2-L004-Q015": "“Hiệu của 13 và 5” nghĩa là lấy 13 trừ 5. Ta tính 13 - 5 = 8. Vì vậy, hiệu cần tìm là 8.",
+  "G2-L004-Q016": "Mai có 15 bông hoa rồi tặng đi 6 bông, nên số hoa còn lại ít hơn lúc đầu. Ta tính 15 - 6 = 9. Mai còn 9 bông hoa.",
+  "G2-L004-Q017": "Ta kiểm tra từng phép trừ bằng cách cộng hiệu với số trừ. Với 14 - 5 = 9, ta có 9 + 5 = 14 nên phép tính này đúng. Vì vậy, chọn 14 - 5 = 9.",
+  "G2-L004-Q018": "Có 11 viên bi và 3 viên đi ra ngoài nên số còn lại được tìm bằng phép trừ. Ta tính 11 - 3 = 8. Trong hình còn lại 8 viên bi.",
+  "G2-L004-Q019": "Ta tính lại phép trừ của An: 12 - 4 = 8, không phải 7. Có thể kiểm tra vì 8 + 4 = 12. Vì vậy, nhận xét đúng là hiệu phải bằng 8.",
+  "G2-L004-Q026": "Muốn tìm hiệu, ta lấy số bị trừ trừ số trừ. Với số bị trừ 60 và số trừ 20, ta có 60 - 20 = 40. Vậy hiệu là 40.",
+  "G2-L004-Q028": "Ta bớt 2 chục khỏi 65: 6 chục bớt 2 chục còn 4 chục, và 5 đơn vị giữ nguyên. Vì vậy, 65 - 20 = 45. Hiệu là 45.",
+  "G2-L004-Q030": "Ban đầu có 9 chú chim, sau đó 3 chú chim bay đi nên ta dùng phép trừ. Ta tính 9 - 3 = 6. Còn lại 6 chú chim.",
+  "G2-L004-Q036": "Đàn có 12 con vịt và 2 con bơi ra xa, nên số vịt ở gần đàn giảm đi 2. Ta tính 12 - 2 = 10. Vì vậy, còn 10 con vịt ở gần đàn.",
+  "G2-L005-Q001": "Ta tách 5 thành 2 và 3 để cộng cho đủ chục. Trước hết 8 + 2 = 10, sau đó 10 + 3 = 13. Vì vậy, 8 + 5 = 13.",
+  "G2-L005-Q002": "Khung đã có 9 chấm nên chỉ cần thêm 1 chấm để được 10. Ta tách 4 thành 1 và 3: 9 + 1 = 10, rồi 10 + 3 = 13. Có tất cả 13 chấm.",
+  "G2-L005-Q003": "Ta tách 6 thành 3 và 3 để ghép 3 với 7 cho đủ 10. Khi đó 7 + 3 = 10 và 10 + 3 = 13. Vậy 7 + 6 = 13.",
+  "G2-L005-Q004": "Hình que tính biểu diễn hai nhóm gồm 6 que và 7 que. Gộp hai nhóm lại, ta có 6 + 7 = 13. Vì vậy, kết quả được biểu diễn là 13.",
+  "G2-L005-Q005": "Số còn thiếu phải làm cho 9 tăng thành 15. Ta lấy 15 - 9 = 6, rồi kiểm tra lại 9 + 6 = 15. Số cần điền là 6.",
+  "G2-L005-Q006": "Trên tia số, đi sang phải một bước là tăng 1 đơn vị. Từ 8 đi thêm 5 bước lần lượt đến 9, 10, 11, 12 và 13. Vì vậy, điểm đến là 13.",
+  "G2-L005-Q007": "Có thể đổi thứ tự hai số hạng để tính thuận tiện: 5 + 8 = 8 + 5. Ta tách 5 thành 2 và 3, được 8 + 2 + 3 = 13. Vậy kết quả là 13.",
+  "G2-L005-Q008": "Có một nhóm 9 hình tròn và một nhóm 3 hình tròn. Gộp hai nhóm là thực hiện phép cộng 9 + 3 = 12. Phép tính đúng là 9 + 3 = 12.",
+  "G2-L005-Q009": "Ta cần tìm phép cộng có tổng bằng 14. Với 8 + 6, tách 6 thành 2 và 4: 8 + 2 + 4 = 10 + 4 = 14. Vì vậy, chọn 8 + 6.",
+  "G2-L005-Q010": "Sơ đồ thanh gồm hai phần mang số 7 và 8 nên độ dài cả thanh bằng tổng hai phần. Ta tính 7 + 8 = 15. Vậy số chỉ cả thanh là 15.",
+  "G2-L005-Q011": "Ta tách 8 thành 4 và 4 để ghép 4 với 6 cho đủ 10. Khi đó 6 + 4 = 10, rồi 10 + 4 = 14. Vì vậy, 6 + 8 = 14.",
+  "G2-L005-Q012": "Số còn thiếu là một số hạng. Ta lấy tổng 16 trừ số hạng đã biết 7: 16 - 7 = 9. Kiểm tra lại 9 + 7 = 16, nên số cần điền là 9.",
+  "G2-L005-Q013": "Có 8 quả táo đỏ và 6 quả táo xanh; câu hỏi hỏi tất cả nên ta cộng hai nhóm. Tách 6 thành 2 và 4: 8 + 2 + 4 = 14. Có tất cả 14 quả táo.",
+  "G2-L005-Q015": "Khung có 7 chấm và được thêm 5 chấm. Ta tách 5 thành 3 và 2: 7 + 3 = 10, rồi 10 + 2 = 12. Vì vậy, có tất cả 12 chấm.",
+  "G2-L005-Q016": "Hai số hạng đều bằng 9. Ta có thể tính 9 + 9 bằng cách lấy 9 + 1 = 10 rồi cộng tiếp 8, được 18. Vậy 9 + 9 = 18.",
+  "G2-L005-Q017": "Nam có 8 nhãn vở và được cho thêm 7 nhãn nên số nhãn tăng lên. Ta tính 8 + 7 = 15 bằng cách ghép 2 với 8 cho đủ 10 rồi cộng 5. Nam có 15 nhãn vở.",
+  "G2-L005-Q018": "Ta tính lại phép cộng của Hoa. Tách 5 thành 3 và 2 thì 7 + 3 = 10, 10 + 2 = 12; do đó 7 + 5 = 12, không phải 11. Nhận xét đúng là kết quả phải bằng 12.",
+  "G2-L005-Q020": "Số còn thiếu cộng với 8 phải được 17. Ta lấy 17 - 8 = 9, rồi kiểm tra 8 + 9 = 17. Vì vậy, số cần điền vào sơ đồ là 9.",
+  "G2-L006-Q005": "Ta tách 9 thành 2 và 7 để cộng 8 với 2 cho đủ 10. Khi đó 8 + 2 = 10, rồi 10 + 7 = 17. Vậy 8 + 9 = 17.",
+  "G2-L006-Q006": "Khung có 8 chấm xanh và thêm 5 chấm vàng. Ta dùng 2 chấm vàng để ghép với 8 chấm xanh thành 10, còn 3 chấm; 10 + 3 = 13. Có tất cả 13 chấm.",
+  "G2-L006-Q009": "Ta kiểm tra phép cộng 8 + 8 bằng cách tách số hạng thứ hai thành 2 và 6. Khi đó 8 + 2 = 10, rồi 10 + 6 = 16. Vì vậy, phép cộng có kết quả 16 là 8 + 8.",
+  "G2-L006-Q010": "Cả thanh gồm hai phần có giá trị 8 và 7. Muốn tìm số chỉ cả thanh, ta cộng 8 + 7 = 15. Vì vậy, số cần ghi cho cả thanh là 15.",
+  "G2-L006-Q012": "Sơ đồ đã tách 6 thành 1 và 5 để ghép 1 với 9. Ta có 9 + 1 = 10, sau đó 10 + 5 = 15. Số điền vào ô kết quả là 15.",
+  "G2-L006-Q016": "Hai vế phải có cùng giá trị. Ta tính 8 + 5 = 13; để 10 cộng với một số cũng bằng 13 thì số đó là 3. Vậy 8 + 5 = 10 + 3.",
+  "G2-L006-Q017": "Trong hộp có 8 chiếc bút chì rồi cô giáo đặt thêm 6 chiếc, nên ta dùng phép cộng. Tách 6 thành 2 và 4: 8 + 2 + 4 = 14. Trong hộp có tất cả 14 chiếc bút chì.",
+  "G2-L006-Q020": "Ta tính giá trị vế trái: 9 + 4 = 13. Muốn 8 cộng với một số cũng bằng 13, ta lấy 13 - 8 = 5. Vì vậy, số cần điền là 5.",
+  "G2-L007-Q002": "Trong dãy phép cộng, số hạng thứ hai tăng dần từ 2 đến 5 nên các tổng cũng tăng thêm 1. Với phép tính cuối, ta có 9 + 5 = 14. Vì vậy, kết quả cần chọn là 14.",
+  "G2-L007-Q003": "Ta tính các tổng rồi đối chiếu với số 15. Phép cộng 7 + 8 có thể tính bằng 7 + 3 + 5 = 10 + 5 = 15. Do đó, phép tính cần chọn là 7 + 8.",
+  "G2-L007-Q005": "Số còn thiếu phải cộng với 7 để được 14. Ta lấy 14 - 7 = 7 và kiểm tra lại 7 + 7 = 14. Vậy số cần điền là 7.",
+  "G2-L007-Q006": "Ta ghép mỗi phép tính với đúng tổng của nó. Hai số 9 cộng với nhau cho 9 + 9 = 18. Vì vậy, phép tính được ghép với 18 là 9 + 9.",
+  "G2-L007-Q007": "Theo bảng cộng, 8 + 7 = 15. Hai vế có cùng giá trị nên ta dùng dấu bằng, không dùng dấu lớn hơn hoặc bé hơn. Dấu cần điền là =.",
+  "G2-L007-Q008": "Các toa đều có số hạng thứ hai là 7. Ta tính 9 + 7 bằng cách tách 7 thành 1 và 6: 9 + 1 + 6 = 16. Vì vậy, toa có kết quả 16 là toa ghi 9 + 7.",
+  "G2-L007-Q009": "Tám cộng tám là hai nhóm bằng nhau, mỗi nhóm có 8. Ta có thể tính 8 + 2 = 10 rồi cộng tiếp 6, được 16. Vậy 8 + 8 = 16.",
+  "G2-L007-Q010": "Ta tìm phép cộng với 9 có tổng bằng 17. Vì 8 + 9 = 17 nên ô ghi phép tính này phù hợp; các phép đứng trước cho tổng nhỏ hơn. Đáp án là 8 + 9.",
+  "G2-L007-Q012": "Ta tính từng thẻ: 7 + 5 = 12, 8 + 6 = 14 và 9 + 8 = 17. Chỉ thẻ 8 + 6 có tổng bằng 14. Vì vậy, chọn thẻ 8 + 6.",
+  "G2-L007-Q015": "Số còn thiếu là số hạng thứ hai. Ta lấy 13 - 6 = 7, rồi kiểm tra bằng phép cộng 6 + 7 = 13. Vậy số cần điền là 7.",
+  "G2-L007-Q016": "Bậc cuối ghi phép cộng 6 + 9. Ta tách 9 thành 4 và 5: 6 + 4 = 10, rồi 10 + 5 = 15. Vì vậy, số ở bậc cuối là 15.",
+  "G2-L007-Q018": "Hai khay có 7 chiếc bánh và 6 chiếc bánh nên muốn biết tất cả ta dùng phép cộng. Theo bảng cộng, 7 + 6 = 13. Cả hai khay có 13 chiếc bánh.",
+  "G2-L007-Q021": "Ta ghép 1 trong 4 với 9 để được 10, còn lại 3. Vì thế 9 + 4 = 10 + 3 = 13. Kết quả là 13.",
+  "G2-L007-Q022": "Ta tách 7 thành 2 và 5 để cộng cho đủ 10. Có 8 + 2 = 10, rồi 10 + 5 = 15. Vậy 8 + 7 = 15.",
+  "G2-L007-Q023": "Có thể đổi thứ tự hai số hạng: 7 + 9 = 9 + 7. Tách 7 thành 1 và 6, ta được 9 + 1 + 6 = 16. Vì vậy, kết quả là 16.",
+  "G2-L007-Q024": "Ta tách 7 thành 4 và 3 để ghép 4 với 6 thành 10. Sau đó 10 + 3 = 13. Vậy 6 + 7 = 13.",
+  "G2-L007-Q025": "Đổi chỗ hai số hạng không làm thay đổi tổng nên 5 + 8 = 8 + 5. Ta có 8 + 2 + 3 = 13. Vì vậy, 5 + 8 = 13.",
+  "G2-L007-Q033": "Ta tính lại lời của Mai: 7 + 8 = 7 + 3 + 5 = 15. Kết quả 14 của Mai ít hơn kết quả đúng 1 đơn vị. Vì vậy, Mai nói sai và kết quả đúng là 15.",
+  "G2-L007-Q035": "Phép tính 9 + 9 gồm hai số hạng bằng nhau. Ta có 9 + 1 = 10, rồi cộng thêm 8 được 18. Vì vậy, kết quả của 9 + 9 là 18.",
+  "G2-L007-Q037": "Ở phép thứ nhất, 3 + 8 = 11. Tăng số hạng thứ hai từ 8 lên 9 làm tổng tăng thêm 1, nên 3 + 9 = 12. Hai số cần điền lần lượt là 11 và 12.",
+  "G2-L008-Q002": "Ban đầu có 13 chấm và 4 chấm bị gạch đi nên ta dùng phép trừ. Ta có thể bớt 3 để về 10 rồi bớt thêm 1, còn 9. Vậy 13 - 4 = 9 chấm.",
+  "G2-L008-Q003": "Từ 11, ta đếm lùi ba lần: 10 là lần thứ nhất, 9 là lần thứ hai và 8 là lần thứ ba. Vì vậy, 11 - 3 = 8.",
+  "G2-L008-Q004": "Mỗi bước lùi trên tia số làm số giảm 1 đơn vị. Từ 12 lùi bốn bước ta đi qua 11, 10, 9 và dừng ở 8. Phép tính tương ứng là 12 - 4 = 8.",
+  "G2-L008-Q005": "Ta tách 5 thành 3 và 2 để trừ qua 10. Trước hết 13 - 3 = 10, sau đó 10 - 2 = 8. Vậy 13 - 5 = 8.",
+  "G2-L008-Q006": "Lấy đi 7 quả từ 14 quả nghĩa là tính 14 - 7. Hai nhóm 7 ghép lại thành 14 nên 14 - 7 = 7. Còn lại 7 quả bóng.",
+  "G2-L008-Q007": "Ta tìm phép trừ có hiệu bằng 6. Với 11 - 5, tách 5 thành 1 và 4: 11 - 1 = 10, 10 - 4 = 6. Vì vậy, chọn 11 - 5.",
+  "G2-L008-Q008": "Có 13 ngôi sao và 5 ngôi sao bị gạch, nên số không bị gạch là phần còn lại. Ta tính 13 - 5 = 8. Vì vậy, còn 8 ngôi sao không bị gạch.",
+  "G2-L008-Q010": "Có 11 đội tham gia nhưng chỉ 2 đội được vào chung kết. Những đội còn lại đều bị loại, nên ta tính 11 - 2 = 9. Có 9 đội đã bị loại.",
+  "G2-L008-Q011": "Mười hai gồm hai nhóm 6 bằng nhau. Khi bớt một nhóm 6 khỏi 12, ta còn lại nhóm 6 kia. Vì vậy, 12 - 6 = 6.",
+  "G2-L008-Q012": "Có 12 chiếc bút chì và chuyển 4 chiếc ra ngoài nên số bút giảm đi 4. Ta tính 12 - 4 = 8. Còn lại 8 chiếc bút chì.",
+  "G2-L008-Q013": "Số còn thiếu là số trừ. Ta lấy 11 - 5 = 6, rồi kiểm tra 11 - 6 = 5. Vì vậy, số cần điền là 6.",
+  "G2-L008-Q014": "Các phép tính đều bớt 5. Ta có 14 - 5 = 9 bằng cách bớt 4 để về 10 rồi bớt thêm 1. Vì vậy, phép tính ghép với 9 là 14 - 5.",
+  "G2-L008-Q015": "Ta tính lại 13 - 6: bớt 3 để được 10 rồi bớt tiếp 3, còn 7. Vì thế 13 - 6 = 7, không phải 8. Nhận xét đúng là kết quả phải bằng 7.",
+  "G2-L008-Q017": "Năm quả bóng bay khỏi chùm 13 quả nên số còn lại được tìm bằng phép trừ. Ta tính 13 - 5 = 8. Chùm còn lại 8 quả bóng bay.",
+  "G2-L008-Q019": "Có 11 khối xếp hình và lấy ra 6 khối. Ta tách 6 thành 1 và 5: 11 - 1 = 10, rồi 10 - 5 = 5. Còn lại 5 khối.",
+  "G2-L008-Q020": "Muốn tìm số bị trừ, ta cộng hiệu với số trừ. Ta có 8 + 4 = 12; kiểm tra lại 12 - 4 = 8. Vì vậy, số cần điền là 12.",
+  "G2-L008-Q021": "Từ 11 bớt 2 đơn vị, ta lần lượt được 10 rồi 9. Do đó 11 - 2 = 9. Kết quả cần chọn là 9.",
+  "G2-L008-Q022": "Ta tách 4 thành 3 và 1 để trừ cho thuận tiện. Có 13 - 3 = 10, rồi 10 - 1 = 9. Vậy 13 - 4 = 9.",
+  "G2-L008-Q023": "Từ 11, bớt 1 để về 10 rồi bớt tiếp 3. Ta được 10 - 3 = 7. Vì vậy, 11 - 4 = 7.",
+  "G2-L008-Q024": "Ta bớt 2 khỏi 12 để được 10, rồi bớt nốt 2. Kết quả là 10 - 2 = 8. Vậy 12 - 4 = 8.",
+  "G2-L008-Q025": "Mười bốn gồm hai nhóm 7 bằng nhau. Khi lấy 14 bớt một nhóm 7, ta còn nhóm 7 kia. Vì vậy, 14 - 7 = 7.",
+  "G2-L008-Q033": "Ta kiểm tra phép tính của Nam bằng cách cộng ngược. Nếu 13 - 6 = 7 thì 7 + 6 = 13, nên kết quả đúng là 7 chứ không phải 8. Nam tính sai.",
+  "G2-L008-Q035": "Hiệu của 17 và 9 được viết là 17 - 9. Bớt 7 để từ 17 về 10, rồi bớt thêm 2, ta còn 8. Vậy hiệu cần tìm là 8.",
+  "G2-L009-Q002": "Để tính 14 - 5, ta tách 5 thành 4 và 1. Trước hết 14 - 4 = 10, sau đó 10 - 1 = 9. Vì vậy, kết quả là 9.",
+  "G2-L009-Q004": "Bảy được tách thành 1 và 6. Ta có 11 - 1 = 10, rồi 10 - 6 = 4. Do đó, cả hai ô kết quả đều cần điền số 4.",
+  "G2-L009-Q005": "Ta tách 5 thành 3 và 2 để trừ qua 10. Có 13 - 3 = 10, sau đó 10 - 2 = 8. Vậy 13 - 5 = 8.",
+  "G2-L009-Q006": "Sơ đồ tách 13 thành 10 và 3. Ta lấy 10 - 5 = 5 rồi ghép lại 3 đơn vị đã tách: 5 + 3 = 8. Vì vậy, kết quả là 8.",
+  "G2-L009-Q007": "Ta cần tìm phép trừ có hiệu bằng 6. Với 13 - 7, bớt 3 để về 10 rồi bớt tiếp 4, ta được 6. Vì vậy, chọn 13 - 7.",
+  "G2-L009-Q008": "Từ 15 lùi 5 bước thì đến 10, sau đó lùi thêm 3 bước thì đến 7. Tổng cộng đã lùi 8 bước, tương ứng với 15 - 8 = 7. Điểm đến là 7.",
+  "G2-L009-Q010": "Cửa hàng có 11 bộ và đã bán 3 bộ nên số còn lại được tìm bằng phép trừ. Ta tính 11 - 3 = 8. Cửa hàng còn 8 bộ đồ chơi.",
+  "G2-L009-Q011": "Ta tách 6 thành 5 và 1 để trừ cho thuận tiện. Có 15 - 5 = 10, rồi 10 - 1 = 9. Vậy 15 - 6 = 9.",
+  "G2-L009-Q013": "Số còn thiếu là số trừ. Ta lấy 14 - 8 = 6 và kiểm tra lại 14 - 6 = 8. Vì vậy, số cần điền là 6.",
+  "G2-L009-Q014": "Ta tính hai hiệu: 13 - 5 = 8 và 14 - 6 = 8. Vì hai kết quả bằng nhau nên hai biểu thức cũng bằng nhau. Quan hệ đúng là 13 - 5 = 14 - 6.",
+  "G2-L009-Q015": "An tách 9 thành 4 và 5 để trừ qua 10. Ta có 14 - 4 = 10, rồi 10 - 5 = 5. Cách làm của An cho kết quả 5.",
+  "G2-L009-Q016": "Ta kiểm tra phép tính 14 - 9 bằng cách trừ 4 rồi trừ tiếp 5. Kết quả là 10 - 5 = 5, không phải 6. Vì vậy, phép tính 14 - 9 = 6 là phép tính sai.",
+  "G2-L009-Q017": "Giá có 14 quyển và lấy xuống 6 quyển nên số sách giảm đi 6. Ta tính 14 - 6 = 8. Trên giá còn 8 quyển sách.",
+  "G2-L009-Q019": "Vế trái bằng 12 - 7 = 5. Để 10 trừ một số cũng bằng 5, số đó phải là 5 vì 10 - 5 = 5. Số cần điền là 5.",
+  "G2-L009-Q020": "Cả đoạn dài 15 đơn vị và phần đã bớt dài 7 đơn vị. Phần còn lại bằng 15 - 7 = 8. Vì vậy, số chỉ phần còn lại là 8.",
+  "G2-L009-Q021": "Ta bớt 1 khỏi 11 để được 10 rồi bớt tiếp 2 đơn vị còn lại. Có 10 - 2 = 8. Vậy 11 - 3 = 8.",
+  "G2-L009-Q022": "Tách 5 thành 2 và 3. Ta có 12 - 2 = 10, sau đó 10 - 3 = 7. Vì vậy, 12 - 5 = 7.",
+  "G2-L009-Q023": "Ta tách 6 thành 3 và 3 để trừ qua 10. Có 13 - 3 = 10, rồi 10 - 3 = 7. Vậy kết quả là 7.",
+  "G2-L009-Q024": "Tách 6 thành 4 và 2. Ta tính 14 - 4 = 10, rồi 10 - 2 = 8. Vì vậy, 14 - 6 = 8.",
+  "G2-L009-Q025": "Ta bớt 5 khỏi 15 để được 10, sau đó bớt thêm 2. Kết quả là 10 - 2 = 8. Vậy 15 - 7 = 8.",
+  "G2-L009-Q026": "Tách 7 thành 6 và 1 để trừ cho tròn chục. Ta có 16 - 6 = 10, rồi 10 - 1 = 9. Vì vậy, 16 - 7 = 9.",
+  "G2-L009-Q032": "Ta tính lại 16 - 8. Mười sáu gồm hai nhóm 8 nên bớt một nhóm 8 còn một nhóm 8; kết quả là 8, không phải 9. Vì vậy, Lan nói sai.",
+  "G2-L009-Q035": "Hiệu của 18 và 9 là phép tính 18 - 9. Vì 9 + 9 = 18 nên 18 - 9 = 9. Vậy hiệu cần tìm là 9.",
+  "G2-L010-Q002": "Ta tính các phép trừ rồi ghép với kết quả thích hợp. Phép tính 11 - 7 có thể làm bằng 11 - 1 - 6 = 10 - 6 = 4. Vì vậy, 11 - 7 được ghép với 4.",
+  "G2-L010-Q003": "Hiệu của 15 và 6 được viết là 15 - 6. Tách 6 thành 5 và 1, ta có 15 - 5 = 10 rồi 10 - 1 = 9. Vậy hiệu là 9.",
+  "G2-L010-Q005": "Số còn thiếu là số trừ. Ta lấy 13 - 6 = 7, rồi kiểm tra lại 13 - 7 = 6. Vì vậy, số cần điền là 7.",
+  "G2-L010-Q007": "Ta tìm phép trừ cho kết quả 8. Với 14 - 6, tách 6 thành 4 và 2: 14 - 4 = 10, 10 - 2 = 8. Vì vậy, chọn 14 - 6.",
+  "G2-L010-Q008": "Ô cuối ghi phép tính 13 - 9. Ta bớt 3 để về 10 rồi bớt tiếp 6, còn 4. Vì vậy, số ở ô cuối là 4.",
+  "G2-L010-Q010": "Ba số 13, 5 và 8 có quan hệ 5 + 8 = 13. Lấy tổng 13 bớt một phần 5 sẽ còn phần kia là 8. Phép trừ đúng là 13 - 5 = 8.",
+  "G2-L010-Q012": "Trong dãy, số bị trừ giảm dần 1 đơn vị còn số trừ vẫn là 9, nên hiệu cũng giảm dần 1. Sau các kết quả 9, 8, 7 sẽ là 6. Vậy 15 - 9 = 6.",
+  "G2-L010-Q013": "Ta tính từng vế: 14 - 8 = 6 và 13 - 7 = 6. Hai hiệu cùng bằng 6 nên hai biểu thức bằng nhau. Dấu cần điền là =.",
+  "G2-L010-Q014": "Giàn có 13 quả, trong đó 7 quả đã chín. Số quả chưa chín là phần còn lại nên bằng 13 - 7 = 6. Vậy có 6 quả chưa chín.",
+  "G2-L010-Q015": "Ta tính 15 - 7 bằng cách bớt 5 để về 10 rồi bớt tiếp 2. Kết quả là 8 chứ không phải 9. Vì vậy, phép tính 15 - 7 = 9 là sai.",
+  "G2-L010-Q016": "Ta có 17 - 9 = 8 và 14 - 6 = 8. Vì hai phép trừ cùng cho kết quả 8 nên hai hiệu bằng nhau. Quan hệ đúng là 17 - 9 = 14 - 6.",
+  "G2-L010-Q017": "Muốn tìm số bị trừ, ta cộng hiệu với số trừ. Ta có 7 + 8 = 15 và kiểm tra lại 15 - 8 = 7. Số cần điền là 15.",
+  "G2-L010-Q018": "Thẻ ghi 15 - 8. Ta tách 8 thành 5 và 3: 15 - 5 = 10, rồi 10 - 3 = 7. Vì vậy, thẻ thuộc ngôi nhà số 7.",
+  "G2-L010-Q019": "Phép tính có hai lần trừ nên ta thực hiện từ trái sang phải. Trước hết 11 - 3 = 8, sau đó 8 - 4 = 4. Kết quả cuối cùng là 4.",
+  "G2-L010-Q021": "Từ 11 bớt 2 đơn vị, ta lần lượt được 10 rồi 9. Vì vậy, 11 - 2 = 9. Kết quả cần chọn là 9.",
+  "G2-L010-Q022": "Ta tách 4 thành 2 và 2. Có 12 - 2 = 10, rồi 10 - 2 = 8. Vậy 12 - 4 = 8.",
+  "G2-L010-Q023": "Tách 5 thành 3 và 2 để trừ qua 10. Ta có 13 - 3 = 10, rồi 10 - 2 = 8. Vì vậy, 13 - 5 = 8.",
+  "G2-L010-Q024": "Ta tách 6 thành 4 và 2. Trước hết 14 - 4 = 10, sau đó 10 - 2 = 8. Vậy kết quả là 8.",
+  "G2-L010-Q025": "Tách 7 thành 5 và 2. Ta có 15 - 5 = 10, rồi 10 - 2 = 8. Vì vậy, 15 - 7 = 8.",
+  "G2-L010-Q033": "Ta kiểm tra phép tính của An: 12 - 5 = 12 - 2 - 3 = 10 - 3 = 7. Kết quả đúng là 7, không phải 8. Vì vậy, An tính sai.",
+  "G2-L011-Q014": "Thỏ có 18 củ cà rốt và đã ăn 9 củ nên số còn lại được tìm bằng phép trừ. Ta tính 18 - 9 = 9. Thỏ còn 9 củ cà rốt.",
+  "G2-L011-Q018": "Đĩa có 15 quả táo, mẹ lấy đi 8 quả nên số táo trên đĩa giảm đi 8. Ta tính 15 - 8 = 7. Đĩa còn lại 7 quả táo.",
+  "G2-L012-Q007": "Bình có nhiều hơn An 6 viên, vì vậy phải cộng thêm 6 vào số bi của An. Ta tính 15 + 6 = 21. Bình có 21 viên bi.",
+  "G2-L012-Q011": "Hoa có nhiều hơn Lan 9 nhãn dán nên số nhãn của Hoa bằng số nhãn của Lan cộng 9. Ta tính 20 + 9 = 29. Hoa có 29 nhãn dán.",
+  "G2-L012-Q012": "Minh có ít hơn Long 4 quả nên phải bớt 4 khỏi số bóng của Long. Ta tính 13 - 4 = 9. Minh có 9 quả bóng.",
+  "G2-L012-Q013": "Dây xanh ngắn hơn dây đỏ 20 cm, nên độ dài dây xanh bằng 48 cm bớt 20 cm. Ta tính 48 - 20 = 28. Dây xanh dài 28 cm.",
+  "G2-L012-Q020": "Kệ B ít hơn kệ A 5 chậu, vì vậy lấy số chậu ở kệ A trừ 5. Ta có 14 - 5 = 9. Kệ B có 9 chậu cây.",
+  "G2-L012-Q023": "Muốn biết dải đỏ dài hơn dải xanh bao nhiêu, ta lấy độ dài lớn hơn trừ độ dài nhỏ hơn. Ta tính 35 - 20 = 15 cm. Dải đỏ dài hơn 15 cm.",
+  "G2-L012-Q031": "Tuấn có nhiều hơn Minh 10 bưu ảnh nên ta cộng 10 vào số bưu ảnh của Minh. Ta tính 24 + 10 = 34. Tuấn có 34 bưu ảnh.",
+  "G2-L012-Q032": "Số ghế nằm ít hơn số máy chạy bộ 4 chiếc. Ta lấy 11 - 4 = 7. Phòng tập có 7 chiếc ghế nằm.",
+  "G2-L012-Q033": "Dây xanh ngắn hơn dây đỏ 15 cm nên lấy 42 - 15. Trừ 10 được 32, trừ tiếp 5 được 27. Dây xanh dài 27 cm.",
+  "G2-L012-Q035": "Hoa có nhiều hơn Lan 6 nhãn nên ta dùng phép cộng. Ta tính 18 + 6 = 24. Hoa có 24 nhãn dán.",
+  "G2-L012-Q036": "Lớp 2B ít hơn lớp 2A 3 học sinh nên ta lấy 32 - 3 = 29. Kiểm tra lại, 29 + 3 = 32. Lớp 2B có 29 học sinh.",
+  "G2-L012-Q042": "Tổng số học sinh gồm các bạn nam và các bạn nữ. Muốn tìm số bạn nữ, ta lấy 35 - 18 = 17. Lớp 2A có 17 bạn nữ.",
+  "G2-L014-Q013": "Ta tìm phép cộng có tổng bằng 52. Với 47 + 5, cộng 3 để được 50 rồi cộng tiếp 2, được 52. Vì vậy, phép tính cần chọn là 47 + 5.",
+  "G2-L014-Q016": "Trên tia số, mỗi bước sang phải làm số tăng 1. Từ 36 đi thêm 7 bước ta đến 43, tương ứng với 36 + 7 = 43. Điểm đến là 43.",
+  "G2-L014-Q017": "Khôi bật xa hơn Nhi 5 cm nên phải cộng thêm 5 vào thành tích của Nhi. Ta tính 87 + 5 = 92. Khôi bật xa 92 cm.",
+  "G2-L014-Q018": "Số bị che là số hạng còn thiếu. Ta lấy 34 - 27 = 7 rồi kiểm tra lại 27 + 7 = 34. Vì vậy, số trên cánh hoa là 7.",
+  "G2-L014-Q019": "Ta thực hiện phép cộng từ trái sang phải. Trước hết 48 + 5 = 53, sau đó 53 + 7 = 60. Kết quả của phép tính là 60.",
+  "G2-L015-Q014": "Bốn mươi hai có 4 chục và 2 đơn vị. Đổi 1 chục thành 10 đơn vị để có 12 - 7 = 5 ở hàng đơn vị, còn hàng chục là 2; vì vậy 42 - 17 = 25.",
+  "G2-L015-Q036": "Ta có thể tìm số còn thiếu để cộng với 63 thành 100. Vì 63 + 37 = 100 nên 100 - 63 = 37. Kết quả là 37.",
+  "G2-L016-Q007": "Ta tìm phép trừ có hiệu bằng 75. Tám mươi bớt 5 đơn vị còn 75, nên 80 - 5 = 75. Vì vậy, chọn phép tính 80 - 5.",
+  "G2-L016-Q019": "Phép tính có hai lần trừ nên thực hiện từ trái sang phải. Ta có 92 - 7 = 85, rồi 85 - 5 = 80. Kết quả cuối cùng là 80.",
+  "G2-L016-Q034": "Một trăm bớt 9 đơn vị còn 91. Có thể kiểm tra bằng phép cộng 91 + 9 = 100. Vì vậy, 100 - 9 = 91.",
+  "G2-L017-Q001": "Cân thăng bằng nên khối lượng con cá bằng tổng khối lượng các quả cân ở đĩa bên kia. Có hai quả cân 1 kg, nên 1 + 1 = 2 kg. Con cá nặng 2 kg.",
+  "G2-L017-Q002": "Kim cân dừng đúng ở vạch số 3. Số chỉ trên cân cho biết khối lượng của quả dưa hấu. Vì vậy, quả dưa hấu nặng 3 kg.",
+  "G2-L017-Q004": "Ki-lô-gam là đơn vị đo khối lượng và được viết tắt là kg. Túi gạo nặng năm ki-lô-gam nên cách viết đúng là 5 kg.",
+  "G2-L017-Q005": "Hai số đo cùng đơn vị kg nên ta cộng các số rồi giữ nguyên đơn vị. Ta tính 18 + 6 = 24. Kết quả là 24 kg.",
+  "G2-L017-Q006": "Muốn biết chó nặng hơn mèo bao nhiêu, ta lấy khối lượng lớn hơn trừ khối lượng nhỏ hơn. Ta có 5 - 2 = 3. Chó nặng hơn mèo 3 kg.",
+  "G2-L017-Q007": "Hai số đo cùng đơn vị kg nên ta trừ trực tiếp. Ta tính 24 - 5 = 19 và giữ nguyên đơn vị. Kết quả là 19 kg.",
+  "G2-L017-Q008": "Màn hình cân hiển thị số 29 kèm đơn vị ki-lô-gam. Đây là số đo khối lượng của bạn nhỏ đang đứng trên cân. Bạn nhỏ nặng 29 kg.",
+  "G2-L017-Q009": "Huy nặng hơn Thảo 3 kg nên khối lượng của Huy bằng 29 kg cộng 3 kg. Ta tính 29 + 3 = 32. Huy nặng 32 kg.",
+  "G2-L017-Q011": "Ta thực hiện lần lượt từ trái sang phải. Trước hết 10 + 3 = 13 kg, sau đó 13 - 5 = 8 kg. Kết quả là 8 kg.",
+  "G2-L017-Q012": "Quan sát kim hoặc màn hình cân, số đo hiện đúng ở 4. Vì cân dùng đơn vị ki-lô-gam nên quả bí ngô nặng 4 kg. Số đo đúng là 4 kg.",
+  "G2-L017-Q013": "Bao gạo có 25 kg và đã lấy ra 9 kg nên phần còn lại được tìm bằng phép trừ. Ta tính 25 - 9 = 16. Bao còn 16 kg gạo.",
+  "G2-L017-Q014": "Hai túi đều nặng 3 kg nên khối lượng cả hai là tổng của hai số đo. Ta tính 3 + 3 = 6. Cả hai túi nặng 6 kg.",
+  "G2-L017-Q015": "Ta trừ lần lượt từ trái sang phải. Có 58 - 9 = 49 kg, rồi 49 - 20 = 29 kg. Kết quả cuối cùng là 29 kg.",
+  "G2-L017-Q016": "Giỏ có 8 kg quả và đã bán 3 kg, nên khối lượng còn lại giảm đi 3 kg. Ta tính 8 - 3 = 5. Giỏ còn 5 kg quả.",
+  "G2-L017-Q017": "Thùng thứ hai nhẹ hơn thùng thứ nhất 7 kg. Vì vậy, ta lấy 30 - 7 = 23. Thùng thứ hai nặng 23 kg.",
+  "G2-L017-Q018": "Khối lượng không phụ thuộc vào vật to hay nhỏ mà phụ thuộc vào số đo trên cân. Túi bông và quả cân sắt đều có khối lượng 1 kg. Vì vậy, hai vật nặng bằng nhau.",
+  "G2-L017-Q020": "Mai nặng 31 kg còn Lan nặng 28 kg. Muốn tìm phần hơn, ta lấy 31 - 28 = 3. Mai nặng hơn Lan 3 kg.",
+  "G2-L017-Q022": "Tên đầy đủ của đơn vị là ki-lô-gam. Khi viết số đo, đơn vị này được viết tắt bằng hai chữ cái kg. Vì vậy, đáp án là kg.",
+  "G2-L017-Q024": "Hai số đo cùng đơn vị kg nên chỉ cần so sánh 3 và 2. Vì 3 lớn hơn 2 nên 3 kg lớn hơn 2 kg. Dấu thích hợp là >.",
+  "G2-L017-Q039": "Bao khoai nhẹ hơn bao gạo 6 kg, nên bao gạo nặng hơn bao khoai 6 kg. Ta tính 28 + 6 = 34. Bao gạo nặng 34 kg.",
+  "G2-L017-Q041": "Hai vế đều có đơn vị kg nên ta so sánh hai số 6 và 9. Vì 6 bé hơn 9 nên 6 kg < 9 kg. Dấu cần điền là <.",
+  "G2-L018-Q004": "Mỗi ca chứa 1 l nước và rót được đầy 3 ca. Tổng lượng nước là 1 + 1 + 1 = 3 l. Lúc đầu bình có 3 l nước.",
+  "G2-L018-Q007": "Hai số đo cùng đơn vị lít nên ta trừ các số rồi giữ nguyên đơn vị. Ta có 22 - 20 = 2. Kết quả là 2 l.",
+  "G2-L018-Q009": "Ta cộng lần lượt và có thể ghép 7 với 3 cho đủ 10. Khi đó 7 + 3 = 10, rồi 10 + 8 = 18. Kết quả là 18 l.",
+  "G2-L018-Q011": "Bình có 12 l và rót ra 5 l nên lượng nước còn lại được tìm bằng phép trừ. Ta tính 12 - 5 = 7. Bình còn 7 l nước.",
+  "G2-L018-Q013": "Bình xăng có 52 l và đã dùng 30 l. Ta lấy 52 - 30 = 22 để tìm phần còn lại. Bình còn 22 l xăng.",
+  "G2-L018-Q014": "Bình A có 5 l, nhiều hơn bình B có 3 l. Phần nhiều hơn là 5 - 3 = 2. Bình A nhiều hơn bình B 2 l.",
+  "G2-L018-Q015": "Ta trừ lần lượt từ trái sang phải. Có 37 - 2 = 35 l, rồi 35 - 5 = 30 l. Kết quả cuối cùng là 30 l.",
+  "G2-L018-Q017": "Muốn biết cả hai can có bao nhiêu nước, ta cộng lượng nước của từng can. Ta tính 8 + 6 = 14. Cả hai can có 14 l nước.",
+  "G2-L018-Q018": "Hai bình có 7 l và 2 l. Gộp lượng nước của hai bình, ta tính 7 + 2 = 9. Cả hai bình có 9 l nước.",
+  "G2-L018-Q019": "Đơn vị lít được viết tắt bằng chữ l thường. Vì vậy, “mười lít” được viết bằng số và đơn vị là 10 l.",
+  "G2-L018-Q020": "Can đang có 20 l và được thêm 6 l nên lượng nước tăng lên. Ta tính 20 + 6 = 26. Can có tất cả 26 l nước.",
+  "G2-L018-Q022": "Tên đơn vị là lít và kí hiệu viết tắt của đơn vị này là chữ l. Vì vậy, đáp án đúng là l.",
+  "G2-L018-Q024": "Hai số đo cùng đơn vị lít nên ta so sánh 5 với 3. Vì 5 lớn hơn 3 nên 5 l > 3 l. Dấu cần điền là >.",
+  "G2-L018-Q031": "Can có 8 l dầu và được rót thêm 6 l nên ta dùng phép cộng. Tính 8 + 6 = 14. Can có tất cả 14 l dầu.",
+  "G2-L018-Q039": "Bình xanh có nhiều hơn bình đỏ 5 l. Ta cộng 5 l vào lượng nước của bình đỏ: 7 + 5 = 12. Bình xanh có 12 l.",
+  "G2-L019-Q001": "Ta đếm đường bao của hình màu vàng và thấy hình có đúng 4 cạnh. Hình có bốn cạnh được gọi là hình tứ giác. Vì vậy, hình màu vàng là hình tứ giác.",
+  "G2-L019-Q002": "Đi theo đường bao của hình ABCD, ta gặp lần lượt các cạnh AB, BC, CD và DA. Có tất cả bốn cạnh khác nhau. Vì vậy, hình ABCD có 4 cạnh.",
+  "G2-L019-Q003": "Dấu hiệu để nhận biết hình tứ giác là hình có bốn cạnh tạo thành một đường bao khép kín. Vì vậy, hình chắc chắn là tứ giác phải là hình có 4 cạnh.",
+  "G2-L019-Q007": "Hình chữ nhật có bốn cạnh và bốn đỉnh. Mọi hình có bốn cạnh đều thuộc nhóm hình tứ giác. Vì vậy, hình chữ nhật là một hình tứ giác.",
+  "G2-L019-Q020": "Ta quan sát đường bao của hình vuông và hình chữ nhật. Mỗi hình đều có đúng bốn cạnh, nên cả hai đều là hình tứ giác. Điểm giống nhau cần chọn là đều có 4 cạnh.",
+  "G2-L019-Q022": "Tên “tứ giác” cho biết đây là hình có bốn góc và bốn cạnh. Đếm quanh đường bao cũng được bốn cạnh. Vì vậy, hình tứ giác có 4 cạnh.",
+  "G2-L020-Q004": "Đường bao của tam giác ABC nối ba cặp điểm liên tiếp. Các đoạn thẳng đó là AB, BC và CA. Vì vậy, đường bao có 3 đoạn thẳng.",
+  "G2-L020-Q006": "Đi một vòng quanh hình tứ giác ABCD, ta có các đoạn AB, BC, CD và DA. Mỗi đoạn là một cạnh của hình. Có tất cả 4 đoạn thẳng ở đường bao.",
+  "G2-L020-Q008": "Hình đã cho chỉ có đoạn nối A với B và đoạn nối B với C. Đó là hai đoạn thẳng AB và BC. Vì vậy, có 2 đoạn thẳng đã được vẽ.",
+  "G2-L020-Q009": "Ba điểm A, B, C được nối từng đôi theo đường bao. Ta thấy các đoạn AB, BC và CA. Vì vậy, có tất cả 3 đoạn thẳng.",
+  "G2-L021-Q003": "Nét vẽ được mô tả là uốn lượn liên tục, không thẳng và cũng không tạo bởi các đoạn thẳng nối nhau. Đó chính là đặc điểm của đường cong. Vì vậy, chọn đường cong.",
+  "G2-L021-Q005": "Đường gấp khúc MNP đi từ M đến N rồi từ N đến P. Nó gồm hai đoạn thẳng là MN và NP cùng gặp nhau tại N. Vì vậy, có 2 đoạn.",
+  "G2-L021-Q009": "Ta đọc tên đường gấp khúc theo thứ tự T-U-V-X-Y. Các đoạn nối hai điểm liên tiếp là TU, UV, VX và XY. Vì vậy, đường gấp khúc có 4 đoạn thẳng.",
+  "G2-L021-Q019": "Tên ABCDE cho biết các điểm được ghi lần lượt là A, B, C, D và E. Đếm các chữ cái này được năm điểm. Vì vậy, đường gấp khúc có 5 điểm được ghi tên.",
+  "G2-L021-Q027": "Các điểm liên tiếp A, B, C, D, E tạo thành các đoạn AB, BC, CD và DE. Đếm các đoạn này được bốn. Vì vậy, đường gấp khúc gồm 4 đoạn thẳng.",
+  "G2-L022-Q003": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn tạo nên nó. Ta cộng 4 cm + 3 cm = 7 cm. Vì vậy, đường gấp khúc dài 7 cm.",
+  "G2-L022-Q004": "Đường gấp khúc ABCD gồm ba đoạn AB, BC và CD. Ta cộng 4 + 2 + 4 = 10 và giữ nguyên đơn vị cm. Độ dài đường gấp khúc là 10 cm.",
+  "G2-L022-Q006": "Đường gấp khúc MNP gồm hai đoạn MN dài 3 cm và NP dài 5 cm. Tổng độ dài là 3 + 5 = 8 cm. Vậy MNP dài 8 cm.",
+  "G2-L022-Q007": "Muốn biết AB dài hơn CD bao nhiêu, ta lấy độ dài lớn hơn trừ độ dài nhỏ hơn. Ta tính 7 - 4 = 3 cm. AB dài hơn CD 3 cm.",
+  "G2-L022-Q008": "Ta cộng độ dài cả bốn đoạn của đường gấp khúc: 2 + 3 + 4 + 1. Ghép 2 + 3 = 5 và 4 + 1 = 5, tổng là 10 cm. Đường gấp khúc dài 10 cm.",
+  "G2-L022-Q009": "Tổng hai đoạn là 14 cm và một đoạn dài 6 cm. Đoạn còn lại bằng 14 - 6 = 8 cm. Kiểm tra lại 6 + 8 = 14, nên đáp án là 8 cm.",
+  "G2-L022-Q011": "Đoạn PQ ngắn hơn MN 4 cm nên lấy độ dài MN bớt 4 cm. Ta có 9 - 4 = 5. Đoạn PQ dài 5 cm.",
+  "G2-L022-Q013": "Độ dài cả đường gấp khúc là tổng ba đoạn. Ta tính 6 + 2 = 8, rồi 8 + 5 = 13 cm. Vì vậy, tổng độ dài là 13 cm.",
+  "G2-L022-Q015": "Độ dài 12 cm gồm ba đoạn PQ, QR và RS. Hai đoạn đã biết dài 3 + 4 = 7 cm, nên RS dài 12 - 7 = 5 cm. Vậy RS dài 5 cm.",
+  "G2-L022-Q016": "Đường gấp khúc có ba đoạn bằng nhau, mỗi đoạn dài 3 cm. Ta cộng 3 + 3 + 3 = 9 cm. Tổng độ dài là 9 cm.",
+  "G2-L022-Q017": "Đoạn AB dài 6 cm và đoạn CD cũng dài 6 cm. Hai số đo hoàn toàn giống nhau nên hai đoạn có độ dài bằng nhau. Phát biểu đúng là “Hai đoạn dài bằng nhau”.",
+  "G2-L022-Q018": "Tổng độ dài hai đoạn bằng 5 cm cộng 8 cm. Ta tính 5 + 8 = 13. Vì vậy, tổng độ dài XY và MN là 13 cm.",
+  "G2-L022-Q019": "Đường gấp khúc ABC gồm AB và BC. Ta cộng độ dài hai đoạn: 7 + 6 = 13 cm. Vì vậy, đường gấp khúc dài 13 cm.",
+  "G2-L022-Q020": "Có bốn đoạn và mỗi đoạn dài 2 cm. Ta cộng 2 + 2 + 2 + 2 = 8 cm. Đường gấp khúc dài 8 cm.",
+  "G2-L022-Q025": "Ta cộng độ dài ba đoạn: 5 + 6 + 4. Trước hết 5 + 6 = 11, sau đó 11 + 4 = 15 cm. Tổng độ dài là 15 cm.",
+  "G2-L022-Q026": "Đoạn ban đầu dài 9 cm và bị cắt bớt 3 cm. Phần còn lại bằng 9 - 3 = 6 cm. Vì vậy, đáp án là 6 cm.",
+  "G2-L022-Q028": "Hai số đo đều dùng đơn vị cm nên ta chỉ cần so sánh 7 và 5. Vì 7 lớn hơn 5 nên 7 cm > 5 cm. Dấu cần điền là >.",
+  "G2-L022-Q032": "Đường gấp khúc khép kín gồm ba cạnh dài 3 cm, 4 cm và 5 cm. Ta cộng 3 + 4 + 5 = 12 cm. Tổng độ dài là 12 cm.",
+  "G2-L022-Q033": "Hình vuông có bốn cạnh bằng nhau, mỗi cạnh dài 4 cm. Tổng độ dài bốn cạnh là 4 + 4 + 4 + 4 = 16 cm. Vì vậy, đáp án là 16 cm.",
+  "G2-L022-Q034": "Độ dài đường gấp khúc bằng tổng ba đoạn. Ta tính 2 + 8 = 10, rồi 10 + 5 = 15 cm. Đường gấp khúc dài 15 cm.",
+  "G2-L022-Q035": "Tổng hai đoạn là 14 cm, trong đó đoạn thứ nhất dài 6 cm. Đoạn thứ hai bằng 14 - 6 = 8 cm. Kiểm tra 6 + 8 = 14, nên đáp án là 8 cm.",
+  "G2-L022-Q037": "Ba đoạn đều dài 3 cm nên ta lấy 3 ba lần. Phép cộng 3 + 3 + 3 = 9 cm. Vì vậy, đường gấp khúc dài 9 cm.",
+  "G2-L022-Q040": "Tuyến đường gồm bốn đoạn dài 5, 7, 6 và 4 cm. Ta ghép 5 + 7 = 12 và 6 + 4 = 10, rồi 12 + 10 = 22 cm. Tổng độ dài là 22 cm.",
+  "G2-L023-Q008": "Đường gấp khúc ABCDE có bốn đoạn. Cộng các độ dài 2 + 3 + 4 + 1, ta được 5 + 5 = 10 cm. Vậy tổng độ dài là 10 cm.",
+  "G2-L023-Q013": "Đường gấp khúc gồm ba đoạn dài 5, 2 và 3 cm. Ta có 5 + 2 + 3 = 10 cm. Vì vậy, đường gấp khúc dài 10 cm.",
+  "G2-L023-Q017": "CD dài hơn AB 3 cm nên lấy độ dài AB cộng thêm 3 cm. Ta tính 4 + 3 = 7. Đoạn CD dài 7 cm.",
+  "G2-L023-Q020": "Độ dài MNOPQ là tổng của bốn đoạn MN, NO, OP và PQ. Ta tính 2 + 4 + 4 + 6 = 16 cm. Vì vậy, đường gấp khúc dài 16 cm.",
+  "G2-L023-Q023": "Hình ghép có một mảnh tam giác và hai mảnh hình vuông. Ta cộng số mảnh 1 + 2 = 3. Hình đó dùng tất cả 3 mảnh.",
+  "G2-L023-Q033": "Có 3 mảnh tam giác và 2 mảnh tứ giác. Tổng số mảnh là 3 + 2 = 5. Vì vậy, hình ghép dùng 5 mảnh.",
+  "G2-L023-Q035": "Nhóm thứ nhất có 4 mảnh, nhóm thứ hai có 3 mảnh nên nhóm 4 mảnh nhiều hơn. Phần hơn là 4 - 3 = 1 mảnh. Vì vậy, nhóm 4 mảnh hơn 1 mảnh.",
+  "G2-L024-Q003": "Kí hiệu đặt giữa hai số trong phép nhân là dấu ×. Dấu này được đọc là “nhân”. Vì vậy, dấu dùng để viết phép nhân là ×.",
+  "G2-L024-Q023": "Phép nhân không dùng dấu cộng hay dấu chia. Kí hiệu đúng của phép nhân là × và được đọc là “nhân”. Vì vậy, chọn dấu ×.",
+  "G2-L024-Q026": "Biểu thức 2 × 4 nghĩa là lấy số 2 bốn lần. Viết dưới dạng phép cộng ta có 2 + 2 + 2 + 2. Vì vậy, số 2 được lấy 4 lần.",
+  "G2-L024-Q029": "Các số hạng bằng nhau phải có cùng giá trị. Trong 4 + 4 + 4, cả ba số hạng đều là 4. Vì vậy, đây là phép cộng có các số hạng bằng nhau.",
+  "G2-L024-Q031": "Phép cộng 7 + 7 gồm hai số hạng bằng 7, tức là số 7 được lấy 2 lần. Viết thành phép nhân ta được 7 × 2. Vì vậy, đáp án là 7 × 2.",
+  "G2-L024-Q036": "Ta đếm các số 2 trong phép cộng: 2 + 2 + 2 + 2 + 2. Có năm số 2, mỗi số là một số hạng. Vì vậy, phép cộng có 5 số hạng.",
+  "G2-L024-Q037": "Trong biểu thức 3 × 4, dấu × được đọc là “nhân”. Ta đọc số thứ nhất, đọc dấu rồi đọc số thứ hai. Cách đọc đúng là “ba nhân bốn”.",
+  "G2-L024-Q039": "Phép cộng 4 + 4 + 4 có ba số hạng bằng nhau, mỗi số hạng là 4. Vì vậy, số 4 được lấy 3 lần và viết thành 4 × 3. Số cần điền là 3.",
+  "G2-L025-Q004": "Hai đĩa, mỗi đĩa có 6 chiếc bánh, nghĩa là lấy 6 hai lần. Ta viết 6 × 2 = 6 + 6 = 12. Vì vậy, có 12 chiếc bánh.",
+  "G2-L025-Q010": "Có 5 hộp và mỗi hộp có 5 chiếc bánh, nên số 5 được lấy 5 lần. Phép nhân là 5 × 5 = 25. Có tất cả 25 chiếc bánh.",
+  "G2-L025-Q016": "Hai hộp, mỗi hộp 8 chiếc bút, tương ứng với hai nhóm 8. Ta tính 8 × 2 = 8 + 8 = 16. Vì vậy, có 16 chiếc bút màu.",
+  "G2-L025-Q019": "Phép nhân 6 × 3 nghĩa là lấy số 6 ba lần. Viết thành phép cộng ta có 6 + 6 + 6 = 18. Số cần điền là 18.",
+  "G2-L025-Q022": "Ba nhân hai nghĩa là lấy số 3 hai lần. Ta có 3 + 3 = 6, nên 3 × 2 = 6. Kết quả là 6.",
+  "G2-L025-Q023": "Bốn nhân ba nghĩa là lấy số 4 ba lần. Ta cộng 4 + 4 + 4 = 12. Vì vậy, 4 × 3 = 12.",
+  "G2-L025-Q025": "Phép nhân 5 × 2 gồm hai nhóm 5. Ta tính 5 + 5 = 10. Vì vậy, kết quả của 5 × 2 là 10.",
+  "G2-L025-Q026": "Biểu thức 2 × 5 phải có năm số 2 được cộng với nhau. Vế phải mới có bốn số 2 nên cần thêm một số 2 nữa. Số cần điền là 2.",
+  "G2-L025-Q028": "Ta tính từng vế: 3 × 4 = 12 và 4 × 3 = 12. Hai phép nhân có cùng kết quả nên hai vế bằng nhau. Dấu cần điền là =.",
+  "G2-L025-Q029": "Sáu nhân hai nghĩa là lấy số 6 hai lần. Ta có 6 + 6 = 12. Vì vậy, 6 × 2 = 12.",
+  "G2-L025-Q030": "Có 4 túi, mỗi túi 3 viên kẹo, nên số 3 được lấy 4 lần. Ta tính 3 × 4 = 12. Có tất cả 12 viên kẹo.",
+  "G2-L025-Q031": "Phép nhân 7 × 2 là hai nhóm 7. Ta cộng 7 + 7 = 14. Vì vậy, số cần điền là 14.",
+  "G2-L025-Q034": "Một nhân tám nghĩa là lấy số 1 tám lần. Tổng 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 bằng 8. Vì vậy, 1 × 8 = 8.",
+  "G2-L025-Q035": "Mỗi xe đạp có 2 bánh và có 5 xe, nên số 2 được lấy 5 lần. Ta tính 2 × 5 = 10. Năm xe đạp có 10 bánh.",
+  "G2-L025-Q036": "Ta tìm phép nhân cho tích bằng 18. Phép 9 × 2 là hai nhóm 9, nên 9 + 9 = 18. Vì vậy, chọn 9 × 2.",
+  "G2-L025-Q037": "Năm nhân bốn nghĩa là lấy 5 bốn lần. Ta cộng 5 + 5 + 5 + 5 = 20. Kết quả của 5 × 4 là 20.",
+  "G2-L025-Q038": "Ba hàng, mỗi hàng 6 bạn, tạo thành ba nhóm 6. Ta tính 6 × 3 = 18. Có tất cả 18 bạn.",
+  "G2-L026-Q016": "Trong phép nhân 5 × 5 = 25, hai số 5 là các thừa số. Kết quả đứng sau dấu bằng là tích. Vì vậy, tích là 25.",
+  "G2-L026-Q036": "Tích của hai thừa số 2 và 7 được tìm bằng phép nhân 2 × 7. Theo bảng nhân 2, 2 × 7 = 14. Vậy tích là 14.",
+  "G2-L027-Q004": "Có hai giỏ và mỗi giỏ 2 quả táo, tức là hai nhóm 2. Ta tính 2 × 2 = 2 + 2 = 4. Có tất cả 4 quả táo.",
+  "G2-L027-Q007": "Theo bảng nhân 2, mỗi lần tăng số nhóm thêm 1 thì tích tăng thêm 2. Với 6 nhóm, ta có 2 × 6 = 12. Số cần điền là 12.",
+  "G2-L027-Q012": "Bốn xe, mỗi xe 2 bánh, nghĩa là số 2 được lấy 4 lần. Ta tính 2 × 4 = 8. Vì vậy, số 8 là kết quả của phép tính 2 × 4.",
+  "G2-L027-Q016": "Hai giỏ, mỗi giỏ 2 quả, tạo thành phép nhân 2 × 2. Ta có 2 × 2 = 4. Vì vậy, tích biểu thị tổng số quả là 4.",
+  "G2-L027-Q018": "Năm nhóm, mỗi nhóm 2 ngôi sao, phải có 2 × 5 = 10 ngôi sao. Phép viết 2 × 5 = 8 cho kết quả sai nên không phù hợp với hình. Vì vậy, chọn phương án đó.",
+  "G2-L027-Q019": "Mỗi phần có 2 l và có 7 phần như vậy. Theo bảng nhân 2, 2 × 7 = 14. Vì vậy, 2 l × 7 = 14 l.",
+  "G2-L027-Q022": "Phép nhân 2 × 1 chỉ có một nhóm 2. Một nhóm 2 vẫn là 2. Vì vậy, 2 × 1 = 2.",
+  "G2-L027-Q023": "Phép nhân 2 × 2 gồm hai nhóm 2. Ta cộng 2 + 2 = 4. Vì vậy, kết quả là 4.",
+  "G2-L027-Q025": "Hai nhân bốn nghĩa là lấy số 2 bốn lần. Ta có 2 + 2 + 2 + 2 = 8. Vậy 2 × 4 = 8.",
+  "G2-L027-Q026": "Hai nhân sáu là sáu nhóm 2. Đếm thêm 2 sáu lần hoặc dùng bảng nhân 2, ta được 12. Vì vậy, 2 × 6 = 12.",
+  "G2-L027-Q028": "Bảy nhóm, mỗi nhóm có 2, cho phép tính 2 × 7. Theo bảng nhân 2, tích tương ứng là 14. Vì vậy, kết quả là 14.",
+  "G2-L027-Q029": "Phép nhân 2 × 8 có tám nhóm 2. Từ 2 × 7 = 14, thêm một nhóm 2 được 16. Vì vậy, 2 × 8 = 16.",
+  "G2-L027-Q030": "Phép nhân 2 × 9 có chín nhóm 2. Từ 2 × 8 = 16, cộng thêm 2 được 18. Vậy 2 × 9 = 18.",
+  "G2-L027-Q031": "Mười nhóm 2 tạo thành 20. Ta có thể đếm 2, 4, 6, ..., 20 hoặc dùng bảng nhân 2. Vì vậy, 2 × 10 = 20.",
+  "G2-L027-Q035": "Ta cần tìm số nhóm để 2 nhân với số đó được 12. Theo bảng nhân 2, 2 × 6 = 12. Vì vậy, số cần điền là 6.",
+  "G2-L027-Q041": "Theo bảng nhân 2, tích tăng thêm 2 khi thừa số thứ hai tăng 1. Sau 2 × 7 = 14 là 2 × 8 = 16. Kết quả là 16.",
+  "G2-L028-Q007": "Theo bảng nhân 5, sáu nhóm 5 tạo thành 30. Ta có thể đếm 5, 10, 15, 20, 25, 30. Vì vậy, 5 × 6 = 30.",
+  "G2-L028-Q016": "Năm giỏ, mỗi giỏ 5 quả, tạo thành năm nhóm 5. Ta tính 5 × 5 = 25. Vì vậy, tích biểu thị tổng số quả là 25.",
+  "G2-L028-Q019": "Mỗi phần có 5 l và có 7 phần. Theo bảng nhân 5, 5 × 7 = 35. Vì vậy, 5 l × 7 = 35 l.",
+  "G2-L028-Q022": "Phép nhân 5 × 1 chỉ có một nhóm 5. Một nhóm 5 bằng 5. Vì vậy, 5 × 1 = 5.",
+  "G2-L028-Q023": "Phép nhân 5 × 2 gồm hai nhóm 5. Ta cộng 5 + 5 = 10. Vì vậy, 5 × 2 = 10.",
+  "G2-L028-Q025": "Năm nhân năm nghĩa là lấy số 5 năm lần. Ta đếm 5, 10, 15, 20, 25. Vì vậy, 5 × 5 = 25.",
+  "G2-L028-Q026": "Sáu nhóm 5 có tổng là 30. Có thể lấy kết quả 5 × 5 = 25 rồi cộng thêm 5. Vì vậy, 5 × 6 = 30.",
+  "G2-L028-Q028": "Bảy nhóm 5 tạo thành 35. Từ 5 × 6 = 30, thêm một nhóm 5 được 35. Vậy 5 × 7 = 35.",
+  "G2-L028-Q029": "Tám nhóm 5 tạo thành 40. Ta đếm thêm 5 từ kết quả 35 của 5 × 7 để được 40. Vì vậy, 5 × 8 = 40.",
+  "G2-L028-Q030": "Chín nhóm 5 tạo thành 45. Từ 5 × 8 = 40, cộng thêm 5 được 45. Vì vậy, 5 × 9 = 45.",
+  "G2-L028-Q031": "Mười nhóm 5 tạo thành 50. Ta có thể đếm 5, 10, 15, ..., 50. Vì vậy, 5 × 10 = 50.",
+  "G2-L028-Q034": "Ta tìm thừa số còn thiếu trong 5 × ... = 40. Theo bảng nhân 5, 5 × 8 = 40. Vì vậy, số cần điền là 8.",
+  "G2-L028-Q041": "Sáu nhóm 5 cho kết quả 30. Từ 5 × 5 = 25, cộng thêm một nhóm 5 được 30. Vì vậy, 5 × 6 = 30.",
+  "G2-L028-Q042": "Ta tìm phép nhân trong bảng 5 có tích bằng 20. Bốn nhóm 5 là 5 + 5 + 5 + 5 = 20. Vì vậy, chọn 5 × 4."
+  ,"G2-L029-Q041": "Mỗi nhóm có 5 chiếc bút nên ta lấy 10 chia cho 5. Ta có 10 : 5 = 2, vì 2 nhóm, mỗi nhóm 5 chiếc, có tất cả 10 chiếc bút. Vậy xếp được 2 nhóm."
+  ,"G2-L030-Q004": "Ta chia đều 14 chiếc bánh vào các đĩa, mỗi đĩa 7 chiếc. Phép tính 14 : 7 = 2 cho biết cần 2 đĩa; kiểm tra lại, 2 × 7 = 14 chiếc bánh."
+  ,"G2-L030-Q006": "Mỗi bể thả 9 con cá nên số bể cần dùng là 18 : 9. Vì 18 : 9 = 2 và 2 × 9 = 18, ta cần 2 bể cá."
+  ,"G2-L030-Q008": "Ta xếp 16 bút sáp thành từng hộp 8 chiếc. Có 16 : 8 = 2, nghĩa là xếp vừa đủ 2 hộp, mỗi hộp 8 chiếc."
+  ,"G2-L030-Q010": "Số hộp cần dùng được tính bằng 25 : 5. Theo bảng chia 5, 25 : 5 = 5; vậy 25 chiếc bánh được xếp vừa đủ vào 5 hộp."
+  ,"G2-L030-Q014": "Mỗi ngăn chứa 6 quyển nên ta lấy 30 quyển sách chia cho 6. Ta có 30 : 6 = 5, vì thế cần 5 ngăn để xếp hết sách."
+  ,"G2-L030-Q015": "Ta chia 16 viên bi thành các túi, mỗi túi 4 viên. Vì 16 : 4 = 4 nên cần 4 túi; số thích hợp điền vào chỗ trống là 4."
+  ,"G2-L030-Q016": "Mỗi khu có 4 ô tô đồ chơi nên số khu là 20 : 4. Ta có 20 : 4 = 5, do 5 khu × 4 chiếc = 20 chiếc. Vậy cần 5 khu."
+  ,"G2-L030-Q018": "Ta xếp 12 quả trứng vào các khay, mỗi khay 6 quả. Phép chia 12 : 6 = 2 cho biết cần 2 khay để xếp hết số trứng."
+  ,"G2-L030-Q020": "Mỗi túi đựng 3 quả bóng nên ta tính 21 : 3. Vì 3 × 7 = 21 nên 21 : 3 = 7; vậy cần 7 túi."
+  ,"G2-L030-Q022": "Chia đều 12 viên kẹo, mỗi túi 3 viên, ta thực hiện 12 : 3. Kết quả bằng 4 nên cần 4 túi; 4 túi có đúng 4 × 3 = 12 viên."
+  ,"G2-L030-Q023": "Ta chia 10 bông hoa thành các nhóm 5 bông để cắm vào bình. Có 10 : 5 = 2, vì vậy cắm được 2 bình hoa."
+  ,"G2-L030-Q025": "Mỗi nhóm có 2 chiếc cúc nên số nhóm là 16 : 2. Ta có 16 : 2 = 8; vậy xếp được 8 nhóm, mỗi nhóm 2 chiếc."
+  ,"G2-L030-Q026": "Ta cho 15 quả bóng vào các giỏ, mỗi giỏ 5 quả. Vì 15 : 5 = 3 nên cần 3 giỏ để đựng hết số bóng."
+  ,"G2-L030-Q027": "Quan sát hình, có 10 quả cam và mỗi túi đựng 5 quả. Ta tính 10 : 5 = 2, nên có tất cả 2 túi cam."
+  ,"G2-L030-Q028": "Mỗi bó gồm 2 chiếc bút nên số bó là 14 : 2. Vì 2 × 7 = 14 nên 14 : 2 = 7; có 7 bó bút."
+  ,"G2-L030-Q029": "Ta xếp 20 chiếc bánh, mỗi hộp 5 chiếc, nên tính 20 : 5. Kết quả bằng 4, nghĩa là cần 4 hộp để xếp hết bánh."
+  ,"G2-L030-Q030": "Mỗi tháp dùng 3 khối lập phương. Lấy 18 : 3 = 6, ta biết có thể xếp được 6 tháp; 6 × 3 = 18 nên không còn khối nào thừa."
+  ,"G2-L030-Q031": "Ta chia 8 quyển sách thành các chồng 4 quyển. Vì 8 : 4 = 2 nên xếp được 2 chồng sách."
+  ,"G2-L030-Q033": "Mỗi chuồng nuôi 2 con thỏ nên số chuồng cần có là 6 : 2. Ta có 6 : 2 = 3, vậy cần 3 chuồng."
+  ,"G2-L030-Q034": "Ta xếp 10 ô tô đồ chơi vào các hộp, mỗi hộp 2 chiếc. Phép chia 10 : 2 = 5 cho biết cần 5 hộp."
+  ,"G2-L030-Q036": "Chia 20 học sinh thành các đội 5 bạn, ta tính 20 : 5. Vì 20 : 5 = 4 nên lớp chia được thành 4 đội."
+  ,"G2-L030-Q039": "Mỗi túi có 3 quả cam nên ta lấy 15 chia cho 3. Ta có 15 : 3 = 5; vậy cần 5 túi để đựng hết 15 quả cam."
+  ,"G2-L030-Q041": "Ta tìm số mà khi nhân với 2 được 14. Vì 2 × 7 = 14 nên phép chia ngược lại là 14 : 2 = 7."
+  ,"G2-L030-Q042": "Ta tìm số nhóm 3 có trong 15. Vì 3 × 5 = 15 nên 15 : 3 = 5; kết quả cần chọn là 5."
+  ,"G2-L031-Q011": "Ở phép tính 5 × ... = 30, ta có 5 × 6 = 30 nên chỗ trống thứ nhất là 6. Phép chia ngược lại 30 : 5 cũng bằng 6, vì vậy cùng điền số 6 vào cả hai chỗ."
+  ,"G2-L031-Q013": "Muốn tìm 15 : 3, ta tìm số nhân với 3 được 15. Vì 3 × 5 = 15 nên phép nhân giúp tìm kết quả là 3 × 5 = 15, đồng thời 15 : 3 = 5."
+  ,"G2-L031-Q023": "Từ 5 × 4 = 20, ta lập được hai phép chia 20 : 5 = 4 và 20 : 4 = 5. Trong các lựa chọn, phép chia đúng là 20 : 4 = 5."
+  ,"G2-L031-Q026": "Phép chia 12 : 3 = 4 cho biết 12 gồm 4 nhóm, mỗi nhóm 3. Vì thế phép nhân tương ứng là 4 × 3 = 12."
+  ,"G2-L031-Q029": "Từ phép nhân 2 × 8 = 16, lấy tích 16 chia cho thừa số 2 sẽ được thừa số còn lại là 8. Do đó 16 : 2 = 8."
+  ,"G2-L031-Q030": "Ta tìm số nhân với 5 được 20. Vì 4 × 5 = 20 nên phép chia 20 : 5 = 4; số cần điền là 4."
+  ,"G2-L031-Q037": "Phép chia 18 : 9 = 2 nghĩa là 18 gồm 2 nhóm, mỗi nhóm 9. Vì vậy phép nhân tương ứng là 2 × 9 = 18."
+  ,"G2-L031-Q041": "Mỗi nhóm có 2 quả bóng nên số nhóm là 18 : 2. Vì 2 × 9 = 18 nên 18 : 2 = 9; xếp được 9 nhóm."
+  ,"G2-L032-Q007": "Ta dựa vào bảng nhân 2: 2 × 6 = 12. Vì phép chia là phép tính ngược của phép nhân nên 12 : 2 = 6."
+  ,"G2-L032-Q022": "Một nhóm 2 có đúng 2 đơn vị, nên trong 2 chỉ có 1 nhóm 2. Vì vậy 2 : 2 = 1."
+  ,"G2-L032-Q023": "Ta có 2 × 2 = 4, tức là 4 gồm hai nhóm, mỗi nhóm 2. Do đó 4 : 2 = 2."
+  ,"G2-L032-Q025": "Theo bảng nhân 2, 2 × 3 = 6. Suy ra phép chia ngược lại là 6 : 2 = 3."
+  ,"G2-L032-Q026": "Số 8 gồm bốn nhóm, mỗi nhóm có 2 đơn vị, vì 2 × 4 = 8. Bởi vậy khi chia 8 thành các nhóm 2, ta được 8 : 2 = 4."
+  ,"G2-L032-Q034": "Ta tìm số bị chia bằng cách lấy thương 7 nhân với số chia 2. Vì 7 × 2 = 14 nên chỗ trống là 14, và 14 : 2 = 7."
+  ,"G2-L032-Q041": "Dựa vào bảng nhân 2, ta có 2 × 9 = 18. Vì thế 18 : 2 = 9; kết quả là 9."
+  ,"G2-L032-Q042": "Ta tính từng phép chia rồi tìm phép có thương bằng 6. Vì 2 × 6 = 12 nên 12 : 2 = 6; chọn 12 : 2."
+  ,"G2-L033-Q007": "Theo bảng nhân 5, 5 × 6 = 30. Phép chia ngược lại cho ta 30 : 5 = 6, nên số cần điền là 6."
+  ,"G2-L033-Q010": "Mỗi hộp có 5 chiếc bánh nên số hộp là 25 : 5. Vì 5 × 5 = 25 nên 25 : 5 = 5; cần 5 hộp bánh."
+  ,"G2-L033-Q019": "Ta chia 45 lít thành 5 phần bằng nhau. Vì 5 × 9 = 45 nên 45 : 5 = 9; kết quả là 9 lít."
+  ,"G2-L033-Q022": "Trong số 5 chỉ có đúng một nhóm gồm 5 đơn vị. Vì 1 × 5 = 5 nên phép chia ngược lại là 5 : 5 = 1."
+  ,"G2-L033-Q034": "Muốn tìm số bị chia, ta lấy thương 6 nhân với số chia 5. Ta có 6 × 5 = 30 nên số cần điền là 30."
+  ,"G2-L033-Q036": "Mỗi bình cắm 5 bông hoa nên số bình là 40 : 5. Vì 5 × 8 = 40 nên cần 8 bình để cắm hết hoa."
+  ,"G2-L033-Q039": "Ta chia 25 chiếc bánh vào các hộp, mỗi hộp 5 chiếc. Phép tính 25 : 5 = 5 cho biết cần 5 hộp."
+  ,"G2-L033-Q041": "Theo bảng nhân 5, 5 × 5 = 25. Vì vậy phép chia ngược lại là 25 : 5 = 5."
+  ,"G2-L033-Q042": "Ta tìm số nhân với 5 được 40. Vì 5 × 8 = 40 nên 40 : 5 = 8; kết quả là 8."
+  ,"G2-L033-Q043": "Có 20 chấm tròn, cứ 5 chấm tạo thành một nhóm. Ta tính 20 : 5 = 4, nên hình có 4 nhóm chấm tròn."
+  ,"G2-L034-Q034": "Ta cần tìm số mà 20 chia cho số đó được 4. Vì 20 : 5 = 4, hay 4 × 5 = 20, nên số chia là 5."
+  ,"G2-L034-Q045": "Hai được lấy 5 lần là 2 + 2 + 2 + 2 + 2 = 10. Vì vậy 2 × 5 = 10."
+  ,"G2-L034-Q048": "Ta có 5 × 4 = 20, nghĩa là 20 gồm bốn nhóm 5. Do đó 20 : 5 = 4."
+  ,"G2-L034-Q049": "Theo bảng nhân 2, 2 × 8 = 16. Suy ra phép chia ngược lại 16 : 2 = 8."
+  ,"G2-L034-Q052": "Theo bảng nhân 2, ta có 2 × 9 = 18, nghĩa là trong 18 có chín nhóm 2. Do đó phép chia ngược lại là 18 : 2 = 9."
+  ,"G2-L034-Q053": "Theo bảng nhân 5, ta có 5 × 6 = 30, nghĩa là 30 gồm sáu nhóm 5. Vì vậy phép chia ngược lại là 30 : 5 = 6."
+  ,"G2-L034-Q056": "Ta tìm số chia bằng cách xét phép nhân 4 × ... = 20. Vì 4 × 5 = 20 nên số cần điền là 5."
+  ,"G2-L034-Q060": "Ở phép thứ nhất, 2 × 6 = 12 nên chỗ trống bằng 6. Ở phép thứ hai, 30 : 5 = 6 vì 5 × 6 = 30. Vậy cả hai chỗ đều điền số 6."
+  ,"G2-L034-Q073": "Mỗi chồng có 5 quyển vở nên số chồng là 15 : 5. Ta có 15 : 5 = 3, vậy xếp được 3 chồng vở."
+  ,"G2-L034-Q080": "Ta xếp 16 quả trứng, mỗi hộp 2 quả, nên tính 16 : 2. Vì 2 × 8 = 16 nên cần 8 hộp."
+  ,"G2-L035-Q002": "Lon nước có hai mặt đáy hình tròn và phần thân cong, đó là đặc điểm của khối trụ. Vì vậy lon nước có dạng khối trụ."
+  ,"G2-L035-Q009": "Quả địa cầu tròn đều như một quả bóng và có thể lăn theo nhiều hướng. Đó là đặc điểm của khối cầu, nên chọn khối cầu."
+  ,"G2-L035-Q051": "Mô hình gồm 4 khối lập phương và 2 khối trụ. Cộng số khối của hai loại: 4 + 2 = 6. Vậy mô hình có tất cả 6 khối."
+  ,"G2-L036-Q003": "Một ngày bắt đầu từ 0 giờ và kết thúc khi đủ 24 giờ. Vì vậy một ngày có 24 giờ."
+  ,"G2-L036-Q005": "Muốn đổi 19 giờ sang cách gọi buổi tối, ta lấy 19 - 12 = 7. Vì vậy 19 giờ chính là 7 giờ tối."
+  ,"G2-L036-Q007": "Sau 12 giờ trưa, 13 giờ là 1 giờ chiều và 14 giờ là 2 giờ chiều. Do đó 14 giờ được gọi là 2 giờ chiều."
+  ,"G2-L036-Q009": "Ta đổi cách gọi bằng phép tính 17 - 12 = 5. Vì 17 giờ thuộc buổi chiều nên đó là 5 giờ chiều."
+  ,"G2-L036-Q011": "Buổi tối, ta đổi 20 giờ sang cách gọi 12 giờ bằng cách lấy 20 - 12 = 8. Vậy 20 giờ là 8 giờ tối."
+  ,"G2-L036-Q012": "Sau 1 giờ nữa là 19 giờ, nên giờ hiện tại phải sớm hơn 19 giờ đúng 1 giờ. Ta tính 19 - 1 = 18, vậy hiện tại là 18 giờ."
+  ,"G2-L036-Q030": "Từ 14 giờ, kim đồng hồ đi thêm 1 giờ thì thời điểm mới là 14 + 1 = 15 giờ. Vậy sau 1 giờ là 15 giờ."
+  ,"G2-L036-Q031": "Một giờ trước 20 giờ là thời điểm sớm hơn 20 giờ đúng 1 giờ. Ta tính 20 - 1 = 19, nên đáp án là 19 giờ."
+  ,"G2-L036-Q037": "Để đổi 21 giờ sang cách gọi buổi tối, ta lấy 21 - 12 = 9. Vì vậy 21 giờ là 9 giờ tối."
+  ,"G2-L036-Q040": "Lan bắt đầu lúc 16 giờ và đọc trong 1 giờ. Ta tính 16 + 1 = 17, nên sau 1 giờ đồng hồ chỉ 17 giờ."
+  ,"G2-L037-Q003": "Trên đồng hồ, kim phút đi hết một vòng thì 60 phút đã trôi qua và kim giờ tiến thêm một số. Vì vậy 1 giờ bằng 60 phút."
+  ,"G2-L037-Q021": "Một giờ được chia thành 60 phút. Do đó khi đổi 1 giờ ra phút, ta được 60 phút."
+  ,"G2-L037-Q025": "Theo đơn vị đo thời gian, 1 giờ = 60 phút. Vì vậy kết quả đổi đúng là 60 phút."
+  ,"G2-L038-Q005": "Tháng 6 là một trong các tháng có 30 ngày. Vì vậy ngày cuối cùng của tháng 6 là ngày 30 và tháng có 30 ngày."
+  ,"G2-L038-Q006": "Trên mảnh lịch, ta dò ô ghi số 1 rồi nhìn lên tên thứ ở đầu cột. Số 1 nằm trong cột Thứ Tư, nên ngày 1 tháng 6 là Thứ Tư."
+  ,"G2-L038-Q013": "Một năm lần lượt có các tháng từ tháng 1 đến tháng 12. Đếm các tháng đó ta được 12, nên một năm có 12 tháng."
+  ,"G2-L038-Q017": "Một tuần gồm Thứ Hai, Thứ Ba, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ nhật. Đếm lại có 7 ngày, nên một tuần có 7 ngày."
+  ,"G2-L038-Q022": "Tháng 4 kết thúc ở ngày 30, vì thế tháng 4 có 30 ngày. Đây là một trong các tháng 4, 6, 9 và 11 đều có 30 ngày."
+  ,"G2-L038-Q027": "Tháng 1 bắt đầu năm mới và kết thúc ở ngày 31. Vì vậy tháng 1 có 31 ngày."
+  ,"G2-L038-Q032": "Trong các tháng, tháng 4 kết thúc ở ngày 30. Vì vậy tháng có 30 ngày cần chọn là tháng 4."
+  ,"G2-L039-Q001": "Số gồm 4 trăm, không có chục và không có đơn vị được viết là 400. Vì vậy “bốn trăm” được ghi bằng chữ số là 400."
+  ,"G2-L039-Q002": "Số tròn nghìn trong hình là 1 000. Số này gồm một nghìn, không có trăm, chục và đơn vị, nên được đọc là “một nghìn”."
+  ,"G2-L039-Q005": "Số 900 gồm 9 trăm, 0 chục và 0 đơn vị. Vì thế ta đọc số này là “chín trăm”."
+  ,"G2-L039-Q014": "Mỗi tấm trăm biểu diễn 100. Mười tấm như vậy có giá trị 10 × 100 = 1 000, nên hình biểu diễn số 1 000."
+  ,"G2-L039-Q025": "Mỗi trăm có giá trị 100. Mười trăm là 10 × 100 = 1 000, vì vậy đáp án là 1 000."
+  ,"G2-L039-Q029": "Mỗi tấm trăm biểu diễn 100. Bảy tấm trăm có giá trị 7 × 100 = 700, nên số được biểu diễn là 700."
+  ,"G2-L039-Q031": "Ta so sánh các số theo hàng trăm: 900 có 9 trăm, nhiều hơn 8 trăm của 800 nhưng chưa đến 10 trăm là 1 000. Vì vậy số cần chọn là 900."
+  ,"G2-L039-Q033": "Số liền trước là số kém số đã cho 1 đơn vị. Ta tính 1 000 - 1 = 999, nên số liền trước của 1 000 là 999."
+  ,"G2-L039-Q040": "So sánh hàng trăm: 1 trăm nhỏ hơn 2 trăm, và 2 trăm nhỏ hơn 3 trăm. Do đó 100 < 200 < 300, thứ tự tăng dần là 100, 200, 300."
+  ,"G2-L039-Q042": "Số 1 000 gồm một nghìn, không có trăm, chục và đơn vị. Vì vậy số 1 000 được đọc là “một nghìn”."
+  ,"G2-L040-Q006": "Số 800 có chữ số 8 ở hàng trăm và hai chữ số 0 ở hàng chục, hàng đơn vị. Vì vậy số này được đọc là “tám trăm”."
+  ,"G2-L041-Q012": "Hình biểu diễn 9 trăm, 0 chục và 5 đơn vị. Ghép các hàng lại ta được số 905; cũng có thể tính 900 + 5 = 905."
+  ,"G2-L043-Q003": "Đặt tính sao cho các hàng thẳng cột rồi cộng từ phải sang trái: 0 + 5 = 5, 5 + 2 = 7, 4 + 1 = 5. Vì vậy 450 + 125 = 575."
+  ,"G2-L043-Q004": "Cộng theo từng hàng: hàng đơn vị 6 + 0 = 6, hàng chục 6 + 0 = 6, hàng trăm 6 + 3 = 9. Kết quả là 966."
+  ,"G2-L043-Q006": "Đặt 31 dưới 246 sao cho hàng chục và hàng đơn vị thẳng nhau. Ta cộng 6 + 1 = 7, 4 + 3 = 7, rồi giữ 2 trăm; vì thế 246 + 31 = 277."
+  ,"G2-L043-Q007": "Ta cộng theo hàng: 0 + 1 = 1 ở hàng đơn vị, 1 + 3 = 4 ở hàng chục và giữ nguyên 5 trăm. Do đó 510 + 31 = 541."
+  ,"G2-L043-Q008": "Ta chỉ cần cộng ở hàng đơn vị: 4 + 4 = 8. Hàng chục 9 và hàng trăm 6 không đổi, nên 694 + 4 = 698."
+  ,"G2-L043-Q011": "Cộng các hàng thẳng cột: 0 + 0 = 0, 2 chục + 3 chục = 5 chục, 4 trăm + 1 trăm = 5 trăm. Vậy 420 + 130 = 550."
+  ,"G2-L043-Q012": "Đặt tính rồi cộng từ hàng đơn vị: 2 + 6 = 8, 1 + 2 = 3, 7 + 1 = 8. Ba chữ số nhận được là 838, nên số cần điền là 838."
+  ,"G2-L043-Q016": "Muốn biết cả hai lớp sưu tầm được bao nhiêu ảnh, ta cộng 145 và 154. Cộng theo từng hàng được 145 + 154 = 299. Vậy hai lớp có tất cả 299 bức ảnh."
+  ,"G2-L043-Q017": "Số cam của cả hai giỏ là tổng số cam ở từng giỏ. Ta tính 321 + 247 = 568, nên cả hai giỏ có 568 quả cam."
+  ,"G2-L043-Q018": "Độ dài cả hai đoạn đường bằng tổng 203 m và 54 m. Đặt các hàng thẳng cột rồi cộng được 203 + 54 = 257, vậy tổng độ dài là 257 m."
+  ,"G2-L044-Q003": "Đặt tính theo cột rồi trừ: 3 - 3 = 0, 4 - 4 = 0, 7 - 5 = 2. Vì vậy 743 - 543 = 200."
+  ,"G2-L044-Q004": "Trừ từ phải sang trái: 6 - 2 = 4 ở hàng đơn vị, 4 - 3 = 1 ở hàng chục và 9 - 9 = 0 ở hàng trăm. Kết quả là 14."
+  ,"G2-L044-Q006": "Đặt 16 dưới 387 cho đúng hàng. Ta trừ 7 - 6 = 1, 8 - 1 = 7 và giữ 3 trăm; do đó 387 - 16 = 371."
+  ,"G2-L044-Q008": "Ta bớt 4 ở hàng đơn vị: 5 - 4 = 1. Hàng chục và hàng trăm giữ nguyên, nên 435 - 4 = 431."
+  ,"G2-L044-Q011": "Trừ theo từng hàng: 0 - 0 = 0, 8 chục - 5 chục = 3 chục, 6 trăm - 2 trăm = 4 trăm. Vậy 680 - 250 = 430."
+  ,"G2-L044-Q012": "Đặt tính rồi trừ từ phải sang trái: 2 - 1 = 1, 7 - 4 = 3, 8 - 3 = 5. Kết quả là 531, nên điền 531 vào ô trống."
+  ,"G2-L044-Q016": "Ngày thứ hai ít hơn ngày thứ nhất 45 người nên ta dùng phép trừ. Tính 259 - 45 = 214, vậy ngày thứ hai có 214 người đến đài quan sát."
+  ,"G2-L044-Q017": "Số truyện còn lại bằng số truyện ban đầu trừ số đã cho mượn. Ta tính 786 - 254 = 532, nên thư viện còn 532 quyển truyện."
+  ,"G2-L044-Q018": "Thực hiện phép trừ theo từng hàng: 5 - 3 = 2, 7 - 4 = 3, 6 - 2 = 4. Vì vậy 675 - 243 = 432 và thẻ được nối với 432."
+  ,"G2-L044-Q029": "Ta tách 310 thành 300 và 10: 364 - 300 = 64, rồi 64 - 10 = 54. Vì vậy 364 - 310 = 54."
+  ,"G2-L044-Q031": "Ta lần lượt bớt 100 rồi bớt 10: 625 - 100 = 525 và 525 - 10 = 515. Do đó 625 - 110 = 515."
+  ,"G2-L044-Q035": "Từ mô hình 856, ta bớt 2 trăm, 2 chục và 4 đơn vị. Còn lại 6 trăm, 3 chục và 2 đơn vị, tức là 632."
+  ,"G2-L045-Q003": "Theo mối quan hệ giữa các đơn vị đo độ dài, 1 mét gồm 100 xăng-ti-mét. Vì vậy số cần điền vào 1 m = ... cm là 100."
+  ,"G2-L045-Q004": "Trên thước mét, 1 mét được chia thành 10 đoạn, mỗi đoạn dài 1 đề-xi-mét. Vì vậy 1 m = 10 dm."
+  ,"G2-L045-Q005": "Vì 1 m = 100 cm nên 2 m gồm hai lần 100 cm. Ta tính 2 × 100 = 200, vậy 2 m = 200 cm."
+  ,"G2-L045-Q006": "Cứ 10 dm đổi được 1 m. Băng giấy dài 20 dm gồm hai nhóm 10 dm, nên 20 dm = 2 m."
+  ,"G2-L045-Q008": "Độ dài còn lại bằng độ dài ban đầu trừ phần đã dùng. Ta tính 15 - 9 = 6, nên sợi dây còn dài 6 m."
+  ,"G2-L045-Q009": "Có 4 đoạn dây bằng nhau, mỗi đoạn dài 2 m. Ta cộng 2 + 2 + 2 + 2 = 8, hay tính 2 × 4 = 8; tổng độ dài là 8 m."
+  ,"G2-L045-Q010": "Cuộn dây 20 m được chia đều thành 5 đoạn nên độ dài mỗi đoạn là 20 : 5. Vì 20 : 5 = 4, mỗi đoạn dài 4 m."
+  ,"G2-L045-Q011": "Cuộn thứ hai ngắn hơn cuộn thứ nhất 9 m nên lấy 36 - 9. Kết quả là 27, vậy cuộn dây thứ hai dài 27 m."
+  ,"G2-L045-Q016": "Sợi dây bị cắt đi 5 m nên phần còn lại là 12 - 5. Ta có 12 - 5 = 7, vì vậy dây còn dài 7 m."
+  ,"G2-L045-Q017": "Cả ba đoạn đường dài bằng tổng độ dài từng đoạn. Ta tính 4 + 6 + 3 = 10 + 3 = 13, vậy tổng độ dài là 13 m."
+  ,"G2-L045-Q019": "Vì 100 cm = 1 m nên 500 cm gồm năm nhóm 100 cm. Do đó 500 : 100 = 5 và 500 cm = 5 m."
+  ,"G2-L045-Q026": "Mỗi mét bằng 100 xăng-ti-mét. Sợi dây dài 2 m nên có độ dài 2 × 100 = 200 cm."
+  ,"G2-L045-Q031": "Bốn đoạn dây, mỗi đoạn 2 m, có tổng độ dài 2 + 2 + 2 + 2 = 8 m. Vì vậy đáp án là 8 m."
+  ,"G2-L045-Q036": "Ta có 1 m = 100 cm. Ba mét gồm ba lần 100 cm, nên 3 × 100 = 300 và 3 m = 300 cm."
+  ,"G2-L045-Q040": "Hai độ dài cùng đơn vị mét nên ta cộng trực tiếp các số đo: 2 + 5 = 7. Vậy 2 m + 5 m = 7 m."
+  ,"G2-L045-Q041": "Mỗi mét có 100 cm, nên 5 m có 5 × 100 = 500 cm. Vì vậy 5 m = 500 cm."
+  ,"G2-L045-Q042": "Độ dài cả lối đi bằng tổng hai đoạn liên tiếp. Ta tính 4 m + 3 m = 7 m, nên cả lối đi dài 7 m."
+  ,"G2-L046-Q003": "Theo mối quan hệ giữa hai đơn vị đo độ dài, 1 ki-lô-mét gồm 1 000 mét. Vì vậy số cần điền là 1 000."
+  ,"G2-L046-Q004": "Đi từ A đến C phải đi qua hai đoạn dài 200 km và 140 km. Ta cộng 200 + 140 = 340, nên quãng đường từ A đến C dài 340 km."
+  ,"G2-L046-Q005": "Quãng đường còn lại bằng quãng đường dự định trừ quãng đường đã đi. Ta tính 160 - 60 = 100, vậy ô tô còn phải đi 100 km."
+  ,"G2-L046-Q006": "Mỗi ngày Nam đạp 2 km và Nam đạp trong 9 ngày. Ta tính 2 × 9 = 18, nên tổng quãng đường Nam đã đạp là 18 km."
+  ,"G2-L046-Q007": "Đoạn đường 45 km được chia đều thành 5 chặng nên mỗi chặng dài 45 : 5. Vì 5 × 9 = 45 nên mỗi chặng dài 9 km."
+  ,"G2-L046-Q011": "Muốn biết đường đến Vinh dài hơn bao nhiêu, ta lấy quãng đường dài trừ quãng đường ngắn. Tính 300 - 153 = 147, nên dài hơn 147 km."
+  ,"G2-L046-Q014": "Theo hình, thị trấn A cách điểm mốc 12 km còn thị trấn B cách 8 km. Hiệu 12 - 8 = 4, nên thị trấn A xa hơn thị trấn B 4 km."
+  ,"G2-L046-Q016": "Cả hành trình gồm hai chặng dài 35 km và 24 km. Ta cộng 35 + 24 = 59, vậy hai chặng dài tất cả 59 km."
+  ,"G2-L046-Q017": "Xe phải đi 120 km và đã đi 35 km, nên quãng đường còn lại là 120 - 35. Tính được 85, vậy xe còn phải đi 85 km."
+  ,"G2-L046-Q019": "Quãng đường cả ngày bằng quãng đường buổi sáng cộng buổi chiều. Ta tính 6 + 7 = 13, nên bạn đó đi được tất cả 13 km."
+  ,"G2-L046-Q020": "Đi từ A qua B đến C gồm đoạn AB dài 18 km và đoạn BC dài 12 km. Ta cộng 18 + 12 = 30, nên cả quãng đường dài 30 km."
+  ,"G2-L046-Q026": "Vì 1 km = 1 000 m nên 2 km gồm hai lần 1 000 m. Ta tính 2 × 1 000 = 2 000, vậy 2 km = 2 000 m."
+  ,"G2-L046-Q032": "Mỗi ki-lô-mét bằng 1 000 mét. Quãng đường 10 km vì thế bằng 10 × 1 000 = 10 000 m."
+  ,"G2-L046-Q035": "Biển báo cho biết quãng đường đến Quảng Ninh dài 153 km và đến Thanh Hóa dài 150 km. Lấy 153 - 150 = 3, nên quãng đường thứ nhất dài hơn 3 km."
+  ,"G2-L046-Q039": "Ta lấy quãng đường Hà Nội – Lào Cai trừ quãng đường Hà Nội – Vinh. Tính 450 - 300 = 150, nên quãng đường thứ nhất dài hơn 150 km."
+  ,"G2-L046-Q041": "Ta có 1 km = 1 000 m. Đường chạy dài 3 km nên đổi được 3 × 1 000 = 3 000 m."
+  ,"G2-L047-Q018": "Cộng theo từng hàng: 9 + 5 = 14, viết 4 nhớ 1; 4 + 7 + 1 = 12, viết 2 nhớ 1; 3 + 2 + 1 = 6. Vì vậy 349 + 275 = 624, thẻ nối với ô 624."
+  ,"G2-L048-Q018": "Đặt tính rồi trừ có nhớ: 710 - 386. Sau khi thực hiện lần lượt từ hàng đơn vị đến hàng trăm, ta được 324; kiểm tra 324 + 386 = 710."
+  ,"G2-L048-Q019": "Ta đặt tính 900 - 475 và thực hiện trừ có nhớ từ phải sang trái. Kết quả là 425; kiểm tra lại, 425 + 475 = 900."
+  ,"G2-L049-Q007": "Một nhóm gạch chéo gồm 5 vạch, thêm 1 vạch rời nữa. Ta có 5 + 1 = 6, nên các vạch biểu thị số 6."
+  ,"G2-L049-Q011": "Ta tách 12 thành 5 + 5 + 2. Vì vậy cách ghi đúng gồm hai nhóm đủ 5 vạch và thêm 2 vạch rời."
+  ,"G2-L049-Q013": "Tổng số bạn được hỏi gồm 4 bạn thích đỏ, 8 bạn thích xanh và 6 bạn thích vàng. Ta tính 4 + 8 + 6 = 12 + 6 = 18, nên có 18 bạn."
+  ,"G2-L049-Q017": "Trong 20 bạn, đã có 10 bạn chọn sữa và 6 bạn chọn nước quả. Số bạn chọn nước lọc là 20 - 10 - 6 = 4, nên có 4 bạn."
+  ,"G2-L049-Q019": "Số 7 có thể tách thành 5 + 2. Do đó cách ghi vạch kiểm đếm đúng là một nhóm 5 vạch và 2 vạch rời."
+  ,"G2-L050-Q002": "Theo biểu đồ, ba con gà lần lượt đẻ 4, 6 và 5 quả trứng. Cộng lại: 4 + 6 + 5 = 10 + 5 = 15, nên có tất cả 15 quả trứng."
+  ,"G2-L050-Q005": "Thứ Ba đọc được 6 quyển, còn Thứ Hai đọc được 4 quyển. Số sách nhiều hơn là 6 - 4 = 2, vậy Thứ Ba nhiều hơn 2 quyển."
+  ,"G2-L050-Q007": "Biểu đồ cho thấy có 8 bông hoa đỏ và 4 bông hoa tím. Ta lấy 8 - 4 = 4, nên hoa đỏ nhiều hơn hoa tím 4 bông."
+  ,"G2-L050-Q008": "Muốn tìm tổng số hoa, ta cộng số hoa của cả ba màu: 8 + 6 + 4. Tính được 18, nên biểu đồ có tất cả 18 bông hoa."
+  ,"G2-L050-Q009": "Mỗi hình biểu thị một đồ vật, nên ta cộng số hình ở ba hàng. Có 5 + 4 + 3 = 12 hình, vậy có tất cả 12 đồ vật."
+  ,"G2-L050-Q011": "Hàng đó cần đủ 7 hình nhưng hiện mới có 5 hình. Số hình cần vẽ thêm là 7 - 5 = 2, nên cần thêm 2 hình."
+  ,"G2-L050-Q014": "Theo biểu đồ, ba môn có lần lượt 6, 4 và 5 bạn tham gia. Cộng 6 + 4 + 5 = 10 + 5 = 15, nên có tất cả 15 bạn."
+  ,"G2-L050-Q019": "Tổng có 12 hình, trong đó 5 hình mèo và 4 hình chó. Số hình cá còn lại là 12 - 5 - 4 = 3, vì vậy có 3 hình cá."
+  ,"G2-L051-Q015": "Các mặt của xúc xắc chỉ có từ 1 đến 6 chấm. Cả sáu số 1, 2, 3, 4, 5, 6 đều bé hơn 7, nên việc xuất hiện số chấm bé hơn 7 là chắc chắn."
+  ,"G2-L002-Q001": "Trên thước đo, đoạn từ 0 cm đến 10 cm dài đúng 1 đề-xi-mét. Vì thế 1 dm = 10 cm, nên một đề-xi-mét bằng 10 xăng-ti-mét."
+  ,"G2-L002-Q014": "Thước bắt đầu ở vạch 0 và kết thúc ở vạch 20 cm nên dài 20 cm. Vì mỗi 10 cm bằng 1 dm, 20 cm gồm hai đoạn 10 cm và bằng 2 dm."
+  ,"G2-L004-Q009": "Ta tính từng hiệu: 15 - 8 = 7, 12 - 6 = 6, 13 - 6 = 7 và 14 - 7 = 7. Chỉ có phép trừ 12 - 6 cho hiệu bằng 6."
+  ,"G2-L018-Q022": "Lít là đơn vị thường dùng để đo lượng chất lỏng, chẳng hạn lượng nước trong chai. Đơn vị này được viết tắt bằng chữ “l”; các kí hiệu m, cm và kg thuộc những đơn vị khác."
+}

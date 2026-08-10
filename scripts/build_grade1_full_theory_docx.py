@@ -1,3 +1,4 @@
+# Script build grade1 full theory docx h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import math
 import textwrap
@@ -221,10 +222,14 @@ STATIC_ANSWERS = {
 }
 
 
+# H?m font d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def font(size, bold=False):
     path = FONT_BOLD if bold and FONT_BOLD.exists() else FONT_REGULAR
     return ImageFont.truetype(str(path), size=size) if path.exists() else ImageFont.load_default()
 
+
+# H?m safe_name d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def safe_name(text):
     allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
@@ -233,6 +238,8 @@ def safe_name(text):
         result.append(char if char in allowed else "-")
     return "".join(result).strip("-")[:80]
 
+
+# H?m draw_wrapped d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_wrapped(draw, text, xy, fnt, fill="#1f2937", width=42, spacing=8):
     x, y = xy
@@ -246,9 +253,13 @@ def draw_wrapped(draw, text, xy, fnt, fill="#1f2937", width=42, spacing=8):
     return y
 
 
+# H?m rounded_rect d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def rounded_rect(draw, box, fill, outline=None, width=2, radius=24):
     draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
+
+# H?m draw_badge d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_badge(draw, text, x, y, fill="#dbeafe", color="#1d4ed8"):
     f = font(24, True)
@@ -257,15 +268,21 @@ def draw_badge(draw, text, x, y, fill="#dbeafe", color="#1d4ed8"):
     draw.text((x + 19, y + 9), text, font=f, fill=color)
 
 
+# H?m draw_apple d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_apple(draw, cx, cy, r=26, fill="#ef4444"):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=fill, outline="#991b1b", width=3)
     draw.line((cx, cy - r, cx + 10, cy - r - 24), fill="#7c2d12", width=5)
     draw.ellipse((cx + 10, cy - r - 28, cx + 36, cy - r - 10), fill="#22c55e", outline="#15803d", width=2)
 
 
+# H?m draw_dot d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_dot(draw, cx, cy, r=18, fill="#60a5fa"):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=fill, outline="#2563eb", width=3)
 
+
+# H?m draw_flower d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_flower(draw, cx, cy, scale=1.0):
     r = int(14 * scale)
@@ -276,12 +293,16 @@ def draw_flower(draw, cx, cy, scale=1.0):
     draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill="#facc15", outline="#a16207", width=2)
 
 
+# H?m draw_pencil d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_pencil(draw, x, y, length=110, color="#facc15"):
     draw.rounded_rectangle((x, y, x + length, y + 24), radius=8, fill=color, outline="#a16207", width=2)
     draw.polygon([(x + length, y), (x + length + 28, y + 12), (x + length, y + 24)], fill="#fed7aa", outline="#9a3412")
     draw.polygon([(x + length + 22, y + 9), (x + length + 28, y + 12), (x + length + 22, y + 15)], fill="#111827")
     draw.rectangle((x, y, x + 18, y + 24), fill="#f9a8d4", outline="#be185d")
 
+
+# H?m draw_base10 d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_base10(draw, x, y, tens=2, ones=5):
     for i in range(tens):
@@ -297,6 +318,8 @@ def draw_base10(draw, x, y, tens=2, ones=5):
         draw.rounded_rectangle((ox, oy, ox + 26, oy + 26), radius=6, fill="#fde68a", outline="#a16207", width=2)
 
 
+# H?m draw_ten_frame d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_ten_frame(draw, x, y, filled=7, crossed=0):
     idx = 0
     for row in range(2):
@@ -311,11 +334,15 @@ def draw_ten_frame(draw, x, y, filled=7, crossed=0):
             idx += 1
 
 
+# H?m draw_equation d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_equation(draw, text, x, y):
     f = font(52, True)
     rounded_rect(draw, (x, y, x + 420, y + 86), fill="#ffffff", outline="#cbd5e1", radius=20)
     draw.text((x + 35, y + 14), text, font=f, fill="#111827")
 
+
+# H?m draw_clock d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_clock(draw, cx, cy, hour=7):
     r = 145
@@ -333,6 +360,8 @@ def draw_clock(draw, cx, cy, hour=7):
     draw.ellipse((cx - 9, cy - 9, cx + 9, cy + 9), fill="#111827")
 
 
+# H?m draw_calendar d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_calendar(draw, x, y):
     days = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"]
     f = font(22, True)
@@ -343,6 +372,8 @@ def draw_calendar(draw, x, y):
         draw.text((bx + 16, y + 32), day, font=f, fill="#111827")
 
 
+# H?m draw_ruler d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_ruler(draw, x, y):
     draw.rounded_rectangle((x, y, x + 670, y + 76), radius=10, fill="#fef3c7", outline="#a16207", width=4)
     f = font(22, True)
@@ -351,6 +382,8 @@ def draw_ruler(draw, x, y):
         draw.line((xx, y, xx, y + (50 if i % 2 == 0 else 34)), fill="#78350f", width=3)
         draw.text((xx - 7, y + 48), str(i), font=f, fill="#78350f")
 
+
+# H?m draw_number_grid d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_number_grid(draw, x, y, start=1):
     f = font(19, True)
@@ -364,6 +397,8 @@ def draw_number_grid(draw, x, y, start=1):
             draw.text((bx + 9, by + 5), str(n), font=f, fill="#1e293b")
             n += 1
 
+
+# H?m draw_position_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_position_scene(draw):
     draw.rectangle((110, 300, 470, 330), fill="#8b5e34")
@@ -381,6 +416,8 @@ def draw_position_scene(draw):
     draw.polygon([(1010, 230), (980, 210), (980, 250)], fill="#2563eb")
 
 
+# H?m draw_shapes_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_shapes_scene(draw):
     draw.rectangle((130, 210, 280, 360), fill="#60a5fa", outline="#1d4ed8", width=5)
     draw.ellipse((360, 210, 510, 360), fill="#f87171", outline="#b91c1c", width=5)
@@ -391,6 +428,8 @@ def draw_shapes_scene(draw):
         draw.text((x, y), label, font=font(30, True), fill="#111827")
 
 
+# H?m draw_counting_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_counting_scene(draw, counts):
     colors = ["#ef4444", "#f97316", "#22c55e", "#60a5fa", "#a78bfa"]
     y_positions = [205, 330, 455]
@@ -400,6 +439,8 @@ def draw_counting_scene(draw, counts):
         for i in range(count):
             draw_apple(draw, 260 + i * 72, y + 8, 24, fill=colors[row % len(colors)])
 
+
+# H?m draw_comparison_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_comparison_scene(draw):
     for i in range(5):
@@ -413,12 +454,16 @@ def draw_comparison_scene(draw):
     draw_badge(draw, "Nhóm A nhiều hơn", 730, 315, "#dcfce7", "#166534")
 
 
+# H?m draw_sign_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_sign_scene(draw):
     draw_counting_scene(draw, [3, 5])
     draw.text((590, 285), "<", font=font(96, True), fill="#dc2626")
     draw.text((735, 285), "5", font=font(78, True), fill="#1e3a8a")
     draw.text((500, 425), "4 = 4", font=font(70, True), fill="#15803d")
 
+
+# H?m draw_add_scene d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_add_scene(draw, equation="2 + 1 = 3", left=2, right=1):
     for i in range(left):
@@ -431,6 +476,8 @@ def draw_add_scene(draw, equation="2 + 1 = 3", left=2, right=1):
         draw_apple(draw, 750 + i * 58, 275, 22, "#f97316")
     draw_equation(draw, equation, 380, 405)
 
+
+# H?m draw_sub_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_sub_scene(draw, equation="5 - 2 = 3", total=5, sub=2):
     for i in range(total):
@@ -445,6 +492,8 @@ def draw_sub_scene(draw, equation="5 - 2 = 3", total=5, sub=2):
     draw_equation(draw, equation, 390, 405)
 
 
+# H?m draw_solids_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_solids_scene(draw):
     draw.polygon([(170, 285), (330, 235), (450, 300), (290, 360)], fill="#93c5fd", outline="#1d4ed8")
     draw.polygon([(170, 285), (290, 360), (290, 470), (170, 390)], fill="#60a5fa", outline="#1d4ed8")
@@ -455,6 +504,8 @@ def draw_solids_scene(draw):
     draw.polygon([(900, 320), (1040, 270), (1040, 410), (900, 460)], fill="#fef3c7", outline="#a16207")
     draw.text((780, 500), "Khối lập phương", font=font(30, True), fill="#111827")
 
+
+# H?m draw_place_value_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_place_value_scene(draw, number=35):
     tens = number // 10
@@ -467,6 +518,8 @@ def draw_place_value_scene(draw, number=35):
     draw_base10(draw, 735, 205, tens=min(tens, 7), ones=ones)
 
 
+# H?m draw_length_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_length_scene(draw):
     draw_pencil(draw, 190, 230, 330, "#facc15")
     draw_pencil(draw, 190, 360, 510, "#86efac")
@@ -475,15 +528,21 @@ def draw_length_scene(draw):
     draw.text((790, 356), "dài hơn", font=font(36, True), fill="#166534")
 
 
+# H?m draw_week_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_week_scene(draw):
     draw_calendar(draw, 135, 285)
 
+
+# H?m draw_default_scene d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_default_scene(draw, card, lesson):
     text = card.get("visual_prompt") or lesson.get("lesson") or ""
     rounded_rect(draw, (110, 185, 1090, 500), fill="#ffffff", outline="#cbd5e1", radius=24)
     draw_wrapped(draw, text, (155, 235), font(30, True), width=48, spacing=12)
 
+
+# H?m choose_scene d?ng ?? l?a ch?n ph??ng ?n ph? h?p d?a tr?n tr?ng th?i v? ?u ti?n; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def choose_scene(draw, lesson, card):
     name = lesson["lesson"].lower()
@@ -573,6 +632,8 @@ def choose_scene(draw, lesson, card):
         draw_default_scene(draw, card, lesson)
 
 
+# H?m render_card_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def render_card_image(chapter_index, lesson_index, card_index, chapter, lesson, card):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
     img = Image.new("RGB", (1200, 650), "#f8fafc")
@@ -594,6 +655,8 @@ def render_card_image(chapter_index, lesson_index, card_index, chapter, lesson, 
     return path
 
 
+# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
     run._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
@@ -603,6 +666,8 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     if color:
         run.font.color.rgb = RGBColor.from_string(color)
 
+
+# H?m set_document_defaults d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_document_defaults(doc):
     section = doc.sections[0]
@@ -631,6 +696,8 @@ def set_document_defaults(doc):
         style.font.bold = True
 
 
+# H?m add_meta_paragraph d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_meta_paragraph(doc, label, value):
     paragraph = doc.add_paragraph()
     label_run = paragraph.add_run(f"{label}: ")
@@ -639,12 +706,16 @@ def add_meta_paragraph(doc, label, value):
     set_run_font(value_run)
 
 
+# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_bullets(doc, items):
     for item in items:
         paragraph = doc.add_paragraph(style="List Bullet")
         run = paragraph.add_run(item)
         set_run_font(run)
 
+
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def set_cell_text(cell, text, bold=False, size=9):
     cell.text = ""
@@ -653,12 +724,16 @@ def set_cell_text(cell, text, bold=False, size=9):
     set_run_font(run, size=size, bold=bold)
 
 
+# H?m set_cell_shading d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_shading(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd")
     shd.set(qn("w:fill"), fill)
     tc_pr.append(shd)
 
+
+# H?m add_overview_table d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_overview_table(doc, rows):
     table = doc.add_table(rows=1, cols=4)
@@ -675,6 +750,8 @@ def add_overview_table(doc, rows):
             cells[i].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
+# H?m build_card_detail d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_card_detail(card):
     card_type = card.get("type", "")
     interaction = card.get("interaction", "none")
@@ -687,6 +764,8 @@ def build_card_detail(card):
     ]
 
 
+# H?m expected_answer d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def expected_answer(lesson, card_index):
     answers = STATIC_ANSWERS.get(lesson["lesson"], [])
     if card_index - 1 < len(answers):
@@ -695,6 +774,8 @@ def expected_answer(lesson, card_index):
         return answers[-1]
     return "Học sinh hoàn thành đúng nhiệm vụ của thẻ theo tranh minh họa."
 
+
+# H?m theory_takeaway d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def theory_takeaway(lesson, card):
     card_type = card.get("type", "")
@@ -710,6 +791,8 @@ def theory_takeaway(lesson, card):
         return "Ghi nhớ câu chốt ngắn để dùng khi làm bài luyện tập."
     return "Nắm ý chính của thẻ học."
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx():
     data = json.loads(INPUT_PATH.read_text(encoding="utf-8"))
@@ -803,5 +886,6 @@ def build_docx():
         return FALLBACK_OUTPUT_PATH
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     print(build_docx())

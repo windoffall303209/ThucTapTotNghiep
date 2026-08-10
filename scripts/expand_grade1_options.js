@@ -1,3 +1,4 @@
+// Script expand grade1 options h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 /**
  * Bổ sung phương án thứ tư cho các câu hỏi lớp 1 đang chỉ có ba phương án.
  *
@@ -45,9 +46,13 @@ const COMMIT = process.argv.includes('--commit');
 const ROOT = path.join(__dirname, '..');
 const BAO_CAO = path.join(ROOT, 'tmp', 'bao_cao_them_phuong_an.json');
 
+// H?m parseJson d?ng ?? ph?n t?ch ??u v?o th?nh c?u tr?c c? th? s? d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 function parseJson(value, fallback) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (value === null || value === undefined) return fallback;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (typeof value !== 'string') return value;
+  // Kh?i n?y t?p trung x? l? l?i ho?c d?n d?p t?i nguy?n sau thao t?c tr??c ??.
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -55,6 +60,7 @@ function parseJson(value, fallback) {
   }
 }
 
+// H?m chuan d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 const chuan = (s) => String(s || '').trim();
 
 /** Sinh danh sách số ứng viên, xếp theo mức độ hợp lý giảm dần. */
@@ -62,7 +68,9 @@ function ungVienSo(dung, daCo) {
   const max = Math.max(...daCo);
   const min = Math.min(...daCo);
   const ds = [dung + 1, dung - 1, dung + 2, dung - 2, max + 1, min - 1, dung + 10, max + 2];
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const n of ds) {
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (n >= 0 && !daCo.includes(n)) return n;
   }
   return null;
@@ -70,6 +78,7 @@ function ungVienSo(dung, daCo) {
 
 /** SO: cả ba phương án là số nguyên. */
 function thuSo(texts, dungText) {
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!texts.every((t) => /^[0-9]+$/.test(t))) return null;
   const so = texts.map(Number);
   const moi = ungVienSo(Number(dungText), so);
@@ -79,8 +88,10 @@ function thuSo(texts, dungText) {
 /** SO_DON_VI: số kèm cùng một đơn vị bằng chữ. */
 function thuSoDonVi(texts, dungText) {
   const tach = texts.map((t) => t.match(/^([0-9]+)\s+([a-zà-ỹ][a-zà-ỹ\s]*)$/u));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (tach.some((m) => !m)) return null;
   const donVi = tach[0][2].trim();
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!tach.every((m) => m[2].trim() === donVi)) return null;
   const so = tach.map((m) => Number(m[1]));
   const dung = Number(dungText.match(/^([0-9]+)/)[1]);
@@ -91,10 +102,13 @@ function thuSoDonVi(texts, dungText) {
 /** KHUON_CHU: cùng một khuôn chữ, chỉ khác đúng một con số nằm giữa. */
 function thuKhuonChu(texts, dungText) {
   const tach = texts.map((t) => t.match(/^(\D*?)([0-9]+)(\D*)$/u));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (tach.some((m) => !m)) return null;
   const dau = tach[0][1];
   const cuoi = tach[0][3];
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!tach.every((m) => m[1] === dau && m[3] === cuoi)) return null;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!dau.trim() && !cuoi.trim()) return null; // đã thuộc khuôn SO
   const so = tach.map((m) => Number(m[2]));
   const mDung = dungText.match(/^(\D*?)([0-9]+)(\D*)$/u);
@@ -105,8 +119,10 @@ function thuKhuonChu(texts, dungText) {
 /** DAY_SO: mỗi phương án là một dãy số; phương án mới là một hoán vị chưa dùng. */
 function thuDaySo(texts) {
   const tach = texts.map((t) => (/^[0-9]+(\s*,\s*[0-9]+)+$/.test(t) ? t.split(/\s*,\s*/).map(Number) : null));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (tach.some((m) => !m)) return null;
   const dai = tach[0].length;
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (!tach.every((m) => m.length === dai)) return null;
 
   // Lấy tập số của dãy đầu rồi thử các hoán vị đơn giản: đảo ngược, đổi chỗ hai
@@ -115,12 +131,15 @@ function thuDaySo(texts) {
   const daCo = new Set(texts.map((t) => t.replace(/\s+/g, '')));
   const thu = [];
   thu.push([...goc].reverse());
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (dai >= 2) {
     const a = [...goc]; [a[0], a[1]] = [a[1], a[0]]; thu.push(a);
     const b = [...goc]; [b[dai - 2], b[dai - 1]] = [b[dai - 1], b[dai - 2]]; thu.push(b);
   }
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const p of thu) {
     const s = p.join(', ');
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!daCo.has(s.replace(/\s+/g, ''))) return { khuon: 'DAY_SO', text: s };
   }
   return null;
@@ -129,12 +148,16 @@ function thuDaySo(texts) {
 // Câu điền dấu so sánh, câu đúng sai, câu có không: giữ nguyên ba phương án.
 function boQuaTheoDang(texts) {
   const tap = new Set(texts.map((t) => t.toLowerCase().replace(/[.;]+$/, '')));
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (texts.every((t) => /^[<>=]$/.test(t))) return 'dấu so sánh chỉ có ba dấu';
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (tap.has('đúng') && tap.has('sai')) return 'câu đúng hay sai';
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (tap.has('có') && tap.has('không')) return 'câu có hay không';
   return null;
 }
 
+// H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 async function main() {
   const rows = await db.query(
     `SELECT q.id, l.lesson_name, q.content, q.choices, q.correct_answer
@@ -148,13 +171,16 @@ async function main() {
   const boQua = [];
   const theoKhuon = {};
 
+  // V?ng l?p duy?t ho?c ch? d? li?u cho ??n khi ??t ?i?u ki?n d?ng ?? ??nh.
   for (const row of rows) {
     const choices = parseJson(row.choices, []) || [];
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (choices.length !== 3) continue;
 
     const content = parseJson(row.content, {}) || {};
     const deBai = String(content.text || '');
     const anhCat = (content.images || []).some((im) => String(im.url || '').includes('c_crop'));
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (anhCat) {
       boQua.push({ id: row.id, de_bai: deBai, vi: 'ảnh cắt in sẵn nhãn A, B, C, D bên trong' });
       continue;
@@ -162,12 +188,14 @@ async function main() {
 
     const texts = choices.map((c) => chuan(c.text));
     const lyDoBoQua = boQuaTheoDang(texts);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (lyDoBoQua) {
       boQua.push({ id: row.id, de_bai: deBai, vi: lyDoBoQua });
       continue;
     }
 
     const dungText = chuan((choices.find((c) => c.key === row.correct_answer) || {}).text);
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!dungText) {
       boQua.push({ id: row.id, de_bai: deBai, vi: 'không tìm được nội dung đáp án đúng' });
       continue;
@@ -178,6 +206,7 @@ async function main() {
       || thuKhuonChu(texts, dungText)
       || thuDaySo(texts);
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (!ra) {
       boQua.push({ id: row.id, de_bai: deBai, vi: 'không suy ra được phương án nhiễu có nghĩa' });
       continue;
@@ -185,6 +214,7 @@ async function main() {
 
     // Chốt chặn: phương án mới không được trùng và không được là đáp án đúng.
     const daCo = texts.map((t) => t.toLowerCase());
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (daCo.includes(ra.text.toLowerCase())) {
       boQua.push({ id: row.id, de_bai: deBai, vi: 'phương án sinh ra bị trùng' });
       continue;
@@ -200,6 +230,7 @@ async function main() {
       them: ra.text, dap_an: row.correct_answer
     });
 
+    // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
     if (COMMIT) {
       await db.query('UPDATE QuestionBank SET choices = CAST(? AS JSON) WHERE id = ?',
         [JSON.stringify(choicesMoi), row.id]);
@@ -223,6 +254,7 @@ async function main() {
     });
   });
 
+  // Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u v? tr?ng th?i hi?n t?i.
   if (COMMIT) {
     console.log(`\nĐã cập nhật MySQL: ${baoCao.length} câu.`);
     console.log('PHẢI chạy tiếp rebalance_answer_keys.js để rải lại nhãn đáp án đúng,');

@@ -1,3 +1,4 @@
+# Script build grade3 theory docx detailed h? tr? nh?p, xu?t, ki?m tra ho?c b?o tr? d? li?u v? c?u h?nh c?a d? ?n.
 import json
 import math
 import sys
@@ -114,9 +115,13 @@ CHAPTERS = [
 ]
 
 
+# H?m ntext d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def ntext(text):
     return base.norm(text)
 
+
+# H?m table_number d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def table_number(name, default=3):
     for value in [9, 8, 7, 6, 5, 4, 3, 2]:
@@ -124,6 +129,8 @@ def table_number(name, default=3):
             return value
     return default
 
+
+# H?m lesson_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def lesson_kind(name):
     n = ntext(name)
@@ -210,6 +217,8 @@ def lesson_kind(name):
     return "expression"
 
 
+# H?m lesson_spec d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def lesson_spec(name):
     k = lesson_kind(name)
     table = table_number(name)
@@ -259,6 +268,8 @@ def lesson_spec(name):
     return {"kind": k, "objective": objective, "model": model, "quick": quick, "answer": answer}
 
 
+# H?m header d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def header(draw, lesson, card_title):
     base.rounded(draw, (34, 34, 1166, 641), "#ffffff", "#cbd5e1", 3, 30)
     draw.text((78, 65), "Toán lớp 3", font=base.font(27, True), fill="#1f4e79")
@@ -266,6 +277,8 @@ def header(draw, lesson, card_title):
     base.label_box(draw, (860, 62, 1122, 116), card_title, fill="#e0f2fe", outline="#0369a1", color="#075985", size=24)
     draw.line((78, 145, 1122, 145), fill="#e2e8f0", width=3)
 
+
+# H?m draw_grid_number d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_grid_number(draw, x, y, number, labels):
     colors = ["#ddd6fe", "#bfdbfe", "#fde68a", "#bbf7d0", "#fecaca"]
@@ -276,6 +289,8 @@ def draw_grid_number(draw, x, y, number, labels):
         base.draw_center(draw, (bx + 35, y + 35), digit, base.font(34, True), "#0f172a")
         draw.text((bx - 5, y + 82), labels[i], font=base.font(18, True), fill="#334155")
 
+
+# H?m draw_mul_groups d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_mul_groups(draw, table, groups):
     for g in range(groups):
@@ -295,6 +310,8 @@ def draw_mul_groups(draw, table, groups):
             base.label_box(draw, (x + 28, 400, x + 108, 438), f"{table} quả", "#dcfce7", "#15803d", "#166534", 16)
     draw.text((790, 335), f"{table} x {groups} = {table * groups}", font=base.font(48, True), fill="#15803d")
 
+
+# H?m draw_div_groups d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_div_groups(draw, table, groups):
     total = table * groups
@@ -325,6 +342,8 @@ def draw_div_groups(draw, table, groups):
     draw.text((760, 520), f"{total} : {table} = {groups}", font=base.font(44, True), fill="#1d4ed8")
 
 
+# H?m draw_vertical d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_vertical(draw, x, y, lines, result, op):
     for i, line in enumerate(lines):
         prefix = op if i == len(lines) - 1 else " "
@@ -332,6 +351,8 @@ def draw_vertical(draw, x, y, lines, result, op):
     draw.line((x, y + len(lines) * 55 + 8, x + 250, y + len(lines) * 55 + 8), fill="#0f172a", width=5)
     draw.text((x + 30, y + len(lines) * 55 + 22), str(result), font=base.font(48, True), fill="#1d4ed8")
 
+
+# H?m draw_scene_by_kind d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_scene_by_kind(draw, name, k, card_index):
     table = table_number(name)
@@ -408,6 +429,8 @@ def draw_scene_by_kind(draw, name, k, card_index):
         draw_data_probability(draw, k)
 
 
+# H?m draw_measurement d?ng ?? t?nh to?n k?t qu? t? c?c tham s? ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_measurement(draw, k):
     if k == "gram":
         base.rounded(draw, (260, 280, 470, 465), "#fef3c7", "#a16207", 4, 25)
@@ -436,6 +459,8 @@ def draw_measurement(draw, k):
         draw.text((850, 345), "12 tháng", font=base.font(48, True), fill="#dc2626")
 
 
+# H?m draw_times d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_times(draw, k):
     base.draw_group_panel(draw, (150, 270, 390, 455), 4, "Số bé: 4")
     if k == "times_less":
@@ -449,6 +474,8 @@ def draw_times(draw, k):
             base.draw_group_panel(draw, (510 + i * 160, 280, 640 + i * 160, 450), 4, f"Lần {i + 1}", color="#f0fdf4")
         draw.text((780, 500), "4 x 3 = 12", font=base.font(42, True), fill="#15803d")
 
+
+# H?m draw_fraction d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_fraction(draw, name):
     n = ntext(name)
@@ -475,6 +502,8 @@ def draw_fraction(draw, name):
     draw.text((670, 320), f"Tô 1 trong {denom} phần", font=base.font(42, True), fill="#0f172a")
     draw.text((740, 390), f"1/{denom}", font=base.font(62, True), fill="#dc2626")
 
+
+# H?m draw_geometry d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_geometry(draw, k):
     if k == "angle":
@@ -537,6 +566,8 @@ def draw_geometry(draw, k):
         draw.text((570, 320), "4 x 3 = 12 cm2", font=base.font(46, True), fill="#15803d")
 
 
+# H?m draw_number_topic d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_number_topic(draw, k):
     if k == "roman":
         entries = [("I", "1"), ("V", "5"), ("X", "10"), ("VI", "6"), ("IX", "9")]
@@ -561,6 +592,8 @@ def draw_number_topic(draw, k):
         draw.text((720, 315), "Phân tích theo hàng", font=base.font(40, True), fill="#1d4ed8")
 
 
+# H?m draw_money d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def draw_money(draw):
     notes = [("10 000 đ", "#dcfce7"), ("5 000 đ", "#fef3c7"), ("2 000 đ", "#dbeafe")]
     for i, (text, fill) in enumerate(notes):
@@ -568,6 +601,8 @@ def draw_money(draw):
         draw.text((205 + i * 270, 320), text, font=base.font(31, True), fill="#0f172a")
     draw.text((350, 480), "10 000 + 5 000 = 15 000 đồng", font=base.font(38, True), fill="#1d4ed8")
 
+
+# H?m draw_data_probability d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def draw_data_probability(draw, k):
     if k == "statistics":
@@ -592,6 +627,8 @@ def draw_data_probability(draw, k):
             base.label_box(draw, (150 + i * 320, 275, 410 + i * 320, 430), label, fill, "#334155", "#0f172a", 30)
         draw.text((235, 485), "Phân loại sự kiện theo khả năng xảy ra", font=base.font(32, True), fill="#1d4ed8")
 
+
+# H?m build_cards d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_cards(lesson_name):
     spec = lesson_spec(lesson_name)
@@ -633,6 +670,8 @@ def build_cards(lesson_name):
     ]
 
 
+# H?m build_blueprint d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_blueprint():
     chapters = []
     for chapter in CHAPTERS:
@@ -654,6 +693,8 @@ def build_blueprint():
     }
 
 
+# H?m set_run_font d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
     run.font.name = "Arial"
     run._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
@@ -664,6 +705,8 @@ def set_run_font(run, size=10.5, bold=False, italic=False, color=None):
         run.font.color.rgb = RGBColor.from_string(color)
 
 
+# H?m add_meta d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_meta(doc, label, value):
     p = doc.add_paragraph()
     r = p.add_run(f"{label}: ")
@@ -672,6 +715,8 @@ def add_meta(doc, label, value):
     set_run_font(r)
 
 
+# H?m add_bullets d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def add_bullets(doc, items):
     for item in items:
         p = doc.add_paragraph(style="List Bullet")
@@ -679,11 +724,15 @@ def add_bullets(doc, items):
         set_run_font(r)
 
 
+# H?m set_cell_text d?ng ?? c?p nh?t tr?ng th?i ho?c d? li?u theo quy t?c nghi?p v?; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def set_cell_text(cell, text, bold=False):
     cell.text = ""
     r = cell.paragraphs[0].add_run(str(text))
     set_run_font(r, size=9, bold=bold)
 
+
+# H?m shade d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def shade(cell, fill):
     tc_pr = cell._tc.get_or_add_tcPr()
@@ -691,6 +740,8 @@ def shade(cell, fill):
     shd.set(qn("w:fill"), fill)
     tc_pr.append(shd)
 
+
+# H?m add_overview d?ng ?? t?o b?n ghi ho?c t?i nguy?n m?i sau khi ki?m tra ??u v?o; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def add_overview(doc, data):
     table = doc.add_table(rows=1, cols=5)
@@ -707,6 +758,8 @@ def add_overview(doc, data):
             row[j].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
 
 
+# H?m render_card_image d?ng ?? chu?n b? v? hi?n th? k?t qu? cho ng??i d?ng; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card):
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
     img = Image.new("RGB", (1200, 675), "#f1f5f9")
@@ -719,6 +772,8 @@ def render_card_image(chapter_index, lesson_index, card_index, lesson_name, card
     img.save(out)
     return out
 
+
+# H?m build_docx d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
 
 def build_docx(data):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -778,6 +833,8 @@ def build_docx(data):
         return FALLBACK_OUTPUT_PATH
 
 
+# H?m build_contact_sheets d?ng ?? x?y d?ng k?t qu? t? c?c ngu?n d? li?u v? quy t?c li?n quan; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def build_contact_sheets():
     paths = sorted(IMAGE_DIR.glob("grade3-*.png"))
     font = base.font(16, True)
@@ -800,6 +857,8 @@ def build_contact_sheets():
     return outs
 
 
+# H?m main d?ng ?? th?c hi?n logic nghi?p v? ch?nh v? tr? k?t qu? cho lu?ng g?i; c?n b?o to?n h?p ??ng ??u v?o v? gi? tr? tr? v? c?a lu?ng g?i.
+
 def main():
     data = build_blueprint()
     BLUEPRINT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -815,5 +874,6 @@ def main():
     print(f"images={len(list(IMAGE_DIR.glob('grade3-*.png')))}")
 
 
+# Kh?i ?i?u ki?n quy?t ??nh nh?nh x? l? d?a tr?n d? li?u hi?n t?i.
 if __name__ == "__main__":
     main()

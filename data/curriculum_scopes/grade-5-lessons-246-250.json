@@ -1,0 +1,75 @@
+{
+  "scope_id": "grade-5-lessons-246-250",
+  "scope_version": 1,
+  "status": "VERIFIED_FROM_TEXTBOOK",
+  "grade": 5,
+  "source": {
+    "title": "SGK Toán 5 Tập 2 Cánh Diều",
+    "file": "SachGiaoKhoa/Toan_5_tap_2_-_Canh_dieu_2165d.pdf",
+    "verified_pdf_pages": [19, 20, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+    "verified_book_pages": [17, 18, 19, 20, 21, 25, 26, 27, 28, 29, 30, 31, 32, 33]
+  },
+  "review_rules": {
+    "question_language": "Câu ngắn, một yêu cầu, phù hợp học sinh lớp 5.",
+    "images": "Ảnh minh họa độc lập cho từng câu, không chứa đáp án hoặc dữ liệu làm lộ đáp án.",
+    "progression": "Bài 55 chu vi hình tròn; Bài 56 diện tích hình tròn; Bài 58 hình hộp chữ nhật, hình lập phương, hình trụ; Bài 59 hình khai triển; Bài 60 diện tích xung quanh và diện tích toàn phần.",
+    "excluded_pages": "Không đưa Bài 57 luyện tập về tính diện tích và phần luyện tập xen giữa các bài vào phạm vi câu hỏi mới của batch."
+  },
+  "lessons": [
+    {
+      "lesson_id": 246,
+      "lesson_name": "6. Bài 55. Chu vi hình tròn",
+      "pdf_pages": [19, 20, 21],
+      "book_pages": [17, 18, 19],
+      "objective": "Tính chu vi hình tròn khi biết đường kính hoặc bán kính, sử dụng số 3,14.",
+      "allowed_knowledge_tags": ["circle_circumference", "radius", "diameter", "pi_3_14"],
+      "allowed_question_forms": ["Tính chu vi hình tròn từ đường kính.", "Tính chu vi hình tròn từ bán kính."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 247,
+      "lesson_name": "7. Bài 56. Diện tích hình tròn",
+      "pdf_pages": [22, 23],
+      "book_pages": [20, 21],
+      "objective": "Tính diện tích hình tròn bằng bán kính nhân bán kính rồi nhân với 3,14.",
+      "allowed_knowledge_tags": ["circle_area", "radius", "area_formula", "pi_3_14"],
+      "allowed_question_forms": ["Tính diện tích hình tròn từ bán kính.", "Chọn công thức tính diện tích hình tròn."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 248,
+      "lesson_name": "8. Bài 58. Hình hộp chữ nhật, hình lập phương, hình trụ",
+      "pdf_pages": [27, 28, 29],
+      "book_pages": [25, 26, 27],
+      "objective": "Nhận biết đặc điểm của hình hộp chữ nhật, hình lập phương và hình trụ.",
+      "allowed_knowledge_tags": ["rectangular_prism", "cube", "cylinder", "solid_properties"],
+      "allowed_question_forms": ["Nhận biết đặc điểm của hình trụ.", "Phân biệt các hình khối quen thuộc."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 249,
+      "lesson_name": "9. Bài 59. Hình khai triển của hình hộp chữ nhật, hình lập phương, hình trụ",
+      "pdf_pages": [30, 31, 32],
+      "book_pages": [28, 29, 30],
+      "objective": "Nhận biết các mặt tạo thành hình khai triển của hình hộp chữ nhật, hình lập phương và hình trụ.",
+      "allowed_knowledge_tags": ["nets", "rectangular_prism_net", "cube_net", "cylinder_net"],
+      "allowed_question_forms": ["Chọn mô tả đúng về hình khai triển của hình trụ.", "Nhận biết hình khai triển của hình hộp chữ nhật."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    },
+    {
+      "lesson_id": 250,
+      "lesson_name": "10. Bài 60. Diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương",
+      "pdf_pages": [33, 34, 35],
+      "book_pages": [31, 32, 33],
+      "objective": "Tính diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật, hình lập phương.",
+      "allowed_knowledge_tags": ["rectangular_prism_lateral_area", "rectangular_prism_surface_area", "cube_surface_area"],
+      "allowed_question_forms": ["Tính diện tích toàn phần hình hộp chữ nhật.", "Tính diện tích xung quanh hình hộp chữ nhật hoặc hình lập phương."],
+      "forbidden_text_patterns": [],
+      "not_yet_allowed": []
+    }
+  ]
+}
