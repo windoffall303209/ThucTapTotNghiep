@@ -22,6 +22,9 @@ const CONTENT_LIMITS = Object.freeze({
 
 function validateTextLength(value, label, maxLength) {
   const values = Array.isArray(value) ? value : [value];
+  if (values.some((item) => item != null && typeof item !== 'string')) {
+    return `${label} không đúng định dạng.`;
+  }
   if (values.some((item) => String(item || '').length > maxLength)) {
     return `${label} không được vượt quá ${maxLength.toLocaleString('vi-VN')} ký tự.`;
   }
@@ -29,7 +32,9 @@ function validateTextLength(value, label, maxLength) {
 }
 
 function validateSortOrder(value) {
-  if (value == null || String(value).trim() === '') return null;
+  if (value == null) return null;
+  if (!['string', 'number'].includes(typeof value)) return 'Thứ tự không đúng định dạng.';
+  if (String(value).trim() === '') return null;
   const number = Number(value);
   if (!Number.isInteger(number) || number < 1 || number > CONTENT_LIMITS.sortOrder) {
     return `Thứ tự phải là số nguyên từ 1 đến ${CONTENT_LIMITS.sortOrder.toLocaleString('vi-VN')}.`;
@@ -38,10 +43,14 @@ function validateSortOrder(value) {
 }
 
 function normalizeSearchKeyword(value) {
-  return String(value || '').trim().slice(0, CONTENT_LIMITS.searchKeyword);
+  return typeof value === 'string'
+    ? value.trim().slice(0, CONTENT_LIMITS.searchKeyword)
+    : '';
 }
 
 function isPositiveInteger(value) {
+  if (!['string', 'number'].includes(typeof value)) return false;
+  if (!/^\d+$/.test(String(value).trim())) return false;
   const number = Number(value);
   return Number.isSafeInteger(number) && number > 0;
 }

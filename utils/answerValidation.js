@@ -20,7 +20,8 @@ function normalizeFreeTextAnswer(value) {
 
 // Hàm normalizeSubmittedAnswer dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSubmittedAnswer(value) {
-  const answer = String(value || '').trim();
+  if (typeof value !== 'string') return null;
+  const answer = value.trim();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!answer || answer.length > 50) return null;
   return answer;
@@ -28,6 +29,7 @@ function normalizeSubmittedAnswer(value) {
 
 // Hàm normalizeTimeSpentSeconds dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTimeSpentSeconds(value) {
+  if (!['string', 'number'].includes(typeof value)) return null;
   const seconds = Number(value);
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!Number.isFinite(seconds) || seconds < 0) return null;

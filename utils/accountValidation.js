@@ -3,12 +3,14 @@ const USERNAME_PATTERN = /^[\p{L}\p{N}._-]+$/u;
 
 // Hàm normalizeUsername dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeUsername(value) {
-  return String(value || '').trim().normalize('NFKC');
+  return typeof value === 'string' ? value.trim().normalize('NFKC') : '';
 }
 
 // Hàm normalizeFullname dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeFullname(value) {
-  return String(value || '').trim().normalize('NFKC').replace(/\s+/g, ' ');
+  return typeof value === 'string'
+    ? value.trim().normalize('NFKC').replace(/\s+/g, ' ')
+    : '';
 }
 
 // Hàm validateUsername dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -44,7 +46,7 @@ function validateFullname(value) {
 
 // Hàm validatePassword dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function validatePassword(value, options = {}) {
-  const password = String(value || '');
+  const password = typeof value === 'string' ? value : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (password.length < 8 || Buffer.byteLength(password, 'utf8') > 72) {
     return options.current

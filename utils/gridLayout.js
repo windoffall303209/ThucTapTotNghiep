@@ -74,7 +74,7 @@ function normalizeGridCell(cell, index, rows, columns) {
     type: GRID_CELL_TYPES.includes(cell.type) ? cell.type : 'text',
     text: limitText(cell.text, MAX_GRID_TEXT_LENGTH),
     image_url: normalizeGridImageUrl(cell.image_url),
-    answer_key: String(cell.answer_key || '').trim().toUpperCase(),
+    answer_key: limitText(cell.answer_key, 10).toUpperCase(),
     align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
     background: normalizeGridBackground(cell.background)
   };

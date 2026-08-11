@@ -10,7 +10,10 @@ const SHORT_GRADE_RANGE_LABEL = `${MIN_GRADE}-${MAX_GRADE}`;
 
 // Hàm normalizeGrade dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeGrade(value) {
-  const grade = Number(value);
+  if (!['string', 'number'].includes(typeof value)) return null;
+  const raw = String(value).trim();
+  if (!/^\d+$/.test(raw)) return null;
+  const grade = Number(raw);
   return Number.isInteger(grade) ? grade : null;
 }
 

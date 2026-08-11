@@ -6,6 +6,7 @@ const AIConversationLog = require('../models/AIConversationLog');
 const AIQuotaService = require('../services/AIQuotaService');
 const { findSnapshotMisconception } = require('../services/PracticeSubmissionService');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
+const { parsePositiveInteger } = require('../utils/requestValidation');
 
 const MAX_STUDENT_MESSAGE_LENGTH = 1000;
 
@@ -130,15 +131,11 @@ async function exerciseHelp(req, res, next) {
   }
 }
 
-// Hàm parsePositiveInteger dùng để phân tích đầu vào thành cấu trúc có thể sử dụng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-function parsePositiveInteger(value) {
-  const number = Number(value);
-  return Number.isInteger(number) && number > 0 ? number : null;
-}
-
 // Hàm normalizeMessage dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeMessage(value) {
-  const message = String(value || '').trim();
+  if (value == null) return '';
+  if (typeof value !== 'string') return null;
+  const message = value.trim();
   return message.length <= MAX_STUDENT_MESSAGE_LENGTH ? message : null;
 }
 

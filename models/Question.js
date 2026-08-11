@@ -6,6 +6,7 @@ const { normalizeExplanationText, normalizeQuestionText } = require('../utils/te
 const { MAX_GRADE, MIN_GRADE, isSupportedGrade } = require('../config/grades');
 const { normalizeGridLayout } = require('../utils/gridLayout');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
+const { normalizePage, parseInteger } = require('../utils/requestValidation');
 
 const LAYOUT_TEMPLATES = new Set([
   'STACK_VERTICAL',
@@ -190,8 +191,12 @@ function normalizeImage(image, index, idPrefix, defaultAlt) {
 function buildLessonQuestionFilter(options = {}) {
   const where = ['lesson_id = ?', 'is_active = 1'];
   const params = [];
-  const difficulty = String(options.difficulty || '').trim().toUpperCase();
-  const keyword = String(options.keyword || '').trim().slice(0, 200);
+  const difficulty = typeof options.difficulty === 'string'
+    ? options.difficulty.trim().toUpperCase()
+    : '';
+  const keyword = typeof options.keyword === 'string'
+    ? options.keyword.trim().slice(0, 200)
+    : '';
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
@@ -549,7 +554,7 @@ async function countQuestionsByLesson(lessonId, options = {}) {
 
 // Hàm getQuestionPageByLesson dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function getQuestionPageByLesson(lessonId, options = {}) {
-  const page = Math.max(Number(options.page || 1), 1);
+  const page = normalizePage(options.page);
   const limit = normalizePageLimit(options.limit || 20, 20);
   const offset = (page - 1) * limit;
   const filterOptions = { difficulty: options.difficulty, keyword: options.keyword };
@@ -609,28 +614,34 @@ async function searchQuestions(filters = {}) {
   const where = ['q.is_active = 1'];
   const params = [];
 
-  const grade = Number(filters.grade || 0);
+  const grade = isSupportedGrade(filters.grade) ? Number(filters.grade) : null;
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (grade >= MIN_GRADE && grade <= MAX_GRADE) {
     where.push('c.grade = ?');
     params.push(grade);
   }
 
-  const difficulty = String(filters.difficulty || '').trim().toUpperCase();
+  const difficulty = typeof filters.difficulty === 'string'
+    ? filters.difficulty.trim().toUpperCase()
+    : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
     where.push('q.difficulty = ?');
     params.push(difficulty);
   }
 
-  const questionType = String(filters.questionType || '').trim().toUpperCase();
+  const questionType = typeof filters.questionType === 'string'
+    ? filters.questionType.trim().toUpperCase()
+    : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'].includes(questionType)) {
     where.push('q.question_type = ?');
     params.push(questionType);
   }
 
-  const keyword = String(filters.keyword || '').trim().slice(0, 200);
+  const keyword = typeof filters.keyword === 'string'
+    ? filters.keyword.trim().slice(0, 200)
+    : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (keyword) {
     where.push("JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) LIKE ?");
@@ -638,7 +649,7 @@ async function searchQuestions(filters = {}) {
   }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (filters.missingExplanation) {
+  if (filters.missingExplanation === true) {
     where.push("TRIM(COALESCE(JSON_UNQUOTE(JSON_EXTRACT(q.explanation, '$.text')), '')) = ''");
   }
 
@@ -1229,10 +1240,7 @@ async function duplicateQuestion(
 
 // Hàm normalizePageLimit dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizePageLimit(value, fallback = 20, max = 100) {
-  const limit = Number(value);
-  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (!Number.isFinite(limit) || limit <= 0) return fallback;
-  return Math.min(Math.max(Math.round(limit), 1), max);
+  return parseInteger(value, { min: 1, max }) || fallback;
 }
 
 // Hàm recordAnswer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

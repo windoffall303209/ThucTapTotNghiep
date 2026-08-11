@@ -20,6 +20,11 @@ const {
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds
 } = require('../utils/answerValidation');
+const {
+  isAllowedValue,
+  parseInteger,
+  parsePositiveInteger
+} = require('../utils/requestValidation');
 const PRACTICE_LIMITS = [15, 20];
 const THEORY_REVIEW_COUNT = 8;
 const LESSON_PRACTICE_COUNT = 5;
@@ -55,7 +60,8 @@ async function dashboard(req, res, next) {
 async function lesson(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lessonItem = await Curriculum.getLessonById(req.params.id);
+    const lessonId = parsePositiveInteger(req.params.id);
+    const lessonItem = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
@@ -96,7 +102,8 @@ async function practice(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
-    const lessonItem = await Curriculum.getLessonById(req.params.id);
+    const lessonId = parsePositiveInteger(req.params.id);
+    const lessonItem = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
@@ -183,7 +190,8 @@ async function reviewLesson(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
-    const lessonItem = await Curriculum.getLessonById(req.params.id);
+    const lessonId = parsePositiveInteger(req.params.id);
+    const lessonItem = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).render('error', {
@@ -296,9 +304,9 @@ async function updatePassword(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = await Student.findById(req.auth.id);
-    const currentPassword = String(req.body.current_password || '');
-    const newPassword = String(req.body.new_password || '');
-    const confirmPassword = String(req.body.confirm_password || '');
+    const currentPassword = typeof req.body.current_password === 'string' ? req.body.current_password : '';
+    const newPassword = typeof req.body.new_password === 'string' ? req.body.new_password : '';
+    const confirmPassword = typeof req.body.confirm_password === 'string' ? req.body.confirm_password : '';
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student) {
@@ -309,6 +317,10 @@ async function updatePassword(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!currentPassword || !newPassword || !confirmPassword) {
       setFlash(req, 'danger', 'Vui lòng nhập đầy đủ mật khẩu hiện tại và mật khẩu mới.');
+      return res.redirect('/student/account');
+    }
+    if (Buffer.byteLength(currentPassword, 'utf8') > 72) {
+      setFlash(req, 'danger', 'Mật khẩu hiện tại không hợp lệ.');
       return res.redirect('/student/account');
     }
 
@@ -376,10 +388,16 @@ async function startExam(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const grade = Number(req.auth.current_grade);
-    const count = PRACTICE_LIMITS.includes(Number(req.body.count))
-      ? Number(req.body.count)
-      : PRACTICE_LIMITS[0];
-    const requestedMode = String(req.body.mode || 'comprehensive');
+    const count = parseInteger(req.body.count, { min: 1, max: 100 });
+    const requestedMode = typeof req.body.mode === 'string' ? req.body.mode.trim() : '';
+    if (!PRACTICE_LIMITS.includes(count)) {
+      setFlash(req, 'danger', 'Số câu luyện tập không hợp lệ.');
+      return res.redirect('/student/exams');
+    }
+    if (!isAllowedValue(requestedMode, ['chapter', 'comprehensive'])) {
+      setFlash(req, 'danger', 'Kiểu luyện tập không hợp lệ.');
+      return res.redirect('/student/exams');
+    }
     let candidates = [];
     let sessionData = {
       chapterId: null,
@@ -390,7 +408,8 @@ async function startExam(req, res, next) {
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (requestedMode === 'chapter') {
-      const chapter = await Curriculum.getChapterById(req.body.chapter_id);
+      const chapterId = parsePositiveInteger(req.body.chapter_id);
+      const chapter = chapterId ? await Curriculum.getChapterById(chapterId) : null;
       // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (!chapter || Number(chapter.grade) !== grade) {
         setFlash(req, 'danger', 'Vui lòng chọn một chương thuộc đúng lớp hiện tại.');
@@ -407,7 +426,11 @@ async function startExam(req, res, next) {
         title: `${chapter.chapter_name} · ${count} câu`
       };
     } else {
-      const scope = String(req.body.scope || 'year');
+      const scope = typeof req.body.scope === 'string' ? req.body.scope.trim() : '';
+      if (!isAllowedValue(scope, ['semester-1', 'semester-2', 'year'])) {
+        setFlash(req, 'danger', 'Phạm vi luyện tập không hợp lệ.');
+        return res.redirect('/student/exams');
+      }
       const semester = scope === 'semester-1'
         ? 1
         : scope === 'semester-2'
@@ -461,7 +484,8 @@ async function startExam(req, res, next) {
 async function sessionPractice(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
+    const sessionId = parsePositiveInteger(req.params.id);
+    let session = sessionId ? await PracticeSession.getSessionById(req.auth.id, sessionId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) {
       return res.status(404).render('error', {
@@ -511,7 +535,8 @@ async function sessionPractice(req, res, next) {
 async function reviewSession(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    let session = await PracticeSession.getSessionById(req.auth.id, req.params.id);
+    const sessionId = parsePositiveInteger(req.params.id);
+    let session = sessionId ? await PracticeSession.getSessionById(req.auth.id, sessionId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!session) {
       return res.status(404).render('error', {
@@ -547,9 +572,17 @@ async function reviewSession(req, res, next) {
 async function finishSession(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
+    const sessionId = parsePositiveInteger(req.params.id);
+    if (!sessionId) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_SESSION_ID',
+        message: 'Mã lần làm bài không hợp lệ.'
+      });
+    }
     const session = await PracticeSession.completeSession(
       req.auth.id,
-      req.params.id,
+      sessionId,
       'USER_FINISHED'
     );
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -703,9 +736,10 @@ async function submitAnswer(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const student = req.auth;
-    const questionId = Number(req.params.questionId);
-    const practiceSessionId = Number(req.body.practiceSessionId);
+    const questionId = parsePositiveInteger(req.params.questionId);
+    const practiceSessionId = parsePositiveInteger(req.body.practiceSessionId);
     const selectedAnswer = normalizeSubmittedAnswer(req.body.selectedAnswer);
+    const questionIndex = parseInteger(req.body.questionIndex, { min: 0, max: 10_000 });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!selectedAnswer) {
       return res.status(400).json({
@@ -715,7 +749,7 @@ async function submitAnswer(req, res, next) {
       });
     }
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!Number.isInteger(questionId) || questionId <= 0) {
+    if (!questionId) {
       return res.status(400).json({
         ok: false,
         code: 'INVALID_QUESTION',
@@ -723,11 +757,18 @@ async function submitAnswer(req, res, next) {
       });
     }
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!Number.isInteger(practiceSessionId) || practiceSessionId <= 0) {
+    if (!practiceSessionId) {
       return res.status(400).json({
         ok: false,
         code: 'PRACTICE_SESSION_REQUIRED',
         message: 'Cần một phiên làm bài hợp lệ để nộp đáp án.'
+      });
+    }
+    if (questionIndex === null) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_QUESTION_INDEX',
+        message: 'Vị trí câu hỏi không hợp lệ.'
       });
     }
 
@@ -782,10 +823,7 @@ async function submitAnswer(req, res, next) {
       });
     }
 
-    const questionIndex = Math.max(
-      0,
-      Math.min(Number(req.body.questionIndex) || 0, result.session.question_ids.length - 1)
-    );
+    const safeQuestionIndex = Math.min(questionIndex, result.session.question_ids.length - 1);
     const isCorrect = Number(result.answer.is_correct) === 1;
     const alreadyRecorded = result.outcome === 'ALREADY_RECORDED';
     return res.json({
@@ -795,7 +833,7 @@ async function submitAnswer(req, res, next) {
       correctAnswer: result.question.correct_answer,
       explanation: result.question.explanation,
       misconception: result.misconception,
-      nextIndex: questionIndex + 1,
+      nextIndex: safeQuestionIndex + 1,
       message: alreadyRecorded
         ? 'Câu này em đã nộp rồi, kết quả được giữ theo lần nộp đầu tiên.'
         : isCorrect
@@ -811,7 +849,15 @@ async function submitAnswer(req, res, next) {
 async function theoryHelp(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lessonItem = await Curriculum.getLessonById(req.body.lessonId);
+    const lessonId = parsePositiveInteger(req.body.lessonId);
+    if (!lessonId) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_LESSON_ID',
+        message: 'Mã bài học không hợp lệ.'
+      });
+    }
+    const lessonItem = await Curriculum.getLessonById(lessonId);
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonItem) {
       return res.status(404).json({
@@ -828,20 +874,23 @@ async function theoryHelp(req, res, next) {
       });
     }
 
-    const studentQuestion = String(req.body.question || '').trim();
+    const studentQuestion = req.body.question == null
+      ? ''
+      : typeof req.body.question === 'string'
+        ? req.body.question.trim()
+        : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (studentQuestion.length > 1000) {
+    if (studentQuestion === null || studentQuestion.length > 1000) {
       return res.status(400).json({
         ok: false,
         code: 'MESSAGE_TOO_LONG',
         message: 'Câu hỏi gửi AI không được vượt quá 1000 ký tự.'
       });
     }
-    const cardIndex = Number(req.body.cardIndex);
+    const cardIndex = parseInteger(req.body.cardIndex, { min: 0, max: 10_000 });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
-      !Number.isInteger(cardIndex)
-      || cardIndex < 0
+      cardIndex === null
       || cardIndex >= lessonItem.theory_cards.length
     ) {
       return res.status(400).json({

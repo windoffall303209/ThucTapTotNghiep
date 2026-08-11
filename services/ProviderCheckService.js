@@ -10,12 +10,23 @@ const CHECK_PROMPT = 'Trả lời đúng một từ: OK';
 const CHECK_TIMEOUT_MS = 45000;
 const MODELS_TIMEOUT_MS = 20000;
 const MAX_PROVIDER_RESPONSE_BYTES = 2 * 1024 * 1024;
+const BASE_URL_INPUT_PROVIDERS = Object.freeze({
+  openai_base_url: 'openai',
+  nvidia_nim_base_url: 'nvidia',
+  openrouter_base_url: 'openrouter'
+});
 
 // Hàm checkProvider dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function checkProvider(provider, input = {}) {
-  const currentSettings = await SystemSetting.getSettings();
-  const settings = mergeSettings(currentSettings, input);
   const normalizedProvider = normalizeProvider(provider);
+  if (!normalizedProvider) return fail('Nguồn API không được hỗ trợ.');
+  const currentSettings = await SystemSetting.getSettings();
+  let settings;
+  try {
+    settings = mergeSettings(currentSettings, input);
+  } catch (error) {
+    return fail(error.message || 'Dữ liệu kiểm tra provider không hợp lệ.');
+  }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalizedProvider === 'cloudinary') return checkCloudinary(settings);
@@ -36,10 +47,15 @@ function mergeSettings(currentSettings, input) {
   const merged = { ...currentSettings };
   Object.entries(input || {}).forEach(([key, value]) => {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (typeof value !== 'string' || !(key in currentSettings)) return;
+    if (!(key in currentSettings) || value == null) return;
+    if (typeof value !== 'string') throw new Error('Dữ liệu kiểm tra provider không đúng định dạng.');
     const trimmedValue = value.trim();
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (trimmedValue) merged[key] = trimmedValue;
+    if (!trimmedValue) return;
+    const validatedValue = SystemSetting.validateSettingValue(key, trimmedValue);
+    merged[key] = BASE_URL_INPUT_PROVIDERS[key]
+      ? assertAllowedProviderBaseUrl(validatedValue, BASE_URL_INPUT_PROVIDERS[key])
+      : validatedValue;
   });
   return merged;
 }
@@ -468,7 +484,8 @@ function getTimeout(settings) {
 
 // Hàm normalizeProvider dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeProvider(provider) {
-  const value = String(provider || '').toLowerCase().replace('-', '_');
+  if (typeof provider !== 'string') return '';
+  const value = provider.trim().toLowerCase().replace('-', '_');
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['openai', 'gemini', 'gemini_cli', 'nvidia', 'openrouter', 'cloudinary'].includes(value)) return value;
   return '';
@@ -495,6 +512,7 @@ module.exports = {
   checkProvider,
   _test: {
     MAX_PROVIDER_RESPONSE_BYTES,
+    mergeSettings,
     requestJson
   }
 };

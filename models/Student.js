@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
+const { parseInteger } = require('../utils/requestValidation');
 
 // Hàm findByUsername dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function findByUsername(username) {
@@ -52,7 +53,8 @@ async function countStudents() {
 
 // Hàm listStudents dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function listStudents(search = '') {
-  const keyword = `%${search}%`;
+  const safeSearch = typeof search === 'string' ? search.trim().slice(0, 100) : '';
+  const keyword = `%${safeSearch}%`;
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
@@ -67,7 +69,7 @@ async function listStudents(search = '') {
     fallbackOrThrow(error);
     return sampleData.students.filter((student) => {
       const text = `${student.username} ${student.fullname}`.toLowerCase();
-      return text.includes(search.toLowerCase());
+      return text.includes(safeSearch.toLowerCase());
     });
   }
 }
@@ -80,17 +82,19 @@ async function listStudents(search = '') {
  * trang thì vừa chậm vừa không tra cứu nổi.
  */
 async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 20 } = {}) {
-  const keyword = `%${search}%`;
-  const safePage = Math.max(Number(page) || 1, 1);
-  const safeLimit = Math.min(Math.max(Number(limit) || 20, 5), 50);
+  const safeSearch = typeof search === 'string' ? search.trim().slice(0, 100) : '';
+  const keyword = `%${safeSearch}%`;
+  const safePage = parseInteger(page, { min: 1, max: 100_000 }) || 1;
+  const safeLimit = parseInteger(limit, { min: 5, max: 50 }) || 20;
+  const safeGrade = parseInteger(grade, { min: 1, max: 5 });
   const offset = (safePage - 1) * safeLimit;
 
   const where = ['(s.username LIKE ? OR s.fullname LIKE ?)'];
   const params = [keyword, keyword];
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (Number(grade) > 0) {
+  if (safeGrade) {
     where.push('s.current_grade = ?');
-    params.push(Number(grade));
+    params.push(safeGrade);
   }
   const whereClause = where.join(' AND ');
 
@@ -123,8 +127,8 @@ async function listStudentsPaged({ search = '', grade = null, page = 1, limit = 
     fallbackOrThrow(error);
     const filtered = sampleData.students.filter((student) => {
       const text = `${student.username} ${student.fullname}`.toLowerCase();
-      const matchText = text.includes(String(search).toLowerCase());
-      const matchGrade = !Number(grade) || Number(student.current_grade) === Number(grade);
+      const matchText = text.includes(safeSearch.toLowerCase());
+      const matchGrade = !safeGrade || Number(student.current_grade) === safeGrade;
       return matchText && matchGrade;
     });
     return {

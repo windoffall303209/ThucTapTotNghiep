@@ -14,15 +14,26 @@ const { safeAdminReturnTo } = require('../utils/safeRedirect');
 const { commitRequestUploads } = require('../middleware/upload');
 const {
   CONTENT_LIMITS,
-  isPositiveInteger,
   normalizeSearchKeyword,
   validateSortOrder,
   validateTextLength
 } = require('../utils/contentValidation');
+const {
+  isAllowedValue,
+  normalizeBoundedText,
+  normalizePage,
+  parseInteger,
+  parsePositiveInteger
+} = require('../utils/requestValidation');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
 const QUESTION_DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD', 'EXPERT'];
+const QUESTION_INTERACTIONS = ['none', 'choose', 'fill_blank', 'count', 'compare'];
+const AUTHORING_MODES = ['fields', 'canvas'];
+const THEORY_TYPES = ['observe', 'concept', 'model', 'quick_try', 'remember'];
+const THEORY_LAYOUTS = ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'];
+const THEORY_INTERACTIONS = ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'];
 const LAYOUT_TEMPLATES = [
   'STACK_VERTICAL',
   'SPLIT_HORIZONTAL_LEFT_IMAGE',
@@ -41,8 +52,8 @@ const LAYOUT_VARIANTS = [
 
 // Hàm contentManagerUrl dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function contentManagerUrl(section, lessonId) {
-  const normalizedLessonId = Number(lessonId);
-  return Number.isInteger(normalizedLessonId) && normalizedLessonId > 0
+  const normalizedLessonId = parsePositiveInteger(lessonId);
+  return normalizedLessonId
     ? `/admin/${section}?lesson=${normalizedLessonId}`
     : `/admin/${section}`;
 }
@@ -110,6 +121,7 @@ async function questions(req, res, next) {
       (sum, row) => sum + Number(row.question_count || 0),
       0
     );
+    const requestedLessonId = parsePositiveInteger(req.query.lesson);
 
     res.render('admin/questions', {
       title: 'Quản lý câu hỏi',
@@ -118,8 +130,8 @@ async function questions(req, res, next) {
       questionBankTree,
       bookTree,
       totalQuestionCount,
-      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === Number(req.query.lesson))
-        ? Number(req.query.lesson)
+      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === requestedLessonId)
+        ? requestedLessonId
         : null
     });
   } catch (error) {
@@ -141,6 +153,7 @@ async function theory(req, res, next) {
       (sum, row) => sum + Number(row.theory_count || 0),
       0
     );
+    const requestedLessonId = parsePositiveInteger(req.query.lesson);
 
     res.render('admin/theory', {
       title: 'Quản lý lý thuyết',
@@ -148,8 +161,8 @@ async function theory(req, res, next) {
       theoryTree,
       bookTree,
       totalTheoryCardCount,
-      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === Number(req.query.lesson))
-        ? Number(req.query.lesson)
+      selectedLessonId: lessons.some((lesson) => Number(lesson.id) === requestedLessonId)
+        ? requestedLessonId
         : null
     });
   } catch (error) {
@@ -161,7 +174,8 @@ async function theory(req, res, next) {
 async function lessonTheory(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    const lessonId = parsePositiveInteger(req.params.lessonId);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) {
       return res.status(404).send('<div class="empty-state compact danger">Không tìm thấy bài học cần quản lý lý thuyết.</div>');
@@ -180,7 +194,8 @@ async function lessonTheory(req, res, next) {
 async function createTheoryCard(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    const lessonId = parsePositiveInteger(req.params.lessonId);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần thêm thẻ lý thuyết.');
@@ -223,10 +238,11 @@ async function createTheoryCard(req, res, next) {
 async function updateTheoryCard(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
-    const cardIndex = Number(req.params.cardIndex);
+    const lessonId = parsePositiveInteger(req.params.lessonId);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
+    const cardIndex = parseInteger(req.params.cardIndex, { min: 0, max: 10_000 });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!lesson || !Number.isInteger(cardIndex)) {
+    if (!lesson || cardIndex === null) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
       return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
@@ -281,10 +297,11 @@ async function updateTheoryCard(req, res, next) {
 async function deleteTheoryCard(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
-    const cardIndex = Number(req.params.cardIndex);
+    const lessonId = parsePositiveInteger(req.params.lessonId);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
+    const cardIndex = parseInteger(req.params.cardIndex, { min: 0, max: 10_000 });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!lesson || !Number.isInteger(cardIndex)) {
+    if (!lesson || cardIndex === null) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần xóa.');
       return res.redirect(contentManagerUrl('theory', req.params.lessonId));
     }
@@ -320,7 +337,8 @@ async function deleteTheoryCard(req, res, next) {
 async function lessonQuestions(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.lessonId);
+    const lessonId = parsePositiveInteger(req.params.lessonId);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) {
       return res.status(404).json({
@@ -329,13 +347,16 @@ async function lessonQuestions(req, res, next) {
       });
     }
 
-    const page = Math.max(Number(req.query.page || 1), 1);
-    const limit = Math.min(Math.max(Number(req.query.limit || 8), 5), 20);
+    const page = normalizePage(req.query.page);
+    const limit = parseInteger(req.query.limit, { min: 5, max: 20 }) || 8;
     // Lọc theo độ khó và từ khóa ngay trong một bài: bài 30-40 câu mà chỉ có
     // lật trang tuần tự thì việc tìm một câu cụ thể rất mất thời gian.
-    const difficulty = String(req.query.difficulty || '').trim().toUpperCase();
+    const requestedDifficulty = typeof req.query.difficulty === 'string'
+      ? req.query.difficulty.trim().toUpperCase()
+      : '';
+    const difficulty = QUESTION_DIFFICULTIES.includes(requestedDifficulty) ? requestedDifficulty : '';
     const keyword = normalizeSearchKeyword(req.query.q);
-    const questionPage = await Question.getQuestionPageByLesson(req.params.lessonId, {
+    const questionPage = await Question.getQuestionPageByLesson(lessonId, {
       page,
       limit,
       difficulty,
@@ -362,10 +383,17 @@ async function lessonQuestions(req, res, next) {
 async function questionSearch(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
+    const requestedGrade = parseInteger(req.query.grade, { min: 1, max: 5 });
+    const requestedDifficulty = typeof req.query.difficulty === 'string'
+      ? req.query.difficulty.trim().toUpperCase()
+      : '';
+    const requestedType = typeof req.query.type === 'string'
+      ? req.query.type.trim().toUpperCase()
+      : '';
     const filters = {
-      grade: Number(req.query.grade || 0) || null,
-      difficulty: String(req.query.difficulty || '').trim().toUpperCase() || null,
-      questionType: String(req.query.type || '').trim().toUpperCase() || null,
+      grade: requestedGrade,
+      difficulty: QUESTION_DIFFICULTIES.includes(requestedDifficulty) ? requestedDifficulty : null,
+      questionType: QUESTION_TYPES.includes(requestedType) ? requestedType : null,
       keyword: normalizeSearchKeyword(req.query.q),
       missingExplanation: req.query.missing_explanation === '1'
     };
@@ -391,10 +419,11 @@ async function questionSearch(req, res, next) {
 async function questionEditForm(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
+    const questionId = parsePositiveInteger(req.params.id);
     const [question, lessons, misconceptions] = await Promise.all([
-      Question.getQuestionById(req.params.id),
+      questionId ? Question.getQuestionById(questionId) : Promise.resolve(null),
       Curriculum.getAllLessons(),
-      Question.getMisconceptionsByQuestion(req.params.id)
+      questionId ? Question.getMisconceptionsByQuestion(questionId) : Promise.resolve([])
     ]);
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -417,6 +446,11 @@ async function questionEditForm(req, res, next) {
 async function createQuestion(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
+    const inputValidation = validateQuestionEnums(req.body);
+    if (inputValidation) {
+      setFlash(req, 'danger', inputValidation);
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
+    }
     normalizeQuestionBody(req.body);
     const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
     const gridLayout = authoringMode === 'canvas'
@@ -428,6 +462,11 @@ async function createQuestion(req, res, next) {
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
+    }
+    const lesson = await Curriculum.getLessonById(req.body.lesson_id);
+    if (!lesson) {
+      setFlash(req, 'danger', 'Bài học được chọn không tồn tại.');
+      return res.redirect(contentManagerUrl('questions'));
     }
 
     const storageContext = hasQuestionUploads(files)
@@ -492,12 +531,18 @@ async function createQuestion(req, res, next) {
 async function updateQuestion(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
+    const inputValidation = validateQuestionEnums(req.body);
+    if (inputValidation) {
+      setFlash(req, 'danger', inputValidation);
+      return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
+    }
     normalizeQuestionBody(req.body);
     const authoringMode = normalizeAuthoringMode(req.body.authoring_mode);
     const gridLayout = authoringMode === 'canvas'
       ? parseGridLayout(req.body.grid_layout)
       : parseGridLayout({ enabled: false });
-    const question = await Question.getQuestionById(req.params.id);
+    const questionId = parsePositiveInteger(req.params.id);
+    const question = questionId ? await Question.getQuestionById(questionId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần sửa.');
@@ -511,6 +556,11 @@ async function updateQuestion(req, res, next) {
     if (validation) {
       setFlash(req, 'danger', validation);
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
+    }
+    const targetLesson = await Curriculum.getLessonById(req.body.lesson_id);
+    if (!targetLesson) {
+      setFlash(req, 'danger', 'Bài học được chọn không tồn tại.');
+      return res.redirect(contentManagerUrl('questions', question.lesson_id));
     }
 
     const storageContext = hasQuestionUploads(files)
@@ -571,7 +621,7 @@ async function updateQuestion(req, res, next) {
       },
       misconceptions
     };
-    const updatedQuestion = await Question.updateQuestion(Number(req.params.id), payload, {
+    const updatedQuestion = await Question.updateQuestion(questionId, payload, {
       expectedQuestion: question
     });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -595,14 +645,15 @@ async function updateQuestion(req, res, next) {
 async function deleteQuestion(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const question = await Question.getQuestionById(req.params.id);
+    const questionId = parsePositiveInteger(req.params.id);
+    const question = questionId ? await Question.getQuestionById(questionId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!question) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần xóa.');
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
     }
 
-    await Question.deleteQuestion(Number(req.params.id));
+    await Question.deleteQuestion(questionId);
     setFlash(req, 'success', 'Đã xóa câu hỏi.');
     return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
   } catch (error) {
@@ -619,7 +670,8 @@ async function deleteQuestion(req, res, next) {
 async function duplicateQuestion(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const duplicate = await Question.duplicateQuestion(req.params.id);
+    const questionId = parsePositiveInteger(req.params.id);
+    const duplicate = questionId ? await Question.duplicateQuestion(questionId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!duplicate) {
       setFlash(req, 'danger', 'Không tìm thấy câu hỏi cần nhân bản.');
@@ -639,7 +691,7 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const gridLayout = authoringMode === 'canvas' ? parseGridLayout(body.grid_layout) : parseGridLayout({ enabled: false });
   const hasGridLayout = gridLayout.enabled;
-  if (!isPositiveInteger(body.lesson_id)) {
+  if (!parsePositiveInteger(body.lesson_id)) {
     return 'Bài học không hợp lệ.';
   }
   if (!QUESTION_TYPES.includes(String(body.question_type || '').trim().toUpperCase())) {
@@ -671,6 +723,22 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   for (const [value, label, limit] of lengthChecks) {
     const error = validateTextLength(value, label, limit);
     if (error) return error;
+  }
+  const widthFields = [
+    body.image_width_percent,
+    body.explanation_image_width_percent,
+    ...ANSWER_KEYS.map((key) => body[`choice_image_width_percent_${key}`])
+  ];
+  if (widthFields.some((value) => value != null && value !== '' && parseInteger(value, { min: 20, max: 100 }) === null)) {
+    return 'Độ rộng ảnh phải là số nguyên từ 20 đến 100%.';
+  }
+  const removalFields = [
+    body.remove_question_images,
+    body.remove_explanation_images,
+    ...ANSWER_KEYS.map((key) => body[`remove_choice_images_${key}`])
+  ];
+  if (removalFields.some((value) => !isValidRemovalSelection(value))) {
+    return 'Danh sách ảnh cần xóa không hợp lệ.';
   }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -740,6 +808,42 @@ function normalizeQuestionBody(body) {
   body.correct_answer = String(body.correct_answer || '').trim().toUpperCase();
   body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
   return body;
+}
+
+function validateQuestionEnums(body) {
+  const scalarFields = [
+    'lesson_id', 'question_type', 'difficulty', 'layout_variant', 'layout_template',
+    'question_interaction', 'authoring_mode', 'content_text', 'correct_answer',
+    'correct_answer_free', 'explanation_text', 'grid_layout',
+    'image_width_percent', 'explanation_image_width_percent',
+    ...ANSWER_KEYS.flatMap((key) => [
+      `choice_${key}`,
+      `choice_image_width_percent_${key}`,
+      `misconception_name_${key}`,
+      `misconception_${key}`
+    ])
+  ];
+  if (scalarFields.some((field) => body[field] != null && typeof body[field] !== 'string')) {
+    return 'Dữ liệu câu hỏi không đúng định dạng.';
+  }
+  const questionType = String(body.question_type || '').trim().toUpperCase();
+  const difficulty = String(body.difficulty || '').trim().toUpperCase();
+  const layout = String(body.layout_variant || body.layout_template || '').trim().toUpperCase();
+  const interaction = String(body.question_interaction || '').trim();
+  const authoringMode = String(body.authoring_mode || '').trim();
+  if (!QUESTION_TYPES.includes(questionType)) return 'Dạng câu hỏi không hợp lệ.';
+  if (!QUESTION_DIFFICULTIES.includes(difficulty)) return 'Độ khó không hợp lệ.';
+  if (!LAYOUT_VARIANTS.includes(layout)) return 'Bố cục câu hỏi không hợp lệ.';
+  if (!QUESTION_INTERACTIONS.includes(interaction)) return 'Kiểu tương tác câu hỏi không hợp lệ.';
+  if (!AUTHORING_MODES.includes(authoringMode)) return 'Chế độ biên soạn không hợp lệ.';
+  return null;
+}
+
+function isValidRemovalSelection(value) {
+  if (value == null || value === '') return true;
+  const values = Array.isArray(value) ? value : [value];
+  return values.length <= 24
+    && values.every((item) => typeof item === 'string' && item.length <= 2048);
 }
 
 function normalizeQuestionDifficulty(value) {
@@ -824,7 +928,7 @@ function normalizeLayoutVariant(value) {
 // Hàm normalizeQuestionInteraction dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeQuestionInteraction(value) {
   const interaction = String(value || '').trim();
-  return ['none', 'choose', 'fill_blank', 'count', 'compare'].includes(interaction) ? interaction : 'none';
+  return QUESTION_INTERACTIONS.includes(interaction) ? interaction : 'none';
 }
 
 // Hàm normalizeAuthoringMode dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -1173,9 +1277,10 @@ async function students(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const filterGrade = isSupportedGrade(req.query.grade) ? Number(req.query.grade) : null;
-    const page = Math.max(Number(req.query.page || 1), 1);
+    const page = normalizePage(req.query.page);
+    const query = normalizeBoundedText(req.query.q, 100);
     const result = await Student.listStudentsPaged({
-      search: req.query.q || '',
+      search: query,
       grade: filterGrade,
       page,
       limit: 20
@@ -1185,7 +1290,7 @@ async function students(req, res, next) {
       title: 'Quản lý tài khoản học sinh',
       students: result.students,
       pagination: result.pagination,
-      query: req.query.q || '',
+      query,
       filterGrade,
       gradeOptions: gradeOptions()
     });
@@ -1197,9 +1302,9 @@ async function students(req, res, next) {
 // Hàm studentsRedirectUrl dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function studentsRedirectUrl(req) {
   const params = new URLSearchParams();
-  const query = String(req.body.q || '').trim();
-  const grade = Number(req.body.grade);
-  const page = Math.max(Number(req.body.page || 1), 1);
+  const query = normalizeBoundedText(req.body.q, 100);
+  const grade = parseInteger(req.body.grade, { min: 1, max: 5 });
+  const page = normalizePage(req.body.page);
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (query) params.set('q', query);
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -1214,14 +1319,15 @@ function studentsRedirectUrl(req) {
 async function updateStudentStatus(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const student = await Student.findById(req.params.id);
+    const studentId = parsePositiveInteger(req.params.id);
+    const student = studentId ? await Student.findById(studentId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần cập nhật.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
-    const rawStatus = String(req.body.is_active || '');
+    const rawStatus = typeof req.body.is_active === 'string' ? req.body.is_active.trim() : '';
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!['0', '1'].includes(rawStatus)) {
       setFlash(req, 'danger', 'Trạng thái tài khoản không hợp lệ.');
@@ -1253,15 +1359,20 @@ async function updateStudentStatus(req, res, next) {
 async function resetStudentPassword(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const student = await Student.findById(req.params.id);
+    const studentId = parsePositiveInteger(req.params.id);
+    const student = studentId ? await Student.findById(studentId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đặt mật khẩu tạm.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
-    const temporaryPassword = String(req.body.temporary_password || '');
-    const confirmPassword = String(req.body.confirm_password || '');
+    const temporaryPassword = typeof req.body.temporary_password === 'string'
+      ? req.body.temporary_password
+      : '';
+    const confirmPassword = typeof req.body.confirm_password === 'string'
+      ? req.body.confirm_password
+      : '';
     const passwordError = validatePassword(temporaryPassword);
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (passwordError) {
@@ -1292,14 +1403,15 @@ async function resetStudentPassword(req, res, next) {
 async function updateStudentGrade(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const student = await Student.findById(req.params.id);
+    const studentId = parsePositiveInteger(req.params.id);
+    const student = studentId ? await Student.findById(studentId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student) {
       setFlash(req, 'danger', 'Không tìm thấy tài khoản học sinh cần đổi khối.');
       return res.redirect(studentsRedirectUrl(req));
     }
 
-    const grade = Number(req.body.current_grade);
+    const grade = parseInteger(req.body.current_grade, { min: 1, max: 5 });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!isSupportedGrade(grade)) {
       setFlash(req, 'danger', `Khối lớp phải nằm trong phạm vi ${GRADE_RANGE_LABEL}.`);
@@ -1349,8 +1461,10 @@ async function updateStudentGrade(req, res, next) {
  * phải tự tìm lại vị trí 10 lần.
  */
 function curriculumUrl(grade, openChapterId = null) {
-  const base = `/admin/curriculum?grade=${Number(grade)}`;
-  return openChapterId ? `${base}&open=${Number(openChapterId)}#chapter-${Number(openChapterId)}` : base;
+  const safeGrade = isSupportedGrade(grade) ? Number(grade) : 1;
+  const safeOpenChapterId = parsePositiveInteger(openChapterId);
+  const base = `/admin/curriculum?grade=${safeGrade}`;
+  return safeOpenChapterId ? `${base}&open=${safeOpenChapterId}#chapter-${safeOpenChapterId}` : base;
 }
 
 // Hàm curriculum dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -1380,7 +1494,7 @@ async function curriculum(req, res, next) {
       chapters,
       lessonsByChapter,
       // Chương cần mở sẵn sau một thao tác lưu, đọc từ ?open= do curriculumUrl gắn.
-      openChapterId: Number(req.query.open || 0) || null,
+      openChapterId: parsePositiveInteger(req.query.open),
       nextChapterOrder
     });
   } catch (error) {
@@ -1393,7 +1507,9 @@ async function createChapter(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const grade = isSupportedGrade(req.body.grade) ? Number(req.body.grade) : null;
-    const chapterName = String(req.body.chapter_name || '').trim();
+    const chapterName = typeof req.body.chapter_name === 'string'
+      ? req.body.chapter_name.trim()
+      : '';
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!grade) {
@@ -1406,7 +1522,8 @@ async function createChapter(req, res, next) {
       return res.redirect(curriculumUrl(grade));
     }
     const chapterError = validateTextLength(chapterName, 'Tên chương', CONTENT_LIMITS.chapterName)
-      || validateSortOrder(req.body.sort_order);
+      || validateSortOrder(req.body.sort_order)
+      || (!isAllowedValue(req.body.semester, ['1', '2']) ? 'Học kỳ không hợp lệ.' : null);
     if (chapterError) {
       setFlash(req, 'danger', chapterError);
       return res.redirect(curriculumUrl(grade));
@@ -1429,21 +1546,25 @@ async function createChapter(req, res, next) {
 async function updateChapter(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const chapter = await Curriculum.getChapterById(req.params.id);
+    const chapterId = parsePositiveInteger(req.params.id);
+    const chapter = chapterId ? await Curriculum.getChapterById(chapterId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương cần cập nhật.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
-    const chapterName = String(req.body.chapter_name || '').trim();
+    const chapterName = typeof req.body.chapter_name === 'string'
+      ? req.body.chapter_name.trim()
+      : '';
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapterName) {
       setFlash(req, 'danger', 'Tên chương không được để trống.');
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
     const chapterError = validateTextLength(chapterName, 'Tên chương', CONTENT_LIMITS.chapterName)
-      || validateSortOrder(req.body.sort_order);
+      || validateSortOrder(req.body.sort_order)
+      || (!isAllowedValue(req.body.semester, ['1', '2']) ? 'Học kỳ không hợp lệ.' : null);
     if (chapterError) {
       setFlash(req, 'danger', chapterError);
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
@@ -1465,7 +1586,8 @@ async function updateChapter(req, res, next) {
 async function deleteChapter(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const chapter = await Curriculum.getChapterById(req.params.id);
+    const chapterId = parsePositiveInteger(req.params.id);
+    const chapter = chapterId ? await Curriculum.getChapterById(chapterId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương cần xóa.');
@@ -1499,14 +1621,17 @@ async function deleteChapter(req, res, next) {
 async function createLesson(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const chapter = await Curriculum.getChapterById(req.body.chapter_id);
+    const chapterId = parsePositiveInteger(req.body.chapter_id);
+    const chapter = chapterId ? await Curriculum.getChapterById(chapterId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapter) {
       setFlash(req, 'danger', 'Không tìm thấy chương để thêm bài học.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
-    const lessonName = String(req.body.lesson_name || '').trim();
+    const lessonName = typeof req.body.lesson_name === 'string'
+      ? req.body.lesson_name.trim()
+      : '';
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonName) {
       setFlash(req, 'danger', 'Vui lòng nhập tên bài học.');
@@ -1535,14 +1660,17 @@ async function createLesson(req, res, next) {
 async function updateLesson(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.id);
+    const lessonId = parsePositiveInteger(req.params.id);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần cập nhật.');
       return res.redirect(curriculumUrl(req.body.grade || 1));
     }
 
-    const lessonName = String(req.body.lesson_name || '').trim();
+    const lessonName = typeof req.body.lesson_name === 'string'
+      ? req.body.lesson_name.trim()
+      : '';
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonName) {
       setFlash(req, 'danger', 'Tên bài học không được để trống.');
@@ -1570,7 +1698,8 @@ async function updateLesson(req, res, next) {
 async function deleteLesson(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const lesson = await Curriculum.getLessonById(req.params.id);
+    const lessonId = parsePositiveInteger(req.params.id);
+    const lesson = lessonId ? await Curriculum.getLessonById(lessonId) : null;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lesson) {
       setFlash(req, 'danger', 'Không tìm thấy bài học cần xóa.');
@@ -1648,8 +1777,14 @@ async function aiLogs(req, res, next) {
 async function flagAiLog(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const flagged = String(req.body.flagged || '1') === '1';
-    const updated = await AIConversationLog.setFlagged(req.params.id, flagged);
+    const logId = parsePositiveInteger(req.params.id);
+    const rawFlagged = typeof req.body.flagged === 'string' ? req.body.flagged.trim() : '';
+    if (!logId || !isAllowedValue(rawFlagged, ['0', '1'])) {
+      setFlash(req, 'danger', 'Dữ liệu đánh dấu hội thoại không hợp lệ.');
+      return res.redirect(safeAdminReturnTo(req.body.return_to, '/admin/logs/ai'));
+    }
+    const flagged = rawFlagged === '1';
+    const updated = await AIConversationLog.setFlagged(logId, flagged);
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!updated) {
@@ -1789,6 +1924,18 @@ function hasQuestionUploads(files) {
 }
 
 function validateTheoryBody(body) {
+  const scalarFields = [
+    'type', 'layout', 'interaction', 'authoring_mode', 'grid_layout',
+    'title', 'display_text', 'body', 'example', 'student_task', 'remember'
+  ];
+  if (scalarFields.some((field) => body[field] != null && typeof body[field] !== 'string')) {
+    return 'Dữ liệu thẻ lý thuyết không đúng định dạng.';
+  }
+  if (!THEORY_TYPES.includes(String(body.type || '').trim())) return 'Loại thẻ lý thuyết không hợp lệ.';
+  if (!THEORY_LAYOUTS.includes(String(body.layout || '').trim())) return 'Bố cục thẻ lý thuyết không hợp lệ.';
+  if (!THEORY_INTERACTIONS.includes(String(body.interaction || '').trim())) return 'Kiểu tương tác lý thuyết không hợp lệ.';
+  if (!AUTHORING_MODES.includes(String(body.authoring_mode || '').trim())) return 'Chế độ biên soạn không hợp lệ.';
+  if (!isValidRemovalSelection(body.remove_theory_images)) return 'Danh sách ảnh cần xóa không hợp lệ.';
   const checks = [
     [body.title, 'Tiêu đề thẻ', CONTENT_LIMITS.theoryTitle],
     [body.display_text, 'Dòng dẫn', CONTENT_LIMITS.theoryDisplayText],
@@ -1821,13 +1968,13 @@ function hasTheoryCardContent(card) {
 // Hàm normalizeTheoryType dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryType(value) {
   const type = String(value || '').trim();
-  return ['observe', 'concept', 'model', 'quick_try', 'remember'].includes(type) ? type : 'concept';
+  return THEORY_TYPES.includes(type) ? type : 'concept';
 }
 
 // Hàm normalizeTheoryLayout dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryLayout(value) {
   const layout = String(value || '').trim();
-  return ['text_first', 'visual_top', 'visual_left', 'visual_right', 'step_focus', 'compact'].includes(layout)
+  return THEORY_LAYOUTS.includes(layout)
     ? layout
     : 'text_first';
 }
@@ -1835,7 +1982,7 @@ function normalizeTheoryLayout(value) {
 // Hàm normalizeTheoryInteraction dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeTheoryInteraction(value) {
   const interaction = String(value || '').trim();
-  return ['none', 'choose', 'count', 'fill_blank', 'compare', 'match'].includes(interaction) ? interaction : 'none';
+  return THEORY_INTERACTIONS.includes(interaction) ? interaction : 'none';
 }
 
 // Hàm buildTheoryImages dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

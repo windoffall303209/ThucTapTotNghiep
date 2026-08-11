@@ -6,6 +6,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
 const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
+const { parseInteger } = require('../utils/requestValidation');
 
 const PRACTICE_DURATION_DEFAULTS = Object.freeze({
   5: 10,
@@ -124,13 +125,14 @@ async function updateSettings(input) {
   // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [key, value] of Object.entries(input)) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (typeof value !== 'string' || !ALLOWED_SETTING_KEYS.has(key)) continue;
+    if (value == null || !ALLOWED_SETTING_KEYS.has(key)) continue;
+    if (typeof value !== 'string') throw invalidSetting('Dữ liệu cấu hình không đúng định dạng.');
     const trimmedValue = value.trim();
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (Object.values(PRACTICE_DURATION_SETTING_KEYS).includes(key)) {
-      const minutes = Number(trimmedValue);
+      const minutes = parseInteger(trimmedValue, { min: 1, max: 240 });
       // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (!Number.isInteger(minutes) || minutes < 1 || minutes > 240) {
+      if (minutes === null) {
         const validationError = new Error('Thời gian luyện tập phải là số phút nguyên từ 1 đến 240.');
         validationError.code = 'INVALID_PRACTICE_DURATION';
         throw validationError;
@@ -140,7 +142,10 @@ async function updateSettings(input) {
     }
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (BASE_URL_PROVIDERS[key]) {
-      nextSettings[key] = assertAllowedProviderBaseUrl(trimmedValue, BASE_URL_PROVIDERS[key]);
+      nextSettings[key] = assertAllowedProviderBaseUrl(
+        validateSettingValue(key, trimmedValue),
+        BASE_URL_PROVIDERS[key]
+      );
       continue;
     }
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -189,6 +194,14 @@ function isSecretKey(key) {
 
 // Hàm validateSettingValue dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function validateSettingValue(key, value) {
+  if (typeof value !== 'string') throw invalidSetting('Dữ liệu cấu hình không đúng định dạng.');
+  if (/[\u0000-\u001f\u007f]/.test(value)) {
+    throw invalidSetting('Giá trị cấu hình không được chứa ký tự điều khiển.');
+  }
+  if (BASE_URL_PROVIDERS[key]) {
+    if (value.length > 2048) throw invalidSetting('Base URL không được vượt quá 2048 ký tự.');
+    return value;
+  }
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (key === 'ai_provider') {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -232,9 +245,9 @@ function validateSettingValue(key, value) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (integerRules[key]) {
     const [min, max, message] = integerRules[key];
-    const number = Number(value);
+    const number = parseInteger(value, { min, max });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!Number.isInteger(number) || number < min || number > max) {
+    if (number === null) {
       throw invalidSetting(message);
     }
     return String(number);

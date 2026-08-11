@@ -12,6 +12,7 @@ const {
   validatePassword,
   validateUsername
 } = require('../utils/accountValidation');
+const { isAllowedValue } = require('../utils/requestValidation');
 
 // Bcrypt must still run when the username does not exist. Returning early makes
 // the timing gap large enough to enumerate accounts despite identical messages.
@@ -19,9 +20,10 @@ const DUMMY_PASSWORD_HASH = '$2b$10$6tzMhutOT6ddxR6sSqLDiuzw409nMyXSAZW1B3GlPXpJ
 
 // Hàm showLogin dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function showLogin(req, res) {
+  const role = isAllowedValue(req.query.role, ['admin']) ? 'admin' : 'student';
   res.render('auth/login', {
     title: 'Đăng nhập',
-    role: req.query.role || 'student'
+    role
   });
 }
 
@@ -41,7 +43,10 @@ async function register(req, res, next) {
     const fullname = normalizeFullname(req.body.fullname);
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!username || !password || !confirmPassword || !fullname || !grade) {
+    if (
+      !username || typeof password !== 'string' || typeof confirmPassword !== 'string'
+      || !password || !confirmPassword || !fullname || !grade
+    ) {
       setFlash(req, 'danger', 'Vui lòng điền đầy đủ tất cả các trường.');
       return res.redirect('/auth/register');
     }
@@ -105,7 +110,9 @@ async function login(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (
       !username
+      || typeof password !== 'string'
       || !password
+      || !isAllowedValue(role, ['student', 'admin'])
       || validateUsername(username, { login: true })
       || Buffer.byteLength(String(password), 'utf8') > 72
     ) {

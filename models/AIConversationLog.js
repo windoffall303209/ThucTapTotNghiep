@@ -2,6 +2,7 @@
 const db = require('../config/db');
 const sampleData = require('../sample-data/sampleData');
 const { fallbackOrThrow } = require('../utils/sampleDataFallback');
+const { parseInteger, parsePositiveInteger } = require('../utils/requestValidation');
 
 let schemaCheckPromise = null;
 const AI_SESSION_TYPES = new Set(['EXERCISE_HELP', 'THEORY_EXPLAIN']);
@@ -67,7 +68,11 @@ function invalidLogFilter(message) {
 
 // Hàm normalizeDateFilter dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeDateFilter(value, label) {
-  const normalized = String(value || '').trim();
+  if (value === null || value === undefined || value === '') return '';
+  if (typeof value !== 'string') {
+    throw invalidLogFilter(`${label} không đúng định dạng.`);
+  }
+  const normalized = value.trim();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!normalized) return '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -86,7 +91,10 @@ function normalizeDateFilter(value, label) {
 // Hàm normalizePositiveId dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizePositiveId(value, label) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (value === null || value === undefined || String(value).trim() === '') return null;
+  if (value === null || value === undefined || value === '') return null;
+  if (!['string', 'number'].includes(typeof value)) {
+    throw invalidLogFilter(`${label} không hợp lệ.`);
+  }
   const normalized = String(value).trim();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!/^[1-9]\d*$/.test(normalized)) {
@@ -107,10 +115,18 @@ function normalizeLogFilters(filters = {}) {
     throw invalidLogFilter('Ngày bắt đầu không được sau ngày kết thúc.');
   }
 
-  const sessionType = String(filters.sessionType || '').trim().toUpperCase();
+  if (filters.sessionType != null && typeof filters.sessionType !== 'string') {
+    throw invalidLogFilter('Loại hội thoại không hợp lệ.');
+  }
+  const sessionType = (filters.sessionType || '').trim().toUpperCase();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (sessionType && !AI_SESSION_TYPES.has(sessionType)) {
     throw invalidLogFilter('Loại hội thoại không hợp lệ.');
+  }
+
+  const acceptedFlagValues = [undefined, null, '', false, 0, '0', true, 1, '1'];
+  if (!acceptedFlagValues.includes(filters.onlyFlagged)) {
+    throw invalidLogFilter('Bộ lọc đánh dấu không hợp lệ.');
   }
 
   return {
@@ -303,14 +319,8 @@ async function listLogs(options = {}) {
   const { page = 1, limit = 20 } = options;
   const filter = buildLogFilter(options);
   await ensureSchema();
-  const requestedLimit = Number(limit);
-  const requestedPage = Number(page);
-  const safeLimit = Number.isSafeInteger(requestedLimit)
-    ? Math.min(Math.max(requestedLimit, 5), 100)
-    : 20;
-  const safePage = Number.isSafeInteger(requestedPage) && requestedPage > 0
-    ? requestedPage
-    : 1;
+  const safeLimit = parseInteger(limit, { min: 5, max: 100 }) || 20;
+  const safePage = parseInteger(page, { min: 1, max: 100_000 }) || 1;
   const offset = (safePage - 1) * safeLimit;
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -456,17 +466,19 @@ async function getLogStats(filters = {}) {
 // Đánh dấu một hội thoại là AI trả lời sai kiến thức, phục vụ việc tối ưu prompt
 // về sau. Trả về true nếu có bản ghi được cập nhật.
 async function setFlagged(logId, flagged) {
+  const normalizedLogId = parsePositiveInteger(logId);
+  if (!normalizedLogId || typeof flagged !== 'boolean') return false;
   await ensureSchema();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const result = await db.query(
       'UPDATE AIConversationLogs SET is_flagged_inaccurate = ? WHERE id = ?',
-      [flagged ? 1 : 0, Number(logId)]
+      [flagged ? 1 : 0, normalizedLogId]
     );
     return Number(result?.affectedRows || 0) > 0;
   } catch (error) {
     fallbackOrThrow(error);
-    const log = (sampleData.aiLogs || []).find((item) => Number(item.id) === Number(logId));
+    const log = (sampleData.aiLogs || []).find((item) => Number(item.id) === normalizedLogId);
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!log) return false;
     log.is_flagged_inaccurate = Boolean(flagged);
