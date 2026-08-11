@@ -79,7 +79,8 @@
     "lucide": "0.469.0",
     "method-override": "^3.0.0",
     "multer": "^2.0.2",
-    "mysql2": "^3.15.3"
+    "mysql2": "^3.15.3",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

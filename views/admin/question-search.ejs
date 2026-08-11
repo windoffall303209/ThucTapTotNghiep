@@ -21,7 +21,7 @@
   <form class="curriculum-form question-search-form" action="/admin/questions/search" method="get">
     <label>
       Từ khóa trong đề bài
-      <input name="q" value="<%= filters.keyword %>" placeholder="Ví dụ: quả táo, chu vi...">
+      <input name="q" value="<%= filters.keyword %>" maxlength="200" placeholder="Ví dụ: quả táo, chu vi...">
     </label>
     <label>
       Khối lớp

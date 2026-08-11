@@ -21,6 +21,9 @@ const GRID_CELL_TYPES = [
   'remember',
   'instruction'
 ];
+const MAX_GRID_TEXT_LENGTH = 10_000;
+const MAX_GRID_IMAGE_URL_LENGTH = 2_048;
+const MAX_GRID_CELL_ID_LENGTH = 100;
 
 // Nhận cả chuỗi JSON (giá trị hidden input từ form) lẫn object đã parse.
 function parseGridLayout(value) {
@@ -48,6 +51,7 @@ function normalizeGridLayout(value) {
     rows,
     columns,
     cells: cells
+      .slice(0, rows * columns)
       .map((cell, index) => normalizeGridCell(cell, index, rows, columns))
       .filter(Boolean)
   };
@@ -62,18 +66,39 @@ function normalizeGridCell(cell, index, rows, columns) {
   const rowSpan = clampGridSpan(cell.rowSpan || 1, rows - row + 1);
   const colSpan = clampGridSpan(cell.colSpan || 1, columns - col + 1);
   return {
-    id: String(cell.id || `grid-cell-${index + 1}`),
+    id: limitText(cell.id || `grid-cell-${index + 1}`, MAX_GRID_CELL_ID_LENGTH),
     row,
     col,
     rowSpan,
     colSpan,
     type: GRID_CELL_TYPES.includes(cell.type) ? cell.type : 'text',
-    text: String(cell.text || '').trim(),
-    image_url: String(cell.image_url || '').trim(),
+    text: limitText(cell.text, MAX_GRID_TEXT_LENGTH),
+    image_url: normalizeGridImageUrl(cell.image_url),
     answer_key: String(cell.answer_key || '').trim().toUpperCase(),
     align: ['left', 'center', 'right'].includes(cell.align) ? cell.align : 'center',
-    background: String(cell.background || '').trim()
+    background: normalizeGridBackground(cell.background)
   };
+}
+
+function limitText(value, maxLength) {
+  return String(value || '').trim().slice(0, maxLength);
+}
+
+function normalizeGridImageUrl(value) {
+  const url = limitText(value, MAX_GRID_IMAGE_URL_LENGTH);
+  if (!url) return '';
+  if (url.startsWith('/uploads/images/')) return url;
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' ? url : '';
+  } catch (error) {
+    return '';
+  }
+}
+
+function normalizeGridBackground(value) {
+  const color = String(value || '').trim();
+  return /^#[0-9a-f]{6}$/i.test(color) ? color : '';
 }
 
 // Hàm clampGridSize dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -94,6 +119,7 @@ function clampGridSpan(value, max) {
 
 module.exports = {
   GRID_CELL_TYPES,
+  MAX_GRID_TEXT_LENGTH,
   parseGridLayout,
   normalizeGridLayout
 };

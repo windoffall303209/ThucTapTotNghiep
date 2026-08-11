@@ -5,6 +5,7 @@ const fs = require('fs');
 const fsPromises = require('fs/promises');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const sharp = require('sharp');
 
 const TEMP_UPLOAD_DIR = path.join(__dirname, '..', 'storage', 'tmp', 'uploads');
 const PUBLIC_IMAGE_DIR = path.join(__dirname, '..', 'public', 'uploads', 'images');
@@ -13,6 +14,9 @@ const MAX_REQUEST_IMAGE_BYTES = 25 * 1024 * 1024;
 const MAX_MULTIPART_REQUEST_BYTES = 30 * 1024 * 1024;
 const MAX_MULTIPART_FIELDS = 128;
 const MAX_MULTIPART_FIELD_SIZE_BYTES = 512 * 1024;
+const MAX_IMAGE_PIXELS = 40_000_000;
+const MAX_IMAGE_DIMENSION = 1920;
+const WEBP_QUALITY = 84;
 
 fs.mkdirSync(TEMP_UPLOAD_DIR, { recursive: true });
 fs.mkdirSync(PUBLIC_IMAGE_DIR, { recursive: true });
@@ -143,19 +147,79 @@ async function validateUploadedImages(req, res, next) {
         throw uploadError(`Tệp "${safeDisplayName(file.originalname)}" không phải ảnh hợp lệ.`);
       }
 
-      const finalFilename = `${Date.now()}-${crypto.randomBytes(16).toString('hex')}.${detected.extension}`;
+      const storedType = await optimizeUploadedImage(file, detected);
+
+      const finalFilename = `${Date.now()}-${crypto.randomBytes(16).toString('hex')}.${storedType.extension}`;
       const finalPath = path.join(PUBLIC_IMAGE_DIR, finalFilename);
       await fsPromises.rename(file.path, finalPath);
       file.path = finalPath;
       file.destination = PUBLIC_IMAGE_DIR;
       file.filename = finalFilename;
-      file.mimetype = detected.mimeType;
-      file.detectedImageType = detected.extension;
+      file.mimetype = storedType.mimeType;
+      file.detectedImageType = storedType.extension;
     }
     return next();
   } catch (error) {
     await cleanupRequestUploads(req).catch(() => {});
     return next(error);
+  }
+}
+
+// Giải mã ảnh thật để chặn ảnh hỏng/decompression bomb. Ảnh tĩnh được xoay theo
+// EXIF, thu nhỏ và chuyển sang WebP trước khi đưa vào thư mục public. GIF được
+// giữ nguyên để không làm mất animation nhưng vẫn bị giới hạn số pixel.
+async function optimizeUploadedImage(file, detected) {
+  const inputOptions = {
+    failOn: 'warning',
+    limitInputPixels: MAX_IMAGE_PIXELS,
+    ...(detected.extension === 'gif' ? { animated: true } : {})
+  };
+
+  try {
+    const inputBuffer = await fsPromises.readFile(file.path);
+    const metadata = await sharp(inputBuffer, inputOptions).metadata();
+    if (!metadata.width || !metadata.height) {
+      throw new Error('Không đọc được kích thước ảnh.');
+    }
+
+    if (detected.extension === 'gif') {
+      return detected;
+    }
+
+    const optimizedPath = `${file.path}.optimized.webp`;
+    try {
+      await sharp(inputBuffer, inputOptions)
+        .rotate()
+        .resize({
+          width: MAX_IMAGE_DIMENSION,
+          height: MAX_IMAGE_DIMENSION,
+          fit: 'inside',
+          withoutEnlargement: true
+        })
+        .webp({ quality: WEBP_QUALITY, effort: 4, smartSubsample: true })
+        .toFile(optimizedPath);
+      await unlinkFileWithRetry(file.path);
+      await fsPromises.rename(optimizedPath, file.path);
+      file.size = (await fsPromises.stat(file.path)).size;
+    } catch (error) {
+      await fsPromises.unlink(optimizedPath).catch(() => {});
+      throw error;
+    }
+    return { extension: 'webp', mimeType: 'image/webp' };
+  } catch (error) {
+    throw uploadError(`Tệp "${safeDisplayName(file.originalname)}" bị hỏng hoặc có kích thước ảnh không an toàn.`);
+  }
+}
+
+async function unlinkFileWithRetry(filePath, attempts = 5) {
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      await fsPromises.unlink(filePath);
+      return;
+    } catch (error) {
+      if (!['EBUSY', 'EPERM'].includes(error.code) || attempt + 1 >= attempts) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 20 * (2 ** attempt)));
+    }
   }
 }
 
@@ -370,11 +434,14 @@ module.exports = {
   MAX_MULTIPART_FIELDS,
   MAX_MULTIPART_FIELD_SIZE_BYTES,
   MAX_MULTIPART_REQUEST_BYTES,
+  MAX_IMAGE_DIMENSION,
+  MAX_IMAGE_PIXELS,
   cleanupRequestUploads,
   cleanupRequestUploadsWithRetry,
   commitRequestUploads,
   detectImageType,
   limitMultipartRequest,
+  optimizeUploadedImage,
   prepareUploadCleanup,
   questionImageUpload,
   validateUploadedImages

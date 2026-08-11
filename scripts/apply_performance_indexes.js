@@ -20,6 +20,11 @@ const INDEXES = [
     sql: 'CREATE INDEX idx_questions_lesson_difficulty_id ON QuestionBank(lesson_id, difficulty, id)'
   },
   {
+    table: 'QuestionBank',
+    name: 'idx_questions_active_created',
+    sql: 'CREATE INDEX idx_questions_active_created ON QuestionBank(is_active, created_at DESC, id DESC)'
+  },
+  {
     table: 'StudentLogs',
     name: 'idx_logs_session_created',
     sql: 'CREATE INDEX idx_logs_session_created ON StudentLogs(practice_session_id, created_at, id)'

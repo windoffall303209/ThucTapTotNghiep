@@ -130,7 +130,7 @@
 
   <label data-author-mode-panel="fields">
     Đề bài
-    <textarea name="content_text" rows="5" data-preview-content><%= questionText(question) %></textarea>
+    <textarea name="content_text" rows="5" maxlength="10000" data-preview-content><%= questionText(question) %></textarea>
   </label>
   <input type="hidden" data-preview-existing-images value="<%- escapeAttribute(JSON.stringify(questionImages)) %>">
 
@@ -210,7 +210,7 @@
       </label>
       <label>
         Mô tả ảnh mới
-        <input name="image_alt_text" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
+        <input name="image_alt_text" maxlength="255" placeholder="Ví dụ: Hình minh họa" data-preview-image-alt>
       </label>
     </div>
     <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
@@ -244,7 +244,7 @@
       <div class="choice-editor">
         <label class="choice-input">
           <span><%= key %></span>
-          <input name="choice_<%= key %>" value="<%= choice.text || '' %>" data-preview-choice="<%= key %>" placeholder="Nội dung đáp án <%= key %>">
+          <input name="choice_<%= key %>" value="<%= choice.text || '' %>" maxlength="2000" data-preview-choice="<%= key %>" placeholder="Nội dung đáp án <%= key %>">
         </label>
         <input type="hidden" data-preview-choice-existing-images="<%= key %>" value="<%- escapeAttribute(JSON.stringify(choiceImages)) %>">
         <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
@@ -276,18 +276,18 @@
             </label>
             <label>
               Mô tả ảnh mới
-              <input name="choice_image_alt_text_<%= key %>" placeholder="Ví dụ: Hình minh họa đáp án <%= key %>" data-preview-choice-image-alt="<%= key %>">
+              <input name="choice_image_alt_text_<%= key %>" maxlength="255" placeholder="Ví dụ: Hình minh họa đáp án <%= key %>" data-preview-choice-image-alt="<%= key %>">
             </label>
           </div>
         </fieldset>
         <div class="two-fields">
           <label>
             Tên lỗi sai <%= key %>
-            <input name="misconception_name_<%= key %>" value="<%= misconception.misconception_name || '' %>" placeholder="Ví dụ: Nhầm quy tắc">
+            <input name="misconception_name_<%= key %>" value="<%= misconception.misconception_name || '' %>" maxlength="255" placeholder="Ví dụ: Nhầm quy tắc">
           </label>
           <label>
             Giải thích lỗi sai <%= key %>
-            <input name="misconception_<%= key %>" value="<%= misconception.explanation || '' %>" placeholder="Chỉ nhập nếu <%= key %> là đáp án sai">
+            <input name="misconception_<%= key %>" value="<%= misconception.explanation || '' %>" maxlength="5000" placeholder="Chỉ nhập nếu <%= key %> là đáp án sai">
           </label>
         </div>
       </div>
@@ -306,12 +306,12 @@
 
   <label data-correct-free-panel hidden>
     Đáp án đúng
-    <input name="correct_answer_free" value="<%= questionType === 'FILL_IN_THE_BLANK' ? question.correct_answer : '' %>" placeholder="Ví dụ: 15 hoặc 2/3" data-free-answer>
+    <input name="correct_answer_free" value="<%= questionType === 'FILL_IN_THE_BLANK' ? question.correct_answer : '' %>" maxlength="50" placeholder="Ví dụ: 15 hoặc 2/3" data-free-answer>
   </label>
 
   <label data-author-mode-panel="fields">
     Lời giải chi tiết
-    <textarea name="explanation_text" rows="5"><%= explanationText(question) %></textarea>
+    <textarea name="explanation_text" rows="5" maxlength="20000"><%= explanationText(question) %></textarea>
   </label>
 
   <fieldset class="choice-fieldset image-fieldset" data-advanced-panel data-author-mode-panel="fields">
@@ -327,7 +327,7 @@
       </label>
       <label>
         Mô tả ảnh mới
-        <input name="explanation_image_alt_text" placeholder="Ví dụ: Hình minh họa lời giải">
+        <input name="explanation_image_alt_text" maxlength="255" placeholder="Ví dụ: Hình minh họa lời giải">
       </label>
     </div>
     <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>

@@ -171,6 +171,8 @@ CREATE INDEX idx_questions_concept ON QuestionBank(concept_id);
 CREATE INDEX idx_questions_difficulty ON QuestionBank(difficulty);
 -- Câu lệnh SQL CREATE thực hiện một bước thay đổi hoặc truy vấn dữ liệu; cần kiểm tra phạm vi tác động trước khi chạy.
 CREATE INDEX idx_questions_active_lesson ON QuestionBank(is_active, lesson_id, difficulty, id);
+-- Tối ưu bảng điều khiển lấy các câu hoạt động mới nhất mà không phải sort toàn bộ ngân hàng.
+CREATE INDEX idx_questions_active_created ON QuestionBank(is_active, created_at DESC, id DESC);
 
 -- 9. Table: CommonMisconceptions (Ánh xạ các lỗi sai thường gặp khi làm trắc nghiệm)
 CREATE TABLE CommonMisconceptions (

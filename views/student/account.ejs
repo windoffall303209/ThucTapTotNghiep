@@ -48,7 +48,7 @@
       <label>
         Mật khẩu hiện tại
         <span class="password-field">
-          <input name="current_password" type="password" autocomplete="current-password" required>
+          <input name="current_password" type="password" autocomplete="current-password" maxlength="72" required>
           <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
             <i data-lucide="eye" class="lucide-icon"></i>
           </button>
@@ -57,7 +57,7 @@
       <label>
         Mật khẩu mới
         <span class="password-field">
-          <input name="new_password" type="password" autocomplete="new-password" minlength="8" required>
+          <input name="new_password" type="password" autocomplete="new-password" minlength="8" maxlength="72" required>
           <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
             <i data-lucide="eye" class="lucide-icon"></i>
           </button>
@@ -66,7 +66,7 @@
       <label>
         Xác nhận mật khẩu mới
         <span class="password-field">
-          <input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required>
+          <input name="confirm_password" type="password" autocomplete="new-password" minlength="8" maxlength="72" required>
           <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
             <i data-lucide="eye" class="lucide-icon"></i>
           </button>

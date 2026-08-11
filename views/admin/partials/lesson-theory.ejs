@@ -114,20 +114,20 @@
       </div>
       <label>
         Tiêu đề
-        <input name="title" placeholder="Ví dụ: Đếm các đồ vật" data-theory-title>
+        <input name="title" maxlength="255" placeholder="Ví dụ: Đếm các đồ vật" data-theory-title>
       </label>
       <label>
         Câu hiển thị ngắn
-        <input name="display_text" placeholder="Ví dụ: Quan sát hình và đếm số quả táo." data-theory-display-text>
+        <input name="display_text" maxlength="2000" placeholder="Ví dụ: Quan sát hình và đếm số quả táo." data-theory-display-text>
       </label>
       <label>
         Nội dung / các bước
-        <textarea name="body" rows="6" placeholder="Nhập ngắn gọn. Mỗi dòng có thể là một bước hoặc một ý." data-theory-body></textarea>
+        <textarea name="body" rows="6" maxlength="20000" placeholder="Nhập ngắn gọn. Mỗi dòng có thể là một bước hoặc một ý." data-theory-body></textarea>
       </label>
       <div class="two-fields">
         <label>
           Nhiệm vụ của học sinh
-          <input name="student_task" placeholder="Ví dụ: Em hãy đếm từ trái sang phải." data-theory-student-task>
+          <input name="student_task" maxlength="2000" placeholder="Ví dụ: Em hãy đếm từ trái sang phải." data-theory-student-task>
         </label>
         <label>
           Kiểu tương tác dự kiến
@@ -141,11 +141,11 @@
       </div>
       <label>
         Ví dụ
-        <input name="example" placeholder="Ví dụ minh họa ngắn" data-theory-example>
+        <input name="example" maxlength="10000" placeholder="Ví dụ minh họa ngắn" data-theory-example>
       </label>
       <label>
         Ghi nhớ
-        <input name="remember" placeholder="Một câu chốt ngắn cho học sinh" data-theory-remember>
+        <input name="remember" maxlength="5000" placeholder="Một câu chốt ngắn cho học sinh" data-theory-remember>
       </label>
       <label>
         Ảnh minh họa
@@ -345,20 +345,20 @@
             </div>
             <label>
               Tiêu đề
-              <input name="title" value="<%= card.title || '' %>" data-theory-title>
+              <input name="title" value="<%= card.title || '' %>" maxlength="255" data-theory-title>
             </label>
             <label>
               Câu hiển thị ngắn
-              <input name="display_text" value="<%= card.display_text || '' %>" data-theory-display-text>
+              <input name="display_text" value="<%= card.display_text || '' %>" maxlength="2000" data-theory-display-text>
             </label>
             <label>
               Nội dung / các bước
-              <textarea name="body" rows="6" data-theory-body><%= bodyValue(card) %></textarea>
+              <textarea name="body" rows="6" maxlength="20000" data-theory-body><%= bodyValue(card) %></textarea>
             </label>
             <div class="two-fields">
               <label>
                 Nhiệm vụ của học sinh
-                <input name="student_task" value="<%= card.student_task || '' %>" data-theory-student-task>
+                <input name="student_task" value="<%= card.student_task || '' %>" maxlength="2000" data-theory-student-task>
               </label>
               <label>
                 Kiểu tương tác dự kiến
@@ -372,11 +372,11 @@
             </div>
             <label>
               Ví dụ
-              <input name="example" value="<%= card.example || '' %>" data-theory-example>
+              <input name="example" value="<%= card.example || '' %>" maxlength="10000" data-theory-example>
             </label>
             <label>
               Ghi nhớ
-              <input name="remember" value="<%= card.remember || '' %>" data-theory-remember>
+              <input name="remember" value="<%= card.remember || '' %>" maxlength="5000" data-theory-remember>
             </label>
             <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
             <% if (images.length > 0) { %>

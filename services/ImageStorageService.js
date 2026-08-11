@@ -19,7 +19,7 @@ const IMAGE_REFERENCE_COLUMNS = Object.freeze([
 
 // Hàm storeQuestionImage dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function storeQuestionImage(file, options = {}) {
-  const settings = await SystemSetting.getSettings();
+  const settings = options.storageContext?.settings || await SystemSetting.getSettings();
   const cloudinaryConfig = getCloudinaryConfig(settings);
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -64,6 +64,10 @@ async function storeQuestionImage(file, options = {}) {
     public_id: null,
     cloud_name: null
   };
+}
+
+async function createStorageContext() {
+  return { settings: await SystemSetting.getSettings() };
 }
 
 // Hàm collectImageDescriptors dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -379,6 +383,7 @@ module.exports = {
   buildReferenceQuery,
   cloudNameFromDeliveryUrl,
   collectImageDescriptors,
+  createStorageContext,
   deleteStoredImagesIfUnreferenced,
   differenceImageDescriptors,
   escapeJsonSearchPattern,

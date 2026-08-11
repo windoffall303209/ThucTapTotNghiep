@@ -9,6 +9,7 @@ const { assertAllowedProviderBaseUrl } = require('../utils/outboundUrlPolicy');
 const CHECK_PROMPT = 'Trả lời đúng một từ: OK';
 const CHECK_TIMEOUT_MS = 45000;
 const MODELS_TIMEOUT_MS = 20000;
+const MAX_PROVIDER_RESPONSE_BYTES = 2 * 1024 * 1024;
 
 // Hàm checkProvider dùng để kiểm tra tính hợp lệ và các điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function checkProvider(provider, input = {}) {
@@ -331,6 +332,7 @@ function requestJson(url, options = {}) {
     const client = targetUrl.protocol === 'http:' ? http : https;
     const body = options.body ? JSON.stringify(options.body) : null;
     const timeoutMs = options.timeoutMs || MODELS_TIMEOUT_MS;
+    const maxResponseBytes = options.maxResponseBytes || MAX_PROVIDER_RESPONSE_BYTES;
     let settled = false;
 
     const request = client.request(
@@ -348,8 +350,21 @@ function requestJson(url, options = {}) {
       },
       (response) => {
         let raw = '';
+        let receivedBytes = 0;
         response.setEncoding('utf8');
         response.on('data', (chunk) => {
+          receivedBytes += Buffer.byteLength(chunk);
+          if (receivedBytes > maxResponseBytes) {
+            if (settled) return;
+            settled = true;
+            clearTimeout(hardTimer);
+            const error = new Error('Phản hồi từ API vượt quá giới hạn an toàn.');
+            error.code = 'PROVIDER_RESPONSE_TOO_LARGE';
+            response.destroy();
+            request.destroy();
+            reject(error);
+            return;
+          }
           raw += chunk;
         });
         response.on('end', () => {
@@ -477,5 +492,9 @@ function formatError(error) {
 }
 
 module.exports = {
-  checkProvider
+  checkProvider,
+  _test: {
+    MAX_PROVIDER_RESPONSE_BYTES,
+    requestJson
+  }
 };

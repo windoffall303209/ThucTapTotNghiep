@@ -12,9 +12,17 @@ const { validatePassword } = require('../utils/accountValidation');
 const { parseGridLayout } = require('../utils/gridLayout');
 const { safeAdminReturnTo } = require('../utils/safeRedirect');
 const { commitRequestUploads } = require('../middleware/upload');
+const {
+  CONTENT_LIMITS,
+  isPositiveInteger,
+  normalizeSearchKeyword,
+  validateSortOrder,
+  validateTextLength
+} = require('../utils/contentValidation');
 
 const ANSWER_KEYS = ['A', 'B', 'C', 'D'];
 const QUESTION_TYPES = ['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK'];
+const QUESTION_DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD', 'EXPERT'];
 const LAYOUT_TEMPLATES = [
   'STACK_VERTICAL',
   'SPLIT_HORIZONTAL_LEFT_IMAGE',
@@ -180,6 +188,11 @@ async function createTheoryCard(req, res, next) {
     }
 
     const cards = Array.isArray(lesson.theory_cards) ? [...lesson.theory_cards] : [];
+    const validation = validateTheoryBody(req.body);
+    if (validation) {
+      setFlash(req, 'danger', validation);
+      return res.redirect(contentManagerUrl('theory', lesson.id));
+    }
     const newCard = await buildSingleTheoryCard(req.body, req.files || [], cards.length);
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -222,6 +235,12 @@ async function updateTheoryCard(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!cards[cardIndex]) {
       setFlash(req, 'danger', 'Không tìm thấy thẻ lý thuyết cần cập nhật.');
+      return res.redirect(contentManagerUrl('theory', lesson.id));
+    }
+
+    const validation = validateTheoryBody(req.body);
+    if (validation) {
+      setFlash(req, 'danger', validation);
       return res.redirect(contentManagerUrl('theory', lesson.id));
     }
 
@@ -315,7 +334,7 @@ async function lessonQuestions(req, res, next) {
     // Lọc theo độ khó và từ khóa ngay trong một bài: bài 30-40 câu mà chỉ có
     // lật trang tuần tự thì việc tìm một câu cụ thể rất mất thời gian.
     const difficulty = String(req.query.difficulty || '').trim().toUpperCase();
-    const keyword = String(req.query.q || '').trim();
+    const keyword = normalizeSearchKeyword(req.query.q);
     const questionPage = await Question.getQuestionPageByLesson(req.params.lessonId, {
       page,
       limit,
@@ -347,7 +366,7 @@ async function questionSearch(req, res, next) {
       grade: Number(req.query.grade || 0) || null,
       difficulty: String(req.query.difficulty || '').trim().toUpperCase() || null,
       questionType: String(req.query.type || '').trim().toUpperCase() || null,
-      keyword: String(req.query.q || '').trim(),
+      keyword: normalizeSearchKeyword(req.query.q),
       missingExplanation: req.query.missing_explanation === '1'
     };
     const daLoc = Boolean(
@@ -411,7 +430,10 @@ async function createQuestion(req, res, next) {
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id));
     }
 
-    const choices = await buildChoices(req.body, files.choiceImages);
+    const storageContext = hasQuestionUploads(files)
+      ? await ImageStorageService.createStorageContext()
+      : null;
+    const choices = await buildChoices(req.body, files.choiceImages, new Map(), storageContext);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
     const uploadedQuestionImages = authoringMode === 'canvas'
       ? []
@@ -419,7 +441,8 @@ async function createQuestion(req, res, next) {
           idPrefix: 'image',
           widthField: 'image_width_percent',
           altField: 'image_alt_text',
-          defaultAlt: 'Hình minh họa'
+          defaultAlt: 'Hình minh họa',
+          storageContext
         });
     const uploadedExplanationImages = authoringMode === 'canvas'
       ? []
@@ -427,7 +450,8 @@ async function createQuestion(req, res, next) {
           idPrefix: 'explanation-image',
           widthField: 'explanation_image_width_percent',
           altField: 'explanation_image_alt_text',
-          defaultAlt: 'Hình minh họa lời giải'
+          defaultAlt: 'Hình minh họa lời giải',
+          storageContext
         });
     const explanationImages = uploadedExplanationImages;
     const contentText = authoringMode === 'canvas'
@@ -438,7 +462,7 @@ async function createQuestion(req, res, next) {
     await Question.createQuestion({
       lesson_id: Number(req.body.lesson_id),
       question_type: normalizeQuestionType(req.body.question_type),
-      difficulty: req.body.difficulty || 'EASY',
+      difficulty: normalizeQuestionDifficulty(req.body.difficulty),
       layout_template: normalizeLayoutTemplate(req.body.layout_template),
       content: {
         text: contentText,
@@ -489,7 +513,10 @@ async function updateQuestion(req, res, next) {
       return res.redirect(contentManagerUrl('questions', req.body.lesson_id || question.lesson_id));
     }
 
-    const choices = await buildChoices(req.body, files.choiceImages, existingChoices);
+    const storageContext = hasQuestionUploads(files)
+      ? await ImageStorageService.createStorageContext()
+      : null;
+    const choices = await buildChoices(req.body, files.choiceImages, existingChoices, storageContext);
     const misconceptions = buildMisconceptions(choices, req.body.correct_answer, req.body);
     const existingImages = Array.isArray(question.content?.images) ? question.content.images : [];
     const removedQuestionImages = getRemovedImages(existingImages, req.body.remove_question_images);
@@ -501,7 +528,8 @@ async function updateQuestion(req, res, next) {
           idPrefix: 'image',
           widthField: 'image_width_percent',
           altField: 'image_alt_text',
-          defaultAlt: 'Hình minh họa'
+          defaultAlt: 'Hình minh họa',
+          storageContext
         });
     const questionImages = authoringMode === 'canvas' ? [] : keptQuestionImages.concat(uploadedImages);
     const existingExplanationImages = Array.isArray(question.explanation?.images) ? question.explanation.images : [];
@@ -513,7 +541,8 @@ async function updateQuestion(req, res, next) {
           idPrefix: 'explanation-image',
           widthField: 'explanation_image_width_percent',
           altField: 'explanation_image_alt_text',
-          defaultAlt: 'Hình minh họa lời giải'
+          defaultAlt: 'Hình minh họa lời giải',
+          storageContext
         });
     const contentText = authoringMode === 'canvas'
       ? ''
@@ -525,7 +554,7 @@ async function updateQuestion(req, res, next) {
     const payload = {
       lesson_id: Number(req.body.lesson_id),
       question_type: normalizeQuestionType(req.body.question_type),
-      difficulty: req.body.difficulty || question.difficulty || 'EASY',
+      difficulty: normalizeQuestionDifficulty(req.body.difficulty || question.difficulty),
       layout_template: normalizeLayoutTemplate(req.body.layout_template || question.layout_template),
       content: {
         text: contentText,
@@ -610,9 +639,38 @@ function validateQuestionBody(body, choiceFiles = {}, existingChoices = new Map(
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
   const gridLayout = authoringMode === 'canvas' ? parseGridLayout(body.grid_layout) : parseGridLayout({ enabled: false });
   const hasGridLayout = gridLayout.enabled;
+  if (!isPositiveInteger(body.lesson_id)) {
+    return 'Bài học không hợp lệ.';
+  }
+  if (!QUESTION_TYPES.includes(String(body.question_type || '').trim().toUpperCase())) {
+    return 'Dạng câu hỏi không hợp lệ.';
+  }
+  if (!QUESTION_DIFFICULTIES.includes(String(body.difficulty || 'EASY').trim().toUpperCase())) {
+    return 'Độ khó không hợp lệ.';
+  }
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (!body.lesson_id || (!body.content_text && !hasGridLayout) || !body.correct_answer) {
     return 'Vui lòng chọn bài học, nhập đề bài và chọn đáp án đúng.';
+  }
+
+  const lengthChecks = [
+    [body.content_text, 'Đề bài', CONTENT_LIMITS.questionContent],
+    [body.correct_answer, 'Đáp án đúng', CONTENT_LIMITS.correctAnswer],
+    [body.explanation_text, 'Lời giải', CONTENT_LIMITS.explanation],
+    [body.image_alt_text, 'Mô tả ảnh đề bài', CONTENT_LIMITS.altText],
+    [body.explanation_image_alt_text, 'Mô tả ảnh lời giải', CONTENT_LIMITS.altText]
+  ];
+  for (const key of ANSWER_KEYS) {
+    lengthChecks.push(
+      [body[`choice_${key}`], `Phương án ${key}`, CONTENT_LIMITS.choiceText],
+      [body[`choice_image_alt_text_${key}`], `Mô tả ảnh phương án ${key}`, CONTENT_LIMITS.altText],
+      [body[`misconception_name_${key}`], `Tên lỗi sai ${key}`, CONTENT_LIMITS.misconceptionName],
+      [body[`misconception_${key}`], `Giải thích lỗi sai ${key}`, CONTENT_LIMITS.misconception]
+    );
+  }
+  for (const [value, label, limit] of lengthChecks) {
+    const error = validateTextLength(value, label, limit);
+    if (error) return error;
   }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -668,7 +726,9 @@ function gridHasAnswerOptions(gridLayout, correctAnswer = '') {
 
 // Hàm normalizeQuestionBody dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeQuestionBody(body) {
-  body.question_type = normalizeQuestionType(body.question_type);
+  body.question_type = String(body.question_type || '').trim().toUpperCase();
+  body.difficulty = String(body.difficulty || 'EASY').trim().toUpperCase();
+  body.content_text = String(body.content_text || '').trim();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (body.question_type === 'FILL_IN_THE_BLANK') {
     body.correct_answer = String(body.correct_answer_free || body.correct_answer || '').trim();
@@ -677,12 +737,18 @@ function normalizeQuestionBody(body) {
     return body;
   }
 
+  body.correct_answer = String(body.correct_answer || '').trim().toUpperCase();
   body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
   return body;
 }
 
+function normalizeQuestionDifficulty(value) {
+  const difficulty = String(value || '').trim().toUpperCase();
+  return QUESTION_DIFFICULTIES.includes(difficulty) ? difficulty : 'EASY';
+}
+
 // Hàm buildChoices dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-async function buildChoices(body, choiceFiles = {}, existingChoices = new Map()) {
+async function buildChoices(body, choiceFiles = {}, existingChoices = new Map(), storageContext = null) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalizeQuestionType(body.question_type) === 'FILL_IN_THE_BLANK') {
     return [];
@@ -706,7 +772,8 @@ async function buildChoices(body, choiceFiles = {}, existingChoices = new Map())
       widthField: `choice_image_width_percent_${key}`,
       altField: `choice_image_alt_text_${key}`,
       defaultAlt: `Hình minh họa đáp án ${key}`,
-      folder: 'math-revision/choices'
+      folder: 'math-revision/choices',
+      storageContext
     });
 
     choices.push({
@@ -1011,7 +1078,8 @@ async function buildQuestionImages(files, body, options = {}) {
   // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [index, file] of files.entries()) {
     const storedImage = await ImageStorageService.storeQuestionImage(file, {
-      folder: options.folder || 'math-revision/questions'
+      folder: options.folder || 'math-revision/questions',
+      storageContext: options.storageContext
     });
     const imageNumber = startIndex + index + 1;
     images.push({
@@ -1337,6 +1405,12 @@ async function createChapter(req, res, next) {
       setFlash(req, 'danger', 'Vui lòng nhập tên chương.');
       return res.redirect(curriculumUrl(grade));
     }
+    const chapterError = validateTextLength(chapterName, 'Tên chương', CONTENT_LIMITS.chapterName)
+      || validateSortOrder(req.body.sort_order);
+    if (chapterError) {
+      setFlash(req, 'danger', chapterError);
+      return res.redirect(curriculumUrl(grade));
+    }
 
     const newChapterId = await Curriculum.createChapter({
       grade,
@@ -1366,6 +1440,12 @@ async function updateChapter(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!chapterName) {
       setFlash(req, 'danger', 'Tên chương không được để trống.');
+      return res.redirect(curriculumUrl(chapter.grade, chapter.id));
+    }
+    const chapterError = validateTextLength(chapterName, 'Tên chương', CONTENT_LIMITS.chapterName)
+      || validateSortOrder(req.body.sort_order);
+    if (chapterError) {
+      setFlash(req, 'danger', chapterError);
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
 
@@ -1432,6 +1512,12 @@ async function createLesson(req, res, next) {
       setFlash(req, 'danger', 'Vui lòng nhập tên bài học.');
       return res.redirect(curriculumUrl(chapter.grade, chapter.id));
     }
+    const lessonError = validateTextLength(lessonName, 'Tên bài học', CONTENT_LIMITS.lessonName)
+      || validateSortOrder(req.body.sort_order);
+    if (lessonError) {
+      setFlash(req, 'danger', lessonError);
+      return res.redirect(curriculumUrl(chapter.grade, chapter.id));
+    }
 
     await Curriculum.createLesson({
       chapterId: chapter.id,
@@ -1460,6 +1546,12 @@ async function updateLesson(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!lessonName) {
       setFlash(req, 'danger', 'Tên bài học không được để trống.');
+      return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
+    }
+    const lessonError = validateTextLength(lessonName, 'Tên bài học', CONTENT_LIMITS.lessonName)
+      || validateSortOrder(req.body.sort_order);
+    if (lessonError) {
+      setFlash(req, 'danger', lessonError);
       return res.redirect(curriculumUrl(lesson.grade, lesson.chapter_id));
     }
 
@@ -1656,6 +1748,9 @@ async function checkSettings(req, res, next) {
 // Hàm buildSingleTheoryCard dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = null) {
   const authoringMode = normalizeAuthoringMode(body.authoring_mode);
+  const storageContext = files.length > 0
+    ? await ImageStorageService.createStorageContext()
+    : null;
   const existingImages = filterRemovedImages(
     Array.isArray(existingCard?.images) ? existingCard.images : [],
     body.remove_theory_images
@@ -1665,7 +1760,8 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = 
     : await buildTheoryImages(
         files || [],
         cardIndex,
-        maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`)
+        maxImageIndex(existingImages, `theory-${cardIndex + 1}-image`),
+        storageContext
       );
   const gridLayout = authoringMode === 'canvas'
     ? parseGridLayout(body.grid_layout)
@@ -1684,6 +1780,28 @@ async function buildSingleTheoryCard(body, files, cardIndex = 0, existingCard = 
     grid_layout: gridLayout,
     images: authoringMode === 'canvas' ? [] : [...existingImages, ...uploadedImages]
   };
+}
+
+function hasQuestionUploads(files) {
+  return files.questionImages.length > 0
+    || files.explanationImages.length > 0
+    || Object.values(files.choiceImages).some((items) => items.length > 0);
+}
+
+function validateTheoryBody(body) {
+  const checks = [
+    [body.title, 'Tiêu đề thẻ', CONTENT_LIMITS.theoryTitle],
+    [body.display_text, 'Dòng dẫn', CONTENT_LIMITS.theoryDisplayText],
+    [body.body, 'Nội dung lý thuyết', CONTENT_LIMITS.theoryBody],
+    [body.example, 'Ví dụ', CONTENT_LIMITS.theoryExample],
+    [body.student_task, 'Việc học sinh cần làm', CONTENT_LIMITS.theoryStudentTask],
+    [body.remember, 'Nội dung ghi nhớ', CONTENT_LIMITS.theoryRemember]
+  ];
+  for (const [value, label, limit] of checks) {
+    const error = validateTextLength(value, label, limit);
+    if (error) return error;
+  }
+  return null;
 }
 
 // Hàm hasTheoryCardContent dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -1721,12 +1839,13 @@ function normalizeTheoryInteraction(value) {
 }
 
 // Hàm buildTheoryImages dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-async function buildTheoryImages(files, cardIndex, startIndex = 0) {
+async function buildTheoryImages(files, cardIndex, startIndex = 0, storageContext = null) {
   const images = [];
   // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const [index, file] of files.entries()) {
     const storedImage = await ImageStorageService.storeQuestionImage(file, {
-      folder: 'math-revision/theory'
+      folder: 'math-revision/theory',
+      storageContext
     });
     const imageNumber = startIndex + index + 1;
     images.push({

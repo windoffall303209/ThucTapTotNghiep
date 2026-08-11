@@ -33,6 +33,7 @@ const sessionStore = db.isDatabaseConfigured()
 const rateLimitStores = db.isDatabaseConfigured()
   ? {
     global: new MySQLRateLimitStore('global'),
+    staticAssets: new MySQLRateLimitStore('static-assets'),
     auth: new MySQLRateLimitStore('auth'),
     registration: new MySQLRateLimitStore('registration'),
     ai: new MySQLRateLimitStore('ai')
@@ -91,6 +92,26 @@ app.use((req, res, next) => {
   next();
 });
 app.use(compression());
+app.use(
+  '/uploads/images',
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: Number(process.env.STATIC_RATE_LIMIT || 20000),
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: rateLimitStores.staticAssets,
+    message: 'Quá nhiều yêu cầu tải ảnh trong thời gian ngắn. Vui lòng thử lại sau.',
+    skip: (req) => !isProduction && isLocalRequest(req)
+  })
+);
+app.use(
+  '/uploads/images',
+  express.static(path.join(__dirname, 'public', 'uploads', 'images'), {
+    etag: true,
+    immutable: isProduction,
+    maxAge: isProduction ? '30d' : 0
+  })
+);
 app.use(express.static(path.join(__dirname, 'public'), {
   etag: true,
   maxAge: isProduction ? '7d' : 0

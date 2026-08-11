@@ -28,7 +28,7 @@
     <input type="hidden" name="grade" value="<%= grade %>">
     <label>
       Tên chương
-      <input name="chapter_name" required placeholder="Ví dụ: Chủ đề 1. Số tự nhiên">
+      <input name="chapter_name" maxlength="255" required placeholder="Ví dụ: Chủ đề 1. Số tự nhiên">
     </label>
     <label>
       Học kỳ
@@ -39,7 +39,7 @@
     </label>
     <label>
       Số thứ tự
-      <input type="number" name="sort_order" min="1" value="<%= nextChapterOrder %>">
+      <input type="number" name="sort_order" min="1" max="1000000" value="<%= nextChapterOrder %>">
     </label>
     <button class="btn btn-primary" type="submit">
       <i data-lucide="plus" class="lucide-icon"></i>
@@ -87,7 +87,7 @@
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <label>
             Tên chương
-            <input name="chapter_name" value="<%= chapter.chapter_name %>" required>
+            <input name="chapter_name" value="<%= chapter.chapter_name %>" maxlength="255" required>
           </label>
           <label>
             Học kỳ
@@ -98,7 +98,7 @@
           </label>
           <label>
             Số thứ tự
-            <input type="number" name="sort_order" min="1" value="<%= chapter.sort_order %>">
+            <input type="number" name="sort_order" min="1" max="1000000" value="<%= chapter.sort_order %>">
           </label>
           <button class="btn btn-secondary" type="submit">
             <i data-lucide="save" class="lucide-icon"></i>
@@ -139,11 +139,11 @@
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <label>
                 Tên bài học
-                <input name="lesson_name" value="<%= lesson.lesson_name %>" required>
+                <input name="lesson_name" value="<%= lesson.lesson_name %>" maxlength="255" required>
               </label>
               <label>
                 Số thứ tự
-                <input type="number" name="sort_order" min="1" value="<%= lesson.sort_order %>">
+                <input type="number" name="sort_order" min="1" max="1000000" value="<%= lesson.sort_order %>">
               </label>
               <button class="btn btn-secondary" type="submit">
                 <i data-lucide="save" class="lucide-icon"></i>
@@ -185,11 +185,11 @@
           <input type="hidden" name="grade" value="<%= grade %>">
           <label>
             Tên bài học mới
-            <input name="lesson_name" required placeholder="Ví dụ: Bài 1. Ôn tập các số đến 100">
+            <input name="lesson_name" maxlength="255" required placeholder="Ví dụ: Bài 1. Ôn tập các số đến 100">
           </label>
           <label>
             Số thứ tự
-            <input type="number" name="sort_order" min="1" value="<%= lessons.length + 1 %>">
+            <input type="number" name="sort_order" min="1" max="1000000" value="<%= lessons.length + 1 %>">
           </label>
           <button class="btn btn-primary" type="submit">
             <i data-lucide="plus" class="lucide-icon"></i>

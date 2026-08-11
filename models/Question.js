@@ -191,7 +191,7 @@ function buildLessonQuestionFilter(options = {}) {
   const where = ['lesson_id = ?', 'is_active = 1'];
   const params = [];
   const difficulty = String(options.difficulty || '').trim().toUpperCase();
-  const keyword = String(options.keyword || '').trim();
+  const keyword = String(options.keyword || '').trim().slice(0, 200);
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
@@ -630,7 +630,7 @@ async function searchQuestions(filters = {}) {
     params.push(questionType);
   }
 
-  const keyword = String(filters.keyword || '').trim();
+  const keyword = String(filters.keyword || '').trim().slice(0, 200);
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (keyword) {
     where.push("JSON_UNQUOTE(JSON_EXTRACT(q.content, '$.text')) LIKE ?");
@@ -882,13 +882,18 @@ async function getRecentQuestions(limit = 6) {
   try {
     const rows = await db.query(
       `SELECT q.*, l.lesson_name, c.chapter_name, c.grade
-       FROM QuestionBank q
+       FROM (
+         SELECT recent.id
+         FROM QuestionBank recent
+         WHERE recent.is_active = 1
+         ORDER BY recent.created_at DESC, recent.id DESC
+         LIMIT ${safeLimit}
+       ) newest
+       JOIN QuestionBank q ON q.id = newest.id
        JOIN Lessons l ON l.id = q.lesson_id
        JOIN Chapters c ON c.id = l.chapter_id
-       WHERE q.is_active = 1
-         AND c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
-       ORDER BY q.created_at DESC, q.id DESC
-       LIMIT ${safeLimit}`
+       WHERE c.grade BETWEEN ${MIN_GRADE} AND ${MAX_GRADE}
+       ORDER BY q.created_at DESC, q.id DESC`
     );
     return rows.map(normalizeQuestion);
   } catch (error) {
