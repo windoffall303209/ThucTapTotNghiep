@@ -389,7 +389,7 @@ test('trang lý thuyết tạm ẩn phần hướng dẫn chung và có điều 
   ]);
 });
 
-test('thông báo đăng nhập là toast nổi tự tắt sau ba giây', () => {
+test('toàn bộ flash thông thường là toast nổi bên phải và có thể đóng', () => {
   const auth = read('controllers/AuthController.js');
   const layout = read('views/layouts/main.ejs');
   const commonJs = read('public/js/common.js');
@@ -400,16 +400,21 @@ test('thông báo đăng nhập là toast nổi tự tắt sau ba giây', () => 
     /Đăng nhập quản trị thành công\.',\s*\{\s*transient: true,\s*durationMs: 3000/s
   ]);
   assertContainsAll(layout, [
-    /flash\.transient \? ' flash-toast'/,
-    /data-flash-autohide="true"/,
-    /data-duration="<%= Number\(flash\.durationMs \|\| 3000\) %>"/
+    /class="flash-toast-region"/,
+    /class="flash flash-toast flash-<%= flash\.type %>"/,
+    /data-flash-toast/,
+    /data-flash-dismiss/,
+    /flash\.durationMs \|\| \(flash\.transient \? 3000 : 6000\)/
   ]);
   assertContainsAll(commonJs, [
     /initFlashToasts\(\)/,
-    /querySelectorAll\('\[data-flash-autohide="true"\]'\)/,
+    /querySelectorAll\('\[data-flash-toast\]:not\(\[data-flash-ready\]\)'\)/,
+    /querySelector\('\[data-flash-dismiss\]'\)/,
+    /pointerenter/,
     /flash\.remove\(\)/
   ]);
-  assert.match(commonCss, /\.flash-toast\s*\{[^}]*position:\s*fixed/s);
+  assert.match(commonCss, /\.flash-toast-region\s*\{[^}]*position:\s*fixed/s);
+  assert.match(commonCss, /\.flash-toast-region\s*\{[^}]*right:/s);
 });
 
 test('session review dùng renderer chung thay vì sao chép logic hiển thị', () => {

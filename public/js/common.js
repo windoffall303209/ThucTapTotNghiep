@@ -180,15 +180,48 @@
 
   // Hàm initFlashToasts dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initFlashToasts(root = document) {
-    root.querySelectorAll('[data-flash-autohide="true"]').forEach((flash) => {
+    root.querySelectorAll('[data-flash-toast]:not([data-flash-ready])').forEach((flash) => {
+      flash.dataset.flashReady = 'true';
       const requestedDuration = Number(flash.dataset.duration);
       const duration = Number.isFinite(requestedDuration) && requestedDuration > 0
         ? requestedDuration
-        : 3000;
-      window.setTimeout(() => {
+        : 6000;
+      let hideTimer = null;
+      let startedAt = Date.now();
+      let remaining = duration;
+
+      const dismiss = () => {
+        if (flash.classList.contains('is-hiding')) return;
+        if (hideTimer) window.clearTimeout(hideTimer);
         flash.classList.add('is-hiding');
-        window.setTimeout(() => flash.remove(), 220);
-      }, duration);
+        window.setTimeout(() => {
+          const region = flash.closest('.flash-toast-region');
+          flash.remove();
+          if (region && !region.querySelector('[data-flash-toast]')) region.remove();
+        }, 220);
+      };
+      const startTimer = () => {
+        startedAt = Date.now();
+        hideTimer = window.setTimeout(dismiss, remaining);
+      };
+      const pauseTimer = () => {
+        if (!hideTimer) return;
+        window.clearTimeout(hideTimer);
+        hideTimer = null;
+        remaining = Math.max(500, remaining - (Date.now() - startedAt));
+      };
+      const resumeTimer = () => {
+        if (!hideTimer && !flash.classList.contains('is-hiding')) startTimer();
+      };
+
+      flash.querySelector('[data-flash-dismiss]')?.addEventListener('click', dismiss);
+      flash.addEventListener('pointerenter', pauseTimer);
+      flash.addEventListener('pointerleave', resumeTimer);
+      flash.addEventListener('focusin', pauseTimer);
+      flash.addEventListener('focusout', (event) => {
+        if (!flash.contains(event.relatedTarget)) resumeTimer();
+      });
+      startTimer();
     });
   }
 

@@ -403,21 +403,97 @@ h3 {
   font-weight: 800;
 }
 
-.flash-toast {
+.flash-toast-region {
   position: fixed;
   z-index: 1200;
-  top: max(16px, env(safe-area-inset-top));
-  right: 16px;
-  width: min(380px, calc(100vw - 32px));
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  display: grid;
+  gap: 10px;
+  width: min(410px, calc(100vw - 36px));
+  pointer-events: none;
+}
+
+.flash-toast {
+  --toast-accent: var(--primary);
+  --toast-soft: var(--primary-soft);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  min-height: 72px;
   margin: 0;
-  box-shadow: var(--shadow-md);
-  animation: flash-toast-in 180ms ease-out;
+  padding: 14px 12px 14px 14px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--toast-accent) 24%, var(--line));
+  border-left: 4px solid var(--toast-accent);
+  border-radius: 12px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18), 0 4px 12px rgba(15, 23, 42, 0.08);
+  pointer-events: auto;
+  animation: flash-toast-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
   transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.flash-toast-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--toast-accent);
+  background: var(--toast-soft);
+}
+
+.flash-toast-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.flash-toast-copy strong {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.flash-toast-copy > span {
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.flash-toast-close {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: var(--ink-soft);
+  background: transparent;
+  cursor: pointer;
+}
+
+.flash-toast-close:hover,
+.flash-toast-close:focus-visible {
+  color: var(--ink);
+  background: #f1f5f9;
+}
+
+.flash-toast-close .lucide-icon {
+  width: 17px;
+  height: 17px;
 }
 
 .flash-toast.is-hiding {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateX(24px) scale(0.98);
 }
 
 .app-dialog {
@@ -505,12 +581,12 @@ h3 {
 @keyframes flash-toast-in {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateX(28px) scale(0.98);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0) scale(1);
   }
 }
 
@@ -530,6 +606,47 @@ h3 {
   color: #92400e;
   border-color: #fde68a;
   background: var(--warning-soft);
+}
+
+.flash-toast.flash-success {
+  --toast-accent: var(--success);
+  --toast-soft: var(--success-soft);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.flash-toast.flash-danger {
+  --toast-accent: var(--danger);
+  --toast-soft: var(--danger-soft);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.flash-toast.flash-warning {
+  --toast-accent: var(--warning);
+  --toast-soft: var(--warning-soft);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+@media (max-width: 560px) {
+  .flash-toast-region {
+    top: max(10px, env(safe-area-inset-top));
+    right: 10px;
+    width: calc(100vw - 20px);
+  }
+
+  .flash-toast {
+    min-height: 66px;
+    padding: 12px 10px 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-toast {
+    animation: none;
+    transition: opacity 120ms ease;
+  }
 }
 
 .status-pill,

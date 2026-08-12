@@ -41,6 +41,29 @@
     <% if (student) { %>data-grade="<%= student.current_grade %>"<% } %>>
     <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
     <%- include('../partials/header') %>
+    <% if (flash && !flash.modal) { %>
+      <div class="flash-toast-region" aria-label="Thông báo hệ thống">
+        <div
+          class="flash flash-toast flash-<%= flash.type %>"
+          role="<%= flash.type === 'danger' ? 'alert' : 'status' %>"
+          aria-live="<%= flash.type === 'danger' ? 'assertive' : 'polite' %>"
+          data-flash-toast
+          data-duration="<%= Number(flash.durationMs || (flash.transient ? 3000 : 6000)) %>">
+          <span class="flash-toast-icon" aria-hidden="true">
+            <i
+              data-lucide="<%= flash.type === 'success' ? 'circle-check' : (flash.type === 'danger' ? 'circle-alert' : 'triangle-alert') %>"
+              class="lucide-icon"></i>
+          </span>
+          <span class="flash-toast-copy">
+            <strong><%= flash.type === 'success' ? 'Thành công' : (flash.type === 'danger' ? 'Có lỗi xảy ra' : 'Thông báo') %></strong>
+            <span><%= flash.message %></span>
+          </span>
+          <button class="flash-toast-close" type="button" data-flash-dismiss aria-label="Đóng thông báo">
+            <i data-lucide="x" class="lucide-icon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    <% } %>
     <main id="main-content" class="page-shell" tabindex="-1">
       <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (flash && flash.modal) { %>
@@ -50,18 +73,6 @@
           data-title="<%= flash.type === 'warning' ? 'Thông báo' : 'Có điều cần lưu ý' %>"
           data-message="<%= flash.message %>"
           hidden></div>
-      <% } else if (flash) { %>
-        <div
-          class="flash flash-<%= flash.type %><%= flash.transient ? ' flash-toast' : '' %>"
-          role="status"
-          aria-live="polite"
-          <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
-          <% if (flash.transient) { %>
-            data-flash-autohide="true"
-            data-duration="<%= Number(flash.durationMs || 3000) %>"
-          <% } %>>
-          <%= flash.message %>
-        </div>
       <% } %>
       <%- body %>
     </main>
