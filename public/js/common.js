@@ -185,7 +185,7 @@
       const requestedDuration = Number(flash.dataset.duration);
       const duration = Number.isFinite(requestedDuration) && requestedDuration > 0
         ? requestedDuration
-        : 6000;
+        : 3000;
       let hideTimer = null;
       let startedAt = Date.now();
       let remaining = duration;

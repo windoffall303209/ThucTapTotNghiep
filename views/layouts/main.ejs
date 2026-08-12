@@ -48,7 +48,7 @@
           role="<%= flash.type === 'danger' ? 'alert' : 'status' %>"
           aria-live="<%= flash.type === 'danger' ? 'assertive' : 'polite' %>"
           data-flash-toast
-          data-duration="<%= Number(flash.durationMs || (flash.transient ? 3000 : 6000)) %>">
+          data-duration="<%= Number(flash.durationMs || 3000) %>">
           <span class="flash-toast-icon" aria-hidden="true">
             <i
               data-lucide="<%= flash.type === 'success' ? 'circle-check' : (flash.type === 'danger' ? 'circle-alert' : 'triangle-alert') %>"

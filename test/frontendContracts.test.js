@@ -404,7 +404,7 @@ test('toàn bộ flash thông thường là toast nổi bên phải và có th�
     /class="flash flash-toast flash-<%= flash\.type %>"/,
     /data-flash-toast/,
     /data-flash-dismiss/,
-    /flash\.durationMs \|\| \(flash\.transient \? 3000 : 6000\)/
+    /data-duration="<%= Number\(flash\.durationMs \|\| 3000\) %>"/
   ]);
   assertContainsAll(commonJs, [
     /initFlashToasts\(\)/,
