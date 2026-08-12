@@ -250,6 +250,7 @@ app.use(['/auth/login', '/auth/student/login', '/auth/admin/login'], authLimiter
 app.use('/auth/register', registrationLimiter);
 app.use(['/auth/forgot-password', '/auth/reset-password'], accountRecoveryLimiter);
 app.use(['/student/account/email', '/student/account/email/verify'], accountRecoveryLimiter);
+app.use('/admin/account/password', authLimiter);
 app.use('/auth', authRoutes);
 app.use('/student/theory/help', aiLimiter);
 app.use('/api/ai', aiLimiter);

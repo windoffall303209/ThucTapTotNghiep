@@ -1,7 +1,9 @@
 // Bộ điều khiển admin controller tiếp nhận yêu cầu, kiểm tra dữ liệu và điều phối phản hồi cho người dùng.
+const bcrypt = require('bcryptjs');
 const Curriculum = require('../models/Curriculum');
 const Question = require('../models/Question');
 const Student = require('../models/Student');
+const Admin = require('../models/Admin');
 const SystemSetting = require('../models/SystemSetting');
 const AIConversationLog = require('../models/AIConversationLog');
 const ImageStorageService = require('../services/ImageStorageService');
@@ -9,6 +11,7 @@ const ProviderCheckService = require('../services/ProviderCheckService');
 const { setFlash } = require('../utils/flash');
 const { GRADE_RANGE_LABEL, gradeOptions, isSupportedGrade } = require('../config/grades');
 const { validatePassword } = require('../utils/accountValidation');
+const { clearAuthCookie } = require('../utils/authToken');
 const { parseGridLayout } = require('../utils/gridLayout');
 const { safeAdminReturnTo } = require('../utils/safeRedirect');
 const { commitRequestUploads } = require('../middleware/upload');
@@ -770,6 +773,56 @@ function normalizeQuestionBody(body) {
   body.correct_answer = String(body.correct_answer || '').trim().toUpperCase();
   body.layout_template = normalizeLayoutTemplate(body.layout_template || body.layout_variant);
   return body;
+}
+
+async function updateOwnPassword(req, res, next) {
+  const accountRedirect = '/admin/dashboard?account=password';
+  try {
+    const admin = await Admin.findById(req.auth.id);
+    const currentPassword = typeof req.body.current_password === 'string' ? req.body.current_password : '';
+    const newPassword = typeof req.body.new_password === 'string' ? req.body.new_password : '';
+    const confirmPassword = typeof req.body.confirm_password === 'string' ? req.body.confirm_password : '';
+
+    if (!admin) {
+      setFlash(req, 'danger', 'Không tìm thấy tài khoản quản trị.');
+      return res.redirect('/auth/admin/login');
+    }
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setFlash(req, 'danger', 'Vui lòng nhập đầy đủ mật khẩu hiện tại và mật khẩu mới.');
+      return res.redirect(accountRedirect);
+    }
+    if (Buffer.byteLength(currentPassword, 'utf8') > 72) {
+      setFlash(req, 'danger', 'Mật khẩu hiện tại không hợp lệ.');
+      return res.redirect(accountRedirect);
+    }
+
+    const currentPasswordMatches = await bcrypt.compare(currentPassword, admin.password_hash);
+    if (!currentPasswordMatches) {
+      setFlash(req, 'danger', 'Mật khẩu hiện tại không đúng.');
+      return res.redirect(accountRedirect);
+    }
+
+    const passwordError = validatePassword(newPassword);
+    if (passwordError) {
+      setFlash(req, 'danger', passwordError);
+      return res.redirect(accountRedirect);
+    }
+    if (newPassword !== confirmPassword) {
+      setFlash(req, 'danger', 'Mật khẩu mới và xác nhận mật khẩu không khớp.');
+      return res.redirect(accountRedirect);
+    }
+    if (newPassword === currentPassword) {
+      setFlash(req, 'danger', 'Mật khẩu mới phải khác mật khẩu hiện tại.');
+      return res.redirect(accountRedirect);
+    }
+
+    await Admin.updatePassword(admin.id, newPassword);
+    clearAuthCookie(res);
+    setFlash(req, 'success', 'Đã đổi mật khẩu quản trị. Vui lòng đăng nhập lại bằng mật khẩu mới.');
+    return res.redirect('/auth/admin/login');
+  } catch (error) {
+    return next(error);
+  }
 }
 
 function validateQuestionEnums(body) {
@@ -1964,6 +2017,7 @@ async function buildTheoryImages(files, cardIndex, startIndex = 0, storageContex
 
 module.exports = {
   dashboard,
+  updateOwnPassword,
   theory,
   lessonTheory,
   createTheoryCard,

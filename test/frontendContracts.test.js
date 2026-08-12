@@ -309,10 +309,24 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /aria-label="Menu quản trị"/,
     /aria-current="page"/
   ]);
+  assertContainsAll(header, [
+    /data-admin-account-menu/,
+    /action="\/admin\/account\/password"/,
+    /name="current_password"/,
+    /name="new_password"[^>]*data-password-policy/,
+    /name="confirm_password"[^>]*data-password-confirm/,
+    /<%= admin\.fullname %>/,
+    /<%= admin\.username %>/
+  ]);
   assertContainsAll(adminCommon, [
     /const syncSidebarAccessibility =/,
     /sidebar\.setAttribute\('aria-hidden'/,
     /sidebar\.inert = !isOpen/
+  ]);
+  assertContainsAll(adminCommon, [
+    /initAdminAccountMenu/,
+    /event\.key !== 'Escape'/,
+    /params\.get\('account'\) === 'password'/
   ]);
 });
 
