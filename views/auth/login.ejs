@@ -49,8 +49,9 @@
         </p>
       <% } %>
       <% if (role !== 'admin') { %>
-        <div class="auth-links">
-          <a href="/auth/register">Chưa có tài khoản?</a>
+        <div class="auth-links" aria-label="Chuyển sang đăng ký">
+          <span>Chưa có tài khoản?</span>
+          <a href="/auth/register">Đăng ký</a>
         </div>
       <% } %>
     </div>

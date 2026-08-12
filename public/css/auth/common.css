@@ -62,12 +62,37 @@
 }
 
 .auth-links {
-  justify-content: space-between;
-  gap: 8px 14px;
+  justify-content: center;
+  gap: 6px;
   margin-top: 14px;
-  color: var(--primary-dark);
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  background: var(--surface-soft);
   font-size: 13px;
   font-weight: 700;
+}
+
+.auth-links a {
+  color: var(--primary-dark);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.auth-links a:hover,
+.auth-links a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-password-strength-slot {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.auth-password-strength-slot .password-strength {
+  margin-top: -2px;
 }
 
 .auth-panel .form-note {

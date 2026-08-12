@@ -260,6 +260,7 @@
     root.querySelectorAll('[data-password-policy]:not([data-password-strength-ready])').forEach((input) => {
       input.dataset.passwordStrengthReady = 'true';
       const field = input.closest('.password-field') || input;
+      const explicitSlot = input.closest('form')?.querySelector('[data-password-strength-slot]');
       const meter = document.createElement('div');
       const meterId = `password-strength-${Math.random().toString(36).slice(2, 10)}`;
       meter.id = meterId;
@@ -274,7 +275,8 @@
           <span data-password-strength-fill></span>
         </div>
       `;
-      field.insertAdjacentElement('afterend', meter);
+      if (explicitSlot) explicitSlot.appendChild(meter);
+      else field.insertAdjacentElement('afterend', meter);
       input.setAttribute('aria-describedby', [input.getAttribute('aria-describedby'), meterId].filter(Boolean).join(' '));
 
       const label = meter.querySelector('[data-password-strength-label]');

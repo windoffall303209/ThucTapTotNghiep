@@ -437,8 +437,20 @@ test('mọi mật khẩu mới có thanh báo độ mạnh dùng chung và hỗ 
   assert.match(script, /initPasswordStrengthMeters/);
   assert.match(script, /role="meter"/);
   assert.match(script, /aria-valuenow/);
+  assert.match(script, /data-password-strength-slot/);
   assert.match(css, /\.password-strength-track/);
   [register, account, students].forEach((view) => assert.match(view, /data-password-policy/));
+});
+
+test('đăng ký dùng thanh độ mạnh toàn hàng và hai trang có ô chuyển đăng nhập đăng ký', () => {
+  const css = read('public/css/auth/common.css');
+  const register = read('views/auth/register.ejs');
+  const login = read('views/auth/login.ejs');
+  assert.match(register, /auth-password-strength-slot/);
+  assert.match(css, /\.auth-password-strength-slot[\s\S]*grid-column:\s*1 \/ -1/);
+  assert.match(register, /Đã có tài khoản\?[\s\S]*Đăng nhập/);
+  assert.match(login, /Chưa có tài khoản\?[\s\S]*Đăng ký/);
+  assert.doesNotMatch(login, /role === 'admin'[\s\S]{0,300}Chưa có tài khoản/);
 });
 
 test('ảnh minh họa câu hỏi được thu gọn và có thể mở lớn', () => {
