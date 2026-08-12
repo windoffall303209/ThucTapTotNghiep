@@ -9,8 +9,7 @@ const WRONG_STREAK_FULL_SCORE = 3;
 const DIFFICULTY_EVIDENCE_WEIGHTS = Object.freeze({
   EASY: Object.freeze({ correct: 0.8, wrong: 1.2 }),
   MEDIUM: Object.freeze({ correct: 1, wrong: 1 }),
-  HARD: Object.freeze({ correct: 1.2, wrong: 0.8 }),
-  EXPERT: Object.freeze({ correct: 1.3, wrong: 0.7 })
+  HARD: Object.freeze({ correct: 1.2, wrong: 0.8 })
 });
 
 // Hàm calculateLessonMastery dùng để tính toán kết quả từ các tham số đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

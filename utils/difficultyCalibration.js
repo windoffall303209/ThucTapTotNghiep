@@ -9,8 +9,7 @@ function inferDifficultyFromAccuracy(accuracy) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (normalized >= 0.5) return 'MEDIUM';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (normalized >= 0.25) return 'HARD';
-  return 'EXPERT';
+  return 'HARD';
 }
 
 // Hàm buildDifficultyWarning dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -38,7 +37,7 @@ function buildDifficultyWarning(row, minimumAttempts = MIN_CALIBRATION_ATTEMPTS)
 // Hàm normalizeDifficulty dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeDifficulty(value) {
   const difficulty = String(value || '').trim().toUpperCase();
-  return ['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)
+  return ['EASY', 'MEDIUM', 'HARD'].includes(difficulty)
     ? difficulty
     : 'EASY';
 }

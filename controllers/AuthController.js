@@ -12,19 +12,29 @@ const {
   validatePassword,
   validateUsername
 } = require('../utils/accountValidation');
-const { isAllowedValue } = require('../utils/requestValidation');
 
 // Bcrypt must still run when the username does not exist. Returning early makes
 // the timing gap large enough to enumerate accounts despite identical messages.
 const DUMMY_PASSWORD_HASH = '$2b$10$6tzMhutOT6ddxR6sSqLDiuzw409nMyXSAZW1B3GlPXpJ3cAecZiBq';
 
 // Hàm showLogin dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-function showLogin(req, res) {
-  const role = isAllowedValue(req.query.role, ['admin']) ? 'admin' : 'student';
+function showLogin(req, res, role) {
   res.render('auth/login', {
     title: 'Đăng nhập',
     role
   });
+}
+
+function showStudentLogin(req, res) {
+  return showLogin(req, res, 'student');
+}
+
+function showAdminLogin(req, res) {
+  return showLogin(req, res, 'admin');
+}
+
+function redirectLegacyLogin(req, res) {
+  return res.redirect(req.query.role === 'admin' ? '/auth/admin/login' : '/auth/student/login');
 }
 
 // Hàm showRegister dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -101,10 +111,10 @@ async function register(req, res, next) {
 }
 
 // Hàm login dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-async function login(req, res, next) {
+async function loginForRole(req, res, next, role) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
-    const { password, role } = req.body;
+    const { password } = req.body;
     const username = normalizeUsername(req.body.username);
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -112,12 +122,11 @@ async function login(req, res, next) {
       !username
       || typeof password !== 'string'
       || !password
-      || !isAllowedValue(role, ['student', 'admin'])
       || validateUsername(username, { login: true })
       || Buffer.byteLength(String(password), 'utf8') > 72
     ) {
       setFlash(req, 'danger', 'Vui lòng nhập tên đăng nhập và mật khẩu.');
-      return res.redirect(`/auth/login${role === 'admin' ? '?role=admin' : ''}`);
+      return res.redirect(role === 'admin' ? '/auth/admin/login' : '/auth/student/login');
     }
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -133,13 +142,13 @@ async function login(req, res, next) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!student || !isValidPassword) {
       setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
-      return res.redirect('/auth/login');
+      return res.redirect('/auth/student/login');
     }
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (Number(student.is_active ?? 1) !== 1) {
       setFlash(req, 'danger', 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.');
-      return res.redirect('/auth/login');
+      return res.redirect('/auth/student/login');
     }
 
     // Phải kiểm tra khối lớp TRƯỚC khi cấp cookie. Nếu để requireStudent chặn
@@ -152,7 +161,7 @@ async function login(req, res, next) {
         `Tài khoản đang ở lớp ${student.current_grade}, ngoài phạm vi ${GRADE_RANGE_LABEL} mà hệ thống hỗ trợ. `
         + 'Vui lòng liên hệ quản trị viên để cập nhật lại khối lớp.'
       );
-      return res.redirect('/auth/login');
+      return res.redirect('/auth/student/login');
     }
 
     setAuthCookie(res, toStudentTokenPayload(student));
@@ -164,6 +173,20 @@ async function login(req, res, next) {
   } catch (error) {
     return next(error);
   }
+}
+
+function studentLogin(req, res, next) {
+  return loginForRole(req, res, next, 'student');
+}
+
+function adminLogin(req, res, next) {
+  return loginForRole(req, res, next, 'admin');
+}
+
+// Giữ endpoint POST cũ để các bookmark/form phiên bản trước tiếp tục hoạt động,
+// nhưng vai trò chỉ được chọn tại route mới chứ không còn hiển thị trên giao diện.
+function login(req, res, next) {
+  return loginForRole(req, res, next, req.body?.role === 'admin' ? 'admin' : 'student');
 }
 
 // Hàm logout dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -197,7 +220,7 @@ async function loginAdmin(req, res, username, password) {
   }
 
   setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu quản trị không chính xác.');
-  return res.redirect('/auth/login?role=admin');
+  return res.redirect('/auth/admin/login');
 }
 
 // Hàm verifyAdminCredentials dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -231,9 +254,13 @@ function toStudentTokenPayload(student) {
 }
 
 module.exports = {
-  showLogin,
+  redirectLegacyLogin,
+  showStudentLogin,
+  showAdminLogin,
   showRegister,
   register,
   login,
+  studentLogin,
+  adminLogin,
   logout
 };

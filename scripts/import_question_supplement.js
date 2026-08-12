@@ -7,7 +7,7 @@ const path = require('node:path');
 
 const db = require('../config/db');
 
-const ALLOWED_DIFFICIES = new Set(['EASY', 'MEDIUM', 'HARD', 'EXPERT']);
+const ALLOWED_DIFFICIES = new Set(['EASY', 'MEDIUM', 'HARD']);
 const ALLOWED_TYPES = new Set(['MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK']);
 const ALLOWED_LAYOUTS = new Set([
   'STACK_VERTICAL',

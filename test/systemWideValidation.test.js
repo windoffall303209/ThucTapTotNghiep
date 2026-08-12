@@ -13,6 +13,7 @@ const {
 const {
   normalizeFullname,
   normalizeUsername,
+  validateFullname,
   validatePassword
 } = require('../utils/accountValidation');
 const { normalizeGrade } = require('../config/grades');
@@ -49,6 +50,16 @@ test('text, account, grade and answer validators reject non-scalar payloads', ()
   assert.equal(normalizeTimeSpentSeconds(['30']), null);
   assert.ok(validateTextLength({ text: 'abc' }, 'Content', 100));
   assert.ok(validateSortOrder(['1']));
+});
+
+test('họ tên chỉ nhận chữ và mật khẩu mới phải đạt chính sách mạnh', () => {
+  assert.equal(validateFullname('Nguyễn Văn An'), '');
+  assert.equal(validateFullname("Anne-Marie O'Neil"), '');
+  assert.match(validateFullname('Nguyễn Văn An123'), /không được chứa số/);
+  assert.match(validateFullname('Nguyễn @ An'), /chỉ được chứa chữ cái/);
+  assert.match(validatePassword('Matkhau123'), /ký tự đặc biệt/);
+  assert.match(validatePassword('Mat khau-123!'), /khoảng trắng/);
+  assert.equal(validatePassword('Mat-khau-10!'), '');
 });
 
 test('system settings enforce scalar, size, control-character and strict-number rules', () => {

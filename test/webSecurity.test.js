@@ -260,7 +260,7 @@ test('CSRF chặn request thiếu token/cross-site và CSP được bật', asyn
     headers: { 'X-Requested-With': 'fetch' }
   });
   assert.equal(expiredAdminFetch.status, 401);
-  assert.equal(expiredAdminFetch.headers.get('x-auth-redirect'), '/auth/login?role=admin');
+  assert.equal(expiredAdminFetch.headers.get('x-auth-redirect'), '/auth/admin/login');
   assert.equal((await expiredAdminFetch.json()).code, 'SESSION_EXPIRED');
 
   const missingApi = await fetch(`${origin}/api/not-a-real-endpoint`, {

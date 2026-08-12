@@ -1,32 +1,19 @@
 // Mã JavaScript phía trình duyệt content manager điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   const {
-    boundsForCells,
-    cellRect,
-    clampGridSize,
-    clampSpan,
     collectPreviewChoices,
-    createBaseGridCells,
-    createGridCell,
     debounce,
     ensurePreviewPlaceholders,
     escapeAttribute,
     escapeHtml,
     getPreviewImages,
-    gridCellPreview,
-    gridCellTypeLabel,
     initConfirmForms,
     initLazyMath,
     initRenderedGrids,
-    isHexColor,
     isImageMarkedForRemoval,
     maxPreviewImageIndex,
-    normalizeGridCell,
-    normalizeRect,
     parseGridLayoutValue,
     parsePreviewImages,
-    rectContainsCell,
-    rectIntersectsCell,
     refreshIcons,
     renderAnswerArea,
     renderMath,
@@ -72,8 +59,6 @@
               // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
               if (parentDetails.open) {
                 initAdminPreview(parentDetails);
-                initGridEditors(parentDetails);
-                initAuthoringModeControls(parentDetails);
                 initRenderedGrids(parentDetails);
               }
             });
@@ -231,13 +216,10 @@
   function validateQuestionForm(form) {
     const questionType = form.querySelector('[data-question-type], [name="question_type"]')?.value
       || 'MULTIPLE_CHOICE';
-    const authoringMode = form.querySelector('[name="authoring_mode"]')?.value || 'fields';
-    const gridLayout = parseGridLayoutValue(form.querySelector('[data-grid-layout-input]')?.value);
-    const hasGrid = authoringMode === 'canvas' && gridLayout.enabled;
     const contentText = String(form.querySelector('[data-preview-content]')?.value || '').trim();
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (!contentText && !hasGrid) {
+    if (!contentText) {
       return 'Chưa có đề bài. Em hãy nhập nội dung đề bài trước khi lưu.';
     }
 
@@ -253,17 +235,6 @@
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!correctAnswer) return 'Chưa chọn đáp án đúng cho câu hỏi.';
-
-    // Lưới canvas có thể tự chứa các ô đáp án, khi đó không cần bốn phương án rời.
-    const gridAnswerKeys = new Set(
-      (gridLayout.cells || [])
-        .filter((cell) => cell.type === 'answer' && cell.answer_key)
-        .map((cell) => String(cell.answer_key).toUpperCase())
-    );
-    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (hasGrid && gridAnswerKeys.size >= 2 && gridAnswerKeys.has(correctAnswer.toUpperCase())) {
-      return null;
-    }
 
     const thieu = ANSWER_KEYS.filter((key) => {
       const text = String(form.querySelector(`[data-preview-choice="${key}"]`)?.value || '').trim();
@@ -446,8 +417,6 @@
               // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
               if (parentDetails.open) {
                 initTheoryEditors(parentDetails);
-                initGridEditors(parentDetails);
-                initAuthoringModeControls(parentDetails);
                 initRenderedGrids(parentDetails);
               }
             });
@@ -517,358 +486,30 @@
   // Hàm initProgressiveAuthoringForms dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function initProgressiveAuthoringForms(root = document) {
     root.querySelectorAll('form[data-question-preview-form], form[data-theory-preview-form]').forEach((form) => {
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
       if (form.dataset.progressiveFormReady === 'true') return;
       form.dataset.progressiveFormReady = 'true';
       form.classList.add('progressive-authoring-form');
-
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (form.matches('[data-question-preview-form]')) {
-        form.querySelectorAll('.choice-editor').forEach((choiceEditor) => {
-          const optionalItems = Array.from(choiceEditor.children)
-            .filter((item) => item.matches('.choice-fieldset, .two-fields'));
-          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-          if (optionalItems.length === 0) return;
-
-          const key = choiceEditor.querySelector('[data-preview-choice]')?.dataset.previewChoice || '';
-          const details = document.createElement('details');
-          details.className = 'choice-optional-panel';
-          details.innerHTML = `<summary>Tùy chọn đáp án ${escapeHtml(key)}</summary><div class="choice-optional-content"></div>`;
-          const content = details.querySelector('.choice-optional-content');
-          optionalItems[0].before(details);
-          optionalItems.forEach((item) => content.appendChild(item));
-        });
-      }
-
-      const optionalPanel = document.createElement('details');
-      optionalPanel.className = 'form-optional-panel';
-      optionalPanel.innerHTML = `
-        <summary>
-          <span><i data-lucide="sliders-horizontal" class="lucide-icon"></i> Tùy chọn nâng cao</span>
-          <small>Ảnh, bố cục, canvas và xem trước</small>
-        </summary>
-        <div class="form-optional-content"></div>
-      `;
-      const optionalContent = optionalPanel.querySelector('.form-optional-content');
-      const optionalItems = [];
-
-      // Hàm addOptional dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const addOptional = (item) => {
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (item && !optionalItems.includes(item)) optionalItems.push(item);
-      };
-
-      addOptional(form.querySelector(':scope > [data-authoring-mode]'));
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (form.matches('[data-question-preview-form]')) {
-        addOptional(form.querySelector('[data-layout-variant]')?.closest('label'));
-        addOptional(form.querySelector('[data-question-interaction]')?.closest('label'));
-        form.querySelectorAll(':scope > fieldset.image-fieldset').forEach(addOptional);
-      } else {
-        addOptional(form.querySelector('[data-theory-display-text]')?.closest('label'));
-        addOptional(form.querySelector('[data-theory-student-task]')?.closest('.two-fields'));
-        addOptional(form.querySelector('[data-theory-example]')?.closest('label'));
-        addOptional(form.querySelector('[data-theory-remember]')?.closest('label'));
-        addOptional(form.querySelector('[data-theory-images]')?.closest('label'));
-      }
-      addOptional(form.querySelector(':scope > [data-grid-editor]'));
-      addOptional(form.querySelector(':scope > .question-form-preview'));
-
-      optionalItems.forEach((item) => optionalContent.appendChild(item));
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (optionalItems.length > 0) {
-        const actionRows = Array.from(form.querySelectorAll(':scope > .form-actions'));
-        const finalActions = actionRows[actionRows.length - 1];
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (finalActions) form.insertBefore(optionalPanel, finalActions);
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        else form.appendChild(optionalPanel);
-      }
-
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (form.querySelector('[data-authoring-mode-input]')?.value === 'canvas') {
-        optionalPanel.open = true;
-      }
     });
-
-    refreshIcons();
+    initStudentPreviewDialogs(root);
   }
 
-  // Hàm initAuthoringModeControls dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-  function initAuthoringModeControls(root = document) {
-    root.querySelectorAll('[data-authoring-mode]:not([data-authoring-mode-ready])').forEach((switcher) => {
-      const form = switcher.closest('form');
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
+  function initStudentPreviewDialogs(root = document) {
+    root.querySelectorAll('[data-student-preview-dialog]:not([data-student-preview-ready])').forEach((dialog) => {
+      const form = dialog.closest('form');
       if (!form) return;
-      switcher.dataset.authoringModeReady = 'true';
-      const hiddenInput = form.querySelector('[data-authoring-mode-input]');
-      const radios = Array.from(switcher.querySelectorAll('input[type="radio"]'));
-      const panels = Array.from(form.querySelectorAll('[data-author-mode-panel]'));
-      const gridInput = form.querySelector('[data-grid-layout-input]');
-      const gridEnabledInput = form.querySelector('[data-grid-enabled]');
+      dialog.dataset.studentPreviewReady = 'true';
 
-      // Hàm setGridEnabled dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const setGridEnabled = (enabled, notifyChange = true) => {
-        const grid = parseGridLayoutValue(gridInput?.value);
-        grid.enabled = enabled;
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (gridInput) {
-          gridInput.value = JSON.stringify(grid);
-          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-          if (notifyChange) gridInput.dispatchEvent(new Event('input', { bubbles: true }));
-        }
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (gridEnabledInput) {
-          gridEnabledInput.checked = enabled;
-          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-          if (notifyChange) gridEnabledInput.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-      };
-
-      // Hàm applyMode dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const applyMode = (mode, notifyChange = true) => {
-        const normalizedMode = mode === 'canvas' ? 'canvas' : 'fields';
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (hiddenInput) hiddenInput.value = normalizedMode;
-        radios.forEach((radio) => {
-          radio.checked = radio.value === normalizedMode;
-        });
-        panels.forEach((panel) => {
-          const isActive = panel.dataset.authorModePanel === normalizedMode;
-          panel.hidden = !isActive;
-          panel.querySelectorAll('input, textarea, select, button').forEach((control) => {
-            // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-            if (control.matches('[data-grid-enabled]')) return;
-            control.disabled = !isActive;
-          });
-        });
-        setGridEnabled(normalizedMode === 'canvas', notifyChange);
-      };
-
-      radios.forEach((radio) => {
-        radio.addEventListener('change', () => {
-          // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-          if (radio.checked) applyMode(radio.value);
+      form.querySelectorAll('[data-open-student-preview]').forEach((button) => {
+        button.addEventListener('click', () => {
+          if (typeof dialog.showModal === 'function') dialog.showModal();
+          else dialog.setAttribute('open', '');
+          dialog.querySelector('[data-close-student-preview]')?.focus();
         });
       });
-
-      // Chỉ đồng bộ giao diện khi form vừa được nạp. Không phát input/change ở đây,
-      // nếu không bộ cảnh báo rời trang sẽ hiểu nhầm là quản trị viên đã sửa dữ liệu.
-      applyMode(hiddenInput?.value || radios.find((radio) => radio.checked)?.value || 'fields', false);
-    });
-  }
-
-  // Hàm initGridEditors dùng để khởi tạo trạng thái và các phụ thuộc cần thiết; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-  function initGridEditors(root = document) {
-    root.querySelectorAll('[data-grid-editor]:not([data-grid-editor-ready])').forEach((editor) => {
-      const input = editor.closest('form')?.querySelector('[data-grid-layout-input]');
-      const canvas = editor.querySelector('[data-grid-canvas]');
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (!input || !canvas) return;
-
-      editor.dataset.gridEditorReady = 'true';
-      const state = {
-        grid: parseGridLayoutValue(input.value),
-        selectedIds: new Set(),
-        dragStart: null,
-        isDragging: false
-      };
-      // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (!state.grid.cells.length) state.grid.cells = createBaseGridCells(state.grid.rows, state.grid.columns);
-
-      const enabledInput = editor.querySelector('[data-grid-enabled]');
-      const rowsInput = editor.querySelector('[data-grid-rows]');
-      const columnsInput = editor.querySelector('[data-grid-columns]');
-      const typeInput = editor.querySelector('[data-grid-cell-type]');
-      const textInput = editor.querySelector('[data-grid-cell-text]');
-      const imageInput = editor.querySelector('[data-grid-cell-image]');
-      const answerInput = editor.querySelector('[data-grid-cell-answer]');
-      const alignInput = editor.querySelector('[data-grid-cell-align]');
-      const backgroundInput = editor.querySelector('[data-grid-cell-background]');
-
-      // Hàm syncInputs dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const syncInputs = (notifyChange = false) => {
-        enabledInput.checked = Boolean(state.grid.enabled);
-        rowsInput.value = state.grid.rows;
-        columnsInput.value = state.grid.columns;
-        input.value = JSON.stringify(state.grid);
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (notifyChange) input.dispatchEvent(new Event('input', { bubbles: true }));
-      };
-
-      // Hàm selectedCells dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const selectedCells = () => Array.from(state.selectedIds)
-        .map((id) => state.grid.cells.find((cell) => cell.id === id))
-        .filter(Boolean);
-
-      // Hàm syncPanel dùng để đồng bộ dữ liệu giữa các định dạng hoặc nguồn khác nhau; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const syncPanel = () => {
-        const cell = selectedCells()[0] || state.grid.cells[0];
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!cell) return;
-        typeInput.value = cell.type || 'text';
-        textInput.value = cell.text || '';
-        imageInput.value = cell.image_url || '';
-        answerInput.value = cell.answer_key || '';
-        alignInput.value = cell.align || 'center';
-        backgroundInput.value = isHexColor(cell.background) ? cell.background : '#ffffff';
-      };
-
-      // Hàm render dùng để chuẩn bị và hiển thị kết quả cho người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const render = (notifyChange = false) => {
-        editor.classList.toggle('is-disabled', !state.grid.enabled);
-        canvas.style.setProperty('--grid-rows', state.grid.rows);
-        canvas.style.setProperty('--grid-columns', state.grid.columns);
-        canvas.innerHTML = state.grid.cells.map((cell) => `
-          <button class="grid-editor-cell ${state.selectedIds.has(cell.id) ? 'is-selected' : ''}" type="button"
-            data-cell-id="${escapeAttribute(cell.id)}"
-            style="grid-row:${cell.row} / span ${cell.rowSpan}; grid-column:${cell.col} / span ${cell.colSpan}; ${cell.background ? `background:${escapeAttribute(cell.background)};` : ''}">
-            <span class="grid-cell-type">${gridCellTypeLabel(cell.type)}${cell.answer_key ? ` ${escapeHtml(cell.answer_key)}` : ''}</span>
-            <span class="grid-cell-preview">${gridCellPreview(cell)}</span>
-          </button>
-        `).join('');
-        syncInputs(notifyChange);
-        syncPanel();
-        renderMath(canvas);
-      };
-
-      // Hàm selectRect dùng để lựa chọn phương án phù hợp dựa trên trạng thái và ưu tiên; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const selectRect = (startCell, endCell) => {
-        const rect = normalizeRect(cellRect(startCell), cellRect(endCell));
-        state.selectedIds = new Set(
-          state.grid.cells
-            .filter((cell) => rectContainsCell(rect, cell))
-            .map((cell) => cell.id)
-        );
-        render();
-      };
-
-      canvas.addEventListener('mousedown', (event) => {
-        const button = event.target.closest('[data-cell-id]');
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!button) return;
-        const cell = state.grid.cells.find((item) => item.id === button.dataset.cellId);
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!cell) return;
-        state.dragStart = cell;
-        state.isDragging = true;
-        state.selectedIds = new Set([cell.id]);
-        render();
+      dialog.querySelector('[data-close-student-preview]')?.addEventListener('click', () => closeDialog(dialog));
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) closeDialog(dialog);
       });
-
-      canvas.addEventListener('mouseover', (event) => {
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!state.isDragging || !state.dragStart) return;
-        const button = event.target.closest('[data-cell-id]');
-        const cell = state.grid.cells.find((item) => item.id === button?.dataset.cellId);
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (cell) selectRect(state.dragStart, cell);
-      });
-
-      // Listener gắn ở document nên sống lâu hơn canvas: partial admin nạp lại
-      // là canvas cũ bị thay nhưng listener cũ vẫn tích lũy. Cho nó tự gỡ khi
-      // thấy canvas không còn trong DOM.
-      const onDocumentMouseUp = () => {
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!canvas.isConnected) {
-          document.removeEventListener('mouseup', onDocumentMouseUp);
-          return;
-        }
-        state.isDragging = false;
-        state.dragStart = null;
-      };
-      document.addEventListener('mouseup', onDocumentMouseUp);
-
-      // Hàm applyPanelToSelection dùng để cập nhật trạng thái hoặc dữ liệu theo quy tắc nghiệp vụ; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      const applyPanelToSelection = () => {
-        const cells = selectedCells();
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!cells.length) return;
-        cells.forEach((cell) => {
-          cell.type = typeInput.value || 'text';
-          cell.text = textInput.value || '';
-          cell.image_url = imageInput.value || '';
-          cell.answer_key = answerInput.value || '';
-          cell.align = alignInput.value || 'center';
-          cell.background = backgroundInput.value === '#ffffff' ? '' : backgroundInput.value;
-        });
-        render(true);
-      };
-
-      [typeInput, textInput, imageInput, answerInput, alignInput, backgroundInput].forEach((control) => {
-        control?.addEventListener('input', applyPanelToSelection);
-        control?.addEventListener('change', applyPanelToSelection);
-      });
-
-      enabledInput.addEventListener('change', () => {
-        state.grid.enabled = enabledInput.checked;
-        render(true);
-      });
-
-      [rowsInput, columnsInput].forEach((control) => {
-        control.addEventListener('change', () => {
-          const nextRows = clampGridSize(rowsInput.value);
-          const nextColumns = clampGridSize(columnsInput.value);
-          state.grid.rows = nextRows;
-          state.grid.columns = nextColumns;
-          state.grid.cells = createBaseGridCells(nextRows, nextColumns);
-          state.selectedIds.clear();
-          render(true);
-        });
-      });
-
-      editor.querySelector('[data-grid-merge]')?.addEventListener('click', async () => {
-        const cells = selectedCells();
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (cells.length < 2) return;
-        const rect = boundsForCells(cells);
-        const affected = state.grid.cells.filter((cell) => rectIntersectsCell(rect, cell));
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!affected.every((cell) => rectContainsCell(rect, cell))) {
-          await window.AppUI.alert({
-            title: 'Không thể gộp ô',
-            message: 'Vùng gộp không hợp lệ vì đang cắt ngang một ô đã gộp.',
-            tone: 'warning'
-          });
-          return;
-        }
-        const master = { ...cells[0], id: `grid-cell-${Date.now()}`, row: rect.row, col: rect.col, rowSpan: rect.rowSpan, colSpan: rect.colSpan };
-        state.grid.cells = state.grid.cells.filter((cell) => !affected.some((item) => item.id === cell.id));
-        state.grid.cells.push(master);
-        state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
-        state.selectedIds = new Set([master.id]);
-        render(true);
-      });
-
-      editor.querySelector('[data-grid-unmerge]')?.addEventListener('click', () => {
-        const cell = selectedCells()[0];
-        // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-        if (!cell || (cell.rowSpan === 1 && cell.colSpan === 1)) return;
-        state.grid.cells = state.grid.cells.filter((item) => item.id !== cell.id);
-        // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
-        for (let row = cell.row; row < cell.row + cell.rowSpan; row += 1) {
-          // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
-          for (let col = cell.col; col < cell.col + cell.colSpan; col += 1) {
-            state.grid.cells.push(createGridCell(row, col));
-          }
-        }
-        state.grid.cells.sort((a, b) => (a.row - b.row) || (a.col - b.col));
-        state.selectedIds.clear();
-        render(true);
-      });
-
-      editor.querySelector('[data-grid-clear]')?.addEventListener('click', () => {
-        selectedCells().forEach((cell) => {
-          cell.type = 'empty';
-          cell.text = '';
-          cell.image_url = '';
-          cell.answer_key = '';
-          cell.background = '';
-        });
-        render(true);
-      });
-
-      render();
     });
   }
 
@@ -1081,8 +722,6 @@
       shell.dataset.loadedPage = String(page);
       initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
-      initGridEditors(shell);
-      initAuthoringModeControls(shell);
       initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
       initQuestionEditLoaders(shell);
@@ -1180,8 +819,6 @@
       shell.dataset.loaded = 'true';
       initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
-      initGridEditors(shell);
-      initAuthoringModeControls(shell);
       initRenderedGrids(shell);
       initQuestionDetailsControls(shell);
       initQuestionFormGuards(shell);
@@ -1229,8 +866,6 @@
       initProgressiveAuthoringForms(shell);
       initAdminPreview(shell);
       initTheoryEditors(shell);
-      initGridEditors(shell);
-      initAuthoringModeControls(shell);
       initRenderedGrids(shell);
       initConfirmForms(shell);
       initLazyMath(shell);
@@ -1260,8 +895,6 @@
     initAdminPreview();
     initAdminQuestionBank();
     initTheoryEditors();
-    initGridEditors();
-    initAuthoringModeControls();
     initQuestionEditLoaders();
     initQuestionFormGuards();
   });

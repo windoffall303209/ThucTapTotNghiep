@@ -28,14 +28,14 @@ async function requireStudent(req, res, next) {
         401,
         'SESSION_EXPIRED',
         'Phiên học đã hết hạn. Em đăng nhập lại rồi làm tiếp nhé.',
-        '/auth/login'
+        '/auth/student/login'
       );
     }
     req.session.flash = {
       type: 'warning',
       message: 'Vui lòng đăng nhập để tiếp tục học tập.'
     };
-    return res.redirect('/auth/login');
+    return res.redirect('/auth/student/login');
   }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -56,14 +56,14 @@ async function requireStudent(req, res, next) {
           403,
           'ACCOUNT_DISABLED',
           'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên.',
-          '/auth/login'
+          '/auth/student/login'
         );
       }
       req.session.flash = {
         type: 'danger',
         message: 'Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.'
       };
-      return res.redirect('/auth/login');
+      return res.redirect('/auth/student/login');
     }
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -73,7 +73,7 @@ async function requireStudent(req, res, next) {
         type: 'danger',
         message: `Tài khoản đang có khối học ngoài phạm vi ${GRADE_RANGE_LABEL}. Vui lòng liên hệ quản trị viên để cập nhật.`
       };
-      return res.redirect('/auth/login');
+      return res.redirect('/auth/student/login');
     }
 
     req.auth.current_grade = student.current_grade;
@@ -94,14 +94,14 @@ async function requireAdmin(req, res, next) {
         401,
         'SESSION_EXPIRED',
         'Phiên quản trị đã hết hạn. Vui lòng đăng nhập lại.',
-        '/auth/login?role=admin'
+        '/auth/admin/login'
       );
     }
     req.session.flash = {
       type: 'warning',
       message: 'Vui lòng đăng nhập bằng tài khoản quản trị.'
     };
-    return res.redirect('/auth/login?role=admin');
+    return res.redirect('/auth/admin/login');
   }
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -122,14 +122,14 @@ async function requireAdmin(req, res, next) {
           401,
           'SESSION_INVALID',
           'Phiên quản trị không còn hợp lệ. Vui lòng đăng nhập lại.',
-          '/auth/login?role=admin'
+          '/auth/admin/login'
         );
       }
       req.session.flash = {
         type: 'warning',
         message: 'Phiên quản trị không còn hợp lệ. Vui lòng đăng nhập lại.'
       };
-      return res.redirect('/auth/login?role=admin');
+      return res.redirect('/auth/admin/login');
     }
 
     req.auth.username = admin.username;

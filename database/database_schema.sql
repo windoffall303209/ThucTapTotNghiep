@@ -142,7 +142,7 @@ CREATE TABLE QuestionBank (
     lesson_id INT NOT NULL,
     concept_id INT NULL,
     question_type VARCHAR(30) DEFAULT 'MULTIPLE_CHOICE' CHECK (question_type IN ('MULTIPLE_CHOICE', 'FILL_IN_THE_BLANK')),
-    difficulty VARCHAR(15) DEFAULT 'EASY' CHECK (difficulty IN ('EASY', 'MEDIUM', 'HARD', 'EXPERT')),
+    difficulty VARCHAR(15) DEFAULT 'EASY' CHECK (difficulty IN ('EASY', 'MEDIUM', 'HARD')),
     layout_template VARCHAR(50) DEFAULT 'STACK_VERTICAL' CHECK (layout_template IN (
         'STACK_VERTICAL',
         'SPLIT_HORIZONTAL_LEFT_IMAGE',

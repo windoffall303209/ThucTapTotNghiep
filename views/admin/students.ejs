@@ -230,7 +230,8 @@
                     <form
                       action="/admin/students/<%= item.id %>/password"
                       method="post"
-                      data-confirm="Đặt mật khẩu tạm mới cho <%= item.username %>? Phiên đăng nhập cũ của học sinh sẽ mất hiệu lực.">
+                      data-confirm="Đặt mật khẩu tạm mới cho <%= item.username %>? Phiên đăng nhập cũ của học sinh sẽ mất hiệu lực."
+                      data-password-match-form>
                       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                       <input type="hidden" name="q" value="<%= query %>">
                       <input type="hidden" name="grade" value="<%= filterGrade || '' %>">
@@ -240,21 +241,24 @@
                         id="student-password-<%= item.id %>"
                         name="temporary_password"
                         type="password"
-                        minlength="8"
+                        minlength="10"
                         maxlength="72"
                         autocomplete="new-password"
+                        data-password-policy
+                        data-password-primary
                         required>
                       <label for="student-password-confirm-<%= item.id %>">Nhập lại mật khẩu tạm</label>
                       <input
                         id="student-password-confirm-<%= item.id %>"
                         name="confirm_password"
                         type="password"
-                        minlength="8"
+                        minlength="10"
                         maxlength="72"
                         autocomplete="new-password"
+                        data-password-confirm
                         required>
                       <small class="account-tool-note">
-                        Hãy chuyển riêng mật khẩu cho học sinh; không đưa mật khẩu vào ghi chú hoặc tin nhắn công khai.
+                        Ít nhất 10 ký tự gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt. Hãy chuyển riêng mật khẩu cho học sinh.
                       </small>
                       <button class="btn btn-secondary btn-compact" type="submit">Đặt mật khẩu tạm</button>
                     </form>

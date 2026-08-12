@@ -53,12 +53,12 @@ test('đăng nhập tài khoản không tồn tại vẫn chạy bcrypt cho cả
   };
 
   const studentResponse = responseRecorder();
-  await AuthController.login(requestFor('student'), studentResponse, assert.fail);
-  assert.equal(studentResponse.redirectedTo, '/auth/login');
+  await AuthController.studentLogin(requestFor('student'), studentResponse, assert.fail);
+  assert.equal(studentResponse.redirectedTo, '/auth/student/login');
 
   const adminResponse = responseRecorder();
-  await AuthController.login(requestFor('admin'), adminResponse, assert.fail);
-  assert.equal(adminResponse.redirectedTo, '/auth/login?role=admin');
+  await AuthController.adminLogin(requestFor('admin'), adminResponse, assert.fail);
+  assert.equal(adminResponse.redirectedTo, '/auth/admin/login');
 
   assert.equal(comparedHashes.length, 2);
   comparedHashes.forEach((hash) => {

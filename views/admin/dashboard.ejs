@@ -39,14 +39,13 @@
 <%
   const tongCau = Math.max(
     Number(difficultyStats.EASY) + Number(difficultyStats.MEDIUM)
-      + Number(difficultyStats.HARD) + Number(difficultyStats.EXPERT),
+      + Number(difficultyStats.HARD),
     1
   );
   const mucDoKho = [
     { key: 'EASY', label: 'Dễ' },
     { key: 'MEDIUM', label: 'Trung bình' },
-    { key: 'HARD', label: 'Khó' },
-    { key: 'EXPERT', label: 'Nâng cao' }
+    { key: 'HARD', label: 'Khó' }
   ];
 %>
 <section class="admin-dashboard-grid">
@@ -142,7 +141,7 @@
 
 <%
   // Dịch mã độ khó ra tiếng Việt ở chế độ xem, đồng bộ với nhãn trong form soạn.
-  const difficultyLabels = { EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó', EXPERT: 'Nâng cao' };
+  const difficultyLabels = { EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó' };
 %>
 <section class="table-section">
   <div class="section-title">

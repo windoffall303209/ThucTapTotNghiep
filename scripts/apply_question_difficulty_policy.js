@@ -219,7 +219,7 @@ async function verify(plan) {
     `SELECT ch.grade, q.difficulty, COUNT(*) AS total
      FROM QuestionBank q JOIN Lessons l ON l.id=q.lesson_id JOIN Chapters ch ON ch.id=l.chapter_id
      WHERE q.is_active=1 AND ch.grade BETWEEN 1 AND 5
-     GROUP BY ch.grade, q.difficulty ORDER BY ch.grade, FIELD(q.difficulty,'EASY','MEDIUM','HARD','EXPERT')`
+     GROUP BY ch.grade, q.difficulty ORDER BY ch.grade, FIELD(q.difficulty,'EASY','MEDIUM','HARD')`
   );
   console.table(stats);
 }

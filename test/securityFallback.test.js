@@ -160,7 +160,8 @@ test('giới hạn đầu vào tài khoản theo kích thước cột và giới
   assert.match(validateUsername('x'.repeat(51)), /3 đến 50/);
   assert.equal(validateUsername('hoc_sinh-01'), '');
   assert.match(validatePassword('á'.repeat(40)), /72 byte/);
-  assert.equal(validatePassword('mat-khau-an-toan'), '');
+  assert.match(validatePassword('mat-khau-an-toan'), /chữ thường, chữ hoa/);
+  assert.equal(validatePassword('Mat-khau-10!'), '');
 });
 
 // Hàm restoreEnv dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

@@ -347,7 +347,7 @@ async function updatePassword(req, res, next) {
     await Student.updatePassword(req.auth.id, newPassword);
     clearAuthCookie(res);
     setFlash(req, 'success', 'Đã đổi mật khẩu. Em đăng nhập lại bằng mật khẩu mới nhé.');
-    return res.redirect('/auth/login');
+    return res.redirect('/auth/student/login');
   } catch (error) {
     next(error);
   }

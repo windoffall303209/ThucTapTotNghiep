@@ -236,7 +236,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', homeRoutes);
-app.use('/auth/login', authLimiter);
+app.use(['/auth/login', '/auth/student/login', '/auth/admin/login'], authLimiter);
 app.use('/auth/register', registrationLimiter);
 app.use('/auth', authRoutes);
 app.use('/student/theory/help', aiLimiter);

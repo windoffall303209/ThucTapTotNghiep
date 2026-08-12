@@ -213,7 +213,7 @@ test('dirty-form admin theo dõi từng form và chặn mọi đường thay she
   assert.ok((manager.match(/confirmDiscard\(/g) || []).length >= 8);
 });
 
-test('form soạn câu hỏi giữ trường upload và hook canvas hiện tại', () => {
+test('form soạn câu hỏi mở sẵn, giữ upload và preview nổi, không còn canvas', () => {
   const createForm = read('views/admin/partials/lesson-questions.ejs');
   const editForm = read('views/admin/partials/question-edit-form.ejs');
   const routes = read('routes/adminRoutes.js');
@@ -221,13 +221,13 @@ test('form soạn câu hỏi giữ trường upload và hook canvas hiện tại
   [createForm, editForm].forEach((source) => {
     assertContainsAll(source, [
       /data-question-preview-form/,
-      /name="authoring_mode"/,
-      /data-grid-layout-input/,
-      /data-grid-editor/,
-      /data-grid-canvas/,
+      /name="authoring_mode" value="fields"/,
+      /data-open-student-preview/,
+      /data-student-preview-dialog/,
       /name="question_images"/,
       /name="explanation_images"/
     ]);
+    assert.doesNotMatch(source, /data-grid-canvas|Thiết kế bằng canvas|Tùy chọn nâng cao/);
   });
 
   assertContainsAll(routes, [

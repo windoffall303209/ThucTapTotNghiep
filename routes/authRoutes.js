@@ -4,8 +4,12 @@ const AuthController = require('../controllers/AuthController');
 
 const router = express.Router();
 
-router.get('/login', AuthController.showLogin);
+router.get('/login', AuthController.redirectLegacyLogin);
 router.post('/login', AuthController.login);
+router.get('/student/login', AuthController.showStudentLogin);
+router.post('/student/login', AuthController.studentLogin);
+router.get('/admin/login', AuthController.showAdminLogin);
+router.post('/admin/login', AuthController.adminLogin);
 router.get('/register', AuthController.showRegister);
 router.post('/register', AuthController.register);
 router.post('/logout', AuthController.logout);

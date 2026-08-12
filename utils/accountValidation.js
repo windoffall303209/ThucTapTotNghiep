@@ -1,5 +1,7 @@
 // Tiện ích account validation cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 const USERNAME_PATTERN = /^[\p{L}\p{N}._-]+$/u;
+const FULLNAME_PATTERN = /^[\p{L}\p{M}]+(?:[ '\u2019-][\p{L}\p{M}]+)*$/u;
+const PASSWORD_MIN_LENGTH = 10;
 
 // Hàm normalizeUsername dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeUsername(value) {
@@ -41,6 +43,9 @@ function validateFullname(value) {
   if (/[\u0000-\u001f\u007f]/u.test(fullname)) {
     return 'Họ và tên chứa ký tự không hợp lệ.';
   }
+  if (!FULLNAME_PATTERN.test(fullname)) {
+    return 'Họ và tên chỉ được chứa chữ cái, khoảng trắng, dấu nháy đơn hoặc dấu gạch nối; không được chứa số.';
+  }
   return '';
 }
 
@@ -48,15 +53,22 @@ function validateFullname(value) {
 function validatePassword(value, options = {}) {
   const password = typeof value === 'string' ? value : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (password.length < 8 || Buffer.byteLength(password, 'utf8') > 72) {
+  if (password.length < PASSWORD_MIN_LENGTH || Buffer.byteLength(password, 'utf8') > 72) {
     return options.current
       ? 'Mật khẩu hiện tại không hợp lệ.'
-      : 'Mật khẩu phải có ít nhất 8 ký tự và không vượt quá 72 byte.';
+      : `Mật khẩu phải có ít nhất ${PASSWORD_MIN_LENGTH} ký tự và không vượt quá 72 byte.`;
+  }
+  if (/\s/u.test(password)) {
+    return 'Mật khẩu không được chứa khoảng trắng.';
+  }
+  if (!/\p{Ll}/u.test(password) || !/\p{Lu}/u.test(password) || !/\p{N}/u.test(password) || !/[\p{P}\p{S}]/u.test(password)) {
+    return 'Mật khẩu phải có chữ thường, chữ hoa, chữ số và ký tự đặc biệt.';
   }
   return '';
 }
 
 module.exports = {
+  PASSWORD_MIN_LENGTH,
   normalizeFullname,
   normalizeUsername,
   validateFullname,

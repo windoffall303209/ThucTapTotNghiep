@@ -199,7 +199,7 @@ function buildLessonQuestionFilter(options = {}) {
     : '';
 
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
+  if (['EASY', 'MEDIUM', 'HARD'].includes(difficulty)) {
     where.push('difficulty = ?');
     params.push(difficulty);
   }
@@ -224,7 +224,7 @@ async function getQuestionsByLesson(lessonId, options = {}) {
       `SELECT *
        FROM QuestionBank
        WHERE ${filter.whereClause}
-       ORDER BY FIELD(difficulty, 'EASY', 'MEDIUM', 'HARD', 'EXPERT'), id
+       ORDER BY FIELD(difficulty, 'EASY', 'MEDIUM', 'HARD'), id
        ${limitClause}`,
       [lessonId, ...filter.params]
     );
@@ -578,7 +578,7 @@ async function getQuestionPageByLesson(lessonId, options = {}) {
  * Phân bố câu hỏi theo bốn mức độ khó, cho khối thống kê ở dashboard admin.
  */
 async function getDifficultyStats() {
-  const base = { EASY: 0, MEDIUM: 0, HARD: 0, EXPERT: 0 };
+  const base = { EASY: 0, MEDIUM: 0, HARD: 0 };
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   try {
     const rows = await db.query(
@@ -625,7 +625,7 @@ async function searchQuestions(filters = {}) {
     ? filters.difficulty.trim().toUpperCase()
     : '';
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (['EASY', 'MEDIUM', 'HARD', 'EXPERT'].includes(difficulty)) {
+  if (['EASY', 'MEDIUM', 'HARD'].includes(difficulty)) {
     where.push('q.difficulty = ?');
     params.push(difficulty);
   }

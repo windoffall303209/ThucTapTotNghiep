@@ -253,7 +253,7 @@
 
   // Hàm translateDifficulty dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function translateDifficulty(value) {
-    return ({ EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó', EXPERT: 'Nâng cao' })[value] || value || 'Chưa phân loại';
+    return ({ EASY: 'Dễ', MEDIUM: 'Trung bình', HARD: 'Khó' })[value] || value || 'Chưa phân loại';
   }
 
   // Hàm translateLayout dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

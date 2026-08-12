@@ -19,9 +19,8 @@
     <div class="auth-panel">
       <p class="eyebrow"><%= role === 'admin' ? 'Đăng nhập admin' : 'Đăng nhập học sinh' %></p>
       <h1>Chào mừng trở lại</h1>
-      <form class="stack-form" action="/auth/login" method="post">
+      <form class="stack-form" action="/auth/<%= role %>/login" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <input type="hidden" name="role" value="<%= role %>">
         <label>
           Tên đăng nhập
           <input name="username" autocomplete="username" maxlength="50" required>
@@ -49,15 +48,11 @@
           Quên mật khẩu? Em nhờ bố mẹ hoặc thầy cô liên hệ quản trị viên để đặt lại mật khẩu mới nhé.
         </p>
       <% } %>
-      <div class="auth-links">
-        <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
-        <% if (role === 'admin') { %>
-          <a href="/auth/login">Đăng nhập học sinh</a>
-        <% } else { %>
+      <% if (role !== 'admin') { %>
+        <div class="auth-links">
           <a href="/auth/register">Chưa có tài khoản?</a>
-          <a href="/auth/login?role=admin">Đăng nhập quản trị</a>
-        <% } %>
-      </div>
+        </div>
+      <% } %>
     </div>
   </div>
 </section>

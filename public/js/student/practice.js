@@ -745,7 +745,7 @@
     feedback.innerHTML = `
       <h2>Em cần đăng nhập lại</h2>
       <p>${escapeHtml(message || 'Phiên học đã hết hạn vì để lâu không dùng.')}</p>
-      <a class="btn btn-primary" href="/auth/login">Đăng nhập lại</a>
+      <a class="btn btn-primary" href="/auth/student/login">Đăng nhập lại</a>
     `;
   }
 

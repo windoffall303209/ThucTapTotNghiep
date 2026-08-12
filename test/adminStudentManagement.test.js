@@ -145,7 +145,7 @@ test('controller dùng validation, bắt buộc xác nhận và không làm lộ
   const invalidResponse = makeResponse();
   await AdminController.resetStudentPassword(invalidRequest, invalidResponse, assert.fail);
   assert.equal(savedPasswords.length, 0);
-  assert.match(invalidRequest.session.flash.message, /ít nhất 8 ký tự/);
+  assert.match(invalidRequest.session.flash.message, /ít nhất 10 ký tự/);
 
   const mismatchRequest = makeRequest({
     temporary_password: 'TamThoi-2026!',

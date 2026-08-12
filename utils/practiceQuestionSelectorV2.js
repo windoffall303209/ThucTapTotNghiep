@@ -749,7 +749,6 @@ function normalizeCandidates(candidates) {
 function normalizeDifficulty(value) {
   const difficulty = String(value || 'EASY').trim().toUpperCase();
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (difficulty === 'EXPERT') return 'HARD';
   return DIFFICULTIES.includes(difficulty) ? difficulty : 'EASY';
 }
 

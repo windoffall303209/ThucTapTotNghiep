@@ -22,12 +22,12 @@ function candidates({ lessons = 10, easy = 9, medium = 8, hard = 3 } = {}) {
       id: id++, lesson_id: (index % lessons) + 1, difficulty: 'MEDIUM'
     })),
     ...Array.from({ length: hard }, (_, index) => ({
-      id: id++, lesson_id: (index % lessons) + 1, difficulty: index === 0 ? 'EXPERT' : 'HARD'
+      id: id++, lesson_id: (index % lessons) + 1, difficulty: 'HARD'
     }))
   ];
 }
 
-test('gộp EXPERT vào nhóm khó khi đánh giá nguồn tạo đề', () => {
+test('đánh giá nguồn tạo đề với ba mức độ khó', () => {
   assert.deepEqual(summarizeDifficulty(candidates()), { EASY: 9, MEDIUM: 8, HARD: 3 });
 });
 

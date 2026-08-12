@@ -214,8 +214,40 @@
     syncSidebarAccessibility();
   }
 
+  function initAdminPasswordForms(root = document) {
+    if (typeof root?.querySelectorAll !== 'function') return;
+    root.querySelectorAll('form[data-password-match-form]:not([data-password-validation-ready])').forEach((form) => {
+      const password = form.querySelector('[data-password-primary]');
+      const confirm = form.querySelector('[data-password-confirm]');
+      if (!password || !confirm) return;
+      form.dataset.passwordValidationReady = 'true';
+
+      const validate = () => {
+        const value = password.value;
+        const isStrong = value.length >= 10
+          && !/\s/u.test(value)
+          && /\p{Ll}/u.test(value)
+          && /\p{Lu}/u.test(value)
+          && /\p{N}/u.test(value)
+          && /[\p{P}\p{S}]/u.test(value);
+        password.setCustomValidity(
+          value && !isStrong
+            ? 'Mật khẩu cần ít nhất 10 ký tự, gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt; không có khoảng trắng.'
+            : ''
+        );
+        confirm.setCustomValidity(
+          confirm.value && value !== confirm.value ? 'Hai mật khẩu chưa trùng khớp.' : ''
+        );
+      };
+      password.addEventListener('input', validate);
+      confirm.addEventListener('input', validate);
+      form.addEventListener('submit', validate);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initAdminDirtyGuard();
     initAdminMenu();
+    initAdminPasswordForms();
   });
 })();

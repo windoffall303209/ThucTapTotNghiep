@@ -872,8 +872,7 @@
     const map = {
       EASY: 'Dễ',
       MEDIUM: 'Trung bình',
-      HARD: 'Khó',
-      EXPERT: 'Nâng cao'
+      HARD: 'Khó'
     };
     return map[value] || value || 'Chưa phân loại';
   }

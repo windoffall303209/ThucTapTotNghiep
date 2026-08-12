@@ -19,7 +19,7 @@
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label>
           Họ và tên học sinh
-          <input name="fullname" autocomplete="name" minlength="2" maxlength="100" required>
+          <input name="fullname" autocomplete="name" minlength="2" maxlength="100" data-fullname-policy required>
         </label>
         <label>
           Tên đăng nhập
@@ -29,7 +29,7 @@
           <label>
             Mật khẩu
             <span class="password-field">
-              <input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="72" required>
+              <input name="password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-policy data-password-primary required>
               <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
                 <i data-lucide="eye" class="lucide-icon"></i>
               </button>
@@ -38,7 +38,7 @@
           <label>
             Nhập lại mật khẩu
             <span class="password-field">
-              <input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="72" required>
+              <input name="confirmPassword" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-confirm required>
               <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false">
                 <i data-lucide="eye" class="lucide-icon"></i>
               </button>
@@ -57,14 +57,14 @@
             <% }) %>
           </select>
         </label>
-        <p class="form-note">Mật khẩu tối thiểu 8 ký tự. Nếu lỡ chọn nhầm lớp, em nhờ thầy cô sửa lại giúp nhé.</p>
+        <p class="form-note">Mật khẩu tối thiểu 10 ký tự, có chữ hoa, chữ thường, chữ số và ký tự đặc biệt; không dùng khoảng trắng.</p>
         <button class="btn btn-primary full-width" type="submit">
           <i data-lucide="user-plus" class="lucide-icon"></i>
           Tạo tài khoản và vào bảng học tập
         </button>
       </form>
       <div class="auth-links">
-        <a href="/auth/login">Đã có tài khoản?</a>
+        <a href="/auth/student/login">Đã có tài khoản?</a>
       </div>
     </div>
   </div>

@@ -24,7 +24,7 @@ test('hiệu chỉnh độ khó dùng các dải độ chính xác rõ ràng', (
   assert.equal(inferDifficultyFromAccuracy(0.75), 'EASY');
   assert.equal(inferDifficultyFromAccuracy(0.5), 'MEDIUM');
   assert.equal(inferDifficultyFromAccuracy(0.25), 'HARD');
-  assert.equal(inferDifficultyFromAccuracy(0.24), 'EXPERT');
+  assert.equal(inferDifficultyFromAccuracy(0.24), 'HARD');
 });
 
 test('chỉ cảnh báo lệch nhãn sau ít nhất 30 lượt và không tự sửa dữ liệu', () => {
