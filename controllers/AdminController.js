@@ -775,8 +775,24 @@ function normalizeQuestionBody(body) {
   return body;
 }
 
+async function account(req, res, next) {
+  try {
+    const admin = await Admin.findById(req.auth.id);
+    if (!admin) {
+      setFlash(req, 'danger', 'Không tìm thấy tài khoản quản trị.');
+      return res.redirect('/auth/admin/login');
+    }
+    return res.render('admin/account', {
+      title: 'Tài khoản quản trị',
+      account: admin
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 async function updateOwnPassword(req, res, next) {
-  const accountRedirect = '/admin/dashboard?account=password';
+  const accountRedirect = '/admin/account';
   try {
     const admin = await Admin.findById(req.auth.id);
     const currentPassword = typeof req.body.current_password === 'string' ? req.body.current_password : '';
@@ -2017,6 +2033,7 @@ async function buildTheoryImages(files, cardIndex, startIndex = 0, storageContex
 
 module.exports = {
   dashboard,
+  account,
   updateOwnPassword,
   theory,
   lessonTheory,

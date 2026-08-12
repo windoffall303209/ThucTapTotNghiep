@@ -234,46 +234,6 @@
     syncSidebarAccessibility();
   }
 
-  function initAdminAccountMenu() {
-    const menu = document.querySelector('[data-admin-account-menu]');
-    if (!menu) return;
-    const form = menu.querySelector('.admin-password-form');
-    const summary = menu.querySelector('summary');
-
-    const close = ({ restoreFocus = false, reset = true } = {}) => {
-      menu.open = false;
-      if (reset) {
-        form?.reset();
-        form?.querySelector('[name="new_password"]')?.dispatchEvent(new Event('input'));
-      }
-      if (restoreFocus) summary?.focus();
-    };
-
-    document.addEventListener('pointerdown', (event) => {
-      if (menu.open && !menu.contains(event.target)) close();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape' || !menu.open) return;
-      event.preventDefault();
-      close({ restoreFocus: true });
-    });
-    menu.addEventListener('toggle', () => {
-      if (!menu.open) {
-        form?.reset();
-        form?.querySelector('[name="new_password"]')?.dispatchEvent(new Event('input'));
-      }
-    });
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('account') === 'password') {
-      menu.open = true;
-      if (window.matchMedia('(max-width: 920px)').matches) {
-        document.querySelector('[data-admin-menu-toggle]')?.click();
-      }
-      window.setTimeout(() => form?.querySelector('[name="current_password"]')?.focus(), 0);
-    }
-  }
-
   function initAdminPasswordForms(root = document) {
     if (typeof root?.querySelectorAll !== 'function') return;
     root.querySelectorAll('form[data-password-match-form]:not([data-password-validation-ready])').forEach((form) => {
@@ -308,7 +268,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     initAdminDirtyGuard();
     initAdminMenu();
-    initAdminAccountMenu();
     initAdminPasswordForms();
   });
 })();

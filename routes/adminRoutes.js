@@ -12,6 +12,7 @@ const router = express.Router();
 
 router.use(requireAdmin);
 router.get('/dashboard', AdminController.dashboard);
+router.get('/account', AdminController.account);
 router.post('/account/password', AdminController.updateOwnPassword);
 router.get('/theory', AdminController.theory);
 router.get('/theory/lesson/:lessonId', AdminController.lessonTheory);

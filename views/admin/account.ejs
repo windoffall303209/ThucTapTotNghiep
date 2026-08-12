@@ -1,0 +1,78 @@
+<section class="workspace-head">
+  <div>
+    <h1>Tài khoản quản trị</h1>
+    <p>Xem thông tin tài khoản và cập nhật mật khẩu đăng nhập an toàn.</p>
+  </div>
+</section>
+
+<section class="admin-account-grid">
+  <article class="info-panel admin-account-profile">
+    <div class="section-title">
+      <i data-lucide="user-circle" class="lucide-icon"></i>
+      Thông tin tài khoản
+    </div>
+    <div class="admin-profile-identity">
+      <span class="admin-profile-avatar" aria-hidden="true"><%= String(account.fullname || account.username).trim().charAt(0).toUpperCase() %></span>
+      <div>
+        <strong><%= account.fullname %></strong>
+        <span>@<%= account.username %></span>
+      </div>
+    </div>
+    <dl class="admin-account-details">
+      <div>
+        <dt>Họ và tên</dt>
+        <dd><%= account.fullname %></dd>
+      </div>
+      <div>
+        <dt>Tên đăng nhập</dt>
+        <dd><%= account.username %></dd>
+      </div>
+      <div>
+        <dt>Vai trò</dt>
+        <dd><%= account.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></dd>
+      </div>
+      <div>
+        <dt>Trạng thái</dt>
+        <dd><span class="status-pill status-active">Đang hoạt động</span></dd>
+      </div>
+    </dl>
+  </article>
+
+  <article class="info-panel admin-account-security">
+    <div class="section-title">
+      <i data-lucide="lock-keyhole" class="lucide-icon"></i>
+      Đổi mật khẩu
+    </div>
+    <form class="stack-form" action="/admin/account/password" method="post" data-password-match-form>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <label>
+        Mật khẩu hiện tại
+        <span class="password-field">
+          <input name="current_password" type="password" autocomplete="current-password" maxlength="72" required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
+        </span>
+      </label>
+      <label>
+        Mật khẩu mới
+        <span class="password-field">
+          <input name="new_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-policy data-password-primary required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
+        </span>
+      </label>
+      <label>
+        Nhập lại mật khẩu mới
+        <span class="password-field">
+          <input name="confirm_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-confirm required>
+          <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
+        </span>
+      </label>
+      <p class="form-note">Mật khẩu mới cần ít nhất 10 ký tự, có chữ hoa, chữ thường, chữ số và ký tự đặc biệt; không dùng khoảng trắng.</p>
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="shield-check" class="lucide-icon"></i>
+        Lưu mật khẩu mới
+      </button>
+    </form>
+  </article>
+</section>
+
+<% if (typeof pageStyles !== 'undefined') pageStyles.push('/css/admin/account.css'); %>

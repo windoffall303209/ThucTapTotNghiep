@@ -299,7 +299,10 @@ test('schema phiên luyện tập lưu thời lượng và hạn cuối độc l
 test('shell admin có app bar và drawer truy cập được trên màn hình hẹp', () => {
   const layout = read('views/layouts/main.ejs');
   const header = read('views/partials/header.ejs');
+  const account = read('views/admin/account.ejs');
+  const dashboard = read('views/admin/dashboard.ejs');
   const adminCommon = read('public/js/admin/common.js');
+  const routes = read('routes/adminRoutes.js');
 
   assert.match(layout, /<link rel="stylesheet" href="\/css\/admin\/common\.css">/);
   assertContainsAll(header, [
@@ -312,34 +315,30 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /aria-current="page"/
   ]);
   assertContainsAll(header, [
-    /data-admin-account-menu/,
+    /href="\/admin\/account"/,
+    /currentPath\.startsWith\('\/admin\/account'\)/,
+    /data-lucide="user-circle"/,
+    /Tài khoản/,
+    /action="\/auth\/logout"/
+  ]);
+  assertContainsAll(account, [
     /action="\/admin\/account\/password"/,
     /name="current_password"/,
     /name="new_password"[^>]*data-password-policy/,
     /name="confirm_password"[^>]*data-password-confirm/,
-    /<%= admin\.fullname %>/,
-    /<%= admin\.username %>/
+    /<%= account\.fullname %>/,
+    /<%= account\.username %>/,
+    /\/css\/admin\/account\.css/
   ]);
-  assert.equal((header.match(/data-admin-account-menu/g) || []).length, 1);
-  assert.ok(
-    header.indexOf('data-admin-account-menu') > header.indexOf('class="admin-sidebar-footer"'),
-    'Tài khoản quản trị phải nằm trong chân thanh dọc admin.'
-  );
-  assert.doesNotMatch(
-    header.slice(header.indexOf('<header class="admin-mobile-bar">'), header.indexOf('</header>')),
-    /data-admin-account-menu|admin-account-summary/
-  );
+  assert.match(routes, /router\.get\('\/account', AdminController\.account\)/);
+  assert.doesNotMatch(header, /data-admin-account-menu|admin-account-popover/);
+  assert.doesNotMatch(dashboard, /Quản trị nội dung/);
   assertContainsAll(adminCommon, [
     /const syncSidebarAccessibility =/,
     /sidebar\.setAttribute\('aria-hidden'/,
     /sidebar\.inert = !isOpen/
   ]);
-  assertContainsAll(adminCommon, [
-    /initAdminAccountMenu/,
-    /event\.key !== 'Escape'/,
-    /params\.get\('account'\) === 'password'/,
-    /matchMedia\('\(max-width: 920px\)'\)\.matches/
-  ]);
+  assert.doesNotMatch(adminCommon, /initAdminAccountMenu|account=password/);
 });
 
 test('bảng câu hỏi gần đây của dashboard admin chuyển thành bản ghi xếp dọc trên mobile', () => {

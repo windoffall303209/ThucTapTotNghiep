@@ -67,7 +67,7 @@ test('đổi mật khẩu quản trị bắt buộc mật khẩu hiện tại v�
   const wrongResponse = makeResponse();
   await AdminController.updateOwnPassword(wrongCurrent, wrongResponse, assert.fail);
   assert.equal(updates.length, 0);
-  assert.equal(wrongResponse.redirectedTo, '/admin/dashboard?account=password');
+  assert.equal(wrongResponse.redirectedTo, '/admin/account');
   assert.match(wrongCurrent.session.flash.message, /hiện tại không đúng/);
 
   const weakPassword = makeRequest({

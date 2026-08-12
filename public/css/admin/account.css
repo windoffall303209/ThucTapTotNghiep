@@ -1,0 +1,127 @@
+.admin-account-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.admin-account-grid .info-panel {
+  padding: 20px;
+}
+
+.admin-profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border: 1px solid #dbeafe;
+  border-radius: var(--admin-radius);
+  background: #f8fbff;
+}
+
+.admin-profile-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--primary);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.admin-profile-identity div {
+  display: grid;
+  min-width: 0;
+}
+
+.admin-profile-identity strong,
+.admin-profile-identity span {
+  overflow-wrap: anywhere;
+}
+
+.admin-profile-identity strong {
+  font-size: 15px;
+}
+
+.admin-profile-identity span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.admin-account-details {
+  display: grid;
+  margin: 0;
+}
+
+.admin-account-details div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.42fr) minmax(0, 0.58fr);
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-account-details div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.admin-account-details dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.admin-account-details dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.admin-account-details .status-active {
+  color: #166534;
+  border-color: #bbf7d0;
+  background: #dcfce7;
+}
+
+.admin-account-security .stack-form {
+  gap: 12px;
+}
+
+.admin-account-security .form-note {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+}
+
+.admin-account-security .btn {
+  justify-self: start;
+}
+
+@media (max-width: 840px) {
+  .admin-account-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-account-grid .info-panel {
+    padding: 15px;
+  }
+
+  .admin-account-details div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .admin-account-details dd {
+    text-align: left;
+  }
+
+  .admin-account-security .btn {
+    width: 100%;
+  }
+}
