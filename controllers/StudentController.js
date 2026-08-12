@@ -16,6 +16,9 @@ const { isSupportedGrade } = require('../config/grades');
 const { isAIEnabledForGrade } = require('../utils/aiPolicy');
 const { validatePassword } = require('../utils/accountValidation');
 const { clearAuthCookie } = require('../utils/authToken');
+const { normalizeEmail, validateEmail } = require('../utils/emailValidation');
+const AccountRecoveryService = require('../services/AccountRecoveryService');
+const EmailService = require('../services/EmailService');
 const {
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds
@@ -350,6 +353,87 @@ async function updatePassword(req, res, next) {
     return res.redirect('/auth/student/login');
   } catch (error) {
     next(error);
+  }
+}
+
+async function requestEmailVerification(req, res, next) {
+  let pendingEmail = '';
+  try {
+    const student = await Student.findById(req.auth.id);
+    const email = normalizeEmail(req.body.email);
+    pendingEmail = email;
+    const emailError = validateEmail(email);
+    if (!student || emailError) {
+      setFlash(req, 'danger', emailError || 'Không tìm thấy tài khoản học sinh.');
+      return res.redirect('/student/account');
+    }
+    const existing = await Student.findByEmail(email);
+    if (existing && Number(existing.id) !== Number(student.id)) {
+      setFlash(req, 'danger', 'Email này đã được dùng cho một tài khoản khác.');
+      return res.redirect('/student/account');
+    }
+    if (student.email_verified_at && normalizeEmail(student.email) === email) {
+      setFlash(req, 'success', 'Email này đã được xác thực và đang dùng để khôi phục mật khẩu.');
+      return res.redirect('/student/account');
+    }
+    await Student.setPendingEmail(student.id, email);
+    const code = await AccountRecoveryService.issueCode({
+      studentId: student.id,
+      purpose: 'VERIFY_EMAIL',
+      email
+    });
+    try {
+      await EmailService.sendVerificationCode({ to: email, code, purpose: 'VERIFY_EMAIL' });
+    } catch (error) {
+      await AccountRecoveryService.invalidateActiveCodes({ studentId: student.id, purpose: 'VERIFY_EMAIL' });
+      throw error;
+    }
+    req.session.pendingEmailVerification = email;
+    setFlash(req, 'success', 'Mã xác thực 6 số đã được gửi. Mã có hiệu lực trong 10 phút.');
+    return res.redirect('/student/account');
+  } catch (error) {
+    if ((error.code === 'EMAIL_NOT_CONFIGURED' || error.code === 'EMAIL_SEND_FAILED') && pendingEmail) {
+      await Student.clearPendingEmail(req.auth.id, pendingEmail).catch(() => {});
+    }
+    if (error.code === 'OTP_COOLDOWN' || error.code === 'EMAIL_NOT_CONFIGURED' || error.code === 'EMAIL_SEND_FAILED') {
+      setFlash(req, 'warning', error.message);
+      return res.redirect('/student/account');
+    }
+    return next(error);
+  }
+}
+
+async function verifyEmail(req, res, next) {
+  try {
+    const student = await Student.findById(req.auth.id);
+    const email = normalizeEmail(student?.pending_email || req.session.pendingEmailVerification);
+    const code = typeof req.body.verification_code === 'string' ? req.body.verification_code.trim() : '';
+    if (!student || !email || !/^\d{6}$/.test(code)) {
+      setFlash(req, 'danger', 'Mã xác thực phải gồm đúng 6 chữ số.');
+      return res.redirect('/student/account');
+    }
+    const result = await AccountRecoveryService.verifyEmailWithCode({
+      studentId: student.id,
+      email,
+      code
+    });
+    if (!result.ok) {
+      setFlash(req, 'danger', 'Mã xác thực không đúng, đã hết hạn hoặc đã vượt quá số lần thử.');
+      return res.redirect('/student/account');
+    }
+    delete req.session.pendingEmailVerification;
+    setFlash(req, 'success', 'Email đã được xác minh và có thể dùng để lấy lại mật khẩu.');
+    return res.redirect('/student/account');
+  } catch (error) {
+    if (error.code === 'ER_DUP_ENTRY') {
+      setFlash(req, 'danger', 'Email này đã được dùng cho một tài khoản khác.');
+      return res.redirect('/student/account');
+    }
+    if (error.code === 'PENDING_EMAIL_CHANGED') {
+      setFlash(req, 'danger', 'Email chờ xác thực đã thay đổi. Vui lòng yêu cầu mã mới.');
+      return res.redirect('/student/account');
+    }
+    return next(error);
   }
 }
 
@@ -976,6 +1060,8 @@ module.exports = {
   history,
   account,
   updatePassword,
+  requestEmailVerification,
+  verifyEmail,
   exams,
   startExam,
   sessionPractice,

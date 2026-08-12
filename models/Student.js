@@ -17,6 +17,24 @@ async function findById(id) {
   return rows[0] || null;
 }
 
+async function findByVerifiedEmail(email) {
+  const rows = await db.query(
+    `SELECT * FROM Students
+     WHERE email = ? AND email_verified_at IS NOT NULL AND is_active = 1
+     LIMIT 1`,
+    [email]
+  );
+  return rows[0] || null;
+}
+
+async function findByEmail(email) {
+  const rows = await db.query(
+    'SELECT * FROM Students WHERE email = ? OR pending_email = ? LIMIT 1',
+    [email, email]
+  );
+  return rows[0] || null;
+}
+
 // Hàm createStudent dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function createStudent({ username, password, fullname, grade }) {
   const passwordHash = await bcrypt.hash(password, 10);
@@ -155,6 +173,24 @@ async function updatePassword(studentId, password) {
   return passwordHash;
 }
 
+async function setPendingEmail(studentId, email) {
+  await db.query(
+    `UPDATE Students
+     SET pending_email = ?, updated_at = CURRENT_TIMESTAMP
+     WHERE id = ?`,
+    [email, studentId]
+  );
+}
+
+async function clearPendingEmail(studentId, email) {
+  await db.query(
+    `UPDATE Students
+     SET pending_email = NULL, updated_at = CURRENT_TIMESTAMP
+     WHERE id = ? AND pending_email = ?`,
+    [studentId, email]
+  );
+}
+
 // Chỉ thay đổi current_grade và giữ nguyên registered_grade/lịch sử. Mọi phiên đang làm
 // thuộc chương trình lớp cũ phải được đóng trong cùng transaction để học sinh không thể
 // tiếp tục một snapshot không còn phù hợp sau khi đăng nhập ở lớp mới.
@@ -248,11 +284,15 @@ async function updateActiveStatus(studentId, isActive) {
 module.exports = {
   findByUsername,
   findById,
+  findByVerifiedEmail,
+  findByEmail,
   createStudent,
   countStudents,
   listStudents,
   listStudentsPaged,
   updatePassword,
+  setPendingEmail,
+  clearPendingEmail,
   updateCurrentGrade,
   updateActiveStatus
 };

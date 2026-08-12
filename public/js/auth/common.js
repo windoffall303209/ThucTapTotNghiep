@@ -3,7 +3,17 @@
   document.addEventListener('DOMContentLoaded', () => {
     initPasswordMatchForms();
     initAccountPolicies();
+    initVerificationCodes();
   });
+
+  function initVerificationCodes() {
+    document.querySelectorAll('[data-verification-code]').forEach((input) => {
+      input.addEventListener('input', () => {
+        const clean = input.value.replace(/\D/gu, '').slice(0, 6);
+        if (clean !== input.value) input.value = clean;
+      });
+    });
+  }
 
   function initAccountPolicies() {
     document.querySelectorAll('[data-fullname-policy]').forEach((input) => {

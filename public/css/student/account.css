@@ -60,6 +60,76 @@
   justify-self: start;
 }
 
+.recovery-email {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.recovery-email-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.recovery-email-head h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.recovery-email-head p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.email-status,
+.verified-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.email-status {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #92400e;
+  background: #fef3c7;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.email-status-verified {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.verified-email {
+  margin: 0;
+  color: var(--text);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.email-code-form {
+  padding: 13px;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  background: #eff6ff;
+}
+
+.email-code-form .verification-code-input {
+  max-width: 240px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
 @media (min-width: 760px) {
   .account-grid {
     grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
@@ -79,5 +149,18 @@
 
   .account-grid .stack-form .btn {
     width: 100%;
+  }
+
+  .recovery-email-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .email-status {
+    align-self: flex-start;
+  }
+
+  .email-code-form .verification-code-input {
+    max-width: none;
   }
 }

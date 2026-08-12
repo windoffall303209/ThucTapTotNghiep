@@ -176,6 +176,19 @@ Lưu secret trong secret manager hoặc file môi trường chỉ tài khoản c
 
 Xoay `SESSION_SECRET` hoặc `JWT_SECRET` làm các phiên/token cũ mất hiệu lực, vì vậy người dùng cần đăng nhập lại.
 
+## Xác thực email và quên mật khẩu
+
+Tài khoản học sinh có thể thêm email khôi phục tại `/student/account`. Email mới chỉ được ghi nhận sau khi học sinh nhập đúng mã xác thực 6 số; mã hết hạn sau 10 phút, tối đa 5 lần thử và chỉ có một mã còn hiệu lực cho mỗi mục đích. Mã được lưu dưới dạng HMAC, không lưu bản rõ.
+
+Trước khi dùng tính năng, chạy preflight rồi áp dụng migration additive:
+
+```powershell
+npm run db:email-recovery
+npm run db:email-recovery -- --apply --confirm-database=<DB_NAME>
+```
+
+Cấu hình `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` và một `EMAIL_OTP_SECRET` riêng dài ít nhất 32 ký tự. Nên dùng app password hoặc credential SMTP chuyên dụng, không dùng mật khẩu đăng nhập hộp thư. Production sẽ từ chối khởi động nếu thiếu các giá trị này.
+
 ## Cấu hình AI và lưu ảnh
 
 Các provider hỗ trợ gồm `openai`, `gemini`, `gemini_cli`, `nvidia`, `openrouter` và `mock`. Cấu hình mặc định và danh sách biến đầy đủ nằm trong [.env.example](.env.example).

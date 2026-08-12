@@ -41,11 +41,8 @@
       </form>
       <%# Khối xử lý trong mẫu quyết định nội dung giao diện dựa trên dữ liệu máy chủ. %>
       <% if (role !== 'admin') { %>
-        <%# Trẻ em là nhóm quên mật khẩu nhiều nhất. Hệ thống chưa có luồng tự
-            đặt lại nên phải chỉ rõ lối thoát thay vì để các em bế tắc ở đây:
-            quản trị viên đặt lại được mật khẩu trong trang Học sinh. %>
         <p class="form-note">
-          Quên mật khẩu? Em nhờ bố mẹ hoặc thầy cô liên hệ quản trị viên để đặt lại mật khẩu mới nhé.
+          <a href="/auth/forgot-password">Quên mật khẩu?</a> Nhận mã xác thực qua email đã xác minh để đặt lại mật khẩu.
         </p>
       <% } %>
       <% if (role !== 'admin') { %>

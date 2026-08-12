@@ -12,6 +12,9 @@ const {
   validatePassword,
   validateUsername
 } = require('../utils/accountValidation');
+const { normalizeEmail, validateEmail } = require('../utils/emailValidation');
+const AccountRecoveryService = require('../services/AccountRecoveryService');
+const EmailService = require('../services/EmailService');
 
 // Bcrypt must still run when the username does not exist. Returning early makes
 // the timing gap large enough to enumerate accounts despite identical messages.
@@ -175,6 +178,105 @@ async function loginForRole(req, res, next, role) {
   }
 }
 
+function showForgotPassword(req, res) {
+  res.render('auth/forgot-password', { title: 'Quên mật khẩu' });
+}
+
+function showResetPassword(req, res) {
+  if (!req.session.passwordResetEmail) return res.redirect('/auth/forgot-password');
+  res.render('auth/reset-password', { title: 'Đặt lại mật khẩu' });
+}
+
+async function requestPasswordReset(req, res, next) {
+  const genericMessage = 'Nếu email đã được xác minh, hệ thống đã gửi mã đặt lại mật khẩu gồm 6 số.';
+  try {
+    const email = normalizeEmail(req.body.email);
+    if (validateEmail(email)) {
+      setFlash(req, 'success', genericMessage);
+      return res.redirect('/auth/forgot-password');
+    }
+    req.session.passwordResetEmail = email;
+    if (!EmailService.isConfigured()) {
+      setFlash(req, 'warning', 'Dịch vụ gửi email tạm thời chưa sẵn sàng. Vui lòng liên hệ quản trị viên.');
+      return res.redirect('/auth/forgot-password');
+    }
+    const student = await Student.findByVerifiedEmail(email);
+    if (student) {
+      setImmediate(async () => {
+        try {
+          const code = await AccountRecoveryService.issueCode({
+            studentId: student.id,
+            purpose: 'RESET_PASSWORD',
+            email
+          });
+          await EmailService.sendVerificationCode({ to: email, code, purpose: 'RESET_PASSWORD' });
+        } catch (error) {
+          if (error.code !== 'OTP_COOLDOWN') {
+            await AccountRecoveryService.invalidateActiveCodes({
+              studentId: student.id,
+              purpose: 'RESET_PASSWORD'
+            }).catch(() => {});
+            console.error('Không thể phát hành email đặt lại mật khẩu.');
+          }
+        }
+      });
+    }
+    setFlash(req, 'success', genericMessage);
+    return res.redirect('/auth/reset-password');
+  } catch (error) {
+    if (error.code === 'OTP_COOLDOWN') {
+      setFlash(req, 'success', genericMessage);
+      return res.redirect('/auth/reset-password');
+    }
+    if (error.code === 'EMAIL_NOT_CONFIGURED') {
+      setFlash(req, 'warning', 'Dịch vụ gửi email tạm thời chưa sẵn sàng. Vui lòng liên hệ quản trị viên.');
+      return res.redirect('/auth/forgot-password');
+    }
+    return next(error);
+  }
+}
+
+async function resetPassword(req, res, next) {
+  try {
+    const email = normalizeEmail(req.session.passwordResetEmail);
+    const code = typeof req.body.verification_code === 'string' ? req.body.verification_code.trim() : '';
+    const password = typeof req.body.password === 'string' ? req.body.password : '';
+    const confirmPassword = typeof req.body.confirm_password === 'string' ? req.body.confirm_password : '';
+    const passwordError = validatePassword(password);
+    if (!email || !/^\d{6}$/.test(code) || passwordError || password !== confirmPassword) {
+      setFlash(
+        req,
+        'danger',
+        password !== confirmPassword
+          ? 'Hai mật khẩu chưa trùng khớp.'
+          : passwordError || 'Mã xác thực phải gồm đúng 6 chữ số.'
+      );
+      return res.redirect('/auth/reset-password');
+    }
+    // Băm cả khi email không tồn tại để giảm chênh lệch thời gian có thể dùng dò tài khoản.
+    const passwordHash = await bcrypt.hash(password, 10);
+    const student = await Student.findByVerifiedEmail(email);
+    const result = student
+      ? await AccountRecoveryService.resetPasswordWithCode({
+          studentId: student.id,
+          email,
+          code,
+          passwordHash
+        })
+      : { ok: false };
+    if (!student || !result.ok) {
+      setFlash(req, 'danger', 'Mã xác thực không đúng, đã hết hạn hoặc đã vượt quá số lần thử.');
+      return res.redirect('/auth/reset-password');
+    }
+    delete req.session.passwordResetEmail;
+    clearAuthCookie(res);
+    setFlash(req, 'success', 'Mật khẩu đã được đặt lại. Em có thể đăng nhập bằng mật khẩu mới.');
+    return res.redirect('/auth/student/login');
+  } catch (error) {
+    return next(error);
+  }
+}
+
 function studentLogin(req, res, next) {
   return loginForRole(req, res, next, 'student');
 }
@@ -258,7 +360,11 @@ module.exports = {
   showStudentLogin,
   showAdminLogin,
   showRegister,
+  showForgotPassword,
+  showResetPassword,
   register,
+  requestPasswordReset,
+  resetPassword,
   login,
   studentLogin,
   adminLogin,

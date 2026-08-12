@@ -12,6 +12,25 @@
   width: min(900px, 100%);
 }
 
+.auth-layout-single {
+  width: min(520px, 100%);
+}
+
+.auth-layout-single .auth-panel {
+  padding: 22px 24px;
+}
+
+.auth-intro {
+  margin-bottom: 16px !important;
+}
+
+.verification-code-input {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.35em;
+  text-align: center;
+}
+
 .auth-copy {
   display: grid;
   gap: 10px;
@@ -114,6 +133,10 @@
 
   .auth-panel {
     padding: 22px 24px;
+  }
+
+  .auth-layout.auth-layout-single {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

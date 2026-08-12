@@ -35,6 +35,49 @@
         <dd><%= account.created_at ? new Date(account.created_at).toLocaleString('vi-VN') : '-' %></dd>
       </div>
     </dl>
+    <div class="recovery-email" aria-labelledby="recovery-email-title">
+      <div class="recovery-email-head">
+        <div>
+          <h2 id="recovery-email-title">Email khôi phục</h2>
+          <p>Chỉ email đã xác thực mới được dùng để lấy lại mật khẩu.</p>
+        </div>
+        <% if (account.email && account.email_verified_at) { %>
+          <span class="email-status email-status-verified"><i data-lucide="badge-check" class="lucide-icon"></i>Đã xác thực</span>
+        <% } else { %>
+          <span class="email-status"><i data-lucide="shield-alert" class="lucide-icon"></i>Chưa xác thực</span>
+        <% } %>
+      </div>
+
+      <% if (account.email && account.email_verified_at) { %>
+        <p class="verified-email"><i data-lucide="mail-check" class="lucide-icon"></i><%= account.email %></p>
+      <% } %>
+
+      <form class="stack-form email-request-form" action="/student/account/email" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <label>
+          Địa chỉ email
+          <input name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" value="<%= account.pending_email || account.email || '' %>" placeholder="vidu@email.com" required>
+        </label>
+        <button class="btn btn-secondary" type="submit">
+          <i data-lucide="send" class="lucide-icon"></i>
+          <%= account.pending_email ? 'Gửi lại mã' : (account.email_verified_at ? 'Xác thực email mới' : 'Gửi mã xác thực') %>
+        </button>
+      </form>
+
+      <% if (account.pending_email) { %>
+        <form class="stack-form email-code-form" action="/student/account/email/verify" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <label>
+            Mã xác thực 6 số đã gửi đến <strong><%= account.pending_email %></strong>
+            <input class="verification-code-input" name="verification_code" inputmode="numeric" autocomplete="one-time-code" minlength="6" maxlength="6" pattern="[0-9]{6}" data-verification-code required>
+          </label>
+          <button class="btn btn-primary" type="submit">
+            <i data-lucide="badge-check" class="lucide-icon"></i>
+            Xác nhận email
+          </button>
+        </form>
+      <% } %>
+    </div>
     <p class="form-note">Nếu cần đổi lớp học, hãy nhờ phụ huynh hoặc quản trị viên hỗ trợ.</p>
   </article>
 

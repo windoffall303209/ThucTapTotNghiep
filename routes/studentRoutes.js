@@ -10,6 +10,8 @@ router.get('/dashboard', StudentController.dashboard);
 router.get('/history', StudentController.history);
 router.get('/account', StudentController.account);
 router.post('/account/password', StudentController.updatePassword);
+router.post('/account/email', StudentController.requestEmailVerification);
+router.post('/account/email/verify', StudentController.verifyEmail);
 router.get('/exams', StudentController.exams);
 router.post('/exams/start', StudentController.startExam);
 router.get('/sessions/:id/practice', StudentController.sessionPractice);

@@ -107,6 +107,7 @@ test('production từ chối secret mẫu và cấu hình thiếu', () => {
       SESSION_SECRET: 'change-this-session-secret',
       JWT_SECRET: 'change-this-jwt-secret',
       API_KEY_ENCRYPTION_SECRET: 'change_me_for_admin_saved_api_keys',
+      EMAIL_OTP_SECRET: 'change-this-email-otp-secret-at-least-32-characters',
       DB_HOST: '127.0.0.1',
       DB_USER: 'app',
       DB_NAME: 'app',
@@ -120,11 +121,16 @@ test('production từ chối secret mẫu và cấu hình thiếu', () => {
     SESSION_SECRET: 's'.repeat(48),
     JWT_SECRET: 'j'.repeat(48),
     API_KEY_ENCRYPTION_SECRET: 'e'.repeat(48),
+    EMAIL_OTP_SECRET: 'o'.repeat(48),
     DB_HOST: '127.0.0.1',
     DB_USER: 'app',
     DB_NAME: 'app',
     APP_ORIGIN: 'https://example.com',
-    TRUST_PROXY: '1'
+    TRUST_PROXY: '1',
+    SMTP_HOST: 'smtp.example.com',
+    SMTP_USER: 'mailer',
+    SMTP_PASSWORD: 'mail-secret',
+    SMTP_FROM: 'no-reply@example.com'
   }));
 });
 

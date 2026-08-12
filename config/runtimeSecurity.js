@@ -8,6 +8,7 @@ const PLACEHOLDER_SECRETS = new Set([
   'dev-only-change-this-secret',
   'change-this-session-secret',
   'change-this-jwt-secret',
+  'change-this-email-otp-secret-at-least-32-characters',
   'change_me_for_admin_saved_api_keys'
 ]);
 
@@ -20,6 +21,7 @@ function validateProductionConfig(env = process.env) {
   validateSecret(env, 'SESSION_SECRET', errors);
   validateSecret(env, 'JWT_SECRET', errors);
   validateSecret(env, 'API_KEY_ENCRYPTION_SECRET', errors);
+  validateSecret(env, 'EMAIL_OTP_SECRET', errors);
 
   // Vòng lặp duyệt hoặc chờ dữ liệu cho đến khi đạt điều kiện dừng đã định.
   for (const key of ['DB_HOST', 'DB_USER', 'DB_NAME']) {
@@ -49,6 +51,20 @@ function validateProductionConfig(env = process.env) {
     } catch (error) {
       errors.push('APP_ORIGIN must be a valid absolute URL');
     }
+  }
+
+  for (const key of ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASSWORD', 'SMTP_FROM']) {
+    if (!String(env[key] || '').trim()) errors.push(`${key} is required in production`);
+  }
+  const smtpPort = Number(env.SMTP_PORT || 587);
+  if (!Number.isInteger(smtpPort) || smtpPort < 1 || smtpPort > 65535) {
+    errors.push('SMTP_PORT must be an integer from 1 to 65535');
+  }
+  if (env.SMTP_SECURE !== undefined && !['true', 'false'].includes(String(env.SMTP_SECURE).toLowerCase())) {
+    errors.push('SMTP_SECURE must be true or false');
+  }
+  if (/\r|\n/u.test(String(env.SMTP_FROM || ''))) {
+    errors.push('SMTP_FROM must not contain line breaks');
   }
 
   const trustProxyHops = Number(env.TRUST_PROXY);

@@ -69,6 +69,9 @@ CREATE TABLE Students (
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
+    email VARCHAR(254) NULL,
+    email_verified_at DATETIME NULL,
+    pending_email VARCHAR(254) NULL,
     registered_grade INT NOT NULL CHECK (registered_grade BETWEEN 1 AND 5),
     current_grade INT NOT NULL CHECK (current_grade BETWEEN 1 AND 5),
     is_active TINYINT(1) NOT NULL DEFAULT 1,
@@ -82,6 +85,25 @@ CREATE INDEX idx_students_username ON Students(username);
 CREATE INDEX idx_students_current_grade ON Students(current_grade);
 -- Câu lệnh SQL CREATE thực hiện một bước thay đổi hoặc truy vấn dữ liệu; cần kiểm tra phạm vi tác động trước khi chạy.
 CREATE INDEX idx_students_is_active ON Students(is_active);
+CREATE UNIQUE INDEX uq_students_verified_email ON Students(email);
+
+-- Mã một lần chỉ được lưu dưới dạng HMAC, có hạn dùng và giới hạn số lần thử.
+CREATE TABLE AccountVerificationCodes (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    purpose VARCHAR(30) NOT NULL CHECK (purpose IN ('VERIFY_EMAIL', 'RESET_PASSWORD')),
+    target_email VARCHAR(254) NOT NULL,
+    code_hash CHAR(64) NOT NULL,
+    attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    expires_at DATETIME NOT NULL,
+    consumed_at DATETIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_verification_code_student FOREIGN KEY (student_id) REFERENCES Students(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_verification_code_lookup
+    ON AccountVerificationCodes(student_id, purpose, target_email, consumed_at, created_at);
+CREATE INDEX idx_verification_code_expiry ON AccountVerificationCodes(expires_at);
 
 -- 4. Table: Chapters (Quản lý Chương học)
 CREATE TABLE Chapters (

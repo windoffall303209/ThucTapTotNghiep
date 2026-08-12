@@ -269,7 +269,7 @@
       meter.innerHTML = `
         <div class="password-strength-head">
           <span>Độ mạnh mật khẩu</span>
-          <strong data-password-strength-label>Chưa nhập</strong>
+          <strong data-password-strength-label hidden></strong>
         </div>
         <div class="password-strength-track" role="meter" aria-label="Độ mạnh mật khẩu" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
           <span data-password-strength-fill></span>
@@ -294,7 +294,7 @@
         const hasWhitespace = /\s/u.test(value);
         const effectiveScore = hasWhitespace ? Math.min(score, 1) : score;
         const state = !value
-          ? { level: 'empty', text: 'Chưa nhập' }
+          ? { level: 'empty', text: '', ariaText: 'Chưa nhập' }
           : effectiveScore <= 2
             ? { level: 'weak', text: 'Yếu' }
             : effectiveScore <= 4
@@ -303,9 +303,10 @@
 
         meter.dataset.level = state.level;
         label.textContent = state.text;
+        label.hidden = !state.text;
         fill.style.width = `${effectiveScore * 20}%`;
         track.setAttribute('aria-valuenow', String(effectiveScore));
-        track.setAttribute('aria-valuetext', state.text);
+        track.setAttribute('aria-valuetext', state.ariaText || state.text);
       };
       input.addEventListener('input', update);
       update();

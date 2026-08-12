@@ -36,8 +36,13 @@ function productionEnv(overrides = {}) {
     SESSION_SECRET: 's'.repeat(48),
     JWT_SECRET: 'j'.repeat(48),
     API_KEY_ENCRYPTION_SECRET: 'e'.repeat(48),
+    EMAIL_OTP_SECRET: 'o'.repeat(48),
     APP_ORIGIN: 'https://example.com',
     TRUST_PROXY: '1',
+    SMTP_HOST: 'smtp.example.com',
+    SMTP_USER: 'mailer',
+    SMTP_PASSWORD: 'mail-secret',
+    SMTP_FROM: 'no-reply@example.com',
     ...overrides
   };
 }
