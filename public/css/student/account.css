@@ -170,6 +170,17 @@
   min-height: 48px;
 }
 
+.email-code-actions .email-code-cancel {
+  color: #fff;
+  border-color: #dc2626;
+  background: #dc2626;
+}
+
+.email-code-actions .email-code-cancel:hover:not(:disabled) {
+  border-color: #b91c1c;
+  background: #b91c1c;
+}
+
 @media (min-width: 760px) {
   .account-grid {
     grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);

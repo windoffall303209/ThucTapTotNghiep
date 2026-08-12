@@ -153,6 +153,7 @@ test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực
   assert.match(accountView, /action="\/student\/account\/email\/verify"/);
   assert.match(accountView, /formaction="\/student\/account\/email\/cancel" formnovalidate/);
   assert.match(accountView, /class="email-code-actions"/);
+  assert.match(accountView, /class="btn btn-danger email-code-cancel"/);
   assert.match(studentRoutes, /router\.post\('\/account\/email\/cancel', StudentController\.cancelEmailVerification\)/);
   assert.match(studentController, /invalidateActiveCodes\(\{[^]*purpose: 'VERIFY_EMAIL'/);
   assert.match(studentController, /Student\.clearPendingEmail\(student\.id, pendingEmail\)/);
