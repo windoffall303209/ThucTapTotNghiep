@@ -2,6 +2,8 @@
 (function () {
   const dirtyForms = new Set();
   const userInteractedForms = new WeakSet();
+  const cleanFormSnapshots = new WeakMap();
+  const directTextEdits = new WeakSet();
   let dirtyGuardReady = false;
 
   // Hàm isTrackableForm dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -16,8 +18,51 @@
   function pruneDirtyForms() {
     dirtyForms.forEach((form) => {
       // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-      if (!form.isConnected) dirtyForms.delete(form);
+      if (!form.isConnected) {
+        dirtyForms.delete(form);
+        cleanFormSnapshots.delete(form);
+        userInteractedForms.delete(form);
+        return;
+      }
+      const cleanSnapshot = cleanFormSnapshots.get(form);
+      if (cleanSnapshot != null && cleanSnapshot === formSnapshot(form)) dirtyForms.delete(form);
     });
+  }
+
+  function formSnapshot(form) {
+    return Array.from(form?.elements || [])
+      .filter((control) => control?.name && !control.disabled)
+      .map((control) => {
+        const type = String(control.type || '').toLowerCase();
+        if (['button', 'submit', 'reset', 'image'].includes(type)) return null;
+        if (type === 'checkbox' || type === 'radio') {
+          return [control.name, type, Boolean(control.checked), String(control.value || '')];
+        }
+        if (type === 'file') {
+          return [
+            control.name,
+            type,
+            Array.from(control.files || []).map((file) => [file.name, file.size, file.lastModified])
+          ];
+        }
+        if (control.multiple && control.options) {
+          return [
+            control.name,
+            type,
+            Array.from(control.options).filter((option) => option.selected).map((option) => option.value)
+          ];
+        }
+        return [control.name, type, String(control.value ?? '')];
+      })
+      .filter(Boolean)
+      .map((entry) => JSON.stringify(entry))
+      .join('\n');
+  }
+
+  function rememberCleanSnapshot(form) {
+    if (isTrackableForm(form) && !cleanFormSnapshots.has(form)) {
+      cleanFormSnapshots.set(form, formSnapshot(form));
+    }
   }
 
   // Hàm markDirty dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -29,7 +74,11 @@
   // Hàm clearDirty dùng để xóa hoặc giải phóng tài nguyên theo điều kiện an toàn; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function clearDirty(form) {
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (form) dirtyForms.delete(form);
+    if (form) {
+      dirtyForms.delete(form);
+      cleanFormSnapshots.delete(form);
+      userInteractedForms.delete(form);
+    }
   }
 
   // Hàm dirtyFormsWithin dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -90,14 +139,37 @@
     const rememberUserInteraction = (event) => {
       if (event.isTrusted === false) return;
       const form = event.target.closest?.('form');
-      if (isTrackableForm(form)) userInteractedForms.add(form);
+      if (isTrackableForm(form)) {
+        rememberCleanSnapshot(form);
+        userInteractedForms.add(form);
+      }
     };
 
     const markFromUserEdit = (event) => {
       if (event.isTrusted === false) return;
       const form = event.target.closest?.('form');
-      if (form && userInteractedForms.has(form)) markDirty(form);
+      if (!form || !userInteractedForms.has(form)) return;
+      rememberCleanSnapshot(form);
+      if (formSnapshot(form) === cleanFormSnapshots.get(form)) dirtyForms.delete(form);
+      else markDirty(form);
     };
+
+    const isTextEntryControl = (target) => {
+      const tagName = String(target?.tagName || '').toLowerCase();
+      if (tagName === 'textarea' || target?.isContentEditable) return true;
+      if (tagName !== 'input') return false;
+      const type = String(target.type || 'text').toLowerCase();
+      return ['text', 'password', 'email', 'url', 'search', 'tel', 'number'].includes(type);
+    };
+
+    document.addEventListener('beforeinput', (event) => {
+      if (event.isTrusted === false || !isTextEntryControl(event.target)) return;
+      const form = event.target.closest?.('form');
+      if (!isTrackableForm(form)) return;
+      rememberCleanSnapshot(form);
+      userInteractedForms.add(form);
+      directTextEdits.add(event.target);
+    });
 
     // Chỉ một thao tác chuột/bàn phím thật bên trong form mới mở quyền đánh dấu dirty.
     // Autofill, khôi phục form của trình duyệt và event do mã khởi tạo phát ra không được
@@ -107,10 +179,17 @@
     document.addEventListener('click', rememberUserInteraction, true);
 
     document.addEventListener('input', (event) => {
+      // Chrome/password manager có thể phát input khi focus một ô secret dù người
+      // dùng chưa gõ. Thao tác gõ/xóa/dán thật luôn đi qua beforeinput trước đó.
+      if (isTextEntryControl(event.target) && !directTextEdits.has(event.target)) return;
       markFromUserEdit(event);
+      directTextEdits.delete(event.target);
     });
 
     document.addEventListener('change', (event) => {
+      // Text input đã được xử lý ở sự kiện input. Bỏ change lúc blur để autofill
+      // hoặc password manager không tạo cảnh báo rời trang giả.
+      if (isTextEntryControl(event.target)) return;
       markFromUserEdit(event);
     });
 

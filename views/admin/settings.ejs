@@ -272,7 +272,7 @@
     </header>
     <div class="settings-modal-body">
       <label>OpenAI API key
-        <input name="openai_api_key" type="password" maxlength="4096" autocomplete="off"
+        <input name="openai_api_key" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.openai_api_key ? `Đang dùng key ${maskSecret(settings.openai_api_key)} — nhập để thay` : 'Nhập OpenAI API key' %>">
       </label>
       <label>Base URL <input name="openai_base_url" type="url" maxlength="2048" value="<%= settings.openai_base_url %>" placeholder="https://api.openai.com/v1" required></label>
@@ -297,7 +297,7 @@
     </header>
     <div class="settings-modal-body">
       <label>Gemini API key
-        <input name="gemini_api_key" type="password" maxlength="4096" autocomplete="off"
+        <input name="gemini_api_key" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.gemini_api_key ? `Đang dùng key ${maskSecret(settings.gemini_api_key)} — nhập để thay` : 'Nhập Gemini API key' %>">
       </label>
       <% modelField('Gemini model', 'gemini_model', settings.gemini_model, geminiModels); %>
@@ -342,7 +342,7 @@
     </header>
     <div class="settings-modal-body">
       <label>NVIDIA NIM API key
-        <input name="nvidia_nim_api_key" type="password" maxlength="4096" autocomplete="off"
+        <input name="nvidia_nim_api_key" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.nvidia_nim_api_key ? `Đang dùng key ${maskSecret(settings.nvidia_nim_api_key)} — nhập để thay` : 'Nhập NVIDIA NIM API key' %>">
       </label>
       <label>Base URL <input name="nvidia_nim_base_url" type="url" maxlength="2048" value="<%= settings.nvidia_nim_base_url %>" placeholder="https://integrate.api.nvidia.com/v1" required></label>
@@ -367,7 +367,7 @@
     </header>
     <div class="settings-modal-body">
       <label>OpenRouter API key
-        <input name="openrouter_api_key" type="password" maxlength="4096" autocomplete="off"
+        <input name="openrouter_api_key" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.openrouter_api_key ? `Đang dùng key ${maskSecret(settings.openrouter_api_key)} — nhập để thay` : 'Nhập OpenRouter API key' %>">
       </label>
       <label>Base URL <input name="openrouter_base_url" type="url" maxlength="2048" value="<%= settings.openrouter_base_url %>" placeholder="https://openrouter.ai/api/v1" required></label>
@@ -394,11 +394,11 @@
       <p class="muted">Khi đủ ba thông tin Cloudinary, ảnh câu hỏi sẽ được tải lên Cloudinary. Nếu thiếu, hệ thống tự lưu vào thư mục local <code>public/uploads/images</code>.</p>
       <label>Cloud name <input name="cloudinary_cloud_name" maxlength="255" value="<%= settings.cloudinary_cloud_name %>" placeholder="Ví dụ: my-cloud"></label>
       <label>API key
-        <input name="cloudinary_api_key" type="password" maxlength="4096" autocomplete="off"
+        <input name="cloudinary_api_key" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.cloudinary_api_key ? `Đang dùng key ${maskSecret(settings.cloudinary_api_key)} — nhập để thay` : 'Nhập Cloudinary API key' %>">
       </label>
       <label>API secret
-        <input name="cloudinary_api_secret" type="password" maxlength="4096" autocomplete="off"
+        <input name="cloudinary_api_secret" type="password" maxlength="4096" autocomplete="new-password" autocapitalize="none" spellcheck="false"
           placeholder="<%= settings.cloudinary_api_secret ? `Đang dùng secret ${maskSecret(settings.cloudinary_api_secret)} — nhập để thay` : 'Nhập Cloudinary API secret' %>">
       </label>
     </div>

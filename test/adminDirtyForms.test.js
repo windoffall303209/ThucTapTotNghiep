@@ -7,9 +7,10 @@ const vm = require('node:vm');
 
 // Hàm createForm dùng để tạo bản ghi hoặc tài nguyên mới sau khi kiểm tra đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function createForm({ method = 'post', ignored = false } = {}) {
-  return {
+  const form = {
     isConnected: true,
     method,
+    elements: [],
     // Hàm getAttribute dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     getAttribute(name) {
       return name === 'method' ? method : null;
@@ -19,6 +20,19 @@ function createForm({ method = 'post', ignored = false } = {}) {
       return ignored && selector.includes('[data-question-filter]');
     }
   };
+  const control = {
+    name: 'sample_field',
+    type: 'text',
+    value: '',
+    disabled: false,
+    tagName: 'INPUT',
+    closest(selector) {
+      return selector === 'form' ? form : null;
+    }
+  };
+  form.elements.push(control);
+  form.control = control;
+  return form;
 }
 
 // Hàm loadDirtyGuard dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -96,18 +110,26 @@ function loadDirtyGuard() {
 // Hàm inputEvent dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function inputEvent(form) {
   return {
-    target: {
-      // Hàm closest dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-      closest(selector) {
-        return selector === 'form' ? form : null;
-      }
-    }
+    target: form.control
   };
 }
 
 function userEdit(guard, form, type = 'input') {
   guard.dispatch('pointerdown', inputEvent(form));
-  guard.dispatch(type, inputEvent(form));
+  if (type === 'change') {
+    form.control.tagName = 'SELECT';
+    form.control.type = 'select-one';
+  } else {
+    guard.dispatch('beforeinput', {
+      ...inputEvent(form),
+      inputType: 'insertText'
+    });
+  }
+  form.control.value = `${form.control.value}x`;
+  guard.dispatch(type, {
+    ...inputEvent(form),
+    inputType: type === 'input' ? 'insertText' : undefined
+  });
 }
 
 test('dirty registry theo dõi từng form và submit form này không xóa form khác', () => {
@@ -197,4 +219,24 @@ test('event khởi tạo và autofill không được báo có thay đổi khi n
 
   userEdit(guard, settingsForm);
   assert.equal(guard.api.hasDirty(), true);
+});
+
+test('focus và autofill giả trên ô API key không tạo cảnh báo nếu người dùng chưa sửa', () => {
+  const guard = loadDirtyGuard();
+  const settingsForm = createForm();
+
+  guard.dispatch('pointerdown', inputEvent(settingsForm));
+  guard.dispatch('input', inputEvent(settingsForm));
+  guard.dispatch('change', inputEvent(settingsForm));
+  assert.equal(guard.api.hasDirty(), false);
+
+  settingsForm.control.value = 'sk-user-entered';
+  guard.dispatch('beforeinput', { ...inputEvent(settingsForm), inputType: 'insertText' });
+  guard.dispatch('input', { ...inputEvent(settingsForm), inputType: 'insertText' });
+  assert.equal(guard.api.hasDirty(), true);
+
+  settingsForm.control.value = '';
+  guard.dispatch('beforeinput', { ...inputEvent(settingsForm), inputType: 'deleteContentBackward' });
+  guard.dispatch('input', { ...inputEvent(settingsForm), inputType: 'deleteContentBackward' });
+  assert.equal(guard.api.hasDirty(), false);
 });
