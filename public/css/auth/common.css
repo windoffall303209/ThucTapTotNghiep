@@ -24,13 +24,6 @@
   margin-bottom: 16px !important;
 }
 
-.verification-code-input {
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.35em;
-  text-align: center;
-}
-
 .auth-copy {
   display: grid;
   gap: 10px;

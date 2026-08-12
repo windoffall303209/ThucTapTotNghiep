@@ -7,6 +7,61 @@
   });
 
   function initVerificationCodes() {
+    document.querySelectorAll('[data-verification-code-group]').forEach((group) => {
+      const digits = Array.from(group.querySelectorAll('[data-verification-digit]'));
+      const valueInput = group.querySelector('[data-verification-code-value]');
+      if (digits.length !== 6 || !valueInput) return;
+
+      const syncValue = () => {
+        valueInput.value = digits.map((digit) => digit.value).join('');
+      };
+      const distribute = (value, startIndex = 0) => {
+        const clean = String(value || '').replace(/\D/gu, '').slice(0, digits.length - startIndex);
+        if (!clean) return;
+        clean.split('').forEach((character, offset) => {
+          digits[startIndex + offset].value = character;
+        });
+        syncValue();
+        digits[Math.min(startIndex + clean.length, digits.length - 1)].focus();
+      };
+
+      digits.forEach((digit, index) => {
+        digit.addEventListener('input', () => {
+          const clean = digit.value.replace(/\D/gu, '');
+          if (clean.length > 1) {
+            distribute(clean, index);
+            return;
+          }
+          digit.value = clean.slice(-1);
+          syncValue();
+          if (digit.value && index < digits.length - 1) digits[index + 1].focus();
+        });
+        digit.addEventListener('keydown', (event) => {
+          if (event.key === 'Backspace' && !digit.value && index > 0) {
+            event.preventDefault();
+            digits[index - 1].value = '';
+            digits[index - 1].focus();
+            syncValue();
+          } else if (event.key === 'ArrowLeft' && index > 0) {
+            event.preventDefault();
+            digits[index - 1].focus();
+          } else if (event.key === 'ArrowRight' && index < digits.length - 1) {
+            event.preventDefault();
+            digits[index + 1].focus();
+          }
+        });
+        digit.addEventListener('focus', () => digit.select());
+      });
+      group.addEventListener('paste', (event) => {
+        const pasted = event.clipboardData?.getData('text') || '';
+        if (!/\d/u.test(pasted)) return;
+        event.preventDefault();
+        distribute(pasted, 0);
+      });
+      group.closest('form')?.addEventListener('submit', syncValue);
+      syncValue();
+    });
+
     document.querySelectorAll('[data-verification-code]').forEach((input) => {
       input.addEventListener('input', () => {
         const clean = input.value.replace(/\D/gu, '').slice(0, 6);

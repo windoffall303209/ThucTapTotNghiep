@@ -142,14 +142,36 @@ test('migration email recovery là preflight mặc định và cần xác nhận
   );
 });
 
-test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực, khôi phục', () => {
+test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực, khôi phục', async () => {
   const read = (relativePath) => fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
   const accountView = read('views/student/account.ejs');
   const loginView = read('views/auth/login.ejs');
   const commonScript = read('public/js/common.js');
   assert.match(accountView, /action="\/student\/account\/email"/);
   assert.match(accountView, /action="\/student\/account\/email\/verify"/);
-  assert.match(accountView, /pattern="\[0-9\]\{6\}"/);
+  assert.match(accountView, /class="email-request-row"/);
+  assert.match(accountView, /name="verification_code" data-verification-code-value/);
   assert.match(loginView, /href="\/auth\/forgot-password"/);
   assert.doesNotMatch(commonScript, />Chưa nhập<\/strong>/);
+
+  const ejs = require('ejs');
+  const renderedAccount = await ejs.renderFile(
+    path.join(__dirname, '..', 'views/student/account.ejs'),
+    {
+      account: {
+        fullname: 'Học sinh kiểm thử',
+        username: 'hoc_sinh',
+        registered_grade: 3,
+        current_grade: 3,
+        created_at: new Date('2026-08-12T00:00:00Z'),
+        email: null,
+        email_verified_at: null,
+        pending_email: 'student@example.com'
+      },
+      csrfToken: 'test-token',
+      pageStyles: [],
+      pageScripts: []
+    }
+  );
+  assert.equal((renderedAccount.match(/data-verification-digit/g) || []).length, 6);
 });

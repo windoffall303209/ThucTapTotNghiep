@@ -93,6 +93,23 @@
   gap: 6px;
 }
 
+.email-request-form > label {
+  margin: 0;
+}
+
+.email-request-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.email-request-row .btn {
+  min-height: 48px;
+  padding-inline: 16px;
+  white-space: nowrap;
+}
+
 .email-status {
   flex: 0 0 auto;
   padding: 5px 8px;
@@ -120,14 +137,6 @@
   border: 1px solid #bfdbfe;
   border-radius: var(--radius-md);
   background: #eff6ff;
-}
-
-.email-code-form .verification-code-input {
-  max-width: 240px;
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 0.3em;
-  text-align: center;
 }
 
 @media (min-width: 760px) {
@@ -160,7 +169,12 @@
     align-self: flex-start;
   }
 
-  .email-code-form .verification-code-input {
-    max-width: none;
+  .email-request-row {
+    gap: 7px;
+  }
+
+  .account-grid .email-request-row .btn {
+    width: auto;
+    padding-inline: 12px;
   }
 }

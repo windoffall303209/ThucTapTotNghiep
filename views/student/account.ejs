@@ -54,23 +54,28 @@
 
       <form class="stack-form email-request-form" action="/student/account/email" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <label>
-          Địa chỉ email
-          <input name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" value="<%= account.pending_email || account.email || '' %>" placeholder="vidu@email.com" required>
-        </label>
-        <button class="btn btn-secondary" type="submit">
-          <i data-lucide="send" class="lucide-icon"></i>
-          <%= account.pending_email ? 'Gửi lại mã' : (account.email_verified_at ? 'Xác thực email mới' : 'Gửi mã xác thực') %>
-        </button>
+        <label for="recovery-email-input">Địa chỉ email</label>
+        <div class="email-request-row">
+          <input id="recovery-email-input" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" value="<%= account.pending_email || account.email || '' %>" placeholder="vidu@email.com" required>
+          <button class="btn btn-secondary" type="submit">
+            <i data-lucide="send" class="lucide-icon"></i>
+            <%= account.pending_email ? 'Gửi lại mã' : 'Gửi mã' %>
+          </button>
+        </div>
       </form>
 
       <% if (account.pending_email) { %>
         <form class="stack-form email-code-form" action="/student/account/email/verify" method="post">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <label>
-            Mã xác thực 6 số đã gửi đến <strong><%= account.pending_email %></strong>
-            <input class="verification-code-input" name="verification_code" inputmode="numeric" autocomplete="one-time-code" minlength="6" maxlength="6" pattern="[0-9]{6}" data-verification-code required>
-          </label>
+          <fieldset class="verification-code-fieldset" data-verification-code-group>
+            <legend>Mã xác thực 6 số đã gửi đến <strong><%= account.pending_email %></strong></legend>
+            <input type="hidden" name="verification_code" data-verification-code-value>
+            <div class="verification-code-boxes" role="group" aria-label="Mã xác thực 6 số">
+              <% for (let digitIndex = 1; digitIndex <= 6; digitIndex += 1) { %>
+                <input type="text" inputmode="numeric" <%= digitIndex === 1 ? 'autocomplete="one-time-code"' : 'autocomplete="off"' %> maxlength="1" pattern="[0-9]" aria-label="Chữ số <%= digitIndex %>" data-verification-digit required>
+              <% } %>
+            </div>
+          </fieldset>
           <button class="btn btn-primary" type="submit">
             <i data-lucide="badge-check" class="lucide-icon"></i>
             Xác nhận email

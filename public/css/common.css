@@ -889,6 +889,55 @@ tbody tr:last-child td {
 .password-strength[data-level="strong"] .password-strength-head strong { color: #15803d; }
 .password-strength[data-level="strong"] .password-strength-track span { background: #22c55e; }
 
+.verification-code-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.verification-code-fieldset legend {
+  width: 100%;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.verification-code-fieldset legend strong {
+  display: block;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.verification-code-boxes {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(38px, 48px));
+  gap: 8px;
+}
+
+.verification-code-boxes input {
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+}
+
+@media (max-width: 420px) {
+  .verification-code-boxes {
+    grid-template-columns: repeat(6, minmax(34px, 1fr));
+    gap: 6px;
+  }
+
+  .verification-code-boxes input {
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .password-strength-track span { transition: none; }
 }
