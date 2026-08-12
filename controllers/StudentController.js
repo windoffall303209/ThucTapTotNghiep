@@ -437,6 +437,29 @@ async function verifyEmail(req, res, next) {
   }
 }
 
+async function cancelEmailVerification(req, res, next) {
+  try {
+    const student = await Student.findById(req.auth.id);
+    const pendingEmail = normalizeEmail(student?.pending_email);
+    if (!student || !pendingEmail) {
+      delete req.session.pendingEmailVerification;
+      setFlash(req, 'warning', 'Không có email nào đang chờ xác thực.');
+      return res.redirect('/student/account');
+    }
+
+    await AccountRecoveryService.invalidateActiveCodes({
+      studentId: student.id,
+      purpose: 'VERIFY_EMAIL'
+    });
+    await Student.clearPendingEmail(student.id, pendingEmail);
+    delete req.session.pendingEmailVerification;
+    setFlash(req, 'success', 'Đã hủy thay đổi email. Email đã xác thực trước đó vẫn được giữ nguyên.');
+    return res.redirect('/student/account');
+  } catch (error) {
+    return next(error);
+  }
+}
+
 // Hàm exams dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function exams(req, res, next) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -1062,6 +1085,7 @@ module.exports = {
   updatePassword,
   requestEmailVerification,
   verifyEmail,
+  cancelEmailVerification,
   exams,
   startExam,
   sessionPractice,

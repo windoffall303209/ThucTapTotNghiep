@@ -147,8 +147,15 @@ test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực
   const accountView = read('views/student/account.ejs');
   const loginView = read('views/auth/login.ejs');
   const commonScript = read('public/js/common.js');
+  const studentRoutes = read('routes/studentRoutes.js');
+  const studentController = read('controllers/StudentController.js');
   assert.match(accountView, /action="\/student\/account\/email"/);
   assert.match(accountView, /action="\/student\/account\/email\/verify"/);
+  assert.match(accountView, /formaction="\/student\/account\/email\/cancel" formnovalidate/);
+  assert.match(accountView, /class="email-code-actions"/);
+  assert.match(studentRoutes, /router\.post\('\/account\/email\/cancel', StudentController\.cancelEmailVerification\)/);
+  assert.match(studentController, /invalidateActiveCodes\(\{[^]*purpose: 'VERIFY_EMAIL'/);
+  assert.match(studentController, /Student\.clearPendingEmail\(student\.id, pendingEmail\)/);
   assert.match(accountView, /class="email-request-row"/);
   assert.match(accountView, /data-email-edit-trigger/);
   assert.match(accountView, /data-email-edit-cancel/);

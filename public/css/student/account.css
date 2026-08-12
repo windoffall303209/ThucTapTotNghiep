@@ -158,6 +158,18 @@
   background: #eff6ff;
 }
 
+.email-code-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 180px));
+  justify-content: center;
+  gap: 10px;
+}
+
+.email-code-actions .btn {
+  width: 100%;
+  min-height: 48px;
+}
+
 @media (min-width: 760px) {
   .account-grid {
     grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
@@ -199,5 +211,10 @@
 
   .email-request-actions {
     gap: 6px;
+  }
+
+  .email-code-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 }
