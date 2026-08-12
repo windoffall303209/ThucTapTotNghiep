@@ -3,8 +3,36 @@
   document.addEventListener('DOMContentLoaded', () => {
     initPasswordMatchForms();
     initAccountPolicies();
+    initRecoveryEmailEditors();
     initVerificationCodes();
   });
+
+  function initRecoveryEmailEditors() {
+    document.querySelectorAll('[data-recovery-email-editor]').forEach((editor) => {
+      const editButton = editor.querySelector('[data-email-edit-trigger]');
+      const cancelButton = editor.querySelector('[data-email-edit-cancel]');
+      const form = editor.querySelector('[data-email-edit-form]');
+      const input = form?.querySelector('input[name="email"]');
+      if (!form || !input) return;
+
+      editButton?.addEventListener('click', () => {
+        form.hidden = false;
+        editButton.hidden = true;
+        input.focus();
+        input.select();
+      });
+
+      cancelButton?.addEventListener('click', () => {
+        input.value = input.dataset.verifiedEmail || input.defaultValue;
+        input.setCustomValidity('');
+        form.hidden = true;
+        if (editButton) {
+          editButton.hidden = false;
+          editButton.focus();
+        }
+      });
+    });
+  }
 
   function initVerificationCodes() {
     document.querySelectorAll('[data-verification-code-group]').forEach((group) => {

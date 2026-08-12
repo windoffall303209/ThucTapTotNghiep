@@ -150,6 +150,8 @@ test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực
   assert.match(accountView, /action="\/student\/account\/email"/);
   assert.match(accountView, /action="\/student\/account\/email\/verify"/);
   assert.match(accountView, /class="email-request-row"/);
+  assert.match(accountView, /data-email-edit-trigger/);
+  assert.match(accountView, /data-email-edit-cancel/);
   assert.match(accountView, /name="verification_code" data-verification-code-value/);
   assert.match(loginView, /href="\/auth\/forgot-password"/);
   assert.doesNotMatch(commonScript, />Chưa nhập<\/strong>/);
@@ -174,4 +176,26 @@ test('giao diện tài khoản và đăng nhập nối đủ luồng xác thực
     }
   );
   assert.equal((renderedAccount.match(/data-verification-digit/g) || []).length, 6);
+
+  const renderedVerifiedAccount = await ejs.renderFile(
+    path.join(__dirname, '..', 'views/student/account.ejs'),
+    {
+      account: {
+        fullname: 'Học sinh kiểm thử',
+        username: 'hoc_sinh',
+        registered_grade: 3,
+        current_grade: 3,
+        created_at: new Date('2026-08-12T00:00:00Z'),
+        email: 'verified@example.com',
+        email_verified_at: new Date('2026-08-12T01:00:00Z'),
+        pending_email: null
+      },
+      csrfToken: 'test-token',
+      pageStyles: [],
+      pageScripts: []
+    }
+  );
+  assert.match(renderedVerifiedAccount, /data-email-edit-trigger[^>]*>[^]*Sửa/);
+  assert.match(renderedVerifiedAccount, /data-email-edit-form hidden/);
+  assert.match(renderedVerifiedAccount, /data-email-edit-cancel>Hủy/);
 });

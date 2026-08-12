@@ -93,6 +93,19 @@
   gap: 6px;
 }
 
+.verified-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.email-edit-button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding-inline: 14px;
+}
+
 .email-request-form > label {
   margin: 0;
 }
@@ -108,6 +121,12 @@
   min-height: 48px;
   padding-inline: 16px;
   white-space: nowrap;
+}
+
+.email-request-actions {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
 }
 
 .email-status {
@@ -175,6 +194,10 @@
 
   .account-grid .email-request-row .btn {
     width: auto;
-    padding-inline: 12px;
+    padding-inline: 10px;
+  }
+
+  .email-request-actions {
+    gap: 6px;
   }
 }

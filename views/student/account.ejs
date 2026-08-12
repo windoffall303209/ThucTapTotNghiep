@@ -35,7 +35,7 @@
         <dd><%= account.created_at ? new Date(account.created_at).toLocaleString('vi-VN') : '-' %></dd>
       </div>
     </dl>
-    <div class="recovery-email" aria-labelledby="recovery-email-title">
+    <div class="recovery-email" aria-labelledby="recovery-email-title" data-recovery-email-editor>
       <div class="recovery-email-head">
         <div>
           <h2 id="recovery-email-title">Email khôi phục</h2>
@@ -49,18 +49,29 @@
       </div>
 
       <% if (account.email && account.email_verified_at) { %>
-        <p class="verified-email"><i data-lucide="mail-check" class="lucide-icon"></i><%= account.email %></p>
+        <div class="verified-email-row">
+          <p class="verified-email"><i data-lucide="mail-check" class="lucide-icon"></i><%= account.email %></p>
+          <button class="btn btn-secondary email-edit-button" type="button" data-email-edit-trigger <%= account.pending_email ? 'hidden' : '' %>>
+            <i data-lucide="pencil" class="lucide-icon"></i>
+            Sửa
+          </button>
+        </div>
       <% } %>
 
-      <form class="stack-form email-request-form" action="/student/account/email" method="post">
+      <form class="stack-form email-request-form" action="/student/account/email" method="post" data-email-edit-form <%= account.email_verified_at && !account.pending_email ? 'hidden' : '' %>>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label for="recovery-email-input">Địa chỉ email</label>
         <div class="email-request-row">
-          <input id="recovery-email-input" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" value="<%= account.pending_email || account.email || '' %>" placeholder="vidu@email.com" required>
-          <button class="btn btn-secondary" type="submit">
-            <i data-lucide="send" class="lucide-icon"></i>
-            <%= account.pending_email ? 'Gửi lại mã' : 'Gửi mã' %>
-          </button>
+          <input id="recovery-email-input" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" value="<%= account.pending_email || account.email || '' %>" data-verified-email="<%= account.email_verified_at ? account.email : '' %>" placeholder="vidu@email.com" required>
+          <div class="email-request-actions">
+            <% if (account.email && account.email_verified_at && !account.pending_email) { %>
+              <button class="btn btn-secondary" type="button" data-email-edit-cancel>Hủy</button>
+            <% } %>
+            <button class="btn btn-secondary" type="submit">
+              <i data-lucide="send" class="lucide-icon"></i>
+              <%= account.pending_email ? 'Gửi lại mã' : 'Gửi mã' %>
+            </button>
+          </div>
         </div>
       </form>
 
