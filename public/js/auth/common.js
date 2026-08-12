@@ -7,16 +7,49 @@
 
   function initAccountPolicies() {
     document.querySelectorAll('[data-fullname-policy]').forEach((input) => {
+      let isComposing = false;
+
+      const sanitize = ({ trim = false } = {}) => {
+        const original = input.value;
+        const cursor = input.selectionStart;
+        const cleanPart = (value) => value
+          .normalize('NFKC')
+          .replace(/[^\p{L}\p{M}\s]/gu, '')
+          .replace(/\s+/gu, ' ');
+        let sanitized = cleanPart(original);
+        if (trim) sanitized = sanitized.trim();
+        if (sanitized === original) return;
+
+        input.value = sanitized;
+        if (cursor !== null && !trim) {
+          const nextCursor = cleanPart(original.slice(0, cursor)).length;
+          input.setSelectionRange(nextCursor, nextCursor);
+        }
+      };
+
       const validate = () => {
-        const value = input.value.trim().normalize('NFKC').replace(/\s+/g, ' ');
+        const value = input.value.trim();
         input.setCustomValidity(
-          value && !/^[\p{L}\p{M}]+(?:[ '\u2019-][\p{L}\p{M}]+)*$/u.test(value)
-            ? 'Họ và tên chỉ được chứa chữ cái; không được chứa số.'
+          value && !/^[\p{L}\p{M}]+(?: [\p{L}\p{M}]+)*$/u.test(value)
+            ? 'Họ và tên chỉ được chứa chữ cái và khoảng trắng.'
             : ''
         );
       };
-      input.addEventListener('input', validate);
-      input.addEventListener('blur', validate);
+      input.addEventListener('compositionstart', () => { isComposing = true; });
+      input.addEventListener('compositionend', () => {
+        isComposing = false;
+        sanitize();
+        validate();
+      });
+      input.addEventListener('input', () => {
+        if (isComposing) return;
+        sanitize();
+        validate();
+      });
+      input.addEventListener('blur', () => {
+        sanitize({ trim: true });
+        validate();
+      });
     });
 
     document.querySelectorAll('[data-password-policy]').forEach((input) => {

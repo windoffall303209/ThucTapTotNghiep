@@ -54,12 +54,20 @@ test('text, account, grade and answer validators reject non-scalar payloads', ()
 
 test('họ tên chỉ nhận chữ và mật khẩu mới phải đạt chính sách mạnh', () => {
   assert.equal(validateFullname('Nguyễn Văn An'), '');
-  assert.equal(validateFullname("Anne-Marie O'Neil"), '');
+  assert.match(validateFullname("Anne-Marie O'Neil"), /ký tự đặc biệt/);
   assert.match(validateFullname('Nguyễn Văn An123'), /không được chứa số/);
   assert.match(validateFullname('Nguyễn @ An'), /chỉ được chứa chữ cái/);
   assert.match(validatePassword('Matkhau123'), /ký tự đặc biệt/);
   assert.match(validatePassword('Mat khau-123!'), /khoảng trắng/);
   assert.equal(validatePassword('Mat-khau-10!'), '');
+});
+
+test('ô họ tên lọc ký tự sai ngay khi nhập và vẫn hỗ trợ bộ gõ Unicode', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'public/js/auth/common.js'), 'utf8');
+  assert.match(source, /replace\(\/\[\^\\p\{L\}\\p\{M\}\\s\]\//);
+  assert.match(source, /compositionstart/);
+  assert.match(source, /compositionend/);
+  assert.match(source, /setSelectionRange/);
 });
 
 test('system settings enforce scalar, size, control-character and strict-number rules', () => {

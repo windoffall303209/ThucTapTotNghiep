@@ -1,6 +1,6 @@
 // Tiện ích account validation cung cấp các hàm dùng chung cho chuẩn hóa dữ liệu, bảo mật và xử lý lỗi.
 const USERNAME_PATTERN = /^[\p{L}\p{N}._-]+$/u;
-const FULLNAME_PATTERN = /^[\p{L}\p{M}]+(?:[ '\u2019-][\p{L}\p{M}]+)*$/u;
+const FULLNAME_PATTERN = /^[\p{L}\p{M}]+(?: [\p{L}\p{M}]+)*$/u;
 const PASSWORD_MIN_LENGTH = 10;
 
 // Hàm normalizeUsername dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -44,7 +44,7 @@ function validateFullname(value) {
     return 'Họ và tên chứa ký tự không hợp lệ.';
   }
   if (!FULLNAME_PATTERN.test(fullname)) {
-    return 'Họ và tên chỉ được chứa chữ cái, khoảng trắng, dấu nháy đơn hoặc dấu gạch nối; không được chứa số.';
+    return 'Họ và tên chỉ được chứa chữ cái và khoảng trắng; không được chứa số hoặc ký tự đặc biệt.';
   }
   return '';
 }
