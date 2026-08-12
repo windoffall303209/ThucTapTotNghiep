@@ -421,6 +421,13 @@ test('phản hồi AI trong bài lý thuyết được công bố cho trình đ�
   ]);
 });
 
+test('tùy chọn ảnh và lỗi sai của từng đáp án được gom riêng, không khôi phục phần nâng cao tổng', () => {
+  const source = read('public/js/admin/content-manager.js');
+  assert.match(source, /choice-image-upload, \.two-fields/);
+  assert.match(source, /Tùy chọn đáp án/);
+  assert.doesNotMatch(source, /Tùy chọn nâng cao/);
+});
+
 test('ảnh minh họa câu hỏi được thu gọn và có thể mở lớn', () => {
   const practice = read('views/student/practice.ejs');
   const review = read('views/student/session-review.ejs');

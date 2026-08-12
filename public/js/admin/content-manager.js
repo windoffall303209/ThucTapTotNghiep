@@ -489,6 +489,22 @@
       if (form.dataset.progressiveFormReady === 'true') return;
       form.dataset.progressiveFormReady = 'true';
       form.classList.add('progressive-authoring-form');
+
+      if (form.matches('[data-question-preview-form]')) {
+        form.querySelectorAll('.choice-editor').forEach((choiceEditor) => {
+          const optionalItems = Array.from(choiceEditor.children)
+            .filter((item) => item.matches('.choice-image-upload, .two-fields'));
+          if (optionalItems.length === 0) return;
+
+          const key = choiceEditor.querySelector('[data-preview-choice]')?.dataset.previewChoice || '';
+          const details = document.createElement('details');
+          details.className = 'choice-optional-panel';
+          details.innerHTML = `<summary>Tùy chọn đáp án ${escapeHtml(key)}</summary><div class="choice-optional-content"></div>`;
+          const content = details.querySelector('.choice-optional-content');
+          optionalItems[0].before(details);
+          optionalItems.forEach((item) => content.appendChild(item));
+        });
+      }
     });
     initStudentPreviewDialogs(root);
   }
