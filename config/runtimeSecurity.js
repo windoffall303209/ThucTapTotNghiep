@@ -1,6 +1,7 @@
 // Cấu hình runtime security tập trung các hằng số và quy tắc khởi chạy dùng chung của ứng dụng.
 const { validateDatabaseSslConfig } = require('./db');
 const { validateAllowedProviderOrigins } = require('../utils/outboundUrlPolicy');
+const { validateEmail } = require('../utils/emailValidation');
 
 const PLACEHOLDER_SECRETS = new Set([
   'dev-session-secret',
@@ -53,18 +54,16 @@ function validateProductionConfig(env = process.env) {
     }
   }
 
-  for (const key of ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASSWORD', 'SMTP_FROM']) {
+  for (const key of ['RESEND_API_KEY', 'RESEND_FROM']) {
     if (!String(env[key] || '').trim()) errors.push(`${key} is required in production`);
   }
-  const smtpPort = Number(env.SMTP_PORT || 587);
-  if (!Number.isInteger(smtpPort) || smtpPort < 1 || smtpPort > 65535) {
-    errors.push('SMTP_PORT must be an integer from 1 to 65535');
-  }
-  if (env.SMTP_SECURE !== undefined && !['true', 'false'].includes(String(env.SMTP_SECURE).toLowerCase())) {
-    errors.push('SMTP_SECURE must be true or false');
-  }
-  if (/\r|\n/u.test(String(env.SMTP_FROM || ''))) {
-    errors.push('SMTP_FROM must not contain line breaks');
+  if (/\r|\n/u.test(String(env.RESEND_FROM || ''))) {
+    errors.push('RESEND_FROM must not contain line breaks');
+  } else {
+    const fromValue = String(env.RESEND_FROM || '').trim();
+    const bracketed = fromValue.match(/^[^<>]{1,100}<([^<>]+)>$/u);
+    const senderEmail = bracketed ? bracketed[1].trim() : fromValue;
+    if (fromValue && validateEmail(senderEmail)) errors.push('RESEND_FROM must contain a valid sender email');
   }
 
   const trustProxyHops = Number(env.TRUST_PROXY);

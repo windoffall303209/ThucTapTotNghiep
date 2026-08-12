@@ -127,10 +127,8 @@ test('production từ chối secret mẫu và cấu hình thiếu', () => {
     DB_NAME: 'app',
     APP_ORIGIN: 'https://example.com',
     TRUST_PROXY: '1',
-    SMTP_HOST: 'smtp.example.com',
-    SMTP_USER: 'mailer',
-    SMTP_PASSWORD: 'mail-secret',
-    SMTP_FROM: 'no-reply@example.com'
+    RESEND_API_KEY: 're_test_key',
+    RESEND_FROM: 'no-reply@example.com'
   }));
 });
 

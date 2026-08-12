@@ -50,14 +50,83 @@ test('mã xác thực luôn gồm 6 chữ số và bản HMAC không chứa mã 
   }
 });
 
-test('SMTP chỉ được xem là sẵn sàng khi đủ credential', () => {
+test('Resend chỉ được xem là sẵn sàng khi đủ API key và địa chỉ gửi', () => {
   assert.equal(EmailService.isConfigured({}), false);
   assert.equal(EmailService.isConfigured({
-    SMTP_HOST: 'smtp.example.com',
-    SMTP_USER: 'mailer',
-    SMTP_PASSWORD: 'secret',
-    SMTP_FROM: 'no-reply@example.com'
+    RESEND_API_KEY: 're_test_key',
+    RESEND_FROM: 'WIND OF FALL <noreply@example.com>'
   }), true);
+  assert.equal(EmailService.isConfigured({
+    RESEND_API_KEY: 're_test_key',
+    RESEND_FROM: 'noreply@example.com\r\nBcc: attacker@example.com'
+  }), false);
+  assert.equal(EmailService.isConfigured({
+    RESEND_API_KEY: 're_test_key',
+    RESEND_FROM: 'WIND OF FALL <khong-phai-email>'
+  }), false);
+});
+
+test('dịch vụ gửi mã dùng đúng API Resend và không đặt API key trong payload', async () => {
+  const originalApiKey = process.env.RESEND_API_KEY;
+  const originalFrom = process.env.RESEND_FROM;
+  process.env.RESEND_API_KEY = 're_private_test_key';
+  process.env.RESEND_FROM = 'WIND OF FALL <noreply@example.com>';
+  let request = null;
+  try {
+    await EmailService.sendVerificationCode({
+      to: 'student@example.com',
+      code: '123456',
+      purpose: 'VERIFY_EMAIL',
+      fetchImpl: async (url, options) => {
+        request = { url, options };
+        return { ok: true };
+      }
+    });
+    assert.equal(request.url, 'https://api.resend.com/emails');
+    assert.equal(request.options.method, 'POST');
+    assert.equal(request.options.redirect, 'error');
+    assert.equal(request.options.headers.Authorization, 'Bearer re_private_test_key');
+    assert.match(request.options.headers['Idempotency-Key'], /^otp-[a-f0-9]{64}$/);
+    const payload = JSON.parse(request.options.body);
+    assert.equal(payload.from, process.env.RESEND_FROM);
+    assert.deepEqual(payload.to, ['student@example.com']);
+    assert.match(payload.text, /123456/);
+    assert.equal(request.options.body.includes('re_private_test_key'), false);
+  } finally {
+    if (originalApiKey === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = originalApiKey;
+    if (originalFrom === undefined) delete process.env.RESEND_FROM;
+    else process.env.RESEND_FROM = originalFrom;
+  }
+});
+
+test('lỗi Resend được thu gọn thành mã lỗi nội bộ an toàn', async () => {
+  const originalApiKey = process.env.RESEND_API_KEY;
+  const originalFrom = process.env.RESEND_FROM;
+  process.env.RESEND_API_KEY = 're_private_test_key';
+  process.env.RESEND_FROM = 'noreply@example.com';
+  try {
+    await assert.rejects(
+      EmailService.sendVerificationCode({
+        to: 'student@example.com',
+        code: '654321',
+        purpose: 'RESET_PASSWORD',
+        fetchImpl: async () => ({
+          ok: false,
+          status: 403,
+          text: async () => 'provider-secret-detail'
+        })
+      }),
+      (error) => error.code === 'EMAIL_SEND_FAILED'
+        && error.status === 403
+        && !error.message.includes('provider-secret-detail')
+    );
+  } finally {
+    if (originalApiKey === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = originalApiKey;
+    if (originalFrom === undefined) delete process.env.RESEND_FROM;
+    else process.env.RESEND_FROM = originalFrom;
+  }
 });
 
 test('migration email recovery là preflight mặc định và cần xác nhận đúng database', () => {

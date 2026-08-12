@@ -187,7 +187,7 @@ npm run db:email-recovery
 npm run db:email-recovery -- --apply --confirm-database=<DB_NAME>
 ```
 
-Cấu hình `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` và một `EMAIL_OTP_SECRET` riêng dài ít nhất 32 ký tự. Nên dùng app password hoặc credential SMTP chuyên dụng, không dùng mật khẩu đăng nhập hộp thư. Production sẽ từ chối khởi động nếu thiếu các giá trị này.
+Cấu hình `RESEND_API_KEY`, `RESEND_FROM` và một `EMAIL_OTP_SECRET` riêng dài ít nhất 32 ký tự. `RESEND_FROM` phải dùng địa chỉ thuộc domain đã xác minh trên Resend, ví dụ `WIND OF FALL <noreply@windoffall3k32k9.online>`. Production sẽ từ chối khởi động nếu thiếu các giá trị này.
 
 ## Cấu hình AI và lưu ảnh
 

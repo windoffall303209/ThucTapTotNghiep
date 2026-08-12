@@ -3,7 +3,7 @@ const db = require('../config/db');
 
 const CODE_TTL_MINUTES = 10;
 const MAX_ATTEMPTS = 5;
-const RESEND_COOLDOWN_SECONDS = 60;
+const OTP_RESEND_COOLDOWN_SECONDS = 60;
 const PURPOSES = Object.freeze(['VERIFY_EMAIL', 'RESET_PASSWORD']);
 
 function getOtpSecret() {
@@ -61,7 +61,7 @@ async function issueCode({ studentId, purpose, email }) {
        ORDER BY id DESC LIMIT 1 FOR UPDATE`,
       [studentId, purpose, email]
     );
-    if (recent[0] && Date.now() - new Date(recent[0].created_at).getTime() < RESEND_COOLDOWN_SECONDS * 1000) {
+    if (recent[0] && Date.now() - new Date(recent[0].created_at).getTime() < OTP_RESEND_COOLDOWN_SECONDS * 1000) {
       const error = new Error('Vui lòng chờ 60 giây trước khi yêu cầu mã mới.');
       error.code = 'OTP_COOLDOWN';
       throw error;
@@ -188,7 +188,7 @@ module.exports = {
   CODE_TTL_MINUTES,
   MAX_ATTEMPTS,
   PURPOSES,
-  RESEND_COOLDOWN_SECONDS,
+  OTP_RESEND_COOLDOWN_SECONDS,
   generateCode,
   hashCode,
   invalidateActiveCodes,
