@@ -194,8 +194,10 @@ test('dirty-form admin theo dõi từng form và chặn mọi đường thay she
 
   assertContainsAll(adminCommon, [
     /const dirtyForms = new Set\(\)/,
+    /const userInteractedForms = new WeakSet\(\)/,
     /window\.AdminDirtyForms = \{/,
     /function dirtyFormsWithin\(root = document\)/,
+    /event\.isTrusted === false/,
     /if \(!event\.defaultPrevented\) clearDirty\(event\.target\)/,
     /if \(confirmed\) forms\.forEach\(clearDirty\)/,
     /if \(!hasDirty\(\)\) return/

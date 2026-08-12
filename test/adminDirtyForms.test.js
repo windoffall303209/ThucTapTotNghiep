@@ -105,6 +105,11 @@ function inputEvent(form) {
   };
 }
 
+function userEdit(guard, form, type = 'input') {
+  guard.dispatch('pointerdown', inputEvent(form));
+  guard.dispatch(type, inputEvent(form));
+}
+
 test('dirty registry theo dõi từng form và submit form này không xóa form khác', () => {
   const guard = loadDirtyGuard();
   const first = createForm();
@@ -112,8 +117,8 @@ test('dirty registry theo dõi từng form và submit form này không xóa form
   const firstRoot = { contains: (form) => form === first };
   const secondRoot = { contains: (form) => form === second };
 
-  guard.dispatch('input', inputEvent(first));
-  guard.dispatch('change', inputEvent(second));
+  userEdit(guard, first);
+  userEdit(guard, second, 'change');
   assert.equal(guard.api.hasDirty(firstRoot), true);
   assert.equal(guard.api.hasDirty(secondRoot), true);
 
@@ -132,8 +137,8 @@ test('confirmDiscard chỉ xóa form trong vùng được xác nhận và giữ 
   const firstRoot = { contains: (form) => form === first };
   const secondRoot = { contains: (form) => form === second };
 
-  guard.dispatch('input', inputEvent(first));
-  guard.dispatch('input', inputEvent(second));
+  userEdit(guard, first);
+  userEdit(guard, second);
 
   guard.setConfirmResult(false);
   assert.equal(await guard.api.confirmDiscard(firstRoot), false);
@@ -151,11 +156,11 @@ test('form GET, bộ lọc và form đã reset không tạo cảnh báo rời tr
   const filterForm = createForm({ ignored: true });
   const editForm = createForm();
 
-  guard.dispatch('input', inputEvent(getForm));
-  guard.dispatch('input', inputEvent(filterForm));
+  userEdit(guard, getForm);
+  userEdit(guard, filterForm);
   assert.equal(guard.api.hasDirty(), false);
 
-  guard.dispatch('input', inputEvent(editForm));
+  userEdit(guard, editForm);
   guard.dispatch('reset', { target: editForm, defaultPrevented: false });
   assert.equal(guard.api.hasDirty(), false);
 
@@ -169,4 +174,27 @@ test('form GET, bộ lọc và form đã reset không tạo cảnh báo rời tr
   };
   guard.dispatchWindow('beforeunload', unloadEvent);
   assert.equal(unloadEvent.prevented, false);
+});
+
+test('event khởi tạo và autofill không được báo có thay đổi khi người dùng chưa tương tác', () => {
+  const guard = loadDirtyGuard();
+  const settingsForm = createForm();
+
+  guard.dispatch('input', inputEvent(settingsForm));
+  guard.dispatch('change', inputEvent(settingsForm));
+  guard.dispatch('input', { ...inputEvent(settingsForm), isTrusted: false });
+  assert.equal(guard.api.hasDirty(), false);
+
+  const unloadEvent = {
+    prevented: false,
+    preventDefault() {
+      this.prevented = true;
+    },
+    returnValue: undefined
+  };
+  guard.dispatchWindow('beforeunload', unloadEvent);
+  assert.equal(unloadEvent.prevented, false);
+
+  userEdit(guard, settingsForm);
+  assert.equal(guard.api.hasDirty(), true);
 });

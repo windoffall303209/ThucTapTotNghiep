@@ -1,6 +1,7 @@
 // Mã JavaScript phía trình duyệt common điều khiển tương tác và cập nhật giao diện người dùng.
 (function () {
   const dirtyForms = new Set();
+  const userInteractedForms = new WeakSet();
   let dirtyGuardReady = false;
 
   // Hàm isTrackableForm dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -86,12 +87,31 @@
     if (!document.body.classList.contains('admin-body') || dirtyGuardReady) return;
     dirtyGuardReady = true;
 
+    const rememberUserInteraction = (event) => {
+      if (event.isTrusted === false) return;
+      const form = event.target.closest?.('form');
+      if (isTrackableForm(form)) userInteractedForms.add(form);
+    };
+
+    const markFromUserEdit = (event) => {
+      if (event.isTrusted === false) return;
+      const form = event.target.closest?.('form');
+      if (form && userInteractedForms.has(form)) markDirty(form);
+    };
+
+    // Chỉ một thao tác chuột/bàn phím thật bên trong form mới mở quyền đánh dấu dirty.
+    // Autofill, khôi phục form của trình duyệt và event do mã khởi tạo phát ra không được
+    // làm xuất hiện cảnh báo rời trang khi quản trị viên chưa chỉnh sửa gì.
+    document.addEventListener('pointerdown', rememberUserInteraction, true);
+    document.addEventListener('keydown', rememberUserInteraction, true);
+    document.addEventListener('click', rememberUserInteraction, true);
+
     document.addEventListener('input', (event) => {
-      markDirty(event.target.closest?.('form'));
+      markFromUserEdit(event);
     });
 
     document.addEventListener('change', (event) => {
-      markDirty(event.target.closest?.('form'));
+      markFromUserEdit(event);
     });
 
     document.addEventListener('submit', (event) => {
