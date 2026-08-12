@@ -138,6 +138,8 @@ test('CSS dùng chung không còn sở hữu shell admin hoặc cascade mobile c
   assert.doesNotMatch(commonCss, /padding-top:\s*210px/);
   assert.match(adminCss, /\.admin-body \.page-shell\s*\{/);
   assert.match(adminCss, /\.admin-sidebar\s*\{/);
+  assert.match(adminCss, /\.admin-mobile-bar\s*\{[^}]*display:\s*none/s);
+  assert.match(adminCss, /\.admin-body \.page-shell\s*\{[^}]*padding:\s*24px 28px 48px/s);
   assert.match(adminCss, /padding-top:\s*calc\(var\(--admin-app-bar-height\) \+ 12px\)/);
 });
 

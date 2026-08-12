@@ -1,83 +1,19 @@
 <%# Mẫu giao diện header kết hợp dữ liệu máy chủ với HTML để hiển thị một màn hình của ứng dụng. %>
 <% if (admin) { %>
 <header class="admin-mobile-bar">
-  <div class="admin-app-bar-start">
-    <button
-      class="admin-menu-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="adminSidebar"
-      aria-label="Mở menu quản trị"
-      data-admin-menu-toggle>
-      <i data-lucide="menu" class="lucide-icon"></i>
-    </button>
-    <a class="brand admin-mobile-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
-      <span class="brand-mark">π</span>
-      <span>MathLab Admin</span>
-    </a>
-    <span class="admin-app-bar-context">Khu vực quản trị</span>
-  </div>
-
-  <details class="admin-account-menu" data-admin-account-menu>
-    <summary aria-label="Mở thông tin tài khoản quản trị">
-      <span class="admin-account-avatar" aria-hidden="true"><%= String(admin.fullname || admin.username).trim().charAt(0).toUpperCase() %></span>
-      <span class="admin-account-summary">
-        <strong><%= admin.fullname %></strong>
-        <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
-      </span>
-      <i data-lucide="chevron-down" class="lucide-icon admin-account-chevron"></i>
-    </summary>
-    <div class="admin-account-popover">
-      <div class="admin-account-identity">
-        <span class="admin-account-avatar admin-account-avatar-large" aria-hidden="true"><%= String(admin.fullname || admin.username).trim().charAt(0).toUpperCase() %></span>
-        <div>
-          <strong><%= admin.fullname %></strong>
-          <span>@<%= admin.username %></span>
-          <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
-        </div>
-      </div>
-      <div class="admin-account-section-title">
-        <i data-lucide="key-round" class="lucide-icon"></i>
-        Đổi mật khẩu
-      </div>
-      <form class="stack-form admin-password-form" action="/admin/account/password" method="post" data-password-match-form data-dirty-guard="ignore">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <label>
-          Mật khẩu hiện tại
-          <span class="password-field">
-            <input name="current_password" type="password" autocomplete="current-password" maxlength="72" required>
-            <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
-          </span>
-        </label>
-        <label>
-          Mật khẩu mới
-          <span class="password-field">
-            <input name="new_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-policy data-password-primary required>
-            <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
-          </span>
-        </label>
-        <label>
-          Nhập lại mật khẩu mới
-          <span class="password-field">
-            <input name="confirm_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-confirm required>
-            <button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button>
-          </span>
-        </label>
-        <p class="admin-password-note">Ít nhất 10 ký tự, gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt; không có khoảng trắng.</p>
-        <button class="btn btn-primary" type="submit">
-          <i data-lucide="shield-check" class="lucide-icon"></i>
-          Lưu mật khẩu mới
-        </button>
-      </form>
-      <form class="admin-account-logout" action="/auth/logout" method="post" data-dirty-guard="ignore">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <button class="btn btn-danger" type="submit">
-          <i data-lucide="log-out" class="lucide-icon"></i>
-          Đăng xuất
-        </button>
-      </form>
-    </div>
-  </details>
+  <a class="brand admin-mobile-brand" href="/admin/dashboard" aria-label="Về tổng quan quản trị">
+    <span class="brand-mark">π</span>
+    <span>MathLab Admin</span>
+  </a>
+  <button
+    class="admin-menu-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="adminSidebar"
+    aria-label="Mở menu quản trị"
+    data-admin-menu-toggle>
+    <i data-lucide="menu" class="lucide-icon"></i>
+  </button>
 </header>
 <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop hidden></div>
 <aside id="adminSidebar" class="admin-sidebar" aria-label="Menu quản trị">
@@ -128,17 +64,42 @@
   </nav>
 
   <div class="admin-sidebar-footer">
-    <div>
-      <strong><%= admin.fullname %></strong>
-      <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
-    </div>
-    <form action="/auth/logout" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <button class="nav-button" type="submit">
-        <i data-lucide="log-out" class="lucide-icon"></i>
-        Đăng xuất
-      </button>
-    </form>
+    <details class="admin-account-menu" data-admin-account-menu>
+      <summary aria-label="Mở thông tin tài khoản quản trị">
+        <span class="admin-account-avatar" aria-hidden="true"><%= String(admin.fullname || admin.username).trim().charAt(0).toUpperCase() %></span>
+        <span class="admin-account-summary">
+          <strong><%= admin.fullname %></strong>
+          <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
+        </span>
+        <i data-lucide="chevron-right" class="lucide-icon admin-account-chevron"></i>
+      </summary>
+      <div class="admin-account-popover">
+        <div class="admin-account-identity">
+          <span class="admin-account-avatar admin-account-avatar-large" aria-hidden="true"><%= String(admin.fullname || admin.username).trim().charAt(0).toUpperCase() %></span>
+          <div>
+            <strong><%= admin.fullname %></strong>
+            <span>@<%= admin.username %></span>
+            <small><%= admin.role === 'SYSADMIN' ? 'Quản trị hệ thống' : 'Quản trị nội dung' %></small>
+          </div>
+        </div>
+        <div class="admin-account-section-title">
+          <i data-lucide="key-round" class="lucide-icon"></i>
+          Đổi mật khẩu
+        </div>
+        <form class="stack-form admin-password-form" action="/admin/account/password" method="post" data-password-match-form data-dirty-guard="ignore">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <label>Mật khẩu hiện tại<span class="password-field"><input name="current_password" type="password" autocomplete="current-password" maxlength="72" required><button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button></span></label>
+          <label>Mật khẩu mới<span class="password-field"><input name="new_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-policy data-password-primary required><button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button></span></label>
+          <label>Nhập lại mật khẩu mới<span class="password-field"><input name="confirm_password" type="password" autocomplete="new-password" minlength="10" maxlength="72" data-password-confirm required><button type="button" class="password-toggle" data-password-toggle aria-label="Hiện mật khẩu" aria-pressed="false"><i data-lucide="eye" class="lucide-icon"></i></button></span></label>
+          <p class="admin-password-note">Ít nhất 10 ký tự, gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt; không có khoảng trắng.</p>
+          <button class="btn btn-primary" type="submit"><i data-lucide="shield-check" class="lucide-icon"></i>Lưu mật khẩu mới</button>
+        </form>
+        <form class="admin-account-logout" action="/auth/logout" method="post" data-dirty-guard="ignore">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="btn btn-danger" type="submit"><i data-lucide="log-out" class="lucide-icon"></i>Đăng xuất</button>
+        </form>
+      </div>
+    </details>
   </div>
 </aside>
 <% } else { %>

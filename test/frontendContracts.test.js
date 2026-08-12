@@ -320,6 +320,15 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
     /<%= admin\.fullname %>/,
     /<%= admin\.username %>/
   ]);
+  assert.equal((header.match(/data-admin-account-menu/g) || []).length, 1);
+  assert.ok(
+    header.indexOf('data-admin-account-menu') > header.indexOf('class="admin-sidebar-footer"'),
+    'Tài khoản quản trị phải nằm trong chân thanh dọc admin.'
+  );
+  assert.doesNotMatch(
+    header.slice(header.indexOf('<header class="admin-mobile-bar">'), header.indexOf('</header>')),
+    /data-admin-account-menu|admin-account-summary/
+  );
   assertContainsAll(adminCommon, [
     /const syncSidebarAccessibility =/,
     /sidebar\.setAttribute\('aria-hidden'/,
@@ -328,7 +337,8 @@ test('shell admin có app bar và drawer truy cập được trên màn hình h�
   assertContainsAll(adminCommon, [
     /initAdminAccountMenu/,
     /event\.key !== 'Escape'/,
-    /params\.get\('account'\) === 'password'/
+    /params\.get\('account'\) === 'password'/,
+    /matchMedia\('\(max-width: 920px\)'\)\.matches/
   ]);
 });
 

@@ -267,6 +267,9 @@
     const params = new URLSearchParams(window.location.search);
     if (params.get('account') === 'password') {
       menu.open = true;
+      if (window.matchMedia('(max-width: 920px)').matches) {
+        document.querySelector('[data-admin-menu-toggle]')?.click();
+      }
       window.setTimeout(() => form?.querySelector('[name="current_password"]')?.focus(), 0);
     }
   }

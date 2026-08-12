@@ -14,39 +14,13 @@ body.admin-body {
 }
 
 .admin-mobile-bar {
-  position: fixed;
-  inset: 0 0 auto var(--admin-sidebar-width);
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--admin-app-bar-height);
-  padding: 8px 28px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(14px);
+  display: none;
 }
 
-.admin-app-bar-start,
 .admin-account-menu > summary,
 .admin-account-identity {
   display: flex;
   align-items: center;
-}
-
-.admin-app-bar-start {
-  min-width: 0;
-  gap: 10px;
-}
-
-.admin-app-bar-context {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.admin-mobile-brand {
-  display: none;
 }
 
 .admin-account-menu {
@@ -54,9 +28,10 @@ body.admin-body {
 }
 
 .admin-account-menu > summary {
+  width: 100%;
   gap: 9px;
-  min-height: 44px;
-  padding: 4px 8px;
+  min-height: 48px;
+  padding: 5px 6px;
   border: 1px solid transparent;
   border-radius: 10px;
   list-style: none;
@@ -93,7 +68,7 @@ body.admin-body {
 }
 
 .admin-account-summary strong {
-  max-width: 190px;
+  max-width: 126px;
   overflow: hidden;
   font-size: 13px;
   text-overflow: ellipsis;
@@ -119,10 +94,10 @@ body.admin-body {
 
 .admin-account-popover {
   position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  bottom: 0;
+  left: calc(100% + 12px);
   width: min(380px, calc(100vw - 24px));
-  max-height: calc(100vh - var(--admin-app-bar-height) - 20px);
+  max-height: calc(100vh - 24px);
   overflow-y: auto;
   padding: 16px;
   border: 1px solid var(--line);
@@ -196,7 +171,7 @@ body.admin-body {
   width: auto;
   max-width: 1600px;
   margin: 0 0 0 var(--admin-sidebar-width);
-  padding: calc(var(--admin-app-bar-height) + 20px) 28px 48px;
+  padding: 24px 28px 48px;
 }
 
 .admin-sidebar {
@@ -280,8 +255,7 @@ body.admin-body {
 }
 
 .admin-sidebar-footer {
-  display: grid;
-  gap: 10px;
+  position: relative;
   padding: 12px 4px 0;
   border-top: 1px solid var(--line);
 }
@@ -454,8 +428,17 @@ body.admin-body {
 
 @media (max-width: 920px) {
   .admin-mobile-bar {
-    left: 0;
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--admin-app-bar-height);
     padding: 8px 14px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
   }
 
   .admin-mobile-brand {
@@ -473,10 +456,6 @@ body.admin-body {
 
   .admin-menu-toggle {
     display: grid;
-  }
-
-  .admin-app-bar-context {
-    display: none;
   }
 
   .admin-sidebar {
@@ -533,21 +512,19 @@ body.admin-body {
     padding-top: 12px;
     border-top: 1px solid var(--line);
   }
-}
-
-@media (max-width: 640px) {
-  .admin-account-summary {
-    display: none;
-  }
-
-  .admin-account-menu > summary {
-    gap: 4px;
-    padding-inline: 4px;
-  }
 
   .admin-account-popover {
     position: fixed;
-    top: calc(var(--admin-app-bar-height) + 8px);
+    inset: 12px 12px auto auto;
+    width: min(380px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px);
+    z-index: 70;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-account-popover {
+    top: 8px;
     right: 8px;
     width: calc(100vw - 16px);
   }
