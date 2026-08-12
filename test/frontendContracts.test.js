@@ -428,6 +428,19 @@ test('tùy chọn ảnh và lỗi sai của từng đáp án được gom riêng
   assert.doesNotMatch(source, /Tùy chọn nâng cao/);
 });
 
+test('mọi mật khẩu mới có thanh báo độ mạnh dùng chung và hỗ trợ trình đọc màn hình', () => {
+  const script = read('public/js/common.js');
+  const css = read('public/css/common.css');
+  const register = read('views/auth/register.ejs');
+  const account = read('views/student/account.ejs');
+  const students = read('views/admin/students.ejs');
+  assert.match(script, /initPasswordStrengthMeters/);
+  assert.match(script, /role="meter"/);
+  assert.match(script, /aria-valuenow/);
+  assert.match(css, /\.password-strength-track/);
+  [register, account, students].forEach((view) => assert.match(view, /data-password-policy/));
+});
+
 test('ảnh minh họa câu hỏi được thu gọn và có thể mở lớn', () => {
   const practice = read('views/student/practice.ejs');
   const review = read('views/student/session-review.ejs');

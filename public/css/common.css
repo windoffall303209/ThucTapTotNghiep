@@ -845,6 +845,54 @@ tbody tr:last-child td {
   background: var(--surface-soft);
 }
 
+.password-strength {
+  display: grid;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.password-strength-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.password-strength-head strong {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.password-strength-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.password-strength-track span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #94a3b8;
+  transition: width 180ms ease, background-color 180ms ease;
+}
+
+.password-strength[data-level="weak"] .password-strength-head strong { color: #b91c1c; }
+.password-strength[data-level="weak"] .password-strength-track span { background: #ef4444; }
+.password-strength[data-level="medium"] .password-strength-head strong { color: #a16207; }
+.password-strength[data-level="medium"] .password-strength-track span { background: #eab308; }
+.password-strength[data-level="strong"] .password-strength-head strong { color: #15803d; }
+.password-strength[data-level="strong"] .password-strength-track span { background: #22c55e; }
+
+@media (prefers-reduced-motion: reduce) {
+  .password-strength-track span { transition: none; }
+}
+
 /* Mặt cười bối rối trên trang lỗi, thay icon cảnh báo khô khan. */
 .error-face {
   display: block;

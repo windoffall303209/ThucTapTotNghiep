@@ -9,6 +9,7 @@
     initLazyMath();
     initConfirmForms();
     initPasswordToggles();
+    initPasswordStrengthMeters();
     initFlashToasts();
     initAppDialog();
     initFlashModals();
@@ -252,6 +253,60 @@
         }
         input.focus();
       });
+    });
+  }
+
+  function initPasswordStrengthMeters(root = document) {
+    root.querySelectorAll('[data-password-policy]:not([data-password-strength-ready])').forEach((input) => {
+      input.dataset.passwordStrengthReady = 'true';
+      const field = input.closest('.password-field') || input;
+      const meter = document.createElement('div');
+      const meterId = `password-strength-${Math.random().toString(36).slice(2, 10)}`;
+      meter.id = meterId;
+      meter.className = 'password-strength';
+      meter.dataset.level = 'empty';
+      meter.innerHTML = `
+        <div class="password-strength-head">
+          <span>Độ mạnh mật khẩu</span>
+          <strong data-password-strength-label>Chưa nhập</strong>
+        </div>
+        <div class="password-strength-track" role="meter" aria-label="Độ mạnh mật khẩu" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+          <span data-password-strength-fill></span>
+        </div>
+      `;
+      field.insertAdjacentElement('afterend', meter);
+      input.setAttribute('aria-describedby', [input.getAttribute('aria-describedby'), meterId].filter(Boolean).join(' '));
+
+      const label = meter.querySelector('[data-password-strength-label]');
+      const track = meter.querySelector('[role="meter"]');
+      const fill = meter.querySelector('[data-password-strength-fill]');
+      const update = () => {
+        const value = input.value;
+        const score = [
+          value.length >= 10,
+          /\p{Ll}/u.test(value),
+          /\p{Lu}/u.test(value),
+          /\p{N}/u.test(value),
+          /[\p{P}\p{S}]/u.test(value)
+        ].filter(Boolean).length;
+        const hasWhitespace = /\s/u.test(value);
+        const effectiveScore = hasWhitespace ? Math.min(score, 1) : score;
+        const state = !value
+          ? { level: 'empty', text: 'Chưa nhập' }
+          : effectiveScore <= 2
+            ? { level: 'weak', text: 'Yếu' }
+            : effectiveScore <= 4
+              ? { level: 'medium', text: 'Trung bình' }
+              : { level: 'strong', text: 'Mạnh' };
+
+        meter.dataset.level = state.level;
+        label.textContent = state.text;
+        fill.style.width = `${effectiveScore * 20}%`;
+        track.setAttribute('aria-valuenow', String(effectiveScore));
+        track.setAttribute('aria-valuetext', state.text);
+      };
+      input.addEventListener('input', update);
+      update();
     });
   }
 
@@ -923,6 +978,7 @@
     initAppDialog,
     initLazyMath,
     initPasswordToggles,
+    initPasswordStrengthMeters,
     initRenderedGrids,
     isHexColor,
     isImageMarkedForRemoval,
