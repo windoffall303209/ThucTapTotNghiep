@@ -911,7 +911,8 @@ tbody tr:last-child td {
 
 .verification-code-boxes {
   display: grid;
-  grid-template-columns: repeat(6, minmax(38px, 48px));
+  grid-template-columns: repeat(6, minmax(48px, 60px));
+  justify-content: space-between;
   gap: 8px;
 }
 
@@ -929,6 +930,7 @@ tbody tr:last-child td {
 @media (max-width: 420px) {
   .verification-code-boxes {
     grid-template-columns: repeat(6, minmax(34px, 1fr));
+    justify-content: stretch;
     gap: 6px;
   }
 
