@@ -84,18 +84,45 @@
   background: var(--primary);
 }
 
-.student-body .stat-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.review-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
   margin-bottom: 12px;
 }
 
-.student-body .stat-grid .stat-card {
+.review-overview-card {
   display: grid;
   gap: 5px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
 }
 
-.student-body .stat-grid p {
+.review-overview-card .status-pill {
+  width: max-content;
+  max-width: 100%;
+}
+
+.review-overview-card .lucide-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.review-overview-card p {
   margin: 0;
+}
+
+.review-overview-time .stat-value {
+  font-size: clamp(20px, 2.2vw, 28px);
+}
+
+@media (max-width: 900px) {
+  .review-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -107,17 +134,12 @@
     flex: 1;
   }
 
-  .student-body .stat-grid {
-    grid-template-columns: 1fr;
+  .review-overview {
+    gap: 8px;
   }
 
-  .student-body .stat-grid .stat-card {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-
-  .student-body .stat-grid .stat-card p {
-    grid-column: 1 / -1;
+  .review-overview-card {
+    padding: 12px;
   }
 
   .review-item {

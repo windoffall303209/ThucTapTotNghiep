@@ -12,6 +12,16 @@
   const answeredCount = (answers || []).length;
   const correctCount = (answers || []).filter((answer) => Number(answer.is_correct) === 1 || answer.is_correct === true).length;
   const wrongCount = answeredCount - correctCount;
+  const startedAt = session.started_at ? new Date(session.started_at) : null;
+  const completedAt = session.completed_at ? new Date(session.completed_at) : null;
+  const durationSeconds = startedAt && completedAt
+    ? Math.max(0, Math.round((completedAt.getTime() - startedAt.getTime()) / 1000))
+    : null;
+  const durationText = durationSeconds === null
+    ? '-'
+    : durationSeconds >= 60
+      ? `${Math.floor(durationSeconds / 60)} phút ${durationSeconds % 60} giây`
+      : `${durationSeconds} giây`;
 %>
 
 <section class="workspace-head">
@@ -43,40 +53,30 @@
   </section>
 <% } %>
 
-<section class="stat-grid">
-  <article class="stat-card">
+<section class="review-overview" aria-label="Tổng kết bài làm">
+  <article class="review-overview-card">
     <span class="status-pill status-completed">Đúng</span>
     <strong class="stat-value"><%= correctCount %></strong>
     <p class="muted">Câu đã trả lời đúng.</p>
   </article>
-  <article class="stat-card">
+  <article class="review-overview-card">
     <span class="status-pill status-review">Cần xem lại</span>
     <strong class="stat-value"><%= wrongCount %></strong>
     <p class="muted">Câu đã làm sai hoặc cần luyện lại.</p>
   </article>
-  <article class="stat-card">
+  <article class="review-overview-card">
     <span class="status-pill status-in-progress">Tiến trình</span>
     <strong class="stat-value"><%= session.current_index %>/<%= session.question_count %></strong>
     <p class="muted">Trạng thái: <%= session.status === 'COMPLETED' ? 'Đã kết thúc' : 'Đang làm dở' %>.</p>
   </article>
-</section>
-
-<section class="learning-summary">
-  <div>
-    <div class="section-title">
+  <article class="review-overview-card review-overview-time">
+    <span class="status-pill status-in-progress">
       <i data-lucide="clock" class="lucide-icon"></i>
       Thời gian
-    </div>
-    <p>Bắt đầu: <strong><%= session.started_at ? new Date(session.started_at).toLocaleString('vi-VN') : '-' %></strong></p>
-    <p>Kết thúc: <strong><%= session.completed_at ? new Date(session.completed_at).toLocaleString('vi-VN') : '-' %></strong></p>
-  </div>
-  <div>
-    <div class="section-title">
-      <i data-lucide="message-circle" class="lucide-icon"></i>
-      Gợi ý thêm
-    </div>
-    <p>Các trao đổi gợi ý thêm được lưu theo từng câu để em xem lại cách được hướng dẫn.</p>
-  </div>
+    </span>
+    <strong class="stat-value"><%= durationText %></strong>
+    <p class="muted"><%= startedAt ? startedAt.toLocaleDateString('vi-VN') : 'Chưa có thời gian' %></p>
+  </article>
 </section>
 
 <section id="reviewQuestionList" class="review-list">

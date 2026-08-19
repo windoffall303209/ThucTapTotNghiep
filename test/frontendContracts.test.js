@@ -464,6 +464,21 @@ test('session review dùng renderer chung thay vì sao chép logic hiển thị'
   assert.doesNotMatch(review, /function questionContentHtml|function imageRowHtml/);
 });
 
+test('tổng kết phiên luyện tập nằm trên một hàng và không còn thẻ gợi ý thêm', () => {
+  const review = read('views/student/session-review.ejs');
+  const reviewCss = read('public/css/student/session-review.css');
+
+  assertContainsAll(review, [
+    /<section class="review-overview"/,
+    /review-overview-time/,
+    /data-lucide="clock"/,
+    /durationText/
+  ]);
+  assert.doesNotMatch(review, /<section class="learning-summary">/);
+  assert.doesNotMatch(review, /Các trao đổi gợi ý thêm được lưu/);
+  assert.match(reviewCss, /\.review-overview\s*\{[^}]*grid-template-columns:\s*repeat\(4,/s);
+});
+
 test('phản hồi AI trong bài lý thuyết được công bố cho trình đọc màn hình', () => {
   const lesson = read('views/student/lesson.ejs');
   const lessonJs = read('public/js/student/lesson.js');
