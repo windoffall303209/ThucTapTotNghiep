@@ -15,6 +15,7 @@ router.post('/account/email/verify', StudentController.verifyEmail);
 router.post('/account/email/cancel', StudentController.cancelEmailVerification);
 router.get('/exams', StudentController.exams);
 router.post('/exams/start', StudentController.startExam);
+router.post('/exams/retry-wrong', StudentController.retryWrongAnswers);
 router.get('/sessions/:id/practice', StudentController.sessionPractice);
 router.get('/sessions/:id', StudentController.reviewSession);
 router.post('/sessions/:id/finish', StudentController.finishSession);

@@ -642,6 +642,104 @@ function normalizeSession(row) {
   };
 }
 
+// Lấy đúng phiên đã hoàn thành gần nhất, sau đó trả về các câu sai của riêng
+// phiên đó cùng bài học và độ khó tại thời điểm tạo đề.
+async function getLatestCompletedWrongAnswers(studentId) {
+  await ensureSchema();
+  try {
+    const sessions = await db.query(
+      `SELECT *
+       FROM PracticeSessions
+       WHERE student_id = ?
+         AND status = 'COMPLETED'
+         AND EXISTS (
+           SELECT 1
+           FROM StudentLogs recent_log
+           WHERE recent_log.practice_session_id = PracticeSessions.id
+         )
+       ORDER BY COALESCE(completed_at, updated_at, started_at) DESC, id DESC
+       LIMIT 1`,
+      [studentId]
+    );
+    const session = normalizeSession(sessions[0]);
+    if (!session) return { session: null, wrongAnswers: [] };
+
+    const rows = await db.query(
+      `SELECT
+          sl.question_id,
+          COALESCE(
+            CAST(JSON_UNQUOTE(JSON_EXTRACT(psq.snapshot, '$.lesson_id')) AS UNSIGNED),
+            q.lesson_id
+          ) AS lesson_id,
+          COALESCE(
+            JSON_UNQUOTE(JSON_EXTRACT(psq.snapshot, '$.difficulty')),
+            q.difficulty
+          ) AS difficulty
+       FROM StudentLogs sl
+       LEFT JOIN PracticeSessionQuestions psq
+         ON psq.practice_session_id = sl.practice_session_id
+        AND psq.question_id = sl.question_id
+       LEFT JOIN QuestionBank q ON q.id = sl.question_id
+       WHERE sl.student_id = ?
+         AND sl.practice_session_id = ?
+         AND sl.is_correct = 0
+       ORDER BY sl.created_at, sl.id`,
+      [studentId, session.id]
+    );
+    return {
+      session,
+      wrongAnswers: rows
+        .map((row) => ({
+          question_id: Number(row.question_id),
+          lesson_id: Number(row.lesson_id),
+          difficulty: String(row.difficulty || '').trim().toUpperCase()
+        }))
+        .filter((row) => row.question_id && row.lesson_id && ['EASY', 'MEDIUM', 'HARD'].includes(row.difficulty))
+    };
+  } catch (error) {
+    fallbackOrThrow(error);
+    ensureFallbackStore();
+    const session = sampleData.practiceSessions
+      .filter((item) => (
+        Number(item.student_id) === Number(studentId)
+        && item.status === 'COMPLETED'
+        && (sampleData.studentLogs || []).some((log) => Number(log.practice_session_id) === Number(item.id))
+      ))
+      .sort((left, right) => (
+        new Date(right.completed_at || right.updated_at || right.started_at || 0)
+        - new Date(left.completed_at || left.updated_at || left.started_at || 0)
+        || Number(right.id) - Number(left.id)
+      ))[0] || null;
+    if (!session) return { session: null, wrongAnswers: [] };
+
+    const snapshotById = new Map(
+      (Array.isArray(session.question_snapshots) ? session.question_snapshots : [])
+        .map((question) => [Number(question.id), question])
+    );
+    const questionById = new Map(
+      (sampleData.questions || []).map((question) => [Number(question.id), question])
+    );
+    const wrongAnswers = (sampleData.studentLogs || [])
+      .filter((log) => (
+        Number(log.student_id) === Number(studentId)
+        && Number(log.practice_session_id) === Number(session.id)
+        && !Boolean(Number(log.is_correct))
+      ))
+      .map((log) => {
+        const question = snapshotById.get(Number(log.question_id))
+          || questionById.get(Number(log.question_id))
+          || {};
+        return {
+          question_id: Number(log.question_id),
+          lesson_id: Number(question.lesson_id),
+          difficulty: String(question.difficulty || '').trim().toUpperCase()
+        };
+      })
+      .filter((row) => row.question_id && row.lesson_id && ['EASY', 'MEDIUM', 'HARD'].includes(row.difficulty));
+    return { session: normalizeSession(session), wrongAnswers };
+  }
+}
+
 // Hàm normalizeSelectionAudit dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeSelectionAudit(selection) {
   const source = selection && typeof selection === 'object' ? selection : {};
@@ -816,6 +914,7 @@ module.exports = {
   getSessionById,
   listSessions,
   listAnswers,
+  getLatestCompletedWrongAnswers,
   listChats,
   getSessionQuestion,
   getSessionQuestions,

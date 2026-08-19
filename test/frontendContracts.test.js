@@ -188,6 +188,37 @@ test('trình quản lý nội dung giữ contract tải động cho câu hỏi v
   ]);
 });
 
+test('biểu mẫu thêm câu hỏi và thẻ lý thuyết mặc định thu gọn', () => {
+  const questions = read('views/admin/partials/lesson-questions.ejs');
+  const theory = read('views/admin/partials/lesson-theory.ejs');
+
+  assert.match(questions, /<details class="inline-create-panel">/);
+  assert.match(theory, /<details class="inline-create-panel theory-create-panel">/);
+  [questions, theory].forEach((source) => {
+    assert.doesNotMatch(source, /<details class="inline-create-panel[^>]*"\s+open>/);
+    assertContainsAll(source, [/data-close-details/, /data-open-student-preview/]);
+  });
+});
+
+test('chọn đáp án đã được tính là làm và được lưu khi kết thúc bài', () => {
+  const practice = read('views/student/practice.ejs');
+  const practiceJs = read('public/js/student/practice.js');
+  const practiceCss = read('public/css/student/practice.css');
+
+  assertContainsAll(practice, [
+    /Chọn đáp án là đã làm/,
+    /Xem đáp án ngay/
+  ]);
+  assertContainsAll(practiceJs, [
+    /function hasQuestionResponse/,
+    /function collectUnsubmittedAnswers/,
+    /dot\.classList\.toggle\('selected', hasDraft\)/,
+    /body: JSON\.stringify\(\{ answers: collectUnsubmittedAnswers\(\) \}\)/,
+    /lưu lại những câu em đã chọn/
+  ]);
+  assert.match(practiceCss, /\.progress-dot\.selected\s*\{/);
+});
+
 test('dirty-form admin theo dõi từng form và chặn mọi đường thay shell', () => {
   const adminCommon = read('public/js/admin/common.js');
   const manager = read('public/js/admin/content-manager.js');
@@ -215,7 +246,7 @@ test('dirty-form admin theo dõi từng form và chặn mọi đường thay she
   assert.ok((manager.match(/confirmDiscard\(/g) || []).length >= 8);
 });
 
-test('form soạn câu hỏi mở sẵn, giữ upload và preview nổi, không còn canvas', () => {
+test('form soạn câu hỏi giữ upload và preview nổi, không còn canvas', () => {
   const createForm = read('views/admin/partials/lesson-questions.ejs');
   const editForm = read('views/admin/partials/question-edit-form.ejs');
   const routes = read('routes/adminRoutes.js');
@@ -456,6 +487,34 @@ test('tùy chọn ảnh và lỗi sai của từng đáp án được gom riêng
   assert.match(source, /choice-image-upload, \.two-fields/);
   assert.match(source, /Tùy chọn đáp án/);
   assert.doesNotMatch(source, /Tùy chọn nâng cao/);
+});
+
+test('màn luyện tập hỗ trợ gộp nhiều bài và luyện lại câu sai gần nhất', () => {
+  const view = read('views/student/exams.ejs');
+  const script = read('public/js/student/exams.js');
+  const routes = read('routes/studentRoutes.js');
+  const controller = read('controllers/StudentController.js');
+
+  assertContainsAll(view, [
+    /name="mode" value="lessons"/,
+    /name="lesson_ids"/,
+    /data-multi-lesson-form/,
+    /data-selected-lesson-count/,
+    /action="\/student\/exams\/retry-wrong"/,
+    /Luyện lại câu sai/
+  ]);
+  assertContainsAll(script, [
+    /function initMultiLessonPicker/,
+    /selected\.length < 2/,
+    /selected\.length > Number\(button\.value\)/,
+    /data-picker-chapter/
+  ]);
+  assert.match(routes, /router\.post\('\/exams\/retry-wrong', StudentController\.retryWrongAnswers\)/);
+  assertContainsAll(controller, [
+    /generateMultiLessonSelection/,
+    /getLatestCompletedWrongAnswers/,
+    /generateWrongAnswerRetrySelection/
+  ]);
 });
 
 test('mọi mật khẩu mới có thanh báo độ mạnh dùng chung và hỗ trợ trình đọc màn hình', () => {

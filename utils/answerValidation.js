@@ -36,8 +36,31 @@ function normalizeTimeSpentSeconds(value) {
   return Math.min(Math.round(seconds), 24 * 60 * 60);
 }
 
+function normalizeFinishAnswers(value, { maxItems = 100 } = {}) {
+  if (value === undefined || value === null) return [];
+  if (!Array.isArray(value) || value.length > maxItems) return null;
+
+  const answers = [];
+  const seenQuestionIds = new Set();
+  for (const item of value) {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return null;
+    const questionId = Number(item.questionId);
+    const selectedAnswer = normalizeSubmittedAnswer(item.selectedAnswer);
+    if (!Number.isSafeInteger(questionId) || questionId <= 0 || !selectedAnswer) return null;
+    if (seenQuestionIds.has(questionId)) continue;
+    seenQuestionIds.add(questionId);
+    answers.push({
+      questionId,
+      selectedAnswer,
+      timeSpentSeconds: normalizeTimeSpentSeconds(item.timeSpentSeconds)
+    });
+  }
+  return answers;
+}
+
 module.exports = {
   answersMatch,
+  normalizeFinishAnswers,
   normalizeFreeTextAnswer,
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds

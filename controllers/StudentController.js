@@ -20,15 +20,18 @@ const { normalizeEmail, validateEmail } = require('../utils/emailValidation');
 const AccountRecoveryService = require('../services/AccountRecoveryService');
 const EmailService = require('../services/EmailService');
 const {
+  normalizeFinishAnswers,
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds
 } = require('../utils/answerValidation');
 const {
   isAllowedValue,
   parseInteger,
-  parsePositiveInteger
+  parsePositiveInteger,
+  parsePositiveIntegerList
 } = require('../utils/requestValidation');
 const PRACTICE_LIMITS = [15, 20];
+const MULTI_LESSON_LIMITS = [5, 15, 20];
 const THEORY_REVIEW_COUNT = 8;
 const LESSON_PRACTICE_COUNT = 5;
 
@@ -466,19 +469,22 @@ async function exams(req, res, next) {
   try {
     // Lọc "đang làm dở" ngay trong SQL. Lấy 20 phiên gần nhất rồi mới lọc thì
     // đề dang dở nào bị 20 phiên đã xong che mất sẽ không còn đường "Tiếp tục".
-    const [sessions, chapters, settings] = await Promise.all([
+    const [sessions, chapters, settings, latestWrongPractice] = await Promise.all([
       PracticeSession.listSessions(req.auth.id, 20, {
         status: 'IN_PROGRESS',
-        modes: ['CHAPTER', 'COMPREHENSIVE']
+        modes: ['REVIEW', 'CHAPTER', 'COMPREHENSIVE']
       }),
       Curriculum.getCurriculumByGrade(req.auth.current_grade),
-      SystemSetting.getSettings()
+      SystemSetting.getSettings(),
+      PracticeSession.getLatestCompletedWrongAnswers(req.auth.id)
     ]);
     res.render('student/exams', {
       title: 'Luyện tập',
       limits: PRACTICE_LIMITS,
+      multiLessonLimits: MULTI_LESSON_LIMITS,
       chapters,
       sessions,
+      latestWrongPractice,
       practiceDurations: {
         5: SystemSetting.getPracticeDurationMinutes(5, settings),
         15: SystemSetting.getPracticeDurationMinutes(15, settings),
@@ -497,12 +503,13 @@ async function startExam(req, res, next) {
     const grade = Number(req.auth.current_grade);
     const count = parseInteger(req.body.count, { min: 1, max: 100 });
     const requestedMode = typeof req.body.mode === 'string' ? req.body.mode.trim() : '';
-    if (!PRACTICE_LIMITS.includes(count)) {
-      setFlash(req, 'danger', 'Số câu luyện tập không hợp lệ.');
+    if (!isAllowedValue(requestedMode, ['lessons', 'chapter', 'comprehensive'])) {
+      setFlash(req, 'danger', 'Kiểu luyện tập không hợp lệ.');
       return res.redirect('/student/exams');
     }
-    if (!isAllowedValue(requestedMode, ['chapter', 'comprehensive'])) {
-      setFlash(req, 'danger', 'Kiểu luyện tập không hợp lệ.');
+    const allowedCounts = requestedMode === 'lessons' ? MULTI_LESSON_LIMITS : PRACTICE_LIMITS;
+    if (!allowedCounts.includes(count)) {
+      setFlash(req, 'danger', 'Số câu luyện tập không hợp lệ.');
       return res.redirect('/student/exams');
     }
     let candidates = [];
@@ -532,6 +539,42 @@ async function startExam(req, res, next) {
         mode: 'CHAPTER',
         title: `${chapter.chapter_name} · ${count} câu`
       };
+    } else if (requestedMode === 'lessons') {
+      const lessonIds = parsePositiveIntegerList(req.body.lesson_ids, { maxItems: 20 });
+      if (!lessonIds || lessonIds.length < 2) {
+        setFlash(req, 'danger', 'Em hãy chọn ít nhất hai bài để tạo đề chung.');
+        return res.redirect('/student/exams');
+      }
+      if (lessonIds.length > count) {
+        setFlash(req, 'danger', `Đề ${count} câu không thể bao phủ đủ ${lessonIds.length} bài đã chọn.`);
+        return res.redirect('/student/exams');
+      }
+
+      const curriculum = await Curriculum.getCurriculumByGrade(grade);
+      const allowedLessons = new Map(
+        curriculum.flatMap((chapter) => (
+          (chapter.lessons || []).map((lesson) => [Number(lesson.id), lesson])
+        ))
+      );
+      if (lessonIds.some((lessonId) => !allowedLessons.has(lessonId))) {
+        setFlash(req, 'danger', 'Danh sách bài luyện có bài không thuộc lớp hiện tại của em.');
+        return res.redirect('/student/exams');
+      }
+
+      candidates = await Question.getQuestionCandidates({ grade, lessonIds });
+      const lessonsWithQuestions = new Set(candidates.map((question) => Number(question.lesson_id)));
+      const lessonsWithoutQuestions = lessonIds.filter((lessonId) => !lessonsWithQuestions.has(lessonId));
+      if (lessonsWithoutQuestions.length > 0) {
+        setFlash(req, 'danger', 'Có bài đã chọn chưa có câu hỏi phù hợp. Em hãy bỏ bài đó hoặc chọn bài khác.');
+        return res.redirect('/student/exams');
+      }
+      sessionData = {
+        chapterId: null,
+        semester: null,
+        mode: 'COMPREHENSIVE',
+        lessonIds,
+        title: `Luyện ${lessonIds.length} bài đã chọn · ${count} câu`
+      };
     } else {
       const scope = typeof req.body.scope === 'string' ? req.body.scope.trim() : '';
       if (!isAllowedValue(scope, ['semester-1', 'semester-2', 'year'])) {
@@ -550,15 +593,23 @@ async function startExam(req, res, next) {
         : `Luyện tập tổng hợp cả năm · ${count} câu`;
     }
 
-    const generated = await PracticeGenerationService.generateScopedSelection({
-      studentId: req.auth.id,
-      grade,
-      chapterId: sessionData.chapterId,
-      semester: sessionData.semester,
-      mode: sessionData.mode,
-      count,
-      candidates
-    });
+    const generated = requestedMode === 'lessons'
+      ? await PracticeGenerationService.generateMultiLessonSelection({
+          studentId: req.auth.id,
+          grade,
+          lessonIds: sessionData.lessonIds,
+          count,
+          candidates
+        })
+      : await PracticeGenerationService.generateScopedSelection({
+          studentId: req.auth.id,
+          grade,
+          chapterId: sessionData.chapterId,
+          semester: sessionData.semester,
+          mode: sessionData.mode,
+          count,
+          candidates
+        });
     const questions = await Question.getQuestionsByIds(
       generated.questions.map((question) => question.id)
     );
@@ -584,6 +635,55 @@ async function startExam(req, res, next) {
     return res.redirect(`/student/sessions/${session.id}/practice`);
   } catch (error) {
     next(error);
+  }
+}
+
+// Tạo một phiên ôn mới từ các câu sai của đúng lần làm gần nhất. Mỗi câu nguồn
+// chỉ được thay bằng câu khác cùng bài học và cùng độ khó.
+async function retryWrongAnswers(req, res, next) {
+  try {
+    const grade = Number(req.auth.current_grade);
+    const latest = await PracticeSession.getLatestCompletedWrongAnswers(req.auth.id);
+    if (!latest.session) {
+      setFlash(req, 'warning', 'Em chưa có lần luyện nào đã hoàn thành để xem lại câu sai.');
+      return res.redirect('/student/exams');
+    }
+    if (latest.wrongAnswers.length === 0) {
+      setFlash(req, 'success', 'Lần luyện gần nhất không có câu sai. Em làm rất tốt!');
+      return res.redirect('/student/exams');
+    }
+
+    const lessonIds = [...new Set(latest.wrongAnswers.map((item) => Number(item.lesson_id)).filter(Boolean))];
+    const candidates = await Question.getQuestionCandidates({ grade, lessonIds });
+    const generated = PracticeGenerationService.generateWrongAnswerRetrySelection({
+      sourceSessionId: latest.session.id,
+      wrongAnswers: latest.wrongAnswers,
+      candidates
+    });
+    if (generated.questions.length === 0) {
+      setFlash(req, 'warning', 'Hiện chưa có câu thay thế cùng bài và cùng độ khó cho những câu em đã làm sai.');
+      return res.redirect('/student/exams');
+    }
+
+    const session = await PracticeSession.createSession({
+      studentId: req.auth.id,
+      mode: 'REVIEW',
+      title: `Luyện lại câu sai gần nhất · ${generated.questions.length} câu`,
+      questionIds: generated.questions.map((question) => question.id),
+      replaceActive: true,
+      selection: generated.selection
+    });
+    const missingCount = latest.wrongAnswers.length - generated.questions.length;
+    if (missingCount > 0) {
+      setFlash(
+        req,
+        'warning',
+        `Đã tạo ${generated.questions.length} câu thay thế. ${missingCount} câu chưa có phương án khác cùng bài và cùng độ khó.`
+      );
+    }
+    return res.redirect(`/student/sessions/${session.id}/practice`);
+  } catch (error) {
+    return next(error);
   }
 }
 
@@ -685,6 +785,37 @@ async function finishSession(req, res, next) {
         ok: false,
         code: 'INVALID_SESSION_ID',
         message: 'Mã lần làm bài không hợp lệ.'
+      });
+    }
+    const pendingAnswers = normalizeFinishAnswers(req.body?.answers);
+    if (pendingAnswers === null) {
+      return res.status(400).json({
+        ok: false,
+        code: 'INVALID_ANSWERS',
+        message: 'Danh sách câu trả lời không hợp lệ.'
+      });
+    }
+    if (pendingAnswers.length > 0) {
+      const result = await PracticeSubmissionService.finishSession({
+        studentId: req.auth.id,
+        sessionId,
+        answers: pendingAnswers
+      });
+      if (result.outcome === 'SESSION_NOT_FOUND') {
+        return res.status(404).json({ ok: false, message: 'Không tìm thấy lần làm bài cần kết thúc.' });
+      }
+      if (result.outcome === 'QUESTION_NOT_IN_SESSION') {
+        return res.status(400).json({ ok: false, message: 'Có câu trả lời không thuộc bài đang làm.' });
+      }
+      if (result.outcome === 'QUESTION_UNAVAILABLE') {
+        return res.status(409).json({
+          ok: false,
+          message: 'Nội dung phiên này không còn đầy đủ nên hệ thống đã đóng phiên để bảo vệ lịch sử.'
+        });
+      }
+      return res.json({
+        ok: true,
+        redirectUrl: `/student/sessions/${sessionId}`
       });
     }
     const session = await PracticeSession.completeSession(
@@ -1088,6 +1219,7 @@ module.exports = {
   cancelEmailVerification,
   exams,
   startExam,
+  retryWrongAnswers,
   sessionPractice,
   reviewSession,
   finishSession,

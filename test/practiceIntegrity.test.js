@@ -11,6 +11,7 @@ const AIQuotaService = require('../services/AIQuotaService');
 const SystemSetting = require('../models/SystemSetting');
 const {
   answersMatch,
+  normalizeFinishAnswers,
   normalizeSubmittedAnswer,
   normalizeTimeSpentSeconds
 } = require('../utils/answerValidation');
@@ -75,6 +76,11 @@ test('chuẩn hóa đáp án và thời gian không cho dữ liệu vô hạn ho
   assert.equal(normalizeTimeSpentSeconds(-1), null);
   assert.equal(normalizeTimeSpentSeconds('not-a-number'), null);
   assert.equal(normalizeTimeSpentSeconds(999999), 86400);
+  assert.deepEqual(normalizeFinishAnswers([
+    { questionId: 99, selectedAnswer: ' B ' },
+    { questionId: 99, selectedAnswer: 'A' }
+  ]), [{ questionId: 99, selectedAnswer: 'B', timeSpentSeconds: null }]);
+  assert.equal(normalizeFinishAnswers([{ questionId: 0, selectedAnswer: 'A' }]), null);
 });
 
 test('nộp đáp án được chấm bằng snapshot và ghi trong một transaction', async () => {
@@ -179,6 +185,51 @@ test('nộp lặp giữ nguyên đáp án lần đầu, không ghi thêm log', a
     assert.equal(result.answer.selected_answer, 'A');
     assert.equal(result.answer.is_correct, 1);
     assert.equal(insertCount, 0);
+  } finally {
+    db.transaction = originalTransaction;
+  }
+});
+
+test('kết thúc bài ghi nhận các lựa chọn chưa xem đáp án trước khi đóng phiên', async () => {
+  const originalTransaction = db.transaction;
+  const statements = [];
+  db.transaction = async (callback) => callback({
+    execute: async (sql, params) => {
+      statements.push({ sql, params });
+      if (sql.includes('FROM PracticeSessions ps')) {
+        return [[{
+          id: 123,
+          student_id: 5,
+          session_mode: 'LESSON',
+          question_ids: JSON.stringify([99]),
+          status: 'IN_PROGRESS',
+          server_now_ms: Date.now()
+        }]];
+      }
+      if (sql.includes('FROM PracticeSessionQuestions')) {
+        return [[{ snapshot: JSON.stringify(snapshot()) }]];
+      }
+      if (sql.includes('FROM StudentLogs')) return [[]];
+      if (sql.includes('INSERT INTO StudentLogs')) return [{ insertId: 456 }];
+      if (sql.includes('UPDATE PracticeSessions ps')) return [{ affectedRows: 1 }];
+      throw new Error(`Unexpected SQL in test: ${sql}`);
+    }
+  });
+
+  try {
+    const result = await PracticeSubmissionService.finishSession({
+      studentId: 5,
+      sessionId: 123,
+      answers: [{ questionId: 99, selectedAnswer: 'B', timeSpentSeconds: null }]
+    });
+    assert.equal(result.outcome, 'COMPLETED');
+    const insert = statements.find(({ sql }) => sql.includes('INSERT INTO StudentLogs'));
+    assert.equal(insert.params[3], 'B');
+    assert.equal(insert.params[4], 0);
+    assert.equal(
+      statements.some(({ sql }) => /status = 'COMPLETED'/.test(sql)),
+      true
+    );
   } finally {
     db.transaction = originalTransaction;
   }

@@ -11,13 +11,63 @@
   <article class="activity-card">
     <span class="status-pill status-new">5 câu · <%= practiceDurations[5] %> phút</span>
     <h2>Luyện theo bài học</h2>
-    <p class="muted">Mỗi lần luyện là 5 câu mới lấy từ bài em chọn, thời gian làm bài là <%= practiceDurations[5] %> phút.</p>
+    <p class="muted">Em có thể luyện riêng một bài như trước hoặc chọn nhiều bài để gộp vào cùng một đề.</p>
     <div class="row-actions">
       <a class="btn btn-primary" href="/student/dashboard#chuong-hoc">
         <i data-lucide="book-open" class="lucide-icon"></i>
-        Mở danh sách bài học
+        Chọn một bài · 5 câu
       </a>
     </div>
+
+    <details class="multi-lesson-disclosure" data-multi-lesson-disclosure>
+      <summary>
+        <i data-lucide="list-checks" class="lucide-icon"></i>
+        Gộp nhiều bài vào một đề
+        <i data-lucide="chevron-down" class="lucide-icon disclosure-chevron"></i>
+      </summary>
+      <form class="multi-lesson-form" action="/student/exams/start" method="post" data-busy-form data-busy-label="Đang tạo đề..." data-multi-lesson-form>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="mode" value="lessons">
+
+        <div class="multi-lesson-tools">
+          <label class="lesson-picker-search">
+            <span class="sr-only">Tìm bài muốn luyện</span>
+            <i data-lucide="search" class="lucide-icon"></i>
+            <input type="search" placeholder="Tìm tên bài..." data-multi-lesson-search autocomplete="off">
+          </label>
+          <span class="selection-count" data-selected-lesson-count aria-live="polite">Chưa chọn bài</span>
+        </div>
+
+        <div class="multi-lesson-picker" data-multi-lesson-picker>
+          <% (chapters || []).forEach((chapter) => { %>
+            <details class="lesson-picker-chapter" data-picker-chapter>
+              <summary>
+                <span>Học kỳ <%= Number(chapter.semester) === 1 ? '1' : '2' %> · <%= chapter.chapter_name %></span>
+                <small><%= (chapter.lessons || []).length %> bài</small>
+              </summary>
+              <div class="lesson-picker-options">
+                <% (chapter.lessons || []).forEach((lesson) => { %>
+                  <label data-picker-lesson data-search-text="<%= String(lesson.lesson_name || '').toLowerCase() %>">
+                    <input type="checkbox" name="lesson_ids" value="<%= lesson.id %>" data-multi-lesson-checkbox>
+                    <span><%= lesson.lesson_name %></span>
+                  </label>
+                <% }) %>
+              </div>
+            </details>
+          <% }) %>
+          <p class="lesson-picker-empty" data-multi-lesson-empty hidden>Không tìm thấy bài học phù hợp.</p>
+        </div>
+
+        <p class="multi-lesson-note" data-multi-lesson-note>Chọn ít nhất 2 bài. Mỗi bài đã chọn sẽ có câu hỏi trong đề.</p>
+        <div class="row-actions multi-lesson-actions">
+          <% (multiLessonLimits || []).forEach((limit) => { %>
+            <button class="btn <%= limit === 5 ? 'btn-primary' : 'btn-secondary' %>" type="submit" name="count" value="<%= limit %>" disabled data-multi-lesson-submit>
+              Tạo đề <%= limit %> câu · <%= practiceDurations[limit] %> phút
+            </button>
+          <% }) %>
+        </div>
+      </form>
+    </details>
   </article>
 
   <article class="activity-card">
@@ -78,6 +128,32 @@
       </div>
     </form>
   </article>
+</section>
+
+<section class="wrong-answer-review" aria-labelledby="wrong-answer-review-title">
+  <div>
+    <span class="status-pill <%= latestWrongPractice?.wrongAnswers?.length ? 'status-in-progress' : 'status-new' %>">
+      <%= latestWrongPractice?.wrongAnswers?.length || 0 %> câu sai gần nhất
+    </span>
+    <h2 id="wrong-answer-review-title">Luyện lại câu sai</h2>
+    <% if (!latestWrongPractice?.session) { %>
+      <p>Hoàn thành một bài luyện để hệ thống tìm câu thay thế phù hợp cho em.</p>
+    <% } else if (!latestWrongPractice.wrongAnswers.length) { %>
+      <p>Lần luyện gần nhất không có câu sai. Em làm rất tốt!</p>
+    <% } else { %>
+      <p>Mỗi câu sai sẽ được thay bằng một câu khác cùng bài học và cùng độ khó.</p>
+      <small>Nguồn: <%= latestWrongPractice.session.title %></small>
+    <% } %>
+  </div>
+  <% if (latestWrongPractice?.wrongAnswers?.length) { %>
+    <form action="/student/exams/retry-wrong" method="post" data-busy-form data-busy-label="Đang chọn câu...">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn btn-primary" type="submit">
+        <i data-lucide="rotate-ccw" class="lucide-icon"></i>
+        Luyện lại <%= latestWrongPractice.wrongAnswers.length %> câu
+      </button>
+    </form>
+  <% } %>
 </section>
 
 <section class="table-section">

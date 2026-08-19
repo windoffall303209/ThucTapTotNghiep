@@ -5,8 +5,10 @@ const assert = require('node:assert/strict');
 const {
   RECENT_LIMITS,
   generateLessonSelection,
+  generateMultiLessonSelection,
   generateReviewSelection,
-  generateScopedSelection
+  generateScopedSelection,
+  generateWrongAnswerRetrySelection
 } = require('../services/PracticeGenerationService');
 
 // Hàm buildCandidates dùng để xây dựng kết quả từ các nguồn dữ liệu và quy tắc liên quan; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -105,4 +107,81 @@ test('đề chương dùng lịch sử bao phủ của học sinh trong khối l
   assert.deepEqual(historyOptions, { studentId: 7, grade: 3 });
   assert.equal(result.questions.length, 15);
   assert.ok(result.questions.filter((question) => question.lesson_id === 101).length <= 2);
+});
+
+test('đề nhiều bài chỉ dùng phạm vi đã chọn và bao phủ từng bài', async () => {
+  const candidates = buildCandidates({ chapters: 1, lessonsPerChapter: 5, eachDifficulty: 3 });
+  const lessonIds = [101, 103, 105];
+  const result = await generateMultiLessonSelection({
+    studentId: 12,
+    grade: 4,
+    lessonIds,
+    count: 5,
+    candidates,
+    seed: '4400000000000001'
+  }, {
+    Question: {
+      getPracticeSelectionHistory: async () => ({ questions: {}, lessons: {} })
+    }
+  });
+
+  assert.equal(result.questions.length, 5);
+  assert.ok(result.questions.every((question) => lessonIds.includes(question.lesson_id)));
+  lessonIds.forEach((lessonId) => {
+    assert.ok(result.questions.some((question) => question.lesson_id === lessonId));
+  });
+  assert.equal(result.selection.metadata.scopeType, 'MULTI_LESSON');
+  assert.deepEqual(result.selection.metadata.selectedLessonIds, lessonIds);
+});
+
+test('luyện lại câu sai chọn câu khác cùng bài, cùng độ khó và không chọn trùng', () => {
+  const candidates = [
+    { id: 1, lesson_id: 101, chapter_id: 1, difficulty: 'EASY' },
+    { id: 2, lesson_id: 101, chapter_id: 1, difficulty: 'EASY' },
+    { id: 3, lesson_id: 101, chapter_id: 1, difficulty: 'EASY' },
+    { id: 4, lesson_id: 102, chapter_id: 1, difficulty: 'HARD' },
+    { id: 5, lesson_id: 102, chapter_id: 1, difficulty: 'HARD' },
+    { id: 6, lesson_id: 102, chapter_id: 1, difficulty: 'MEDIUM' }
+  ];
+  const wrongAnswers = [
+    { question_id: 1, lesson_id: 101, difficulty: 'EASY' },
+    { question_id: 4, lesson_id: 102, difficulty: 'HARD' }
+  ];
+  const first = generateWrongAnswerRetrySelection({
+    sourceSessionId: 88,
+    wrongAnswers,
+    candidates,
+    seed: '5500000000000001'
+  });
+  const repeated = generateWrongAnswerRetrySelection({
+    sourceSessionId: 88,
+    wrongAnswers,
+    candidates,
+    seed: '5500000000000001'
+  });
+
+  assert.deepEqual(first.questions.map((question) => question.id), repeated.questions.map((question) => question.id));
+  assert.equal(first.questions.length, 2);
+  assert.equal(new Set(first.questions.map((question) => question.id)).size, 2);
+  first.selection.metadata.mappings.forEach((mapping) => {
+    const replacement = candidates.find((question) => question.id === mapping.replacementQuestionId);
+    assert.notEqual(mapping.sourceQuestionId, mapping.replacementQuestionId);
+    assert.equal(replacement.lesson_id, mapping.lessonId);
+    assert.equal(replacement.difficulty, mapping.difficulty);
+  });
+});
+
+test('luyện lại câu sai không hạ điều kiện khi thiếu câu thay thế chính xác', () => {
+  const result = generateWrongAnswerRetrySelection({
+    wrongAnswers: [{ question_id: 7, lesson_id: 201, difficulty: 'HARD' }],
+    candidates: [
+      { id: 8, lesson_id: 201, chapter_id: 2, difficulty: 'MEDIUM' },
+      { id: 9, lesson_id: 202, chapter_id: 2, difficulty: 'HARD' }
+    ],
+    seed: '6600000000000001'
+  });
+
+  assert.deepEqual(result.questions, []);
+  assert.equal(result.selection.metadata.unavailableTargets.length, 1);
+  assert.deepEqual(result.selection.metadata.fallbackReasons, ['NO_EXACT_REPLACEMENT']);
 });

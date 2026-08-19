@@ -102,14 +102,14 @@
     // Hàm hasUnfinishedWork dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
     const hasUnfinishedWork = () =>
       state.questions.length > 0
-      && state.questions.some((question) => !state.results[question.id]);
+      && state.questions.some((question) => !hasQuestionResponse(question));
 
     document.querySelectorAll('.practice-topline .back-link').forEach((link) => {
       link.addEventListener('click', async (event) => {
         // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
         if (!hasUnfinishedWork()) return;
         event.preventDefault();
-        const answeredCount = Object.keys(state.results).length;
+        const answeredCount = countQuestionResponses();
         const remaining = state.questions.length - answeredCount;
         const confirmed = await showAppConfirm({
           title: 'Rời khỏi bài đang làm?',
@@ -195,6 +195,7 @@
     const app = document.getElementById('practiceApp');
     const question = state.questions[state.currentIndex];
     const hasSavedResult = Boolean(question && state.results[question.id]);
+    const hasSelectedAnswer = Boolean(question && getQuestionResponse(question));
     const locked = isAnswerPending() || state.finishing || state.timeExpired;
     const submitButton = document.getElementById('submitAnswerButton');
     const nextButton = document.getElementById('nextQuestionButton');
@@ -211,7 +212,7 @@
       dot.disabled = locked;
     });
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-    if (submitButton) submitButton.disabled = locked || hasSavedResult;
+    if (submitButton) submitButton.disabled = locked || hasSavedResult || !hasSelectedAnswer;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (nextButton) nextButton.disabled = locked;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -256,15 +257,17 @@
       const index = Number(dot.dataset.index);
       const question = state.questions[index];
       const result = question ? state.results[question.id] : null;
+      const hasDraft = Boolean(question && !result && readAnswerDraft(question.id));
 
       dot.classList.toggle('current', index === state.currentIndex);
+      dot.classList.toggle('selected', hasDraft);
       dot.classList.toggle('correct', Boolean(result && result.isCorrect));
       dot.classList.toggle('wrong', Boolean(result && !result.isCorrect));
       dot.setAttribute('aria-current', index === state.currentIndex ? 'true' : 'false');
 
       const stateLabel = result
         ? (result.isCorrect ? 'đã làm đúng' : 'đã làm sai')
-        : 'chưa làm';
+        : hasDraft ? 'đã chọn đáp án' : 'chưa làm';
       dot.setAttribute('aria-label', `Câu ${index + 1}, ${stateLabel}`);
     });
   }
@@ -321,12 +324,14 @@
         app.querySelectorAll('.answer-choice').forEach((item) => item.classList.remove('selected'));
         button.classList.add('selected');
         saveAnswerDraft(question.id, state.selectedAnswer);
+        updateDraftResponseState();
       });
     });
 
     app.querySelector('[data-free-answer-input]')?.addEventListener('input', (event) => {
       state.selectedAnswer = event.target.value;
       saveAnswerDraft(question.id, state.selectedAnswer);
+      updateDraftResponseState();
     });
 
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -344,14 +349,35 @@
 
   // Hàm hasAnyAnswer dùng để thực hiện logic nghiệp vụ chính và trả kết quả cho luồng gọi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
   function hasAnyAnswer() {
-    return Object.keys(state.results).length > 0;
+    return state.questions.some((question) => hasQuestionResponse(question));
+  }
+
+  function getQuestionResponse(question) {
+    const savedResult = question ? state.results[question.id] : null;
+    if (savedResult) return String(savedResult.selectedAnswer || '').trim();
+    return question ? String(readAnswerDraft(question.id) || '').trim() : '';
+  }
+
+  function hasQuestionResponse(question) {
+    return Boolean(getQuestionResponse(question));
+  }
+
+  function countQuestionResponses() {
+    return state.questions.filter((question) => hasQuestionResponse(question)).length;
+  }
+
+  function updateDraftResponseState() {
+    const finishButton = document.getElementById('finishPracticeButton');
+    if (finishButton) finishButton.hidden = !hasAnyAnswer();
+    updateQuestionProgressBar();
+    syncPracticeControlState();
   }
 
   // Mở lại bài ở câu chưa làm đầu tiên. Không dùng current_index của phiên làm
   // chỉ số câu nữa: từ khi có thanh chấm tiến trình, học sinh làm bài không theo
   // thứ tự nên current_index chỉ còn mang nghĩa số câu đã làm.
   function firstUnansweredIndex() {
-    const index = state.questions.findIndex((question) => !state.results[question.id]);
+    const index = state.questions.findIndex((question) => !hasQuestionResponse(question));
     return index === -1 ? 0 : index;
   }
 
@@ -458,6 +484,19 @@
     if (!choiceButton) return;
     choiceButton.classList.add('selected');
     state.selectedAnswer = draft;
+  }
+
+  function collectUnsubmittedAnswers() {
+    return state.questions.reduce((answers, question) => {
+      if (state.results[question.id]) return answers;
+      const selectedAnswer = String(readAnswerDraft(question.id) || '').trim();
+      if (!selectedAnswer) return answers;
+      answers.push({
+        questionId: Number(question.id),
+        selectedAnswer
+      });
+      return answers;
+    }, []);
   }
 
   // Hàm submitAnswer dùng để xử lý yêu cầu, điều phối các bước nghiệp vụ và phản hồi lỗi; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
@@ -860,7 +899,7 @@
     // sessionPractice sẽ chuyển mọi phiên COMPLETED sang trang xem lại, không có
     // đường làm tiếp. Vì nút này nằm ngay cạnh "Câu tiếp theo" nên phải hỏi lại
     // khi bài còn dở.
-    const remaining = state.questions.filter((question) => !state.results[question.id]).length;
+    const remaining = state.questions.filter((question) => !hasQuestionResponse(question)).length;
     // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
     if (!timedOut && remaining > 0) {
       const confirmed = await showAppConfirm({
@@ -885,7 +924,8 @@
     try {
       const response = await fetch(`/student/sessions/${state.practiceSessionId}/finish`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ answers: collectUnsubmittedAnswers() })
       });
       const result = await response.json().catch(() => null);
 
@@ -931,7 +971,7 @@
     disablePracticeControls();
     await showAppAlert({
       title: 'Đã hết thời gian làm bài',
-      message: 'Hệ thống đã tự động kết thúc bài và lưu lại những câu em đã nộp.',
+      message: 'Hệ thống đã tự động kết thúc bài và lưu lại những câu em đã chọn.',
       tone: 'warning',
       confirmLabel: 'Xem kết quả'
     });

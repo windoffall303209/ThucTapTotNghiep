@@ -257,6 +257,11 @@ async function getQuestionCandidates(options = {}) {
 
   const chapterId = Number(options.chapterId || 0);
   const lessonId = Number(options.lessonId || 0);
+  const lessonIds = [...new Set(
+    (Array.isArray(options.lessonIds) ? options.lessonIds : [])
+      .map(Number)
+      .filter((id) => Number.isInteger(id) && id > 0)
+  )].slice(0, 100);
   const semester = [1, 2].includes(Number(options.semester))
     ? Number(options.semester)
     : null;
@@ -364,6 +369,9 @@ async function getRecentQuestionIds(options = {}) {
   if (lessonId > 0) {
     conditions.push('l.id = ?');
     params.push(lessonId);
+  } else if (lessonIds.length > 0) {
+    conditions.push(`l.id IN (${lessonIds.map(() => '?').join(',')})`);
+    params.push(...lessonIds);
   }
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
   if (chapterId > 0) {
@@ -401,7 +409,11 @@ async function getRecentQuestionIds(options = {}) {
           && (!semester || Number(chapter.semester) === semester)
         ))
         .flatMap((chapter) => chapter.lessons)
-        .filter((lesson) => !lessonId || Number(lesson.id) === lessonId)
+          .filter((lesson) => (
+            (!lessonId && lessonIds.length === 0)
+            || Number(lesson.id) === lessonId
+            || lessonIds.includes(Number(lesson.id))
+          ))
         .flatMap((lesson) => sampleData.questions
           .filter((question) => Number(question.lesson_id) === Number(lesson.id))
           .map((question) => Number(question.id)))

@@ -18,8 +18,10 @@ test('controller học sinh dùng dịch vụ năng lực thay cho cách đếm 
 
 test('mọi luồng tạo phiên mới đều lưu metadata của bộ chọn V2', () => {
   assert.match(controller, /PracticeGenerationService\.generateLessonSelection/);
+  assert.match(controller, /PracticeGenerationService\.generateMultiLessonSelection/);
   assert.match(controller, /PracticeGenerationService\.generateReviewSelection/);
   assert.match(controller, /PracticeGenerationService\.generateScopedSelection/);
-  assert.equal((controller.match(/selection: generated\.selection/g) || []).length, 3);
+  assert.match(controller, /PracticeGenerationService\.generateWrongAnswerRetrySelection/);
+  assert.equal((controller.match(/selection: generated\.selection/g) || []).length, 4);
   assert.doesNotMatch(controller, /selectRandomQuestions|selectBalancedQuestions/);
 });

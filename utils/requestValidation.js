@@ -13,6 +13,14 @@ function parsePositiveInteger(value, max = Number.MAX_SAFE_INTEGER) {
   return parseInteger(value, { min: 1, max });
 }
 
+function parsePositiveIntegerList(value, { maxItems = 100, maxValue = Number.MAX_SAFE_INTEGER } = {}) {
+  const source = Array.isArray(value) ? value : [value];
+  if (source.length > maxItems) return null;
+  const values = source.map((item) => parsePositiveInteger(item, maxValue));
+  if (values.some((item) => item === null)) return null;
+  return [...new Set(values)];
+}
+
 function normalizePage(value, fallback = 1, max = 100_000) {
   return parseInteger(value, { min: 1, max }) || fallback;
 }
@@ -31,5 +39,6 @@ module.exports = {
   normalizeBoundedText,
   normalizePage,
   parseInteger,
-  parsePositiveInteger
+  parsePositiveInteger,
+  parsePositiveIntegerList
 };

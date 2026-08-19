@@ -267,6 +267,12 @@
   background: var(--success-soft);
 }
 
+.progress-dot.selected {
+  color: #1d4ed8;
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
 .progress-dot.wrong {
   color: #7f1d1d;
   border-color: #fca5a5;

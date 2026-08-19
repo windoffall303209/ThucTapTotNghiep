@@ -121,6 +121,84 @@ async function submitAnswer({
   });
 }
 
+async function finishSession({ studentId, sessionId, answers = [] }) {
+  return db.transaction(async (connection) => {
+    const [sessionRows] = await connection.execute(
+      `SELECT ps.*, ROUND(UNIX_TIMESTAMP(CURRENT_TIMESTAMP(3)) * 1000) AS server_now_ms
+       FROM PracticeSessions ps
+       WHERE ps.id = ? AND ps.student_id = ?
+       LIMIT 1
+       FOR UPDATE`,
+      [sessionId, studentId]
+    );
+    const session = normalizeLockedSession(sessionRows[0]);
+    if (!session) return { outcome: 'SESSION_NOT_FOUND' };
+    if (session.status !== 'IN_PROGRESS') return { outcome: 'ALREADY_COMPLETED', session };
+
+    const allowedQuestionIds = new Set(session.question_ids.map(Number));
+    if (answers.some((answer) => !allowedQuestionIds.has(Number(answer.questionId)))) {
+      return { outcome: 'QUESTION_NOT_IN_SESSION', session };
+    }
+
+    for (const answer of answers) {
+      const question = await loadSessionQuestion(connection, session, answer.questionId);
+      if (!question) {
+        await finishLockedSession(connection, session.id, 'CONTENT_UNAVAILABLE');
+        return { outcome: 'QUESTION_UNAVAILABLE', session };
+      }
+
+      const [existingRows] = await connection.execute(
+        `SELECT id
+         FROM StudentLogs
+         WHERE practice_session_id = ? AND question_id = ?
+         LIMIT 1`,
+        [session.id, answer.questionId]
+      );
+      if (existingRows[0]) continue;
+
+      const isCorrect = answersMatch(question, answer.selectedAnswer);
+      const misconception = isCorrect || question.question_type === 'FILL_IN_THE_BLANK'
+        ? null
+        : findSnapshotMisconception(question, answer.selectedAnswer);
+      await connection.execute(
+        `INSERT INTO StudentLogs
+          (student_id, practice_session_id, question_id, selected_answer, is_correct,
+           detected_misconception_id, time_spent_seconds)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [
+          studentId,
+          session.id,
+          answer.questionId,
+          answer.selectedAnswer,
+          isCorrect ? 1 : 0,
+          misconception?.id || null,
+          answer.timeSpentSeconds
+        ]
+      );
+    }
+
+    const completionReason = getSessionTiming(session, session.server_now_ms).isExpired
+      ? 'EXPIRED'
+      : 'USER_FINISHED';
+    await connection.execute(
+      `UPDATE PracticeSessions ps
+       SET ps.current_index = (
+             SELECT COUNT(DISTINCT sl.question_id)
+             FROM StudentLogs sl
+             WHERE sl.practice_session_id = ps.id
+           ),
+           ps.status = 'COMPLETED',
+           ps.completion_reason = COALESCE(ps.completion_reason, ?),
+           ps.active_key = NULL,
+           ps.completed_at = COALESCE(ps.completed_at, CURRENT_TIMESTAMP)
+       WHERE ps.id = ?`,
+      [completionReason, session.id]
+    );
+
+    return { outcome: 'COMPLETED', session: { ...session, completion_reason: completionReason } };
+  });
+}
+
 // Hàm normalizeLockedSession dùng để chuẩn hóa và làm sạch dữ liệu đầu vào; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 function normalizeLockedSession(row) {
   // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
@@ -170,6 +248,7 @@ async function finishLockedSession(connection, sessionId, reason) {
 }
 
 module.exports = {
+  finishSession,
   findSnapshotMisconception,
   submitAnswer
 };
