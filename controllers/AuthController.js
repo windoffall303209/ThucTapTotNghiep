@@ -15,6 +15,7 @@ const {
 const { normalizeEmail, validateEmail } = require('../utils/emailValidation');
 const AccountRecoveryService = require('../services/AccountRecoveryService');
 const EmailService = require('../services/EmailService');
+const LoginAttemptService = require('../services/LoginAttemptService');
 
 // Bcrypt must still run when the username does not exist. Returning early makes
 // the timing gap large enough to enumerate accounts despite identical messages.
@@ -142,8 +143,19 @@ async function loginForRole(req, res, next, role) {
       password,
       student?.password_hash || DUMMY_PASSWORD_HASH
     );
-    // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
+    const lockState = LoginAttemptService.getLockState(student);
+    if (lockState.locked) {
+      setFlash(req, 'danger', LoginAttemptService.lockMessage(lockState));
+      return res.redirect('/auth/student/login');
+    }
     if (!student || !isValidPassword) {
+      const failure = student
+        ? await LoginAttemptService.recordFailure('student', student.id)
+        : null;
+      if (failure?.locked) {
+        setFlash(req, 'danger', LoginAttemptService.lockMessage(failure));
+        return res.redirect('/auth/student/login');
+      }
       setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu không chính xác.');
       return res.redirect('/auth/student/login');
     }
@@ -167,6 +179,7 @@ async function loginForRole(req, res, next, role) {
       return res.redirect('/auth/student/login');
     }
 
+    await LoginAttemptService.clearFailures('student', student.id);
     setAuthCookie(res, toStudentTokenPayload(student));
     setFlash(req, 'success', 'Đăng nhập thành công.', {
       transient: true,
@@ -301,43 +314,50 @@ function logout(req, res, next) {
   });
 }
 
-// Hàm loginAdmin dùng để xử lý xác thực và cập nhật trạng thái phiên người dùng; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
+// Hàm loginAdmin xác thực và áp dụng cùng chính sách khóa tạm cho tài khoản quản trị.
 async function loginAdmin(req, res, username, password) {
-  const admin = await verifyAdminCredentials(username, password);
-  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (admin) {
-    setAuthCookie(res, {
-      id: admin.id,
-      username: admin.username,
-      fullname: admin.fullname,
-      role: admin.role,
-      type: 'admin',
-      credential_version: getCredentialVersion(admin.password_hash)
-    });
-    setFlash(req, 'success', 'Đăng nhập quản trị thành công.', {
-      transient: true,
-      durationMs: 3000
-    });
-    return res.redirect('/admin/dashboard');
-  }
-
-  setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu quản trị không chính xác.');
-  return res.redirect('/auth/admin/login');
-}
-
-// Hàm verifyAdminCredentials dùng để đối chiếu kết quả với các điều kiện mong đợi và báo cáo sai lệch; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
-async function verifyAdminCredentials(username, password) {
   const admin = await Admin.findByUsername(username);
-  const isValidAdminPassword = await bcrypt.compare(
+  const isValidPassword = await bcrypt.compare(
     password,
     admin?.password_hash || DUMMY_PASSWORD_HASH
   );
-  // Khối này tập trung xử lý nhánh nghiệp vụ và bảo toàn các điều kiện an toàn.
-  if (!admin || Number(admin.is_active) !== 1 || !isValidAdminPassword) {
-    return null;
+  const lockState = LoginAttemptService.getLockState(admin);
+  if (lockState.locked) {
+    setFlash(req, 'danger', LoginAttemptService.lockMessage(lockState));
+    return res.redirect('/auth/admin/login');
   }
 
-  return admin;
+  if (!admin || !isValidPassword) {
+    const failure = admin
+      ? await LoginAttemptService.recordFailure('admin', admin.id)
+      : null;
+    if (failure?.locked) {
+      setFlash(req, 'danger', LoginAttemptService.lockMessage(failure));
+      return res.redirect('/auth/admin/login');
+    }
+    setFlash(req, 'danger', 'Tài khoản hoặc mật khẩu quản trị không chính xác.');
+    return res.redirect('/auth/admin/login');
+  }
+
+  if (Number(admin.is_active) !== 1) {
+    setFlash(req, 'danger', 'Tài khoản quản trị đã bị tạm khóa.');
+    return res.redirect('/auth/admin/login');
+  }
+
+  await LoginAttemptService.clearFailures('admin', admin.id);
+  setAuthCookie(res, {
+    id: admin.id,
+    username: admin.username,
+    fullname: admin.fullname,
+    role: admin.role,
+    type: 'admin',
+    credential_version: getCredentialVersion(admin.password_hash)
+  });
+  setFlash(req, 'success', 'Đăng nhập quản trị thành công.', {
+    transient: true,
+    durationMs: 3000
+  });
+  return res.redirect('/admin/dashboard');
 }
 
 // Hàm toStudentTokenPayload dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.

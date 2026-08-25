@@ -166,7 +166,9 @@ async function updatePassword(studentId, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
   await db.query(
-    'UPDATE Students SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    `UPDATE Students SET password_hash = ?, failed_login_attempts = 0, login_locked_until = NULL,
+         updated_at = CURRENT_TIMESTAMP
+     WHERE id = ?`,
     [passwordHash, studentId]
   );
 

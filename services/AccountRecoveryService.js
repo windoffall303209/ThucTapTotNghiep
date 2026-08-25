@@ -143,7 +143,8 @@ async function resetPasswordWithCode({ studentId, email, code, passwordHash }) {
     if (!verification.ok) return { ok: false, code: verification.code };
     const [result] = await connection.execute(
       `UPDATE Students
-       SET password_hash = ?, updated_at = CURRENT_TIMESTAMP
+       SET password_hash = ?, failed_login_attempts = 0, login_locked_until = NULL,
+           updated_at = CURRENT_TIMESTAMP
        WHERE id = ? AND email = ? AND email_verified_at IS NOT NULL AND is_active = 1`,
       [passwordHash, studentId, email]
     );

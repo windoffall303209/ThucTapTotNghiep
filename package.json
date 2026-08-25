@@ -42,6 +42,7 @@
     "db:indexes": "node scripts/apply_performance_indexes.js",
     "db:student-status": "node scripts/apply_student_account_status.js",
     "db:email-recovery": "node migrations/20260812_add_student_email_recovery.js",
+    "db:login-lockout": "node migrations/20260825_add_login_lockout.js",
     "db:session-integrity": "node scripts/apply_session_integrity.js",
     "db:runtime-storage": "node scripts/apply_runtime_storage.js",
     "db:ai-log-retention": "node scripts/apply_ai_log_retention.js",

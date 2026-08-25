@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 // Hàm findByUsername dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function findByUsername(username) {
   const rows = await db.query(
-    `SELECT id, username, password_hash, fullname, role, is_active
+    `SELECT id, username, password_hash, fullname, role, is_active, failed_login_attempts, login_locked_until
      FROM Admins
      WHERE username = ?
      LIMIT 1`,
@@ -16,7 +16,7 @@ async function findByUsername(username) {
 // Hàm findById dùng để lấy dữ liệu và xử lý trường hợp không tìm thấy kết quả; cần bảo toàn hợp đồng đầu vào và giá trị trả về của luồng gọi.
 async function findById(id) {
   const rows = await db.query(
-    `SELECT id, username, password_hash, fullname, role, is_active
+    `SELECT id, username, password_hash, fullname, role, is_active, failed_login_attempts, login_locked_until
      FROM Admins
      WHERE id = ?
      LIMIT 1`,
@@ -28,7 +28,9 @@ async function findById(id) {
 async function updatePassword(adminId, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   await db.query(
-    'UPDATE Admins SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    `UPDATE Admins SET password_hash = ?, failed_login_attempts = 0, login_locked_until = NULL,
+         updated_at = CURRENT_TIMESTAMP
+     WHERE id = ?`,
     [passwordHash, adminId]
   );
   return passwordHash;
